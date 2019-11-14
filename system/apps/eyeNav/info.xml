@@ -1,8 +1,8 @@
 <package>
-	<name>Navigator</name>
+	<name>Browser</name>
 	<category>Networking</category>
-	<version>1.9</version>
-	<description>Application to browse the web</description>
+	<version>1.0</version>
+	<description>Program to browse the web</description>
 	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>Application</type>
