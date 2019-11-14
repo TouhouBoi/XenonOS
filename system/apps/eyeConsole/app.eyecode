@@ -20,7 +20,7 @@ function eyeConsole_run($params=null) {
 
 	$myWindow = new Window(array(
 		'name' => 'consoleWindow',
-		'title' => $currentUser.'@'.EYEOS_HOSTNAME,
+		'title' => $currentUser.'@'.XENONOS_HOSTNAME,
 		'father' => 'eyeApps',
 		'width' => 500,
 		'height' => 400,
