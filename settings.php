@@ -69,7 +69,6 @@ define('REAL_ROOTUSER','root');
 
 // XenonOS Version
 define('XENONOS_VERSION','1.0.0alpha');
-define('XENONOS_VERSION','1.0.0alpha');
 define('KE_KERNEL_VERSION','1.0.0alpha');
 
 // Define XenonOS Dialog Types
