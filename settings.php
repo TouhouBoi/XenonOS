@@ -63,8 +63,8 @@ define('REAL_ROOTUSER','root');
 
 //Extras
 define('EYEOS_TMP_DIR','tmp');
-define('EYEOS_VERSION','1.11.6.0preview');
-define('ONEYE_VERSION','0.9.6preview');
+define('EYEOS_VERSION','1.0.0alpha');
+define('ONEYE_VERSION','1.0.0alpha');
 define('XML_COMPAT',1);
 define('XML_PARSER','pure');
 define('ACL_SUPPORT',1);
