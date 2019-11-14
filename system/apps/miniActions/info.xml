@@ -3,7 +3,7 @@
 	<category>Widgets</category>
 	<version>1.9</version>
 	<description>A widget of application shortcuts.</description>
-	<author>oneye Team</author>
+	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>Widget</type>
 	<icon>index.php?theme=USERTHEME&amp;extern=icons/48x48/miniActions.png</icon>

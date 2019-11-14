@@ -60,10 +60,10 @@ function eyeInfo_run($params = '') {
 		'y' => 100
 	));
 	$myTab->show();
-	$oneyeTab = $myTab->addTab('oneye Team', 1);
+	$oneyeTab = $myTab->addTab('Trinity', 1);
 	$supportersTab = $myTab->addTab('Supporters', 1);
 	$projectsTab = $myTab->addTab('Projects', 1);
-	$myTab->selectByName('oneye Team');
+	$myTab->selectByName('Trinity');
 
 	$myImagebox = new Imagebox(array(
 		'father' => 'eyeInfo_Tab',
@@ -82,7 +82,7 @@ function eyeInfo_run($params = '') {
 	$myLabel = new Label(array(
 		'father' => $oneyeTab,
 		'name' => 'eyeInfo_Label_Development',
-		'text' => 'oneye Team',
+		'text' => 'Trinity',
 		'x' => 10,
 		'y' => 10
 	));
