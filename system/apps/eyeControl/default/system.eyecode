@@ -59,7 +59,7 @@ $myTextbox_hostname = new Textbox(array(
 	'father' => $systemTab,
 	'x' => 200,
 	'y' => $ContentY,
-	'text' => EYEOS_HOSTNAME
+	'text' => XENONOS_HOSTNAME
 ));
 $myTextbox_hostname->show();
 $ContentY += 40;
