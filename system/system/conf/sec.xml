@@ -3,5 +3,5 @@
 	<ROOT_JAILED>0</ROOT_JAILED>
 	<ADMINS_JAILED>0</ADMINS_JAILED>
 	<SECURE_LOGIN>0</SECURE_LOGIN><!-- Secure login disabled in favor of password_hash() instead of md5(). Usage of HTTPS is highly recommended! -->
-	<PASSWORD_HASH_COST>10</PASSWORD_HASH_COST>
+	<PASSWORD_HASH_COST>15</PASSWORD_HASH_COST>
 </CONFIG>
