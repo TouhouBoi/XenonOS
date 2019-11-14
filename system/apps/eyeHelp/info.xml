@@ -1,8 +1,8 @@
 <package>
 	<name>Help</name>
 	<category>Utilities</category>
-	<version>1.9</version>
-	<description>oneye help system</description>
+	<version>1.0</version>
+	<description>XenonOS help system</description>
 	<author>DanielRS</author>
 	<license>AGPL</license>
 	<type>Application</type>
