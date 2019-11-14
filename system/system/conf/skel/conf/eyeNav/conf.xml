@@ -31,10 +31,6 @@
 				<name>Bing</name>
 				<url>https://www.bing.com/search?q=%s</url>
 			</link>
-			<link>
-				<name>Google</name>
-				<url>https://www.google.com/custom?q=%s</url>
-			</link>
 		</category>
 		<category>
 			<name>Knowledge</name>
