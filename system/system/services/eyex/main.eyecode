@@ -1,52 +1,45 @@
 <?php
 /*
-  ___  _ __   ___ _   _  ___
- / _ \| '_ \ / _ \ | | |/ _ \
-| (_) | | | |  __/ |_| |  __/
- \___/|_| |_|\___|\__, |\___|
-                  |___/
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
 
-oneye is released under the GNU Affero General Public License Version 3 (AGPL3)
- -> provided with this release in license.txt
- -> or via web at www.gnu.org/licenses/agpl-3.0.txt
 
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
 Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
+
 */
 
 /*
-	oneye X system, for visual tasks
-*/
-/*
-	eyeX is a wrapper service, its function is to add messages in the output buffer
-	located at the mmap service.
-
-	The messages added to the buffer by this service, are related to the screen
-	management.
+	XenonOS Xe system, for visual tasks
 */
 
-define('GLOBAL_FATHER','eyeApps');//TODO: remove this?
+define('GLOBAL_FATHER','eyeApps');
 
-function service_eyex_init() {
-	if (isset($_REQUEST['type']) === false || $_REQUEST['type'] !== 'dynamic') {
-		header("Content-type:text/xml");//override header type
+function service_eyex_init()
+{
+	if (isset($_REQUEST['type']) === false || $_REQUEST['type'] !== 'dynamic')
+	{
+		header("Content-type:text/xml");
 	}
 }
 
-/**
-* Embeds the specified content inside of an existing layer.
-*
-* @param $params array(name,content)
-* @param $name Name of the layer.
-* @param $content Code (or text) to insert inside the layer.
-* @return If no name is specified, returns false and sets the error
-*	code accordingly. Otherwise, it does not return any value.
-* @exception INCORRECT_PARAMS No element name is specified.
-* @date 2008/03/11
-*/
-function service_eyex_setDiv($params) {
+function service_eyex_setDiv($params)
+{
 	global $procInfo;
-	if($params == null || count($params) < 2){
+
+	if($params == null || count($params) < 2)
+	{
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
 	}
@@ -54,149 +47,120 @@ function service_eyex_setDiv($params) {
 	$myDiv = $params['name'];
 	$myContent = $params['content'];
 
-	$atribs = array(
-		'task' => array('setDiv'),
-		'name' => array($procInfo['pid'].'_'.$myDiv),
-		'content' => array($myContent)
+	$atribs = array (
+		'task' => array ('setDiv'),
+		'name' => array ($procInfo['pid'].'_'.$myDiv),
+		'content' => array ($myContent)
 	);
 
-	$task = array(
-		'action' => array(
+	$task = array (
+		'action' => array (
 			$atribs
 		)
 	);
 
-	$myAction = eyeXML('array2xml',array($task));
+	$myAction = eyeXML('array2xml', array($task));
+
 	mmap('addToBuffer',array($myAction));
-	return true;
+
+	return(true);
 }
 
-/**
-* Loads a JS script from a specified URL in the extern folder.
-*
-* @param $params array(url)
-* @param $url URL of the script. The script must be loaded via the extern
-*	service.
-* @return If no url is specified, returns false and sets the error
-*	code accordingly. Otherwise, it does not return any value.
-* @exception INCORRECT_PARAMS No name is specified.
-* @date 2008/03/11
-*/
-function service_eyex_loadScript($params=null) {
-	if(!isset($params['url'])) {
+function service_eyex_loadScript($params = null)
+{
+	if (!isset($params['url']))
+	{
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
 	}
+
 	$myScript = $params['url'];
-	$atribs = array(
-		'task' => array('loadScript'),
-		'url' => array($myScript),
+
+	$atribs = array (
+		'task' => array ('loadScript'),
+		'url' => array ($myScript),
 	);
 
-	$task = array(
-		'action' => array(
+	$task = array (
+		'action' => array (
 			$atribs
 		)
 	);
 
 	$myAction = eyeXML('array2xml',array($task));
-	mmap('addToBuffer',array($myAction));
-	return true;
+
+	mmap('addToBuffer', array($myAction));
+
+	return(true);
 }
 
-/**
-* Loads a CSS file from a specified directory inside the extern folder.
-*
-* @param $params array(url,id)
-* @param $url URL of the file inside the extern directory. The CSS
-*	resources contained in this directory must be loaded via the
-*	extern service.
-* @param $id ID assigned to the loaded CSS.
-* @return If no layer name is specified, returns false and sets the
-*	error code accordingly. Otherwise, it does not return any
-*	value.
-* @exception INCORRECT_PARAMS No name is specified.
-* @date 2008/03/11
-*/
-function service_eyex_loadCSS($params) {
-	if(!$params['url'] || !$params['id']) {
+function service_eyex_loadCSS($params)
+{
+	if (!$params['url'] || !$params['id'])
+	{
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
+
 		return false;
 	}
+
 	$myScript = $params['url'];
 	$myID = $params['id'];
 
-	$atribs = array(
-		'task' => array('loadCSS'),
-		'url' => array($myScript),
-		'id' => array($myID)
+	$atribs = array (
+		'task' => array ('loadCSS'),
+		'url' => array ($myScript),
+		'id' => array ($myID)
 	);
 
-	$task = array(
-		'action' => array(
+	$task = array (
+		'action' => array (
 			$atribs
 		)
 	);
 
-	$myAction = eyeXML('array2xml',array($task));
+	$myAction = eyeXML('array2xml', array($task));
+
 	mmap('addToBuffer',array($myAction));
-	return true;
+
+	return(true);
 }
 
-/**
-* Eliminates a loaded CSS resource.
-*
-* @param $params array(id)
-* @param $id ID attribute of the CSS to delete.
-* @return If no id is specified, returns false and sets the error code
-*	accordingly. Otherwise, it does not return any value.
-* @exception INCORRECT_PARAMS No id is specified.
-* @date 2008/03/11
-*/
-function service_eyex_removeCSS($params) {
-	if(!$params['id']) {
+function service_eyex_removeCSS($params)
+{
+	if (!$params['id'])
+	{
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
+
 		return false;
 	}
+
 	$myID = $params['id'];
 
-	$atribs = array(
-		'task' => array('removeCSS'),
-		'id' => array($myID),
+	$atribs = array (
+		'task' => array ('removeCSS'),
+		'id' => array ($myID),
 	);
 
-	$task = array(
-		'action' => array(
+	$task = array (
+		'action' => array (
 			$atribs
 		)
 	);
 
-	$myAction = eyeXML('array2xml',array($task));
-	mmap('addToBuffer',array($myAction));
-	return true;
+	$myAction = eyeXML('array2xml', array($task));
+
+	mmap('addToBuffer', array($myAction));
+
+	return(true);
 }
 
-/**
-* Changes the wallpaper of the screen.
-*
-* @param $params array(path,[repeat],[center])
-* @param $path Path to the new background image.
-* @param $repeat Specifies whether or not the background image must be
-*	repeated to fit all the screen (1) or not (0). Default value
-*	is 0.
-* @param $center Specifies whether or not the image must be centered in the
-*	screen. The default value (1) centers it, while a value of 0
-*	avoids it to be centered.
-* @return If no path parameter is specified, returns false and sets
-*	the error code accordingly. Otherwise, it does not return
-*	any value.
-* @exception INCORRECT_PARAMS No path is not specified.
-* @date 2008/03/11
-*/
-function service_eyex_setWallpaper($params) {
-	if(!$params['path']) {
+function service_eyex_setWallpaper($params)
+{
+	if (!$params['path'])
+	{
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
-		return false;
+
+		return(false);
 	}
 
 	$wallp = $params['path'];
@@ -204,283 +168,276 @@ function service_eyex_setWallpaper($params) {
 	$center = $params['center'];
 	$color = $params['color'];
 
-	if(!isset($repeat)) {
-		$repeat=0;
+	if (!isset($repeat))
+	{
+		$repeat = 0;
 	}
 
-	if(!isset($center)) {
-		$center=1;
+	if (!isset($center))
+	{
+		$center = 1;
 	}
 
-	$atribs = array(
-		'task' => array('setWallpaper'),
-		'url' => array($wallp),
-		'repeat' => array($repeat),
-		'center' => array($center),
-		'color' => array($color)
+	$atribs = array (
+		'task' => array ('setWallpaper'),
+		'url' => array ($wallp),
+		'repeat' => array ($repeat),
+		'center' => array ($center),
+		'color' => array ($color)
 	);
 
-	$task = array(
-		'action' => array(
+	$task = array (
+		'action' => array (
 			$atribs
 		)
 	);
 
-	$myAction = eyeXML('array2xml',array($task));
-	mmap('addToBuffer',array($myAction));
-	return true;
+	$myAction = eyeXML('array2xml', array($task));
+
+	mmap('addToBuffer', array($myAction));
+
+	return(true);
 }
 
-/**
-* Checks whether the image is available for that theme or not.
-*
-* @param $params array(path,extension)
-* @param $path Path in any format.
-* @param $extend If 1 the index.php?extern= path will be added before
-*	the $path if it's 2 the real path will be added.
-*	the $path if it's 3 the real path will be used for output.
-* @return If the image is in the themes folder it returns the usertheme with
-*	the image path. Else it returns the default theme with the image path.
-* @exception INCORRECT_PARAMS No path is specified.
-* @date 2008/08/01
-*/
-function service_eyex_getThemeImage($params) {
-// Check params
+function service_eyex_getThemeImage($params)
+{
 	$path = $params[0];
 	$extend = null;
-	if (isset($params[1]) === true) {
+
+	if (isset($params[1]) === true)
+	{
 		$extend = $params[1];
 	}
-	if (!$path) {
+
+	if (!$path)
+	{
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
-		return false;
+
+		return(false);
 	}
+
 	$themes_path = EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR;
-// Extend input and remove backslashes
-	if ($extend === 1 || $extend == 2) {
+
+	if ($extend === 1 || $extend == 2)
+	{
 		$path = $themes_path . '/default/' . $path;
 	}
+
 	$path = str_replace('\\','/',$path);
 	$path = str_replace('//','/',$path);
 	$path = str_replace('//','/',$path);
-// Switch from an extern to a real url
-	if ( /* utf8 */ stripos($path, 'extern=') !== false) {
+
+	if (stripos($path, 'extern=') !== false)
+	{
 		$path = eyex('getRealFromExtern',array($path));
 	}
-	$url = $path; // $url won't be changed and saves the original path.
-// Check if the path is a theme path
-	if ( /* utf8 */ strpos($path, $themes_path . '/default/') !== false) {
+
+	$url = $path;
+
+	if (strpos($path, $themes_path . '/default/') !== false)
+	{
 		$path = $themes_path . '/' . $_SESSION['usertheme'] . '/' . substr($url, strlen($themes_path . '/default/')); // utf8
 		$path = eyex_getExistingPath($path);
-		if (!$path) {
+
+		if (!$path)
+		{
 			$alias = array();
+
 			include EYE_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/eyex/image_alias' . EYE_CODE_EXTENSION;
-			$temp = substr($url, strlen($themes_path . '/default/')); // utf8
-			if (isset($alias[0][$temp]) === true) {
+
+			$temp = substr($url, strlen($themes_path . '/default/'));
+
+			if (isset($alias[0][$temp]) === true)
+			{
 				$path = $themes_path . '/' . $_SESSION['usertheme'] . '/' . $alias[0][$temp];
 				$path = eyex_getExistingPath($path);
-			} else {
+			}
+			else
+			{
 				$path = false;
 			}
-// If it does not exist in the current theme
-			if (!$path) {
-				$path = $themes_path . '/default/' . substr($url, strlen($themes_path . '/default/')); // utf8
+
+			if (!$path)
+			{
+				$path = $themes_path . '/default/' . substr($url, strlen($themes_path . '/default/'));
 				$path = eyex_getExistingPath($path);
-				if (!$path) {
-					if ($alias[0][$temp]) {
+
+				if (!$path)
+				{
+					if ($alias[0][$temp])
+					{
 						$path = $themes_path . '/default/' . $alias[0][$temp];
 						$path = eyex_getExistingPath($path,$extend);
-					} else {
+					}
+					else
+					{
 						$path = false;
 					}
-					if (!$path) {
+
+					if (!$path)
+					{
 						return eyex_returnWrongPath($url,$extend);
 					}
 				}
 			}
 		}
-// If it is no theme part
-	} else {
+	}
+	else
+	{
 		$path = eyex_getExistingPath($path);
-		if (!$path) {
+
+		if (!$path)
+		{
 			$alias = array();
+
 			include EYE_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/eyex/image_alias' . EYE_CODE_EXTENSION;
-			$path = substr($url, strlen(EYE_ROOT . '/' . EXTERN_DIR . '/')); // utf8
-			if ($alias[1][$path]) {
+
+			$path = substr($url, strlen(EYE_ROOT . '/' . EXTERN_DIR . '/'));
+
+			if ($alias[1][$path])
+			{
 				$path = eyex('getThemeImage',array($themes_path . '/default/' . $alias[1][$path],3));
-			} else {
-				return eyex_returnWrongPath($path,$extend);
+			}
+			else
+			{
+				return eyex_returnWrongPath($path, $extend);
 			}
 		}
 	}
-// Return path
-	if ($extend == 2 || $extend == 3) {
-		return $path;
-	} else {
-		return 'index.php?extern=' . substr($path, strlen(EYE_ROOT . '/' . EXTERN_DIR . '/')); // utf8
+
+	if ($extend == 2 || $extend == 3)
+	{
+		return($path);
+	}
+	else
+	{
+		return('index.php?extern=' . substr($path, strlen(EYE_ROOT . '/' . EXTERN_DIR . '/')));
 	}
 }
 
-function eyex_getExistingPath($path) {
-	if (IE > 0 && IE < 7 && substr($path, -4) === '.png' && vfs('real_fileExists', array(substr($path, 0, -3) . 'gif')) === true) { // utf8
-		return /* utf8 */ substr($path, 0, -3) . 'gif';
-	} elseif (vfs('real_fileExists',array($path))) {
-		return $path;
-	} else {
-		return false;
+function eyex_getExistingPath($path)
+{
+	if (IE > 0 && IE < 7 && substr($path, -4) === '.png' && vfs('real_fileExists', array(substr($path, 0, -3) . 'gif')) === true)
+	{
+		return(substr($path, 0, -3) . 'gif');
+	}
+	elseif (vfs('real_fileExists', array($path)))
+	{
+		return($path);
+	}
+	else
+	{
+		return(false);
 	}
 }
 
-function eyex_returnWrongPath($path,$extend) {
-	errorCodes('setErrorCode',array(VFS_FILE_NOT_FOUND));
-	if ($extend == 3) {
-		return EYE_ROOT . '/' . EXTERN_DIR . '/' . $path;
-	} elseif ($extend == 2) {
-		return EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/default/' . $path;
-	} elseif ($extend === 1) {
-		return 'index.php?extern=' . $path;
-	} else {
-		return $path;
+function eyex_returnWrongPath($path,$extend)
+{
+	errorCodes('setErrorCode', array(VFS_FILE_NOT_FOUND));
+
+	if ($extend == 3)
+	{
+		return(EYE_ROOT . '/' . EXTERN_DIR . '/' . $path);
+	}
+	elseif ($extend == 2)
+	{
+		return(EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/default/' . $path);
+	}
+	elseif ($extend === 1)
+	{
+		return('index.php?extern=' . $path);
+	}
+	else
+	{
+		return($path);
 	}
 }
 
-/**
-* Returns the real path of an image from an url for the extern service.
-*
-* @param $params array(path)
-* @param $path Path for the extern service.
-* @return Returns the real path of an image from an url for the extern service.
-* @exception INCORRECT_PARAMS No path is specified.
-* @date 2008/03/17
-*/
-// This function should only be a helper function for getThemeImage!
-function service_eyex_getRealFromExtern($params) {
+function service_eyex_getRealFromExtern($params)
+{
 	$path = $params[0];
-	if (!$path) {
-		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
+
+	if (!$path)
+	{
+		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
+
 		return false;
 	}
 
 	$return = EYE_ROOT . '/' . EXTERN_DIR . '/';
 
-	if ( /* utf8 */ stripos($path,'theme=') !== false) {
-		$return .= THEMES_DIR . '/default/'; // We use the default theme to get no problem with getThemeImage!
+	if ( stripos($path, 'theme=') !== false)
+	{
+		$return .= THEMES_DIR . '/default/';
 	}
 
-	$path = substr($path, stripos($path, 'extern=') + 7); // utf8
-	if ( /* utf8 */ strpos($path, '&') !== false) {
-		$path = substr($path, 0, strpos($path, '&')); // utf8
+	$path = substr($path, stripos($path, 'extern=') + 7);
+
+	if (strpos($path, '&') !== false)
+	{
+		$path = substr($path, 0, strpos($path, '&'));
 	}
 
-	return $return . $path;
+	return($return . $path);
 }
 
-/**
-* Draws a new layer on the screen, without serializing it in the eyeX
-* layer table.
-*
-* @param $params array(name,father,[class],[removepid],[nopid])
-* @param $name Name of the new layer.
-* @param $father Name of the container element of the new layer.
-* @param $class CSS class applied to the layer.
-* @param $removepid Appends to the start of the 'father' parameter the current
-*	process ID.
-* @param $nopid Appends to the start of the 'name' parameter the current
-*	process ID.
-* @return If no layer name is specified, returns false and sets the
-*	error code accordingly. Otherwise, it does not return any
-*	value.
-* @exception INCORRECT_PARAMS No name is specified.
-* @date 2008/03/11
-*/
-function service_eyex_createDiv($params) {
-	if(!isset($params['name']) || !isset($params['father'])) {
-		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
+function service_eyex_createDiv($params)
+{
+	if(!isset($params['name']) || !isset($params['father']))
+	{
+		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
+
 		return false;
 	}
+
 	$name = $params['name'];
 	$father = $params['father'];
 
-	if(!isset($params['class'])) {
+	if(!isset($params['class']))
+	{
 		$class = ' ';
-	}else{
+	}
+	else
+	{
 		$class = $params['class'];
 	}
 
 	global $procInfo;
-	$isLayer = eyex('isLayer',array('name'=>$father));
-	if(!$isLayer && !isset($params['removepid'])) {
+
+	$isLayer = eyex('isLayer', array('name' => $father));
+
+	if(!$isLayer && !isset($params['removepid']))
+	{
 		$father = $procInfo['pid'].'_'.$father;
 	}
-	if(!isset($params['nopid'])) {
+
+	if(!isset($params['nopid']))
+	{
 		$name = $procInfo['pid'].'_'.$name;
 	}
 
-	$atribs = array(
-		'task' => array('createDiv'),
-		'name' => array($name),
-		'class' => array($class),
-		'father' => array($father)
+	$atribs = array (
+		'task' => array ('createDiv'),
+		'name' => array ($name),
+		'class' => array ($class),
+		'father' => array ($father)
 	);
 
-	$task = array(
-		'action' => array(
+	$task = array (
+		'action' => array (
 			$atribs
 		)
 	);
 
-	$myAction = eyeXML('array2xml',array($task));
-	mmap('addToBuffer',array($myAction));
-	return true;
+	$myAction = eyeXML('array2xml', array($task));
+
+	mmap('addToBuffer', array($myAction));
+
+	return(true);
 }
 
-/**
-* Draws a new widget in the screen.
-*
-* @param $params array(name,father,[widgetname],[params],[horiz],[vert],[removepid],[center],[x],[y])
-* @param $name Name of the widget.
-* @param $father Name of the father (containing) element of the widget.
-* @param $widgetname Class (type) of the widget. This value must have one of the
-*	names found in the  existing widgets.
-* @param $params Associative array containing specific parameters of the
-*	widget.
-* @param $horiz Specifies whether the horizontal coordinate of the new
-*	widget must be counted from the left (0) or the right (1)
-*	border of its container element. The default value is 0
-*	(left).
-* @param $vert Specifies whether the vertical coordinate of the new widget
-*	must be counted from the top (0) or from the bottom (1)
-*	border of its container element. The default value is 0
-*	(top).
-* @param $removepid If set to 1, appends to the start of the 'father' parameter
-*	the current process ID.
-* @param $center Specifies how the widget should be centered inside its
-*	container element. Possible values are:
-				0: no centering.
-*	This is the default value.
- 				1: center both horizontal
-*	and vertically.
-				2: center horizontally.
-				3: center
-*	vertically.
-				4: place the widget at the horizontal and
-*	vertical center of its container element.
-				5: place the
-*	widget at the horizontal center of its container
-*	element.
-				6: place the widget at the vertical center of
-*	its container element.
-* @param $x Specifies, in pixels, the horizontal coordinate inside its
-*	father element.
-* @param $y Specifies, in pixels, the vertical displacement inside its
-*	father element.
-* @return If some parameter is not specified, returns false and sets
-*	the error code accordingly. Otherwise, it does not return
-*	any value. Otherwise, it does not return any value.
-* @exception INCORRECT_PARAMS No widget name is specified.
-* @date 2008/03/11
-*/
-function service_eyex_createWidget($params) {
+function service_eyex_createWidget($params)
+{
 	if(!is_array($params)) {
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
@@ -1747,18 +1704,18 @@ function service_eyex_jscolor($params = '') {
 		return false;
 	}
 	$url = eyex('getThemeImage', array(THEME_CONF_DIR . '/jscolor.xml', 2));
-	
+
 	global $currentUser;
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
 	$xml = eyeXML('getXMLfile', array($url));
 	$currentUser = $oldUser;
-	
+
 	$prop = 'adjust: false, caps: false, hash: true, required: false';
 	foreach ($xml['jscolor'][0] as $key => $value) {
 		$prop .= ', ' . $key . ': ' . str_replace('theme=USERTHEME', 'theme=' . $_SESSION['usertheme'], $value[0]);
 	}
-	
+
 	if (isset($params[1]) && is_array($params[0])) {
 		foreach ($params[1] as $key => $value) {
 			$prop .= ', ' . $key . ': ' . $value;
