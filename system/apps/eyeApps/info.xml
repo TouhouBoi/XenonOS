@@ -1,8 +1,8 @@
 <package>
-	<name>Applications</name>
+	<name>Programs</name>
 	<category>Utilities</category>
-	<version>1.9</version>
-	<description>Utility to start applications</description>
+	<version>1.0</version>
+	<description>Utility to start programs</description>
 	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>Utility</type>
