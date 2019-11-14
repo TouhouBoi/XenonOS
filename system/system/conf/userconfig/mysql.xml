@@ -1,5 +1,5 @@
 <eyeConfig_module>
-	<description>oneye's mySQL implementation. Designed to be fully compatible with oneye. Before using it, please ensure you have created a database within your mySQL installation, followed by a user (also within mySQL) granted with suitable privileges to maintain that database.</description>
+	<description>XenonOS MySQL implementation</description>
 	<constant>
 		<name>MYSQL_USERNAME</name>
 		<value>www-data</value>
