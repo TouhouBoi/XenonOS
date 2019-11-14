@@ -1,8 +1,8 @@
 <package>
-	<name>Basic Image Viewer</name>
+	<name>Image Viewer</name>
 	<category>Multimedia</category>
-	<version>1.9</version>
-	<description>Application to view images</description>
+	<version>1.0</version>
+	<description>a Program to view images</description>
 	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>Utility</type>
