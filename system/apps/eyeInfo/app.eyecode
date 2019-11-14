@@ -43,7 +43,7 @@ function eyeInfo_run($params = '') {
 	$myLabel = new Label(array(
 		'father' => 'eyeInfo_Window_Content',
 		'name' => 'eyeInfo_Label_Version',
-		'text' => 'oneye ' . XENONOS_VERSION . ' (' . XENONOS_VERSION . ')',
+		'text' => 'XenonOS ' . XENONOS_VERSION,
 		'x' => 0,
 		'y' => 75
 	));
@@ -155,7 +155,7 @@ function eyeInfo_run($params = '') {
 		$myLabel->show();
 		$i++;
 	}
-	
+
 	$myButton = new Button(array(
 		'caption' => 'PHP Info',
 		'father' => $supportersTab,
