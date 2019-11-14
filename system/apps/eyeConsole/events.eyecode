@@ -32,7 +32,7 @@ function eyeConsole_on_sendCmd($params=null) {
 	$arguments = parseArguments($cmd);
 	$myApp = $arguments[0];
 	array_shift($arguments);
-	eyeX('print',array('oneye> '.$cmd));
+	eyeX('print', array('XenonOS> '.$cmd));
 	if(!proc('launch',array($myApp,$arguments))) {
 		eyeX('print',array("Command not found"));
 	}
@@ -49,7 +49,7 @@ function parseArguments($myApp){
  * Then, apply the regexp for extract every quoted text "text here"
  * and then, split the text.
  */
- 
+
  //Remplace scaped chars with a rand string
 	if ( /* utf8 */ strpos($myApp, '\"') !== false) {
 		//remplace
