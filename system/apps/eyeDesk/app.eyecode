@@ -32,7 +32,7 @@ function eyeDesk_run($params = '') {
 
 	$xml = eyeXML('getXMLconfig',array('eyeDesk', 'conf.xml'));
 	$share = getConfig('eyeDesk','conf.xml');
-	if (check_versions($xml['eyeDesk'][0]['confVersion'][0], EYEOS_VERSION) === 2) {
+	if (check_versions($xml['eyeDesk'][0]['confVersion'][0], XENONOS_VERSION) === 2) {
 		// miniActions
 		if ($xml['eyeDesk'][0]['restoreDock'][0]) {
 			if ($xml['eyeDesk'][0]['restoreDock'][0] < 3) {
@@ -129,7 +129,7 @@ function eyeDesk_run($params = '') {
 			}
 		}
 		
-		$xml['eyeDesk'][0]['confVersion'][0] = EYEOS_VERSION;
+		$xml['eyeDesk'][0]['confVersion'][0] = XENONOS_VERSION;
 		eyeXML('setXMLconfig',array('eyeDesk', 'conf.xml', $xml));
 	}
 

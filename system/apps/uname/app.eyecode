@@ -19,11 +19,11 @@ function uname_run($params=null) {
 		eyeX('print',array('oneye'));
 	} else {
 		if($params[0] == '-a') {
-			eyeX('print',array('oneye ' . XENONOS_VERSION . ' (' . EYEOS_VERSION . ') ' . EYEOS_HOSTNAME));
+			eyeX('print',array('oneye ' . XENONOS_VERSION . ' (' . XENONOS_VERSION . ') ' . EYEOS_HOSTNAME));
 		} elseif($params[0] == '-s') {
 			eyeX('print',array('oneye'));
 		} elseif($params[0] == '-v') {
-			eyeX('print',array(EYEOS_VERSION));
+			eyeX('print',array(XENONOS_VERSION));
 		} elseif($params[0] == '-n') {
 			eyeX('print',array(EYEOS_HOSTNAME));
 		}

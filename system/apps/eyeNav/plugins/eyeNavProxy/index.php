@@ -569,7 +569,7 @@ do
 
     if (isset($_SERVER['HTTP_USER_AGENT']))
     {
-        $GLOBALS['_request_headers'] .= 'User-Agent: ' . $_SERVER['HTTP_USER_AGENT'] . ' (eyeNav ' . EYEOS_VERSION . ')' . "\r\n"; // oneye
+        $GLOBALS['_request_headers'] .= 'User-Agent: ' . $_SERVER['HTTP_USER_AGENT'] . ' (eyeNav ' . XENONOS_VERSION . ')' . "\r\n"; // oneye
     }
     if (isset($_SERVER['HTTP_ACCEPT']))
     {
