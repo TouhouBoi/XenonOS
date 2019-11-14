@@ -429,7 +429,7 @@ if ($currentUser == REAL_ROOTUSER) {
 		'father' => $uninstallTab,
 		'x' => 160,
 		'y' => $ContentY + 3,
-		'text' => ONEYE_VERSION
+		'text' => XENONOS_VERSION
 	));
 	$myLabel->show();
 	$ContentY += 40;

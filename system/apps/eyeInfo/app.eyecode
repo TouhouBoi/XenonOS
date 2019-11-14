@@ -43,7 +43,7 @@ function eyeInfo_run($params = '') {
 	$myLabel = new Label(array(
 		'father' => 'eyeInfo_Window_Content',
 		'name' => 'eyeInfo_Label_Version',
-		'text' => 'oneye ' . ONEYE_VERSION . ' (' . EYEOS_VERSION . ')',
+		'text' => 'oneye ' . XENONOS_VERSION . ' (' . EYEOS_VERSION . ')',
 		'x' => 0,
 		'y' => 75
 	));
