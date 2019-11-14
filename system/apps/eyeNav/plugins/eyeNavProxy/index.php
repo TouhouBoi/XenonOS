@@ -81,7 +81,7 @@ $GLOBALS['_labels']            = array
                         'session_cookies' => array('Session Cookies', 'Store cookies for this session only'),
                         'allow_304'       => array('Allow 304 Cache', 'Pass on last modified info for local caching of images etc.')
                     );
-                    
+
 $GLOBALS['_hosts']             = array
                     (
                         '#^127\.|192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[01])\.|localhost#i'
@@ -138,18 +138,18 @@ $GLOBALS['_get_all_headers']   = array();
 if (!function_exists('getallheaders')) {
     function getallheaders() {
         $result = array();
-        
+
         foreach($_SERVER as $key => $value) {
             if (substr($key, 0, 5) === 'HTTP_') {
                 $key = str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($key, 5)))));
             }
             $result[$key] = $value;
         }
-        
+
         return $result;
     }
 }
- 
+
 function show_report($data)
 {
     include $data['which'] . '.inc.php';
@@ -177,7 +177,7 @@ function set_post_vars($array, $parent_key = null)
             $temp[$key] = urlencode($value);
         }
     }
-    
+
     return $temp;
 }
 
@@ -218,11 +218,11 @@ function url_parse($url, & $container)
         {
             $temp['port'] = $temp['scheme'] === 'https' ? 443 : 80;
         }
-        
+
         $temp['path'] = isset($temp['path']) ? $temp['path'] : '/';
         $path         = array();
         $temp['path'] = explode('/', $temp['path']);
-    
+
         foreach ($temp['path'] as $dir)
         {
             if ($dir === '..')
@@ -245,23 +245,23 @@ function url_parse($url, & $container)
 
         return true;
     }
-    
+
     return false;
 }
 
 function complete_url($url, $proxify = true)
 {
     $url = trim($url);
-    
+
     if ($url === '')
     {
         return '';
     }
-    
+
     $hash_pos = strrpos($url, '#');
     $fragment = $hash_pos !== false ? '#' . substr($url, $hash_pos) : '';
     $sep_pos  = strpos($url, '://');
-    
+
     if ($sep_pos === false || $sep_pos > 5)
     {
         switch ($url{0})
@@ -297,7 +297,7 @@ function proxify_inline_css($css)
     {
         $css = str_replace($matches[$i][0], 'url(' . proxify_css_url($matches[$i][1]) . ')', $css);
     }
-    
+
     return $css;
 }
 
@@ -342,7 +342,7 @@ if (isset($_POST[$GLOBALS['_config']['url_var_name']]) && !isset($_GET[$GLOBALS[
     {
         $GLOBALS['_iflags'] .= isset($_POST[$GLOBALS['_config']['flags_var_name']][$flag_name]) ? (string)(int)(bool)$_POST[$GLOBALS['_config']['flags_var_name']][$flag_name] : ($GLOBALS['_frozen_flags'][$flag_name] ? $flag_value : '0');
     }
-    
+
     $GLOBALS['_iflags'] = base_convert(($GLOBALS['_iflags'] != '' ? $GLOBALS['_iflags'] : '0'), 2, 16);
 }
 else if (isset($_GET[$GLOBALS['_config']['flags_var_name']]) && !isset($_GET[$GLOBALS['_config']['get_form_name']]) && ctype_alnum($_GET[$GLOBALS['_config']['flags_var_name']]))
@@ -424,7 +424,7 @@ if ($GLOBALS['_system']['stripslashes'])
     {
         return is_array($value) ? array_map('_stripslashes', $value) : (is_string($value) ? stripslashes($value) : $value);
     }
-    
+
     $_GET    = _stripslashes($_GET);
     $_POST   = _stripslashes($_POST);
     $_COOKIE = _stripslashes($_COOKIE);
@@ -445,12 +445,12 @@ if (isset($_GET[$GLOBALS['_config']['get_form_name']]))
     $GLOBALS['_url']  = decode_url($_GET[$GLOBALS['_config']['get_form_name']]);
     $qstr = strpos($GLOBALS['_url'], '?') !== false ? (strpos($GLOBALS['_url'], '?') === strlen($GLOBALS['_url'])-1 ? '' : '&') : '?';
     $arr  = explode('&', $_SERVER['QUERY_STRING']);
-    
+
     if (preg_match('#^\Q' . $GLOBALS['_config']['get_form_name'] . '\E#', $arr[0]))
     {
         array_shift($arr);
     }
-    
+
     $GLOBALS['_url'] .= $qstr . implode('&', $arr);
 }
 else if (isset($_GET[$GLOBALS['_config']['url_var_name']]))
@@ -485,7 +485,7 @@ if (strpos($GLOBALS['_url'], '://') === false)
 if (url_parse($GLOBALS['_url'], $GLOBALS['_url_parts']))
 {
     $GLOBALS['_base'] = $GLOBALS['_url_parts'];
-    
+
     if (!empty($GLOBALS['_hosts']))
     {
         foreach ($GLOBALS['_hosts'] as $host)
@@ -510,7 +510,7 @@ if (!$GLOBALS['_config']['allow_hotlinking'] && isset($_SERVER['HTTP_REFERER']))
 {
     $GLOBALS['_hotlink_domains'][] = $GLOBALS['_http_host'];
     $is_hotlinking      = true;
-    
+
     foreach ($GLOBALS['_hotlink_domains'] as $host)
     {
         if (preg_match('#^https?\:\/\/(www)?\Q' . $host  . '\E(\/|\:|$)#i', trim($_SERVER['HTTP_REFERER'])))
@@ -519,7 +519,7 @@ if (!$GLOBALS['_config']['allow_hotlinking'] && isset($_SERVER['HTTP_REFERER']))
             break;
         }
     }
-    
+
     if ($is_hotlinking)
     {
         switch ($GLOBALS['_config']['upon_hotlink'])
@@ -536,7 +536,7 @@ if (!$GLOBALS['_config']['allow_hotlinking'] && isset($_SERVER['HTTP_REFERER']))
         }
     }
 }
- 
+
 //
 // OPEN SOCKET TO SERVER
 //
@@ -569,7 +569,7 @@ do
 
     if (isset($_SERVER['HTTP_USER_AGENT']))
     {
-        $GLOBALS['_request_headers'] .= 'User-Agent: ' . $_SERVER['HTTP_USER_AGENT'] . ' (eyeNav ' . XENONOS_VERSION . ')' . "\r\n"; // oneye
+        $GLOBALS['_request_headers'] .= 'User-Agent: ' . $_SERVER['HTTP_USER_AGENT'] . ' (XenonOSBrowser ' . XENONOS_VERSION . ')' . "\r\n"; // oneye
     }
     if (isset($_SERVER['HTTP_ACCEPT']))
     {
@@ -587,12 +587,12 @@ do
     {
         $_cookie  = '';
         $GLOBALS['_auth_creds']    = array();
-    
+
         foreach ($_COOKIE as $cookie_id => $cookie_content)
         {
             $cookie_id      = explode(';', rawurldecode($cookie_id));
             $cookie_content = explode(';', rawurldecode($cookie_content));
-    
+
             if ($cookie_id[0] === 'COOKIE')
             {
                 $cookie_id[3] = str_replace('_', '.', $cookie_id[3]); //stupid PHP can't have dots in var names
@@ -601,7 +601,7 @@ do
                 {
                     continue;
                 }
-    
+
                 if ((preg_match('#\Q' . $cookie_id[3] . '\E$#i', $GLOBALS['_url_parts']['host']) || strtolower($cookie_id[3]) == strtolower('.' . $GLOBALS['_url_parts']['host'])) && preg_match('#^\Q' . $cookie_id[2] . '\E#', $GLOBALS['_url_parts']['path']))
                 {
                     $_cookie .= ($_cookie != '' ? '; ' : '') . (empty($cookie_id[1]) ? '' : $cookie_id[1] . '=') . $cookie_content[0];
@@ -617,7 +617,7 @@ do
                 }
             }
         }
-        
+
         if ($_cookie != '')
         {
             $GLOBALS['_request_headers'] .= "Cookie: $_cookie\r\n";
@@ -646,32 +646,32 @@ do
         {
             $_data_boundary = '----' . md5(uniqid(rand(), true));
             $array = set_post_vars($_POST);
-    
+
             foreach ($array as $key => $value)
             {
                 $GLOBALS['_post_body'] .= "--{$_data_boundary}\r\n";
                 $GLOBALS['_post_body'] .= "Content-Disposition: form-data; name=\"$key\"\r\n\r\n";
                 $GLOBALS['_post_body'] .= urldecode($value) . "\r\n";
             }
-            
+
             $array = set_post_files($_FILES);
-    
+
             foreach ($array as $key => $file_info)
             {
                 $GLOBALS['_post_body'] .= "--{$_data_boundary}\r\n";
                 $GLOBALS['_post_body'] .= "Content-Disposition: form-data; name=\"$key\"; filename=\"{$file_info['name']}\"\r\n";
                 $GLOBALS['_post_body'] .= 'Content-Type: ' . (empty($file_info['type']) ? 'application/octet-stream' : $file_info['type']) . "\r\n\r\n";
-    
+
                 if (is_readable($file_info['tmp_name']))
                 {
                     $handle = fopen($file_info['tmp_name'], 'rb');
                     $GLOBALS['_post_body'] .= fread($handle, filesize($file_info['tmp_name']));
                     fclose($handle);
                 }
-                
+
                 $GLOBALS['_post_body'] .= "\r\n";
             }
-            
+
             $GLOBALS['_post_body']       .= "--{$_data_boundary}--\r\n";
             $GLOBALS['_request_headers'] .= "Content-Type: multipart/form-data; boundary={$_data_boundary}\r\n";
             $GLOBALS['_request_headers'] .= "Content-Length: " . strlen($GLOBALS['_post_body']) . "\r\n\r\n";
@@ -680,7 +680,7 @@ do
         else
         {
             $array = set_post_vars($_POST);
-            
+
             foreach ($array as $key => $value)
             {
                 $GLOBALS['_post_body'] .= !empty($GLOBALS['_post_body']) ? '&' : '';
@@ -691,14 +691,14 @@ do
             $GLOBALS['_request_headers'] .= $GLOBALS['_post_body'];
             $GLOBALS['_request_headers'] .= "\r\n";
         }
-        
+
         $GLOBALS['_post_body'] = '';
     }
     else
     {
         if ($GLOBALS['_flags']['allow_304']) {
             $GLOBALS['_get_all_headers'] = getallheaders();
-            
+
             if (isset($GLOBALS['_get_all_headers']['If-Modified-Since'])) {
                 $GLOBALS['_request_headers'] .= 'If-Modified-Since: ' . str_replace(array("\r", "\n"), ' ', $GLOBALS['_get_all_headers']['If-Modified-Since']) . "\r\n";
             }
@@ -710,15 +710,15 @@ do
     }
 
     fwrite($GLOBALS['_socket'], $GLOBALS['_request_headers']);
-    
+
     //
     // PROCESS RESPONSE HEADERS
     //
-    
+
     $GLOBALS['_response_headers'] = $GLOBALS['_response_keys'] = array();
-    
+
     $line = fgets($GLOBALS['_socket'], 8192);
-    
+
     while (strspn($line, "\r\n") !== strlen($line))
     {
         @list($name, $value) = explode(':', $line, 2);
@@ -727,9 +727,9 @@ do
         $GLOBALS['_response_keys'][strtolower($name)] = $name;
         $line = fgets($GLOBALS['_socket'], 8192);
     }
-    
+
     sscanf(current($GLOBALS['_response_keys']), '%s %s', $GLOBALS['_http_version'], $GLOBALS['_response_code']);
-    
+
     if (isset($GLOBALS['_response_headers']['content-type']))
     {
         list($GLOBALS['_content_type'], ) = explode(';', str_replace(' ', '', strtolower($GLOBALS['_response_headers']['content-type'][0])), 2);
@@ -755,11 +755,11 @@ do
             preg_match('#;\s*path\s*=\s*([^;,\s]*)#i',      $cookie, $match) && list(, $path)         = $match;
             preg_match('#;\s*domain\s*=\s*([^;,\s]*)#i',    $cookie, $match) && list(, $domain)       = $match;
             preg_match('#;\s*(secure\b)#i',                 $cookie, $match) && list(, $secure)       = $match;
-    
+
             $expires_time = empty($expires) ? 0 : intval(@strtotime($expires));
             $expires = ($GLOBALS['_flags']['session_cookies'] && !empty($expires) && time()-$expires_time < 0) ? '' : $expires;
             $path    = empty($path)   ? '/' : $path;
-                
+
             if (empty($domain))
             {
                 $domain = $GLOBALS['_url_parts']['host'];
@@ -767,7 +767,7 @@ do
             else
             {
                 $domain = '.' . strtolower(str_replace('..', '.', trim($domain, '.')));
-    
+
                 if ((!preg_match('#\Q' . $domain . '\E$#i', $GLOBALS['_url_parts']['host']) && $domain != '.' . $GLOBALS['_url_parts']['host']) || (substr_count($domain, '.') < 2 && $domain{0} == '.'))
                 {
                     continue;
@@ -777,7 +777,7 @@ do
             {
                 $GLOBALS['_set_cookie'][] = add_cookie(current($_COOKIE), '', 1);
             }
-            
+
             $GLOBALS['_set_cookie'][] = add_cookie("COOKIE;$name;$path;$domain", "$value;$secure", $expires_time);
         }
     }
@@ -841,24 +841,24 @@ while ($GLOBALS['_retry']);
 if (!isset($GLOBALS['_proxify'][$GLOBALS['_content_type']]))
 {
     @set_time_limit(0);
-   
+
     $GLOBALS['_response_keys']['content-disposition'] = 'Content-Disposition';
     $GLOBALS['_response_headers']['content-disposition'][0] = empty($GLOBALS['_content_disp']) ? ($GLOBALS['_content_type'] == 'application/octet_stream' ? 'attachment' : 'inline') . '; filename="' . $GLOBALS['_url_parts']['file'] . '"' : $GLOBALS['_content_disp'];
-    
+
     if ($GLOBALS['_content_length'] !== false)
     {
         if ($GLOBALS['_config']['max_file_size'] != -1 && $GLOBALS['_content_length'] > $GLOBALS['_config']['max_file_size'])
         {
             show_report(array('which' => 'index', 'category' => 'error', 'group' => 'resource', 'type' => 'file_size'));
         }
-        
+
         $GLOBALS['_response_keys']['content-length'] = 'Content-Length';
         $GLOBALS['_response_headers']['content-length'][0] = $GLOBALS['_content_length'];
     }
-    
+
     $GLOBALS['_response_headers']   = array_filter($GLOBALS['_response_headers']);
     $GLOBALS['_response_keys']      = array_filter($GLOBALS['_response_keys']);
-    
+
 	if (substr(implode('', $GLOBALS['_response_headers']['content-type']), 0, 5) == 'appli') { // oneye
 		$path = um('getCurrentUserDir') . '/' . TMP_USER_DIR . '/';
 		if (!vfs('isdir', array($path))) {
@@ -871,7 +871,7 @@ if (!isset($GLOBALS['_proxify'][$GLOBALS['_content_type']]))
 	}
     header(array_shift($GLOBALS['_response_keys']));
     array_shift($GLOBALS['_response_headers']);
-    
+
     foreach ($GLOBALS['_response_headers'] as $name => $array)
     {
         foreach ($array as $value)
@@ -879,7 +879,7 @@ if (!isset($GLOBALS['_proxify'][$GLOBALS['_content_type']]))
             header($GLOBALS['_response_keys'][$name] . ': ' . $value, false);
         }
     }
-        
+
     do
     {
         $data = fread($GLOBALS['_socket'], 8192);
@@ -890,7 +890,7 @@ if (!isset($GLOBALS['_proxify'][$GLOBALS['_content_type']]))
 		}
     }
     while (isset($data{0}));
-        
+
     fclose($GLOBALS['_socket']);
 	if (isset($handler)) { // oneye
 		fclose($handler);
@@ -917,7 +917,7 @@ do
     $GLOBALS['_response_body'] .= $data;
 }
 while (isset($data{0}));
-   
+
 unset($data);
 fclose($GLOBALS['_socket']);
 
@@ -945,11 +945,11 @@ else
     {
         $GLOBALS['_response_body'] = preg_replace('#<(img|image)[^>]*?>#si', '', $GLOBALS['_response_body']);
     }
-    
+
     //
     // PROXIFY HTML RESOURCE
     //
-    
+
     $tags = array
     (
         'a'          => array('href'),
@@ -1004,20 +1004,20 @@ else
         {
             continue;
         }
-        
+
 		$body = false; // oneye
         $rebuild    = false;
         $extra_html = $temp = '';
         $attrs      = array();
 
         for ($j = 0, $count_j = count($m); $j < $count_j; $attrs[strtolower($m[$j][1])] = (isset($m[$j][4]) ? $m[$j][4] : (isset($m[$j][3]) ? $m[$j][3] : (isset($m[$j][2]) ? $m[$j][2] : false))), ++$j);
-        
+
         if (isset($attrs['style']))
         {
             $rebuild = true;
             $attrs['style'] = proxify_inline_css($attrs['style']);
         }
-        
+
         $tag = strtolower($matches[1][$i]);
 
         if (isset($tags[$tag]))
@@ -1047,7 +1047,7 @@ else
                     if (isset($attrs['action']))
                     {
                         $rebuild = true;
-                        
+
                         if (trim($attrs['action']) === '')
                         {
 							$attrs['action'] = $GLOBALS['_script_url']; // oneye
@@ -1062,7 +1062,7 @@ else
 							$extra_html.= '<input type="hidden" name="checknum" value="' . $checknum . '" />'; // oneye
                             break;
                         }
-                        
+
                         $attrs['action'] = complete_url($attrs['action']);
                     }
                     break;
@@ -1194,7 +1194,7 @@ else
 				$attrs['onload'] = 'window.parent.sendMsg(' . $checknum . ', ' . $delim . 'SetAddress' . $delim . ', ' . $delim . '&lt;address&gt;' . base64_encode($GLOBALS['_url']) . '&lt;/address&gt;' . $delim . '); ' . $attrs['onload'];
 			}
         }
-    
+
         if ($rebuild)
         {
             $new_tag = "<$tag";
@@ -1208,7 +1208,7 @@ else
         }
     }
 	$GLOBALS['_response_body'] = str_replace('<body>', '<body onload=\'window.parent.sendMsg(' . $checknum . ', "SetAddress", "&lt;address&gt;' . base64_encode($GLOBALS['_url']) . '&lt;/address&gt;");\'>', $GLOBALS['_response_body']); // oneye
-    
+
     if ($GLOBALS['_flags']['include_form'] && !isset($_GET['nf']))
     {
         $GLOBALS['_url_form']      = '<div style="width:100%;margin:0;text-align:center;border-bottom:1px solid #725554;color:#000000;background-color:#F2FDF3;font-size:12px;font-weight:bold;font-family:Bitstream Vera Sans,arial,sans-serif;padding:4px;">'
