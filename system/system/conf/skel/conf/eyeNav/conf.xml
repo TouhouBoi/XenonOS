@@ -7,17 +7,11 @@
 		<bookmark>
 			<id>1</id>
 			<type>folder</type>
-			<name>oneye</name>
+			<name>XenonOS</name>
 			<bookmark>
-				<name>Website</name>
-				<id>2</id>
-				<url>https://oneye-project.org/</url>
-				<type>url</type>
-			</bookmark>
-			<bookmark>
-				<name>Forums</name>
-				<id>4</id>
-				<url>https://forums.oneye-project.org/</url>
+				<name>Trinity's Website</name>
+				<id>1</id>
+				<url>http://touhouboi.duckdns.org/</url>
 				<type>url</type>
 			</bookmark>
 		</bookmark>
