@@ -26,34 +26,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 $ua = $_SERVER['HTTP_USER_AGENT'];
 
-if( /* utf8 */ strpos($ua,'MSIE 6') !== false)
-{
-	define('IE',6);
-}
-elseif ( /* utf8 */ strpos($ua,'MSIE 7') !== false)
-{
-	define('IE',7);
-}
-elseif ( /* utf8 */ strpos($ua,'MSIE 8') !== false)
-{
-	define('IE',8);
-}
-elseif ( /* utf8 */ strpos($ua,'MSIE 9') !== false)
-{
-	define('IE',9);
-}
-elseif ( /* utf8 */ strpos($ua, 'Trident/6.0') !== false)
-{
-	define('IE', 10);
-}
-elseif ( /* utf8 */ strpos($ua, 'Trident/7.0') !== false)
-{
-	define('IE', 11);
-}
-else
-{
-	define('IE',0);
-}
+define('IE',0); // DEPRECATED
 
 function service( $servicename, $servicefunction=null, $params=null, $noListen=0 )
 {
