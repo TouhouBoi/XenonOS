@@ -20,15 +20,18 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-$pid = proc( 'findPidByName', array('eyeX') );
+/*
+	XenonOS XeKernel Initialization
+*/
 
-if ( !$pid )
+$pid = proc('findPidByName', array('eyeX'));
+
+if (!$pid)
 {
-	proc( 'launch', array('eyeX') );
+	proc('launch', array('eyeX'));
 }
 else
 {
-	proc( 'getTask', array($pid) );
+	proc('getTask', array($pid));
 }
-
 ?>
