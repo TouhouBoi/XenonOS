@@ -20,21 +20,28 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function id_run($params=null) {
+function id_run($params = null)
+{
 	global $currentUser;
+
 	$groups = um('getCurrentGroups');
 	$groupStr = "";
 	$first = 0;
-	foreach($groups as $group=>$value) {
-		if($first == 0) {
+
+	foreach ($groups as $group=>$value)
+	{
+		if ($first == 0)
+		{
 			$groupStr .= $group;
 			$first = 1;
-		} else {
+		}
+		else
+		{
 			$groupStr .= ','.$group;
 		}
 	}
-	eyeX('print',array('user='.$currentUser.' groups='.$groupStr));
+
+	eyeX('print', array('user='.$currentUser.' groups='.$groupStr));
 	proc('end');
 }
-
 ?>
