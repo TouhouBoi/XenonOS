@@ -51,12 +51,12 @@ function eyeX_run($params = '') {
 	if (!IE || IE > 7) { // We need a better workaround for this IE6 and IE7 problem!
 		//echo "\t\t" . '<base href="' . INDEX_BASE . '" />' . "\n";
 	}
-	echo "\t\t" . '<title>' . utf8_htmlspecialchars(i18n('translate', array('Welcome to %s',array(EYEOS_HOSTNAME))), ENT_QUOTES) . '</title>
+	echo "\t\t" . '<title>' . utf8_htmlspecialchars(i18n('translate', array('Welcome to %s',array(XENONOS_HOSTNAME))), ENT_QUOTES) . '</title>
 		<link href="index.php?extern=apps/eyeX/css/system.css&amp;type=css" id="systemCss" rel="stylesheet" type="text/css" />' . "\n";
 	if (IE) {
 		echo "\t\t" . '<link href="index.php?extern=apps/eyeX/css/system_IE' . IE . '.css&amp;type=css" id="systemIE' . IE . 'Css" rel="stylesheet" type="text/css" />' . "\n";
 	}
-	
+
 	$oldUser = $currentUser;
 	$currentUser = REAL_ROOTUSER;
 	$themexml = eyeXML('getXMLfile', array(EYE_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeX/themes/' . $_SESSION['usertheme'] . '/conf/theme.xml'));
@@ -64,11 +64,11 @@ function eyeX_run($params = '') {
 	if ($themexml['theme'][0]['cssBase'][0]) {
 		echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS.css&amp;type=css" id="eyeOSCss" rel="stylesheet" type="text/css" />' . "\n";
 	}
-	
+
 	echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=css/eyeOS.css&amp;type=css" id="eyeOSCss" rel="stylesheet" type="text/css" />' . "\n";
 	$_SESSION['eyeLogin']['removeCss'] = array();
 	$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSCss';
-	
+
 	if ($themexml['theme'][0]['cssBase'][0]) {
 		if (IE) {
 			echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS_IE' . IE . '.css&amp;type=css" id="eyeOSIE' . IE . 'Css" rel="stylesheet" type="text/css" />' . "\n";
@@ -90,7 +90,7 @@ function eyeX_run($params = '') {
 			$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSkhtmlCss';
 		}
 	}
-	
+
 	if (IE) {
 		echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=css/eyeOS_IE' . IE . '.css&amp;type=css" id="eyeOSIE' . IE . 'Css" rel="stylesheet" type="text/css" />' . "\n";
 		$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSIE' . IE . 'Css';
@@ -114,12 +114,12 @@ function eyeX_run($params = '') {
 			var USERTHEME = "' . $_SESSION['usertheme'] . '";
 			var resizedBrowser = (function () {
 				var active, next, resizedBrowser, timeout;
-				
+
 				// Private variables
 				active = null;
 				next = null;
 				timeout = null;
-				
+
 				// Public functions
 				resizedBrowser = {
 					done: function (name) {
@@ -127,16 +127,16 @@ function eyeX_run($params = '') {
 							active = next;
 							next = null;
 							clearTimeout(timeout);
-							
+
 							if (active !== null) {
 								sendMsg(' . $checknum . ', "resizedBrowser", active);
 							}
 						}
 					},
-					
+
 					resize: function () {
 						next = eyeParam("width", xClientWidth()) + eyeParam("height", xClientHeight());
-						
+
 						if (active === null) {
 							resizedBrowser.done(active);
 						} else if (next === active) {
@@ -149,7 +149,7 @@ function eyeX_run($params = '') {
 						}
 					}
 				};
-				
+
 				return resizedBrowser;
 			}());
 			var tinyMCEPreInit = {suffix : "", base : "index.php?extern=libs/eyeWidgets/tiny_mce"};
