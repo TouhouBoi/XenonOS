@@ -62,7 +62,7 @@ define('EYEOS_TRASH_EXT','eyeTrash');
 define('VFS_MODULE','virtual');
 
 // um module to use
-define('UM_MODULE', 'oneye');
+define('UM_MODULE', 'xenonos');
 
 // define root account
 define('REAL_ROOTUSER', 'root');
