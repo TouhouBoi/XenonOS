@@ -28,7 +28,7 @@ $ua = $_SERVER['HTTP_USER_AGENT'];
 
 define('IE', 0); // DEPRECATED
 
-function service($servicename, $servicefunction=null, $params=null, $noListen=0)
+function service($servicename, $servicefunction = null, $params = null, $noListen = 0)
 {
 	$sec_servicename = basename($servicename);
 
@@ -73,40 +73,36 @@ function service($servicename, $servicefunction=null, $params=null, $noListen=0)
 
 	genericListener('KListenerList',$sec_servicename,$minfunction,$noListen,$params);
 
-	// ONEYE_LOG is DEPRECATED
-	//$logs = service_logs_TimerStart('service_' . $sec_servicename . '_' . $servicefunction);
 	$ret = call_user_func('service_' . $sec_servicename . '_' . $servicefunction, $params);
-
-	//service_logs_TimerStop($logs);
 
 	genericListener('KListenerListP', $sec_servicename, $minfunction, $noListen, $params);
 
-	return $ret;
+	return($ret);
 }
 
 /*
 *The reqLib have noListen as true by default since the libraries listener calls are not usually used
 */
-function reqLib( $libname, $function, $params=null, $noListen=true )
+function reqLib( $libname, $function, $params = null, $noListen = true )
 {
 	$sec_libname = basename($libname);
 
-	if ( !checkLibraryLoaded( $sec_libname ) )
+	if (!checkLibraryLoaded($sec_libname))
 	{
-		if ( is_readable(EYE_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/'.$sec_libname.'/main'.EYE_CODE_EXTENSION) )
+		if (is_readable(EYE_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/'.$sec_libname.'/main'.EYE_CODE_EXTENSION))
 		{
 			include_once(EYE_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/'.$sec_libname.'/main'.EYE_CODE_EXTENSION);
 
 			setLibraryLoaded($sec_libname);
 
-			if( function_exists('lib_'.$sec_libname.'_init') )
+			if (function_exists('lib_'.$sec_libname.'_init'))
 			{
 				call_user_func('lib_'.$sec_libname.'_init');
 			}
 		}
 		else
 		{
-			if( !defined( 'ERROR_LIB_NOT_EXIST' ) )
+			if (!defined('ERROR_LIB_NOT_EXIST'))
 			{
 				return(-1);
 			}
@@ -117,31 +113,27 @@ function reqLib( $libname, $function, $params=null, $noListen=true )
 		}
 	}
 
-	if ( function_exists('lib_'.$libname.'_'.$function) )
+	if (function_exists('lib_'.$libname.'_'.$function))
 	{
-		genericListener('LListenerList',$sec_libname,$function,$noListen,$params);
+		genericListener('LListenerList', $sec_libname, $function, $noListen, $params);
 
-		// ONEYE_LOG is DEPRECATED
-		//$logs = service_logs_TimerStart('lib_' . $libname . '_' . $function);
 		$re = call_user_func('lib_' . $libname . '_' . $function, $params);
-
-		//service_logs_TimerStop($logs);
 
 		genericListener('LListenerListP', $sec_libname, $function, $noListen, $params);
 
-		return $re;
+		return($re);
 	}
 	else
 	{
-		return false;
+		return(false);
 	}
 }
 
-function genericListener($type,$sec_servicename,$minfunction,$noListen,$params)
+function genericListener($type,$sec_servicename, $minfunction, $noListen, $params)
 {
 	if (isset($_SESSION[$type][$sec_servicename][$minfunction]) && is_array($_SESSION[$type][$sec_servicename][$minfunction]) && $noListen == 0)
 	{
-		foreach ($_SESSION[$type][$sec_servicename][$minfunction] as $key=>$value)
+		foreach ($_SESSION[$type][$sec_servicename][$minfunction] as $key => $value)
 		{
 			global $myPid;
 			global $checknum;
@@ -150,7 +142,7 @@ function genericListener($type,$sec_servicename,$minfunction,$noListen,$params)
 			$oldProcInfo = $procInfo;
 			$oldPid = $myPid;
 			$oldChecknum = $checknum;
-			$appName = proc('findNameByPid',array($key));
+			$appName = proc('findNameByPid', array($key));
 
 			if ($appName)
 			{
@@ -167,10 +159,10 @@ function genericListener($type,$sec_servicename,$minfunction,$noListen,$params)
 					if (function_exists($appName.'_com_'.$value))
 					{
 						$myPid = $key;
-						$checknum = proc('findNChecknumByPid',array($myPid));
-						$procInfo = proc('getProcByPid',array($myPid));
+						$checknum = proc('findNChecknumByPid', array($myPid));
+						$procInfo = proc('getProcByPid', array($myPid));
 
-						i18n('loadLang',array($appName));
+						i18n('loadLang', array($appName));
 						call_user_func($appName.'_com_'.$value,$params);
 
 						$procInfo = $oldProcInfo;
@@ -281,7 +273,7 @@ function loadConfig($appName)
 				{
 					foreach ($myArray['CONFIG'][0] as $key => $value)
 					{
-						define ($key,$value[0]);
+						define ($key, $value[0]);
 					}
 				}
 			}
@@ -294,6 +286,7 @@ function loadConfig($appName)
 function getConfig($appName, $file = 'conf.xml')
 {
 	$eyeXML = eyeXML('xml2array', array(@file_get_contents(EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/' . basename($appName) . '/' . basename($file))));
+
 	return($eyeXML);
 }
 
@@ -309,11 +302,10 @@ function setConfig($appName, $file = 'conf.xml', $arr)
 
 function getAppInfo($app)
 {
-	$app = basename($app);
-	$myFile = EYE_ROOT.'/'.APP_DIR.'/'.$app.'/';
-
 	global $currentUser;
 
+	$app = basename($app);
+	$myFile = EYE_ROOT.'/'.APP_DIR.'/'.$app.'/';
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
 	$xml = eyeXML('getXMLfile', array($myFile.'info.xml'));
@@ -391,7 +383,7 @@ function addGenericListenerCall($type, $myCallback, $myService, $myCall, $postEx
 
 	$call = strtolower($myCall);
 
-	if($postExecution != 0)
+	if ($postExecution != 0)
 	{
 		$type .= 'P';
 	}
@@ -406,12 +398,12 @@ function removeGenericListenerCall($type, $myService, $myCall, $postExecution = 
 
 	$call = strtolower($myCall);
 
-	if($postExecution != 0)
+	if ($postExecution != 0)
 	{
 		$type .= 'P';
 	}
 
-	if(isset($_SESSION[$type][$myService][$call][$myPid]))
+	if (isset($_SESSION[$type][$myService][$call][$myPid]))
 	{
 		unset($_SESSION[$type][$myService][$call][$myPid]);
 		unset($_SESSION[$type]['pInfo'][$myPid]);
@@ -420,7 +412,7 @@ function removeGenericListenerCall($type, $myService, $myCall, $postExecution = 
 
 function getGenericListenerCallList($type, $postExecution = 0)
 {
-   if($postExecution != 0)
+   if ($postExecution != 0)
 	 {
       $type .= 'P';
    }
@@ -442,7 +434,7 @@ function removeGenericListenerCallByPid($type, $pid = null, $postExecution = 0)
 
 	if (isset($_SESSION[$type]) === true && isset($_SESSION[$type]['pInfo'][$pid]) === true && $_SESSION[$type]['pInfo'][$pid])
 	{
-		foreach($_SESSION[$type]['pInfo'][$pid] as $service=>$func)
+		foreach ($_SESSION[$type]['pInfo'][$pid] as $service => $func)
 		{
 			unset($_SESSION[$type][$service][$func][$pid]);
 		}
@@ -458,10 +450,10 @@ function createFunctionAlias()
 {
 	$servpath = EYE_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/';
 	$libpath = EYE_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/';
-	$alias = _getAlias($servpath,'service',0);
-	$alias .= _getAlias($libpath,'reqLib',1);
+	$alias = _getAlias($servpath, 'service', 0);
+	$alias .= _getAlias($libpath, 'reqLib', 1);
 
-	eval($alias); // warning
+	eval($alias);
 }
 
 function _getAlias($path,$baseFunc,$noListen)
@@ -474,11 +466,11 @@ function _getAlias($path,$baseFunc,$noListen)
 		{
 			if (substr($file, 0, 1) !== '.' && is_dir($path . $file) === true)
 			{
-				if(file_exists($path.$file.'/alias'.EYE_CODE_EXTENSION))
+				if (file_exists($path.$file.'/alias'.EYE_CODE_EXTENSION))
 				{
 					include_once($path.$file.'/alias'.EYE_CODE_EXTENSION);
 
-					if(function_exists($file))
+					if (function_exists($file))
 					{
 						continue;
 					}
@@ -494,17 +486,17 @@ function _getAlias($path,$baseFunc,$noListen)
 	return($alias);
 }
 
-function checkACL($sec_servicename,$servicefunction,$params)
+function checkACL($sec_servicename, $servicefunction, $params)
 {
 	global $ACL;
 	global $currentUser;
 
-	if(!$ACL || !is_array($ACL) || !is_array($ACL['GACL']) || !is_array($ACL['GACL'][0]))
+	if (!$ACL || !is_array($ACL) || !is_array($ACL['GACL']) || !is_array($ACL['GACL'][0]))
 	{
 		return(true);
 	}
 
-	if($currentUser == REAL_ROOTUSER)
+	if ($currentUser == REAL_ROOTUSER)
 	{
 		return(true);
 	}
@@ -532,7 +524,7 @@ function checkACL($sec_servicename,$servicefunction,$params)
 								}
 								else
 								{
-									msgACLreject(array('task' => $params[0],'func' => $servfunc));
+									msgACLreject(array('task' => $params[0], 'func' => $servfunc));
 
 									return(false);
 								}
@@ -543,19 +535,20 @@ function checkACL($sec_servicename,$servicefunction,$params)
 					{
 						$userGroups = um('getCurrentGroups');
 
-						foreach($userGroups as $groupName=>$value)
+						foreach($userGroups as $groupName => $value)
 						{
-							if(checkACLparams($target['params'],$params))
+							if(checkACLparams($target['params'], $params))
 							{
 								if ($targetname === $groupName)
 								{
-									if(strtolower($rule['action'][0]) == 'allow')
+									if (strtolower($rule['action'][0]) == 'allow')
 									{
 										return(true);
 									}
 									else
 									{
-										msgACLreject(array('task'=>$params[0],'func'=>$servfunc));
+										msgACLreject(array('task' => $params[0], 'func' => $servfunc));
+
 										return(false);
 									}
 								}
@@ -576,7 +569,7 @@ function checkACL($sec_servicename,$servicefunction,$params)
 									}
 									else
 									{
-										msgACLreject(array('task' => $params[0],'func' => $servfunc));
+										msgACLreject(array('task' => $params[0], 'func' => $servfunc));
 
 										return(false);
 									}
@@ -646,12 +639,12 @@ function checkACLparams($ruleParams,$servParams)
 		{
 			while (strpos($value, '%user') !== false)
 			{
-				$value = str_replace('%user',$currentUser,$value);
+				$value = str_replace('%user', $currentUser, $value);
 			}
 
 			while (strpos($value, '%udir') !== false)
 			{
-				$value = str_replace('%udir',$udir,$value);
+				$value = str_replace('%udir', $udir, $value);
 			}
 
 			if ($value === $servParams[$i])
@@ -663,11 +656,11 @@ function checkACLparams($ruleParams,$servParams)
 
 	if ($count > 0)
 	{
-		return true;
+		return(true);
 	}
 	else
 	{
-		return false;
+		return(false);
 	}
 }
 
@@ -691,7 +684,8 @@ function loadACLTables()
 
 					if (is_array($myArray) === true)
 					{
-						$ACL = array_merge($ACL,$myArray);
+						$ACL = array_merge($ACL, $myArray);
+
 						$found = 1;
 					}
 				}
@@ -716,7 +710,7 @@ function msgACLreject($params = null)
 		return(false);
 	}
 
-	if ($params['func']==="launch")
+	if ($params['func'] === "launch")
 	{
 		$disObj = $params['task'];
 	}
