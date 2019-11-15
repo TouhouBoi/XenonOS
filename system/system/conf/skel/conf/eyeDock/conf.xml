@@ -56,7 +56,7 @@
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
 						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/apps.png</image>
-						<text>Applications</text>
+						<text>Programs</text>
 						<type>icon</type>
 					</entry-2>
 					<entry-3>
@@ -64,7 +64,7 @@
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
 						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/info.png</image>
-						<text>About oneye</text>
+						<text>About XenonOS</text>
 						<type>icon</type>
 					</entry-3>
 					<entry-4>
@@ -151,7 +151,7 @@
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
 						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeMail.png</image>
-						<text>Mail Client</text>
+						<text>Email Client</text>
 						<type>icon</type>
 					</entry-5>
 					<entry-6>
@@ -205,7 +205,7 @@
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
 						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeMessages.png</image>
-						<text>Internal Messaging</text>
+						<text>Messenger</text>
 						<type>icon</type>
 					</entry-3>
 					<entry-4>
@@ -213,7 +213,7 @@
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
 						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeNav.png</image>
-						<text>Navigator</text>
+						<text>Browser</text>
 						<type>icon</type>
 					</entry-4>
 					<entry-5>
@@ -250,7 +250,7 @@
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
 						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeNotes.png</image>
-						<text>Text Editor</text>
+						<text>Notepad</text>
 						<type>icon</type>
 					</entry-2>
 					<entry-3>
@@ -333,7 +333,7 @@
 				<hideImage>0</hideImage>
 				<hideText>1</hideText>
 				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeMessages.png</image>
-				<text>Internal Messaging</text>
+				<text>Messenger</text>
 				<type>icon</type>
 			</element-12>
 			<element-13>
