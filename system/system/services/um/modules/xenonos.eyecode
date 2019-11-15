@@ -1,21 +1,27 @@
 <?php
 /*
-  ___  _ __   ___ _   _  ___
- / _ \| '_ \ / _ \ | | |/ _ \
-| (_) | | | |  __/ |_| |  __/
- \___/|_| |_|\___|\__, |\___|
-                  |___/
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
 
-oneye is released under the GNU Affero General Public License Version 3 (AGPL3)
- -> provided with this release in license.txt
- -> or via web at www.gnu.org/licenses/agpl-3.0.txt
 
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
 Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
+
 */
 
 /**
- *	UserManager service
+ *	XenonOS User Manager service
  */
 
 /*
@@ -45,22 +51,6 @@ function service_um_isValidUsername($params = null) {
 /* USER CRUD FUNCTIONS
 /*--------------------------------------------------------------------*/
 
-/**
-* Creates a new user, including its info file in the accounts directory
-* and the user directory.
-*
-* @param $params array(username,password,[email])
-* @param $username String containing the username.
-* @param $password String containing the password.
-* @param $email String containing the email of the user
-* @param $disabled String indicating if the user is disabled or not
-* @return If the function succeeds, returns true. Otherwise, returns
-*	false and sets the error code depending on the error
-*	occurred.
-* @exception INCORRECT_PARAMS One or both required parameters are not specified, the username is not strictly alphanumeric, the username is shorter than two characters or it is too long.
-* @exception UM_USER_ALREADY_EXISTS There already exists a username with the same name.
-* @date 2008/03/11
-*/
 function service_um_createUser($params = null){
 	global $currentUser;
 
