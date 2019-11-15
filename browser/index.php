@@ -25,7 +25,7 @@ define('INDEX_TYPE', 'browser');
 //start output buffering.
 ob_start();
 
-if ( !defined('EYE_INDEX') )
+if (!defined('XENONOS_INDEX'))
 {
 	include_once('../index.php');
 }
