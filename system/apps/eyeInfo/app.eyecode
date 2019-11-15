@@ -43,7 +43,7 @@ function eyeInfo_run($params = '') {
 	$myLabel = new Label(array(
 		'father' => 'eyeInfo_Window_Content',
 		'name' => 'eyeInfo_Label_Version',
-		'text' => 'XenonOS ' . XENONOS_VERSION,
+		'text' => 'XenonOS ' . 'v' . XENONOS_VERSION . ' Kernel' . 'v' . KE_KERNEL_VERSION,
 		'x' => 0,
 		'y' => 75
 	));
