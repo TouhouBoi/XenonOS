@@ -68,8 +68,8 @@ define('UM_MODULE', 'xenonos');
 define('REAL_ROOTUSER', 'root');
 
 // XenonOS Version
-define('XENONOS_VERSION',' 1.0.0alpha');
-define('KE_KERNEL_VERSION', '1.0.0alpha');
+define('XENONOS_VERSION',' 1.0.1alpha');
+define('KE_KERNEL_VERSION', '1.0.1alpha');
 define('KE_KERNEL_HASH', '3C281DF7E1D12CA3F98F40C862F7238A5B551E2DCCF51590C2A5C2C5943D240E');
 
 // Define XenonOS Dialog Types
