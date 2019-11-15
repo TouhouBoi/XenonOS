@@ -21,14 +21,15 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 /*
-	this file is used to emulate php functions when it are not availables on the current php installation/version
+	XenonOS XeKernel PHP Version Compatibility Layer
 */
 
 date_default_timezone_set(TIMEZONE);
 
 function get_tmp_dir()
 {
-	return EYE_ROOT . '/' . EYEOS_TMP_DIR;
+	$tmp_dir = EYE_ROOT . '/' . EYEOS_TMP_DIR;
+	return($tmp_dir);
 }
 
 function ini_get_size($sName)
@@ -37,7 +38,7 @@ function ini_get_size($sName)
     $sUnit = substr($sSize, -1);
     $iSize = (int)substr($sSize, 0, -1);
 
-    switch ( strtoupper( $sUnit ) )
+    switch (strtoupper($sUnit))
     {
         case 'Y' : $iSize *= 1024; // Yotta
         case 'Z' : $iSize *= 1024; // Zetta
@@ -46,17 +47,17 @@ function ini_get_size($sName)
         case 'T' : $iSize *= 1024; // Tera
         case 'G' : $iSize *= 1024; // Giga
         case 'M' : $iSize *= 1024; // Mega
-        case 'K' : $iSize *= 1024; // kilo
+        case 'K' : $iSize *= 1024; // Kilo
     };
 
-    return $iSize;
+    return($iSize);
 }
 
 if (!function_exists('hash_equals'))
 {
 	function hash_equals($known_string, $user_string)
 	{
-		return $known_string === $user_string;
+		return($known_string === $user_string);
 	}
 }
 
@@ -66,35 +67,35 @@ if (!function_exists('json_encode'))
 	{
 		if (is_null($a))
 		{
-			return 'null';
+			return('null');
 		}
 
 		if ($a === false)
 		{
-    		return 'false';
+    		return('false');
 		}
 
 		if ($a === true)
 		{
-    		return 'true';
+    		return('true');
 		}
 
 		if (is_scalar($a))
 		{
 			if (is_float($a))
 			{
-        return floatval(str_replace(",", ".", strval($a)));
+        return(floatval(str_replace(",", ".", strval($a))));
       }
 
 			if (is_string($a))
 			{
         	static $jsonReplaces = array(array("\\", "/", "\n", "\t", "\r", "\b", "\f", '"'), array('\\\\', '\\/', '\\n', '\\t', '\\r', '\\b', '\\f', '\"'));
 
-        	return '"' . str_replace($jsonReplaces[0], $jsonReplaces[1], $a) . '"';
+        	return('"' . str_replace($jsonReplaces[0], $jsonReplaces[1], $a) . '"');
       }
 			else
 			{
-        return $a;
+        return($a);
       }
     }
 
@@ -105,6 +106,7 @@ if (!function_exists('json_encode'))
 			if (key($a) !== $i)
 			{
 				$isList = false;
+
 				break;
 			}
 		}
@@ -123,7 +125,7 @@ if (!function_exists('json_encode'))
     		$result[] = json_encode($k).':'.json_encode($v);
     	}
 
-    	return '{' . join(',', $result) . '}';
+    	return('{' . join(',', $result) . '}');
     }
 	}
 }
@@ -132,7 +134,7 @@ if (!function_exists('lcfirst'))
 {
 	function lcfirst($str)
 	{
-		return strtolower(substr($str, 0, 1)) . substr($str, 1); // utf8
+		return(strtolower(substr($str, 0, 1)) . substr($str, 1));
 	}
 }
 ?>
