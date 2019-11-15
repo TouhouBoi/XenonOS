@@ -62,14 +62,15 @@ define('EYEOS_TRASH_EXT','eyeTrash');
 define('VFS_MODULE','virtual');
 
 // um module to use
-define('UM_MODULE','oneye');
+define('UM_MODULE', 'oneye');
 
 // define root account
-define('REAL_ROOTUSER','root');
+define('REAL_ROOTUSER', 'root');
 
 // XenonOS Version
-define('XENONOS_VERSION','1.0.0alpha');
-define('KE_KERNEL_VERSION','1.0.0alpha');
+define('XENONOS_VERSION',' 1.0.0alpha');
+define('KE_KERNEL_VERSION', '1.0.0alpha');
+define('KE_KERNEL_HASH', '3C281DF7E1D12CA3F98F40C862F7238A5B551E2DCCF51590C2A5C2C5943D240E');
 
 // Define XenonOS Dialog Types
 define('EYEDIALOG_TYPE_OPENFILE', 0);
