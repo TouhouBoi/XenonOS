@@ -42,7 +42,7 @@ function uname_run($params = null)
 		}
 		elseif($params[0] == '-n')
 		{
-			eyeX('print', array (EYEOS_HOSTNAME));
+			eyeX('print', array (XENONOS_HOSTNAME));
 		}
 	}
 
