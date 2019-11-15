@@ -17,8 +17,8 @@
 /**
  * file/dir manipulation routines
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/XML/Util.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/XML/Util.php';
 
 /**
  * This class converts a PEAR_PackageFile_v2 object into any output format.
@@ -136,7 +136,7 @@ http://pear.php.net/dtd/package-2.0.xsd',
      */
     function toTgz2(&$packager, &$pf1, $compress = true, $where = null)
     {
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Archive/Tar.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Archive/Tar.php';
         if (!$this->_packagefile->isEquivalent($pf1)) {
             return PEAR::raiseError('PEAR_Packagefile_v2::toTgz: "' .
                 basename($pf1->getPackageFile()) .

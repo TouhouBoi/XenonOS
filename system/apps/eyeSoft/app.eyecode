@@ -22,7 +22,7 @@ function eyeSoft_run($params=null) {
 		proc('end');
 		return;
 	}
-	$config = eyeXML('getXMLfile',array(EYE_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports.xml'));
+	$config = eyeXML('getXMLfile',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports.xml'));
 
 	$myWindow = new Window(array('name'=>'eyeSoft','father'=>'eyeApps',
 	'cent'=>1,'width'=>650,'height'=>570,'title'=>'Packages Manager','style' => TITLE + LISTED + MIN + CLOSE,'savePosition' => 1));
@@ -109,7 +109,7 @@ function eyeSoft_run($params=null) {
 		$myLabel1->setCss(array('cursor'=>'Pointer'));
 		$counter++;
 	}
-	include_once(EYE_ROOT.'/'.APP_DIR.'/eyeSoft/events'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeSoft/events'.EYE_CODE_EXTENSION);
 	eyeSoft_loadList();
 }
 

@@ -45,7 +45,7 @@ $mySelect = new Select(array(
 	'width' => 128
 ));
 $mySelect->show();
-$opts = vfs('real_getDirContent', array(EYE_ROOT .'/'. SYSTEM_DIR .'/'. LIB_DIR .'/eyeConfig/modules'));
+$opts = vfs('real_getDirContent', array(XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. LIB_DIR .'/eyeConfig/modules'));
 foreach ($opts as $opt) {
 	$opt = basename($opt);
 	$opt = substr($opt, 0, strpos($opt, '.')); // utf8

@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function eyePdf_run($params = '') {
 	global $checknum;
 	if ($params[0]) {
-		include_once(EYE_ROOT . '/' . APP_DIR . '/eyePdf/events' . EYE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyePdf/events' . EYE_CODE_EXTENSION);
 		eyePdf_on_Init($params);
 	} else {
 		proc('launch',array('eyeDialog',array(EYEDIALOG_TYPE_OPENFILE,'Init',$checknum,'',array(

@@ -27,7 +27,7 @@ $mySelect = new Select(array(
 $mySelect->show();
 $mySelect->addOption('English','en');
 $UserLangXML = eyeControl_lib_getXMLconfig(array('i18n','lang.xml'));
-$dir = EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/';
+$dir = XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/';
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
 $openDir = vfs('real_getDirContent',array($dir));

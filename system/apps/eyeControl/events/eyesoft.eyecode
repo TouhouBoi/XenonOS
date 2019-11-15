@@ -36,7 +36,7 @@ function eyeControl_on_eyesoft_new($params = '') {
 function eyeControl_on_eyesoft_add($params = '') {
 	$selected = $GLOBALS['eyeControl_eyesoft_add_textbox']->text;
 	if ($selected) {
-		$dir = EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml';
+		$dir = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml';
 		$mirrorXML = eyeXML('getXMLfile',array($dir));
 		$x = eyeControl_lib_findIdByText(array($mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'],$selected));
 		if (isset($x[0])) {
@@ -103,7 +103,7 @@ function eyeControl_on_eyesoft_edit_save($params = '') {
 	$mirror_old = $GLOBALS['eyeControl_eyesoft_edit_hidden']->text;
 	$mirror_new = $GLOBALS['eyeControl_eyesoft_edit_textbox']->text;
 	if ($mirror_new && $mirror_new != EYECONTROL_DEFAULT_REPOSITORY) {
-		$dir = EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml';
+		$dir = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml';
 		$mirrorXML = eyeXML('getXMLfile',array($dir));
 		$x = eyeControl_lib_findIdByText(array($mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'],$mirror_old));
 		$x = $x[0];
@@ -169,7 +169,7 @@ function eyeControl_on_eyesoft_delete($params = '') {
 function eyeControl_on_eyesoft_delete_yes($params = '') {
 	$mirror = $GLOBALS['eyesoft_delete_hidden']->text;
 	if ($mirror && $mirror != EYECONTROL_DEFAULT_REPOSITORY) {
-		$file = EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml';
+		$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml';
 		$mirrorXML = eyeXML('getXMLfile',array($file));
 		$x = eyeControl_lib_findIdByText(array($mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'],$mirror));
 		$x = $x[0];

@@ -20,8 +20,8 @@ function get_dynamic_content($params = '') {
 	if (IE && IE < 7) {
 		$ie6 = '/IE';
 	}
-	$path_compressed = EYE_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeChess/eyeChess.min.js';
-	$path_uncompressed = EYE_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeChess/eyeChess.js';
+	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeChess/eyeChess.min.js';
+	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeChess/eyeChess.js';
 	if (USE_COMPRESSED && is_readable($path_compressed) && filemtime($path_compressed) >= filemtime($path_uncompressed)) {
 		$content = file_get_contents($path_compressed);
 	} else {

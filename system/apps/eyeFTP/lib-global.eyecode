@@ -301,7 +301,7 @@ function eyeFTP_prepareLongExecution() {
  * @return string The current version extracted from the info.xml
  */
 function eyeFTP_getVersionFromInfoXML() {
-	$file = EYE_ROOT.'/'.APP_DIR.'/eyeFTP/info.xml';
+	$file = XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/info.xml';
 	if(vfs('real_fileExists',array($file))) {
 		$content = file_get_contents($file);
 		$content = eyeXML('xml2array',array($content));

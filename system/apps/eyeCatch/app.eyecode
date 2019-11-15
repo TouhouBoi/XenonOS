@@ -52,7 +52,7 @@ function eyeCatch_run($params = '') {
 	$GLOBALS['eyeCatch_Container']->setCss(array('display' => 'block','overflow' => 'auto','position' => 'absolute'));
 	eyeWidgets('serialize',array($GLOBALS['eyeCatch_Container']));
 
-	include_once(EYE_ROOT . '/' . APP_DIR . '/eyeCatch/events' . EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeCatch/events' . EYE_CODE_EXTENSION);
 	eyeCatch_on_ChooseMap(array('run' => 1));
 
 	eyex('rawjs',array('js' => 'if (typeof eyeCatch == "undefined") { dhtmlLoadScript("index.php?extern=apps/eyeCatch/eyeCatch.js"); }'));

@@ -391,7 +391,7 @@ if (um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
 	$myButton->addFriend($myCheckBox);
 	$ContentY_win = $ContentY_win + 20;
 	foreach ($myUserXml['eyeUser'][0]['maintain'] as $group) {
-		$path = EYE_ROOT . '/' . GROUPS_DIR . '/' . $group . '/';
+		$path = XENONOS_ROOT . '/' . GROUPS_DIR . '/' . $group . '/';
 		if (vfs('real_fileExists',array($path)) && vfs('isdir',array($path)) && $group != DEFAULT_GROUP) {
 // Groups checkbox
 			$myCheckBox = new Checkbox(array(
@@ -409,7 +409,7 @@ if (um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
 	}
 } else {
 	$ContentY_win = 0;
-	$openDir = vfs('real_getDirContent',array(EYE_ROOT . '/' . GROUPS_DIR . '/'));
+	$openDir = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . GROUPS_DIR . '/'));
 	foreach ($openDir as $group) {
 		if (is_dir($group)) {
 			$group = basename($group);

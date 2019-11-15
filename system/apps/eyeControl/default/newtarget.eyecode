@@ -209,7 +209,7 @@ if($GLOBALS['edit_target']->text == 'edit'){
 	$id0 = $GLOBALS['eyeControl_acl_sortabletable']->selected;
 	$GLOBALS['eyeControl_acl_typeTarget_done_button']->enable();
 
-	$file = EYE_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
+	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 	$config = eyeXML('getXMLfile', array($file));
 
 	if($config){

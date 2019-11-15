@@ -523,7 +523,7 @@ class PEAR
 
         if (intval(PHP_VERSION) < 5) {
             // little non-eval hack to fix bug #12147
-            include EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/FixPHP5PEARWarnings.php';
+            include XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/FixPHP5PEARWarnings.php';
             return $a;
         }
 
@@ -727,7 +727,7 @@ class PEAR
 }
 
 if (PEAR_ZE2) {
-    include_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR5.php';
+    include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR5.php';
 }
 
 function _PEAR_call_destructors()

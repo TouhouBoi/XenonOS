@@ -30,7 +30,7 @@ function miniToDo_on_addNoteSignal(){
 	));
 	$myWindow->show();
 
-	include_once(EYE_ROOT.'/'.APP_DIR.'/miniToDo/forms/new_note_form'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/miniToDo/forms/new_note_form'.EYE_CODE_EXTENSION);
 }
 
 function miniToDo_on_viewNoteSignal(){

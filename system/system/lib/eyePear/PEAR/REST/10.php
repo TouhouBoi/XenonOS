@@ -17,7 +17,7 @@
 /**
  * For downloading REST xml/txt files
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/REST.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/REST.php';
 
 /**
  * Implement REST 1.0
@@ -610,7 +610,7 @@ class PEAR_REST_10
                         if ($d) {
                             if (isset($d['required'])) {
                                 if (!class_exists('PEAR_PackageFile_v2')) {
-                                    require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2.php';
+                                    require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2.php';
                                 }
                                 if (!isset($pf)) {
                                     $pf = new PEAR_PackageFile_v2;
@@ -753,7 +753,7 @@ class PEAR_REST_10
             '/allreleases.xml', false, false, $channel);
         if (!PEAR::isError($allreleases)) {
             if (!class_exists('PEAR_PackageFile_v2')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2.php';
             }
 
             if (!is_array($allreleases['r']) || !isset($allreleases['r'][0])) {

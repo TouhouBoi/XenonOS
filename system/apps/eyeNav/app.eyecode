@@ -301,7 +301,7 @@ function eyeNav_run($params = '')
 
 	addListenerServiceCall('fullResized','eyex','resizedbrowser');
 
-	include_once(EYE_ROOT . '/' . APP_DIR . '/eyeNav/libs.eyecode');
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/libs.eyecode');
 
 	if ($xml['eyeNav'][0]['sidebar'][0] == 2)
 	{

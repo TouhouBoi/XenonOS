@@ -17,8 +17,8 @@
 /**
  * base class
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Console/Getopt.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Console/Getopt.php';
 
 $GLOBALS['_System_temp_files'] = array();
 

@@ -19,7 +19,7 @@
 /**
  * base class
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
 
 /**
  * PEAR commands for building extensions.
@@ -60,7 +60,7 @@ Builds one or more extensions contained in a package.'
 
     function doBuild($command, $options, $params)
     {
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Builder.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Builder.php';
         if (sizeof($params) < 1) {
             $params[0] = 'package.xml';
         }

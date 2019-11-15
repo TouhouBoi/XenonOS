@@ -20,8 +20,8 @@
 /**
  * Used for installation groups in package.xml 2.0 and platform exceptions
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/OS/Guess.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/OS/Guess.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader.php';
 
 define('PEAR_INSTALLER_NOBINARY', -240);
 /**
@@ -166,14 +166,14 @@ class PEAR_Installer extends PEAR_Downloader
 
         if (strtolower($package) == 'pear' && $channel == 'pear.php.net') {
             // to avoid race conditions, include all possible needed files
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Task/Common.php';
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Task/Replace.php';
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Task/Unixeol.php';
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Task/Windowseol.php';
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2.php';
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/Generator/v1.php';
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/Generator/v2.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Task/Common.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Task/Replace.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Task/Unixeol.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Task/Windowseol.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/Generator/v1.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/Generator/v2.php';
         }
 
         $filelist = $this->_registry->packageInfo($package, 'filelist', $channel);
@@ -1533,7 +1533,7 @@ class PEAR_Installer extends PEAR_Downloader
      */
     function _compileSourceFiles($savechannel, &$filelist)
     {
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Builder.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Builder.php';
         $this->log(1, "$this->source_files source files, building");
         $bob = new PEAR_Builder($this->ui);
         $bob->debug = $this->debug;
@@ -1676,7 +1676,7 @@ class PEAR_Installer extends PEAR_Downloader
         $filelist = $pkg->getFilelist();
         PEAR::staticPushErrorHandling(PEAR_ERROR_RETURN);
         if (!class_exists('PEAR_Dependency2')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
         }
 
         $depchecker = new PEAR_Dependency2($this->config, $options,

@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once EYE_ROOT . '/' . SYSTEM_DIR . '/lib/eyeFiles/images' . EYE_CODE_EXTENSION;
+include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/lib/eyeFiles/images' . EYE_CODE_EXTENSION;
 
 /*
 $params[0] -> path (default: "/")
@@ -50,24 +50,24 @@ function lib_eyeFiles_cleanPath($params = '') {
 		$path = /* utf8 */ substr($path, 7);
 	} elseif ( /* utf8 */ strpos(realpath($path), realpath(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/')) === 0) {
 		$type = 'home';
-	} elseif ( /* utf8 */ strpos(realpath($path), realpath(EYE_ROOT . '/' . GROUPS_DIR . '/')) === 0) {
+	} elseif ( /* utf8 */ strpos(realpath($path), realpath(XENONOS_ROOT . '/' . GROUPS_DIR . '/')) === 0) {
 		$type = 'groups';
 	} elseif ( /* utf8 */ strpos(realpath($path), realpath(um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/')) === 0) {
 		$type = 'trash';
-	} elseif ( /* utf8 */ strpos(realpath($path), realpath(EYE_ROOT . '/' . USERS_DIR . '/')) === 0) {
+	} elseif ( /* utf8 */ strpos(realpath($path), realpath(XENONOS_ROOT . '/' . USERS_DIR . '/')) === 0) {
 		$type = 'users';
-	} elseif ( /* utf8 */ strpos(realpath($path), realpath(EYE_ROOT . '/')) === 0) {
+	} elseif ( /* utf8 */ strpos(realpath($path), realpath(XENONOS_ROOT . '/')) === 0) {
 		$type = 'real';
 	}
 	if ($type == 'groups') {
-		$sub = EYE_ROOT . '/' . GROUPS_DIR . '/';
+		$sub = XENONOS_ROOT . '/' . GROUPS_DIR . '/';
 	} elseif ($type == 'trash') {
 		$sub = um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/';
 		$path = $sub;
 	} elseif ($type == 'real') {
-		$sub = EYE_ROOT . '/';
+		$sub = XENONOS_ROOT . '/';
 	} elseif ($type == 'users') {
-		$sub = EYE_ROOT . '/' . USERS_DIR . '/';
+		$sub = XENONOS_ROOT . '/' . USERS_DIR . '/';
 	} else {
 		$type = 'home';
 		$sub = um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/';
@@ -207,7 +207,7 @@ function lib_eyeFiles_getDeskContent($params = '') {
 	if (!vfs('isdir',array($path))) {
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
-		if (!vfs('copyDir',array(EYE_ROOT . '/' . SYSTEM_DIR . '/' . CONF_USER_DIR . '/skel/' . FILES_USER_DIR . '/Desktop/',$path))) {
+		if (!vfs('copyDir',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . CONF_USER_DIR . '/skel/' . FILES_USER_DIR . '/Desktop/',$path))) {
 			$path = um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/';
 		}
 		$currentUser = $oldUser;
@@ -259,10 +259,10 @@ function lib_eyeFiles_getDirContent($params = '') {
 	if (isset($params[1]) === true) {
 		$type = $params[1];
 	}
-	if ($type == 'groups' && realpath($params[0] . '/') == realpath(EYE_ROOT . '/' . GROUPS_DIR . '/')) {
+	if ($type == 'groups' && realpath($params[0] . '/') == realpath(XENONOS_ROOT . '/' . GROUPS_DIR . '/')) {
 		$xml = um('retrieveUser',array($currentUser));
 		foreach ($xml['eyeUser'][0]['group'] as $group) {
-			if (vfs('isdir',array(EYE_ROOT . '/' . GROUPS_DIR . '/' . basename($group)))) {
+			if (vfs('isdir',array(XENONOS_ROOT . '/' . GROUPS_DIR . '/' . basename($group)))) {
 				$element = array();
 				$element[] = basename($group);
 				$element[] = 'folder';

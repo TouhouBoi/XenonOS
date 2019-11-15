@@ -25,8 +25,8 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 // File Paths
-define('EYE_ROOT','.');
-define('REAL_EYE_ROOT','system');
+define('XENONOS_ROOT','.');
+define('REAL_XENONOS_ROOT','system');
 define('SYSTEM_DIR','system');
 define('KERNEL_DIR','kernel');
 define('SERVICE_DIR','services');

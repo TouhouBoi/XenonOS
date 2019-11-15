@@ -19,8 +19,8 @@
 /**
  * base class
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/REST.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/REST.php';
 
 /**
  * PEAR commands for remote server querying
@@ -577,7 +577,7 @@ parameter.
     function &getDownloader($options)
     {
         if (!class_exists('PEAR_Downloader')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader.php';
         }
         $a = new PEAR_Downloader($this->ui, $options, $this->config);
         return $a;
@@ -637,7 +637,7 @@ parameter.
 
     function doListUpgrades($command, $options, $params)
     {
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
         if (isset($params[0]) && !is_array(PEAR_Common::betterStates($params[0]))) {
             return $this->raiseError($params[0] . ' is not a valid state (stable/beta/alpha/devel/etc.) try "pear help list-upgrades"');
         }

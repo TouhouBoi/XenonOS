@@ -26,7 +26,7 @@ if (!extension_loaded("overload")) {
 /**
  * Include for PEAR_Error and PEAR classes
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
 
 /**
  * This class is for objects where you want to separate the code for
@@ -142,7 +142,7 @@ class PEAR_Autoloader extends PEAR
         $classname = strtolower($classname);
         if (!class_exists($classname)) {
             $include_file = preg_replace('/[^a-z0-9]/i', '_', $classname);
-            include_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . $include_file;
+            include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . $include_file;
         }
         $obj = new $classname;
         $methods = get_class_methods($classname);

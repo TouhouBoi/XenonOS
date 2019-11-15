@@ -56,9 +56,9 @@ function service_extern_getContentType($params) {
 	$all = isset($params[1]) && is_bool($params[1]) ? $params[1] : false;
 
 	if ($all === true) {
-		$config = unserialize(file_get_contents(EYE_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/extern/mimetypes-all.data'));
+		$config = unserialize(file_get_contents(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/extern/mimetypes-all.data'));
 	} else {
-		$config = unserialize(file_get_contents(EYE_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/extern/mimetypes.data'));
+		$config = unserialize(file_get_contents(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/extern/mimetypes.data'));
 	}
 	$type = /* utf8 */ strtolower($type);
 	if (isset($config[$type]) === true) {
@@ -93,12 +93,12 @@ function service_extern_getFile($params) {
 	// PATH
 	if (isset($_REQUEST['theme']) === true) {
 		if ($_REQUEST['theme'] === '0') {
-			$path = EYE_ROOT . '/' . EXTERN_DIR . '/' . $params[0];
+			$path = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . $params[0];
 		} else {
-			$path = eyex('getThemeImage', array(EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/default/' . $params[0], 3));
+			$path = eyex('getThemeImage', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/default/' . $params[0], 3));
 		}
 	} else {
-		$path = eyex('getThemeImage', array(EYE_ROOT . '/' . EXTERN_DIR . '/' . $params[0], 3));
+		$path = eyex('getThemeImage', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . $params[0], 3));
 	}
 	if ($path === false) {
 		return false;
@@ -115,7 +115,7 @@ function service_extern_getFile($params) {
 	if (MAX_FILE_EXTENSION !== false && utf8_strlen($extension) > MAX_FILE_EXTENSION === true) {
 		return false;
 	}
-	if ( /* utf8 */ strpos(realpath($dirname), realpath(EYE_ROOT . '/' . EXTERN_DIR . '/')) !== 0) {
+	if ( /* utf8 */ strpos(realpath($dirname), realpath(XENONOS_ROOT . '/' . EXTERN_DIR . '/')) !== 0) {
 		return false;
 	}
 

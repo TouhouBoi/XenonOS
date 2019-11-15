@@ -84,7 +84,7 @@ function lib_eyeXML_getXMLconfig($params) {
 
 	$path .= '/' . $params[1];
 	if (!is_file($path)) {
-		$skel = EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/' . $params[0] . '/' . $params[1];
+		$skel = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/' . $params[0] . '/' . $params[1];
 
 		if (is_file($skel)) {
 			copy($skel, $path);

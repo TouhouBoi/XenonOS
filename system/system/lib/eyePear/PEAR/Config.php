@@ -18,10 +18,10 @@
 /**
  * Required for error handling
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Registry.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Installer/Role.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Registry.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Installer/Role.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
 
 /**
  * Last created PEAR_Config instance.
@@ -772,10 +772,10 @@ class PEAR_Config extends PEAR
         do { // poor man's try
             if (!class_exists('PEAR_FTP')) {
                 if (!class_exists('PEAR_Common')) {
-                    require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
+                    require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
                 }
                 if (PEAR_Common::isIncludeable('PEAR/FTP.php')) {
-                    require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/FTP.php';
+                    require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/FTP.php';
                 }
             }
 
@@ -2032,7 +2032,7 @@ class PEAR_Config extends PEAR
     {
         $version = str_replace('.', '', $version);
         if (!class_exists($class = 'PEAR_REST_' . $version)) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/REST/' . $version . '.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/REST/' . $version . '.php';
         }
 
         $remote = new $class($this, $options);

@@ -100,7 +100,7 @@ function eyeApps_run($params = '')
 		)
 	);
 
-	include_once(EYE_ROOT . '/' . APP_DIR . '/eyeApps/events' . EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeApps/events' . EYE_CODE_EXTENSION);
 
 	$i = 0;
 

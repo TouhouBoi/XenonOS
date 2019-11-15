@@ -50,7 +50,7 @@ function eyeControl_lib_getConfigUserPath() {
 	if ($currentUser == ROOTUSER) {
 		$user = $_SESSION['eyeControl'][$myPid]['user'];
 		if ($user == '[skel]') {
-			return EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/';
+			return XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/';
 		} elseif (um('userExist',array($user))) {
 			return um('getUserDir',array($user));
 		} else {

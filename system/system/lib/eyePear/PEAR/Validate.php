@@ -22,8 +22,8 @@ define('PEAR_VALIDATE_NORMAL', 3);
 define('PEAR_VALIDATE_DOWNLOADING', 4); // this is not bit-mapped like the others
 define('PEAR_VALIDATE_PACKAGING', 7);
 /**#@-*/
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Validator/PECL.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Validator/PECL.php';
 
 /**
  * Validation class for package.xml - channel-level advanced validation

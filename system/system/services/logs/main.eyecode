@@ -182,7 +182,7 @@ function private_service_logs_GetHandler()
 
 		do
 		{
-			$path = EYE_ROOT . '/' . LOG_DIR . '/' . date('Y-m-d-H-i-s') . '-' . /* utf8 */ str_pad(strval($time), 5, '0', STR_PAD_LEFT) . '.txt';
+			$path = XENONOS_ROOT . '/' . LOG_DIR . '/' . date('Y-m-d-H-i-s') . '-' . /* utf8 */ str_pad(strval($time), 5, '0', STR_PAD_LEFT) . '.txt';
 		} while (file_exists($path) === true);
 
 		$service_logs['handler'] = fopen($path, 'ab');

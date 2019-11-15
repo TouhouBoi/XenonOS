@@ -24,7 +24,7 @@ function eyeControl_on_smtp_save($params = '') {
 		if (!trim($from) || !trim($username) || !trim($password) || !trim($hostname) || !trim($port)) { // utf8
 			eyex('messageBox',array('content' => 'Please fill out all fields.'));
 		} else {
-			$file = EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/smtp.xml';
+			$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/smtp.xml';
 			$xml = eyeXML('getXMLfile',array($file));
 			$xml['CONFIG'][0]['SMTP_FROM'][0] = $from;
 			$xml['CONFIG'][0]['SMTP_USERNAME'][0] = $username;

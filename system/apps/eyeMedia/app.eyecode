@@ -146,7 +146,7 @@ function eyeMedia_run($params=null) {
 	eyex('loadScript', array('url' => 'index.php?extern=apps/eyeMedia/js/eyeMedia' . EYE_CODE_EXTENSION . '&type=dynamic'));
 
 	if (isset($params[0]) === true) {
-		include(EYE_ROOT.'/'.APP_DIR.'/eyeMedia/events'.EYE_CODE_EXTENSION);
+		include(XENONOS_ROOT.'/'.APP_DIR.'/eyeMedia/events'.EYE_CODE_EXTENSION);
 		$Open_File = str_replace(um('getCurrentUserDir').'files/', '/', $params[0]);
 		$Open_File = str_replace('//', '/', $Open_File);
 		// If more needs to be done when opening a file later on...

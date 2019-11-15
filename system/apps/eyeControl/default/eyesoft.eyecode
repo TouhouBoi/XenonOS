@@ -31,7 +31,7 @@ $myTable = new Sortabletable(array(
 ));
 $myTable->show();
 $nMirrors = 0;
-$mirrorXML = eyeXML('getXMLfile',array(EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml'));
+$mirrorXML = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml'));
 foreach ($mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'] as $mirror) {
 	$nMirrors++;
 	$myTable->addRow(array($mirror));

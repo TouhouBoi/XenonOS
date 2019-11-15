@@ -216,7 +216,7 @@ function service_eyex_getThemeImage($params)
 		return(false);
 	}
 
-	$themes_path = EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR;
+	$themes_path = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR;
 
 	if ($extend === 1 || $extend == 2)
 	{
@@ -243,7 +243,7 @@ function service_eyex_getThemeImage($params)
 		{
 			$alias = array();
 
-			include EYE_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/eyex/image_alias' . EYE_CODE_EXTENSION;
+			include XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/eyex/image_alias' . EYE_CODE_EXTENSION;
 
 			$temp = substr($url, strlen($themes_path . '/default/'));
 
@@ -290,9 +290,9 @@ function service_eyex_getThemeImage($params)
 		{
 			$alias = array();
 
-			include EYE_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/eyex/image_alias' . EYE_CODE_EXTENSION;
+			include XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/eyex/image_alias' . EYE_CODE_EXTENSION;
 
-			$path = substr($url, strlen(EYE_ROOT . '/' . EXTERN_DIR . '/'));
+			$path = substr($url, strlen(XENONOS_ROOT . '/' . EXTERN_DIR . '/'));
 
 			if ($alias[1][$path])
 			{
@@ -311,7 +311,7 @@ function service_eyex_getThemeImage($params)
 	}
 	else
 	{
-		return('index.php?extern=' . substr($path, strlen(EYE_ROOT . '/' . EXTERN_DIR . '/')));
+		return('index.php?extern=' . substr($path, strlen(XENONOS_ROOT . '/' . EXTERN_DIR . '/')));
 	}
 }
 
@@ -337,11 +337,11 @@ function eyex_returnWrongPath($path,$extend)
 
 	if ($extend == 3)
 	{
-		return(EYE_ROOT . '/' . EXTERN_DIR . '/' . $path);
+		return(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . $path);
 	}
 	elseif ($extend == 2)
 	{
-		return(EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/default/' . $path);
+		return(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/default/' . $path);
 	}
 	elseif ($extend === 1)
 	{
@@ -364,7 +364,7 @@ function service_eyex_getRealFromExtern($params)
 		return false;
 	}
 
-	$return = EYE_ROOT . '/' . EXTERN_DIR . '/';
+	$return = XENONOS_ROOT . '/' . EXTERN_DIR . '/';
 
 	if ( stripos($path, 'theme=') !== false)
 	{

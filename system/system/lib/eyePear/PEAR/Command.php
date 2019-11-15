@@ -18,9 +18,9 @@
 /**
  * Needed for error handling
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Frontend.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/XMLParser.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Frontend.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/XMLParser.php';
 
 /**
  * List of commands and what classes they are implemented in.
@@ -127,7 +127,7 @@ class PEAR_Command
         }
         $class = $GLOBALS['_PEAR_Command_commandlist'][$command];
         if (!class_exists($class)) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . $GLOBALS['_PEAR_Command_objects'][$class];
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . $GLOBALS['_PEAR_Command_objects'][$class];
         }
         if (!class_exists($class)) {
             $a = PEAR::raiseError("unknown command `$command'");
@@ -144,7 +144,7 @@ class PEAR_Command
     {
         $class = $GLOBALS['_PEAR_Command_commandlist'][$command];
         if (!class_exists($class)) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . $GLOBALS['_PEAR_Command_objects'][$class];
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . $GLOBALS['_PEAR_Command_objects'][$class];
         }
         if (!class_exists($class)) {
             return PEAR::raiseError("unknown command `$command'");

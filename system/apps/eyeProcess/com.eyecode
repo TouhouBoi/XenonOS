@@ -34,8 +34,8 @@ function eyeProcess_com_onLaunch($params = '') {
 	$GLOBALS['eyeProcess_Sortabletable']->delAllRows();
 	
 	// Paths
-	$iconsThemePath = EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $_SESSION['usertheme'] . '/icons/22x22/';
-	$iconsDefaultPath = EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/default/icons/22x22/';
+	$iconsThemePath = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $_SESSION['usertheme'] . '/icons/22x22/';
+	$iconsDefaultPath = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/default/icons/22x22/';
 	
 	// Add processes
 	foreach (proc('getProcessTable') as $pid => $process) {
@@ -44,7 +44,7 @@ function eyeProcess_com_onLaunch($params = '') {
 		
 		// Applications
 		$application = basename($process['appName']);
-		$infoXml = eyeXML('getXMLfile', array(EYE_ROOT . '/' . APP_DIR . '/' . $application . '/info.xml'));
+		$infoXml = eyeXML('getXMLfile', array(XENONOS_ROOT . '/' . APP_DIR . '/' . $application . '/info.xml'));
 		
 		if (is_array($infoXml) && $infoXml['package'][0]['type'][0] !== 'System' && eyeWidgets('hasWidgets', array($pid))) {
 			if (vfs('real_fileExists', array($iconsThemePath . $application . '.png')) || vfs('real_fileExists', array($iconsDefaultPath . $application . '.png'))) {

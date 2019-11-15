@@ -195,7 +195,7 @@ class PEAR_Task_Common
 
     function throwError($msg, $code = -1)
     {
-        include_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
+        include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
         return PEAR::raiseError($msg, $code);
     }
 }

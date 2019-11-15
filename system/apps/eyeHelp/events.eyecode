@@ -45,7 +45,7 @@ function eyeHelp_getFolder($params = null)
 {
 	global $myPid;
 
-	$return = EYE_ROOT.'/'.APP_DIR.'/'.SHARE_USER_DIR.'/eyeHelp/';
+	$return = XENONOS_ROOT.'/'.APP_DIR.'/'.SHARE_USER_DIR.'/eyeHelp/';
 
 	if ($params[0])
 	{
@@ -255,7 +255,7 @@ function eyeHelp_on_submit()
 		{
 			$xml['eyeHelp'][0]['contact'][0] = $GLOBALS['eyeHelp_contact_box']->text;
 
-			eyeXML('setXMLfile', array (EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeHelp/conf.xml', $xml));
+			eyeXML('setXMLfile', array (XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeHelp/conf.xml', $xml));
 
 			eyex('messageBox', array ('content' => 'Changes successfully applied.'));
 
@@ -291,7 +291,7 @@ function eyeHelp_Code($Text)
 	global $checknum;
 	global $currentUser;
 
-	$dir = EYE_ROOT . '/' . APP_DIR . '/eyeHelp/lib/';
+	$dir = XENONOS_ROOT . '/' . APP_DIR . '/eyeHelp/lib/';
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
 	$openDir = vfs('real_getDirContent',array($dir,'*' . EYE_CODE_EXTENSION));

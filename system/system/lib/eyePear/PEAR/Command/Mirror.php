@@ -17,7 +17,7 @@
 /**
  * base class
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
 
 /**
  * PEAR commands for providing file mirrors

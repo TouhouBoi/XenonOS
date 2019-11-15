@@ -23,7 +23,7 @@ function eyeCalendar_run($params = '') {
 	$path = um('getCurrentUserDir') . '/' . CONF_USER_DIR . '/eyeCalendar';
 	if (!is_dir($path)) {
 		mkdir($path);
-		recursiveCopy(EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeCalendar', $path);
+		recursiveCopy(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeCalendar', $path);
 	}
 	
 	foreach (proc('getProcessTable') as $process) {
@@ -182,7 +182,7 @@ function eyeCalendar_run($params = '') {
 	if(!isset($_SESSION['eyeCalendarJs']) || $_SESSION['eyeCalendarJs'] < $_SESSION['SCREEN']['refresh']){
 		$_SESSION['eyeCalendarJs'] = $_SESSION['SCREEN']['refresh'];
 	}else{
-		include_once EYE_ROOT.'/'.APP_DIR.'/eyeCalendar/events.eyecode';
+		include_once XENONOS_ROOT.'/'.APP_DIR.'/eyeCalendar/events.eyecode';
 		eyeCalendar_on_Launch();
 	}
 }

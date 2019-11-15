@@ -116,14 +116,14 @@ function service_proc_launch($params) {
 	}
 
 	//Try running app.
-	if(!is_readable(EYE_ROOT.'/'.APP_DIR.'/'.$appName.'/app'.EYE_CODE_EXTENSION)) {
+	if(!is_readable(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/app'.EYE_CODE_EXTENSION)) {
 		$myPid = $oldPid;
 		$procInfo = $oldProcInfo;
 		errorCodes('setErrorCode',array(PROC_APP_NOT_FOUND));
 		return false;
 	}
 	//Including app php code.
-	include_once(EYE_ROOT.'/'.APP_DIR.'/'.$appName.'/app'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/app'.EYE_CODE_EXTENSION);
 
 	if(function_exists($appName.'_run')){
 		//Adding process in the process table.
@@ -195,14 +195,14 @@ function service_proc_getTask($params) {
 		return false;
 	}
 
-	if(!is_readable(EYE_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/app'.EYE_CODE_EXTENSION)) {
+	if(!is_readable(XENONOS_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/app'.EYE_CODE_EXTENSION)) {
 		$myPid = $oldPid;
 		$checknum = $oldchecknum;
 		$procInfo = $oldProcInfo;
 		errorCodes('setErrorCode',array(PROC_APP_NOT_FOUND));
 		return false;
 	}
-	include_once(EYE_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/app'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/app'.EYE_CODE_EXTENSION);
 	if(isset($params[1])) {
 		$appArgs = $params[1];
 	} else {
@@ -258,7 +258,7 @@ function service_proc_close($params) {
 		return false;
  	}
 	//Calling the _end funciton if it exists
-	include_once(EYE_ROOT.'/'.APP_DIR.'/'.$appName.'/app'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/app'.EYE_CODE_EXTENSION);
 	if(function_exists($appName.'_end')) {
 		global $myPid,$checknum,$procInfo;
 		$appProc = proc('getProcByPid',array($pid));

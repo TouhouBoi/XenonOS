@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once(EYE_ROOT . '/' . APP_DIR . '/eyeDock/libs' . EYE_CODE_EXTENSION);
+include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/libs' . EYE_CODE_EXTENSION);
 
 function eyeDock_on_AddElement($params = '') {
 	global $currentUser;
@@ -68,9 +68,9 @@ function eyeDock_on_AddElement($params = '') {
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
 	if ($params['place'][0]) {
-		$files = vfs('real_getDirContent', array(EYE_ROOT . '/' . APP_DIR . '/eyeDock/modules/menu/'));
+		$files = vfs('real_getDirContent', array(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/modules/menu/'));
 	} else {
-		$files = vfs('real_getDirContent', array(EYE_ROOT . '/' . APP_DIR . '/eyeDock/modules/'));
+		$files = vfs('real_getDirContent', array(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/modules/'));
 	}
 	$oldUser = $currentUser;
 
@@ -146,7 +146,7 @@ function eyeDock_on_AddElement_Do($params = '') {
 	if ($id) {
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
-		$module = eyeXML('getXMLfile',array(EYE_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeDock/modules/menu/' . $element . '.xml'));
+		$module = eyeXML('getXMLfile',array(XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeDock/modules/menu/' . $element . '.xml'));
 		$currentUser = $oldUser;
 		$xml['eyeDock'][0][$type][0][$place][0][$id][0]['entries'][0]['entry-' . $xml['eyeDock'][0][$type][0][$place][0][$id][0]['entries-id'][0]++][0] = $module['module'][0];
 	} else {
@@ -157,7 +157,7 @@ function eyeDock_on_AddElement_Do($params = '') {
 		
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
-		$module = eyeXML('getXMLfile',array(EYE_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeDock/modules/' . $element . '.xml'));
+		$module = eyeXML('getXMLfile',array(XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeDock/modules/' . $element . '.xml'));
 		$currentUser = $oldUser;
 		$xml['eyeDock'][0][$type][0][$place][0]['element-' . $xml['eyeDock'][0][$type][0][$place . '-id'][0]++][0] = $module['module'][0];
 	}
@@ -318,7 +318,7 @@ function eyeDock_on_ChangeImage($params = '') {
 
 	eyex('rawjs', array('js' => 'var e = document.getElementById("' . $myPid . '_ChangeImage_window_Imagebox"); e.style.height = "22px"; e.style.marginLeft = "14px"; e.style.marginTop = "14px"; e.style.width = "22px";'));
 	$mySelect->addEvent('onchange','document.getElementById("' . $myPid . '_ChangeImage_window_Imagebox").src = this.value;');
-	foreach (vfs('real_getDirContent', array(EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/default/icons/22x22')) as $file) {
+	foreach (vfs('real_getDirContent', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/default/icons/22x22')) as $file) {
 		if (strtolower(substr($file, -4)) === '.png') { // utf8
 			$url = 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/' . basename($file);
 			if ($url == $text) {

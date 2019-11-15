@@ -1001,7 +1001,7 @@ function service_vfs_checkPermissions($params) {
 
 	$groups = um('getCurrentGroups');
 	foreach($groups as $key=>$value) {
-		$groupDir = EYE_ROOT.'/'.GROUPS_DIR.'/'.$key.'/'.FILES_GROUP_DIR;
+		$groupDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$key.'/'.FILES_GROUP_DIR;
 		$groupDir = realpath($groupDir);
 		if($groupDir) {
 			if(realpath($params[0]) == $groupDir && $params[1] == 'e') {
@@ -1061,7 +1061,7 @@ function service_vfs_checkPermissions($params) {
 		//If the user is really an admin and the admins are jailed
 		if(($currentUser != REAL_ROOTUSER && ADMINS_JAILED == 1) ||
 			($currentUser == REAL_ROOTUSER && ROOT_JAILED == 1)){
-			$real_eyeroot = realpath(EYE_ROOT);
+			$real_eyeroot = realpath(XENONOS_ROOT);
 			if ( /* utf8 */ strpos($file_path, $real_eyeroot) === 0) {
 				return true;
 			}
@@ -1721,12 +1721,12 @@ function service_vfs_real_checkPermissions($params) {
 	if ( /* utf8 */ strpos($file_path, $group_path) === 0) {
 		$groups = um('getCurrentGroups');
 		foreach($groups as $key=>$value) {
-			$groupDir = realpath(EYE_ROOT . '/' . GROUPS_DIR . '/' . $key);
+			$groupDir = realpath(XENONOS_ROOT . '/' . GROUPS_DIR . '/' . $key);
 			if ($groupDir) {
 				if ($mode === 'r' && /* utf8 */ strpos($file_path, $groupDir) === 0) {
 					return true;
 				}
-				$groupDir = realpath(EYE_ROOT . '/' . GROUPS_DIR . '/' . $key . '/' . CONF_GROUP_DIR);
+				$groupDir = realpath(XENONOS_ROOT . '/' . GROUPS_DIR . '/' . $key . '/' . CONF_GROUP_DIR);
 				if ( /* utf8 */ strpos($file_path, $groupDir) === 0) {
 					return true;
 				}
@@ -1741,7 +1741,7 @@ function service_vfs_real_checkPermissions($params) {
 		//If the user is really an admin and the admins are jailed
 		if(($currentUser != REAL_ROOTUSER && ADMINS_JAILED == 1) ||
 			($currentUser == REAL_ROOTUSER && ROOT_JAILED == 1)){
-			$real_eyeroot = realpath(EYE_ROOT);
+			$real_eyeroot = realpath(XENONOS_ROOT);
 			if ( /* utf8 */ strpos($file_path, $real_eyeroot) === 0) {
 				return true;
 			}
@@ -2394,7 +2394,7 @@ function service_vfs_isGroupDir($params) {
 	} else {
 		$dir = $params[0];
 	}
-	$group = realpath(EYE_ROOT.'/'.GROUPS_DIR.'/');
+	$group = realpath(XENONOS_ROOT.'/'.GROUPS_DIR.'/');
 	$check = realpath($dir);
 	if ( /* utf8 */ strpos($check, $group) === 0) {
 		return true;
@@ -2435,7 +2435,7 @@ function service_vfs_resolvePath($params) {
 	elseif ($params[1] == 'group_files') {
 		if ($params[3]) {
 			$groupName = basename($params[3]);
-			$referenceDirectory = EYE_ROOT.'/'.GROUPS_DIR.'/'.$groupName.'/'.FILES_GROUP_DIR;
+			$referenceDirectory = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$groupName.'/'.FILES_GROUP_DIR;
 		}
 		else {
 			errorCodes('setErrorCode',array(INCORRECT_PARAMS));

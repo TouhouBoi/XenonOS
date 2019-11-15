@@ -34,7 +34,7 @@ function eyeControl_lib_loadContent($category = '',$content = '',$contentParams 
 	global $myPid;
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$dir = EYE_ROOT . '/' . APP_DIR . '/eyeControl/default/';
+	$dir = XENONOS_ROOT . '/' . APP_DIR . '/eyeControl/default/';
 	if ($category == 'index' || !$category && !$content) {
 		$contentXML = getConfig('eyeControl','categories.xml');
 		$contentXML = $contentXML['eyeControl'][0]['index'][0];
@@ -43,8 +43,8 @@ function eyeControl_lib_loadContent($category = '',$content = '',$contentParams 
 		$contentXML = $contentXML['eyeControl'][0]['cat_content'][0];
 		$contentParams[0] = $category;
 	} elseif ($category == 'others') {
-		$dir = EYE_ROOT . '/' . APP_DIR . '/eyeControl/others/';
-		$dir2 = EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeControl/others/';
+		$dir = XENONOS_ROOT . '/' . APP_DIR . '/eyeControl/others/';
+		$dir2 = XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeControl/others/';
 		$contentXML = eyeXML('getXMLfile',array($dir2 . $content . '.xml'));
 		$contentXML = $contentXML['content'][0];
 	} else {

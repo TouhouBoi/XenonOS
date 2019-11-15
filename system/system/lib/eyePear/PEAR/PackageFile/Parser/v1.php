@@ -16,7 +16,7 @@
 /**
  * package.xml abstraction class
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
 /**
  * Parser for package.xml version 1.0
  * @category   pear

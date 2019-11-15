@@ -19,7 +19,7 @@
 /**
  * base class
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
 
 /**
  * PEAR commands for login/logout
@@ -111,8 +111,8 @@ Run regression tests with PHP\'s regression testing script (run-tests.php).',
             return $this->raiseError('ERROR: cannot use both --phpunit and --tapoutput at the same time');
         }
 
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
         $log = new PEAR_Common;
         $log->ui = &$this->ui; // slightly hacky, but it will work
         $tests = array();
@@ -234,7 +234,7 @@ Run regression tests with PHP\'s regression testing script (run-tests.php).',
             $tap = '1..' . $tests_count . "\n";
         }
 
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/RunTest.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/RunTest.php';
         $run = new PEAR_RunTest($log, $options);
         $run->tests_count = $tests_count;
 

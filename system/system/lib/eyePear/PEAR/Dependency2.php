@@ -17,7 +17,7 @@
 /**
  * Required for the PEAR_VALIDATE_* constants
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Validate.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Validate.php';
 
 /**
  * Dependency check for PEAR packages
@@ -87,7 +87,7 @@ class PEAR_Dependency2
     {
         $this->_config = &$config;
         if (!class_exists('PEAR_DependencyDB')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/DependencyDB.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/DependencyDB.php';
         }
 
         if (isset($installoptions['packagingroot'])) {
@@ -104,7 +104,7 @@ class PEAR_Dependency2
         $this->_options = $installoptions;
         $this->_state = $state;
         if (!class_exists('OS_Guess')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/OS/Guess.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/OS/Guess.php';
         }
 
         $this->_os = new OS_Guess;
@@ -892,7 +892,7 @@ class PEAR_Dependency2
         $downloaded = &$dl->getUninstallPackages();
         foreach ($downloaded as $i => $pf) {
             if (!class_exists('PEAR_Downloader_Package')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader/Package.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader/Package.php';
             }
             $dp = new PEAR_Downloader_Package($dl);
             $dp->setPackageFile($downloaded[$i]);
@@ -1172,7 +1172,7 @@ class PEAR_Dependency2
         $fail = false;
         if ($deps) {
             if (!class_exists('PEAR_Downloader_Package')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader/Package.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader/Package.php';
             }
 
             $dp = new PEAR_Downloader_Package($dl);

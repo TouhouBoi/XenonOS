@@ -23,7 +23,7 @@ if (!vfs('real_fileExists',array($userDir . 'conf/eyePdf/conf.xml'))) {
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
 	vfs('real_mkDir', array($userDir . 'conf/eyePdf'));
-	vfs('real_copy',array(EYE_ROOT . '/' . SYSTEM_DIR . '/conf/skel/' . CONF_USER_DIR . '/eyePdf/conf.xml',$userDir . 'conf/eyePdf/conf.xml'));
+	vfs('real_copy',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/conf/skel/' . CONF_USER_DIR . '/eyePdf/conf.xml',$userDir . 'conf/eyePdf/conf.xml'));
 	$currentUser = $oldUser;
 }
 $PdfUserConf = eyeControl_lib_getXMLconfig(array('eyePdf','conf.xml'));

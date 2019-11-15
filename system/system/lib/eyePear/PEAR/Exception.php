@@ -59,7 +59,7 @@
  * 5) Usage example
  *
  * <code>
- *  require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Exception.php';
+ *  require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Exception.php';
  *
  *  class Test {
  *     function foo() {

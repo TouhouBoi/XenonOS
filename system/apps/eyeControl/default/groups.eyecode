@@ -42,13 +42,13 @@ $myTable = new Sortabletable(array(
 $myTable->show();
 if (um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
 	foreach ($myUserXml['eyeUser'][0]['maintain'] as $value) {
-		$path = EYE_ROOT . '/' . GROUPS_DIR . '/' . $value . '/';
+		$path = XENONOS_ROOT . '/' . GROUPS_DIR . '/' . $value . '/';
 		if ($value && vfs('real_fileExists',array($path)) && vfs('isdir',array($path))) {
 			$myTable->addRow(array($value));
 		}
 	}
 } else {
-	$dir = EYE_ROOT . '/' . GROUPS_DIR . '/';
+	$dir = XENONOS_ROOT . '/' . GROUPS_DIR . '/';
 	$nGroups = 0;
 	$openDir = vfs('real_getDirContent',array($dir));
 	foreach ($openDir as $folder) {
@@ -111,7 +111,7 @@ if (eyeControl_lib_getConfigUser() == ROOTUSER) {
 	));
 	$myButton->addFriend($myTable);
 	$myButton->show();
-	$xml = eyeXML('getXMLfile',array(EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml'));
+	$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml'));
 	// Default group: x | x group(s)
 	$myLabel = new Label(array(
 		'name' => 'eyeControl_account_label_groups',

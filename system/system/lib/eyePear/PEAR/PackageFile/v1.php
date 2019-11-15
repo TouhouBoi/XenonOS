@@ -16,7 +16,7 @@
 /**
  * For error handling
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ErrorStack.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ErrorStack.php';
 
 /**
  * Error code if parsing is attempted with no xml extension
@@ -1306,7 +1306,7 @@ class PEAR_PackageFile_v1
     function &getDefaultGenerator()
     {
         if (!class_exists('PEAR_PackageFile_Generator_v1')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/Generator/v1.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/Generator/v1.php';
         }
         $a = new PEAR_PackageFile_Generator_v1($this);
         return $a;
@@ -1329,7 +1329,7 @@ class PEAR_PackageFile_v1
             }
         } else { // tgz
             if (!class_exists('Archive_Tar')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Archive/Tar.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Archive/Tar.php';
             }
             $tar = new Archive_Tar($this->_archiveFile);
             $tar->pushErrorHandling(PEAR_ERROR_RETURN);

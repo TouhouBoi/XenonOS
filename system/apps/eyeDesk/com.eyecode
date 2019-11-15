@@ -28,7 +28,7 @@ function eyeDesk_com_onEvent($params = '') {
 		}
 	}
 	if ($desktop === true) {
-		include_once(EYE_ROOT . '/' . APP_DIR . '/eyeDesk/events' . EYE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeDesk/events' . EYE_CODE_EXTENSION);
 		eyeDesk_on_OpenPath();
 	}
 	if ($trash === true) {
@@ -44,7 +44,7 @@ function eyeDesk_com_onEvent($params = '') {
 
 function eyeDesk_com_onResized($params = '') {
 	eyeWidgets('updateContent');
-	include_once(EYE_ROOT . '/' . APP_DIR . '/eyeDesk/events' . EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeDesk/events' . EYE_CODE_EXTENSION);
 	eyeDesk_on_OpenPath();
 }
 ?>

@@ -32,7 +32,7 @@ function eyeControl_on_eyedesk_new($params = '') {
 	global $currentUser;
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$applicationsList = vfs('real_getDirContent', array(EYE_ROOT . '/' . APP_DIR . '/'));
+	$applicationsList = vfs('real_getDirContent', array(XENONOS_ROOT . '/' . APP_DIR . '/'));
 	$currentUser = $oldUser;
 
 	foreach ($applicationsList as $application) {
@@ -84,7 +84,7 @@ function eyeControl_on_eyedesk_edit($params = '') {
 			'win_removepid' => 0,
 			'win_style' => TITLE + CLOSE
 		));
-		foreach (vfs('real_getDirContent', array(EYE_ROOT . '/' . APP_DIR . '/')) as $application) {
+		foreach (vfs('real_getDirContent', array(XENONOS_ROOT . '/' . APP_DIR . '/')) as $application) {
 			if (is_dir($application)) {
 				$application = basename($application);
 				if ($application != 'share') {
@@ -139,7 +139,7 @@ function eyeControl_on_eyedesk_default_yes($params = '') {
 	global $currentUser;
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$xmlDef = eyeXML('getXMLfile',array(EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeDesk/conf.xml'));
+	$xmlDef = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeDesk/conf.xml'));
 	$currentUser = $oldUser;
 	$xmlNew = eyeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
 	$xmlNew['eyeDesk'][0]['autolaunch'] = $xmlDef['eyeDesk'][0]['autolaunch'];

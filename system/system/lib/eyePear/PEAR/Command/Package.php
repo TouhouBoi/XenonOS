@@ -20,7 +20,7 @@
 /**
  * base class
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
 
 /**
  * PEAR commands for login/logout
@@ -308,7 +308,7 @@ used for automated conversion or learning the format.
     function &getPackager()
     {
         if (!class_exists('PEAR_Packager')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Packager.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Packager.php';
         }
         $a = new PEAR_Packager;
         return $a;
@@ -317,10 +317,10 @@ used for automated conversion or learning the format.
     function &getPackageFile($config, $debug = false)
     {
         if (!class_exists('PEAR_Common')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
         }
         if (!class_exists('PEAR_PackageFile')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
         }
         $a = new PEAR_PackageFile($config, $debug);
         $common = new PEAR_Common;
@@ -869,7 +869,7 @@ used for automated conversion or learning the format.
                     $data['data'][] = array($req, $type, $name, $rel, $version);
                 }
             } else { // package.xml 2.0 dependencies display
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
                 $deps = $info->getDependencies();
                 $reg = &$this->config->getRegistry();
                 if (is_array($deps)) {
@@ -958,8 +958,8 @@ used for automated conversion or learning the format.
             return $this->raiseError("bad parameter(s), try \"help $command\"");
         }
 
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Archive/Tar.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Archive/Tar.php';
 
         if (!file_exists($params[0])) {
             return $this->raiseError("file does not exist: $params[0]");
@@ -1029,7 +1029,7 @@ used for automated conversion or learning the format.
     function &getInstaller(&$ui)
     {
         if (!class_exists('PEAR_Installer')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Installer.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Installer.php';
         }
         $a = new PEAR_Installer($ui);
         return $a;
@@ -1043,7 +1043,7 @@ used for automated conversion or learning the format.
         if (!class_exists('PEAR_Command_Packaging')) {
             if ($fp = @fopen('PEAR/Command/Packaging.php', 'r', true)) {
                 fclose($fp);
-                include_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Packaging.php';
+                include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Packaging.php';
             }
         }
 

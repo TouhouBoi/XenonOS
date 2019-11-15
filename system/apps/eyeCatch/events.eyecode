@@ -43,7 +43,7 @@ function eyeCatch_on_ChooseMap($params = '') {
 	eyeWidgets('serialize',array($mySortabletable));
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$files = vfs('real_getDirContent',array(EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeCatch/maps/'));
+	$files = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeCatch/maps/'));
 	if (is_array($files)) {
 		foreach ($files as $file) {
 			$xml = eyeXML('getXMLfile',array($file));
@@ -79,7 +79,7 @@ function eyeCatch_on_PlayMap($params = '') {
 		eyex('rawjs',array('js' => 'if (!document.getElementById("eyeCatch_' . $map . '")) { dhtmlLoadCSS("index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/eyeCatch/' . $map . '.css","eyeCatch_' . $map . '"); }'));
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
-		$xml = eyeXML('getXMLfile',array(EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeCatch/maps/' . $map . '.xml'));
+		$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeCatch/maps/' . $map . '.xml'));
 		$currentUser = $oldUser;
 
 		$GLOBALS['eyeCatch_Label']->setText($xml['map'][0]['infos'][0]['description'][0]);

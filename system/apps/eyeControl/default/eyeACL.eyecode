@@ -69,13 +69,13 @@ $myButton3 = new Button(array(
 $myButton3->addFriend($myTable);
 $myButton3->show();
 
-$path = EYE_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL';
+$path = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL';
 
 if(!file_exists($path)){
 	vfs('real_mkDir', array($path));
 }
 
-$file = EYE_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
+$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 $config = eyeXML('getXMLfile', array($file));
 
 if ($config) {

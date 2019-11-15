@@ -20,7 +20,7 @@
 /**
  * base class
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
 
 define('PEAR_COMMAND_CHANNELS_CHANNEL_EXISTS', -500);
 
@@ -268,7 +268,7 @@ configuration.',
             }
 
             if (!class_exists('PEAR_ChannelFile')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
             }
 
             $chan = new PEAR_ChannelFile;
@@ -416,7 +416,7 @@ configuration.',
             $downloader = &$this->getDownloader();
             $tmpdir = $this->config->get('temp_dir');
             if (!file_exists($tmpdir)) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
                 PEAR::staticPushErrorHandling(PEAR_ERROR_RETURN);
                 $err = System::mkdir(array('-p', $tmpdir));
                 PEAR::staticPopErrorHandling();
@@ -461,7 +461,7 @@ configuration.',
         }
 
         if (!class_exists('PEAR_ChannelFile')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
         }
 
         $channel = new PEAR_ChannelFile;
@@ -512,7 +512,7 @@ configuration.',
 
         $tmpdir = $this->config->get('temp_dir');
         if (!file_exists($tmpdir)) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
             PEAR::staticPushErrorHandling(PEAR_ERROR_RETURN);
             $err = System::mkdir(array('-p', $tmpdir));
             PEAR::staticPopErrorHandling();
@@ -568,7 +568,7 @@ configuration.',
 
             $contents = implode('', file($contents));
             if (!class_exists('PEAR_ChannelFile')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
             }
 
             $channel = new PEAR_ChannelFile;
@@ -619,7 +619,7 @@ configuration.',
             }
 
             if (!class_exists('PEAR_ChannelFile')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
             }
 
             $channel = new PEAR_ChannelFile;
@@ -662,7 +662,7 @@ configuration.',
     function &getDownloader()
     {
         if (!class_exists('PEAR_Downloader')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader.php';
         }
         $a = new PEAR_Downloader($this->ui, array(), $this->config);
         return $a;

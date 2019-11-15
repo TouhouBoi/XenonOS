@@ -67,7 +67,7 @@ $mySelect = new Select(array(
 	'y' => $ContentY
 ));
 $mySelect->show();
-foreach (vfs('real_getDirContent', array(EYE_ROOT . '/' . APP_DIR . '/')) as $application) {
+foreach (vfs('real_getDirContent', array(XENONOS_ROOT . '/' . APP_DIR . '/')) as $application) {
 	if (is_dir($application)) {
 		$application = basename($application);
 		if ($application != 'share') {

@@ -21,7 +21,7 @@ function eyeControl_on_aclServChange($params=""){
 	$GLOBALS['eyeControl_acl_func_desc']->setText("---");
 	
 	if ($switch > 1) {
-		$sf_file = EYE_ROOT .'/'. APP_DIR .'/eyeControl/others/acl-servfunc.xml';
+		$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/eyeControl/others/acl-servfunc.xml';
 		$servfunc = eyeXML('getXMLfile', array($sf_file));
 		$sCnt = 2;
 		$fCnt = 2;
@@ -51,7 +51,7 @@ function eyeControl_on_aclServChange($params=""){
 function eyeControl_on_aclFuncChange($params=""){
 	$switch=$params[arg0][0];
 	if ($switch > 1) {
-		$sf_file = EYE_ROOT .'/'. APP_DIR .'/eyeControl/others/acl-servfunc.xml';
+		$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/eyeControl/others/acl-servfunc.xml';
 		$servfunc = eyeXML('getXMLfile', array($sf_file));
 		$sCnt = 2;
 		$fCnt = 2;
@@ -82,7 +82,7 @@ function eyeControl_on_acl_hideHazard($params) {
 
 function eyeControl_on_add_settings($params=""){
 
-	$sf_file = EYE_ROOT .'/'. APP_DIR .'/eyeControl/others/acl-servfunc.xml';
+	$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/eyeControl/others/acl-servfunc.xml';
 	$servfunc = eyeXML('getXMLfile', array($sf_file));
 	$sCnt = 2;
 	$fCnt = 2;
@@ -136,7 +136,7 @@ function eyeControl_on_add_settings($params=""){
 			'target' => array('')
 		);
 
-		$file = EYE_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
+		$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 		$config = eyeXML('getXMLfile', array($file));
 
 		if(!$config){
@@ -163,7 +163,7 @@ function eyeControl_on_update_settings($params=""){
 	$id0 = $GLOBALS['eyeControl_acl_sortabletable']->selected;
 	$aclName = $GLOBALS['eyeControl_acl_textbox']->text;
 
-	$file = EYE_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
+	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 	$config = eyeXML('getXMLfile', array($file));
 
 	$x=0;

@@ -50,7 +50,7 @@ function eyeControl_on_filetypes_delete($params = '') {
 function eyeControl_on_filetypes_delete_yes($params = '') {
 	$filetype = $GLOBALS['filetypes_delete_hidden']->text;
 	if ($filetype) {
-		vfs('real_delete', array(EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/' . $filetype . '.xml'));
+		vfs('real_delete', array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/' . $filetype . '.xml'));
 		eyex('messageBox',array('content' => 'Filetype successfully deleted.'));
 		eyeControl_lib_loadContent('only_root','filetypes');
 	}

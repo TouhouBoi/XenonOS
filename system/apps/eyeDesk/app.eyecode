@@ -27,7 +27,7 @@ function eyeDesk_run($params = '') {
 
 	$config = '/' . CONF_USER_DIR . '/eyeDesk/conf.xml';
 	if (!vfs('real_fileExists',array($userDir . $config))) {
-		copy(EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . $config,$userDir . $config);
+		copy(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . $config,$userDir . $config);
 	}
 
 	$xml = eyeXML('getXMLconfig',array('eyeDesk', 'conf.xml'));
@@ -53,7 +53,7 @@ function eyeDesk_run($params = '') {
 			if (array_search('eyeDock', $xml['eyeDesk'][0]['autolaunch']) === false) {
 				$xml['eyeDesk'][0]['autolaunch'][] = 'eyeDock';
 			}
-			copy(EYE_ROOT . '/' . SYSTEM_DIR . '/' . CONF_USER_DIR . '/skel/' . CONF_USER_DIR . '/eyeDock/conf.xml', $userDir . '/' . CONF_USER_DIR . '/eyeDock/conf.xml');
+			copy(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . CONF_USER_DIR . '/skel/' . CONF_USER_DIR . '/eyeDock/conf.xml', $userDir . '/' . CONF_USER_DIR . '/eyeDock/conf.xml');
 
 			$navXml = eyeXML('getXMLconfig', array('eyeNav', 'conf.xml'));
 			$bookmarks = array();
@@ -135,7 +135,7 @@ function eyeDesk_run($params = '') {
 
 	$theme = basename($xml['eyeDesk'][0]['theme'][0]);
 	if ($theme != $_SESSION['usertheme']) {
-		$path = EYE_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeX/themes/';
+		$path = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeX/themes/';
 		foreach ($_SESSION['eyeLogin']['removeCss'] as $key => $value) {
 			eyex('removeCSS', array('id' => $value));
 			unset($_SESSION['eyeLogin']['removeCss'][$key]);
@@ -229,7 +229,7 @@ function eyeDesk_run($params = '') {
 		'repeat' => isset($xml['eyeDesk'][0]['wallpaperRepeat'][0]) ? $xml['eyeDesk'][0]['wallpaperRepeat'][0] : '2'
 	));
 
-	include_once(EYE_ROOT . '/' . APP_DIR . '/eyeDesk/events' . EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeDesk/events' . EYE_CODE_EXTENSION);
 	eyeDesk_on_OpenPath();
 
 	eyex('messageBox', array('content' => 'Welcome to %s, %s.', 'sound' => false, 'tokens' => array(XENONOS_HOSTNAME,'<strong>' . $currentUser . '</strong>')));

@@ -126,7 +126,7 @@ $mySelect = new Select(array(
 ));
 $mySelect->show();
 $mySelect->addOption('---',1,1);
-$sf_file = EYE_ROOT .'/'. APP_DIR .'/eyeControl/others/acl-servfunc.xml';
+$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/eyeControl/others/acl-servfunc.xml';
 $servfunc = eyeXML('getXMLfile', array($sf_file));
 $sCnt = 2;
 if ($servfunc) {
@@ -246,7 +246,7 @@ if($text == 'add'){
 
 	$id0 = $GLOBALS['eyeControl_acl_sortabletable']->selected;
 
-	$file = EYE_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
+	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 	$config = eyeXML('getXMLfile', array($file));
 	if ($config) {
 		foreach ($config['GACL'][0]['ACL'] as $acl) {

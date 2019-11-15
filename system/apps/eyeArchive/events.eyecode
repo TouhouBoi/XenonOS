@@ -24,7 +24,7 @@ $archivedExtensions = array('tar','tgz','tbz','tbz2','zip','gzip','tar.gz','tar.
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
 
-$eventsFiles = vfs('real_getDirContent',array(EYE_ROOT.'/'.APP_DIR.'/eyeArchive/events/','*.eyecode'));
+$eventsFiles = vfs('real_getDirContent',array(XENONOS_ROOT.'/'.APP_DIR.'/eyeArchive/events/','*.eyecode'));
 $currentUser = $oldUser;
 foreach($eventsFiles as $file){
 	include_once($file);
@@ -33,7 +33,7 @@ foreach($eventsFiles as $file){
 function _eyeArchive_getProject(){
 	global $myPid;
 	//Filling the object
-	require_once(EYE_ROOT.'/'.APP_DIR.'/eyeArchive/libraries/project_class.eyecode');
+	require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeArchive/libraries/project_class.eyecode');
 
 	//Getting the project object.
 	$myProject = new project;
@@ -46,7 +46,7 @@ function _eyeArchive_getProject(){
 function _eyeArchive_setProject(&$project){
 	global $myPid;
 	//Filling the object
-	require_once(EYE_ROOT.'/'.APP_DIR.'/eyeArchive/libraries/project_class.eyecode');
+	require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeArchive/libraries/project_class.eyecode');
 
 	$dir = um('getCurrentUserDir').'/'.CONF_USER_DIR.'/eyeArchive';
 

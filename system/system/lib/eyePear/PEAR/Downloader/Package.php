@@ -735,7 +735,7 @@ class PEAR_Downloader_Package
                     // check to see if this is a pecl package that has jumped
                     // from pear.php.net to pecl.php.net channel
                     if (!class_exists('PEAR_Dependency2')) {
-                        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
+                        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
                     }
 
                     $newdep = PEAR_Dependency2::normalizeDep($dep);
@@ -1114,7 +1114,7 @@ class PEAR_Downloader_Package
             $channel = isset($param['channel']) ? $param['channel'] : $param['info']->getChannel();
             if (isset($param['rel'])) {
                 if (!class_exists('PEAR_Dependency2')) {
-                    require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
+                    require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
                 }
 
                 $newdep = PEAR_Dependency2::normalizeDep($param);
@@ -1575,7 +1575,7 @@ class PEAR_Downloader_Package
             }
 
             if ($this->_rawpackagefile) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Archive/Tar.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Archive/Tar.php';
                 $tar = new Archive_Tar($file);
                 $packagexml = $tar->extractInString('package2.xml');
                 if (!$packagexml) {
@@ -1833,7 +1833,7 @@ class PEAR_Downloader_Package
                     $vs = ', stability "' . $pname['state'] . '"';
                 } elseif ($param == 'dependency') {
                     if (!class_exists('PEAR_Common')) {
-                        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
+                        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
                     }
 
                     if (!in_array($info['info']->getState(),
@@ -1849,7 +1849,7 @@ class PEAR_Downloader_Package
                             '"';
                     } else {
                         if (!class_exists('PEAR_Dependency2')) {
-                            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
+                            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
                         }
 
                         if ($optional) {
@@ -1900,7 +1900,7 @@ class PEAR_Downloader_Package
                     $vs = ', stability "' . $pname['state'] . '"';
                 } elseif ($param == 'dependency') {
                     if (!class_exists('PEAR_Common')) {
-                        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
+                        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
                     }
 
                     if (!in_array($info['info']->getState(),
@@ -1916,7 +1916,7 @@ class PEAR_Downloader_Package
                         $vs = ' within preferred state "' . $preferred_state . '"';
                     } else {
                         if (!class_exists('PEAR_Dependency2')) {
-                            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
+                            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
                         }
 
                         if ($optional) {

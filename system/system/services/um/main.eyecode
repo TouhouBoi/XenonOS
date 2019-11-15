@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 $modulename = basename(UM_MODULE);
-include(EYE_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/um/modules/'.$modulename.EYE_CODE_EXTENSION);
+include(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/um/modules/'.$modulename.EYE_CODE_EXTENSION);
 
 if (!function_exists('service_um_init')) {
 	function service_um_init() {}

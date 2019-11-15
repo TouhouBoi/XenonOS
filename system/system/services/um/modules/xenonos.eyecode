@@ -72,15 +72,15 @@ function service_um_createUser($params = null){
 
 	// Create new user dirs
 	$myDir = um('getUserDir', array($username));
-	if(!vfs('real_exists', array(EYE_ROOT.'/'.USERS_DIR.'/'.getAcronim(array($username))))){
-		vfs('mkDir', array(EYE_ROOT.'/'.USERS_DIR.'/'.getAcronim(array($username))));
+	if(!vfs('real_exists', array(XENONOS_ROOT.'/'.USERS_DIR.'/'.getAcronim(array($username))))){
+		vfs('mkDir', array(XENONOS_ROOT.'/'.USERS_DIR.'/'.getAcronim(array($username))));
 	}
 	if(!vfs('real_exists', array($myDir))){
 		vfs('mkDir', array($myDir));
 	}
 
 	// Copy skel to user
-	recursiveCopy(EYE_ROOT.'/'.SYSTEM_DIR.'/'.'/conf/skel/',$myDir,TRUE);
+	recursiveCopy(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.'/conf/skel/',$myDir,TRUE);
 
 	//handling userInfo.
 	$array['username'][0] = $username;
@@ -256,7 +256,7 @@ function service_um_groupExists($params = null) {
 	}
 
 	$group = basename($params[0]);
-	$path = EYE_ROOT.'/'.GROUPS_DIR.'/'.$group;
+	$path = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$group;
 
 	if (is_dir($path)) {
 		return true;
@@ -686,7 +686,7 @@ function service_um_getAllUsersBy($params = '') {
 	}
 	$allUsers = array();
 	$counted = 0;
-	$acronyms = vfs('real_getDirContent', array(EYE_ROOT . '/' . USERS_DIR));
+	$acronyms = vfs('real_getDirContent', array(XENONOS_ROOT . '/' . USERS_DIR));
 	foreach ($acronyms as $acronymUrl) {
 		if (is_dir($acronymUrl)) {
 			$acronym = basename($acronymUrl);
@@ -734,7 +734,7 @@ function service_um_getAllUsersByGroup($params = null) {
 
 	$allUsers = array();
 	$group = $params['group'];
-	$acronyms = vfs('real_getDirContent', array(EYE_ROOT . '/' . USERS_DIR . '/'));
+	$acronyms = vfs('real_getDirContent', array(XENONOS_ROOT . '/' . USERS_DIR . '/'));
 	foreach($acronyms as $acronymUrl) {
 		if (is_dir($acronymUrl)) {
 			$acronym = basename($acronymUrl);
@@ -803,7 +803,7 @@ function service_um_getUserDir($params=null) {
 	}
 
 	$username = basename($params[0]);
-	$userDir = EYE_ROOT.'/'.USERS_DIR.'/'.getAcronim(array($username)).'/'.$username.'/';
+	$userDir = XENONOS_ROOT.'/'.USERS_DIR.'/'.getAcronim(array($username)).'/'.$username.'/';
 	return $userDir;
 }
 
@@ -832,9 +832,9 @@ function service_um_getUserFilePath($params=null) {
 		return false;
 	}
 	if (isset($params[1]) && $params[1] == 1) {
-		return EYE_ROOT . '/' . ACCOUNT_DIR . '/' . getAcronim(array($username)) . '/';
+		return XENONOS_ROOT . '/' . ACCOUNT_DIR . '/' . getAcronim(array($username)) . '/';
 	} else {
-		return EYE_ROOT . '/' . ACCOUNT_DIR . '/' . getAcronim(array($username)) . '/' . $username . '.xml';
+		return XENONOS_ROOT . '/' . ACCOUNT_DIR . '/' . getAcronim(array($username)) . '/' . $username . '.xml';
 	}
 }
 

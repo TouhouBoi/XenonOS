@@ -28,7 +28,7 @@ date_default_timezone_set(TIMEZONE);
 
 function get_tmp_dir()
 {
-	$tmp_dir = EYE_ROOT . '/' . EYEOS_TMP_DIR;
+	$tmp_dir = XENONOS_ROOT . '/' . EYEOS_TMP_DIR;
 	return($tmp_dir);
 }
 

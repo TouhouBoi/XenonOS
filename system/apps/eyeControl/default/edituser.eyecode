@@ -435,7 +435,7 @@ if (eyeControl_lib_getConfigUser() == ROOTUSER) {
 // Add all groups as Checkbox to $myWindow
 $ContentY_win = 0;
 
-$openDir = vfs('real_getDirContent',array(EYE_ROOT . '/' . GROUPS_DIR . '/'));
+$openDir = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . GROUPS_DIR . '/'));
 foreach ($openDir as $group) {
 	if (is_dir($group)) {
 		$group = basename($group);

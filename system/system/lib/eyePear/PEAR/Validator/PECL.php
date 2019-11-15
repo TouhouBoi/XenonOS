@@ -16,7 +16,7 @@
 /**
  * This is the parent class for all validators
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Validate.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Validate.php';
 /**
  * Channel Validator for the pecl.php.net channel
  * @category   pear

@@ -82,7 +82,7 @@ function eyeControl_on_edituser_save($params = '') {
 	}
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$openDir = vfs('real_getDirContent',array(EYE_ROOT . '/' . GROUPS_DIR . '/'));
+	$openDir = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . GROUPS_DIR . '/'));
 	$array['group'] = array();
 	$array['maintain'] = array();
 	foreach ($openDir as $group) {

@@ -17,7 +17,7 @@
 /**
  * Include error handling
  */
-//require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
+//require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
 
 /**
  * Which user interface class is being used.
@@ -83,7 +83,7 @@ class PEAR_Frontend extends PEAR
         if (!class_exists($uiclass)) {
             $file = str_replace('_', '/', $uiclass) . '.php';
             if (PEAR_Frontend::isIncludeable($file)) {
-                include_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . $file;
+                include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . $file;
             }
         }
 

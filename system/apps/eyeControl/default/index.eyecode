@@ -116,7 +116,7 @@ foreach($array as $category) {
 }
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
-$openDir = vfs('real_getDirContent',array(EYE_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeControl/others/','*.xml'));
+$openDir = vfs('real_getDirContent',array(XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeControl/others/','*.xml'));
 $currentUser = $oldUser;
 if (is_array($openDir) && isset($openDir[0]) === true) {
 	$x++;

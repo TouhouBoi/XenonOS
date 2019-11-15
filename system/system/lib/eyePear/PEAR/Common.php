@@ -20,7 +20,7 @@
 /**
  * Include error handling
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
 
 /**
  * PEAR_Common error when an invalid PHP file is passed to PEAR_Common::analyzeSourceCode()
@@ -185,7 +185,7 @@ class PEAR_Common extends PEAR
         while ($file = array_shift($tempfiles)) {
             if (@is_dir($file)) {
                 if (!class_exists('System')) {
-                    require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+                    require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
                 }
 
                 System::rm(array('-rf', $file));
@@ -209,7 +209,7 @@ class PEAR_Common extends PEAR
     function addTempFile($file)
     {
         if (!class_exists('PEAR_Frontend')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Frontend.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Frontend.php';
         }
         PEAR_Frontend::addTempFile($file);
     }
@@ -229,7 +229,7 @@ class PEAR_Common extends PEAR
         // Only used in Installer - move it there ?
         $this->log(2, "+ create dir $dir");
         if (!class_exists('System')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
         }
         return System::mkDir(array('-p', $dir));
     }
@@ -249,7 +249,7 @@ class PEAR_Common extends PEAR
     {
         if ($this->debug >= $level) {
             if (!class_exists('PEAR_Frontend')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Frontend.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Frontend.php';
             }
 
             $ui = &PEAR_Frontend::singleton();
@@ -277,7 +277,7 @@ class PEAR_Common extends PEAR
         $topt = $tmpdir ? array('-t', $tmpdir) : array();
         $topt = array_merge($topt, array('-d', 'pear'));
         if (!class_exists('System')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
         }
 
         if (!$tmpdir = System::mktemp($topt)) {
@@ -734,7 +734,7 @@ class PEAR_Common extends PEAR
     function analyzeSourceCode($file)
     {
         if (!class_exists('PEAR_PackageFile_v2_Validator')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2/Validator.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2/Validator.php';
         }
 
         $a = new PEAR_PackageFile_v2_Validator;
@@ -827,11 +827,11 @@ class PEAR_Common extends PEAR
     function downloadHttp($url, &$ui, $save_dir = '.', $callback = null)
     {
         if (!class_exists('PEAR_Downloader')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader.php';
         }
         return PEAR_Downloader::downloadHttp($url, $ui, $save_dir, $callback);
     }
 }
 
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Config.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Config.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';

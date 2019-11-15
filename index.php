@@ -89,7 +89,7 @@ define('XENONOS_INDEX', 1);
 require_once('settings.php');
 
 /*
-*Chaning the current work directory to EYE_ROOT
+*Chaning the current work directory to XENONOS_ROOT
 */
 changeCWD();
 
@@ -100,7 +100,7 @@ changeCWD();
 loadStringLibrary();
 
 //Including kernel file, this file also "execs" some initialitation stuff
-include_once(EYE_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/kernel'.EYE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/kernel'.EYE_CODE_EXTENSION);
 
 /*
 *Setting the php debug (error_reporting) depending the oneye config
@@ -175,7 +175,7 @@ function indexRequested()
 */
 function loadStringLibrary()
 {
-	include_once(EYE_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeString/main'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeString/main'.EYE_CODE_EXTENSION);
 	//setting library loaded
 	define('LIB_EYESTRING_LOADED',1);
 }
@@ -296,14 +296,14 @@ function setPhpInitValues()
 }
 
 /*
-*Changes the current work directory to EYE_ROOT
+*Changes the current work directory to XENONOS_ROOT
 */
 function changeCWD()
 {
 	//since index.php is always below eyeROOT, we can do this instead to be inclusable from third party code
 	$basedir = dirname(__FILE__).'/';
-	//change directory to EYE_ROOT
-	chdir($basedir.REAL_EYE_ROOT);
+	//change directory to XENONOS_ROOT
+	chdir($basedir.REAL_XENONOS_ROOT);
 	//Loaded before kernel for kernel utf8 compatibility
 }
 ?>

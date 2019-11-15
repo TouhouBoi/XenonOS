@@ -42,7 +42,7 @@ function eyeControl_on_groups_create($params = '') {
 	}
 
 	$group = $GLOBALS['eyeControl_groups_create_textbox']->text;
-	$dir = EYE_ROOT . '/' . GROUPS_DIR . '/' . $group . '/';
+	$dir = XENONOS_ROOT . '/' . GROUPS_DIR . '/' . $group . '/';
 	if (vGroups('isValidGroupname', array($group)) === true && vfs('real_fileExists', array($dir)) === false) {
 		$oldUser = $currentUser;
 		if ($currentUser == ROOTUSER) {
@@ -123,8 +123,8 @@ function eyeControl_on_groups_rename($params = '') {
 	}
 
 	$group_new = $GLOBALS['eyeControl_groups_rename_textbox']->text;
-	$dir_old = EYE_ROOT . '/' . GROUPS_DIR . '/' . $group_old . '/';
-	$dir_new = EYE_ROOT . '/' . GROUPS_DIR . '/' . $group_new . '/';
+	$dir_old = XENONOS_ROOT . '/' . GROUPS_DIR . '/' . $group_old . '/';
+	$dir_new = XENONOS_ROOT . '/' . GROUPS_DIR . '/' . $group_new . '/';
 	if (vGroups('isValidGroupname', array($group_new)) === true && vfs('real_fileExists', array($dir_new)) === false) {
 		$oldUser = $currentUser;
 		if (um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
@@ -150,7 +150,7 @@ function eyeControl_on_groups_rename($params = '') {
 
 		vfs('real_move',array($dir_old,$dir_new));
 		if ($group_old == DEFAULT_GROUP) {
-			$file = EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/' . 'system.xml';
+			$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/' . 'system.xml';
 			$XML = eyeXML('getXMLfile',array($file));
 			$XML['CONFIG'][0]['DEFAULT_GROUP'][0] = $group_new;
 			eyeXML('setXMLFile',array($file,$XML));
@@ -175,7 +175,7 @@ function eyeControl_on_groups_rename_cancel($params = '') {
 function eyeControl_on_groups_default($params = '') {
 	$group = $GLOBALS['eyeControl_groups_sortabletable']->selected;
 	if ($group && $group != DEFAULT_GROUP) {
-		$File = EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/' . 'system.xml';
+		$File = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/' . 'system.xml';
 		$XML = eyeXML('getXMLfile',array($File));
 		$XML['CONFIG'][0]['DEFAULT_GROUP'][0] = $group;
 		eyeXML('setXMLFile',array($File,$XML));
@@ -230,7 +230,7 @@ function eyeControl_on_groups_delete_yes($params = '') {
 			$currentUser = ROOTUSER;
 		}
 
-		if (vfs('real_rmdir',array(EYE_ROOT . '/' . GROUPS_DIR . '/' . $group . '/'))) {
+		if (vfs('real_rmdir',array(XENONOS_ROOT . '/' . GROUPS_DIR . '/' . $group . '/'))) {
 			if ($oldUser != ROOTUSER) {
 				$array = array();
 				foreach ($myUserXml['eyeUser'][0]['group'] as $value) {

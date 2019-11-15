@@ -24,7 +24,7 @@ function eyePdf_on_Init($params = '') {
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
 		vfs('real_mkDir', array($userDir . 'conf/eyePdf'));
-		vfs('real_copy',array(EYE_ROOT . '/' . SYSTEM_DIR . '/conf/skel/' . CONF_USER_DIR . '/eyePdf/conf.xml',$userDir . 'conf/eyePdf/conf.xml'));
+		vfs('real_copy',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/conf/skel/' . CONF_USER_DIR . '/eyePdf/conf.xml',$userDir . 'conf/eyePdf/conf.xml'));
 		$currentUser = $oldUser;
 	}
 	$xml = eyeXML('getXMLconfig',array('eyePdf','conf.xml'));
@@ -160,7 +160,7 @@ function eyePdf_on_Load($params = '') {
 		$rPath = vfs('getRealName',array($params['path'][0]));
 		$tPath = um('getCurrentUserDir').'tmp/'.$myPid.'.pdf';
 		copy($rPath,$tPath);
-		$iframe_url = REAL_EYE_ROOT . /* utf8 */ substr($tPath, 1);
+		$iframe_url = REAL_XENONOS_ROOT . /* utf8 */ substr($tPath, 1);
 	} else {
 		$iframe_url = 'index.php?checknum=' . $checknum . '&msg=getPdf&time=' . time();
 	}

@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-@define('PATH_SYSTEM_SERVICES_UTF8_TYPES', EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeString/types');
+@define('PATH_SYSTEM_SERVICES_UTF8_TYPES', XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeString/types');
 if (defined('UTF8_TYPE') === false) {
 	if (extension_loaded('mbstring') === true) {
 		define('UTF8_TYPE', 'mbstring');

@@ -68,7 +68,7 @@ function eyeControl_on_acl_delete($params=''){
 function eyeControl_on_yDelete0($params=''){
 	$id0 = $GLOBALS['eyeControl_acl_sortabletable']->selected;
 
-	$file = EYE_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
+	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 	$config = eyeXML('getXMLfile', array($file));
 	$i=0;
 	if($config){

@@ -80,9 +80,9 @@ class Textarea {
 		$langCode = 'en';
 		if ($this->rich) {
 			$language = i18n('getLang');
-			if (vfs('real_fileExists', array(EYE_ROOT . '/' . EXTERN_DIR . '/libs/eyeWidgets/tiny_mce/langs/' . $language . '.js'))) {
+			if (vfs('real_fileExists', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/libs/eyeWidgets/tiny_mce/langs/' . $language . '.js'))) {
 				$langCode = $language;
-			} else if (vfs('real_fileExists', array(EYE_ROOT . '/' . EXTERN_DIR . '/libs/eyeWidgets/tiny_mce/langs/' . /* utf8 */ substr($language, 0, 2) . '.js'))) {
+			} else if (vfs('real_fileExists', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/libs/eyeWidgets/tiny_mce/langs/' . /* utf8 */ substr($language, 0, 2) . '.js'))) {
 				$langCode = /* utf8 */ substr($language, 0, 2);
 			}
 		}

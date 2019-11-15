@@ -24,7 +24,7 @@ function eyeNav_on_doOutput($params = '') {
 	global $checknum;
 	$GLOBALS['_script_base'] = 'index.php?checknum=' . $checknum . '&msg=doOutput';
 	$GLOBALS['_script_url'] = 'index.php?checknum=' . $checknum . '&msg=doOutput';
-	include(EYE_ROOT . '/' . APP_DIR . '/eyeNav/plugins/eyeNavProxy/index.php');
+	include(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/plugins/eyeNavProxy/index.php');
 	exit;
 }
 ?>

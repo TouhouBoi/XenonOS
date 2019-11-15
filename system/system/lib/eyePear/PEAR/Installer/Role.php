@@ -17,8 +17,8 @@
 /**
  * base class for installer roles
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Installer/Role/Common.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/XMLParser.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Installer/Role/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/XMLParser.php';
 /**
  * @category   pear
  * @package    PEAR
@@ -74,7 +74,7 @@ class PEAR_Installer_Role
 
         $a = 'PEAR_Installer_Role_' . ucfirst($role);
         if (!class_exists($a)) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . str_replace('_', '/', $a) . '.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . str_replace('_', '/', $a) . '.php';
         }
 
         $b = new $a($config);

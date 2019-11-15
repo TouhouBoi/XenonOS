@@ -62,7 +62,7 @@ function xmlrpc_process($m) {
 			}
 			return new xmlrpcresp($rv);
 		}
-		$data = file_get_contents(EYE_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/xml-rpc/config.xml');
+		$data = file_get_contents(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/xml-rpc/config.xml');
 		$xml = eyeXML('xml2array',array($data));
 		if($parts[0] == 'service') {
 			foreach($xml['api'][0]['services'][0]['service'] as $value) {
@@ -84,11 +84,11 @@ function xmlrpc_process($m) {
 }
 
 function xmlrpc_parseRequest() {
-	$data = file_get_contents(EYE_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/xml-rpc/config.xml');
+	$data = file_get_contents(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/xml-rpc/config.xml');
 	$xml = eyeXML('xml2array',array($data));
-	require_once(EYE_ROOT.'/xml-rpc/xmlrpc.inc');
-	require_once(EYE_ROOT.'/xml-rpc/xmlrpcs.inc');
-	require_once(EYE_ROOT.'/xml-rpc/xmlrpc_wrappers.inc');
+	require_once(XENONOS_ROOT.'/xml-rpc/xmlrpc.inc');
+	require_once(XENONOS_ROOT.'/xml-rpc/xmlrpcs.inc');
+	require_once(XENONOS_ROOT.'/xml-rpc/xmlrpc_wrappers.inc');
 	$a=array();
 
 	foreach($xml['api'][0]['services'][0]['service'] as $value) {

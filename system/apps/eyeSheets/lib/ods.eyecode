@@ -290,9 +290,9 @@ function parseOds($file) {
 	$path = $tmp.'/'.basename($file);
 	$uid = uniqid();
 	mkdir($tmp.'/'.$uid);
-	if ( /* utf8 */ strpos(realpath(EYE_ROOT . '/'), '\\') !== false) { // Check for windows systems
+	if ( /* utf8 */ strpos(realpath(XENONOS_ROOT . '/'), '\\') !== false) { // Check for windows systems
 		$path = str_replace('/','\\',$path);
-		file_put_contents($tmp . '/' . $uid . '.bat','cd "' . escapeshellarg(realpath(EYE_ROOT . '/') . '\\extras\\7-Zip') . '"' . "\n" . '7za.exe x ' . escapeshellarg(realpath(dirname($path)) . '\\' . basename($path)) . ' -o' . escapeshellarg($tmp . '\\' . $uid . '\\') . ' -r -y');
+		file_put_contents($tmp . '/' . $uid . '.bat','cd "' . escapeshellarg(realpath(XENONOS_ROOT . '/') . '\\extras\\7-Zip') . '"' . "\n" . '7za.exe x ' . escapeshellarg(realpath(dirname($path)) . '\\' . basename($path)) . ' -o' . escapeshellarg($tmp . '\\' . $uid . '\\') . ' -r -y');
 		shell_exec(escapeshellarg($tmp . '\\' . $uid . '.bat'));
 	} else {
 		shell_exec('unzip '.escapeshellarg($path).' -d '.escapeshellarg($tmp.'/'.$uid));

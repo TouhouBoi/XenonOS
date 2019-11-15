@@ -22,7 +22,7 @@ if ($selCategory == 'others') {
 	$boxY = 0;
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$openDir = vfs('real_getDirContent',array(EYE_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeControl/others/','*.xml',2));
+	$openDir = vfs('real_getDirContent',array(XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeControl/others/','*.xml',2));
 	$currentUser = $oldUser;
 	if (is_array($openDir) && $openDir[0]) {
 		// $myLine

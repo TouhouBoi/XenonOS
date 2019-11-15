@@ -22,7 +22,7 @@ function eyeControl_on_eyenav_save($params = '') {
 	$xml = eyeControl_lib_getXMLconfig(array('eyeNav','conf.xml'));
 	$xml['eyeNav'][0]['home'][0] = $GLOBALS['eyeControl_eyenav_textbox_startpage']->text;
 	$plugin = $params['eyeControl_eyenav_select_plugin'][0];
-	if (vfs('real_fileExists',array(EYE_ROOT . '/' . APP_DIR . '/eyeNav/plugins/' . $plugin . EYE_CODE_EXTENSION))) {
+	if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/plugins/' . $plugin . EYE_CODE_EXTENSION))) {
 		$xml['eyeNav'][0]['plugin'][0] = $plugin;
 	} else {
 		$xml['eyeNav'][0]['plugin'][0] = 'iframe';
@@ -82,7 +82,7 @@ function eyeControl_on_eyenav_bookmarks_default_yes($params = '') {
 	global $currentUser;
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$xmlDef = eyeXML('getXMLfile',array(EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeNav/conf.xml'));
+	$xmlDef = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeNav/conf.xml'));
 	$currentUser = $oldUser;
 	$xmlNew = eyeControl_lib_getXMLconfig(array('eyeNav','conf.xml'));
 	$xmlNew['eyeNav'][0]['bookmarks'][0] = $xmlDef['eyeNav'][0]['bookmarks'][0];
@@ -134,7 +134,7 @@ function eyeControl_on_eyenav_search_default_yes($params = '') {
 	global $currentUser;
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$xmlDef = eyeXML('getXMLfile',array(EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeNav/conf.xml'));
+	$xmlDef = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeNav/conf.xml'));
 	$currentUser = $oldUser;
 	$xmlNew = eyeControl_lib_getXMLconfig(array('eyeNav','conf.xml'));
 	$xmlNew['eyeNav'][0]['searches'][0] = $xmlDef['eyeNav'][0]['searches'][0];

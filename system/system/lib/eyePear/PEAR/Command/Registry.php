@@ -18,7 +18,7 @@
 /**
  * base class
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
 
 /**
  * PEAR commands for registry manipulation
@@ -258,7 +258,7 @@ installed package.'
             }
 
             if (!class_exists('PEAR_PackageFile')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
             }
 
             $pkg = new PEAR_PackageFile($this->config, $this->_debug);
@@ -432,7 +432,7 @@ installed package.'
             }
 
             if (!class_exists('PEAR_PackageFile')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
             }
 
             $pkg = new PEAR_PackageFile($this->config, $this->_debug);

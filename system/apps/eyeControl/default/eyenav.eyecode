@@ -88,7 +88,7 @@ $mySelect->show();
 $mySelect->addOption('Iframe (' . i18n('translate',array('Default')) . ')','iframe');
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
-$openDir = vfs('real_getDirContent',array(EYE_ROOT . '/' . APP_DIR . '/eyeNav/plugins/','*' . EYE_CODE_EXTENSION));
+$openDir = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/plugins/','*' . EYE_CODE_EXTENSION));
 $currentUser = $oldUser;
 foreach ($openDir as $plugin) {
 	$plugin = basename($plugin,EYE_CODE_EXTENSION);

@@ -18,8 +18,8 @@
 /**
  * for error handling
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Config.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Config.php';
 
 define('DETAILED', 1);
 putenv("PHP_PEAR_RUNTESTS=1");
@@ -94,7 +94,7 @@ class PEAR_RunTest
         }
         $this->ini_overwrites[] = 'error_reporting=' . (E_ALL & ~(E_DEPRECATED | E_STRICT));
         if (is_null($logger)) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
             $logger = new PEAR_Common;
         }
         $this->_logger  = $logger;

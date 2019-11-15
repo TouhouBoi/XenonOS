@@ -32,9 +32,9 @@ define('WTABLE','wtable');
 * @date 2008/03/11
 */
 function lib_eyeWidgets_loadWidgets() {
-	foreach (scandir(EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeWidgets/widgets') as $file) {
+	foreach (scandir(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeWidgets/widgets') as $file) {
 		if ( /* utf8 */ substr($file, 0, 1) !== '.' && substr($file, -strlen(EYE_CODE_EXTENSION)) === EYE_CODE_EXTENSION) { // utf8
-			include_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeWidgets/widgets/' . $file;
+			include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeWidgets/widgets/' . $file;
 		}
 	}
 }
@@ -201,7 +201,7 @@ function globalize() {
 */
 function lib_eyeWidgets_getWidgetList() {
 	$name = array();
-	foreach (scandir(EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeWidgets/widgets') as $file) {
+	foreach (scandir(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeWidgets/widgets') as $file) {
 		if ( /* utf8 */ substr($file, 0, 1) !== '.' && substr($file, -strlen(EYE_CODE_EXTENSION)) === EYE_CODE_EXTENSION) { // utf8
 			$name[] = basename($file, EYE_CODE_EXTENSION);
 		}

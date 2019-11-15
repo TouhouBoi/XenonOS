@@ -25,7 +25,7 @@ function lib_i18n_init() {
 		$_SESSION['lang'] = false;
 	}
 	if (!$_SESSION['lang'] || isset($_REQUEST['lang']) === true && $_REQUEST['lang']) {
-		$dir = EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/';
+		$dir = XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/';
 		$langs = array('en');
 		if (is_dir($dir) === true) {
 			foreach (scandir($dir) as $file) {
@@ -80,11 +80,11 @@ function lib_i18n_init() {
 * @date 2008/03/11
 */
 function lib_i18n_loadLang($params) {
-	$paths[] = EYE_ROOT.'/i18n/' . DEFAULT_I18N . EYE_CODE_EXTENSION;
-	$paths[] = EYE_ROOT . '/i18n/' . $_SESSION['lang'] . EYE_CODE_EXTENSION;
+	$paths[] = XENONOS_ROOT.'/i18n/' . DEFAULT_I18N . EYE_CODE_EXTENSION;
+	$paths[] = XENONOS_ROOT . '/i18n/' . $_SESSION['lang'] . EYE_CODE_EXTENSION;
 	if ($app = basename($params[0])) {
-		$paths[] = EYE_ROOT . '/' . APP_DIR . '/' . $app . '/lang/' . DEFAULT_I18N . EYE_CODE_EXTENSION;
-		$paths[] = EYE_ROOT . '/' . APP_DIR . '/' . $app . '/lang/' . $_SESSION['lang'] . EYE_CODE_EXTENSION;
+		$paths[] = XENONOS_ROOT . '/' . APP_DIR . '/' . $app . '/lang/' . DEFAULT_I18N . EYE_CODE_EXTENSION;
+		$paths[] = XENONOS_ROOT . '/' . APP_DIR . '/' . $app . '/lang/' . $_SESSION['lang'] . EYE_CODE_EXTENSION;
 	}
 	foreach ($paths as $path) {
 		if (file_exists($path)) {

@@ -16,9 +16,9 @@
 /**
  * needed for PEAR_VALIDATE_* constants
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Validate.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Validate.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2.php';
 /**
  * This class converts a PEAR_PackageFile_v1 object into any output format.
  *
@@ -57,7 +57,7 @@ class PEAR_PackageFile_Generator_v1
      */
     function toTgz(&$packager, $compress = true, $where = null)
     {
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Archive/Tar.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Archive/Tar.php';
         if ($where === null) {
             if (!($where = System::mktemp(array('-d')))) {
                 return PEAR::raiseError('PEAR_Packagefile_v1::toTgz: mktemp failed');

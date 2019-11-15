@@ -975,7 +975,7 @@ class PEAR_ErrorStack {
      */
     function raiseError()
     {
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
         $args = func_get_args();
         return call_user_func_array(array('PEAR', 'raiseError'), $args);
     }

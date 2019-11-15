@@ -42,9 +42,9 @@ function service($servicename, $servicefunction = null, $params = null, $noListe
 
 	if (!checkServiceLoaded($sec_servicename))
 	{
-		if ( is_readable(EYE_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/'.$sec_servicename.'/main'.EYE_CODE_EXTENSION) )
+		if ( is_readable(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/'.$sec_servicename.'/main'.EYE_CODE_EXTENSION) )
 		{
-			include_once(EYE_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/'.$sec_servicename.'/main'.EYE_CODE_EXTENSION);
+			include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/'.$sec_servicename.'/main'.EYE_CODE_EXTENSION);
 
 			setServiceLoaded($sec_servicename);
 
@@ -89,9 +89,9 @@ function reqLib( $libname, $function, $params = null, $noListen = true )
 
 	if (!checkLibraryLoaded($sec_libname))
 	{
-		if (is_readable(EYE_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/'.$sec_libname.'/main'.EYE_CODE_EXTENSION))
+		if (is_readable(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/'.$sec_libname.'/main'.EYE_CODE_EXTENSION))
 		{
-			include_once(EYE_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/'.$sec_libname.'/main'.EYE_CODE_EXTENSION);
+			include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/'.$sec_libname.'/main'.EYE_CODE_EXTENSION);
 
 			setLibraryLoaded($sec_libname);
 
@@ -152,9 +152,9 @@ function genericListener($type,$sec_servicename, $minfunction, $noListen, $param
 			{
 				$appName = basename($appName);
 
-				if (is_readable(EYE_ROOT.'/'.APP_DIR.'/'.$appName.'/com'.EYE_CODE_EXTENSION))
+				if (is_readable(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/com'.EYE_CODE_EXTENSION))
 				{
-					include_once(EYE_ROOT.'/'.APP_DIR.'/'.$appName.'/com'.EYE_CODE_EXTENSION);
+					include_once(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/com'.EYE_CODE_EXTENSION);
 
 					if (function_exists($appName.'_com_'.$value))
 					{
@@ -229,15 +229,15 @@ function checkLibraryLoaded($name)
 
 function loadServiceConfig()
 {
-	if ($handler = opendir(EYE_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/'))
+	if ($handler = opendir(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/'))
 	{
 		while (false !== ($file = readdir($handler)))
 		{
-			if (is_file(EYE_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/'.$file))
+			if (is_file(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/'.$file))
 			{
 				if (substr($file, 0, 1) !== '.')
 				{
-					$myArray = eyeXML('xml2array', array(file_get_contents(EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/' . $file)));
+					$myArray = eyeXML('xml2array', array(file_get_contents(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/' . $file)));
 
 					if (isset($myArray['CONFIG']) && is_array($myArray['CONFIG']))
 					{
@@ -261,13 +261,13 @@ function loadConfig($appName)
 {
 	$appName = basename($appName);
 
-	if ($handler = opendir(EYE_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/'.$appName.'/'))
+	if ($handler = opendir(XENONOS_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/'.$appName.'/'))
 	{
 		while (false !== ($file = readdir($handler)))
 		{
 			if (substr($file, 0, 1) !== '.')
 			{
-				$myArray = eyeXML('xml2array', array(file_get_contents(EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/' . $appName . '/' . $file)));
+				$myArray = eyeXML('xml2array', array(file_get_contents(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/' . $appName . '/' . $file)));
 
 				if (is_array($myArray['CONFIG'][0]))
 				{
@@ -285,7 +285,7 @@ function loadConfig($appName)
 
 function getConfig($appName, $file = 'conf.xml')
 {
-	$eyeXML = eyeXML('xml2array', array(@file_get_contents(EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/' . basename($appName) . '/' . basename($file))));
+	$eyeXML = eyeXML('xml2array', array(@file_get_contents(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/' . basename($appName) . '/' . basename($file))));
 
 	return($eyeXML);
 }
@@ -294,7 +294,7 @@ function setConfig($appName, $file = 'conf.xml', $arr)
 {
 	$appName = basename($appName);
 	$file = basename($file);
-	$path = EYE_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/'.$appName.'/'.$file;
+	$path = XENONOS_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/'.$appName.'/'.$file;
 	$xml = eyeXML('array2xml', array($arr));
 
 	file_put_contents($path, $xml);
@@ -305,7 +305,7 @@ function getAppInfo($app)
 	global $currentUser;
 
 	$app = basename($app);
-	$myFile = EYE_ROOT.'/'.APP_DIR.'/'.$app.'/';
+	$myFile = XENONOS_ROOT.'/'.APP_DIR.'/'.$app.'/';
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
 	$xml = eyeXML('getXMLfile', array($myFile.'info.xml'));
@@ -448,8 +448,8 @@ function removeGenericListenerCallByPid($type, $pid = null, $postExecution = 0)
 */
 function createFunctionAlias()
 {
-	$servpath = EYE_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/';
-	$libpath = EYE_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/';
+	$servpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/';
+	$libpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/';
 	$alias = _getAlias($servpath, 'service', 0);
 	$alias .= _getAlias($libpath, 'reqLib', 1);
 
@@ -669,7 +669,7 @@ function loadACLTables()
 	global $ACL;
 
 	$ACL = array();
-	$aclpath = EYE_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ACL/';
+	$aclpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ACL/';
 	$found = 0;
 
 	if ($handler = opendir($aclpath))
@@ -731,5 +731,5 @@ if (ACL_SUPPORT == 1)
 
 loadServiceConfig();
 
-include_once(EYE_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/compat'.EYE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/compat'.EYE_CODE_EXTENSION);
 ?>

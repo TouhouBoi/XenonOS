@@ -90,7 +90,7 @@ function lib_eyeBoard_newMessage($params=null) {
 	$xml = eyeXML('array2xml',array($msg));
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$fp = vfs('real_open',array(EYE_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/eyeBoard/conf.xml','w'));
+	$fp = vfs('real_open',array(XENONOS_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/eyeBoard/conf.xml','w'));
 	$currentUser = $oldUser;
 	fwrite($fp,$xml);
 	fclose($fp);
@@ -100,7 +100,7 @@ function lib_eyeBoard_newMessage($params=null) {
 function lib_eyeBoard_clear($params=null) {
 	global $currentUser;
 	if($currentUser == ROOTUSER) {
-		$fp = vfs('real_open',array(EYE_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/eyeBoard/conf.xml','w'));
+		$fp = vfs('real_open',array(XENONOS_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/eyeBoard/conf.xml','w'));
 		fwrite($fp,"<messages />");
 		fclose($fp);
 		return true;

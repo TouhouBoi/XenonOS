@@ -17,7 +17,7 @@
 /**
  * base class
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
 
 /**
  * PEAR commands for login/logout
@@ -89,7 +89,7 @@ generate both package.xml.
     function &getPackager()
     {
         if (!class_exists('PEAR_Packager')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Packager.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Packager.php';
         }
 
         $a = new PEAR_Packager;
@@ -107,11 +107,11 @@ generate both package.xml.
     function &getPackageFile($config, $debug = false)
     {
         if (!class_exists('PEAR_Common')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
         }
 
         if (!class_exists('PEAR_PackageFile')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
         }
 
         $a = new PEAR_PackageFile($config, $debug);
@@ -153,7 +153,7 @@ generate both package.xml.
                 $packagexml . '", is not a package.xml 2.0');
         }
 
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
         $pf = new PEAR_PackageFile_v1;
         $pf->setConfig($this->config);
         if ($pf2->getPackageType() != 'extsrc' && $pf2->getPackageType() != 'zendextsrc') {

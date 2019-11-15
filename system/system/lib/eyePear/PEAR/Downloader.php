@@ -20,7 +20,7 @@
 /**
  * Needed for constants, extending
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
 
 define('PEAR_INSTALLER_OK',       1);
 define('PEAR_INSTALLER_FAILED',   0);
@@ -186,7 +186,7 @@ class PEAR_Downloader extends PEAR_Common
         PEAR::pushErrorHandling(PEAR_ERROR_RETURN);
         $callback = $this->ui ? array(&$this, '_downloadCallback') : null;
         if (!class_exists('System')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
         }
 
         $tmpdir = $this->config->get('temp_dir');
@@ -206,7 +206,7 @@ class PEAR_Downloader extends PEAR_Common
 
         list($a, $lastmodified) = $a;
         if (!class_exists('PEAR_ChannelFile')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
         }
 
         $b = new PEAR_ChannelFile;
@@ -238,7 +238,7 @@ class PEAR_Downloader extends PEAR_Common
     function &newDownloaderPackage(&$t)
     {
         if (!class_exists('PEAR_Downloader_Package')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader/Package.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader/Package.php';
         }
         $a = new PEAR_Downloader_Package($t);
         return $a;
@@ -254,7 +254,7 @@ class PEAR_Downloader extends PEAR_Common
     function &getDependency2Object(&$c, $i, $p, $s)
     {
         if (!class_exists('PEAR_Dependency2')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
         }
         $z = new PEAR_Dependency2($c, $i, $p, $s);
         return $z;
@@ -312,7 +312,7 @@ class PEAR_Downloader extends PEAR_Common
                         $channelschecked[$params[$i]->getChannel()] = true;
                         PEAR::staticPushErrorHandling(PEAR_ERROR_RETURN);
                         if (!class_exists('System')) {
-                            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+                            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
                         }
 
                         $curchannel = &$this->_registry->getChannel($params[$i]->getChannel());
@@ -729,7 +729,7 @@ class PEAR_Downloader extends PEAR_Common
             }
 
             if (!class_exists('System')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
             }
 
             if (PEAR::isError($downloaddir = System::mktemp('-d'))) {
@@ -887,14 +887,14 @@ class PEAR_Downloader extends PEAR_Common
         }
 
         if (isset($url['info']['required']) || $url['compatible']) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2.php';
             $pf = new PEAR_PackageFile_v2;
             $pf->setRawChannel($parr['channel']);
             if ($url['compatible']) {
                 $pf->setRawCompatible($url['compatible']);
             }
         } else {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
             $pf = new PEAR_PackageFile_v1;
         }
 
@@ -1026,13 +1026,13 @@ class PEAR_Downloader extends PEAR_Common
 
             if (isset($url['info']['required'])) {
                 if (!class_exists('PEAR_PackageFile_v2')) {
-                    require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2.php';
+                    require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2.php';
                 }
                 $pf = new PEAR_PackageFile_v2;
                 $pf->setRawChannel($remotechannel);
             } else {
                 if (!class_exists('PEAR_PackageFile_v1')) {
-                    require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
+                    require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
                 }
                 $pf = new PEAR_PackageFile_v1;
 
@@ -1189,9 +1189,9 @@ class PEAR_Downloader extends PEAR_Common
      */
     function sortPackagesForInstall(&$packages)
     {
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Structures/Graph.php';
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Structures/Graph/Node.php';
-        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Structures/Graph/Manipulator/TopologicalSorter.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Structures/Graph.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Structures/Graph/Node.php';
+        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Structures/Graph/Manipulator/TopologicalSorter.php';
         $depgraph = new Structures_Graph(true);
         $nodes = array();
         $reg = &$this->config->getRegistry();

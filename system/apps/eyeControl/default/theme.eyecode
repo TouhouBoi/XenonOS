@@ -26,7 +26,7 @@ $mySelect = new Select(array(
 	'y' => $ContentY + 3
 ));
 $mySelect->show();
-$dir = EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/';
+$dir = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/';
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
 $openDir = vfs('real_getDirContent',array($dir));

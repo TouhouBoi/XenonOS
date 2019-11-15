@@ -18,7 +18,7 @@
 /**
  * base class
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Command/Common.php';
 
 /**
  * PEAR commands for installation or deinstallation/upgrading of
@@ -326,7 +326,7 @@ Run post-installation scripts in package <package>, if any exist.
     function &getDownloader(&$ui, $options, &$config)
     {
         if (!class_exists('PEAR_Downloader')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Downloader.php';
         }
         $a = new PEAR_Downloader($ui, $options, $config);
         return $a;
@@ -338,7 +338,7 @@ Run post-installation scripts in package <package>, if any exist.
     function &getInstaller(&$ui)
     {
         if (!class_exists('PEAR_Installer')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Installer.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Installer.php';
         }
         $a = new PEAR_Installer($ui);
         return $a;
@@ -524,7 +524,7 @@ Run post-installation scripts in package <package>, if any exist.
     function doInstall($command, $options, $params)
     {
         if (!class_exists('PEAR_PackageFile')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
         }
 
         if (isset($options['installroot']) && isset($options['packagingroot'])) {

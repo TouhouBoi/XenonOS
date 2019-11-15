@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once EYE_ROOT . '/' . APP_DIR . '/eyeMail/compat' . EYE_CODE_EXTENSION;
+include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeMail/compat' . EYE_CODE_EXTENSION;
 
 function eyeMail_starter() {
 	global $checknum;
@@ -37,7 +37,7 @@ function eyeMail_starter() {
 
 	$accountsFile = eyeXML('getXMLconfig',array('eyeMail','accounts.xml'));
 	if (empty($accountsFile)) {
-		include_once(EYE_ROOT.'/'.APP_DIR.'/eyeMail/preferences'.EYE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeMail/preferences'.EYE_CODE_EXTENSION);
 		eyeMail_createAccount();
 	}
 }
@@ -300,10 +300,10 @@ function eyeMail_on_fetch($params) {
 }
 
 function eyeMail_sendMail($to,$cc,$cco,$sbj,$body) {
-	include_once(EYE_ROOT.'/'.APP_DIR.'/eyeMail/class.phpmailer.php');
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeMail/class.phpmailer.php');
 	$config = eyeXML('getXMLconfig',array('eyeMail','settings.xml'));
 	$mail = new PHPMailer();
-	$mail->PluginDir = EYE_ROOT.'/'.APP_DIR.'/eyeMail/';
+	$mail->PluginDir = XENONOS_ROOT.'/'.APP_DIR.'/eyeMail/';
 
 	$defaultAccount = $GLOBALS['defaultMail']->text;
 	$mail->From = $defaultAccount['email'][0];

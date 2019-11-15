@@ -59,8 +59,8 @@ function lib_eyeSmtp_send($params) {
 	if (isset($params['from'])) {
 		$smtpFrom = $params['from'];
 	}
-	include_once(EYE_ROOT.'/system/'.LIB_DIR.'/eyeSmtp/sasl'.EYE_CODE_EXTENSION);
-	include_once(EYE_ROOT.'/system/'.LIB_DIR.'/eyeSmtp/smtp'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/system/'.LIB_DIR.'/eyeSmtp/sasl'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/system/'.LIB_DIR.'/eyeSmtp/smtp'.EYE_CODE_EXTENSION);
 
 	$smtp=new smtp_class;
 

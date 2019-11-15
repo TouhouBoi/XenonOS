@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 define('EYEFEEDS_FEEDITEMS_FETCHNUMBER', 16);
-define('EYEFEEDS_FEEDITEMS_CACHELOCATION', EYE_ROOT.'/'.APP_DIR.'/share/eyeFeeds/cache/');
+define('EYEFEEDS_FEEDITEMS_CACHELOCATION', XENONOS_ROOT.'/'.APP_DIR.'/share/eyeFeeds/cache/');
 define('EYEFEEDS_FEEDITEMS_CACHEDURATION', 3600);
 define('EYEFEEDS_FEEDITEMS_CONTENT_DISPLAYEDSIZE', 1800);
 define('EYEFEEDS_FEEDITEMS_READINGHISTORYDURATION', 60);
@@ -561,7 +561,7 @@ function eyeFeeds_saveSettings($newSettings) {
  * @return array The feed
  */
 function eyeFeeds_fetchFeedFromUrl($url, $forceRefresh=false) {
-	include_once(EYE_ROOT.'/'.APP_DIR.'/eyeFeeds/simplepie'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/simplepie'.EYE_CODE_EXTENSION);
 	$settings = eyeFeeds_loadSettings();
 
 	//fetch RSS feed's items
@@ -594,7 +594,7 @@ function eyeFeeds_fetchFeedFromUrl($url, $forceRefresh=false) {
  * @return array The feed's items
  */
 function eyeFeeds_fetchFeedItemsFromUrl($url, $forceRefresh=false) {
-	include_once(EYE_ROOT.'/'.APP_DIR.'/eyeFeeds/simplepie'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/simplepie'.EYE_CODE_EXTENSION);
 	$settings = eyeFeeds_loadSettings();
 
 	//fetch RSS feed's items

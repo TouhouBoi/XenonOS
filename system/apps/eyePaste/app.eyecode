@@ -20,7 +20,7 @@ function eyePaste_run($params = '') {
 	}
 	$file = basename($params['path']);
 	
-	include_once(EYE_ROOT . '/' . APP_DIR . '/eyePaste/events' . EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyePaste/events' . EYE_CODE_EXTENSION);
 	eyePaste_libs_Do(substr($params['path'], 0, -strlen($file)), $file, $params[0], $file, $params[1]); // utf8
 }
   

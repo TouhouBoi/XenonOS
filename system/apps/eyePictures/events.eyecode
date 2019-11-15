@@ -1387,11 +1387,11 @@ function eyePictures_on_colorEdit($params=null) {
 	$info = pathinfo($currentPic[0]);
 	if ($info['dirname'] != $tmpDir) {
 		eyeSessions('setVar', array('eyePictures_originalPic_'.$myPid, $currentPic));
-		require_once(EYE_ROOT.'/'.APP_DIR.'/eyePictures/forms/form'.EYE_CODE_EXTENSION);
+		require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyePictures/forms/form'.EYE_CODE_EXTENSION);
 		eyePictures_backUpFile();
 	}
 	else {
-		require_once(EYE_ROOT.'/'.APP_DIR.'/eyePictures/forms/form'.EYE_CODE_EXTENSION);
+		require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyePictures/forms/form'.EYE_CODE_EXTENSION);
 	}
 }
 

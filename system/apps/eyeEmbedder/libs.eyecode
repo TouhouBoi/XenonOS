@@ -42,7 +42,7 @@ function eyeEmbedder_lib_CreateIconsPath($path) {
 function eyeEmbedder_lib_GetCategories() {
 	$categories = array();
 	
-	foreach (vfs('real_getDirContent', array(EYE_ROOT . '/' . APP_DIR)) as $path) {
+	foreach (vfs('real_getDirContent', array(XENONOS_ROOT . '/' . APP_DIR)) as $path) {
 		if (is_dir($path)) {
 			$xml = getAppInfo($path);
 			$xml = is_array($xml) ? $xml['package'][0] : null;
@@ -92,7 +92,7 @@ function eyeEmbedder_lib_GetValues() {
 }
 
 function eyeEmbedder_lib_ResizeIcon($oldPath, $newPath, $width, $height = null) {
-	include_once EYE_ROOT . '/' . SYSTEM_DIR . '/lib/eyeFiles/images' . EYE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/lib/eyeFiles/images' . EYE_CODE_EXTENSION;
 	
 	if ($height === null) {
 		$height = $width;

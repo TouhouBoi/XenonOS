@@ -16,7 +16,7 @@
 /**
  * For error handling
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ErrorStack.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ErrorStack.php';
 /**
  * @category   pear
  * @package    PEAR
@@ -161,7 +161,7 @@ class PEAR_PackageFile_v2
     function &getPEARDependency2(&$c, $o, $p, $s = PEAR_VALIDATE_INSTALLING)
     {
         if (!class_exists('PEAR_Dependency2')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Dependency2.php';
         }
         $z = new PEAR_Dependency2($c, $o, $p, $s);
         return $z;
@@ -1871,7 +1871,7 @@ class PEAR_PackageFile_v2
     function &getRW()
     {
         if (!class_exists('PEAR_PackageFile_v2_rw')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2/rw.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2/rw.php';
         }
         $a = new PEAR_PackageFile_v2_rw;
         foreach (get_object_vars($this) as $name => $unused) {
@@ -1891,7 +1891,7 @@ class PEAR_PackageFile_v2
     function &getDefaultGenerator()
     {
         if (!class_exists('PEAR_PackageFile_Generator_v2')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/Generator/v2.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/Generator/v2.php';
         }
         $a = new PEAR_PackageFile_Generator_v2($this);
         return $a;
@@ -1902,7 +1902,7 @@ class PEAR_PackageFile_v2
         if (!isset($this->_v2Validator) ||
               !is_a($this->_v2Validator, 'PEAR_PackageFile_v2_Validator')) {
             if (!class_exists('PEAR_PackageFile_v2_Validator')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2/Validator.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2/Validator.php';
             }
             $this->_v2Validator = new PEAR_PackageFile_v2_Validator;
         }
@@ -1917,7 +1917,7 @@ class PEAR_PackageFile_v2
         if (!isset($this->_v2Validator) ||
               !is_a($this->_v2Validator, 'PEAR_PackageFile_v2_Validator')) {
             if (!class_exists('PEAR_PackageFile_v2_Validator')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2/Validator.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v2/Validator.php';
             }
             $this->_v2Validator = new PEAR_PackageFile_v2_Validator;
         }
@@ -1965,7 +1965,7 @@ class PEAR_PackageFile_v2
         $fp = @fopen("PEAR/Task/$taskfile.php", 'r', true);
         if ($fp) {
             fclose($fp);
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . "/eyePear/PEAR/Task/$taskfile.php";
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . "/eyePear/PEAR/Task/$taskfile.php";
             return "PEAR_Task_$task";
         }
         return false;

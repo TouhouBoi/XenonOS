@@ -19,8 +19,8 @@
 /**
  * for PEAR_Error
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/DependencyDB.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/DependencyDB.php';
 
 define('PEAR_REGISTRY_ERROR_LOCK',         -2);
 define('PEAR_REGISTRY_ERROR_FORMAT',       -3);
@@ -200,7 +200,7 @@ class PEAR_Registry extends PEAR
                     $pear_channel = $this->_pearChannel;
                     if (!is_a($pear_channel, 'PEAR_ChannelFile') || !$pear_channel->validate()) {
                         if (!class_exists('PEAR_ChannelFile')) {
-                            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+                            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
                         }
 
                         $pear_channel = new PEAR_ChannelFile;
@@ -225,7 +225,7 @@ class PEAR_Registry extends PEAR
                     $pecl_channel = $this->_peclChannel;
                     if (!is_a($pecl_channel, 'PEAR_ChannelFile') || !$pecl_channel->validate()) {
                         if (!class_exists('PEAR_ChannelFile')) {
-                            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+                            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
                         }
 
                         $pecl_channel = new PEAR_ChannelFile;
@@ -249,7 +249,7 @@ class PEAR_Registry extends PEAR
                     $doc_channel = $this->_docChannel;
                     if (!is_a($doc_channel, 'PEAR_ChannelFile') || !$doc_channel->validate()) {
                         if (!class_exists('PEAR_ChannelFile')) {
-                            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+                            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
                         }
 
                         $doc_channel = new PEAR_ChannelFile;
@@ -271,7 +271,7 @@ class PEAR_Registry extends PEAR
 
                 if (!file_exists($this->channelsdir . $ds . '__uri.reg')) {
                     if (!class_exists('PEAR_ChannelFile')) {
-                        require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+                        require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
                     }
 
                     $private = new PEAR_ChannelFile;
@@ -380,7 +380,7 @@ class PEAR_Registry extends PEAR
                 return false;
             }
 
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
             if (!System::mkdir(array('-p', $this->statedir))) {
                 return $this->raiseError("could not create directory '{$this->statedir}'");
             }
@@ -448,7 +448,7 @@ class PEAR_Registry extends PEAR
                 return false;
             }
 
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
             if (!System::mkdir(array('-p', $channelDir))) {
                 return $this->raiseError("could not create directory '" . $channelDir .
                     "'");
@@ -476,7 +476,7 @@ class PEAR_Registry extends PEAR
                 return false;
             }
 
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
             if (!System::mkdir(array('-p', $this->channelsdir))) {
                 return $this->raiseError("could not create directory '{$this->channelsdir}'");
             }
@@ -490,7 +490,7 @@ class PEAR_Registry extends PEAR
                 return false;
             }
 
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/System.php';
             if (!System::mkdir(array('-p', $this->channelsdir . DIRECTORY_SEPARATOR . '.alias'))) {
                 return $this->raiseError("could not create directory '{$this->channelsdir}/.alias'");
             }
@@ -695,7 +695,7 @@ class PEAR_Registry extends PEAR
     function _rebuildFileMap()
     {
         if (!class_exists('PEAR_Installer_Role')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Installer/Role.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Installer/Role.php';
         }
 
         $channels = $this->_listAllPackages();
@@ -1452,7 +1452,7 @@ class PEAR_Registry extends PEAR
         }
 
         if (!class_exists('PEAR_PackageFile')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile.php';
         }
 
         $pkg = new PEAR_PackageFile($this->_config);
@@ -1473,7 +1473,7 @@ class PEAR_Registry extends PEAR
             $chinfo = $this->_channelInfo($channel, $noaliases);
             if ($chinfo) {
                 if (!class_exists('PEAR_ChannelFile')) {
-                    require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+                    require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
                 }
 
                 $ch = &PEAR_ChannelFile::fromArrayWithErrors($chinfo);
@@ -1496,7 +1496,7 @@ class PEAR_Registry extends PEAR
         if ($this->_getChannelFromAlias($channel) == 'pear.php.net') {
             // the registry is not properly set up, so use defaults
             if (!class_exists('PEAR_ChannelFile')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
             }
 
             $pear_channel = new PEAR_ChannelFile;
@@ -1513,7 +1513,7 @@ class PEAR_Registry extends PEAR
         if ($this->_getChannelFromAlias($channel) == 'pecl.php.net') {
             // the registry is not properly set up, so use defaults
             if (!class_exists('PEAR_ChannelFile')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
             }
             $pear_channel = new PEAR_ChannelFile;
             $pear_channel->setServer('pecl.php.net');
@@ -1529,7 +1529,7 @@ class PEAR_Registry extends PEAR
         if ($this->_getChannelFromAlias($channel) == 'doc.php.net') {
             // the registry is not properly set up, so use defaults
             if (!class_exists('PEAR_ChannelFile')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
             }
 
             $doc_channel = new PEAR_ChannelFile;
@@ -1547,7 +1547,7 @@ class PEAR_Registry extends PEAR
         if ($this->_getChannelFromAlias($channel) == '__uri') {
             // the registry is not properly set up, so use defaults
             if (!class_exists('PEAR_ChannelFile')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ChannelFile.php';
             }
 
             $private = new PEAR_ChannelFile;
@@ -1759,7 +1759,7 @@ class PEAR_Registry extends PEAR
         $this->_unlock();
         if ($ret) {
             if (!class_exists('PEAR_PackageFile_v1')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
             }
             $pf = new PEAR_PackageFile_v1;
             $pf->setConfig($this->_config);
@@ -1888,7 +1888,7 @@ class PEAR_Registry extends PEAR
         $this->_unlock();
         if ($ret) {
             if (!class_exists('PEAR_PackageFile_v1')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v1.php';
             }
             $pf = new PEAR_PackageFile_v1;
             $pf->setConfig($this->_config);
@@ -2069,7 +2069,7 @@ class PEAR_Registry extends PEAR
             static $notempty;
             if (empty($notempty)) {
                 if (!class_exists('PEAR_Installer_Role')) {
-                    require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Installer/Role.php';
+                    require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Installer/Role.php';
                 }
                 $notempty = create_function('$a','return !empty($a);');
             }

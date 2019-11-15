@@ -66,7 +66,7 @@ function eyeOpen_run($params = '') {
 		if (!isset($conf['eyeFiles'][0]['clickMethod'][0])) {
 			$conf['eyeFiles'][0]['clickMethod'][0] = 1;
 		}
-		$path = EYE_ROOT . '/' . APP_DIR . '/';
+		$path = XENONOS_ROOT . '/' . APP_DIR . '/';
 		$folders = scandir($path);
 		$i = 0;
 		$x = 20;

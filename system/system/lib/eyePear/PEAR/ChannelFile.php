@@ -17,9 +17,9 @@
 /**
  * Needed for error handling
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ErrorStack.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/XMLParser.php';
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ErrorStack.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/XMLParser.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Common.php';
 
 /**
  * Error code if the channel.xml <channel> tag does not contain a valid version
@@ -388,7 +388,7 @@ class PEAR_ChannelFile
     {
         if (!file_exists($descfile) || !is_file($descfile) || !is_readable($descfile) ||
              (!$fp = fopen($descfile, 'r'))) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
             return PEAR::raiseError("Unable to open $descfile");
         }
 
@@ -424,7 +424,7 @@ class PEAR_ChannelFile
                 }
             }
             if (PEAR::isError($info)) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR.php';
                 return PEAR::raiseError($info);
             }
         }
@@ -1488,7 +1488,7 @@ class PEAR_ChannelFile
     function &getValidationObject($package = false)
     {
         if (!class_exists('PEAR_Validate')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Validate.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Validate.php';
         }
 
         if (!$this->_isValid) {
@@ -1509,7 +1509,7 @@ class PEAR_ChannelFile
                   $this->_channelInfo['validatepackage']['_content']))) {
                 if ($this->isIncludeable(str_replace('_', '/',
                       $this->_channelInfo['validatepackage']['_content']) . '.php')) {
-                    include_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . str_replace('_', '/',
+                    include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . str_replace('_', '/',
                         $this->_channelInfo['validatepackage']['_content']) . '.php';
                     $vclass = str_replace('.', '_',
                         $this->_channelInfo['validatepackage']['_content']);

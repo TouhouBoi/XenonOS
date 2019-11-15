@@ -81,7 +81,7 @@ $mySelect_language = new Select(array(
 ));
 $mySelect_language->show();
 $mySelect_language->addOption('English','en');
-$openDir = vfs('real_getDirContent',array(EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/'));
+$openDir = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/'));
 if (is_array($openDir)) {
 	foreach ($openDir as $file) {
 		if ( /* utf8 */ substr($file, -4) === '.xml') {
@@ -289,7 +289,7 @@ $myButton->show();
 // officeTab
 
 $ContentY = 20;
-if ( /* utf8 */ strpos(realpath(EYE_ROOT . '/'), '\\') !== false) {
+if ( /* utf8 */ strpos(realpath(XENONOS_ROOT . '/'), '\\') !== false) {
 	$title = 'Configure the office support on a Windows server';
 	$text = i18n('translate',array('Please follow the instructions at %s.',array('<span onclick="sendMsg(' . $checknum . ',\'system_office_howtowindows\',\'\');" style="cursor: pointer; font-style: italic;">Help Console</span>')));
 } else {
@@ -330,7 +330,7 @@ $myLabel = new Label(array(
 $myLabel->show();
 $ContentY += 20;
 
-$officeXml = eyeXML('getXMLfile', array(EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml'));
+$officeXml = eyeXML('getXMLfile', array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml'));
 $myTextbox = new Textbox(array(
 	'name' => 'eyeControl_system_office_textbox_folder',
 	'father' => $officeTab,
@@ -368,7 +368,7 @@ $myLabel = new Label(array(
 $myLabel->show();
 $ContentY += 20;
 
-if ( /* utf8 */ strpos(realpath(EYE_ROOT . '/'), '\\') !== false) {
+if ( /* utf8 */ strpos(realpath(XENONOS_ROOT . '/'), '\\') !== false) {
 	$default = 'C:\\Program Files (x86)\\LibreOffice 4\\program\\python.exe';
 } else {
 	$default = 'python';
@@ -395,7 +395,7 @@ $myButton->addFriend($myTextbox);
 $myButton->show();
 
 // Detect whether unoconv is installed
-$unoconv = is_readable(EYE_ROOT . '/extras/unoconv/unoconv');
+$unoconv = is_readable(XENONOS_ROOT . '/extras/unoconv/unoconv');
 if (!$unoconv) {
 	$ContentY += 50;
 	$myLabel = new Label(array(

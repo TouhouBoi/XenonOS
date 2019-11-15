@@ -22,10 +22,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 global $currentUser;
 
-include_once(EYE_ROOT . '/' . APP_DIR . '/eyeNav/libs.eyecode');
+include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/libs.eyecode');
 
 $conf = eyeXML('getXMLconfig',array('eyeNav','conf.xml'));
-$url = EYE_ROOT . '/' . APP_DIR . '/eyeNav/plugins/';
+$url = XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/plugins/';
 $url2 = $url . $conf['eyeNav'][0]['plugin'][0] . EYE_CODE_EXTENSION;
 
 if (vfs('real_fileExists', array ($url2)))

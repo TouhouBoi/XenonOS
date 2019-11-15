@@ -16,7 +16,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 function eyeControl_on_userconfig_methodSelect ($params = '') {
 	$switch = $params[arg0][0];
-	$xmlfile = EYE_ROOT .'/'. SYSTEM_DIR .'/' . SYSTEM_CONF_DIR . '/userconfig/'. $switch .'.xml';
+	$xmlfile = XENONOS_ROOT .'/'. SYSTEM_DIR .'/' . SYSTEM_CONF_DIR . '/userconfig/'. $switch .'.xml';
 	$xml = eyeXML('getXMLfile', array($xmlfile));
 	$GLOBALS['eyeControl_userconfig_hidden_xml']->setText($xmlfile);
 	

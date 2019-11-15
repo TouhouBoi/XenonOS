@@ -39,7 +39,7 @@ function eyeControl_on_system_system($params = '') {
 		$quota = 0;
 	}
 
-	$file = EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
+	$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
 	$xml = eyeXML('getXMLfile',array($file));
 	$xml['CONFIG'][0]['XENONOS_HOSTNAME'][0] = $GLOBALS['eyeControl_system_system_textbox_hostname']->text;
 	$xml['CONFIG'][0]['DEFAULT_LANGUAGE'][0] = $GLOBALS['eyeControl_system_system_select_language']->selected;
@@ -54,7 +54,7 @@ function eyeControl_on_system_system($params = '') {
 }
 
 function eyeControl_on_system_permissions($params = '') {
-	$file = EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
+	$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
 	$xml = eyeXML('getXMLfile',array($file));
 	$xml['CONFIG'][0]['ALLOW_USER_REGISTER'][0] = $GLOBALS['eyeControl_system_permissions_checkbox_registration']->checked;
 	$xml['CONFIG'][0]['ALLOW_PUBLIC_DIRS'][0] = $GLOBALS['eyeControl_system_permissions_checkbox_publicdirs']->checked;
@@ -64,7 +64,7 @@ function eyeControl_on_system_permissions($params = '') {
 }
 
 function eyeControl_on_system_office($params = '') {
-	$file = EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
+	$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
 	$xml = eyeXML('getXMLfile', array($file));
 	$xml['CONFIG'][0]['OFFICE_PYTHON_PATH'][0] = $GLOBALS['eyeControl_system_office_textbox_folder']->text;
 	eyeXML('setXMLFile', array($file, $xml));
@@ -109,16 +109,16 @@ function eyeControl_on_system_uninstall_yes($params = '') {
 		eyeWidgets('unserialize');
 		eyex('messageBox', array('content' => 'Your oneye system was successfully deleted.'));
 		eyex('rawjs', array('js' => 'window.onbeforeunload = ""; setTimeout(window.home, 2000);'));
-		vfs('real_delete', array(EYE_ROOT . '/../.htaccess'));
-		vfs('real_delete', array(EYE_ROOT . '/../browser'));
-		vfs('real_delete', array(EYE_ROOT . '/../index.php'));
-		vfs('real_delete', array(EYE_ROOT . '/../iphone'));
-		vfs('real_delete', array(EYE_ROOT . '/../license.txt'));
-		vfs('real_delete', array(EYE_ROOT . '/../mobile'));
-		vfs('real_delete', array(EYE_ROOT . '/../php-ini'));
-		vfs('real_delete', array(EYE_ROOT . '/../README.txt'));
-		vfs('real_delete', array(EYE_ROOT . '/../settings.php'));
-		vfs('real_rmdir', array(EYE_ROOT . '/'));
+		vfs('real_delete', array(XENONOS_ROOT . '/../.htaccess'));
+		vfs('real_delete', array(XENONOS_ROOT . '/../browser'));
+		vfs('real_delete', array(XENONOS_ROOT . '/../index.php'));
+		vfs('real_delete', array(XENONOS_ROOT . '/../iphone'));
+		vfs('real_delete', array(XENONOS_ROOT . '/../license.txt'));
+		vfs('real_delete', array(XENONOS_ROOT . '/../mobile'));
+		vfs('real_delete', array(XENONOS_ROOT . '/../php-ini'));
+		vfs('real_delete', array(XENONOS_ROOT . '/../README.txt'));
+		vfs('real_delete', array(XENONOS_ROOT . '/../settings.php'));
+		vfs('real_rmdir', array(XENONOS_ROOT . '/'));
 	}
 }
 

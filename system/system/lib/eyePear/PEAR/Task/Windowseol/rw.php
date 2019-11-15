@@ -16,7 +16,7 @@
 /**
  * Base class
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Task/Windowseol.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Task/Windowseol.php';
 /**
  * Abstracts the windowseol task xml.
  * @category   pear

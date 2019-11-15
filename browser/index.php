@@ -64,7 +64,7 @@ if (isset($_GET['extern']))
 }
 elseif(isset($_GET['api']))
 {
-	require_once(EYE_ROOT.'/xml-rpc/server.eyecode');
+	require_once(XENONOS_ROOT.'/xml-rpc/server.eyecode');
 	xmlrpc_parseRequest();
 }
 else
@@ -158,7 +158,7 @@ else
 			exit;
 		}
 
-		include_once(EYE_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/init'.EYE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/init'.EYE_CODE_EXTENSION);
 	}
 }
 ?>

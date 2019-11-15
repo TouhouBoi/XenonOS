@@ -31,7 +31,7 @@ $myTable = new Sortabletable(array(
 ));
 $myTable->show();
 $nFiletypes = 0;
-foreach (vfs('real_getDirContent', array(EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/')) as $filetype) {
+foreach (vfs('real_getDirContent', array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/')) as $filetype) {
 	if (is_file($filetype)) {
 		$nFiletypes++;
 		$xml = eyeXML('getXMLfile', array($filetype));

@@ -30,10 +30,10 @@ function lib_eyeConfig_init () {
 
 	// Detect and load specific library
 	if (CONFIG_MODULE !== 'xml') {
-		$module = EYE_ROOT .'/'. SYSTEM_DIR .'/'. LIB_DIR .'/eyeConfig/modules/'. CONFIG_MODULE .'.eyecode';
+		$module = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. LIB_DIR .'/eyeConfig/modules/'. CONFIG_MODULE .'.eyecode';
 		if (file_exists($module)) {
 			// Load constants
-			$xmlfile = EYE_ROOT .'/'. SYSTEM_DIR .'/' . SYSTEM_CONF_DIR . '/userconfig/'. CONFIG_MODULE .'.xml';
+			$xmlfile = XENONOS_ROOT .'/'. SYSTEM_DIR .'/' . SYSTEM_CONF_DIR . '/userconfig/'. CONFIG_MODULE .'.xml';
 			$xml = eyeXML('getXMLfile', array($xmlfile));
 			if (isset($xml['eyeConfig_module'][0]['constant'])) {
 				foreach($xml['eyeConfig_module'][0]['constant'] as $constant) {
@@ -92,7 +92,7 @@ function lib_eyeConfig_swap ($params) {
 	$to = $params[1];
 
 	// Load the system conf file
-	$xmlfile = EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
+	$xmlfile = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
 	$xml = eyeXML('getXMLfile', array($xmlfile));
 
 	// Phase 1 : Conversion of Data to XML

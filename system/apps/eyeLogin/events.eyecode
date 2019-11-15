@@ -34,7 +34,7 @@ function eyeLogin_on_Create($params = '') {
 		} elseif ($password1 != $password2) {
 			$GLOBALS['eyeLogin_Label_2_Message']->setText('Password fields do not match!');
 			$GLOBALS['eyeLogin_Textbox_2_Password_2']->setText('');
-		} elseif ($language != 'en' && !vfs('real_fileExists',array(EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/' . $language . '.xml'))) {
+		} elseif ($language != 'en' && !vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/' . $language . '.xml'))) {
 			$GLOBALS['eyeLogin_Label_2_Message']->setText('The language does not exist!');
 		} else {
 			$oldUser = $currentUser;
@@ -102,7 +102,7 @@ function eyeLogin_on_Login($params = '') {
 			$xml['changes'][0]['increase'][0] = 0;
 			eyeXML('setXMLconfig',array('eyex','eyex.xml',$xml));
 		}
-		if ($language && $language != '[auto]' && ($language == 'en' || vfs('real_fileExists',array(EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/' . $language . '.xml')))) {
+		if ($language && $language != '[auto]' && ($language == 'en' || vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/' . $language . '.xml')))) {
 			i18n('setLang',array($language));
 		} else {
 			$xml = eyeXML('getXMLconfig',array('i18n','lang.xml'));

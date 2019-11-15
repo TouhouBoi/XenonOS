@@ -29,7 +29,7 @@ function eyeControl_on_targetTypeChange($params="") {
 			break;
 		case 3:
 			$GLOBALS['eyeControl_acl_target_targetname_lbl']->setText("Group Name:");
-			$openDir = vfs('real_getDirContent',array(EYE_ROOT . '/' . GROUPS_DIR . '/'));
+			$openDir = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . GROUPS_DIR . '/'));
 			$g = 1;
 			foreach ($openDir as $group) {
 				if (is_dir($group)) {
@@ -100,7 +100,7 @@ function eyeControl_on_typeTarget_add($params = ""){
 			break;
 		case 3:
 			$type = 'group';
-			$files = vfs('real_getDirContent', array(EYE_ROOT . '/' . GROUPS_DIR . '/'));
+			$files = vfs('real_getDirContent', array(XENONOS_ROOT . '/' . GROUPS_DIR . '/'));
 			$targetName = $GLOBALS['eyeControl_acl_target_targetname_select']->selected - 2;
 			if (isset($files[$targetName]) === false || is_dir($files[$targetName]) === false) {
 				eyex('messageBox', array('content' => 'This group does not exist.'));
@@ -165,7 +165,7 @@ function eyeControl_on_typeTarget_add($params = ""){
 			'params' => array('')
 		);
 		$i=0;
-		$file = EYE_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
+		$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 		$config = eyeXML('getXMLfile', array($file));
 		if($config){
 			foreach($config['GACL'][0]['ACL'] as $value) {
@@ -201,7 +201,7 @@ function eyeControl_on_newparam_add($params = ""){
 		$row = array($id0,$id1,$param);
 		$GLOBALS['eyeControl_acl_params2_sortabletable']->addRow($row);
 		$GLOBALS['eyeControl_newparam_popup']->close();
-		$file = EYE_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
+		$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 		$config = eyeXML('getXMLfile', array($file));
 
 		$params = array(
@@ -237,7 +237,7 @@ function eyeControl_on_show_rights($params = "") {
 	$GLOBALS['eyeControl_acl_params2_sortabletable']->delAllRows();
 	$id1 = $GLOBALS['eyeControl_acl_params_sortabletable']->selected;
 	$id0 = $GLOBALS['uniqid']->text;
-	$file = EYE_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
+	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 	$config = eyeXML('getXMLfile', array($file));
 	$i=0;
 
@@ -284,7 +284,7 @@ function eyeControl_on_params_delete($params = "") {
 function eyeControl_on_yDelete(){
 	$id1 = $GLOBALS['eyeControl_acl_params_sortabletable']->selected;
 	$GLOBALS['eyeControl_acl_params_sortabletable']->delRow($id1);
-	$file = EYE_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
+	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 	$config = eyeXML('getXMLfile', array($file));
 	
 	$targetN = array('target' => array(''));
@@ -360,7 +360,7 @@ function eyeControl_on_yDelete1($params=""){
 	$id1 = $GLOBALS['eyeControl_acl_params_sortabletable']->selected;
 	$id0 = $GLOBALS['uniqid']->text;
 	$Params = array('params' => array(''));
-	$file = EYE_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
+	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 	$config = eyeXML('getXMLfile', array($file));
 	$i=0;
 	$x=0;

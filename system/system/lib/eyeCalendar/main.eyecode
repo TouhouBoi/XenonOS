@@ -46,7 +46,7 @@ function lib_eyeCalendar_getDayNotes($params){
 		$calendarNum = $calendarInfo['num'][0];
 		if($calendarInfo['remote'][0]){
 			if($params['remoteType'][0] = 'group'){
-				$calDir = EYE_ROOT.'/'.GROUPS_DIR.'/'.$calendarName.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/';
+				$calDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendarName.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/';
 			}
 		}
 		$dir = $calDir.$calendarName.$noteDir;
@@ -88,7 +88,7 @@ function lib_eyeCalendar_saveNote($params)
 	if(eyeCalendar('getCalendarRemote',array($params['calendar'][0]))){
 		$type = eyeCalendar('getCalendarRemoteType',array($params['calendar'][0]));
 		if($type = 'group'){
-			$noteDir = EYE_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/'.$calendar;
+			$noteDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/'.$calendar;
 		}
 	}else{
 		$noteDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.$calendar;
@@ -159,7 +159,7 @@ function lib_eyeCalendar_retriveNote($params){
 	if(eyeCalendar('getCalendarRemote',array($params['calendar']))){
 		$type = eyeCalendar('getCalendarRemoteType',array($params['calendar']));
 		if($type = 'group'){
-			$noteDir = EYE_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/'.$calendar;
+			$noteDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/'.$calendar;
 		}
 	}else{
 		$noteDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.$calendar;
@@ -522,7 +522,7 @@ function getDirTime($time,$calendar,$remoteType=null){
 	$myDate = getDate($time);
 	$noteDir = '';
 	if($remoteType != null){
-		$noteDir = EYE_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/'.$calendar.'/';
+		$noteDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/'.$calendar.'/';
 	}else{
 		$noteDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.$calendar.'/';
 	}
@@ -534,7 +534,7 @@ function getDirTime($time,$calendar,$remoteType=null){
 function mkDirTime($time,$calendar,$remoteType){
 	$myDate = getDate($time);
 	if($remoteType != null){
-		$noteDir = EYE_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/'.$calendar.'/';
+		$noteDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/'.$calendar.'/';
 	}else{
 		$noteDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.$calendar.'/';
 	}

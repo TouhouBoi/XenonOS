@@ -25,7 +25,7 @@ function eyeHelp_run($params = null)
 	global $checknum, $myPid;
 	global $currentUser;
 
-	include_once(EYE_ROOT.'/'.APP_DIR.'/eyeHelp/events'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeHelp/events'.EYE_CODE_EXTENSION);
 
 	//This checks if there were passed any params (can be APP_NAME or APP_NAME.eyeHelp)
 	if ($params[0]!='')
@@ -329,7 +329,7 @@ function drawTree($object, $tree, $dir)
 			}
 		}
 	}
-	
+
 	$currentUser = $oldUser;
 }
 ?>

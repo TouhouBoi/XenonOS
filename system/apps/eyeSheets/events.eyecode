@@ -91,7 +91,7 @@ function openFile($file) {
 }
 
 function parseMyODS($content) {
-	require_once(EYE_ROOT.'/'.APP_DIR.'/eyeSheets/lib/ods'.EYE_CODE_EXTENSION);
+	require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeSheets/lib/ods'.EYE_CODE_EXTENSION);
 	$myOds = parseOds($content);
 	$ret = "
 		cols = 10;
@@ -148,7 +148,7 @@ function eyeSheets_on_saveFile($params=null) {
 	$myArgs = /* utf8 */ explode("\n", $arg);
 	$pattern = '/\[(\d+)\,(\d+)\,\"([^"]+)\"/';
 
-	include_once(EYE_ROOT.'/'.APP_DIR.'/eyeSheets/lib/ods'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeSheets/lib/ods'.EYE_CODE_EXTENSION);
 	$ods = newOds();
 
 	for($i=0;$i<$maxX;$i++) {

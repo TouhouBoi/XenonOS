@@ -17,7 +17,7 @@
 /**
  * needed for PEAR_VALIDATE_* constants
  */
-require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Validate.php';
+require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/Validate.php';
 /**
  * Error code if the package.xml <package> tag does not contain a valid version
  */
@@ -100,7 +100,7 @@ class PEAR_PackageFile
             return $a;
         }
 
-        include_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/Parser/v' . $version{0} . '.php';
+        include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/Parser/v' . $version{0} . '.php';
         $version = $version{0};
         $class = "PEAR_PackageFile_Parser_v$version";
         $a = new $class;
@@ -128,7 +128,7 @@ class PEAR_PackageFile
             return $a;
         }
 
-        include_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v' . $version{0} . '.php';
+        include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/PackageFile/v' . $version{0} . '.php';
         $version = $version{0};
         $class = $this->getClassPrefix() . $version;
         $a = new $class;
@@ -238,7 +238,7 @@ class PEAR_PackageFile
             return $a;
         } else {
             if (!class_exists('PEAR_ErrorStack')) {
-                require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ErrorStack.php';
+                require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/PEAR/ErrorStack.php';
             }
 
             PEAR_ErrorStack::staticPush('PEAR_PackageFile',
@@ -302,7 +302,7 @@ class PEAR_PackageFile
     function &fromTgzFile($file, $state)
     {
         if (!class_exists('Archive_Tar')) {
-            require_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Archive/Tar.php';
+            require_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/Archive/Tar.php';
         }
 
         $tar = new Archive_Tar($file);

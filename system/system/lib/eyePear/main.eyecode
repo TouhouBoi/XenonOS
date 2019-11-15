@@ -14,9 +14,9 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-set_include_path('.' . PATH_SEPARATOR . realpath(EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear') . PATH_SEPARATOR . get_include_path());
+set_include_path('.' . PATH_SEPARATOR . realpath(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear') . PATH_SEPARATOR . get_include_path());
 
 function lib_eyePear_Load($params) {
-	return include_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . str_replace('_', '/', $params[0]) . '.php';
+	return include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyePear/' . str_replace('_', '/', $params[0]) . '.php';
 }
 ?>

@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function eyeControl_on_editfiletype_save($params = '') {
 	$filetype = basename($GLOBALS['eyeControl_editfiletype_hidden']->text);
 	if (!empty($filetype) && !empty($GLOBALS['eyeControl_editfiletype_textbox_title']->text)) {
-		$file = EYE_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/' . $filetype . '.xml';
+		$file = XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/' . $filetype . '.xml';
 		$xml = eyeXML('getXMLfile', array($file));
 		$xml['fileType'][0]['app'][0] = $GLOBALS['eyeControl_editfiletype_select_application']->selected;
 		$xml['fileType'][0]['description'][0] = $GLOBALS['eyeControl_editfiletype_textbox_description']->text;

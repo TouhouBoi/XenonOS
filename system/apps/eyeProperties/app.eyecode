@@ -120,7 +120,7 @@ function eyeProperties_run($params = '') {
 
 	if (!isset($path)) {
 		$rmusrdir = um('getCurrentUserDir') . '/' . FILES_USER_DIR;
-		$rmusrdir = substr($rmusrdir, strlen(EYE_ROOT . '/')); // utf8
+		$rmusrdir = substr($rmusrdir, strlen(XENONOS_ROOT . '/')); // utf8
 		$rmusrdir = str_replace('//','/',$rmusrdir);
 		$rmusrdir = str_replace('//','/',$rmusrdir);
 
@@ -129,8 +129,8 @@ function eyeProperties_run($params = '') {
 		$rmgroupdir = str_replace('//','/',$rmgroupdir);
 
 		$path = $file;
-		if (substr($path, 0, strlen(EYE_ROOT . '/')) === EYE_ROOT . '/') { // utf8
-			$path = substr($path, strlen(EYE_ROOT . '/')); // utf8
+		if (substr($path, 0, strlen(XENONOS_ROOT . '/')) === XENONOS_ROOT . '/') { // utf8
+			$path = substr($path, strlen(XENONOS_ROOT . '/')); // utf8
 		}
 		$path = str_replace('//','/',$path);
 		$path = str_replace('//','/',$path);

@@ -18,12 +18,12 @@ function eyeControl_on_theme_change($params = '') {
 	$ThemeXML = eyeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
 	$oldTheme = basename($ThemeXML['eyeDesk'][0]['theme'][0]);
 	$newTheme = basename($params['eyeControl_theme_select'][0]);
-	if (vfs('real_fileExists',array(EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $oldTheme . '/unload.eyecode'))) {
-		include_once(EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $oldTheme . '/unload.eyecode');
+	if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $oldTheme . '/unload.eyecode'))) {
+		include_once(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $oldTheme . '/unload.eyecode');
 		call_user_func('theme_' . $oldTheme . '_unload');
 	}
-	if (vfs('real_fileExists',array(EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $newTheme . '/load.eyecode'))) {
-		include_once(EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $newTheme . '/load.eyecode');
+	if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $newTheme . '/load.eyecode'))) {
+		include_once(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $newTheme . '/load.eyecode');
 		call_user_func('theme_' . $newTheme . '_load');
 	}
 	// Reload $ThemeXML, because its content could change
@@ -32,7 +32,7 @@ function eyeControl_on_theme_change($params = '') {
 	eyeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$ThemeXML));
 	if (eyeControl_lib_getConfigUser() == '[skel]') {
 		// DEFAULT_THEME
-		$file = EYE_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/eyex.xml';
+		$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/eyex.xml';
 		$eyex = eyeXML('getXMLfile',array($file));
 		$eyex['CONFIG'][0]['DEFAULT_THEME'][0] = $params['eyeControl_theme_select'][0];
 		eyeXML('setXMLFile',array($file,$eyex));
@@ -51,7 +51,7 @@ function eyeControl_on_theme_change($params = '') {
 function eyeControl_on_theme_select($params = '') {
 	global $currentUser;
 	global $myPid;
-	$dir = EYE_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/';
+	$dir = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/';
 	$theme = basename($params['selected'][0]);
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;

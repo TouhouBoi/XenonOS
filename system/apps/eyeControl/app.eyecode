@@ -19,7 +19,7 @@ function eyeControl_run($params = '') {
 	global $currentUser;
 	global $myPid;
 // Include all libraries
-	$dir = EYE_ROOT . '/' . APP_DIR . '/eyeControl/libraries/';
+	$dir = XENONOS_ROOT . '/' . APP_DIR . '/eyeControl/libraries/';
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
 	$openDir = vfs('real_getDirContent',array($dir,'*' . EYE_CODE_EXTENSION));
@@ -228,7 +228,7 @@ function eyeControl_run($params = '') {
 				}
 			}
 		}
-		$dir = EYE_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeControl/others/';
+		$dir = XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeControl/others/';
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
 		$openDir = vfs('real_getDirContent',array($dir,'*.xml',2));
