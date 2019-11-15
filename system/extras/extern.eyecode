@@ -32,7 +32,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
  */
 
 function eyeOS_start() {
-	if (!defined('EYE_INDEX')) {
+	if (!defined('XENONOS_INDEX')) {
 		define('EYE_INDEX', 1);
 
 		define('EYE_ROOT', dirname(__FILE__) . '/..');
