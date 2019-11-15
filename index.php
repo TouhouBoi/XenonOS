@@ -77,18 +77,14 @@ function array_map_recursive($callback, $array, $mapkeys = false)
 }
 
 /*
- * PHP.INI [END]
- */
-
-/*
-*This define is so useful to check if the client has accesed
-*oneye from the right way (this file).
+* This Define checks if the client has Accessed
+* XenonOS from The Right Way (This File).
 */
 define('EYE_INDEX', 1);
 
 /*
-*Includes needed before do anything, in theory only settings.php
-*should be here
+* Includes are required before Doing anything else,
+* only "settings.php" should be here.
 */
 require_once('settings.php');
 
