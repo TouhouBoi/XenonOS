@@ -75,7 +75,7 @@ function service($servicename, $servicefunction=null, $params=null, $noListen=0)
 
 	// ONEYE_LOG is DEPRECATED
 	//$logs = service_logs_TimerStart('service_' . $sec_servicename . '_' . $servicefunction);
-	//$ret = call_user_func('service_' . $sec_servicename . '_' . $servicefunction, $params);
+	$ret = call_user_func('service_' . $sec_servicename . '_' . $servicefunction, $params);
 
 	//service_logs_TimerStop($logs);
 
