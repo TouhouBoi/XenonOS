@@ -232,7 +232,7 @@ function eyeDesk_run($params = '') {
 	include_once(EYE_ROOT . '/' . APP_DIR . '/eyeDesk/events' . EYE_CODE_EXTENSION);
 	eyeDesk_on_OpenPath();
 
-	eyex('messageBox', array('content' => 'Welcome to %s, %s.', 'sound' => false, 'tokens' => array(EYEOS_HOSTNAME,'<strong>' . $currentUser . '</strong>')));
+	eyex('messageBox', array('content' => 'Welcome to %s, %s.', 'sound' => false, 'tokens' => array(XENONOS_HOSTNAME,'<strong>' . $currentUser . '</strong>')));
 
 	addListenerLibraryCall('onEvent','eyeFiles','update');
 	addListenerServiceCall('onResized','eyex','resizedBrowser',1);
