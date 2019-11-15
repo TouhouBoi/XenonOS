@@ -1,22 +1,42 @@
 <?php
+/*
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+
+
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+
+*/
 
 function lib_eyeConfig_setUserConfig($params) {
 	if (!is_array($params) || !isset($params[0]) || !isset($params[1])) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
-	
+
 	// Connect to the Database
 	$db = _mySQL_connect();
 	if ($db == false) {
 		return false;
 	}
-	
+
 	$username = $db->escape_string($params[0]);
 	if (!$username) {
 		return false;
 	}
-		
+
 	$userArray = $params[1]['eyeUser'][0];
 	$cols = '';
 	$vals = '';
@@ -31,7 +51,7 @@ function lib_eyeConfig_setUserConfig($params) {
 			$maintain['users'] = $value;
 		} else {
 			$cols .= $db->escape_string($key) . ', ';
-			
+
 			$val = $db->escape_string($value[0]);
 			switch ($key) {
 				case 'quota':
@@ -46,7 +66,7 @@ function lib_eyeConfig_setUserConfig($params) {
 	}
 	$cols = /* utf8 */ substr($cols, 0, -2);
 	$vals = /* utf8 */ substr($vals, 0, -2);
-	
+
 	// Compose Queries
 	$q = array();
 	$q[] = 'REPLACE INTO tblUser ('. $cols .') VALUES ('. $vals .')';
@@ -70,7 +90,7 @@ function lib_eyeConfig_setUserConfig($params) {
 			}
 		}
 	}
-	
+
 	// Run Queries and Exit
 	foreach ($q as $query) {
 		$result = $db->query($query);
@@ -87,27 +107,27 @@ function lib_eyeConfig_getUserConfig($params) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
-	
+
 	// Connect to the Database
 	$db = _mySQL_connect();
 	if ($db == false) {
 		return false;
 	}
-	
+
 	$username = $db->escape_string($params[0]);
 	if (!$username) {
 		return false;
 	}
-	
+
 	// Query the Database
 	$userResult = $db->query('SELECT * FROM tblUser WHERE username = "' . $username . '"');
 	$groupResult = $db->query('SELECT * FROM tblGroups WHERE username = "' . $username . '"');
-	
+
 	// Validate results
 	if ($userResult === false || $userResult->num_rows === 0) {
 		return false;
 	}
-	
+
 	// Collate values into an Array oneye's UM can understand
 	$userDetails = array();
 	foreach ($userResult->fetch_assoc() as $key => $value) {
@@ -115,7 +135,7 @@ function lib_eyeConfig_getUserConfig($params) {
 			$userDetails[$key] = array($value);
 		}
 	}
-	
+
 	// Add Groups to the Array
 	if ($groupResult->num_rows > 0) {
 		$userDetails['group'] = array();
@@ -123,12 +143,12 @@ function lib_eyeConfig_getUserConfig($params) {
 			$userDetails['group'][] = $group['groupname'];
 		}
 	}
-	
+
 	// Detect and Add Maintained Groups and Users to the Array if Applicable
 	if (is_array($userDetails['maintainer']) && $userDetails['maintainer'][0] == 1) {
 		$maintGroupResult = $db->query('SELECT * FROM tblMaintainedGroups WHERE maintainer = "' . $username . '"');
 		$maintUserResult = $db->query('SELECT * FROM tblMaintainedUsers WHERE maintainer = "' . $username . '"');
-		
+
 		if ($maintGroupResult->num_rows > 0) {
 			$userDetails['maintain'] = array();
 			while ($group = $maintGroupResult->fetch_assoc()) {
@@ -142,7 +162,7 @@ function lib_eyeConfig_getUserConfig($params) {
 			}
 		}
 	}
-	
+
 	// Return the Array
 	return array('eyeUser' => array($userDetails));
 }
@@ -152,7 +172,7 @@ function lib_eyeConfig_addUserConfig($params) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
-	
+
 	// Redirect to Set User code, and return that
 	return lib_eyeConfig_setUserConfig($params);
 }
@@ -162,25 +182,25 @@ function lib_eyeConfig_remUserConfig($params) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
-	
+
 	// Connect to the Database
 	$db = _mySQL_connect();
 	if ($db == false) {
 		return false;
 	}
-	
+
 	$username = $db->escape_string($params[0]);
 	if (!$username) {
 		return false;
 	}
-	
+
 	// Compose Queries
 	$q = array();
 	$q[] = 'DELETE FROM tblUser WHERE username = \''. $username .'\';';
 	$q[] = 'DELETE FROM tblGroups WHERE username = \''. $username .'\';';
 	$q[] = 'DELETE FROM tblMaintainedGroups WHERE maintainer = \''. $username .'\';';
 	$q[] = 'DELETE FROM tblMaintainedUsers WHERE maintainer = \''. $username .'\';';
-	
+
 	// Run Queries and Exit
 	foreach ($q as $query) {
 		$result = $db->query($query);
@@ -198,7 +218,7 @@ function lib_eyeConfig_moduleFirstStart ($params = '') {
 	if ($db === false) {
 		return false;
 	}
-	
+
 	// Compose Queries
 	$userTable = "CREATE TABLE IF NOT EXISTS tblUser (
 			userID INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -229,24 +249,24 @@ function lib_eyeConfig_moduleFirstStart ($params = '') {
 			username VARCHAR(32) DEFAULT '',
 			PRIMARY KEY (maintainer, username)
 		)";
-	
+
 	// Run Queries
 	$q = array();
 	$q[] = $db->query($userTable);
 	$q[] = $db->query($groupsTable);
 	$q[] = $db->query($userMaintainTable);
 	$q[] = $db->query($groupMaintainTable);
-	
+
 	// Close Connection to Database
 	$db->close();
-	
+
 	// Check results for problems
 	foreach ($q as $result) {
 		if ($result === false) {
 			return false;
 		}
 	}
-	
+
 	// Otherwise, return true
 	return true;
 }
@@ -264,10 +284,10 @@ function _mySQL_connect () {
 		}
 		$password = $pw;
 	}
-	
+
 	// Connect to Database
 	$db = new mysqli(MYSQL_SERVER, MYSQL_USERNAME, $password, MYSQL_DBNAME);
-	
+
 	// Return Result
 	if ($db->connect_errno) {
 		error_log("mySQLi failed to connect : (". $db->connect_errno .") ". $db->connect_error, 0);
