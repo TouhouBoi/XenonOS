@@ -1,17 +1,23 @@
 <?php
 /*
-  ___  _ __   ___ _   _  ___
- / _ \| '_ \ / _ \ | | |/ _ \
-| (_) | | | |  __/ |_| |  __/
- \___/|_| |_|\___|\__, |\___|
-                  |___/
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
 
-oneye is released under the GNU Affero General Public License Version 3 (AGPL3)
- -> provided with this release in license.txt
- -> or via web at www.gnu.org/licenses/agpl-3.0.txt
 
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
 Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
+
 */
 
 function eyeApps_on_Action($params = '') {
@@ -25,9 +31,9 @@ function eyeApps_on_Action($params = '') {
 		));
 	}
 	$GLOBALS['eyeApps_Container']->remove();
-	
+
 	eyeApps_lib_ShowApps($params['category'][0]);
-	
+
 	$xml = eyeXML('getXMLconfig', array('eyeApps', 'conf.xml'));
 	$xml['eyeApps'][0]['category'][0] = $params['category'][0];
 	eyeXML('setXMLconfig', array('eyeApps', 'conf.xml', $xml));
@@ -61,7 +67,7 @@ function eyeApps_on_Resize($params = '') {
 	$GLOBALS['eyeApps_Line']->setHeight($GLOBALS['eyeApps_MenuContainer']->height);
 	$GLOBALS['eyeApps_Container']->setHeight($GLOBALS['eyeApps_MenuContainer']->height);
 	$GLOBALS['eyeApps_Container']->setWidth($GLOBALS['eyeApps_Window']->width - 4 - $GLOBALS['eyeApps_Line']->x);
-	
+
 	eyex('rawjs',array('js' => 'var i = 0;
 	var x = 20;
 	var y = 20;
@@ -146,7 +152,7 @@ function eyeApps_lib_ShowApps($category) {
 		e.style.borderBottom = "1px solid #eeeeee";
 		e.style.borderTop = "1px solid #dadada";'
 	));
-	
+
 	$myContainer = new Container(array(
 		'father' => 'eyeApps_Window_Content',
 		'height' => $GLOBALS['eyeApps_Window']->height - 82,
@@ -160,12 +166,12 @@ function eyeApps_lib_ShowApps($category) {
 		'overflow' => 'auto',
 		'position' => 'absolute'
 	));
-	
+
 	$conf = eyeXML('getXMLconfig',array('eyeFiles','conf.xml'));
 	if (!isset($conf['eyeFiles'][0]['clickMethod'][0])) {
 		$conf['eyeFiles'][0]['clickMethod'][0] = 1;
 	}
-	
+
 	$i = 0;
 	$x = 20;
 	$y = 20;
