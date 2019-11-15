@@ -18,7 +18,7 @@ function eyeDesk_run($params = '') {
 	global $checknum;
 	global $currentUser;
 
-	eyex('runjs',array('js' => 'document.title = %s; window.onbeforeunload = function() { return ""; };','tokens' => array($currentUser . '@' . EYEOS_HOSTNAME)));
+	eyex('runjs', array('js' => 'document.title = %s; window.onbeforeunload = function() { return ""; };','tokens' => array($currentUser . '@' . XENONOS_HOSTNAME)));
 
 	$userDir = um('getCurrentUserDir');
 	if (!vfs('real_fileExists',array($userDir . '/tmp/'))) {
@@ -42,7 +42,7 @@ function eyeDesk_run($params = '') {
 			}
 			unset($xml['eyeDesk'][0]['restoreDock'][0]);
 		}
-		
+
 		// eyeos 1.9.0.0preview1
 		if (check_versions($xml['eyeDesk'][0]['confVersion'][0], '1.9.0.0preview1') === 2) {
 			foreach ($xml['eyeDesk'][0]['autolaunch'] as $key => $value) {
@@ -79,7 +79,7 @@ function eyeDesk_run($params = '') {
 			$navXml['eyeNav'][0]['bookmarks'][0]['bookmark'] = $bookmarks;
 			eyeXML('setXMLconfig', array('eyeNav', 'conf.xml', $navXml));
 		}
-		
+
 		// oneye 0.8.0
 		if (check_versions($xml['eyeDesk'][0]['confVersion'][0], '1.10.0.0') === 2) {
 			if ($xml['eyeDesk'][0]['theme'][0] === 'default') {
@@ -102,7 +102,7 @@ function eyeDesk_run($params = '') {
 			}
 			eyeXML('setXMLconfig', array('eyeDock', 'conf.xml', $dockXml));
 		}
-		
+
 		// oneye 0.8.1
 		if (check_versions($xml['eyeDesk'][0]['confVersion'][0], '1.10.1.0') === 2) {
 			$dockXml = eyeXML('getXMLconfig', array('eyeDock', 'conf.xml'));
@@ -119,7 +119,7 @@ function eyeDesk_run($params = '') {
 			}
 			eyeXML('setXMLconfig', array('eyeDock', 'conf.xml', $dockXml));
 		}
-		
+
 		// oneye 0.9.6 Preview
 		if (check_versions($xml['eyeDesk'][0]['confVersion'][0], '1.11.6.0') === 2) {
 			$data = eyeXML('getXMLconfig', array('eyePdf', 'conf.xml'));
@@ -128,7 +128,7 @@ function eyeDesk_run($params = '') {
 				eyeXML('setXMLconfig', array('eyePdf', 'conf.xml', $xml));
 			}
 		}
-		
+
 		$xml['eyeDesk'][0]['confVersion'][0] = XENONOS_VERSION;
 		eyeXML('setXMLconfig',array('eyeDesk', 'conf.xml', $xml));
 	}
