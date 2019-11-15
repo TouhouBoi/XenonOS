@@ -33,7 +33,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 function eyeOS_start() {
 	if (!defined('XENONOS_INDEX')) {
-		define('EYE_INDEX', 1);
+		define('XENONOS_INDEX', 1);
 
 		define('EYE_ROOT', dirname(__FILE__) . '/..');
 		$error_reporting = error_reporting(E_ALL ^ E_NOTICE);
