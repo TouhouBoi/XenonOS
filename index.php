@@ -80,7 +80,7 @@ function array_map_recursive($callback, $array, $mapkeys = false)
 * This Define checks if the client has Accessed
 * XenonOS from The Right Way (This File).
 */
-define('EYE_INDEX', 1);
+define('XENONOS_INDEX', 1);
 
 /*
 * Includes are required before Doing anything else,
