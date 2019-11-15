@@ -84,7 +84,7 @@ function array_map_recursive($callback, $array, $mapkeys = false)
 *This define is so useful to check if the client has accesed
 *oneye from the right way (this file).
 */
-define('EYE_INDEX',1);
+define('EYE_INDEX', 1);
 
 /*
 *Includes needed before do anything, in theory only settings.php
@@ -165,7 +165,7 @@ function loadIndex($index)
 
 function indexRequested()
 {
-	if(isset($_REQUEST['index']) && !empty($_REQUEST['index']))
+	if (isset($_REQUEST['index']) && !empty($_REQUEST['index']))
 	{
 		return basename($_REQUEST['index']);
 	}
@@ -188,11 +188,11 @@ function loadStringLibrary()
 *Set the oneye debuggin, at the moment only changes
 *the error_reporting, but may change more things in the future.
 */
-function setPhpInitDebug(){
+function setPhpInitDebug() {
 	ini_set('display_errors', false);
 	ini_set('html_errors', false);
 
-	$error_reporting = 0;
+	/*$error_reporting = 0;
 
 	if (EYEOS_DEBUG_MODE === '2')
 	{
@@ -210,7 +210,9 @@ function setPhpInitDebug(){
 	else if (EYEOS_DEBUG_MODE)
 	{
 		$error_reporting = E_ERROR;
-	}
+	}*/
+
+	$error_reporting = E_ERROR;
 
 	error_reporting($error_reporting);
 
