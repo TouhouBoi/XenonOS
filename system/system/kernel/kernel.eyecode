@@ -74,10 +74,10 @@ function service($servicename, $servicefunction=null, $params=null, $noListen=0)
 	genericListener('KListenerList',$sec_servicename,$minfunction,$noListen,$params);
 
 	// ONEYE_LOG is DEPRECATED
-	$logs = service_logs_TimerStart('service_' . $sec_servicename . '_' . $servicefunction);
-	$ret = call_user_func('service_' . $sec_servicename . '_' . $servicefunction, $params);
+	//$logs = service_logs_TimerStart('service_' . $sec_servicename . '_' . $servicefunction);
+	//$ret = call_user_func('service_' . $sec_servicename . '_' . $servicefunction, $params);
 
-	service_logs_TimerStop($logs);
+	//service_logs_TimerStop($logs);
 
 	genericListener('KListenerListP', $sec_servicename, $minfunction, $noListen, $params);
 
@@ -122,10 +122,10 @@ function reqLib( $libname, $function, $params=null, $noListen=true )
 		genericListener('LListenerList',$sec_libname,$function,$noListen,$params);
 
 		// ONEYE_LOG is DEPRECATED
-		$logs = service_logs_TimerStart('lib_' . $libname . '_' . $function);
-		$re = call_user_func('lib_' . $libname . '_' . $function, $params);
+		//$logs = service_logs_TimerStart('lib_' . $libname . '_' . $function);
+		//$re = call_user_func('lib_' . $libname . '_' . $function, $params);
 
-		service_logs_TimerStop($logs);
+		//service_logs_TimerStop($logs);
 
 		genericListener('LListenerListP', $sec_libname, $function, $noListen, $params);
 
@@ -460,7 +460,7 @@ function createFunctionAlias()
 	$alias = _getAlias($servpath,'service',0);
 	$alias .= _getAlias($libpath,'reqLib',1);
 
-	eval($alias); // eval warning
+	eval($alias); // warning
 }
 
 function _getAlias($path,$baseFunc,$noListen)
@@ -737,11 +737,4 @@ if (ACL_SUPPORT == 1)
 loadServiceConfig();
 
 include_once(EYE_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/compat'.EYE_CODE_EXTENSION);
-
-//ONEYE_LOG is DEPRECATED
-include_once EYE_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/logs/main' . EYE_CODE_EXTENSION;
-
-service_logs_Start();
-
-register_shutdown_function('service_logs_Stop');
 ?>
