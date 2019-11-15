@@ -63,7 +63,7 @@ function service_um_isValidUsername($params = null) {
 */
 function service_um_createUser($params = null){
 	global $currentUser;
-	
+
 	// Check arguments
 	if(!$params['username'] || !$params['password']) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
@@ -72,14 +72,14 @@ function service_um_createUser($params = null){
 	if (um('isValidUsername', array($params['username'])) === false) {
 		return false;
 	}
-	
+
 	// Check if user exists.
 	$username = $params['username'];
 	if (um('userExist', array($username))) {
 		errorCodes('setErrorCode', array(UM_USER_ALREADY_EXISTS));
 		return false;
 	}
-	
+
 	// Create new user dirs
 	$myDir = um('getUserDir', array($username));
 	if(!vfs('real_exists', array(EYE_ROOT.'/'.USERS_DIR.'/'.getAcronim(array($username))))){
@@ -88,10 +88,10 @@ function service_um_createUser($params = null){
 	if(!vfs('real_exists', array($myDir))){
 		vfs('mkDir', array($myDir));
 	}
-	
+
 	// Copy skel to user
 	recursiveCopy(EYE_ROOT.'/'.SYSTEM_DIR.'/'.'/conf/skel/',$myDir,TRUE);
-	
+
 	//handling userInfo.
 	$array['username'][0] = $username;
 	_service_um_hashPassword($array, $params['password']);
@@ -167,21 +167,21 @@ function service_um_retrieveUser($params = null){
 		return false;
 	}
 	$username = basename($params[0]);
-	
+
 	if ($username == '') {
 		return false;
 	}
-	
+
 	global $currentUser;
 	if($currentUser != $username && $currentUser != ROOTUSER) {
 		return false;
 	}
-	
+
 	$oldUser = $currentUser;
 	$currentUser = REAL_ROOTUSER;
 	$userconfig = eyeConfig('getUserConfig', array($username));
 	$currentUser = $oldUser;
-	
+
 	return $userconfig;
 }
 
@@ -194,10 +194,10 @@ function service_um_UserIsAdmin($params=null) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
-	
+
 	$username = basename($params[0]);
 	$userInfo = um('retrieveUser', array($username));
-	
+
 	if (isset($userInfo['eyeUser'][0]['admin']) === true && $userInfo['eyeUser'][0]['admin'][0] == '1') {
 		return true;
 	} else {
@@ -217,7 +217,7 @@ function service_um_UserIsAdmin($params=null) {
 * @date 2008/03/11
 */
 function service_um_userExist($params = null){
-	 
+
 	if ($params == null || count($params) < 1){
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
@@ -225,7 +225,7 @@ function service_um_userExist($params = null){
 
 	$username = basename($params[0]);
 	$filePath = um('getUserDir', array($username));
-	
+
 	if (file_exists($filePath) && $username !== '') {
 		return true;
 	} else {
@@ -300,23 +300,23 @@ function service_um_updateUser($params = null){
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
-	  
+
 	if ($params['username'] == null) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
-	 
+
 	global $currentUser;
-	 
+
 	//user should be current user, or run as root
 	if($currentUser != $params['username'] && $currentUser != ROOTUSER) {
 	 	return false;
 	}
-	 
+
 	//TODO: Make findUserByName?
 	$userInfo = um('retrieveUser', array(basename($params['username'])));
 	$array = $userInfo['eyeUser'][0];
-	
+
 	if (isset($params['password'])) {
 		_service_um_hashPassword($array, $params['password']);
 	}
@@ -400,12 +400,12 @@ function service_um_updateUser($params = null){
 	}
 
 	$userInfo['eyeUser'][0] = $array;
-	
+
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
 	$ret = eyeConfig('setUserConfig', array($params['username'], $userInfo));
 	$currentUser = $oldUser;
-	
+
 	return $ret;
 }
 
@@ -445,7 +445,7 @@ function service_um_deleteUser($params = null){
 	if (!$result) {
 		return false;
 	}
-	
+
 	// Delete user config entry
 	$result = eyeConfig('remUserConfig', array($username));
 	//Error handling. (2)
@@ -517,7 +517,7 @@ function service_um_checkDisabled($params = '') {
 * @date 2008/03/11
 */
 function service_um_login($params = null) {
-	
+
 	if ($params == null || count($params) < 2) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
@@ -540,12 +540,12 @@ function service_um_login($params = null) {
 	$info = um('retrieveUser', array($username));
 	$currentUser = $oldUser;
 	//end of special suid
-	
+
 	if (!$info || !is_array($info)) {
 		//user not exist
 		return false;
 	}
-	
+
 	if (isset($info['eyeUser'][0]['expirationDate'])) {
 		if (intval($info['eyeUser'][0]['expirationDate'][0]) < time() && intval($info['eyeUser'][0]['expirationDate'][0]) != 0) {
 			eyeX('rawjs', array('js'=>'alert("Your account has expired.");'));
@@ -554,7 +554,7 @@ function service_um_login($params = null) {
 	}
 	if (_service_um_validatePassword($info['eyeUser'][0], $password)) {
 		_service_um_rehashPassword($info['eyeUser'][0], $password);
-		
+
 		//If the user is disabled, set error and return false
 		if(service_um_checkDisabled(array($info))){
 			errorCodes('setErrorCode', array(UM_USER_IS_DISABLED));
@@ -592,7 +592,7 @@ function service_um_login($params = null) {
 * @date 2008/03/11
 */
 function service_um_loginWithHash($params = null) {
-	
+
 	if($params == null || count($params) < 2){
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
@@ -608,12 +608,12 @@ function service_um_loginWithHash($params = null) {
 	$info = um('retrieveUser', array($username));
 	$currentUser = $oldUser;
 	// end of special suid
-	
+
 	if(!$info || !is_array($info)) {
 		//user not exist
 		return false;
 	}
-	
+
 	if (isset($info['eyeUser'][0]['expirationDate'])) {
 		if (intval($info['eyeUser'][0]['expirationDate'][0]) < time() && intval($info['eyeUser'][0]['expirationDate'][0]) != 0) {
 			eyeX('rawjs', array('js'=>'alert("Your account has expired.");'));
@@ -836,7 +836,7 @@ function service_um_getUserFilePath($params=null) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
-	
+
 	$username = $params[0];
 	if (!$username) {
 		return false;
@@ -868,7 +868,7 @@ function service_um_getUserFilePath($params=null) {
 * Last update 2007-06-3
 ***/
 function getAcronim($params) {
-	 
+
 	$username = $params[0];
 	if(!$username) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
@@ -915,7 +915,7 @@ function _service_um_hashPassword(&$array, $password) {
 
 function _service_um_rehashPassword($array, $password) {
 	global $currentUser;
-	
+
 	if (isset($array['password_hash']) && password_needs_rehash($array['password_hash'][0], PASSWORD_DEFAULT, array('cost' => PASSWORD_HASH_COST)) || !isset($array['password_hash']) && function_exists('password_hash') && !SECURE_LOGIN) {
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
