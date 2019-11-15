@@ -30,7 +30,7 @@ function uname_run($params = null)
 	{
 		if ($params[0] == '-a')
 		{
-			eyeX('print', array ('XenonOS ' . XENONOS_VERSION . XENONOS_HOSTNAME));
+			eyeX('print', array ('XenonOS ' . 'v' . XENONOS_VERSION . 'Kernel' . 'v' . XE_KERNEL_VERSION . 'Hostname (' . XENONOS_HOSTNAME . ')'));
 		}
 		elseif($params[0] == '-s')
 		{
