@@ -123,7 +123,7 @@ function reqLib( $libname, $function, $params=null, $noListen=true )
 
 		// ONEYE_LOG is DEPRECATED
 		//$logs = service_logs_TimerStart('lib_' . $libname . '_' . $function);
-		//$re = call_user_func('lib_' . $libname . '_' . $function, $params);
+		$re = call_user_func('lib_' . $libname . '_' . $function, $params);
 
 		//service_logs_TimerStop($logs);
 
@@ -286,6 +286,7 @@ function loadConfig($appName)
 				}
 			}
 		}
+
 		closedir($handler);
 	}
 }
