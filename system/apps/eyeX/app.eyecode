@@ -175,7 +175,7 @@ function eyeX_run($params = '') {
 				<div id="eyeWallpaper"></div>
 				<div id="eyeApps"><div id="eyeWidgets" style="height: 100%; width: 100%;"></div></div>
 				<div id="error" style="color: #ffffff; line-height: 2; text-align: center;">
-					<div id="eyex-info"><noscript>' . str_replace('%s','<span style="font-weight: bold;">www.oneye-project.org</span>',utf8_htmlspecialchars(i18n('translate',array($textJavascript)), ENT_QUOTES)) . '</noscript></div>
+					<div id="eyex-info"><noscript>' . str_replace('%s','<span style="font-weight: bold;">touhouboi.duckdns.org</span>',utf8_htmlspecialchars(i18n('translate',array($textJavascript)), ENT_QUOTES)) . '</noscript></div>
 					<div id="eyex-powered">' . utf8_htmlspecialchars(i18n('translate', array('Running XenonOS')), ENT_QUOTES) . '</div>
 				</div>
 			</div>
