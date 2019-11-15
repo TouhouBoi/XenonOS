@@ -90,7 +90,7 @@ function eyeOS_start() {
 
 function eyeOS_stop() {
 	global $currentUser;
-	if (defined('EYE_INDEX') || $currentUser) {
+	if (defined('XENONOS_INDEX') || $currentUser) {
 		global $ONEYE_EXTERN;
 
 		error_reporting($ONEYE_EXTERN['error_reporting']);
