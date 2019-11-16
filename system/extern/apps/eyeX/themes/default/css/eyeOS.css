@@ -944,11 +944,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 /* top */
 
 .eyeDock_top {
-	background-color: #232D34;
+	background-color: #5ACD5A;
 	background-image: url('index.php?theme=USERTHEME&extern=images/apps/eyeDock/backgrounds/top.png');
 	background-repeat: repeat-x;
 	background-position: bottom;
-	border-bottom: 2px ridge #000000;
+	border-bottom: 2px ridge #5ACD5A;
 	max-height: 32px;
 	width: 100%;
 	z-index: 12;
