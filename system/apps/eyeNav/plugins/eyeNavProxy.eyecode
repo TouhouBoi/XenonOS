@@ -25,11 +25,15 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 * Better href="javascript: handling
 */
 
-function eyeNav_on_doOutput($params = '') {
+function eyeNav_on_doOutput($params = '')
+{
 	global $checknum;
+
 	$GLOBALS['_script_base'] = 'index.php?checknum=' . $checknum . '&msg=doOutput';
 	$GLOBALS['_script_url'] = 'index.php?checknum=' . $checknum . '&msg=doOutput';
+	
 	include(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/plugins/eyeNavProxy/index.php');
+
 	exit;
 }
 ?>
