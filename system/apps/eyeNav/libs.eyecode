@@ -1,17 +1,23 @@
 <?php
 /*
-  ___  _ __   ___ _   _  ___
- / _ \| '_ \ / _ \ | | |/ _ \
-| (_) | | | |  __/ |_| |  __/
- \___/|_| |_|\___|\__, |\___|
-                  |___/
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
 
-oneye is released under the GNU Affero General Public License Version 3 (AGPL3)
- -> provided with this release in license.txt
- -> or via web at www.gnu.org/licenses/agpl-3.0.txt
 
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
 Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
+
 */
 
 function eyeNav_lib_ShowBookmarks($params = array()) {
@@ -154,7 +160,7 @@ function eyeNav_lib_addContextMenu($menuName, $nodeName, $addOnly=false) {
 		$BookmarkId,
 		$menuName . 'addfolder_menu'
 	);
-	
+
 	if (!$addOnly) {
 
 		$myMenu->addEntry(
@@ -188,7 +194,7 @@ function eyeNav_on_nav_asApp($params=null,$theurl = null) {
 	global $myPid;
 	$GLOBALS['selectedBookmarkId_HID']->setText($params);
 	$GLOBALS['nav_TREE']->selectItem('nav#item_'.$params);
-	
+
 	$xml = eyeXML('getXMLconfig',array('eyeNav','conf.xml'));
 	$xml = $xml['eyeNav'][0]['bookmarks'][0]['bookmark'];
 	$bookmark = eyeNav_getBookmarkFromId($xml,$params);
@@ -1133,7 +1139,7 @@ function eyeNav_lib_doUrl($params = array()) {
 	global $checknum;
 	global $currentUser;
 	global $myPid;
-	
+
 	if (!$params['page'][0]) {
 		$config = eyeXML('getXMLconfig',array('eyeNav','conf.xml'));
 		$page = $config['eyeNav'][0]['home'][0];
@@ -1152,39 +1158,39 @@ function eyeNav_lib_doUrl($params = array()) {
 	$GLOBALS['eyeNav_url']->setText($page);
 	if (!$params['frame'][0]) {
 		eyex('runjs', array('js' => 'var doUrl, frame;
-		
+
 		doUrl = function () {
 			var contentDocument;
-			
+
 			contentDocument = frame.contentDocument ? frame.contentDocument : frame.document;
 			contentDocument.getElementsByTagName("iframe")[0].src = "index.php?checknum=' . $checknum . '&msg=doOutput&page=' . base64_encode($page) . '";
 		};
-		
+
 		frame = parent.frames["' . strval($myPid) . '_eyeNav_frame"];
 		if (frame.contentDocument) {
 			doUrl();
 		} else {
 			setTimeout(doUrl, 200);
 		}'));
-		
+
 		eyeNav_lib_FocusFrame();
 	}
 }
 
 function eyeNav_lib_FocusFrame() {
 	global $myPid;
-	
+
 	$GLOBALS['eyeNav_frame']->focus();
-	
+
 	eyex('runjs', array('js' => 'var focus, frame;
-	
+
 	focus = function () {
 		var contentDocument;
-		
+
 		contentDocument = frame.contentDocument ? frame.contentDocument : frame.document;
 		contentDocument.getElementsByTagName("iframe")[0].focus();
 	};
-	
+
 	frame = parent.frames["' . strval($myPid) . '_eyeNav_frame"];
 	if (frame.contentDocument) {
 		focus();
