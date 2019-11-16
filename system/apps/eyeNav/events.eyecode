@@ -163,7 +163,7 @@ function eyeNav_on_Bookmarks($params = '')
 function eyeNav_on_nav_TREE($params = null)
 {
 	$item = $params['itemName'][0];
-	$id = /* utf8 */ substr($item, 9);
+	$id = substr($item, 9);
 
 	$GLOBALS['selectedBookmarkId_HID']->setText($id);
 
