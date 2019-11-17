@@ -20,21 +20,24 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeMp3_on_Close($params = '') {
+function eyeMp3_on_Close($params = '')
+{
 	proc('end');
 }
 
-function eyeMp3_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+function eyeMp3_on_Message($params = '')
+{
+	eyeWidgets('updateContent', $params);
 }
 
-function eyeMp3_on_getFile($params = '') {
+function eyeMp3_on_getFile($params = '')
+{
 	header('Content-Type: audio/mpeg');
 	header("Cache-Control: no-cache, must-revalidate");
 	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-	header('Content-Length: ' . vfs('filesize',array($GLOBALS['eyeMp3_Hidden']->text),1));
+	header('Content-Length: ' . vfs('filesize', array($GLOBALS['eyeMp3_Hidden']->text), 1));
 	header('Accept-Ranges: bytes');
-	vfs('readfile',array($GLOBALS['eyeMp3_Hidden']->text));
+	vfs('readfile', array($GLOBALS['eyeMp3_Hidden']->text));
 	delShortUrl('index.php/.mp3');
 	exit;
 }
