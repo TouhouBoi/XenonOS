@@ -127,7 +127,7 @@ function service_mmap_routemsg($params) {
 		define('ROOTUSER',REAL_ROOTUSER);
 	}
 
-	//If events.eyecode can be included, then include it, else exit.
+	//If events.xecode can be included, then include it, else exit.
 	if(is_readable(XENONOS_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/'.'events'.EYE_CODE_EXTENSION)) {
 		include_once(XENONOS_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/'.'events'.EYE_CODE_EXTENSION);
 	} else {

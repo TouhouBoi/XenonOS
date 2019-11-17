@@ -40,7 +40,7 @@ define('EYEFTP_LOGSTYLE_ERROR', 'err');
 /*********************************************************************************************/
 
 /**
- * Called after the initialization of the interface (function 'eyeFTP_run()' in app.eyecode)
+ * Called after the initialization of the interface (function 'eyeFTP_run()' in app.xecode)
  */
 function eyeFTP_on_eyeFTP_initComplete($params=null) {
 	$version = eyeFTP_getVersionFromInfoXML();
@@ -63,7 +63,7 @@ function eyeFTP_on_eyeFTP_initComplete($params=null) {
 }
 
 /**
- * @see file hosts.eyecode for operations concerning hosts management
+ * @see file hosts.xecode for operations concerning hosts management
  */
 function eyeFTP_on_eyeFTP_manageHosts_ITM($params=null) {
 	showManageHostsDialog();

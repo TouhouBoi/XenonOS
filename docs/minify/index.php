@@ -109,7 +109,7 @@ function getContent($folder, $excludeJ = array(), $excludeM = array(), $excludeO
 					$content['o'] .= 'echo ' . $folder . $file . "\n";
 					$content['o'] .= '"docs\\libraries\\OptiPNG\\optipng.exe" -fix -o5 -out "' . $folder . $file . '" -quiet "' . $folder . $file . '"' . "\n";
 				}
-			} else if (substr($file, -4) === '.php' || substr($file, -8) === '.eyecode') {
+			} else if (substr($file, -4) === '.php' || substr($file, -8) === '.xecode') {
 				if ($excludeP !== '*' && in_array($folder . $file, $excludeP) === false) {
 					$content['p'] .= '%php% -l "' . $folder . $file . '"' . "\n";
 				}

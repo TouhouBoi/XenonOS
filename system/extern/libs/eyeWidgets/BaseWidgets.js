@@ -110,9 +110,9 @@ function File_show(params, name, father, x, y, horiz, vert, checknum, cent) {
 	myIframe.style.border = 'none';
 	myIframe.frameBorder = 'no';
 	if (multiple) {
-		myIframe.setAttribute('src', 'index.php?extern=libs/eyeWidgets/getMultipleFile.eyecode&type=dynamic&params[]=' + checknum + '&params[]=' + callback + '&params[]=' + filename + '&params[]=' + pid);
+		myIframe.setAttribute('src', 'index.php?extern=libs/eyeWidgets/getMultipleFile.xecode&type=dynamic&params[]=' + checknum + '&params[]=' + callback + '&params[]=' + filename + '&params[]=' + pid);
 	} else {
-		myIframe.setAttribute('src', 'index.php?extern=libs/eyeWidgets/getFile.eyecode&type=dynamic&params[]=' + checknum + '&params[]=' + callback + '&params[]=' + filename + '&params[]=' + pid);
+		myIframe.setAttribute('src', 'index.php?extern=libs/eyeWidgets/getFile.xecode&type=dynamic&params[]=' + checknum + '&params[]=' + callback + '&params[]=' + filename + '&params[]=' + pid);
 	}
 	createWidget(name + '_Container', father, myIframe, horiz, vert, x, y, -1, -1, 'eyeLineContainer', cent, 'px', visible, 'File');
 }

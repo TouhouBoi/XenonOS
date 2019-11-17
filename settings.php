@@ -55,7 +55,7 @@ define('EYEOS_TMP_DIR', 'tmp');
 define('EYEOS_INFO_EXT', 'eyeInfo');
 define('EYEOS_FILE_EXT', 'eyeFile');
 define('EYEOS_LINK_EXT', 'eyeLink');
-define('EYE_CODE_EXTENSION', '.eyecode');
+define('EYE_CODE_EXTENSION', '.xecode');
 define('EYEOS_TRASH_EXT', 'eyeTrash');
 
 // vfs and um modules
@@ -68,7 +68,7 @@ define('REAL_ROOTUSER', 'root');
 // XenonOS Version
 define('XENONOS_VERSION',' 1.0.1alpha');
 define('KE_KERNEL_VERSION', '1.0.1alpha');
-define('KE_KERNEL_HASH', '3C281DF7E1D12CA3F98F40C862F7238A5B551E2DCCF51590C2A5C2C5943D240E'); // SHA256 Hash of "kernel.eyecode"
+define('KE_KERNEL_HASH', '3C281DF7E1D12CA3F98F40C862F7238A5B551E2DCCF51590C2A5C2C5943D240E'); // SHA256 Hash of "kernel.xecode"
 
 // Define XenonOS Dialog Types
 define('EYEDIALOG_TYPE_OPENFILE', 0);

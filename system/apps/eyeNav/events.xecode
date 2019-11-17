@@ -22,7 +22,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 global $currentUser;
 
-include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/libs.eyecode');
+include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/libs.xecode');
 
 $conf = eyeXML('getXMLconfig', array('eyeNav','conf.xml'));
 $url = XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/plugins/';
@@ -34,7 +34,7 @@ if (vfs('real_fileExists', array ($url2)))
 }
 else
 {
-	include_once($url . 'iframe.eyecode');
+	include_once($url . 'iframe.xecode');
 }
 
 function eyeNav_on_Message($params = '')

@@ -152,7 +152,7 @@ function eyeFeeds_run($params=null) {
 	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_tree_CTN_Container").style.overflow="auto";'));
 
 	//FEEDS TREE
-	//@see func.eyecode#eyeFeeds_drawFeedsTree()
+	//@see func.xecode#eyeFeeds_drawFeedsTree()
 
 	/**********************************************************/
 	//		RIGHT PANEL (ITEMS LIST + OUTLINE)
@@ -184,7 +184,7 @@ function eyeFeeds_run($params=null) {
 	$titlesBox->show(0);
 
 	//ITEMS LIST
-	//@see [func.eyecode] eyeFeeds_clearFeedItems()
+	//@see [func.xecode] eyeFeeds_clearFeedItems()
 
 	//ITEM'S CONTENT BOX
 	$titlesBox = new Box(array(

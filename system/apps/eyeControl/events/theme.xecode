@@ -18,12 +18,12 @@ function eyeControl_on_theme_change($params = '') {
 	$ThemeXML = eyeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
 	$oldTheme = basename($ThemeXML['eyeDesk'][0]['theme'][0]);
 	$newTheme = basename($params['eyeControl_theme_select'][0]);
-	if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $oldTheme . '/unload.eyecode'))) {
-		include_once(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $oldTheme . '/unload.eyecode');
+	if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $oldTheme . '/unload.xecode'))) {
+		include_once(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $oldTheme . '/unload.xecode');
 		call_user_func('theme_' . $oldTheme . '_unload');
 	}
-	if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $newTheme . '/load.eyecode'))) {
-		include_once(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $newTheme . '/load.eyecode');
+	if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $newTheme . '/load.xecode'))) {
+		include_once(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $newTheme . '/load.xecode');
 		call_user_func('theme_' . $newTheme . '_load');
 	}
 	// Reload $ThemeXML, because its content could change

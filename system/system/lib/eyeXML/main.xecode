@@ -26,13 +26,13 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function lib_eyeXML_init(){
 	//Before do anything, we've to be sure that we are radically retrocompatibles if XML_COMPAT is set to 1
 	if(XML_COMPAT == 1){
-		include_once 'parsers/pure.eyecode';
-		include_once 'xmlConfiguration.eyecode';
+		include_once 'parsers/pure.xecode';
+		include_once 'xmlConfiguration.xecode';
 		return true;
 	}
 	//If the compat mode is not set, we've to load the default parser
 	require_once 'parsers/'.XML_PARSER.EYE_CODE_EXTENSION;
-	include_once 'xmlConfiguration.eyecode';
+	include_once 'xmlConfiguration.xecode';
 }
 
 /**

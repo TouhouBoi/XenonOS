@@ -222,8 +222,8 @@ global $checknum;
 extern('getContent', array('<html><head>
 	<title>Slimey</title>
 	<script type="text/javascript">var USERTHEME = "' . $_SESSION['usertheme'] . '";</script>
-	<script src="index.php?extern=apps/eyeShow/lang.eyecode&amp;type=dynamic" type="text/javascript"></script>
-	<script src="index.php?extern=apps/eyeShow/getjs.eyecode&amp;type=dynamic&amp;params[]='.$myPid.'&amp;params[]='.$checknum.'&amp;params[]=slimey" type="text/javascript"></script>
+	<script src="index.php?extern=apps/eyeShow/lang.xecode&amp;type=dynamic" type="text/javascript"></script>
+	<script src="index.php?extern=apps/eyeShow/getjs.xecode&amp;type=dynamic&amp;params[]='.$myPid.'&amp;params[]='.$checknum.'&amp;params[]=slimey" type="text/javascript"></script>
 	<script type="text/javascript">
 		Slimey.includeScripts();
 		Slimey.preloadImages();

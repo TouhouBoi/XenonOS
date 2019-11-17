@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 /* <?php
  * // Here is the place for your script part 1.
  * // Include this file to be able to access eyeOS_start() and eyeOS_stop().
- * include_once './system_xxxxxxxxxx/extras/extern.eyecode';
+ * include_once './system_xxxxxxxxxx/extras/extern.xecode';
  * // Run eyeOS_start to initialise the oneye system.
  * eyeOS_start();
  * // Now you are able to use oneye service functions,

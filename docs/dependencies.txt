@@ -50,7 +50,7 @@ Website: http://yuilibrary.com/download/yuicompressor/
 SimplePie
 =========
 Date: 14th October 2011
-Path: eyeOS/apps/eyeFeeds/simplepie.eyecode
+Path: eyeOS/apps/eyeFeeds/simplepie.xecode
 Version: 1.2.1
 Website: http://simplepie.org/
 
@@ -149,14 +149,14 @@ PclZip
 ======
 MARKED
 Date: 30th September 2009
-Path: eyeOS/system/lib/eyeZip/main.eyecode
+Path: eyeOS/system/lib/eyeZip/main.xecode
 Version: 2.8.2
 Website: http://phpconcept.net/pclzip/index.en.php
 
 zipfile (GFM package)
 =====================
 Date: 5th October 2008
-Path: eyeOS/system/lib/simpleZip/main.eyecode
+Path: eyeOS/system/lib/simpleZip/main.xecode
 Version: 1.0
 Website: http://gamingg.net/downloads.php
 
@@ -177,14 +177,14 @@ Website: http://code.google.com/p/iui/
 PATH                                                      | NAME                                | VERSION        | WEB ADDRESS                                                     | MAINTAINED | CHANGES
 ==========================================================|=====================================|================|=================================================================|============|========
 eyeOS/apps/eyeMail/                                       | PHPMailer                           | 5.1            | http://phpmailer.sf.net/                                        | 08/2009    |
-eyeOS/apps/eyeSoft/libCompress.eyecode                    | PclTar (Mambo package)              | 4.6.5          | http://mambo-foundation.org/                                    | no         | utf8, marked
+eyeOS/apps/eyeSoft/libCompress.xecode                    | PclTar (Mambo package)              | 4.6.5          | http://mambo-foundation.org/                                    | no         | utf8, marked
 eyeOS/extern/apps/eyeMp3/swf/webplayer.swf                | WebMinster WebPlayer                | 2.0.1          | http://webminster.org/                                          | no         |
 eyeOS/extern/apps/eyeShow/                                | Slimey                              | 0.2            | http://slimey.sourceforge.net/                                  | 04/2009    | yes, marked
 eyeOS/extern/apps/eyeSheets/                              | Simple Spreadsheet                  | 0.541          | http://simple-groupware.de/                                     | 10/2009    | yes
 eyeOS/extern/libs/eyeSound/                               | SoundManager 2                      | 2.97a.20101221 | http://schillmania.com/projects/soundmanager2/                  | 02/2010    | marked
 eyeOS/extern/libs/eyeWidgets/tiny_mce/                    | TinyMCE                             | 3.4.9          | http://tinymce.moxiecode.com/                                   | 04/2011    | yes
 eyeOS/extern/libs/eyeWidgets/codepress/                   | CodePress                           | 0.9.6          | http://codepress.sf.net/                                        | no         | yes
-eyeOS/system/lib/eyeCompress/main.eyecode                 | PclTar (PhpZip package)             | 2.8.2          | http://phpconcept.net/phpzip/index.en.php                       | no         | utf8, marked, ["TrFctEnd", "TrFctMessage", "TrFctStart"]
-eyeOS/system/lib/eyeSmtp/plain_sasl_client.eyecode        | Plain SASL Client                   | 2004-11-22     | http://phpclasses.org/browse/package/1888.html                  | no         | utf8
-eyeOS/system/lib/eyeSmtp/sasl.eyecode                     | SASL                                | 2005-10-31     | http://phpclasses.org/browse/package/1888.html                  | no         | utf8
-eyeOS/system/lib/eyeSmtp/smtp.eyecode                     | SMTP E-mail sending class           | 2009-04-11     | http://phpclasses.org/browse/package/14.html                    | 08/2009    | utf8
+eyeOS/system/lib/eyeCompress/main.xecode                 | PclTar (PhpZip package)             | 2.8.2          | http://phpconcept.net/phpzip/index.en.php                       | no         | utf8, marked, ["TrFctEnd", "TrFctMessage", "TrFctStart"]
+eyeOS/system/lib/eyeSmtp/plain_sasl_client.xecode        | Plain SASL Client                   | 2004-11-22     | http://phpclasses.org/browse/package/1888.html                  | no         | utf8
+eyeOS/system/lib/eyeSmtp/sasl.xecode                     | SASL                                | 2005-10-31     | http://phpclasses.org/browse/package/1888.html                  | no         | utf8
+eyeOS/system/lib/eyeSmtp/smtp.xecode                     | SMTP E-mail sending class           | 2009-04-11     | http://phpclasses.org/browse/package/14.html                    | 08/2009    | utf8

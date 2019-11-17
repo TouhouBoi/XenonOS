@@ -151,7 +151,7 @@ function private_lib_eyeString_Create($functions, $native = false) {
 		if ($native === false) {
 			foreach (array(UTF8_TYPE, 'native', 'compat') as $type) {
 				if (function_exists('utf8_' . $value) === false) {
-					$path = PATH_SYSTEM_SERVICES_UTF8_TYPES . '/' . $type . '/' . $value . '.eyecode';
+					$path = PATH_SYSTEM_SERVICES_UTF8_TYPES . '/' . $type . '/' . $value . '.xecode';
 					if (file_exists($path) === true) {
 						include_once $path;
 					}

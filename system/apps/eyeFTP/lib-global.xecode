@@ -122,7 +122,7 @@ function eyeFTP_getFormatedDirPath($dir) {
  *
  * @param string $text The text to append to the console
  * @param array $tokens Tokens for i18n
- * @param string $type Message type (normal, success, warning, ... See defined constants in events.eyecode)
+ * @param string $type Message type (normal, success, warning, ... See defined constants in events.xecode)
  * @param boolean $debug Debug mode (do a print_r() on the $text argument when displaying it)
  */
 function eyeFTP_logConsole($text, $tokens=null, $type=EYEFTP_LOGSTYLE_NORMAL, $debug=false) {

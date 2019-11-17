@@ -64,7 +64,7 @@ if (isset($_GET['extern']))
 }
 elseif(isset($_GET['api']))
 {
-	require_once(XENONOS_ROOT.'/xml-rpc/server.eyecode');
+	require_once(XENONOS_ROOT.'/xml-rpc/server.xecode');
 	xmlrpc_parseRequest();
 }
 else

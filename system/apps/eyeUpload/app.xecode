@@ -67,14 +67,14 @@ function eyeUpload_run($params = '') {
 	$myTab->show();
 
 	$simpleTab = $myTab->addTab('Simple',1);
-	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeUpload/tabs/simple.eyecode');
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeUpload/tabs/simple.xecode');
 	if ($_SESSION['SCREEN']['flash'] && $_SESSION['SCREEN']['flash_version'] > 8) {
 		$advancedTab = $myTab->addTab('Advanced', 1);
-		include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeUpload/tabs/advanced.eyecode';
+		include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeUpload/tabs/advanced.xecode';
 	}
 	if (WEB_UPLOAD) {
 		$webTab = $myTab->addTab('Web',1);
-		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeUpload/tabs/web.eyecode');
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeUpload/tabs/web.xecode');
 	}
 	if (isset($advancedTab)) {
 		$myTab->selectByName('Advanced');

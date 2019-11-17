@@ -22,15 +22,15 @@ $excludeC = array(
 );
 $excludeF = array(
 	'docs',
-	'system/apps/eyeFeeds/simplepie.eyecode',
+	'system/apps/eyeFeeds/simplepie.xecode',
 	'system/apps/eyeMail/class.phpmailer.php',
 	'system/apps/eyeMail/class.smtp.php',
 	'system/apps/eyeNav/plugins/eyeNavProxy',
-	'system/apps/eyeSoft/libCompress.eyecode',
+	'system/apps/eyeSoft/libCompress.xecode',
 	'system/system/lib/eyePear',
-	'system/system/lib/eyeSmtp/plain_sasl_client.eyecode',
-	'system/system/lib/eyeSmtp/sasl.eyecode',
-	'system/system/lib/eyeSmtp/smtp.eyecode',
+	'system/system/lib/eyeSmtp/plain_sasl_client.xecode',
+	'system/system/lib/eyeSmtp/sasl.xecode',
+	'system/system/lib/eyeSmtp/smtp.xecode',
 	'system/system/lib/eyeString/types',
 	'system/xml-rpc/xmlrpc.inc',
 	'system/xml-rpc/xmlrpc_wrappers.inc',
@@ -46,7 +46,7 @@ $excludeW = array(
 $path = 'system/system/lib/eyeString/types';
 $functions = array_merge(scandir($path . '/compat'), scandir($path . '/native'));
 foreach ($functions as $key => $value) {
-	if (substr($value, -8) === '.eyecode') {
+	if (substr($value, -8) === '.xecode') {
 		$functions[$key] = preg_quote(substr($value, 0, -8), '/');
 	} else {
 		unset($functions[$key]);
@@ -95,7 +95,7 @@ function getContent($folder, $functions, $excludeC = array(), $excludeF = array(
 					getContent($folder . $file . '/', $functions, $excludeC2, $excludeF2, $excludeU2, $excludeW2);
 				}
 			} else {
-				if (substr($file, -4) === '.css' || substr($file, -5) === '.html' || substr($file, -3) === '.js' || substr($file, -5) === '.less' || substr($file, -4) === '.php' || substr($file, -4) === '.inc' || substr($file, -8) === '.eyecode') {
+				if (substr($file, -4) === '.css' || substr($file, -5) === '.html' || substr($file, -3) === '.js' || substr($file, -5) === '.less' || substr($file, -4) === '.php' || substr($file, -4) === '.inc' || substr($file, -8) === '.xecode') {
 					$content = file_get_contents($folder . $file);
 					
 					// Clean
@@ -114,7 +114,7 @@ function getContent($folder, $functions, $excludeC = array(), $excludeF = array(
 					$content = str_replace(array("\r\n", "\r"), "\n", trim($content));
 					
 					// Functions
-					if ((substr($file, -4) === '.php' || substr($file, -4) === '.inc' || substr($file, -8) === '.eyecode') && $excludeF !== '*' && in_array($folder . $file, $excludeF) === false) {
+					if ((substr($file, -4) === '.php' || substr($file, -4) === '.inc' || substr($file, -8) === '.xecode') && $excludeF !== '*' && in_array($folder . $file, $excludeF) === false) {
 						if (substr($content, 0, 13) !== '<?php // utf8') {
 							foreach (explode("\n", $content) as $key => $value) {
 								if (strpos($value, '// utf8') === false) {

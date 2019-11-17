@@ -38,8 +38,8 @@ function lib_eyeCrypt_crypt($params) {
 	$key = $params['key'];
 	$cip = basename($params['cipher']);
 
-	if(file_exists(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeCrypt/lib/'.$cip.'.eyecode')) {
-		include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeCrypt/lib/'.$cip.'.eyecode');
+	if(file_exists(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeCrypt/lib/'.$cip.'.xecode')) {
+		include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeCrypt/lib/'.$cip.'.xecode');
 		if(function_exists('crypt_'.$cip.'_crypt')) {
 			return call_user_func('crypt_'.$cip.'_crypt',array($str,$key));
 		}
@@ -71,8 +71,8 @@ function lib_eyeCrypt_decrypt($params) {
 	$key = $params['key'];
 	$cip = basename($params['cipher']);
 
-	if(file_exists(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeCrypt/lib/'.$cip.'.eyecode')) {
-		include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeCrypt/lib/'.$cip.'.eyecode');
+	if(file_exists(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeCrypt/lib/'.$cip.'.xecode')) {
+		include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeCrypt/lib/'.$cip.'.xecode');
 		if(function_exists('crypt_'.$cip.'_crypt')) {
 			return call_user_func('crypt_'.$cip.'_decrypt',array($str,$key));
 		}

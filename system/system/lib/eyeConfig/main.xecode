@@ -26,11 +26,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function lib_eyeConfig_init () {
 
 	// Load XML library
-	include_once('modules/xml.eyecode');
+	include_once('modules/xml.xecode');
 
 	// Detect and load specific library
 	if (CONFIG_MODULE !== 'xml') {
-		$module = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. LIB_DIR .'/eyeConfig/modules/'. CONFIG_MODULE .'.eyecode';
+		$module = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. LIB_DIR .'/eyeConfig/modules/'. CONFIG_MODULE .'.xecode';
 		if (file_exists($module)) {
 			// Load constants
 			$xmlfile = XENONOS_ROOT .'/'. SYSTEM_DIR .'/' . SYSTEM_CONF_DIR . '/userconfig/'. CONFIG_MODULE .'.xml';
