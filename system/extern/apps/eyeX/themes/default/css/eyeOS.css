@@ -24,7 +24,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 }
 
 .activeWindow, .eyeWindowTitle, .inactiveWindow {
-	background-color: #8cb4de;
+	background-color: #00de0f;
 	background-image: url('index.php?theme=USERTHEME&extern=images/windows/bg_top.png');
 	background-repeat: repeat-x;
 	border: 1px solid #80b5ff;
