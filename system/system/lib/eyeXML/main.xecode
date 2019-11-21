@@ -31,7 +31,7 @@ function lib_eyeXML_init(){
 		return true;
 	}
 	//If the compat mode is not set, we've to load the default parser
-	require_once 'parsers/'.XML_PARSER.EYE_CODE_EXTENSION;
+	require_once 'parsers/'.XML_PARSER.XE_CODE_EXTENSION;
 	include_once 'xmlConfiguration.xecode';
 }
 

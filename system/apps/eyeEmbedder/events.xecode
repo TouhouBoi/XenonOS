@@ -37,7 +37,7 @@ function eyeEmbedder_on_ChooseApplicationIcon($params = null) {
 function eyeEmbedder_on_ChooseApplicationIcon2($params = null) {
 	global $checknum, $myPid;
 	
-	include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/lib/eyeFiles/images' . EYE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/lib/eyeFiles/images' . XE_CODE_EXTENSION;
 	
 	// Validate image
 	$image = images_imagecreatefromfile(vfs('getRealName', array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0])));
@@ -72,7 +72,7 @@ function eyeEmbedder_on_Close($params = null) {
 }
 
 function eyeEmbedder_on_GetApplicationIcon($params = null) {
-	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeEmbedder/libs' . EYE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeEmbedder/libs' . XE_CODE_EXTENSION;
 	
 	$icon = isset($_REQUEST['icon']) && is_string($_REQUEST['icon']) ? $_REQUEST['icon'] : 'exec';
 	
@@ -103,7 +103,7 @@ function eyeEmbedder_on_Message($params = null) {
 function eyeEmbedder_on_Package($params = null) {
 	global $checknum;
 	
-	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeEmbedder/libs' . EYE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeEmbedder/libs' . XE_CODE_EXTENSION;
 	
 	list($applicationAuthor, $applicationCategory, $applicationDescription, $applicationIcon, $applicationLicense, $applicationName, $applicationType, $applicationVersion, $address, $defaultHeight, $defaultWidth, $title, $startMaximized) = array_values(eyeEmbedder_lib_GetValues());
 	
@@ -120,7 +120,7 @@ function eyeEmbedder_on_Package($params = null) {
 }
 
 function eyeEmbedder_on_Package2($params = null) {
-	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeEmbedder/libs' . EYE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeEmbedder/libs' . XE_CODE_EXTENSION;
 	
 	list($applicationAuthor, $applicationCategory, $applicationDescription, $applicationIcon, $applicationLicense, $applicationName, $applicationType, $applicationVersion, $address, $defaultHeight, $defaultWidth, $title, $startMaximized) = array_values(eyeEmbedder_lib_GetValues());
 	
@@ -211,7 +211,7 @@ function eyeEmbedder_on_Package2($params = null) {
 }
 
 function eyeEmbedder_on_Test($params = null) {
-	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeEmbedder/libs' . EYE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeEmbedder/libs' . XE_CODE_EXTENSION;
 	
 	list($applicationAuthor, $applicationCategory, $applicationDescription, $applicationIcon, $applicationLicense, $applicationName, $applicationType, $applicationVersion, $address, $defaultHeight, $defaultWidth, $title, $startMaximized) = array_values(eyeEmbedder_lib_GetValues());
 	

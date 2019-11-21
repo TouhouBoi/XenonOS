@@ -160,7 +160,7 @@ else
 			exit;
 		}
 
-		include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/init'.EYE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/init'.XE_CODE_EXTENSION);
 	}
 }
 ?>

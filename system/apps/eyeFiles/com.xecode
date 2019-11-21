@@ -31,7 +31,7 @@ function eyeFiles_com_onEvent($params = '') {
 		}
 	}
 	if ($load === true) {
-		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/events' . EYE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/events' . XE_CODE_EXTENSION);
 		eyeFiles_on_OpenPath();
 	}
 	if ($trash === true) {

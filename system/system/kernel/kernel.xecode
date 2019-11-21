@@ -42,9 +42,9 @@ function service($servicename, $servicefunction = null, $params = null, $noListe
 
 	if (!checkServiceLoaded($sec_servicename))
 	{
-		if ( is_readable(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/'.$sec_servicename.'/main'.EYE_CODE_EXTENSION) )
+		if ( is_readable(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/'.$sec_servicename.'/main'.XE_CODE_EXTENSION) )
 		{
-			include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/'.$sec_servicename.'/main'.EYE_CODE_EXTENSION);
+			include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/'.$sec_servicename.'/main'.XE_CODE_EXTENSION);
 
 			setServiceLoaded($sec_servicename);
 
@@ -89,9 +89,9 @@ function reqLib( $libname, $function, $params = null, $noListen = true )
 
 	if (!checkLibraryLoaded($sec_libname))
 	{
-		if (is_readable(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/'.$sec_libname.'/main'.EYE_CODE_EXTENSION))
+		if (is_readable(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/'.$sec_libname.'/main'.XE_CODE_EXTENSION))
 		{
-			include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/'.$sec_libname.'/main'.EYE_CODE_EXTENSION);
+			include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/'.$sec_libname.'/main'.XE_CODE_EXTENSION);
 
 			setLibraryLoaded($sec_libname);
 
@@ -152,9 +152,9 @@ function genericListener($type,$sec_servicename, $minfunction, $noListen, $param
 			{
 				$appName = basename($appName);
 
-				if (is_readable(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/com'.EYE_CODE_EXTENSION))
+				if (is_readable(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/com'.XE_CODE_EXTENSION))
 				{
-					include_once(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/com'.EYE_CODE_EXTENSION);
+					include_once(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/com'.XE_CODE_EXTENSION);
 
 					if (function_exists($appName.'_com_'.$value))
 					{
@@ -466,9 +466,9 @@ function _getAlias($path,$baseFunc,$noListen)
 		{
 			if (substr($file, 0, 1) !== '.' && is_dir($path . $file) === true)
 			{
-				if (file_exists($path.$file.'/alias'.EYE_CODE_EXTENSION))
+				if (file_exists($path.$file.'/alias'.XE_CODE_EXTENSION))
 				{
-					include_once($path.$file.'/alias'.EYE_CODE_EXTENSION);
+					include_once($path.$file.'/alias'.XE_CODE_EXTENSION);
 
 					if (function_exists($file))
 					{
@@ -731,5 +731,5 @@ if (ACL_SUPPORT == 1)
 
 loadServiceConfig();
 
-include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/compat'.EYE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/compat'.XE_CODE_EXTENSION);
 ?>

@@ -438,5 +438,5 @@ $myPowered->setCss(
 	)
 );
 
-eyex('loadScript', array('url' => 'index.php?extern=apps/eyeLogin/themes/default/eyeLogin' . EYE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid . '&params[]=' . $checknum . '&params[]=' . $_SESSION['sawasc']));
+eyex('loadScript', array('url' => 'index.php?extern=apps/eyeLogin/themes/default/eyeLogin' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid . '&params[]=' . $checknum . '&params[]=' . $_SESSION['sawasc']));
 ?>

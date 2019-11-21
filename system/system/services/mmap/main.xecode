@@ -128,8 +128,8 @@ function service_mmap_routemsg($params) {
 	}
 
 	//If events.xecode can be included, then include it, else exit.
-	if(is_readable(XENONOS_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/'.'events'.EYE_CODE_EXTENSION)) {
-		include_once(XENONOS_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/'.'events'.EYE_CODE_EXTENSION);
+	if(is_readable(XENONOS_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/'.'events'.XE_CODE_EXTENSION)) {
+		include_once(XENONOS_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/'.'events'.XE_CODE_EXTENSION);
 	} else {
 
 		exit;

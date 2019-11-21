@@ -343,11 +343,11 @@ function eyeFiles_on_OpenPath($params = '') {
 	eyeWidgets('serialize',array($myContainer));
 
 	if ($GLOBALS['eyeFiles_Box_View_Radio_Details']->checked) {
-		include(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/views/details' . EYE_CODE_EXTENSION);
+		include(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/views/details' . XE_CODE_EXTENSION);
 	} elseif ($GLOBALS['eyeFiles_Box_View_Radio_List']->checked) {
-		include(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/views/list' . EYE_CODE_EXTENSION);
+		include(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/views/list' . XE_CODE_EXTENSION);
 	} else {
-		include(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/views/icons' . EYE_CODE_EXTENSION);
+		include(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/views/icons' . XE_CODE_EXTENSION);
 	}
 	eyeFiles_on_ChangeBox();
 	return $type;
@@ -412,7 +412,7 @@ function eyeFiles_on_ChangeBox($params = array()) {
 			)));
 		}
 		$myTree->addSubList('item_' . $path[1],'list_' . $path[1]);
-		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/lib' . EYE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/lib' . XE_CODE_EXTENSION);
 		if ($path[1] == 'groups') {
 			$content = array();
 			$xml = um('retrieveUser',array($currentUser));

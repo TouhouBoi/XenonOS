@@ -32,7 +32,7 @@ function eyeIframize_run($params = '')
 {
 	if ($params[0])
 	{
-		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeIframize/events' . EYE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeIframize/events' . XE_CODE_EXTENSION);
 
 		eyeIframize_on_Do($params);
 	}

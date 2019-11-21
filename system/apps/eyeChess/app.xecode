@@ -29,7 +29,7 @@ function eyeChess_run($params = '') {
 		'width' => 600
 	));
 	$myWindow->show();
-	eyex('loadScript',array('url' => 'index.php?extern=apps/eyeChess/eyeChess' . EYE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid . '&params[]=' . $checknum));
+	eyex('loadScript',array('url' => 'index.php?extern=apps/eyeChess/eyeChess' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid . '&params[]=' . $checknum));
 }
 
 function eyeChess_end($params = '') {

@@ -20,7 +20,7 @@ global $currentUser;
 $dir = XENONOS_ROOT . '/' . APP_DIR . '/eyeControl/libraries/';
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
-$openDir = vfs('real_getDirContent',array($dir,'*' . EYE_CODE_EXTENSION));
+$openDir = vfs('real_getDirContent',array($dir,'*' . XE_CODE_EXTENSION));
 $currentUser = $oldUser;
 foreach ($openDir as $file) {
 	include_once($file);
@@ -30,7 +30,7 @@ foreach ($openDir as $file) {
 $dir = XENONOS_ROOT . '/' . APP_DIR . '/eyeControl/events/';
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
-$openDir = vfs('real_getDirContent',array($dir,'*' . EYE_CODE_EXTENSION));
+$openDir = vfs('real_getDirContent',array($dir,'*' . XE_CODE_EXTENSION));
 $currentUser = $oldUser;
 foreach ($openDir as $file) {
 	include_once($file);

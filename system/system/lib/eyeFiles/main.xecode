@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/lib/eyeFiles/images' . EYE_CODE_EXTENSION;
+include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/lib/eyeFiles/images' . XE_CODE_EXTENSION;
 
 /*
 $params[0] -> path (default: "/")

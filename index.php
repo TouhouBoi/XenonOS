@@ -100,7 +100,7 @@ changeCWD();
 loadStringLibrary();
 
 //Including kernel file, this file also "execs" some initialitation stuff
-include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/kernel'.EYE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/kernel'.XE_CODE_EXTENSION);
 
 /*
 *Setting the php debug (error_reporting) depending the oneye config
@@ -175,7 +175,7 @@ function indexRequested()
 */
 function loadStringLibrary()
 {
-	include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeString/main'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeString/main'.XE_CODE_EXTENSION);
 	//setting library loaded
 	define('LIB_EYESTRING_LOADED',1);
 }

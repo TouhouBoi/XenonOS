@@ -207,7 +207,7 @@ function eyeFiles_run($params = '') {
 		e.style.overflow = "";
 		e.style.top = "95px";'));
 	}
-	include(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/boxes/view' . EYE_CODE_EXTENSION);
+	include(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/boxes/view' . XE_CODE_EXTENSION);
 
 	$myHiddenAction = new Hidden(array(
 		'father' => 'eyeFiles_Window_Content',
@@ -261,7 +261,7 @@ function eyeFiles_run($params = '') {
 		e.style.overflow = "";
 		e.style.top = "125px";'));
 	}
-	include(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/boxes/actions' . EYE_CODE_EXTENSION);
+	include(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/boxes/actions' . XE_CODE_EXTENSION);
 
 	$y = $myBoxTree->y;
 	if (IE && IE < 8) $y++;
@@ -322,7 +322,7 @@ function eyeFiles_run($params = '') {
 	$GLOBALS['eyeFiles_Hidden_Action'] = $myHiddenAction;
 	$GLOBALS['eyeFiles_Hidden_Path'] = $myHiddenPath;
 	$GLOBALS['eyeFiles_Textbox_Path'] = $myTextbox;
-	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/events' . EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/events' . XE_CODE_EXTENSION);
 	eyeFiles_on_OpenPath($params);
 	addListenerLibraryCall('onEvent','eyeFiles','update');
 	addListenerServiceCall('fullResized','eyex','resizedbrowser');

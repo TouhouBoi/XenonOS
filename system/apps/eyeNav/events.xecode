@@ -26,7 +26,7 @@ include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/libs.xecode');
 
 $conf = eyeXML('getXMLconfig', array('eyeNav','conf.xml'));
 $url = XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/plugins/';
-$url2 = $url . $conf['eyeNav'][0]['plugin'][0] . EYE_CODE_EXTENSION;
+$url2 = $url . $conf['eyeNav'][0]['plugin'][0] . XE_CODE_EXTENSION;
 
 if (vfs('real_fileExists', array ($url2)))
 {

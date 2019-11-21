@@ -15,6 +15,6 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 $modulename = basename(VFS_MODULE);
-include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/vfs/modules/'.$modulename.EYE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/vfs/modules/'.$modulename.XE_CODE_EXTENSION);
 
 ?>

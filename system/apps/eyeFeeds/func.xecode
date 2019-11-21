@@ -561,7 +561,7 @@ function eyeFeeds_saveSettings($newSettings) {
  * @return array The feed
  */
 function eyeFeeds_fetchFeedFromUrl($url, $forceRefresh=false) {
-	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/simplepie'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/simplepie'.XE_CODE_EXTENSION);
 	$settings = eyeFeeds_loadSettings();
 
 	//fetch RSS feed's items
@@ -594,7 +594,7 @@ function eyeFeeds_fetchFeedFromUrl($url, $forceRefresh=false) {
  * @return array The feed's items
  */
 function eyeFeeds_fetchFeedItemsFromUrl($url, $forceRefresh=false) {
-	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/simplepie'.EYE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/simplepie'.XE_CODE_EXTENSION);
 	$settings = eyeFeeds_loadSettings();
 
 	//fetch RSS feed's items

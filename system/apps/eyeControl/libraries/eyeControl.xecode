@@ -55,7 +55,7 @@ function eyeControl_lib_loadContent($category = '',$content = '',$contentParams 
 	}
 	$currentUser = $oldUser;
 	$content = $contentXML['name'][0];
-	if (!file_exists($dir . $content . EYE_CODE_EXTENSION) || !$contentXML['permissions'][0]) {
+	if (!file_exists($dir . $content . XE_CODE_EXTENSION) || !$contentXML['permissions'][0]) {
 		eyex('messageBox',array('content' => 'Sorry, this page is not installed.'));
 		eyeControl_lib_loadContent();
 	} elseif ($contentXML['permissions'][0] == 'root' && eyeControl_lib_getConfigUser() != ROOTUSER) {
@@ -129,7 +129,7 @@ function eyeControl_lib_loadContent($category = '',$content = '',$contentParams 
 			'overflow' => 'auto'
 		));
 		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $eyeContainer . '_Content").style.top = "0";'));
-		include ($dir . $content . EYE_CODE_EXTENSION);
+		include ($dir . $content . XE_CODE_EXTENSION);
 	}
 }
 ?>

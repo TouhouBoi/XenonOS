@@ -51,7 +51,7 @@ function eyeCalendar_run($params = '') {
 	//eyeX('messageBox',array('content'=>$_SESSION['SCREEN']['refresh'],'type'=>2));
 	if(!isset($_SESSION['eyeCalendarJs']) || $_SESSION['eyeCalendarJs'] < $_SESSION['SCREEN']['refresh']){
 		eyeX('rawjs',array('js'=>'eyeCalendarChecknum = '.$checknum.';'));
-		eyex('loadScript',array('url' => 'index.php?extern=apps/eyeCalendar/js/components/eyeCalendar' . EYE_CODE_EXTENSION . '&type=dynamic'));
+		eyex('loadScript',array('url' => 'index.php?extern=apps/eyeCalendar/js/components/eyeCalendar' . XE_CODE_EXTENSION . '&type=dynamic'));
 		if (IE && IE < 7) {
 			eyex('loadCss',array('url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/eyeCalendar/eyeCalendar_IE6.css&type=css','id' =>'eyeCalendar.css'));
 		}else{

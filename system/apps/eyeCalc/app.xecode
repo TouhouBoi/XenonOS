@@ -121,7 +121,7 @@ function eyeCalc_run($params = '') {
 		$y += 35;
 	}
 
-	eyex('loadScript',array('url' => 'index.php?extern=apps/eyeCalc/eyeCalc' . EYE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid));
+	eyex('loadScript',array('url' => 'index.php?extern=apps/eyeCalc/eyeCalc' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid));
 }
 
 function eyeCalc_end($params = '') {

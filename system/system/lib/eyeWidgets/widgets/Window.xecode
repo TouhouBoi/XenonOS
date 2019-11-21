@@ -425,7 +425,7 @@ class Window {
 		}
 		$this->setWidth($width);
 		$name = proc('findNameByPid',array($myPid));
-		include_once(XENONOS_ROOT . '/' . APP_DIR . '/' . $name . '/events' . EYE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/' . $name . '/events' . XE_CODE_EXTENSION);
 		call_user_func($name . '_on_' . $this->sigResize,array('arg' => array($width,$height)));
 	}
 
@@ -551,7 +551,7 @@ class Window {
 		}
 		if (!$noAutoResize) {
 			$name = proc('findNameByPid',array($myPid));
-			include_once(XENONOS_ROOT . '/' . APP_DIR . '/' . $name . '/events' . EYE_CODE_EXTENSION);
+			include_once(XENONOS_ROOT . '/' . APP_DIR . '/' . $name . '/events' . XE_CODE_EXTENSION);
 			$function = $name . '_on_' . $this->sigResize;
 			if (function_exists($function)) {
 				$arg = array($this->width,$this->height);

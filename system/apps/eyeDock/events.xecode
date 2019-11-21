@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/libs' . EYE_CODE_EXTENSION);
+include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/libs' . XE_CODE_EXTENSION);
 
 function eyeDock_on_AddElement($params = '') {
 	global $currentUser;
@@ -76,8 +76,8 @@ function eyeDock_on_AddElement($params = '') {
 
 	if (is_array($files)) {
 		foreach ($files as $file) {
-			if ( /* utf8 */ strrchr($file, EYE_CODE_EXTENSION) === EYE_CODE_EXTENSION) {
-				$file = basename($file, EYE_CODE_EXTENSION);
+			if ( /* utf8 */ strrchr($file, XE_CODE_EXTENSION) === XE_CODE_EXTENSION) {
+				$file = basename($file, XE_CODE_EXTENSION);
 				$mySelect->addOption( /* utf8 */ ucfirst($file), $file);
 			}
 		}

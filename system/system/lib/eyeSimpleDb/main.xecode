@@ -57,7 +57,7 @@ function lib_eyeSimpleDb_newDb($params){
 	}
 
 	//Including the driver
-	$driverPath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeSimpleDb/'.DRIVER_FOLDER.'/'.$dbType.'_driver'.EYE_CODE_EXTENSION;
+	$driverPath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeSimpleDb/'.DRIVER_FOLDER.'/'.$dbType.'_driver'.XE_CODE_EXTENSION;
 	if(!is_readable($driverPath)){
 		errorCodes('setErrorCode',array(DB_NO_DRIVER));
 		return FALSE;

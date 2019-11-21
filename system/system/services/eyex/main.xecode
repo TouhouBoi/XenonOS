@@ -243,7 +243,7 @@ function service_eyex_getThemeImage($params)
 		{
 			$alias = array();
 
-			include XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/eyex/image_alias' . EYE_CODE_EXTENSION;
+			include XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/eyex/image_alias' . XE_CODE_EXTENSION;
 
 			$temp = substr($url, strlen($themes_path . '/default/'));
 
@@ -290,7 +290,7 @@ function service_eyex_getThemeImage($params)
 		{
 			$alias = array();
 
-			include XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/eyex/image_alias' . EYE_CODE_EXTENSION;
+			include XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/eyex/image_alias' . XE_CODE_EXTENSION;
 
 			$path = substr($url, strlen(XENONOS_ROOT . '/' . EXTERN_DIR . '/'));
 

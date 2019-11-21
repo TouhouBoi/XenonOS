@@ -129,8 +129,8 @@ function eyeDock_lib_Load($types = array('bottom'/*,'left','right'*/,'top')) {
 					foreach ($elements[0] as $id => $element) {
 						if ($element[0]['type'][0] === 'taskbar' && ($type !== 'bottom' || $place !== 'left')) {
 							unset($xml['eyeDock'][0][$type][0][$place][0][$id]);
-						} else if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/modules/' . $element[0]['type'][0] . EYE_CODE_EXTENSION))) {
-							include(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/modules/' . $element[0]['type'][0] . EYE_CODE_EXTENSION);
+						} else if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/modules/' . $element[0]['type'][0] . XE_CODE_EXTENSION))) {
+							include(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/modules/' . $element[0]['type'][0] . XE_CODE_EXTENSION);
 						}
 					}
 				}

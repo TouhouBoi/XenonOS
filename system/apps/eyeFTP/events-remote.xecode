@@ -14,12 +14,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-global'.EYE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-local'.EYE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-remote'.EYE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/dialogs'.EYE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-ftp'.EYE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/hosts'.EYE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-global'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-local'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-remote'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/dialogs'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-ftp'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/hosts'.XE_CODE_EXTENSION);
 
 /*********************************************************************************************/
 /*********************************************************************************************/

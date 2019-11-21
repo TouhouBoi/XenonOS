@@ -52,7 +52,7 @@ function eyeLogin_run($params = '') {
 		} else {
 			$_SESSION['sawasc'] = '';
 		}
-		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeLogin/themes/default/window' . EYE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeLogin/themes/default/window' . XE_CODE_EXTENSION);
 		
 		if (isset($_SESSION['username']) === true && isset($_SESSION['password']) === true && isset($_SESSION['language']) === true) {
 			$password = $_SESSION['password'];

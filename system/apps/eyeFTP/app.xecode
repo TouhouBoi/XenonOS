@@ -20,7 +20,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
  * @updated 17-Sept-2009
  */
 
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-global'.EYE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-global'.XE_CODE_EXTENSION);
 
 /*********************************************************************************************/
 /*   IMAGES URL                                                                              */
@@ -632,7 +632,7 @@ function eyeFTP_run($params=null) {
 
 	//JS
 	eyex('loadScript',array(
-		'url' => 'index.php?extern=apps/eyeFTP/js/eyeFTP'.EYE_CODE_EXTENSION.'&type=dynamic&params[]='.$myPid.'&params[]='.$checknum
+		'url' => 'index.php?extern=apps/eyeFTP/js/eyeFTP'.XE_CODE_EXTENSION.'&type=dynamic&params[]='.$myPid.'&params[]='.$checknum
 	));
 
 	//processing provided connection string if any

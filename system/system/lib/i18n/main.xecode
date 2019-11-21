@@ -80,11 +80,11 @@ function lib_i18n_init() {
 * @date 2008/03/11
 */
 function lib_i18n_loadLang($params) {
-	$paths[] = XENONOS_ROOT.'/i18n/' . DEFAULT_I18N . EYE_CODE_EXTENSION;
-	$paths[] = XENONOS_ROOT . '/i18n/' . $_SESSION['lang'] . EYE_CODE_EXTENSION;
+	$paths[] = XENONOS_ROOT.'/i18n/' . DEFAULT_I18N . XE_CODE_EXTENSION;
+	$paths[] = XENONOS_ROOT . '/i18n/' . $_SESSION['lang'] . XE_CODE_EXTENSION;
 	if ($app = basename($params[0])) {
-		$paths[] = XENONOS_ROOT . '/' . APP_DIR . '/' . $app . '/lang/' . DEFAULT_I18N . EYE_CODE_EXTENSION;
-		$paths[] = XENONOS_ROOT . '/' . APP_DIR . '/' . $app . '/lang/' . $_SESSION['lang'] . EYE_CODE_EXTENSION;
+		$paths[] = XENONOS_ROOT . '/' . APP_DIR . '/' . $app . '/lang/' . DEFAULT_I18N . XE_CODE_EXTENSION;
+		$paths[] = XENONOS_ROOT . '/' . APP_DIR . '/' . $app . '/lang/' . $_SESSION['lang'] . XE_CODE_EXTENSION;
 	}
 	foreach ($paths as $path) {
 		if (file_exists($path)) {

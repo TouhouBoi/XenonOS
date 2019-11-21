@@ -40,8 +40,8 @@ eyex('createDiv',array(
 $content = '';
 if (is_array($element[0]['entries'][0])) {
 	foreach ($element[0]['entries'][0] as $id2 => $entry) {
-		if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/modules/menu/' . $entry[0]['type'][0] . EYE_CODE_EXTENSION))) {
-			include(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/modules/menu/' . $entry[0]['type'][0] . EYE_CODE_EXTENSION);
+		if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/modules/menu/' . $entry[0]['type'][0] . XE_CODE_EXTENSION))) {
+			include(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/modules/menu/' . $entry[0]['type'][0] . XE_CODE_EXTENSION);
 		}
 	}
 }

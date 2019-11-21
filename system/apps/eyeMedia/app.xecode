@@ -143,10 +143,10 @@ function eyeMedia_run($params=null) {
 	$tlbToolbar->addItem('tlbToolbar_Shuffle','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/edit-undo.png','Shuffle');
 	$tlbToolbar->addItem('tlbToolbar_Fullscreen','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png','Full Screen','',1);
 
-	eyex('loadScript', array('url' => 'index.php?extern=apps/eyeMedia/js/eyeMedia' . EYE_CODE_EXTENSION . '&type=dynamic'));
+	eyex('loadScript', array('url' => 'index.php?extern=apps/eyeMedia/js/eyeMedia' . XE_CODE_EXTENSION . '&type=dynamic'));
 
 	if (isset($params[0]) === true) {
-		include(XENONOS_ROOT.'/'.APP_DIR.'/eyeMedia/events'.EYE_CODE_EXTENSION);
+		include(XENONOS_ROOT.'/'.APP_DIR.'/eyeMedia/events'.XE_CODE_EXTENSION);
 		$Open_File = str_replace(um('getCurrentUserDir').'files/', '/', $params[0]);
 		$Open_File = str_replace('//', '/', $Open_File);
 		// If more needs to be done when opening a file later on...

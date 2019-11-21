@@ -294,7 +294,7 @@ function eyeHelp_Code($Text)
 	$dir = XENONOS_ROOT . '/' . APP_DIR . '/eyeHelp/lib/';
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$openDir = vfs('real_getDirContent',array($dir,'*' . EYE_CODE_EXTENSION));
+	$openDir = vfs('real_getDirContent',array($dir,'*' . XE_CODE_EXTENSION));
 	$currentUser = $oldUser;
 
 	foreach ($openDir as $file)

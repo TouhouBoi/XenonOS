@@ -33,7 +33,7 @@ define('WTABLE','wtable');
 */
 function lib_eyeWidgets_loadWidgets() {
 	foreach (scandir(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeWidgets/widgets') as $file) {
-		if ( /* utf8 */ substr($file, 0, 1) !== '.' && substr($file, -strlen(EYE_CODE_EXTENSION)) === EYE_CODE_EXTENSION) { // utf8
+		if ( /* utf8 */ substr($file, 0, 1) !== '.' && substr($file, -strlen(XE_CODE_EXTENSION)) === XE_CODE_EXTENSION) { // utf8
 			include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeWidgets/widgets/' . $file;
 		}
 	}
@@ -202,8 +202,8 @@ function globalize() {
 function lib_eyeWidgets_getWidgetList() {
 	$name = array();
 	foreach (scandir(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeWidgets/widgets') as $file) {
-		if ( /* utf8 */ substr($file, 0, 1) !== '.' && substr($file, -strlen(EYE_CODE_EXTENSION)) === EYE_CODE_EXTENSION) { // utf8
-			$name[] = basename($file, EYE_CODE_EXTENSION);
+		if ( /* utf8 */ substr($file, 0, 1) !== '.' && substr($file, -strlen(XE_CODE_EXTENSION)) === XE_CODE_EXTENSION) { // utf8
+			$name[] = basename($file, XE_CODE_EXTENSION);
 		}
 	}
 	return $name;
