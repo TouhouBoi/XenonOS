@@ -66,9 +66,10 @@ define('UM_MODULE', 'xenonos');
 define('REAL_ROOTUSER', 'root');
 
 // XenonOS Version
-define('XENONOS_VERSION',' 1.0.1alpha');
+define('XENONOS_VERSION', '1.0.1alpha');
+define('XENONOS_REVISION', '');
 define('KE_KERNEL_VERSION', '1.0.1alpha');
-define('KE_KERNEL_HASH', '3C281DF7E1D12CA3F98F40C862F7238A5B551E2DCCF51590C2A5C2C5943D240E'); // SHA256 Hash of "kernel.xecode"
+define('KE_KERNEL_HASH', '41c9f0ef62e15fcb25bbf9488d60eace8f8bcfe9eee9b494a58a1950637aea00'); // SHA256 Hash of "kernel.xecode"
 
 // Define XenonOS Dialog Types
 define('EYEDIALOG_TYPE_OPENFILE', 0);
