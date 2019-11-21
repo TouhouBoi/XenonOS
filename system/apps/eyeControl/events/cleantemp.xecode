@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function eyeControl_on_cleantemp_do($params = '') {
 	global $currentUser;
 	if ($currentUser == ROOTUSER) {
-		eyeControl_lib_deleteDirContent(XENONOS_ROOT . '/' . EYEOS_TMP_DIR . '/');
+		eyeControl_lib_deleteDirContent(XENONOS_ROOT . '/' . XENONOS_TMP_DIR . '/');
 		eyex('messageBox',array('content' => 'Temporary files and folders successfully removed.'));
 		eyeControl_lib_loadContent('only_root','cleantemp');
 	}

@@ -49,7 +49,7 @@ define('GROUPS_DIR', 'groups');
 define('FILES_GROUP_DIR', 'files');
 define('CONF_GROUP_DIR', 'conf');
 define('LOG_DIR', 'logs');
-define('EYEOS_TMP_DIR', 'tmp');
+define('XENONOS_TMP_DIR', 'tmp');
 
 // XenonOS file extensions
 define('EYEOS_INFO_EXT', 'eyeInfo');

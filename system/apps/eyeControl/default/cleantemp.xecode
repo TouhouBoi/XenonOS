@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-$folder = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . EYEOS_TMP_DIR . '/'));
+$folder = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . XENONOS_TMP_DIR . '/'));
 
 if ($folder != array()) {
 	$myLabel = new Label(array(
