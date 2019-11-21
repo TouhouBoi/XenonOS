@@ -20,23 +20,6 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-/* <?php
- * // Here is the place for your script part 1.
- * // Include this file to be able to access eyeOS_start() and eyeOS_stop().
- * include_once './system_xxxxxxxxxx/extras/extern.xecode';
- * // Run eyeOS_start to initialise the oneye system.
- * eyeOS_start();
- * // Now you are able to use oneye service functions,
- * $userdir = um('getCurrentUserDir');
- * // such as um('getCurrentUserDir') and vfs('real_getDirContent')).
- * print_r(vfs('real_getDirContent', array($userdir)));
- * // Finally we should reset some PHP settings back to their original values.
- * eyeOS_stop();
- * // Here is the place for your script part 2.
- * // If you need to use oneye again, simply call eyeOS_start() and afterwards eyeOS_stop().
- * ?>
- */
-
 function eyeOS_start() {
 	if (!defined('XENONOS_INDEX')) {
 		define('XENONOS_INDEX', 1);
