@@ -53,7 +53,7 @@ define('XENONOS_TMP_DIR', 'tmp');
 
 // XenonOS file extensions
 define('XENONOS_INFO_EXT', 'eyeInfo');
-define('EYEOS_FILE_EXT', 'eyeFile');
+define('XENONOS_FILE_EXT', 'eyeFile');
 define('EYEOS_LINK_EXT', 'eyeLink');
 define('EYE_CODE_EXTENSION', '.xecode');
 define('EYEOS_TRASH_EXT', 'eyeTrash');

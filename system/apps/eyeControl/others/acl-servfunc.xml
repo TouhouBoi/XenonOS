@@ -476,7 +476,7 @@
 		</func>
 		<func>
 			<fname>getExtension</fname>
-			<fdesc>Checks whether a virtual file has the same extension as the one used for storing a virtual file's content (defined by the EYEOS_FILE_EXT constant).</fdesc>
+			<fdesc>Checks whether a virtual file has the same extension as the one used for storing a virtual file's content (defined by the XENONOS_FILE_EXT constant).</fdesc>
 			<fparam>Path to File</fparam>
 			<hazard />
 		</func>
@@ -592,7 +592,7 @@
 		</func>
 		<func>
 			<fname>real_getExtension</fname>
-			<fdesc>Checks whether a file has the same extension as the one used for storing a virtual file's content (defined by the EYEOS_FILE_EXT constant).</fdesc>
+			<fdesc>Checks whether a file has the same extension as the one used for storing a virtual file's content (defined by the XENONOS_FILE_EXT constant).</fdesc>
 			<fparam>Path to File</fparam>
 			<hazard />
 		</func>

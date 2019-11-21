@@ -82,7 +82,7 @@ function service_vfs_create($params) {
 			);
 
 			//Create the 2 files, info and file.
-			file_put_contents($fileToCreate . '.' . EYEOS_FILE_EXT, '');
+			file_put_contents($fileToCreate . '.' . XENONOS_FILE_EXT, '');
 			file_put_contents($fileToCreate . '.' . XENONOS_INFO_EXT, eyeXML('array2xml',array($data)));
 		} else {
 			file_put_contents($file, '');
@@ -108,9 +108,9 @@ function service_vfs_restore($params = '') {
 	if (!isset($params[0]) || !isset($params[1])) {
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
-	} elseif (vfs('real_fileExists',array($params[0] . '.' . EYEOS_FILE_EXT)) && !vfs('real_checkPermissions',array($params[0] . '.' . EYEOS_FILE_EXT)) || vfs('real_fileExists',array($params[0] . '.' . XENONOS_INFO_EXT)) && !vfs('real_checkPermissions',array($params[0] . '.' . XENONOS_INFO_EXT)) || !vfs('checkPermissions',array($params[1]))) {
+	} elseif (vfs('real_fileExists',array($params[0] . '.' . XENONOS_FILE_EXT)) && !vfs('real_checkPermissions',array($params[0] . '.' . XENONOS_FILE_EXT)) || vfs('real_fileExists',array($params[0] . '.' . XENONOS_INFO_EXT)) && !vfs('real_checkPermissions',array($params[0] . '.' . XENONOS_INFO_EXT)) || !vfs('checkPermissions',array($params[1]))) {
 		return false;
-	} elseif (!vfs('real_fileExists',array($params[0] . '.' . EYEOS_FILE_EXT)) && !vfs('real_fileExists',array($params[0] . '.' . XENONOS_INFO_EXT))) {
+	} elseif (!vfs('real_fileExists',array($params[0] . '.' . XENONOS_FILE_EXT)) && !vfs('real_fileExists',array($params[0] . '.' . XENONOS_INFO_EXT))) {
 		errorCodes('setErrorCode',array(VFS_FILE_NOT_EXISTS));
 		return false;
 	} elseif (vfs('fileExists',array($params[1]))) {
@@ -122,11 +122,11 @@ function service_vfs_restore($params = '') {
 	}
 	if (vfs('real_fileExists',array($params[0] . '.' . XENONOS_INFO_EXT))) {
 		if (vfs('isGroupDir',array($params[1]))) {
-			return (!vfs('real_fileExists',array($params[0] . '.' . EYEOS_FILE_EXT)) || vfs('real_move',array($params[0] . '.' . EYEOS_FILE_EXT,$params[1] . '.' . EYEOS_FILE_EXT))) && (!vfs('real_fileExists',array($params[0] . '.' . XENONOS_INFO_EXT)) || vfs('real_move',array($params[0] . '.' . XENONOS_INFO_EXT,$params[1] . '.' . XENONOS_INFO_EXT))) && vfs('real_delete',array($params[0] . '.' . EYEOS_TRASH_EXT));
-		} elseif (vfs('real_move',array($params[0] . '.' . EYEOS_FILE_EXT,$params[1]))) {
+			return (!vfs('real_fileExists',array($params[0] . '.' . XENONOS_FILE_EXT)) || vfs('real_move',array($params[0] . '.' . XENONOS_FILE_EXT,$params[1] . '.' . XENONOS_FILE_EXT))) && (!vfs('real_fileExists',array($params[0] . '.' . XENONOS_INFO_EXT)) || vfs('real_move',array($params[0] . '.' . XENONOS_INFO_EXT,$params[1] . '.' . XENONOS_INFO_EXT))) && vfs('real_delete',array($params[0] . '.' . EYEOS_TRASH_EXT));
+		} elseif (vfs('real_move',array($params[0] . '.' . XENONOS_FILE_EXT,$params[1]))) {
 			return vfs('real_delete',array($params[0] . '.' . XENONOS_INFO_EXT)) && vfs('real_delete',array($params[0] . '.' . EYEOS_TRASH_EXT));
 		}
-	} elseif (vfs('real_move',array($params[0] . '.' . EYEOS_FILE_EXT,$params[1]))) {
+	} elseif (vfs('real_move',array($params[0] . '.' . XENONOS_FILE_EXT,$params[1]))) {
 		return vfs('real_delete',array($params[0] . '.' . EYEOS_TRASH_EXT));
 	}
 	return false;
@@ -201,9 +201,9 @@ function service_vfs_delete($params) {
 			$name .= uniqid(mt_rand(0, 99999));
 
 			if(vfs('isGroupDir',array($file))) {
-				if (copy($file.'.'.EYEOS_FILE_EXT,$myUserDir.'/'.TRASH_USER_DIR.'/'.$name.'.'.EYEOS_FILE_EXT) &&
+				if (copy($file.'.'.XENONOS_FILE_EXT,$myUserDir.'/'.TRASH_USER_DIR.'/'.$name.'.'.XENONOS_FILE_EXT) &&
 					copy($file.'.'.XENONOS_INFO_EXT,$myUserDir.'/'.TRASH_USER_DIR.'/'.$name.'.'.XENONOS_INFO_EXT) &&
-					unlink($file.'.'.EYEOS_FILE_EXT) && unlink($file.'.'.XENONOS_INFO_EXT)) {
+					unlink($file.'.'.XENONOS_FILE_EXT) && unlink($file.'.'.XENONOS_INFO_EXT)) {
 					$data = array(
 						'eyeTrash' => array(
 							array(
@@ -221,7 +221,7 @@ function service_vfs_delete($params) {
 					return false;
 				}
 			} else {
-				if (copy($file,$myUserDir.'/'.TRASH_USER_DIR.'/'.$name.'.'.EYEOS_FILE_EXT) && unlink($file)) {
+				if (copy($file,$myUserDir.'/'.TRASH_USER_DIR.'/'.$name.'.'.XENONOS_FILE_EXT) && unlink($file)) {
 					$data = array(
 						'eyeTrash' => array(
 							array(
@@ -242,7 +242,7 @@ function service_vfs_delete($params) {
 
 		} else {
 			if(vfs('isGroupDir',array($file))) {
-				if (unlink($file.'.'.EYEOS_FILE_EXT) && unlink($file.'.'.XENONOS_INFO_EXT)) {
+				if (unlink($file.'.'.XENONOS_FILE_EXT) && unlink($file.'.'.XENONOS_INFO_EXT)) {
 					return true;
 				} else {
 					errorCodes('setErrorCode',array(PHP_ERROR_ON_UNLINK));
@@ -408,7 +408,7 @@ function service_vfs_copy($params) {
 			//TODO: decide if make a new secure number
 			$subdest = $dest;
 			$dest .= '_' . substr($orig, strrpos($orig, '_') + 1); // utf8
-			if (copy($orig.'.'.EYEOS_FILE_EXT,$dest.'.'.EYEOS_FILE_EXT)){
+			if (copy($orig.'.'.XENONOS_FILE_EXT,$dest.'.'.XENONOS_FILE_EXT)){
 				$xml = eyeXML('xml2array',array(file_get_contents($orig . '.' . XENONOS_INFO_EXT)));
 				$xml['eyeFile'][0]['filename'][0] = basename($subdest);
 				file_put_contents($dest . '.' . XENONOS_INFO_EXT, eyeXML('array2xml',array($xml)));
@@ -419,7 +419,7 @@ function service_vfs_copy($params) {
 			}
 		} else {
 			$orig = getRealFileName($orig);//Get the real name
-			if(copy($orig.'.'.EYEOS_FILE_EXT,$dest)) {
+			if(copy($orig.'.'.XENONOS_FILE_EXT,$dest)) {
 				return true;
 			} else {
 				errorCodes('setErrorCode',array(PHP_ERROR_ON_COPY));
@@ -429,7 +429,7 @@ function service_vfs_copy($params) {
 	} else {
 		if (vfs('isGroupDir', array($dest))) {
 			vfs('create', array($dest));
-			$dest = getRealFileName($dest) . '.' . EYEOS_FILE_EXT;
+			$dest = getRealFileName($dest) . '.' . XENONOS_FILE_EXT;
 		}
 		if (copy($orig, $dest) === true) {
 			return true;
@@ -546,7 +546,7 @@ function service_vfs_move($params) {
 			$subdest = $dest;
 			$dest .= '_' . substr($orig, strrpos($orig, '_') + 1); // utf8
 
-			if (@rename($orig.'.'.EYEOS_FILE_EXT,$dest.'.'.EYEOS_FILE_EXT)){
+			if (@rename($orig.'.'.XENONOS_FILE_EXT,$dest.'.'.XENONOS_FILE_EXT)){
 				$xml = eyeXML('xml2array',array(file_get_contents($orig . '.' . XENONOS_INFO_EXT)));
 				$xml['eyeFile'][0]['filename'][0] = basename($subdest);
 				file_put_contents($dest . '.' . XENONOS_INFO_EXT, eyeXML('array2xml',array($xml)));
@@ -562,7 +562,7 @@ function service_vfs_move($params) {
 			}
 		} else {
 			$orig = getRealFileName($orig);//Get the real name
-			if (rename($orig.'.'.EYEOS_FILE_EXT,$dest)){
+			if (rename($orig.'.'.XENONOS_FILE_EXT,$dest)){
 				if(unlink($orig.'.'.XENONOS_INFO_EXT)) {
 					return true;
 				} else {
@@ -578,7 +578,7 @@ function service_vfs_move($params) {
 		if(vfs('isGroupDir',array($dest))) {
 			vfs('create',array($dest));
 			$real = getRealFileName($dest);
-			rename($orig,$dest.'.'.EYEOS_FILE_EXT);
+			rename($orig,$dest.'.'.XENONOS_FILE_EXT);
 		} else {
 			if (rename($orig,$dest)){
 				return true;
@@ -1188,7 +1188,7 @@ function service_vfs_getRealName($params)
 		return false;
 	}
 
-	return substr($fileList[0], 0, strrpos($fileList[0], '.')) . '.' . EYEOS_FILE_EXT; // utf8
+	return substr($fileList[0], 0, strrpos($fileList[0], '.')) . '.' . XENONOS_FILE_EXT; // utf8
 }
 
 
@@ -1998,7 +1998,7 @@ function service_vfs_realToVirtual($params=null){
 	//move real name to new name
 
 	//Moving it
-	if(!rename($file,$fileToCreate.'.'.EYEOS_FILE_EXT)){
+	if(!rename($file,$fileToCreate.'.'.XENONOS_FILE_EXT)){
 		//Don't set any error code because real_crate function already setted
 		return false;
 	}
@@ -2038,7 +2038,7 @@ function service_vfs_realToVirtualDir($params=null){
 	if ($handler = opendir($dir)) {
 		while (false !== ($file = readdir($handler))) {
 			$info = pathinfo($file);
-			if ( /* utf8 */ substr($file, 0, 1) !== '.' && $info['extension'] !== EYEOS_FILE_EXT && $info['extension'] !== XENONOS_INFO_EXT) {
+			if ( /* utf8 */ substr($file, 0, 1) !== '.' && $info['extension'] !== XENONOS_FILE_EXT && $info['extension'] !== XENONOS_INFO_EXT) {
 				if(is_dir($dir.'/'.$file)) {
 					$num += vfs('realToVirtualDir',array($dir.'/'.$file));
 				} else {
@@ -2068,7 +2068,7 @@ function service_vfs_virtualToReal($params = '') {
 	$path = substr($params[0], 0, -strlen(basename($params[0]))); // utf8
 	$info = eyeXML('getXMLfile',array($path . '/' . $virtual));
 	$real = $info['eyeFile'][0]['filename'][0];
-	if (rename($path . '/' . substr($virtual, 0, -strlen(XENONOS_INFO_EXT)) . EYEOS_FILE_EXT, $path . '/' . $real) && unlink($path . '/' . $virtual)) { // utf8
+	if (rename($path . '/' . substr($virtual, 0, -strlen(XENONOS_INFO_EXT)) . XENONOS_FILE_EXT, $path . '/' . $real) && unlink($path . '/' . $virtual)) { // utf8
 		return true;
 	}
 	return false;
@@ -2094,11 +2094,11 @@ function service_vfs_virtualToRealDir($params = '') {
 /**
 * Checks whether a file has the same extension as the one used
 * for storing a virtual file's content (defined by the
-* EYEOS_FILE_EXT constant).
+* XENONOS_FILE_EXT constant).
 *
 * @param $params array(path)
 * @param $path Path to the file.
-* @return If the file has the EYEOS_FILE_EXT, returns this extension.
+* @return If the file has the XENONOS_FILE_EXT, returns this extension.
 *	Otherwise, it returns false.
 * @date 2008/03/11
 */
@@ -2116,7 +2116,7 @@ function service_vfs_real_getExtension($params){
 	$fileExtension = $pathinfo['extension'];
 
 	//if is a oneye virtual file
-	if($fileExtension == EYEOS_FILE_EXT){
+	if($fileExtension == XENONOS_FILE_EXT){
 		//Getting the real file string
 		$path = substr($path, 0, strrpos($path, '_')); // utf8
 		//Getting the reale extension
@@ -2133,11 +2133,11 @@ function service_vfs_real_getExtension($params){
 /**
 * Checks whether a virtual file has the same extension as the
 * one used for storing a virtual file's content (defined by
-* the EYEOS_FILE_EXT constant).
+* the XENONOS_FILE_EXT constant).
 *
 * @param $params array(path)
 * @param $path Path to the file.
-* @return If the file has the EYEOS_FILE_EXT, returns this extension.
+* @return If the file has the XENONOS_FILE_EXT, returns this extension.
 *	Otherwise, it returns false.
 * @date 2008/03/11
 */
@@ -2147,8 +2147,8 @@ function service_vfs_getExtension($params){
 	}
 	$path = $params[0];
 	$extension = substr($path, strrpos($path, '.') + 1); // utf8
-	if($extension == EYEOS_FILE_EXT){
-		return EYEOS_FILE_EXT;
+	if($extension == XENONOS_FILE_EXT){
+		return XENONOS_FILE_EXT;
 	}else{
 		return false;
 	}

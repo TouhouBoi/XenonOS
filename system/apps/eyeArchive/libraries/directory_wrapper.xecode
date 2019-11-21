@@ -21,7 +21,7 @@ function getFiles($file){
 		$contentLen = count($tmpContent);
 		$content = array();
 		for($x=0;$x <$contentLen;$x++){
-			if ( /* utf8 */ strpos($tmpContent[$x], EYEOS_FILE_EXT) !== false) {
+			if ( /* utf8 */ strpos($tmpContent[$x], XENONOS_FILE_EXT) !== false) {
 				$content['path'][] = $file.$tmpContent[$x];
 				$name = substr($tmpContent[$x], 0, strpos($tmpContent[$x], '_')); // utf8
 				$content['names'][] = $name;

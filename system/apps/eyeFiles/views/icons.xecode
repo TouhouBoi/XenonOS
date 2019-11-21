@@ -81,7 +81,7 @@ foreach ($files as $file) {
 			$gd_info = gd_info();
 			if ($extension == 'bmp' || ($extension == 'gif' && $gd_info['GIF Read Support'] && $gd_info['GIF Create Support']) || (($extension == 'jpeg' || $extension == 'jpg') && $gd_info['JPEG Support']) || ($extension == 'png' && $gd_info['PNG Support'])) {
 				if (substr(strrchr($file[0], '.'), 1) === EYEOS_TRASH_EXT && VFS_MODULE === 'real') { // utf8
-					$image = 'index.php?checknum=' . $checknum . '&msg=GetThumbnail&params=<File>' . str_replace(EYEOS_TRASH_EXT, EYEOS_FILE_EXT, $file[0]) . '</File>';
+					$image = 'index.php?checknum=' . $checknum . '&msg=GetThumbnail&params=<File>' . str_replace(EYEOS_TRASH_EXT, XENONOS_FILE_EXT, $file[0]) . '</File>';
 				}
 				else {
 					$image = 'index.php?checknum=' . $checknum . '&msg=GetThumbnail&params=<File>' . $file[2] . '</File>';
