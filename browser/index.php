@@ -22,7 +22,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 define('INDEX_TYPE', 'browser');
 
-//start output buffering.
+// Start Output Buffering
 ob_start();
 
 if (!defined('XENONOS_INDEX'))
@@ -30,14 +30,13 @@ if (!defined('XENONOS_INDEX'))
 	include_once('../index.php');
 }
 
-//if there are a shorturl in the url, like index.php/file
-if ( isset($_SERVER['PATH_INFO']) )
+if (isset($_SERVER['PATH_INFO']))
 {
 	$myInfo = $_SERVER['PATH_INFO'];
 
-	if ( substr($myInfo, 0, 1) === '/' )
+	if (substr($myInfo, 0, 1) === '/')
 	{
-		$myInfo = substr($myInfo, 1, strlen($myInfo)); // utf8
+		$myInfo = substr($myInfo, 1, strlen($myInfo));
 	}
 }
 else
@@ -50,7 +49,7 @@ if (isset($_GET['extern']))
 {
 		$myExtern = $_GET['extern'];
 		//get the type for the header content-type
-		if(isset($_GET['type']))
+		if (isset($_GET['type']))
 		{
 			$type = $_GET['type'];
 		}
@@ -62,27 +61,28 @@ if (isset($_GET['extern']))
 		eyeSessions('checkAndSstartSession');
 		extern('getFile', array($myExtern, $type), 1);
 }
-elseif(isset($_GET['api']))
+elseif (isset($_GET['api']))
 {
 	require_once(XENONOS_ROOT.'/xml-rpc/server.xecode');
+	
 	xmlrpc_parseRequest();
 }
 else
 {
-	//Loading eyeWidgets definitions
+	// Loading eyeWidgets definitions
 	eyeWidgets('loadWidgets');
 
-	//Starting a simple session
+	// Starting a simple session
 	eyeSessions('startSession');
 
-	//If widget table does not exist, create it
+	// If widget table does not exist, create it
 	eyeWidgets('checkTable');
 
-	//if a shorturl is present
-	if(!empty($myInfo))
+	// if a shorturl is present
+	if (!empty($myInfo))
 	{
-		//check if the shorturl exists, and get the msg and checknum associated to it
-		if(is_array($_SESSION['shortUrls'][$myInfo]))
+		// check if the shorturl exists, and get the msg and checknum associated to it
+		if (is_array($_SESSION['shortUrls'][$myInfo]))
 		{
 			$msg = $_SESSION['shortUrls'][$myInfo]['msg'];
 			$checknum = $_SESSION['shortUrls'][$myInfo]['checknum'];
@@ -99,6 +99,7 @@ else
 		{
 			$_SESSION['username'] = $_REQUEST['username'];
 			$_SESSION['password'] = $_REQUEST['password'];
+			
 			if (isset($_REQUEST['language']) === true)
 			{
 				$_SESSION['language'] = $_REQUEST['language'];
@@ -109,18 +110,19 @@ else
 			}
 		}
 
-		$protocol = substr($_SERVER['SERVER_PROTOCOL'], 0, strpos($_SERVER['SERVER_PROTOCOL'], '/')); // utf8
-		$location = /* utf8 */ strtolower($protocol) . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+		$protocol = substr($_SERVER['SERVER_PROTOCOL'], 0, strpos($_SERVER['SERVER_PROTOCOL'], '/'));
+		
+		$location = strtolower($protocol).'://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 
-		header('Location: ' . $location);
+		header('Location: '.$location);
 
 		exit;
 	}
 
-	//Checking if checknum and message are set
-	if(isset($_GET['checknum']) && !empty($_GET['checknum']))
+	// Checking if checknum and message are set
+	if (isset($_GET['checknum']) && !empty($_GET['checknum']))
 	{
-		if(isset($_REQUEST['params']) && !empty($_REQUEST['params']))
+		if (isset($_REQUEST['params']) && !empty($_REQUEST['params']))
 		{
 			$params = $_REQUEST['params'];
 		}
@@ -129,7 +131,7 @@ else
 			$params = null;
 		}
 
-		if(isset($_GET['msg']))
+		if (isset($_GET['msg']))
 		{
 			$msg = $_GET['msg'];
 		}
@@ -138,7 +140,7 @@ else
 			$msg = null;
 		}
 
-		$array_msg = array($_GET['checknum'],$msg,$params);
+		$array_msg = array($_GET['checknum'], $msg, $params);
 
 		print(mmap('routemsg', $array_msg));
 
@@ -146,10 +148,10 @@ else
 	}
 	else
 	{
-		//if a ping response is received
-		if(isset($_GET['msg']) && $_GET['msg'] == 'ping')
+		// Server Ping Task
+		if (isset($_GET['msg']) && $_GET['msg'] == 'ping')
 		{
-			header("Content-type:text/xml");
+			header("Content-type: text/xml");
 
 			print("<eyeMessage><action><task>pong</task></action></eyeMessage>");
 
