@@ -1426,7 +1426,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 .eyeWindowContent, .eyeWindowMainDrag {
 	background-color: #ffffff;
-	border-color: #80b5ff; border-style: solid; border-width: 0px 1px 1px;
+	border-color: #00c70d; border-style: solid; border-width: 0px 1px 1px;
 	bottom: 0; left: 0; right: 0; top: 23px;
 	overflow: inherit;
 	position: relative;
