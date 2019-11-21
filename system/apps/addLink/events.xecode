@@ -19,7 +19,7 @@ function addLink_on_Close($params = '') {
 }
 
 function addLink_on_Do($params = '') {
-	$file = um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . basename($GLOBALS['addLink_Textbox']->text) . '.' . EYEOS_LINK_EXT;
+	$file = um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . basename($GLOBALS['addLink_Textbox']->text) . '.' . XENONOS_LINK_EXT;
 	eyeXML('setXMLfile',array($file,getConfig('addLink','default.eyeLink')));
 	if ($GLOBALS['addLink_Hidden']->text) {
 		eyex('rawjs',array('js' => $GLOBALS['addLink_Hidden']->text));

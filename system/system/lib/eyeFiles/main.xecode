@@ -328,7 +328,7 @@ function lib_eyeFiles_getDirContent($params = '') {
 					$element[] = ' ';
 					$listFiles[] = $element;
 				}
-			} elseif (strtolower(strrchr($file, '.')) == strtolower('.' . EYEOS_LINK_EXT) && vfs('real_fileExists', array($file))) { // utf8
+			} elseif (strtolower(strrchr($file, '.')) == strtolower('.' . XENONOS_LINK_EXT) && vfs('real_fileExists', array($file))) { // utf8
 				$element[] = basename($file);
 				$element[] = 'link';
 				$element[] = $element[0];

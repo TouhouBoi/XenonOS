@@ -26,7 +26,7 @@ function eyeDelete_run($params = '') {
 				$error = 1;
 			}
 		} else {
-			if ($path[1] !== 'real' && strtolower(strrchr($file, '.')) === '.' . strtolower(EYEOS_LINK_EXT)) { // utf8
+			if ($path[1] !== 'real' && strtolower(strrchr($file, '.')) === '.' . strtolower(XENONOS_LINK_EXT)) { // utf8
 				$xmlLink = eyeXML('getXMLfile',array($path[0] . '/' . $file));
 			}
 			if (vfs('real_delete',array($path[0] . '/' . $file))) {

@@ -469,7 +469,7 @@ function eyeDialog_listDir($dir) {
 				$date = ' ';
 				$name = basename($file);
 			}
-			elseif (ltrim(strrchr($file, '.'), '.') === EYEOS_LINK_EXT) { // utf8
+			elseif (ltrim(strrchr($file, '.'), '.') === XENONOS_LINK_EXT) { // utf8
 				$type = 'l';
 				$author = ' ';
 				$size = ' ';

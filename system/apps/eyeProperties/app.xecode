@@ -58,7 +58,7 @@ function eyeProperties_run($params = '') {
 		$icon = 'filetypes/folder';
 		$type = 'Directory';
 // Links
-	} elseif ($path[1] !== 'real' && strtolower(strrchr($file, '.')) === strtolower('.' . EYEOS_LINK_EXT) && vfs('real_fileExists', array($path[0] . '/' . $file)) === true) { // utf8
+	} elseif ($path[1] !== 'real' && strtolower(strrchr($file, '.')) === strtolower('.' . XENONOS_LINK_EXT) && vfs('real_fileExists', array($path[0] . '/' . $file)) === true) { // utf8
 		$title = $file;
 		$info = eyeXML('getXMLfile',array($path[0] . '/' . $file));
 		$icon = $info['eyeLink'][0]['icon'][0];

@@ -148,7 +148,7 @@ function eyeFTP_listDir($dir,$addParent=true) {
 				$date = ' ';
 				$name = basename($file);
 			}
-			else if (ltrim(strrchr($file, '.'), '.') === EYEOS_LINK_EXT) { // utf8
+			else if (ltrim(strrchr($file, '.'), '.') === XENONOS_LINK_EXT) { // utf8
 				$type = 'l';
 				$author = ' ';
 				$size = ' ';

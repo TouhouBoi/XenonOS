@@ -71,7 +71,7 @@ function eyePaste_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 		eyex('messageBox',array('content' => '"%s" cannot be copied from trash.','tokens' => array($file)));
 	} elseif ($to[1] == 'trash') {
 		eyex('messageBox',array('content' => '"%s" cannot be copied to trash.','tokens' => array($file)));
-	} elseif ($from[1] !== 'real' && strtolower(strrchr($file, '.')) === '.' . strtolower(EYEOS_LINK_EXT) && vfs('real_fileExists', array($from[0] . '/' . $file)) === true) { // utf8
+	} elseif ($from[1] !== 'real' && strtolower(strrchr($file, '.')) === '.' . strtolower(XENONOS_LINK_EXT) && vfs('real_fileExists', array($from[0] . '/' . $file)) === true) { // utf8
 		eyex('messageBox',array('content' => 'Links cannot be pasted!'));
 	} else {
 		if ($from[1] . '://' . $from[2] . '/' . $file == $to[1] . '://' . $to[2] . '/' . $file2) {

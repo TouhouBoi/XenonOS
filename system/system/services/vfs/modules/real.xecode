@@ -1135,7 +1135,7 @@ function service_vfs_getDirContent($params) {
 					if($xml['eyeFile'][0]['filename'][0]) {
 						$dirFiles[] = $info['dirname'].'/'.$xml['eyeFile'][0]['filename'][0];
 					}
-				} else if ((is_dir($fileName) === true || isset($info['extension']) === true && $info['extension'] === EYEOS_LINK_EXT) && $fileName !== '.') {
+				} else if ((is_dir($fileName) === true || isset($info['extension']) === true && $info['extension'] === XENONOS_LINK_EXT) && $fileName !== '.') {
 					$dirFiles[] = $fileName;
 				}
 			}
