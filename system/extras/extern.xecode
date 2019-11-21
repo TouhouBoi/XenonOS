@@ -72,11 +72,11 @@ function XenonOS_init()
 			XenonOS_stop();
 		}
 		
-		global $ONEYE_EXTERN;
+		global $XENONOS_EXTERN;
 		
-		$ONEYE_EXTERN['error_reporting'] = error_reporting();
-		$ONEYE_EXTERN['default_charset'] = ini_get('default_charset');
-		$ONEYE_EXTERN['time_limit'] = ini_get('max_execution_time');
+		$XENONOS_EXTERN['error_reporting'] = error_reporting();
+		$XENONOS_EXTERN['default_charset'] = ini_get('default_charset');
+		$XENONOS_EXTERN['time_limit'] = ini_get('max_execution_time');
 
 		if (EYEOS_DEBUG_MODE == 0)
 		{
@@ -113,16 +113,16 @@ function XenonOS_stop()
 	
 	if (defined('XENONOS_INDEX') || $currentUser)
 	{
-		global $ONEYE_EXTERN;
+		global $XENONOS_EXTERN;
 
-		error_reporting($ONEYE_EXTERN['error_reporting']);
+		error_reporting($XENONOS_EXTERN['error_reporting']);
 
 		if (ALLOW_BIG_STREAMS == 1)
 		{
-			@set_time_limit($ONEYE_EXTERN['time_limit']);
+			@set_time_limit($XENONOS_EXTERN['time_limit']);
 		}
 		
-		ini_set('default_charset', $ONEYE_EXTERN['default_charset']);
+		ini_set('default_charset', $XENONOS_EXTERN['default_charset']);
 
 		global $currentUser;
 		
