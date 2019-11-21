@@ -20,79 +20,117 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function XenonOS_init() {
-	if (!defined('XENONOS_INDEX')) {
+function XenonOS_init()
+{
+	if (!defined('XENONOS_INDEX'))
+	{
 		define('XENONOS_INDEX', 1);
 
 		define('XENONOS_ROOT', dirname(__FILE__) . '/..');
+		
 		$error_reporting = error_reporting(E_ALL ^ E_NOTICE);
-		require_once(XENONOS_ROOT . '/../settings.php');
+		
+		require_once(XENONOS_ROOT.'/../settings.php');
+		
 		error_reporting($error_reporting);
 
-		include_once(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeString/main' . EYE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeString/main'.EYE_CODE_EXTENSION);
+		
 		call_user_func('lib_eyeString_start');
+		
 		define('LIB_EYESTRING_LOADED', 1);
 
 		include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.KERNEL_DIR.'/kernel'.EYE_CODE_EXTENSION);
 
 		define('INDEX_TYPE', 'extern');
+		
 		define('INDEX_BASE', XENONOS_ROOT . '../');
+		
 		define('ROOTUSER', REAL_ROOTUSER);
 
 		XenonOS_init();
 
 		errorCodes('loadCodes');
+		
 		eyePear('loadPear');
 
-		if (EYEOS_SECURITY == 1) {
+		if (EYEOS_SECURITY == 1)
+		{
 			sec('start');
 		}
+		
 		global $LOG_RUNNING;
+		
 		$LOG_RUNNING = 0;
-	} else {
+	}
+	else
+	{
 		global $currentUser;
-		if ($currentUser) {
+		
+		if ($currentUser)
+		{
 			eyeOS_stop();
 		}
+		
 		global $ONEYE_EXTERN;
+		
 		$ONEYE_EXTERN['error_reporting'] = error_reporting();
 		$ONEYE_EXTERN['default_charset'] = ini_get('default_charset');
 		$ONEYE_EXTERN['time_limit'] = ini_get('max_execution_time');
 
-		if (EYEOS_DEBUG_MODE == 0) {
+		if (EYEOS_DEBUG_MODE == 0)
+		{
 			error_reporting(0);
-		} else if (EYEOS_DEBUG_MODE == 2) {
+		}
+		else if (EYEOS_DEBUG_MODE == 2)
+		{
 			error_reporting(E_ALL);
-		} else if (EYEOS_DEBUG_MODE == 3) {
+		}
+		else if
+		(EYEOS_DEBUG_MODE == 3)
+		{
 			error_reporting(E_ALL ^ E_NOTICE);
-		} else {
+		}
+		else
+		{
 			error_reporting(E_ERROR);
 		}
-		if (ALLOW_BIG_STREAMS == 1) {
+		
+		if (ALLOW_BIG_STREAMS == 1)
+		{
 			@set_time_limit(0);
 		}
+		
 		ini_set('default_charset', DEFAULT_CHARSET);
 
 		$currentUser = REAL_ROOTUSER;
 	}
 }
 
-function eyeOS_stop() {
+function eyeOS_stop()
+{
 	global $currentUser;
-	if (defined('XENONOS_INDEX') || $currentUser) {
+	
+	if (defined('XENONOS_INDEX') || $currentUser)
+	{
 		global $ONEYE_EXTERN;
 
 		error_reporting($ONEYE_EXTERN['error_reporting']);
 
-		if (ALLOW_BIG_STREAMS == 1) {
+		if (ALLOW_BIG_STREAMS == 1)
+		{
 			@set_time_limit($ONEYE_EXTERN['time_limit']);
 		}
+		
 		ini_set('default_charset', $ONEYE_EXTERN['default_charset']);
 
 		global $currentUser;
+		
 		$currentUser = null;
-	} else {
-		return false;
+	}
+	else
+	{
+		return(false);
 	}
 }
 ?>
