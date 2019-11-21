@@ -78,16 +78,16 @@ function XenonOS_init()
 		$XENONOS_EXTERN['default_charset'] = ini_get('default_charset');
 		$XENONOS_EXTERN['time_limit'] = ini_get('max_execution_time');
 
-		if (EYEOS_DEBUG_MODE == 0)
+		if (XENONOS_DEBUG_MODE == 0)
 		{
 			error_reporting(0);
 		}
-		else if (EYEOS_DEBUG_MODE == 2)
+		else if (XENONOS_DEBUG_MODE == 2)
 		{
 			error_reporting(E_ALL);
 		}
 		else if
-		(EYEOS_DEBUG_MODE == 3)
+		(XENONOS_DEBUG_MODE == 3)
 		{
 			error_reporting(E_ALL ^ E_NOTICE);
 		}

@@ -190,11 +190,11 @@ function setPhpInitDebug() {
 
 	/*$error_reporting = 0;
 
-	if (EYEOS_DEBUG_MODE === '2')
+	if (XENONOS_DEBUG_MODE === '2')
 	{
 		$error_reporting = E_ALL;
 	}
-	else if (EYEOS_DEBUG_MODE === '3')
+	else if (XENONOS_DEBUG_MODE === '3')
 	{
 		if (defined('E_DEPRECATED') === false)
 		{
@@ -203,7 +203,7 @@ function setPhpInitDebug() {
 
 		$error_reporting = E_ALL ^ E_DEPRECATED ^ E_NOTICE;
 	}
-	else if (EYEOS_DEBUG_MODE)
+	else if (XENONOS_DEBUG_MODE)
 	{
 		$error_reporting = E_ERROR;
 	}*/
