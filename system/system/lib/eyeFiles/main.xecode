@@ -284,7 +284,7 @@ function lib_eyeFiles_getDirContent($params = '') {
 		foreach ($files as $file) {
 			$element = array();
 			if ($type == 'trash') {
-				if (strtolower(strrchr($file,'.')) === strtolower('.' . EYEOS_TRASH_EXT)) { // utf8
+				if (strtolower(strrchr($file,'.')) === strtolower('.' . XENONOS_TRASH_EXT)) { // utf8
 					$info = eyeXML('getXMLfile',array($file));
 					$element[] = basename($file);
 					if ($info['eyeTrash'][0]['type'][0] == 'dir') {
@@ -300,9 +300,9 @@ function lib_eyeFiles_getDirContent($params = '') {
 						$element[] = 'file';
 						$element[] = $info['eyeTrash'][0]['lastname'][0];
 						if (!isset($params[3]) || $params[3] == '1' || eyeFiles('filterFile',array($element[2],$params[2],$params[3] - 2))) {
-							$info2 = eyeXML('getXMLfile', array(substr($file, 0, -strlen(EYEOS_TRASH_EXT)) . XENONOS_INFO_EXT)); // utf8
+							$info2 = eyeXML('getXMLfile', array(substr($file, 0, -strlen(XENONOS_TRASH_EXT)) . XENONOS_INFO_EXT)); // utf8
 							$element[] = $info['eyeTrash'][0]['deleteDate'][0];
-							$element[] = vfs('real_filesize', array(substr($file, 0, -strlen(EYEOS_TRASH_EXT)) . XENONOS_FILE_EXT)); // utf8
+							$element[] = vfs('real_filesize', array(substr($file, 0, -strlen(XENONOS_TRASH_EXT)) . XENONOS_FILE_EXT)); // utf8
 							$element[] = $info2['eyeFile'][0]['author'][0];
 							$listFiles[] = $element;
 						}

@@ -114,11 +114,11 @@ function service_vfs_restore($params = '') {
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
 	}
-	if (substr($params[0], -strlen('.' . EYEOS_TRASH_EXT)) === '.' . EYEOS_TRASH_EXT) { // utf8
-		$params[0] = substr($params[0], 0, -strlen('.' . EYEOS_TRASH_EXT)); // utf8
+	if (substr($params[0], -strlen('.' . XENONOS_TRASH_EXT)) === '.' . XENONOS_TRASH_EXT) { // utf8
+		$params[0] = substr($params[0], 0, -strlen('.' . XENONOS_TRASH_EXT)); // utf8
 	}
 	if (vfs('real_move',array($params[0] . '.' . XENONOS_FILE_EXT,$params[1] . '.' . XENONOS_FILE_EXT))) {
-		return vfs('real_move',array($params[0] . '.' . XENONOS_INFO_EXT,$params[1] . '.' . XENONOS_INFO_EXT)) && vfs('real_delete',array($params[0] . '.' . EYEOS_TRASH_EXT));
+		return vfs('real_move',array($params[0] . '.' . XENONOS_INFO_EXT,$params[1] . '.' . XENONOS_INFO_EXT)) && vfs('real_delete',array($params[0] . '.' . XENONOS_TRASH_EXT));
 	}
 	return false;
 }
@@ -138,11 +138,11 @@ function service_vfs_restoreDir($params = '') {
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
 	}
-	if (substr($params[0], -strlen('.' . EYEOS_TRASH_EXT)) === '.' . EYEOS_TRASH_EXT) { // utf8
-		$params[0] = substr($params[0], 0, strlen('.' . EYEOS_TRASH_EXT)); // utf8
+	if (substr($params[0], -strlen('.' . XENONOS_TRASH_EXT)) === '.' . XENONOS_TRASH_EXT) { // utf8
+		$params[0] = substr($params[0], 0, strlen('.' . XENONOS_TRASH_EXT)); // utf8
 	}
 	if (vfs('real_move',array($params[0] . '/',$params[1] . '/'))) {
-		return vfs('real_delete',array($params[0] . '.' . EYEOS_TRASH_EXT));
+		return vfs('real_delete',array($params[0] . '.' . XENONOS_TRASH_EXT));
 	}
 	return false;
 }
@@ -203,7 +203,7 @@ function service_vfs_delete($params) {
 							)
 						)
 					);
-					file_put_contents($myUserDir . '/' . TRASH_USER_DIR . '/' . $name . '.' . EYEOS_TRASH_EXT, eyeXML('array2xml',array($data)));
+					file_put_contents($myUserDir . '/' . TRASH_USER_DIR . '/' . $name . '.' . XENONOS_TRASH_EXT, eyeXML('array2xml',array($data)));
 					return true;
 				} else {
 					errorCodes('setErrorCode',array(PHP_ERROR_ON_UNLINK));
@@ -812,7 +812,7 @@ function service_vfs_rmdir($params) {
 		$trashDir = $myUserDir.'/'.TRASH_USER_DIR.'/';
 		$name = uniqid(mt_rand(0, 99999));
 		rename($dir,$trashDir.$name);
-		vfs('real_create',array($trashDir.$name.'.'.EYEOS_TRASH_EXT));
+		vfs('real_create',array($trashDir.$name.'.'.XENONOS_TRASH_EXT));
 		$data = array(
 			'eyeTrash' => array(
 				array(
@@ -823,7 +823,7 @@ function service_vfs_rmdir($params) {
 				)
 			)
 		);
-		eyeXML('setXMLfile',array($trashDir.$name.'.'.EYEOS_TRASH_EXT,$data));
+		eyeXML('setXMLfile',array($trashDir.$name.'.'.XENONOS_TRASH_EXT,$data));
 	} else {
 		deleteDirContent($dir);
 	}

@@ -56,7 +56,7 @@ define('XENONOS_INFO_EXT', 'eyeInfo');
 define('XENONOS_FILE_EXT', 'eyeFile');
 define('XENONOS_LINK_EXT', 'eyeLink');
 define('XE_CODE_EXTENSION', '.xecode');
-define('EYEOS_TRASH_EXT', 'eyeTrash');
+define('XENONOS_TRASH_EXT', 'eyeTrash');
 
 // vfs and um modules
 define('VFS_MODULE', 'virtual');

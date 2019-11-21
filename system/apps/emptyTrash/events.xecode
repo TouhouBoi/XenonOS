@@ -21,8 +21,8 @@ function emptyTrash_on_Close($params = '') {
 function emptyTrash_on_Do($params = '') {
 	$path = um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/';
 	if ($GLOBALS['emptyTrash_Hidden_File']->text) {
-		$path .= substr($GLOBALS['emptyTrash_Hidden_File']->text, 0, -strlen('.' . EYEOS_TRASH_EXT)); // utf8
-		$files = array($path,$path . '.' . XENONOS_FILE_EXT,$path . '.' . XENONOS_INFO_EXT,$path . '.' . EYEOS_TRASH_EXT);
+		$path .= substr($GLOBALS['emptyTrash_Hidden_File']->text, 0, -strlen('.' . XENONOS_TRASH_EXT)); // utf8
+		$files = array($path,$path . '.' . XENONOS_FILE_EXT,$path . '.' . XENONOS_INFO_EXT,$path . '.' . XENONOS_TRASH_EXT);
 	} else {
 		$files = vfs('real_getDirContent',array($path));
 	}

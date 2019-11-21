@@ -19,7 +19,7 @@ function eyeProperties_run($params = '') {
 	$file = basename($params[0]);
 	$path = eyeFiles('cleanPath',array(substr(trim($params[0], '/\\'), 0, -strlen($file)))); // utf8
 // Trash
-	if ($path[1] !== 'real' && strtolower(strrchr($file, '.')) === strtolower('.' . EYEOS_TRASH_EXT) && vfs('real_fileExists',array(um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/' . $file)) === true) { // utf8
+	if ($path[1] !== 'real' && strtolower(strrchr($file, '.')) === strtolower('.' . XENONOS_TRASH_EXT) && vfs('real_fileExists',array(um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/' . $file)) === true) { // utf8
 		$path[0] = um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/';
 		$path[1] = 'trash';
 		$path[2] = '/';
@@ -46,8 +46,8 @@ function eyeProperties_run($params = '') {
 			} else {
 				$type = 'File';
 			}
-			$size = vfs('real_filesize',array($path[0] . '/' . basename($file,EYEOS_TRASH_EXT) . XENONOS_FILE_EXT));
-			$info = eyeXML('getXMLfile',array($path[0] . '/' . basename($file,EYEOS_TRASH_EXT) . XENONOS_INFO_EXT));
+			$size = vfs('real_filesize',array($path[0] . '/' . basename($file,XENONOS_TRASH_EXT) . XENONOS_FILE_EXT));
+			$info = eyeXML('getXMLfile',array($path[0] . '/' . basename($file,XENONOS_TRASH_EXT) . XENONOS_INFO_EXT));
 			$author = $info['eyeFile'][0]['author'][0];
 			$creationdate = $info['eyeFile'][0]['created'][0];
 			$createdwith = $info['eyeFile'][0]['creationapp'][0];
