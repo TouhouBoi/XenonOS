@@ -11,7 +11,7 @@ XenonOS is a fork of the oneye project.
 XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
 
 Default Login: root
-Default Password : root
+Default Password: root
 
 Original Copyright
 ------------------------------------------
