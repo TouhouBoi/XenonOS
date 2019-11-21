@@ -69,7 +69,7 @@ function XenonOS_init()
 		
 		if ($currentUser)
 		{
-			eyeOS_stop();
+			XenonOS_stop();
 		}
 		
 		global $ONEYE_EXTERN;
@@ -107,7 +107,7 @@ function XenonOS_init()
 	}
 }
 
-function eyeOS_stop()
+function XenonOS_stop()
 {
 	global $currentUser;
 	
