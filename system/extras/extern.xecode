@@ -20,7 +20,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeOS_start() {
+function XenonOS_init() {
 	if (!defined('XENONOS_INDEX')) {
 		define('XENONOS_INDEX', 1);
 
@@ -39,7 +39,7 @@ function eyeOS_start() {
 		define('INDEX_BASE', XENONOS_ROOT . '../');
 		define('ROOTUSER', REAL_ROOTUSER);
 
-		eyeOS_start();
+		XenonOS_init();
 
 		errorCodes('loadCodes');
 		eyePear('loadPear');
