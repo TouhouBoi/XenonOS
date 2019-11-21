@@ -91,7 +91,7 @@ function service_vfs_create($params) {
 
 			//Create the 2 files, info and file.
 			file_put_contents($fileToCreate . '.' . EYEOS_FILE_EXT, '');
-			file_put_contents($fileToCreate . '.' . EYEOS_INFO_EXT, eyeXML('array2xml',array($data)));
+			file_put_contents($fileToCreate . '.' . XENONOS_INFO_EXT, eyeXML('array2xml',array($data)));
 	} else {
 		errorCodes('setErrorCode',array(VFS_FILE_ALREADY_EXISTS));
 		return false;
@@ -118,7 +118,7 @@ function service_vfs_restore($params = '') {
 		$params[0] = substr($params[0], 0, -strlen('.' . EYEOS_TRASH_EXT)); // utf8
 	}
 	if (vfs('real_move',array($params[0] . '.' . EYEOS_FILE_EXT,$params[1] . '.' . EYEOS_FILE_EXT))) {
-		return vfs('real_move',array($params[0] . '.' . EYEOS_INFO_EXT,$params[1] . '.' . EYEOS_INFO_EXT)) && vfs('real_delete',array($params[0] . '.' . EYEOS_TRASH_EXT));
+		return vfs('real_move',array($params[0] . '.' . XENONOS_INFO_EXT,$params[1] . '.' . XENONOS_INFO_EXT)) && vfs('real_delete',array($params[0] . '.' . EYEOS_TRASH_EXT));
 	}
 	return false;
 }
@@ -191,8 +191,8 @@ function service_vfs_delete($params) {
 			$name = basename($file);
 			$name .= uniqid(mt_rand(0, 99999));
 				if (copy($file.'.'.EYEOS_FILE_EXT,$myUserDir.'/'.TRASH_USER_DIR.'/'.$name.'.'.EYEOS_FILE_EXT) &&
-					copy($file.'.'.EYEOS_INFO_EXT,$myUserDir.'/'.TRASH_USER_DIR.'/'.$name.'.'.EYEOS_INFO_EXT) &&
-					unlink($file.'.'.EYEOS_FILE_EXT) && unlink($file.'.'.EYEOS_INFO_EXT)) {
+					copy($file.'.'.XENONOS_INFO_EXT,$myUserDir.'/'.TRASH_USER_DIR.'/'.$name.'.'.XENONOS_INFO_EXT) &&
+					unlink($file.'.'.EYEOS_FILE_EXT) && unlink($file.'.'.XENONOS_INFO_EXT)) {
 					$data = array(
 						'eyeTrash' => array(
 							array(
@@ -210,7 +210,7 @@ function service_vfs_delete($params) {
 					return false;
 				}
 			} else {
-				if (unlink($file.'.'.EYEOS_FILE_EXT) && unlink($file.'.'.EYEOS_INFO_EXT)) {
+				if (unlink($file.'.'.EYEOS_FILE_EXT) && unlink($file.'.'.XENONOS_INFO_EXT)) {
 					return true;
 				} else {
 					errorCodes('setErrorCode',array(PHP_ERROR_ON_UNLINK));
@@ -367,9 +367,9 @@ function service_vfs_copy($params) {
 			$subdest = $dest;
 			$dest .= '_' . substr($orig, strrpos($orig, '_') + 1); // utf8
 			if (copy($orig.'.'.EYEOS_FILE_EXT,$dest.'.'.EYEOS_FILE_EXT)){
-				$xml = eyeXML('xml2array',array(file_get_contents($orig . '.' . EYEOS_INFO_EXT)));
+				$xml = eyeXML('xml2array',array(file_get_contents($orig . '.' . XENONOS_INFO_EXT)));
 				$xml['eyeFile'][0]['filename'][0] = basename($subdest);
-				file_put_contents($dest . '.' . EYEOS_INFO_EXT, eyeXML('array2xml',array($xml)));
+				file_put_contents($dest . '.' . XENONOS_INFO_EXT, eyeXML('array2xml',array($xml)));
 				return true;
 			} else {
 				errorCodes('setErrorCode',array(PHP_ERROR_ON_COPY));
@@ -482,10 +482,10 @@ function service_vfs_move($params) {
 			$dest .= '_' . substr($orig, strrpos($orig, '_') + 1); // utf8
 
 			if (@rename($orig.'.'.EYEOS_FILE_EXT,$dest.'.'.EYEOS_FILE_EXT)){
-				$xml = eyeXML('xml2array',array(file_get_contents($orig . '.' . EYEOS_INFO_EXT)));
+				$xml = eyeXML('xml2array',array(file_get_contents($orig . '.' . XENONOS_INFO_EXT)));
 				$xml['eyeFile'][0]['filename'][0] = basename($subdest);
-				file_put_contents($dest . '.' . EYEOS_INFO_EXT, eyeXML('array2xml',array($xml)));
-				if(@unlink($orig.'.'.EYEOS_INFO_EXT)) {
+				file_put_contents($dest . '.' . XENONOS_INFO_EXT, eyeXML('array2xml',array($xml)));
+				if(@unlink($orig.'.'.XENONOS_INFO_EXT)) {
 					return true;
 				} else {
 					errorCodes('setErrorCode',array(PHP_ERROR_ON_UNLINK));
@@ -659,7 +659,7 @@ function service_vfs_fileExists($params) {
 
 		//Checking now if eyeFile exists
 		$file = substr($file, 0, strrpos($file, '.')); // utf8
-		$file .= '.'.EYEOS_INFO_EXT;
+		$file .= '.'.XENONOS_INFO_EXT;
 
 	//If argument are directory
 	if(is_file($file)){
@@ -696,8 +696,8 @@ function service_vfs_readInfo($params)
 	$file = $params[0];
 
 	$file = getRealFileName($file);
-		if (vfs('real_fileExists',array($file . '.' . EYEOS_INFO_EXT))) {
-			return eyeXML('xml2array',array(file_get_contents($file . '.' . EYEOS_INFO_EXT)));
+		if (vfs('real_fileExists',array($file . '.' . XENONOS_INFO_EXT))) {
+			return eyeXML('xml2array',array(file_get_contents($file . '.' . XENONOS_INFO_EXT)));
 		} else {
 			return false;
 		}
@@ -887,7 +887,7 @@ function service_vfs_checkPermissions($params) {
 					$myRealName = vfs('getRealName',array($myFile));
 					$eyeFile = realpath($myRealName);
 					$eyeInfo = substr($eyeFile, 0, strrpos($eyeFile, '.')); // utf8
-					$eyeInfo .= '.'.EYEOS_INFO_EXT;
+					$eyeInfo .= '.'.XENONOS_INFO_EXT;
 					$eyeInfo = realpath($eyeInfo);
 					if($eyeFile && $eyeInfo && $myRealName) {
 						$mode = $params[1];
@@ -1000,7 +1000,7 @@ function service_vfs_getDirContent($params) {
 			$file = basename($path); // utf8
 			if ($file !== '.' && $file !== '..') {
 				$info = pathinfo($path);
-				if (isset($info['extension']) === true && $info['extension'] === EYEOS_INFO_EXT) {
+				if (isset($info['extension']) === true && $info['extension'] === XENONOS_INFO_EXT) {
 					$xml = eyeXML('xml2array',array(file_get_contents($path)));
 					if($xml['eyeFile'][0]['filename'][0]) {
 						$dirFiles[] = $info['dirname'].'/'.$xml['eyeFile'][0]['filename'][0];
@@ -1843,7 +1843,7 @@ function service_vfs_realToVirtual($params=null){
 		)
 	);
 
-	file_put_contents($fileToCreate . '.' . EYEOS_INFO_EXT, eyeXML('array2xml',array($data)));
+	file_put_contents($fileToCreate . '.' . XENONOS_INFO_EXT, eyeXML('array2xml',array($data)));
 
 //eyeFile creation.
 	//move real name to new name
@@ -1889,7 +1889,7 @@ function service_vfs_realToVirtualDir($params=null){
 	if ($handler = opendir($dir)) {
 		while (false !== ($file = readdir($handler))) {
 			$info = pathinfo($file);
-			if ( /* utf8 */ substr($file, 0, 1) !== '.' && $info['extension'] !== EYEOS_FILE_EXT && $info['extension'] !== EYEOS_INFO_EXT) {
+			if ( /* utf8 */ substr($file, 0, 1) !== '.' && $info['extension'] !== EYEOS_FILE_EXT && $info['extension'] !== XENONOS_INFO_EXT) {
 				if(is_dir($dir.'/'.$file)) {
 					$num += vfs('realToVirtualDir',array($dir.'/'.$file));
 				} else {
@@ -1912,11 +1912,11 @@ function service_vfs_virtualToReal($params = '') {
 		errorCodes('setErrorCode',array(VFS_FILE_ALREADY_EXISTS));
 		return false;
 	}
-	$virtual = basename(getRealFileName($params[0]) . '.' . EYEOS_INFO_EXT);
+	$virtual = basename(getRealFileName($params[0]) . '.' . XENONOS_INFO_EXT);
 	$path = substr($params[0], 0, -strlen(basename($params[0]))); // utf8
 	$info = eyeXML('getXMLfile',array($path . '/' . $virtual));
 	$real = $info['eyeFile'][0]['filename'][0];
-	if (rename($path . '/' . substr($virtual, 0, -strlen(EYEOS_INFO_EXT)) . EYEOS_FILE_EXT, $path . '/' . $real) && unlink($path . '/' . $virtual)) { // utf8
+	if (rename($path . '/' . substr($virtual, 0, -strlen(XENONOS_INFO_EXT)) . EYEOS_FILE_EXT, $path . '/' . $real) && unlink($path . '/' . $virtual)) { // utf8
 		return true;
 	}
 	return false;

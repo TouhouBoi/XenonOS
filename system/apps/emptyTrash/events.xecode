@@ -22,7 +22,7 @@ function emptyTrash_on_Do($params = '') {
 	$path = um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/';
 	if ($GLOBALS['emptyTrash_Hidden_File']->text) {
 		$path .= substr($GLOBALS['emptyTrash_Hidden_File']->text, 0, -strlen('.' . EYEOS_TRASH_EXT)); // utf8
-		$files = array($path,$path . '.' . EYEOS_FILE_EXT,$path . '.' . EYEOS_INFO_EXT,$path . '.' . EYEOS_TRASH_EXT);
+		$files = array($path,$path . '.' . EYEOS_FILE_EXT,$path . '.' . XENONOS_INFO_EXT,$path . '.' . EYEOS_TRASH_EXT);
 	} else {
 		$files = vfs('real_getDirContent',array($path));
 	}

@@ -47,7 +47,7 @@ function eyeProperties_run($params = '') {
 				$type = 'File';
 			}
 			$size = vfs('real_filesize',array($path[0] . '/' . basename($file,EYEOS_TRASH_EXT) . EYEOS_FILE_EXT));
-			$info = eyeXML('getXMLfile',array($path[0] . '/' . basename($file,EYEOS_TRASH_EXT) . EYEOS_INFO_EXT));
+			$info = eyeXML('getXMLfile',array($path[0] . '/' . basename($file,EYEOS_TRASH_EXT) . XENONOS_INFO_EXT));
 			$author = $info['eyeFile'][0]['author'][0];
 			$creationdate = $info['eyeFile'][0]['created'][0];
 			$createdwith = $info['eyeFile'][0]['creationapp'][0];
