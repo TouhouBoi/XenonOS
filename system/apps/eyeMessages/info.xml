@@ -1,5 +1,5 @@
 <package>
-	<name>Internal Messaging</name>
+	<name>Local Mail</name>
 	<category>Networking</category>
 	<version>1.9</version>
 	<description>Application to send internal messages</description>
