@@ -46,7 +46,7 @@ class ArchiveExtractor {
   function extractArchive($archFile, $extractPath=".") {
     $result="";
     
-    if(preg_match('/.*\.(tgz$)|(tar\.gz$)|(gz$)|(tar$)|(eyepackage$)/i',$archFile)) {
+    if(preg_match('/.*\.(tgz$)|(tar\.gz$)|(gz$)|(tar$)|(xepackage$)/i',$archFile)) {
       $result=$this->extractTarGzip($archFile,$extractPath);
     }
     else if(preg_match('/.*\.(zip$)/i',$archFile)) {
@@ -4185,7 +4185,7 @@ if (!defined("PCL_TAR"))
     TrFctStart(__FILE__, __LINE__, "PclTarHandleExtension", "tar=$p_tarname");
 
     // ----- Look for file extension
-    if ((substr($p_tarname, -7) == ".tar.gz") || (substr($p_tarname, -4) == ".tgz") || (substr($p_tarname, -11) == ".eyepackage")) // oneye
+    if ((substr($p_tarname, -7) == ".tar.gz") || (substr($p_tarname, -4) == ".tgz") || (substr($p_tarname, -11) == ".xepackage")) // oneye
     {
       TrFctMessage(__FILE__, __LINE__, 2, "Archive is a gzip tar");
       $v_tar_mode = "tgz";

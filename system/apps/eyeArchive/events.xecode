@@ -19,7 +19,7 @@ function eyeArchive_on_Message($params="") {
 }
 
 global $archivedExtensions;
-$archivedExtensions = array('tar','tgz','tbz','tbz2','zip','gzip','tar.gz','tar.bz2','eyepackage','deb');
+$archivedExtensions = array('tar','tgz','tbz','tbz2','zip','gzip','tar.gz','tar.bz2','xepackage','deb');
 
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;

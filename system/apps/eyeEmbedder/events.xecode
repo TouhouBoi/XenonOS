@@ -112,9 +112,9 @@ function eyeEmbedder_on_Package($params = null) {
 		return;
 	}
 	
-	// Get eyePackage destination
-	proc('launch', array('eyeDialog', array(EYEDIALOG_TYPE_SAVEFILE, 'Package2', $checknum, $applicationName . '.eyepackage', array(
-		'eyePackage files' => '*.eyepackage',
+	// Get xePackage destination
+	proc('launch', array('eyeDialog', array(EYEDIALOG_TYPE_SAVEFILE, 'Package2', $checknum, $applicationName . '.xepackage', array(
+		'xePackage files' => '*.xepackage',
 		'All files' => '*.*'
 	))));
 }
@@ -129,8 +129,8 @@ function eyeEmbedder_on_Package2($params = null) {
 		return;
 	}
 	
-	// Retreive eyePackage destination
-	$eyePackage = um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
+	// Retreive xePackage destination
+	$xePackage = um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
 	
 	// Create new temporary folder
 	$i = 0;
@@ -191,16 +191,16 @@ function eyeEmbedder_on_Package2($params = null) {
 		vfs('real_putFileContent', array($package . '/' . basename($file), $content));
 	}
 	
-	// Remove existing eyePackage
-	if (vfs('fileExists', array($eyePackage))) {
-		vfs('delete', array($eyePackage));
+	// Remove existing xePackage
+	if (vfs('fileExists', array($xePackage))) {
+		vfs('delete', array($xePackage));
 	}
 	
-	// Create eyePackage
-	if (!eyeFileArchive('compress', array(array('simple' => array($temp . '/' . APP_DIR, $temp . '/' . EXTERN_DIR)), $eyePackage, 'eqTypes' => array('eyepackage' => 'tgz')))) {
+	// Create xePackage
+	if (!eyeFileArchive('compress', array(array('simple' => array($temp . '/' . APP_DIR, $temp . '/' . EXTERN_DIR)), $xePackage, 'eqTypes' => array('xepackage' => 'tgz')))) {
 		eyex('messageBox', array('content' => 'Failed packaging.'));
 	} else {
-		eyeFiles('update', array(dirname($eyePackage)));
+		eyeFiles('update', array(dirname($xePackage)));
 	}
 	
 	// Remove temporary folder

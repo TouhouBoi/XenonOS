@@ -29,7 +29,7 @@ function eyeInstaller_on_Cancel($params=null) {
 
 function eyeInstaller_on_Accept($params=null) {
 	$rfile = $GLOBALS['rfile']->text;
-	$path = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/swap/'.uniqid().'.eyepackage';
+	$path = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/swap/'.uniqid().'.xepackage';
 	copy($rfile,$path);
 	include(XENONOS_ROOT.'/'.APP_DIR.'/eyeSoft/libCompress'.XE_CODE_EXTENSION);
 	lib_eyeCompress_extractFile(array(XENONOS_ROOT,$path));
