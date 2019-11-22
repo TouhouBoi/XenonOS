@@ -20,6 +20,8 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
+$php_version = phpversion();
+
 $myLabel = new Label(
 	array(
 		'name' => 'xeControl_systemversion_label_xenonversion',
@@ -58,4 +60,30 @@ $myLabel = new Label(
 );
 
 $myLabel->show();
+
+$myLabel = new Label(
+	array(
+		'name' => 'xeControl_systemversion_label_phpversion',
+		'father' => $eyeContainer,
+		'horiz' => -0,
+		'y' => 68,
+		'text' => 'Running PHP Version: '.$php_version,
+		'tokens' => array($it)
+	)
+);
+
+$myLabel->show();
+
+$myButton = new Button(
+	array(
+		'name' => 'xeControl_systemversion_button_phpinfo',
+		'father' => $eyeContainer,
+		'horiz' => -0,
+		'y' => 86,
+		'caption' => 'PHP Info',
+		'signal' => 'php_info'
+	)
+);
+
+$myButton->show();
 ?>

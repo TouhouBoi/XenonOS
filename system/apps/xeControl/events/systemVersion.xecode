@@ -1,0 +1,14 @@
+<?php
+
+function xeControl_on_php_info($params = null)
+{
+	global $checknum;
+	
+	proc('launch', array('eyeIframize', array('index.php?checknum=' . $checknum . '&msg=php_info_show', 'PHP Info')));
+}
+
+function xeControl_on_php_info_show($params = null)
+{
+	phpinfo();
+	exit;
+}
