@@ -22,21 +22,26 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 function get_dynamic_content($params = '') {
 	header('Content-type: text/javascript; charset=utf-8');
-	$ie6 = '';
-	if (IE && IE < 7) {
-		$ie6 = '/IE';
-	}
+
 	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeChess/eyeChess.min.js';
+	
 	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeChess/eyeChess.js';
-	if (USE_COMPRESSED && is_readable($path_compressed) && filemtime($path_compressed) >= filemtime($path_uncompressed)) {
+	
+	if (USE_COMPRESSED && is_readable($path_compressed) && filemtime($path_compressed) >= filemtime($path_uncompressed))
+	{
 		$content = file_get_contents($path_compressed);
-	} else {
+	}
+	else
+	{
 		$content = file_get_contents($path_uncompressed);
 	}
-	$content = str_replace('$myPid',$params[0],$content);
-	$content = str_replace('$checknum',$params[1],$content);
-	$content = str_replace('$imagesDir','images/' . APP_DIR . '/eyeChess' . $ie6,$content);
-	i18n('loadLang',array('eyeChess'));
+	
+	$content = str_replace('$myPid', $params[0], $content);
+	$content = str_replace('$checknum', $params[1], $content);
+	$content = str_replace('$imagesDir', 'images/' . APP_DIR . '/eyeChess', $content);
+	
+	i18n('loadLang', array('eyeChess'));
+	
 	$content = str_replace('$lang:Movements', utf8_htmlspecialchars(i18n('translate', array('Movements')), ENT_QUOTES), $content);
 	$content = str_replace('$lang:Undo', utf8_htmlspecialchars(i18n('translate', array('Undo')), ENT_QUOTES), $content);
 	$content = str_replace('$lang:Next pawn becomes', utf8_htmlspecialchars(i18n('translate', array('Next pawn becomes')), ENT_QUOTES), $content);
@@ -48,6 +53,7 @@ function get_dynamic_content($params = '') {
 	$content = str_replace('$lang:Easy', utf8_htmlspecialchars(i18n('translate', array('Easy')), ENT_QUOTES), $content);
 	$content = str_replace('$lang:Middling', utf8_htmlspecialchars(i18n('translate', array('Middling')), ENT_QUOTES), $content);
 	$content = str_replace('$lang:Slow', utf8_htmlspecialchars(i18n('translate', array('Slow')), ENT_QUOTES), $content);
-	return $content;
+	
+	return($content);
 }
 ?>
