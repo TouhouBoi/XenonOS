@@ -1,0 +1,8 @@
+<content>
+	<description>Manage your paswords for integrated apps.</description>
+	<display>My Passwords</display>
+	<name>xePass</name>
+	<permissions>all</permissions>
+	<title>yes</title>
+	<img>index.php?extern=apps/eyeX/themes/default/icons/48x48/password.png</img>
+</content>

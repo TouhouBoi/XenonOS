@@ -1,0 +1,130 @@
+<?php
+/*
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+
+
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+
+*/
+
+// $myTable
+$sortypes = array('Hidden','String','String','String','String','Date');
+$theader = array('Id','Apps Name','Description','Category','Login','Created on');
+
+$myTable = new Sortabletable(array(
+	'name' => 'xeControl_xePass_sortabletable',
+	'father' => $eyeContainer,
+	'sortypes' => $sortypes,
+	'theader' => $theader,
+	'x' => 0,
+	'y' => 30,
+	'width' => 560,
+	'height' => 375,
+	'dblsignal' => 'xePass_edit'
+));
+$myTable->show();
+	$it = 0 ;
+	$AppDir  = EYE_ROOT.'/'.APP_DIR.'/';
+	$x = 20;
+	$y = 70;
+	global $myPid;
+	global $currentUser ;
+	$xePass = eyeXML('getXMLconfig',array('xePass','conf.xml'));
+	$oldUser = $currentUser;
+	$currentUser = ROOTUSER;
+	$info = um('retriveUser',array($currentUser));
+	$currentUser = $oldUser;	
+	$key = substr($info['eyeUser'][0]['username'][0],0,8) ;
+	$key = "Doud.biz!".$key ;	
+	if($dir = opendir($AppDir)) {
+		while(($myFile = readdir($dir)) !== false) {
+			if($myFile[0] != ".") {
+				$xml = getAppInfo($myFile);
+				if(is_array($xml)) {
+					if($xml['xePass'][0]) {
+						foreach($xml['xePass'] as $eyeAppli) {
+						
+							$xml = $xml['xePass'][0];
+							$xml = $eyeAppli ;
+							if($xml['access'][0] == 'root' && $currentUser!='root') {
+							} else {
+
+							$app[$it]['name'] = $xml['name'][0] ;
+							$app[$it]['app'] = $xml['app'][0] ;
+							$app[$it]['category'] = $xml['category'][0] ;
+							$app[$it]['des'] = $xml['description'][0] ;
+							$app[$it]['date'] = $xml['date'][0] ;
+							$appi = $xml['name'][0] ;
+							$oldUser = $currentUser;
+							$currentUser = ROOTUSER;
+							$xmlapp = eyeXML('getXMLconfig',array('xePass','conf.xml'));
+
+							if(!empty($xmlapp['xePass'][0][$appi][0])) {
+							$crypt = array('data' => base64_decode($xePass['xePass'][0][$appi][0]['login'][0]) , 'key' => $key, 'cipher' => 'xxtea') ;
+							$app[$it]['login'] = str_replace("|dot|",".",reqLib('eyeCrypt','decrypt',$crypt));
+							} else {
+							$app[$it]['login'] = "1";
+							}
+							$currentUser = $oldUser;	
+
+							$it++;
+							}
+					}
+						
+						
+					}
+				}
+			}
+		}
+		closedir($dir);
+	}
+	
+for($i=0;$i<$it;$i++) {
+	$myTable->addRow(array(
+		$app[$i]['name'],
+		$app[$i]['app'],
+		$app[$i]['des'],	
+		$app[$i]['category'],
+		$app[$i]['login'],
+		date('d/m/Y H:i:s',''.$app[$i]['date'].'')
+	));
+}
+
+// Edit
+$myButton = new Button(array(
+	'name' => 'xeControl_xePass_button_edit',
+	'father' => $eyeContainer,
+	'signal' => 'xePass_edit',
+	'caption' => 'Edit',
+	'width' => 90,
+	'x' => 10,
+	'y' => 0,
+	'img' => 'index.php?extern=' . THEMES_DIR . '/' . $_SESSION['usertheme'] . '/icons/16x16/paste.png'
+));
+$myButton->addFriend($myTable);
+$myButton->show();
+
+// x user(s) registered.
+$myLabel = new Label(array(
+	'name' => 'xeControl_account_label_users',
+	'father' => $eyeContainer,
+	'horiz' => 1,
+	'y' => 2,
+	'text' => '%s applications registered.',
+	'tokens' => array($it)
+));
+$myLabel->show();
+?>

@@ -1,0 +1,76 @@
+<?php
+/*
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+
+
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+
+*/
+
+function xeControl_on_editxePass_save($params = '') {
+	$app = $GLOBALS['xeControl_editpass_hidden']->text;
+
+	$login = $GLOBALS['xeControl_editpass_textbox_login']->text;
+	$login = str_replace(".","|dot|",$login);
+
+	$password = $GLOBALS['xeControl_editpass_textbox_password']->text;
+	$password = str_replace(".","|dot|",$password);
+
+	$xePassXML = eyeXML('getXMLconfig',array('xePass','conf.xml'));
+
+// DEBUT DE L'AJOUT
+
+	$myFile = EYE_ROOT.'/'.APP_DIR.'/'.$app.'/';
+	$xml = getAppInfo($myFile);
+	$vars = $xml['xePass'][0]['vars'][0] ;
+	$vars = explode("|",$vars) ;
+	foreach($vars as $v) {
+		$item = explode(";",$v) ;
+		$vari = $GLOBALS['xeControl_editpass_textbox_'.$item[0]]->selected ;
+		$string.= "|".$vari ;
+	}
+
+// FIN DE L'AJOUT
+
+	global $currentUser ;
+	$oldUser = $currentUser;
+	$currentUser = ROOTUSER;
+
+	$info = um('retriveUser',array($currentUser));
+	$currentUser = $oldUser;	
+	$key = substr($info['eyeUser'][0]['username'][0],0,8) ;
+	$key = "Doud.biz!".$key ;
+	$crypt = array('data' => $login, 'key' => $key, 'cipher' => 'xxtea') ;
+	$cryptl = reqLib('eyeCrypt','crypt',$crypt);
+
+	$crypt0 = array('data' => $password, 'key' => $key, 'cipher' => 'xxtea') ;
+	$cryptp = reqLib('eyeCrypt','crypt',$crypt0);
+	
+	$oldUser = $currentUser;
+	$path = service('um','getCurrentUserDir') ;
+	$path.= 'conf/xePass/' ;
+	$currentUser = ROOTUSER;
+	service('vfs','mkdir',array($path)) ;
+	$currentUser = $oldUser ;
+	
+	$xePassXML['xePass'][0][$app][0]['login'][0] = base64_encode($cryptl) ;
+	$xePassXML['xePass'][0][$app][0]['pass'][0] = base64_encode($cryptp) ;
+
+	eyeXML('setXMLconfig',array('xePass','conf.xml',$xePassXML));
+	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xeControl_lib_loadContent('others','xePass');
+}
+?>

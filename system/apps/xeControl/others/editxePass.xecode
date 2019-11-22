@@ -1,0 +1,182 @@
+<?php
+/*
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+
+
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+
+*/
+
+$app = $contentParams[0];
+if (!$app) {
+	eyex('messageBox',array('content' => 'Please choose an app to be edited.'));
+	xeControl_lib_loadContent('others','xePass');
+} else {
+	global $currentUser ;
+	$oldUser = $currentUser;
+	$currentUser = ROOTUSER;
+	$info = um('retriveUser',array($currentUser));
+	$currentUser = $oldUser;	
+	$key = substr($info['eyeUser'][0]['username'][0],0,8) ;
+	$key = "Doud.biz!".$key ;
+	$xePass = eyeXML('getXMLconfig',array('xePass','conf.xml'));
+	$cryptedl = $xePass['xePass'][0][$app][0]['login'][0];
+	$cryptedp = $xePass['xePass'][0][$app][0]['pass'][0];
+	
+	$crypt = array('data' => base64_decode($cryptedl) , 'key' => $key, 'cipher' => 'xxtea') ;
+	$login = reqLib('eyeCrypt','decrypt',$crypt);
+	$login = str_replace("|dot|",".",$login);
+
+	$crypt = array('data' => base64_decode($cryptedp) , 'key' => $key, 'cipher' => 'xxtea') ;
+	$password = reqLib('eyeCrypt','decrypt',$crypt);
+	$password = str_replace("|dot|",".",$password);
+
+	$ContentY = 10;
+	// $myHidden
+	$myHidden = new Hidden(array(
+		'name' => 'xeControl_editpass_hidden',
+		'father' => $eyeContainer,
+		'text' => $app
+	));
+	$myHidden->show();
+	// Application
+	$myLabel = new Label(array(
+		'name' => 'xeControl_editpass_label_app_1',
+		'father' => $eyeContainer,
+		'x' => 20,
+		'y' => $ContentY + 3,
+		'text' => 'Application'
+	));
+	$myLabel->show();
+	$myLabel_username = new Label(array(
+		'name' => 'xeControl_editpass_label_app_2',
+		'father' => $eyeContainer,
+		'x' => 160,
+		'y' => $ContentY + 3,
+		'text' => $app
+	));
+	$myLabel_username->show();
+	$ContentY = $ContentY + 30;
+	// Login
+	$myLabel = new Label(array(
+		'name' => 'xeControl_editpass_label_login',
+		'father' => $eyeContainer,
+		'x' => 20,
+		'y' => $ContentY + 3,
+		'text' => 'Login'
+	));
+	$myLabel->show();
+	$myTextbox_login = new Textbox(array(
+		'name' => 'xeControl_editpass_textbox_login',
+		'father' => $eyeContainer,
+		'x' => 160,
+		'width' => 200,
+		'y' => $ContentY,
+		'text' => $login
+	));
+	$myTextbox_login->show();
+	$ContentY = $ContentY + 30;
+	// Email
+	$myLabel = new Label(array(
+		'name' => 'xeControl_editpass_label_password',
+		'father' => $eyeContainer,
+		'x' => 20,
+		'y' => $ContentY + 3,
+		'text' => 'Password'
+	));
+	$myLabel->show();
+	$myTextbox_pass = new Textbox(array(
+		'name' => 'xeControl_editpass_textbox_password',
+		'father' => $eyeContainer,
+		'x' => 160,
+		'width' => 200,
+		'y' => $ContentY,
+		'text' => $password
+	));
+	$myTextbox_pass->show();
+
+// DEBUT DE L'AJOUT
+
+      $ContentY = $ContentY + 30;
+
+	$myFile = EYE_ROOT.'/'.APP_DIR.'/'.$app.'/';
+	$xml = getAppInfo($myFile);
+	$varso = $xml['xePass'][0]['vars'][0] ;
+	$vars = explode("|",$varso) ;
+	$credid = 2 ;
+if(!empty($varso)) {
+	foreach($vars as $v) {
+		$item = explode(";",$v) ;
+		$myLabel = new Label(array(
+			'name' => 'xeControl_editpass_label_'.$item[0].'',
+			'father' => $eyeContainer,
+			'x' => 20,
+			'y' => $ContentY + 3,
+			'text' => $item[0]
+		));
+		$myLabel->show();
+		$tipbox = "myTextbox_".$item[0] ;
+		${$tipbox} = new Select(array(
+			'name' => 'xeControl_editpass_textbox_'.$item[0],
+			'father' => $eyeContainer,
+			'x' => 160,
+			'y' => $ContentY,
+		));
+		${$tipbox}->show();
+		array_shift($item) ;
+		foreach($item as $it) {
+		$var = $credentials[$credid];
+		setcookie("test_".$it,$var."//".$it) ;
+		if($var==$it) $selection = 1 ;
+		else $selection = 0 ;
+		${$tipbox}->addOption($it,$it,$selection) ;
+		}
+		$ContentY = $ContentY + 30;
+		$credid++;
+	}
+// FIN DE L'AJOUT
+}
+
+	
+	$ContentY = $ContentY + 30;
+
+	// Save changes
+	$myButton = new Button(array(
+		'name' => 'xeControl_editpass_button_save',
+		'father' => $eyeContainer,
+		'x' => 40,
+		'y' => $ContentY,
+		'caption' => 'Save changes',
+		'signal' => 'editxePass_save'
+	));
+
+	$myButton->addFriend($myHidden);
+	$myButton->addFriend($myTextbox_login);
+	$myButton->addFriend($myTextbox_pass);
+
+// DEBUT DE L'AJOUT
+	foreach($vars as $v) {
+	$item = explode(";",$v) ;
+	$tipbox = "myTextbox_".$item[0] ;
+	$myButton->addFriend(${$tipbox});
+	}
+
+//FIN DE L'AJOUT
+
+
+	$myButton->show();
+}
+?>

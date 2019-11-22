@@ -1,0 +1,8 @@
+<content>
+	<description>Edit your credentials data for this application</description>
+	<display>My Credentials</display>
+	<name>editxePass</name>
+	<permissions>all</permissions>
+	<title>yes</title>
+	<show>no</show>
+</content>

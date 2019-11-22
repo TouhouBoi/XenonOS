@@ -1,0 +1,33 @@
+<?php
+/*
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+
+
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+
+*/
+
+function xeControl_on_xePass_edit($params = '') {
+	$user = $GLOBALS['xeControl_xePass_sortabletable']->selected;
+	if ($user) {
+		xeControl_lib_loadContent('others','editxePass',array($user));
+	} else {
+		eyex('messageBox',array('content' => 'Please choose an application to be edited.'));
+	}
+}
+
+
+?>
