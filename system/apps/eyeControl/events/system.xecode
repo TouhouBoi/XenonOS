@@ -117,7 +117,7 @@ function eyeControl_on_system_uninstall_yes($params = '') {
 		vfs('real_delete', array(XENONOS_ROOT . '/../mobile'));
 		vfs('real_delete', array(XENONOS_ROOT . '/../php-ini'));
 		vfs('real_delete', array(XENONOS_ROOT . '/../README.txt'));
-		vfs('real_delete', array(XENONOS_ROOT . '/../settings.php'));
+		vfs('real_delete', array(XENONOS_ROOT . '/../xe_config.php'));
 		vfs('real_rmdir', array(XENONOS_ROOT . '/'));
 	}
 }
