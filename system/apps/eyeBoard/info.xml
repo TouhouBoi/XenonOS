@@ -1,8 +1,8 @@
 <package>
-	<name>Public Board</name>
+	<name>Local Messaging</name>
 	<category>Networking</category>
 	<version>1.0</version>
-	<description>Public board</description>
+	<description>Send Local Messages</description>
 	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>Application</type>
