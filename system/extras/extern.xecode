@@ -54,7 +54,7 @@ function XenonOS_init()
 		
 		eyePear('loadPear');
 
-		if (EYEOS_SECURITY == 1)
+		if (XENONOS_SECURITY_SERVICE == 1)
 		{
 			sec('start');
 		}
