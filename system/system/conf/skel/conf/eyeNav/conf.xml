@@ -5,15 +5,10 @@
 	<bookmarks>
 		<title>Bookmarks</title>
 		<bookmark>
-			<id>0</id>
-			<type>folder</type>
-			<name>XenonOS</name>
-			<bookmark>
-				<name>Trinity's Website</name>
-				<id>0</id>
-				<url>http://touhouboi.duckdns.org/</url>
-				<type>url</type>
-			</bookmark>
+			<name>Trinity's Website</name>
+			<id>1</id>
+			<url>http://touhouboi.duckdns.org/</url>
+			<type>url</type>
 		</bookmark>
 	</bookmarks>
 	<searches>
