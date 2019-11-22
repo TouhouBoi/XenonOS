@@ -37,11 +37,11 @@ $myLabel->show();
 
 $myLabel = new Label(
 	array(
-		'name' => 'xeControl_systemversion_label_xekernelversion',
+		'name' => 'xeControl_systemversion_label_xenoncommit',
 		'father' => $eyeContainer,
 		'horiz' => -0,
 		'y' => 20,
-		'text' => 'XeKernel Version: '.KE_KERNEL_VERSION,
+		'text' => 'XenonOS Commit: '.XENONOS_COMMIT,
 		'tokens' => array($it)
 	)
 );
@@ -50,11 +50,11 @@ $myLabel->show();
 
 $myLabel = new Label(
 	array(
-		'name' => 'xeControl_systemversion_label_xenoncommit',
+		'name' => 'xeControl_systemversion_label_xekernelversion',
 		'father' => $eyeContainer,
 		'horiz' => -0,
 		'y' => 38,
-		'text' => 'XenonOS Commit: '.XENONOS_COMMIT,
+		'text' => 'XeKernel Version: '.KE_KERNEL_VERSION,
 		'tokens' => array($it)
 	)
 );
