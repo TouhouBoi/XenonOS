@@ -1,1 +1,2 @@
-Warning XenonOS uses the .xepackage format for it's packages and therefore it is not compatible with the package format used for eyeos and oneye.
+Warning XenonOS uses the .xepackage format for it's packages and therefore
+it is not compatible with the package format used for eyeos and oneye.
