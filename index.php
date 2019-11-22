@@ -121,8 +121,8 @@ libraryLoading();
 serviceLoading();
 
 /*
-*Checking what kind of client is accesing to choose
-*the right kernel
+* Checking what kind of client is accesing to choose
+* the right kernel
 */
 $index = indexRequested();
 
