@@ -30,7 +30,7 @@ function XenonOS_init()
 		
 		$error_reporting = error_reporting(E_ALL ^ E_NOTICE);
 		
-		require_once(XENONOS_ROOT.'/../settings.php');
+		require_once(XENONOS_ROOT.'/../xe_config.php');
 		
 		error_reporting($error_reporting);
 
