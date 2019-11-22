@@ -722,6 +722,11 @@ function msgACLreject($params = null)
 	eyeX('messageBox', array('content' => $disObj.' has been disabled by your Administrator'));
 }
 
+function xeCrash($params = null)
+{
+	eyeX('messageBox', array('content' => 'XenonOS has Crashed!'));
+}
+
 createFunctionAlias();
 
 if (ACL_SUPPORT == 1)
