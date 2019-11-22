@@ -1,0 +1,61 @@
+<?php
+/*
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+
+
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+
+*/
+
+$myLabel = new Label(
+	array(
+		'name' => 'xeControl_systemversion_label_xenonversion',
+		'father' => $eyeContainer,
+		'horiz' => -0,
+		'y' => 2,
+		'text' => 'Xenon OS Version: '.XENONOS_VERSION,
+		'tokens' => array($it)
+	)
+);
+
+$myLabel->show();
+
+$myLabel = new Label(
+	array(
+		'name' => 'xeControl_systemversion_label_xekernelversion',
+		'father' => $eyeContainer,
+		'horiz' => -0,
+		'y' => 20,
+		'text' => 'XeKernel Version: '.KE_KERNEL_VERSION,
+		'tokens' => array($it)
+	)
+);
+
+$myLabel->show();
+
+$myLabel = new Label(
+	array(
+		'name' => 'xeControl_systemversion_label_xekernelhash',
+		'father' => $eyeContainer,
+		'horiz' => -0,
+		'y' => 38,
+		'text' => 'XeKernel SHA256 Hash: '.KE_KERNEL_HASH,
+		'tokens' => array($it)
+	)
+);
+
+$myLabel->show();
+?>

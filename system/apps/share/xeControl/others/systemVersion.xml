@@ -1,0 +1,8 @@
+<content>
+	<description>XenonOS System Version Information</description>
+	<display>System Version</display>
+	<name>systemVersion</name>
+	<permissions>all</permissions>
+	<title>yes</title>
+	<img>index.php?extern=apps/eyeX/themes/default/icons/48x48/password.png</img>
+</content>
