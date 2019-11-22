@@ -1,8 +1,8 @@
 <package>
 	<name>Local Mail</name>
 	<category>Networking</category>
-	<version>1.9</version>
-	<description>Application to send internal messages</description>
+	<version>1.0</version>
+	<description>Application to send Local Mail</description>
 	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>Application</type>
