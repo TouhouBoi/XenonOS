@@ -271,8 +271,8 @@ function libraryLoading()
 */
 function serviceLoading()
 {
-	//Loading the Security Service (sec) if oneye Security is turned on (by default is On)
-	if(EYEOS_SECURITY == 1)
+	//Loading the Security Service (sec) if XenonOS Security is turned on (by default is On)
+	if(XENONOS_SECURITY_SERVICE == 1)
 	{
 		sec('start');
 	}
