@@ -107,7 +107,7 @@ function eyeControl_on_system_uninstall_yes($params = '') {
 	global $currentUser;
 	if ($currentUser === REAL_ROOTUSER) {
 		eyeWidgets('unserialize');
-		eyex('messageBox', array('content' => 'Your oneye system was successfully deleted.'));
+		eyex('messageBox', array('content' => 'Your XenonOS System was successfully deleted.'));
 		eyex('rawjs', array('js' => 'window.onbeforeunload = ""; setTimeout(window.home, 2000);'));
 		vfs('real_delete', array(XENONOS_ROOT . '/../.htaccess'));
 		vfs('real_delete', array(XENONOS_ROOT . '/../browser'));
