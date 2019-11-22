@@ -67,7 +67,7 @@ define('REAL_ROOTUSER', 'root');
 
 // XenonOS Version
 define('XENONOS_VERSION', '1.0.3alpha');
-define('XENONOS_REVISION', '');
+define('XENONOS_COMMIT', file_get_contents("./.git/refs/remotes/origin/master"));
 
 // XeKernel Version
 define('KE_KERNEL_VERSION', '1.0.2alpha');
