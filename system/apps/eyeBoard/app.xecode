@@ -25,7 +25,7 @@ function eyeBoard_run($params=null) {
 	global $currentUser;
 
 	$myWindow = new Window(array(
-		'name'=>'eyeBoard',
+		'name'=>'Local Messaging',
 		'father'=>'eyeApps',
 		'type'=>NORMAL_WINDOW,
 		'cent'=>1,'width'=>450,
