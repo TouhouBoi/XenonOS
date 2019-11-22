@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 global $currentUser;
 // Select language
 $mySelect = new Select(array(
-	'name' => 'eyeControl_lang_select',
+	'name' => 'xeControl_lang_select',
 	'father' => $eyeContainer,
 	'width' => 150,
 	'horiz' => 1,
@@ -26,7 +26,7 @@ $mySelect = new Select(array(
 ));
 $mySelect->show();
 $mySelect->addOption('English','en');
-$UserLangXML = eyeControl_lib_getXMLconfig(array('i18n','lang.xml'));
+$UserLangXML = xeControl_lib_getXMLconfig(array('i18n','lang.xml'));
 $dir = XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/';
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
@@ -54,7 +54,7 @@ $mySelect->focus();
 $mySelect->addEnterEventMsg('lang_change');
 // Change language
 $myButton = new Button(array(
-	'name' => 'eyeControl_lang_button',
+	'name' => 'xeControl_lang_button',
 	'father' => $eyeContainer,
 	'x' => 300,
 	'y' => 20,
@@ -66,7 +66,7 @@ $myButton->show();
 if ($currentUser == ROOTUSER) {
 	// Get more translations
 	$myLabel = new Label(array(
-		'name' => 'eyeControl_lang_label',
+		'name' => 'xeControl_lang_label',
 		'father' => $eyeContainer,
 		'x' => 175,
 		'y' => 75,

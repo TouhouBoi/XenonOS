@@ -19,13 +19,13 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeControl_on_system_system($params = '')
+function xeControl_on_system_system($params = '')
 {
-	$quota_type = $GLOBALS['eyeControl_system_select_quota_type']->selected;
+	$quota_type = $GLOBALS['xeControl_system_select_quota_type']->selected;
 	
 	if ($quota_type == 'custom')
 	{
-		$quota = $GLOBALS['eyeControl_system_textbox_quota_value']->text;
+		$quota = $GLOBALS['xeControl_system_textbox_quota_value']->text;
 		
 		if ($quota <= 0 || !is_numeric($quota))
 		{
@@ -33,7 +33,7 @@ function eyeControl_on_system_system($params = '')
 		}
 		else
 		{
-			$quota_unit = $GLOBALS['eyeControl_system_select_quota_unit']->selected;
+			$quota_unit = $GLOBALS['xeControl_system_select_quota_unit']->selected;
 			
 			switch ($quota_unit)
 			{
@@ -58,8 +58,8 @@ function eyeControl_on_system_system($params = '')
 	
 	$xml = eyeXML('getXMLfile', array($file));
 	
-	$xml['CONFIG'][0]['XENONOS_HOSTNAME'][0] = $GLOBALS['eyeControl_system_system_textbox_hostname']->text;
-	$xml['CONFIG'][0]['DEFAULT_LANGUAGE'][0] = $GLOBALS['eyeControl_system_system_select_language']->selected;
+	$xml['CONFIG'][0]['XENONOS_HOSTNAME'][0] = $GLOBALS['xeControl_system_system_textbox_hostname']->text;
+	$xml['CONFIG'][0]['DEFAULT_LANGUAGE'][0] = $GLOBALS['xeControl_system_system_select_language']->selected;
 	
 	$xml['CONFIG'][0]['DEFAULT_QUOTA'][0] = strval($quota);
 	
@@ -67,58 +67,58 @@ function eyeControl_on_system_system($params = '')
 
 	$xml = getConfig('eyeFiles', 'conf.xml');
 	
-	$xml['eyeFiles'][0]['CreateThumbnails'][0] = $GLOBALS['eyeControl_system_system_checkbox_thumbnails']->checked;
+	$xml['eyeFiles'][0]['CreateThumbnails'][0] = $GLOBALS['xeControl_system_system_checkbox_thumbnails']->checked;
 	
 	setConfig('eyeFiles', 'conf.xml', $xml);
 
 	eyex('messageBox', array('content' => 'Changes successfully saved.'));
 }
 
-function eyeControl_on_system_permissions($params = '')
+function xeControl_on_system_permissions($params = '')
 {
 	$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
 	
 	$xml = eyeXML('getXMLfile',array($file));
 	
-	$xml['CONFIG'][0]['ALLOW_USER_REGISTER'][0] = $GLOBALS['eyeControl_system_permissions_checkbox_registration']->checked;
-	$xml['CONFIG'][0]['ALLOW_PUBLIC_DIRS'][0] = $GLOBALS['eyeControl_system_permissions_checkbox_publicdirs']->checked;
-	$xml['CONFIG'][0]['WEB_UPLOAD'][0] = $GLOBALS['eyeControl_system_permissions_checkbox_webupload']->checked;
+	$xml['CONFIG'][0]['ALLOW_USER_REGISTER'][0] = $GLOBALS['xeControl_system_permissions_checkbox_registration']->checked;
+	$xml['CONFIG'][0]['ALLOW_PUBLIC_DIRS'][0] = $GLOBALS['xeControl_system_permissions_checkbox_publicdirs']->checked;
+	$xml['CONFIG'][0]['WEB_UPLOAD'][0] = $GLOBALS['xeControl_system_permissions_checkbox_webupload']->checked;
 	
 	eyeXML('setXMLFile', array($file, $xml));
 	
 	eyex('messageBox', array('content' => 'Changes successfully saved.'));
 }
 
-function eyeControl_on_system_office($params = '')
+function xeControl_on_system_office($params = '')
 {
 	$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
 	
 	$xml = eyeXML('getXMLfile', array($file));
 	
-	$xml['CONFIG'][0]['OFFICE_PYTHON_PATH'][0] = $GLOBALS['eyeControl_system_office_textbox_folder']->text;
+	$xml['CONFIG'][0]['OFFICE_PYTHON_PATH'][0] = $GLOBALS['xeControl_system_office_textbox_folder']->text;
 	
 	eyeXML('setXMLFile', array($file, $xml));
 	
 	eyex('messageBox', array('content' => 'Changes successfully saved.'));
 
-	eyeControl_lib_loadContent('only_root', 'system', array('Office Support'));
+	xeControl_lib_loadContent('only_root', 'system', array('Office Support'));
 }
 
-function eyeControl_on_system_office_howtowindows($params = '')
+function xeControl_on_system_office_howtowindows($params = '')
 {
-	proc('launch', array('eyeHelp', 'eyeControl'));
+	proc('launch', array('eyeHelp', 'xeControl'));
 }
 
-function eyeControl_on_system_office_howtolinux($params = '')
+function xeControl_on_system_office_howtolinux($params = '')
 {
-	proc('launch', array('eyeHelp', 'eyeControl'));
+	proc('launch', array('eyeHelp', 'xeControl'));
 }
 
-function eyeControl_on_system_uninstall($params = '')
+function xeControl_on_system_uninstall($params = '')
 {
 	global $currentUser;
 	
-	$password = base64_decode($GLOBALS['eyeControl_system_uninstall_textbox_password']->text);
+	$password = base64_decode($GLOBALS['xeControl_system_uninstall_textbox_password']->text);
 	
 	$userInfo = um('retrieveUser', array($currentUser));
 	
@@ -128,11 +128,11 @@ function eyeControl_on_system_uninstall($params = '')
 			array(
 				'buttons' => array(array('system_uninstall_yes', 'Yes'), array('system_uninstall_no', 'No')),
 				'content' => 'Do you really want to delete the XenonOS system? This removes all data from the XenonOS directory!',
-				'father' => 'eyeControl_container_big',
+				'father' => 'xeControl_container_big',
 				'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/editClean.png',
 				'title' => 'Uninstall XenonOS',
 				'type' => 3,
-				'win_name' => 'eyeControl_system_uninstall_window',
+				'win_name' => 'xeControl_system_uninstall_window',
 				'win_removepid' => 0,
 				'win_style' => TITLE + CLOSE
 			)
@@ -144,7 +144,7 @@ function eyeControl_on_system_uninstall($params = '')
 	}
 }
 
-function eyeControl_on_system_uninstall_yes($params = '')
+function xeControl_on_system_uninstall_yes($params = '')
 {
 	global $currentUser;
 	
@@ -169,8 +169,8 @@ function eyeControl_on_system_uninstall_yes($params = '')
 	}
 }
 
-function eyeControl_on_system_uninstall_no($params = '')
+function xeControl_on_system_uninstall_no($params = '')
 {
-	$GLOBALS['eyeControl_system_uninstall_window']->close();
+	$GLOBALS['xeControl_system_uninstall_window']->close();
 }
 ?>

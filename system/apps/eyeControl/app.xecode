@@ -14,12 +14,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeControl_run($params = '') {
+function xeControl_run($params = '') {
 	global $checknum;
 	global $currentUser;
 	global $myPid;
 // Include all libraries
-	$dir = XENONOS_ROOT . '/' . APP_DIR . '/eyeControl/libraries/';
+	$dir = XENONOS_ROOT . '/' . APP_DIR . '/xeControl/libraries/';
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
 	$openDir = vfs('real_getDirContent',array($dir,'*' . XE_CODE_EXTENSION));
@@ -30,11 +30,11 @@ function eyeControl_run($params = '') {
 	if (isset($params['user']) === false) {
 		$params['user'] = null;
 	}
-	eyeControl_lib_setConfigUser(array($params['user']));
+	xeControl_lib_setConfigUser(array($params['user']));
 // Check for a hidden menu
 	if (isset($params['hidemenu']) === true && $params['hidemenu'] == 1 || isset($params[3]) === true && $params[3] == 1) {
 		$myWindow = new Window(array(
-			'name' => 'eyeControl_window',
+			'name' => 'xeControl_window',
 			'father' => 'eyeApps',
 			'cent' => 1,
 			'width' => 585,
@@ -46,8 +46,8 @@ function eyeControl_run($params = '') {
 		$myWindow->show();
 // $myContainer
 		$myContainer = new Container(array(
-			'name' => 'eyeControl_container_big_Content',
-			'father' => 'eyeControl_window_Content',
+			'name' => 'xeControl_container_big_Content',
+			'father' => 'xeControl_window_Content',
 			'x' => 10,
 			'y' => 10,
 			'width' => 565,
@@ -58,7 +58,7 @@ function eyeControl_run($params = '') {
 	} else {
 // $myWindow
 		$myWindow = new Window(array(
-			'name' => 'eyeControl_window',
+			'name' => 'xeControl_window',
 			'father' => 'eyeApps',
 			'cent' => 1,
 			'width' => 765,
@@ -70,8 +70,8 @@ function eyeControl_run($params = '') {
 		$myWindow->show();
 // $myWindow_box
 		$myWindow_box = new Window(array(
-			'name' => 'eyeControl_window_box',
-			'father' => 'eyeControl_window_Content',
+			'name' => 'xeControl_window_box',
+			'father' => 'xeControl_window_Content',
 			'y' => 0,
 			'x' => 15,
 			'width' => 156,
@@ -83,11 +83,11 @@ function eyeControl_run($params = '') {
 			'overflow' => 'auto',
 			'direction' => 'rtl'
 		));
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeControl_window_box_Content").style.left = "0"; document.getElementById("' . $myPid . '_eyeControl_window_box_Content").style.top = "0";'));
+		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_window_box_Content").style.left = "0"; document.getElementById("' . $myPid . '_xeControl_window_box_Content").style.top = "0";'));
 // $myContainer
 		$myContainer = new Container(array(
-			'name' => 'eyeControl_box',
-			'father' => 'eyeControl_window_box',
+			'name' => 'xeControl_box',
+			'father' => 'xeControl_window_box',
 			'y' => 0,
 			'x' => 0
 		));
@@ -98,7 +98,7 @@ function eyeControl_run($params = '') {
 // help icon
 		$myImage = new Imagebox(array(
 			'name' => 'imghelp',
-			'father' => 'eyeControl_window_box',
+			'father' => 'xeControl_window_box',
 			'horiz' => 1,
 			'x' => 7,
 			'y' => 10,
@@ -110,8 +110,8 @@ function eyeControl_run($params = '') {
 		$myImage->setCss(array('cursor' => 'Pointer'));
 // $myLine
 		$myLine = new Line(array(
-			'name' => 'eyeControl_line',
-			'father' => 'eyeControl_window_Content',
+			'name' => 'xeControl_line',
+			'father' => 'xeControl_window_Content',
 			'x' => 170,
 			'y' => 0,
 			'width' => 1,
@@ -119,23 +119,23 @@ function eyeControl_run($params = '') {
 		));
 		$myLine->show();
 // Load content links to $myBox
-		$content = getConfig('eyeControl','categories.xml');
-		$content = $content['eyeControl'][0]['index'][0];
+		$content = getConfig('xeControl','categories.xml');
+		$content = $content['xeControl'][0]['index'][0];
 		$myHiddenCAT = new Hidden(array(
-			'name' => 'eyeControl_box_hiddenCAT_0',
-			'father' => 'eyeControl_box',
+			'name' => 'xeControl_box_hiddenCAT_0',
+			'father' => 'xeControl_box',
 			'text' => 'index'
 		));
 		$myHiddenCAT->show();
 		$myHiddenNAME = new Hidden(array(
-			'name' => 'eyeControl_box_hiddenNAME_0',
-			'father' => 'eyeControl_box',
+			'name' => 'xeControl_box_hiddenNAME_0',
+			'father' => 'xeControl_box',
 			'text' => $content['name'][0]
 		));
 		$myHiddenNAME->show();
 		$myLabel = new Label(array(
-			'name' => 'eyeControl_box_label_0',
-			'father' => 'eyeControl_box',
+			'name' => 'xeControl_box_label_0',
+			'father' => 'xeControl_box',
 			'text' => $content['display'][0],
 			'x' => 0,
 			'y' => 10,
@@ -154,23 +154,23 @@ function eyeControl_run($params = '') {
 		));
 		$x = 1;
 		$boxY = 30;
-		$categoriesXML = getConfig('eyeControl','categories.xml');
-		foreach($categoriesXML['eyeControl'][0]['category'] as $category) {
+		$categoriesXML = getConfig('xeControl','categories.xml');
+		foreach($categoriesXML['xeControl'][0]['category'] as $category) {
 			if ((isset($category['show']) === false || $category['show'][0] != 'no' && $category['show'][0] != 'nolist') && ($category['permissions'][0] == 'all'
-			|| $category['permissions'][0] == 'root' && eyeControl_lib_getConfigUser() == ROOTUSER
-			|| $category['permissions'][0] == 'maintainer' && (eyeControl_lib_getConfigUser() == ROOTUSER || um('checkMaintainer',array(eyeControl_lib_getConfigUser())))
-			|| $category['permissions'][0] == 'user' && eyeControl_lib_getConfigUser() != ROOTUSER
-			|| $category['permissions'][0] == 'only_real' && eyeControl_lib_getConfigUser() != '[skel]'
-			|| $category['permissions'][0] == 'only_this' && eyeControl_lib_getConfigUser() == $currentUser)) {
+			|| $category['permissions'][0] == 'root' && xeControl_lib_getConfigUser() == ROOTUSER
+			|| $category['permissions'][0] == 'maintainer' && (xeControl_lib_getConfigUser() == ROOTUSER || um('checkMaintainer',array(xeControl_lib_getConfigUser())))
+			|| $category['permissions'][0] == 'user' && xeControl_lib_getConfigUser() != ROOTUSER
+			|| $category['permissions'][0] == 'only_real' && xeControl_lib_getConfigUser() != '[skel]'
+			|| $category['permissions'][0] == 'only_this' && xeControl_lib_getConfigUser() == $currentUser)) {
 				$myHiddenCAT = new Hidden(array(
-					'name' => 'eyeControl_box_hiddenCAT_' . $x,
-					'father' => 'eyeControl_box',
+					'name' => 'xeControl_box_hiddenCAT_' . $x,
+					'father' => 'xeControl_box',
 					'text' => $category['name'][0]
 				));
 				$myHiddenCAT->show();
 				$myLabel = new Label(array(
-					'name' => 'eyeControl_box_label_' . $x,
-					'father' => 'eyeControl_box',
+					'name' => 'xeControl_box_label_' . $x,
+					'father' => 'xeControl_box',
 					'text' => $category['display'][0],
 					'x' => 10,
 					'y' => $boxY + 10,
@@ -189,26 +189,26 @@ function eyeControl_run($params = '') {
 				$boxY += 30;
 				foreach($category['content'] as $content) {
 					if ((isset($content['show']) === false || $content['show'][0] != 'no' && $content['show'][0] != 'nolist') && ($content['permissions'][0] == 'all'
-					|| $content['permissions'][0] == 'root' && eyeControl_lib_getConfigUser() == ROOTUSER
-					|| $content['permissions'][0] == 'maintainer' && (eyeControl_lib_getConfigUser() == ROOTUSER || um('checkMaintainer',array(eyeControl_lib_getConfigUser())))
-					|| $content['permissions'][0] == 'user' && eyeControl_lib_getConfigUser() != ROOTUSER
-					|| $content['permissions'][0] == 'only_real' && eyeControl_lib_getConfigUser() != '[skel]'
-					|| $content['permissions'][0] == 'only_this' && eyeControl_lib_getConfigUser() == $currentUser)) {
+					|| $content['permissions'][0] == 'root' && xeControl_lib_getConfigUser() == ROOTUSER
+					|| $content['permissions'][0] == 'maintainer' && (xeControl_lib_getConfigUser() == ROOTUSER || um('checkMaintainer',array(xeControl_lib_getConfigUser())))
+					|| $content['permissions'][0] == 'user' && xeControl_lib_getConfigUser() != ROOTUSER
+					|| $content['permissions'][0] == 'only_real' && xeControl_lib_getConfigUser() != '[skel]'
+					|| $content['permissions'][0] == 'only_this' && xeControl_lib_getConfigUser() == $currentUser)) {
 						$myHiddenCAT = new Hidden(array(
-							'name' => 'eyeControl_box_hiddenCAT_' . $x,
-							'father' => 'eyeControl_box',
+							'name' => 'xeControl_box_hiddenCAT_' . $x,
+							'father' => 'xeControl_box',
 							'text' => $category['name'][0]
 						));
 						$myHiddenCAT->show();
 						$myHiddenNAME = new Hidden(array(
-							'name' => 'eyeControl_box_hiddenNAME_' . $x,
-							'father' => 'eyeControl_box',
+							'name' => 'xeControl_box_hiddenNAME_' . $x,
+							'father' => 'xeControl_box',
 							'text' => $content['name'][0]
 						));
 						$myHiddenNAME->show();
 						$myLabel = new Label(array(
-							'name' => 'eyeControl_box_label_' . $x,
-							'father' => 'eyeControl_box',
+							'name' => 'xeControl_box_label_' . $x,
+							'father' => 'xeControl_box',
 							'text' => $content['display'][0],
 							'x' => 20,
 							'y' => $boxY,
@@ -228,7 +228,7 @@ function eyeControl_run($params = '') {
 				}
 			}
 		}
-		$dir = XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeControl/others/';
+		$dir = XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/xeControl/others/';
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
 		$openDir = vfs('real_getDirContent',array($dir,'*.xml',2));
@@ -245,26 +245,26 @@ function eyeControl_run($params = '') {
 				$currentUser = $oldUser;
 				$content = $content['content'][0];
 				if ($content['show'][0] != 'no' && $content['show'][0] != 'nolist' && ($content['permissions'][0] == 'all'
-				|| $content['permissions'][0] == 'root' && eyeControl_lib_getConfigUser() == ROOTUSER
-				|| $content['permissions'][0] == 'maintainer' && (eyeControl_lib_getConfigUser() == ROOTUSER || um('checkMaintainer',array(eyeControl_lib_getConfigUser())))
-				|| $content['permissions'][0] == 'user' && eyeControl_lib_getConfigUser() != ROOTUSER
-				|| $content['permissions'][0] == 'only_real' && eyeControl_lib_getConfigUser() != '[skel]'
-				|| $content['permissions'][0] == 'only_this' && eyeControl_lib_getConfigUser() == $currentUser)) {
+				|| $content['permissions'][0] == 'root' && xeControl_lib_getConfigUser() == ROOTUSER
+				|| $content['permissions'][0] == 'maintainer' && (xeControl_lib_getConfigUser() == ROOTUSER || um('checkMaintainer',array(xeControl_lib_getConfigUser())))
+				|| $content['permissions'][0] == 'user' && xeControl_lib_getConfigUser() != ROOTUSER
+				|| $content['permissions'][0] == 'only_real' && xeControl_lib_getConfigUser() != '[skel]'
+				|| $content['permissions'][0] == 'only_this' && xeControl_lib_getConfigUser() == $currentUser)) {
 					$myHiddenCAT = new Hidden(array(
-						'name' => 'eyeControl_box_hiddenCAT_' . $x,
-						'father' => 'eyeControl_box',
+						'name' => 'xeControl_box_hiddenCAT_' . $x,
+						'father' => 'xeControl_box',
 						'text' => 'others'
 					));
 					$myHiddenCAT->show();
 					$myHiddenNAME = new Hidden(array(
-						'name' => 'eyeControl_box_hiddenNAME_' . $x,
-						'father' => 'eyeControl_box',
+						'name' => 'xeControl_box_hiddenNAME_' . $x,
+						'father' => 'xeControl_box',
 						'text' => $content['name'][0]
 					));
 					$myHiddenNAME->show();
 					$myLabel = new Label(array(
-						'name' => 'eyeControl_box_label_' . $x,
-						'father' => 'eyeControl_box',
+						'name' => 'xeControl_box_label_' . $x,
+						'father' => 'xeControl_box',
 						'text' => $content['display'][0],
 						'x' => 20,
 						'y' => $boxY,
@@ -284,14 +284,14 @@ function eyeControl_run($params = '') {
 			}
 			if ($x > $x_others + 1) {
 				$myHiddenCAT = new Hidden(array(
-					'name' => 'eyeControl_box_hiddenCAT_' . $x_others,
-					'father' => 'eyeControl_box',
+					'name' => 'xeControl_box_hiddenCAT_' . $x_others,
+					'father' => 'xeControl_box',
 					'text' => 'others'
 				));
 				$myHiddenCAT->show();
 				$myLabel = new Label(array(
-					'name' => 'eyeControl_box_label_' . $x_others,
-					'father' => 'eyeControl_box',
+					'name' => 'xeControl_box_label_' . $x_others,
+					'father' => 'xeControl_box',
 					'text' => 'Others',
 					'x' => 10,
 					'y' => $boxY_others + 10,
@@ -310,8 +310,8 @@ function eyeControl_run($params = '') {
 		}
 // $myContainer
 		$myContainer = new Container(array(
-			'name' => 'eyeControl_container_big_Content',
-			'father' => 'eyeControl_window_Content',
+			'name' => 'xeControl_container_big_Content',
+			'father' => 'xeControl_window_Content',
 			'x' => 190,
 			'y' => 10,
 			'width' => 565,
@@ -322,8 +322,8 @@ function eyeControl_run($params = '') {
 // Select user:
 		if ($currentUser == ROOTUSER) {
 			$myLabel = new Label(array(
-					'name' => 'eyeControl_label_User',
-					'father' => 'eyeControl_window_Content',
+					'name' => 'xeControl_label_User',
+					'father' => 'xeControl_window_Content',
 					'text' => 'Select user:',
 					'vert' => 1,
 					'horiz' => 1,
@@ -332,8 +332,8 @@ function eyeControl_run($params = '') {
 				));
 			$myLabel->show();
 			$mySelect = new Select(array(
-				'name' => 'eyeControl_select_User',
-				'father' => 'eyeControl_window_Content',
+				'name' => 'xeControl_select_User',
+				'father' => 'xeControl_window_Content',
 				'horiz' => 1,
 				'vert' => 1,
 				'width' => 200,
@@ -364,10 +364,10 @@ function eyeControl_run($params = '') {
 			$mySelect->addEnterEventMsg('selectUser');
 // Used space:
 		} else {
-			$size = vfs('getDirSize',array(eyeControl_lib_getConfigUserPath()));
+			$size = vfs('getDirSize',array(xeControl_lib_getConfigUserPath()));
 			$myLabel = new Label(array(
-					'name' => 'eyeControl_label_Quota',
-					'father' => 'eyeControl_window_Content',
+					'name' => 'xeControl_label_Quota',
+					'father' => 'xeControl_window_Content',
 					'text' => 'Used space:',
 					'vert' => 1,
 					'horiz' => 1,
@@ -376,8 +376,8 @@ function eyeControl_run($params = '') {
 				));
 			$myLabel->show();
 			$myProgress = new ProgressBar(array(
-				'name' => 'eyeControl_progress_Quota',
-				'father' => 'eyeControl_window_Content',
+				'name' => 'xeControl_progress_Quota',
+				'father' => 'xeControl_window_Content',
 				'horiz' => 1,
 				'vert' => 1,
 				'width' => 200,
@@ -394,15 +394,15 @@ function eyeControl_run($params = '') {
 		if (isset($params['contentParams']) === false) {
 			$params['contentParams'] = '';
 		}
-		eyeControl_lib_loadContent($params['category'], $params['content'], $params['contentParams']);
+		xeControl_lib_loadContent($params['category'], $params['content'], $params['contentParams']);
 	} else if (isset($params[0]) === true) {
-		eyeControl_lib_loadContent($params[0],$params[1],$params[2]);
+		xeControl_lib_loadContent($params[0],$params[1],$params[2]);
 	} else {
-		eyeControl_lib_loadContent();
+		xeControl_lib_loadContent();
 	}
 }
 
-function eyeControl_end($params = '') {
+function xeControl_end($params = '') {
 	eyeWidgets('unserialize');
 }
 ?>

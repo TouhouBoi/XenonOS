@@ -15,10 +15,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 $ContentY = 10;
-$conf = eyeControl_lib_getXMLconfig(array('eyeBoard','conf.xml'));
+$conf = xeControl_lib_getXMLconfig(array('eyeBoard','conf.xml'));
 // Show full names
 $myLabel = new Label(array(
-	'name' => 'eyeControl_eyeboard_label_fullname',
+	'name' => 'xeControl_eyeboard_label_fullname',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -26,7 +26,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myCheckbox = new Checkbox(array(
-	'name' => 'eyeControl_eyeboard_checkbox_fullname',
+	'name' => 'xeControl_eyeboard_checkbox_fullname',
 	'father' => $eyeContainer,
 	'x' => 200,
 	'y' => $ContentY,
@@ -37,7 +37,7 @@ $myCheckbox->show();
 $ContentY += 30;
 // Refresh interval (seconds)
 $myLabel = new Label(array(
-	'name' => 'eyeControl_eyeboard_label_refresh',
+	'name' => 'xeControl_eyeboard_label_refresh',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -45,7 +45,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $mySelect = new Select(array(
-	'name' => 'eyeControl_eyeboard_select_refresh',
+	'name' => 'xeControl_eyeboard_select_refresh',
 	'father' => $eyeContainer,
 	'x' => 320,
 	'y' => $ContentY + 3
@@ -74,7 +74,7 @@ while ($i < 30) {
 $ContentY += 40;
 // Save Changes
 $myButton = new Button(array(
-	'name' => 'eyeControl_eyeboard_button_save',
+	'name' => 'xeControl_eyeboard_button_save',
 	'father' => $eyeContainer,
 	'x' => 50,
 	'y' => $ContentY,

@@ -18,10 +18,10 @@ global $checknum;
 global $currentUser;
 global $myPid;
 
-$config = eyeControl_lib_getXMLconfig(array('eyeDesk', 'conf.xml'));
+$config = xeControl_lib_getXMLconfig(array('eyeDesk', 'conf.xml'));
 
 $myTab = new Tab(array(
-	'name' => 'eyeControl_desktop_tab',
+	'name' => 'xeControl_desktop_tab',
 	'father' => $eyeContainer,
 	'width' => 550,
 	'height' => 405,
@@ -31,7 +31,7 @@ $myTab = new Tab(array(
 ));
 $myTab->show();
 
-if (eyeControl_lib_getConfigUser() == $currentUser) {
+if (xeControl_lib_getConfigUser() == $currentUser) {
 	$wallpaperTab = $myTab->addTab('Wallpaper',1);
 	$iconsTab = $myTab->addTab('Settings',1);
 	if (is_array($contentParams) && $contentParams[0]) {
@@ -46,12 +46,12 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 if (isset($config['eyeDesk'][0]['bgColor']) === false) {
 	$config['eyeDesk'][0]['bgColor'] = null;
 }
-if (eyeControl_lib_getConfigUser() == $currentUser) {
+if (xeControl_lib_getConfigUser() == $currentUser) {
 	$ContentY = 20;
 	if (isset($config['eyeDesk'][0]['wallpaper']) === false) {
 		$config['eyeDesk'][0]['wallpaper'] = null;
 	}
-	$path = str_replace(eyeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/','',$config['eyeDesk'][0]['wallpaper'][0]);
+	$path = str_replace(xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/','',$config['eyeDesk'][0]['wallpaper'][0]);
 	if (is_array($path)) {
 		$path = '';
 	}
@@ -68,13 +68,13 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 	}
 	if (isset($config['eyeDesk'][0]['wallpaperRepeat']) === true && $config['eyeDesk'][0]['wallpaperRepeat'][0] == '0') {
 		$repeat = 0;
-		$repeatUrl = 'index.php?extern=apps/eyeControl/gfx/norepeat.png';
+		$repeatUrl = 'index.php?extern=apps/xeControl/gfx/norepeat.png';
 	} else if (isset($config['eyeDesk'][0]['wallpaperRepeat']) === true && $config['eyeDesk'][0]['wallpaperRepeat'][0] === '1') {
 		$repeat = 1;
-		$repeatUrl = 'index.php?extern=apps/eyeControl/gfx/repeat.png';
+		$repeatUrl = 'index.php?extern=apps/xeControl/gfx/repeat.png';
 	} else {
 		$repeat = 2;
-		$repeatUrl = 'index.php?extern=apps/eyeControl/gfx/norepeat.png';
+		$repeatUrl = 'index.php?extern=apps/xeControl/gfx/norepeat.png';
 	}
 	if (isset($config['eyeDesk'][0]['wallpaperCenter']) === true && $config['eyeDesk'][0]['wallpaperCenter'][0] == '0') {
 		$center = 0;
@@ -88,7 +88,7 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 
 	// Use a custom wallpaper
 	$myCheckbox_use = new Checkbox(array(
-		'name' => 'eyeControl_desktop_checkbox_use',
+		'name' => 'xeControl_desktop_checkbox_use',
 		'father' => $wallpaperTab,
 		'x' => 20,
 		'y' => $ContentY,
@@ -100,7 +100,7 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 	$ContentY += 30;
 	// New wallpaper
 	$myLabel = new Label(array(
-		'name' => 'eyeControl_desktop_label_select',
+		'name' => 'xeControl_desktop_label_select',
 		'father' => $wallpaperTab,
 		'x' => 60,
 		'y' => $ContentY + 3,
@@ -108,7 +108,7 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 	));
 	$myLabel->show();
 	$myTextbox = new Textbox(array(
-		'name' => 'eyeControl_desktop_textbox_select',
+		'name' => 'xeControl_desktop_textbox_select',
 		'father' => $wallpaperTab,
 		'width' => 220,
 		'x' => 160,
@@ -118,7 +118,7 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 	$myTextbox->show();
 	// Select a file...
 	$myButton = new Button(array(
-		'name' => 'eyeControl_dektop_select',
+		'name' => 'xeControl_dektop_select',
 		'father' => $wallpaperTab,
 		'x' => 400,
 		'y' => $ContentY,
@@ -129,7 +129,7 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 	$ContentY += 40;
 	// $myImagebox
 	$myImagebox = new Imagebox(array(
-		'name' => 'eyeControl_desktop_imagebox',
+		'name' => 'xeControl_desktop_imagebox',
 		'father' => $wallpaperTab,
 		'width' => 160,
 		'height' => 120,
@@ -139,7 +139,7 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 	));
 	$myImagebox->show();
 	$myImagebox = new Imagebox(array(
-		'name' => 'eyeControl_desktop_imagebox_wallpaper',
+		'name' => 'xeControl_desktop_imagebox_wallpaper',
 		'father' => $wallpaperTab,
 		'x' => $centerWidth,
 		'y' => $ContentY + $centerHeight,
@@ -149,7 +149,7 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 	$ContentY += 20;
 	// Repeat wallpaper
 	$mySelect_repeat = new Select(array(
-		'name' => 'eyeControl_desktop_select_repeat',
+		'name' => 'xeControl_desktop_select_repeat',
 		'father' => $wallpaperTab,
 		'width' => 150,
 		'x' => 245,
@@ -159,11 +159,11 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 	$mySelect_repeat->addOption('Original Size', '0', $repeat === 0);
 	$mySelect_repeat->addOption('Repeat Wallpaper', '1', $repeat === 1);
 	$mySelect_repeat->addOption('Fit Wallpaper', '2', $repeat === 2);
-	$mySelect_repeat->addEvent('onclick', 'console.log(this); document.getElementById("' . $myPid . '_eyeControl_desktop_imagebox_wallpaper").src = this.value === "1" ? "index.php?extern=apps/eyeControl/gfx/repeat.png" : "index.php?extern=apps/eyeControl/gfx/norepeat.png"; fixPNG("' . $myPid . '_eyeControl_desktop_imagebox_wallpaper");');
+	$mySelect_repeat->addEvent('onclick', 'console.log(this); document.getElementById("' . $myPid . '_xeControl_desktop_imagebox_wallpaper").src = this.value === "1" ? "index.php?extern=apps/xeControl/gfx/repeat.png" : "index.php?extern=apps/xeControl/gfx/norepeat.png"; fixPNG("' . $myPid . '_xeControl_desktop_imagebox_wallpaper");');
 	$ContentY += 60;
 	// Center wallpaper
 	$myCheckbox_center = new Checkbox(array(
-		'name' => 'eyeControl_desktop_checkbox_center',
+		'name' => 'xeControl_desktop_checkbox_center',
 		'father' => $wallpaperTab,
 		'x' => 245,
 		'y' => $ContentY,
@@ -171,11 +171,11 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 		'checked' => $center
 	));
 	$myCheckbox_center->show();
-	$myCheckbox_center->addEvent('onclick','if (this.checked) { document.getElementById("' . $myPid . '_eyeControl_desktop_imagebox_wallpaper_Container").style.left = "104px"; document.getElementById("' . $myPid . '_eyeControl_desktop_imagebox_wallpaper_Container").style.top = "103px"; } else { document.getElementById("' . $myPid . '_eyeControl_desktop_imagebox_wallpaper_Container").style.left = "60px"; document.getElementById("' . $myPid . '_eyeControl_desktop_imagebox_wallpaper_Container").style.top = "70px"; }');
+	$myCheckbox_center->addEvent('onclick','if (this.checked) { document.getElementById("' . $myPid . '_xeControl_desktop_imagebox_wallpaper_Container").style.left = "104px"; document.getElementById("' . $myPid . '_xeControl_desktop_imagebox_wallpaper_Container").style.top = "103px"; } else { document.getElementById("' . $myPid . '_xeControl_desktop_imagebox_wallpaper_Container").style.left = "60px"; document.getElementById("' . $myPid . '_xeControl_desktop_imagebox_wallpaper_Container").style.top = "70px"; }');
 	$ContentY += 60;
 	// Use a custom background color
 	$myCheckbox_use_color = new Checkbox(array(
-		'name' => 'eyeControl_desktop_checkbox_use_color',
+		'name' => 'xeControl_desktop_checkbox_use_color',
 		'father' => $wallpaperTab,
 		'x' => 20,
 		'y' => $ContentY,
@@ -186,7 +186,7 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 	$ContentY += 30;
 	// Background color
 	$myLabel = new Label(array(
-		'name' => 'eyeControl_desktop_label_color',
+		'name' => 'xeControl_desktop_label_color',
 		'father' => $wallpaperTab,
 		'x' => 60,
 		'y' => $ContentY + 3,
@@ -194,7 +194,7 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 	));
 	$myLabel->show();
 	$myTextbox_color = new Textbox(array(
-		'name' => 'eyeControl_desktop_textbox_color',
+		'name' => 'xeControl_desktop_textbox_color',
 		'father' => $wallpaperTab,
 		'width' => 220,
 		'x' => 180,
@@ -204,7 +204,7 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 	$myTextbox_color->show();
 	$myTextbox_color->setCss(array('text-shadow' => 'none'));
 	// INIT
-	eyex('rawjs', array('js' => 'var e = document.getElementById("' . $myPid . '_eyeControl_desktop_textbox_color");
+	eyex('rawjs', array('js' => 'var e = document.getElementById("' . $myPid . '_xeControl_desktop_textbox_color");
 	e.style.backgroundColor = "#ffffff";
 	e.style.backgroundColor = e.value;
 	var bgColor = xParseColor(xGetComputedStyle(e, "background-color"));
@@ -217,15 +217,15 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 	e.style.color = "rgb(" + String(288 - bgColor.r) + ", " + String(288 - bgColor.g) + ", " + String(288 - bgColor.b) + ")";'));
 	// CHANGE
 	$myTextbox_color->addEvent('onchange', 'if (this.value == "" || this.value.toLowerCase() === "transparent") {
-		document.getElementById("' . $myPid . '_eyeControl_desktop_checkbox_use_color").checked = false;
+		document.getElementById("' . $myPid . '_xeControl_desktop_checkbox_use_color").checked = false;
 	} else {
-		document.getElementById("' . $myPid . '_eyeControl_desktop_checkbox_use_color").checked = true;
+		document.getElementById("' . $myPid . '_xeControl_desktop_checkbox_use_color").checked = true;
 	}');
 	// KEYUP
 	$myTextbox_color->addEvent('onkeyup', 'if (this.value == "" || this.value.toLowerCase() === "transparent") {
-		document.getElementById("' . $myPid . '_eyeControl_desktop_checkbox_use_color").checked = false;
+		document.getElementById("' . $myPid . '_xeControl_desktop_checkbox_use_color").checked = false;
 	} else {
-		document.getElementById("' . $myPid . '_eyeControl_desktop_checkbox_use_color").checked = true;
+		document.getElementById("' . $myPid . '_xeControl_desktop_checkbox_use_color").checked = true;
 	}
 	this.style.backgroundColor = "#ffffff";
 	this.style.backgroundColor = this.value;
@@ -240,11 +240,11 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 		this.style.color = "rgb(" + String(288 - bgColor.r) + ", " + String(288 - bgColor.g) + ", " + String(288 - bgColor.b) + ")";
 	}');
 	// JSCOLOR
-	eyex('jscolor', array($myPid . '_eyeControl_desktop_textbox_color'));
+	eyex('jscolor', array($myPid . '_xeControl_desktop_textbox_color'));
 	$ContentY += 60;
 	// Save Changes
 	$myButton = new Button(array(
-		'name' => 'eyeControl_dektop_save',
+		'name' => 'xeControl_dektop_save',
 		'father' => $wallpaperTab,
 		'x' => 20,
 		'y' => $ContentY,
@@ -263,7 +263,7 @@ if (eyeControl_lib_getConfigUser() == $currentUser) {
 // Windows
 $ContentY = 20;
 $myLabel = new Label(array(
-	'name' => 'eyeControl_desktop_label_windows',
+	'name' => 'xeControl_desktop_label_windows',
 	'father' => $iconsTab,
 	'x' => 20,
 	'y' => $ContentY,
@@ -276,9 +276,9 @@ $myLabel->setCss(array(
 
 // Save window positions
 $ContentY += 25;
-$xml = eyeControl_lib_getXMLconfig(array('eyex','eyeX.xml'));
+$xml = xeControl_lib_getXMLconfig(array('eyex','eyeX.xml'));
 $myCheckbox = new Checkbox(array(
-	'name' => 'eyeControl_desktop_checkbox_savewinpos',
+	'name' => 'xeControl_desktop_checkbox_savewinpos',
 	'father' => $iconsTab,
 	'x' => 50,
 	'y' => $ContentY,
@@ -286,12 +286,12 @@ $myCheckbox = new Checkbox(array(
 	'checked' => $xml['eyex'][0]['saveWindowPositions'][0] != '0'
 ));
 $myCheckbox->show();
-$myCheckbox->addEvent('onclick','if (this.checked) { document.getElementById("' . $myPid . '_eyeControl_dektop_reset_windows_Container").style.display = "block"; } else { document.getElementById("' . $myPid . '_eyeControl_dektop_reset_windows_Container").style.display = "none"; } sendMsg(' . $checknum . ',"desktop_savewinpos",eyeParam("selected",this.checked));');
+$myCheckbox->addEvent('onclick','if (this.checked) { document.getElementById("' . $myPid . '_xeControl_dektop_reset_windows_Container").style.display = "block"; } else { document.getElementById("' . $myPid . '_xeControl_dektop_reset_windows_Container").style.display = "none"; } sendMsg(' . $checknum . ',"desktop_savewinpos",eyeParam("selected",this.checked));');
 
 // Reset window positions
 $ContentY += 30;
 $myButton = new Button(array(
-	'name' => 'eyeControl_dektop_reset_windows',
+	'name' => 'xeControl_dektop_reset_windows',
 	'father' => $iconsTab,
 	'x' => 75,
 	'y' => $ContentY,
@@ -305,7 +305,7 @@ $myButton->show();
 // Desktop icons
 $ContentY += 30;
 $myLabel = new Label(array(
-	'name' => 'eyeControl_desktop_label_icons',
+	'name' => 'xeControl_desktop_label_icons',
 	'father' => $iconsTab,
 	'x' => 20,
 	'y' => $ContentY,
@@ -322,7 +322,7 @@ $myRadio = new Radio(array(
 	'checked' => isset($config['eyeDesk'][0]['loadIconPositions'][0]) === true && $config['eyeDesk'][0]['loadIconPositions'][0] === '0',
 	'father' => $iconsTab,
 	'group' => 'Icons',
-	'name' => 'eyeControl_desktop_Radio_Fixed',
+	'name' => 'xeControl_desktop_Radio_Fixed',
 	'text' => 'Fixed: Icons cannot be moved',
 	'x' => 50,
 	'y' => $ContentY
@@ -336,7 +336,7 @@ $myRadio = new Radio(array(
 	'checked' => isset($config['eyeDesk'][0]['loadIconPositions'][0]) === false || ($config['eyeDesk'][0]['loadIconPositions'][0] !== '0' && $config['eyeDesk'][0]['loadIconPositions'][0] !== '2'),
 	'father' => $iconsTab,
 	'group' => 'Icons',
-	'name' => 'eyeControl_desktop_Radio_Smooth',
+	'name' => 'xeControl_desktop_Radio_Smooth',
 	'text' => 'Smooth: Icons can be moved anywhere',
 	'x' => 50,
 	'y' => $ContentY
@@ -350,7 +350,7 @@ $myRadio = new Radio(array(
 	'checked' => isset($config['eyeDesk'][0]['loadIconPositions'][0]) === true && $config['eyeDesk'][0]['loadIconPositions'][0] === '2',
 	'father' => $iconsTab,
 	'group' => 'Icons',
-	'name' => 'eyeControl_desktop_Radio_Fielded',
+	'name' => 'xeControl_desktop_Radio_Fielded',
 	'text' => 'Fielded: Icons are aligned automatically',
 	'x' => 50,
 	'y' => $ContentY
@@ -361,7 +361,7 @@ $myRadio->addEvent('onclick', 'sendMsg(' . $checknum . ', "desktop_save_icons", 
 // Reset icon positions
 $ContentY += 30;
 $myButton = new Button(array(
-	'name' => 'eyeControl_dektop_reset_icons',
+	'name' => 'xeControl_dektop_reset_icons',
 	'father' => $iconsTab,
 	'x' => 75,
 	'y' => $ContentY,
@@ -375,7 +375,7 @@ $myButton->show();
 // Mouse
 $ContentY += 30;
 $myLabel = new Label(array(
-	'name' => 'eyeControl_desktop_label_mouse',
+	'name' => 'xeControl_desktop_label_mouse',
 	'father' => $iconsTab,
 	'x' => 20,
 	'y' => $ContentY,
@@ -387,9 +387,9 @@ $myLabel->setCss(array(
 ));
 $ContentY += 25;
 // Use doubleclicks
-$xml = eyeControl_lib_getXMLconfig(array('eyeFiles','conf.xml'));
+$xml = xeControl_lib_getXMLconfig(array('eyeFiles','conf.xml'));
 $myCheckbox = new Checkbox(array(
-	'name' => 'eyeControl_desktop_checkbox_usedblclicks',
+	'name' => 'xeControl_desktop_checkbox_usedblclicks',
 	'father' => $iconsTab,
 	'x' => 50,
 	'y' => $ContentY,
@@ -402,7 +402,7 @@ $myCheckbox->addEvent('onclick','sendMsg(' . $checknum . ',"desktop_savedblclick
 // System Sound
 $ContentY += 30;
 $myLabel = new Label(array(
-	'name' => 'eyeControl_desktop_label_System_Sound',
+	'name' => 'xeControl_desktop_label_System_Sound',
 	'father' => $iconsTab,
 	'x' => 20,
 	'y' => $ContentY,
@@ -414,9 +414,9 @@ $myLabel->setCss(array(
 ));
 $ContentY += 25;
 // on/off
-$xml = eyeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
+$xml = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
 $myCheckbox = new Checkbox(array(
-	'name' => 'eyeControl_desktop_checkbox_Soundclicks',
+	'name' => 'xeControl_desktop_checkbox_Soundclicks',
 	'father' => $iconsTab,
 	'x' => 50,
 	'y' => $ContentY,

@@ -14,13 +14,13 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeControl_on_smtp_save($params = '') {
-	if (eyeControl_lib_getConfigUser() == ROOTUSER) {
-		$from = $GLOBALS['eyeControl_smtp_Textbox_From']->text;
-		$username = $GLOBALS['eyeControl_smtp_Textbox_Username']->text;
-		$password = $GLOBALS['eyeControl_smtp_Textbox_Password']->text;
-		$hostname = $GLOBALS['eyeControl_smtp_Textbox_Hostname']->text;
-		$port = $GLOBALS['eyeControl_smtp_Textbox_Port']->text;
+function xeControl_on_smtp_save($params = '') {
+	if (xeControl_lib_getConfigUser() == ROOTUSER) {
+		$from = $GLOBALS['xeControl_smtp_Textbox_From']->text;
+		$username = $GLOBALS['xeControl_smtp_Textbox_Username']->text;
+		$password = $GLOBALS['xeControl_smtp_Textbox_Password']->text;
+		$hostname = $GLOBALS['xeControl_smtp_Textbox_Hostname']->text;
+		$port = $GLOBALS['xeControl_smtp_Textbox_Port']->text;
 		if (!trim($from) || !trim($username) || !trim($password) || !trim($hostname) || !trim($port)) { // utf8
 			eyex('messageBox',array('content' => 'Please fill out all fields.'));
 		} else {
@@ -31,7 +31,7 @@ function eyeControl_on_smtp_save($params = '') {
 			$xml['CONFIG'][0]['SMTP_PASSWORD'][0] = $password;
 			$xml['CONFIG'][0]['SMTP_HOST'][0] = $hostname;
 			$xml['CONFIG'][0]['SMTP_PORT'][0] = $port;
-			$xml['CONFIG'][0]['SMTP_SSL'][0] = $GLOBALS['eyeControl_smtp_Checkbox_UseSSL']->checked;
+			$xml['CONFIG'][0]['SMTP_SSL'][0] = $GLOBALS['xeControl_smtp_Checkbox_UseSSL']->checked;
 			eyeXML('setXMLFile',array($file,$xml));
 			eyex('messageBox',array('content' => 'Changes successfully saved.'));
 		}

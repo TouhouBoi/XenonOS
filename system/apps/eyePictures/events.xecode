@@ -1525,7 +1525,7 @@ function eyePictures_on_Close($params=null) {
 }
 
 function eyePictures_on_Settings($params = '') {
-	proc('launch',array('eyeControl',array(
+	proc('launch',array('xeControl',array(
 		'category' => 'system',
 		'content' => 'eyePictures',
 		'hidemenu' => 1

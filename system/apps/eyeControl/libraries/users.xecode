@@ -14,26 +14,26 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeControl_lib_setConfigUser($params = '') {
+function xeControl_lib_setConfigUser($params = '') {
 	global $currentUser;
 	global $myPid;
 	if ($currentUser == ROOTUSER) {
 		if ($params[0] == '[skel]' || um('userExist',array($params[0]))) {
-			$_SESSION['eyeControl'][$myPid]['user'] = $params[0];
+			$_SESSION['xeControl'][$myPid]['user'] = $params[0];
 		} else {
-			$_SESSION['eyeControl'][$myPid]['user'] = ROOTUSER;
+			$_SESSION['xeControl'][$myPid]['user'] = ROOTUSER;
 		}
 	} else {
-		$_SESSION['eyeControl'][$myPid]['user'] = $currentUser;
+		$_SESSION['xeControl'][$myPid]['user'] = $currentUser;
 	}
 	return true;
 }
 
-function eyeControl_lib_getConfigUser() {
+function xeControl_lib_getConfigUser() {
 	global $currentUser;
 	global $myPid;
 	if ($currentUser == ROOTUSER) {
-		$user = $_SESSION['eyeControl'][$myPid]['user'];
+		$user = $_SESSION['xeControl'][$myPid]['user'];
 		if ($user == '[skel]' || um('userExist',array($user))) {
 			return $user;
 		} else {
@@ -44,11 +44,11 @@ function eyeControl_lib_getConfigUser() {
 	}
 }
 
-function eyeControl_lib_getConfigUserPath() {
+function xeControl_lib_getConfigUserPath() {
 	global $currentUser;
 	global $myPid;
 	if ($currentUser == ROOTUSER) {
-		$user = $_SESSION['eyeControl'][$myPid]['user'];
+		$user = $_SESSION['xeControl'][$myPid]['user'];
 		if ($user == '[skel]') {
 			return XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/';
 		} elseif (um('userExist',array($user))) {
@@ -61,12 +61,12 @@ function eyeControl_lib_getConfigUserPath() {
 	}
 }
 
-function eyeControl_lib_getXMLconfig($params) {
-	return eyeXML('getXMLfile',array(eyeControl_lib_getConfigUserPath() . '/' . CONF_USER_DIR . '/' . $params[0] . '/' . $params[1]));
+function xeControl_lib_getXMLconfig($params) {
+	return eyeXML('getXMLfile',array(xeControl_lib_getConfigUserPath() . '/' . CONF_USER_DIR . '/' . $params[0] . '/' . $params[1]));
 }
 
-function eyeControl_lib_setXMLconfig($params) {
-	$path = eyeControl_lib_getConfigUserPath() . '/' . CONF_USER_DIR . '/' . $params[0];
+function xeControl_lib_setXMLconfig($params) {
+	$path = xeControl_lib_getConfigUserPath() . '/' . CONF_USER_DIR . '/' . $params[0];
 	if (vfs('real_fileExists', array($path)) === false) {
 		vfs('real_mkdir', array($path));
 	}

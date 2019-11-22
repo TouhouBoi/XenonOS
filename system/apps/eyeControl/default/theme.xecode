@@ -19,7 +19,7 @@ global $currentUser;
 $ContentY = 10;
 // Select theme
 $mySelect = new Select(array(
-	'name' => 'eyeControl_theme_select',
+	'name' => 'xeControl_theme_select',
 	'father' => $eyeContainer,
 	'width' => 150,
 	'x' => 30,
@@ -30,7 +30,7 @@ $dir = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/';
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
 $openDir = vfs('real_getDirContent',array($dir));
-$UserThemeXML = eyeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
+$UserThemeXML = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
 foreach ($openDir as $theme) {
 	if (is_dir($theme) && file_exists($theme . '/info.xml')) {
 		$ThemeXML = eyeXML('getXMLfile',array($theme . '/info.xml'));
@@ -50,7 +50,7 @@ $mySelect->focus();
 $mySelect->addEnterEventMsg('theme_change');
 // Change theme
 $myButton = new Button(array(
-	'name' => 'eyeControl_theme_button_change',
+	'name' => 'xeControl_theme_button_change',
 	'father' => $eyeContainer,
 	'x' => 200,
 	'y' => $ContentY,
@@ -61,7 +61,7 @@ $myButton->addFriend($mySelect);
 $myButton->show();
 $ContentY += 40;
 $myLine = new Line(array(
-	'name' => 'eyeControl_theme_line',
+	'name' => 'xeControl_theme_line',
 	'father' => $eyeContainer,
 	'width' => 535,
 	'x' => 10,
@@ -71,7 +71,7 @@ $myLine->show();
 $ContentY += 20;
 // Theme
 $myLabel = new Label(array(
-	'name' => 'eyeControl_theme_label_display_1',
+	'name' => 'xeControl_theme_label_display_1',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -79,7 +79,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myLabel = new Label(array(
-	'name' => 'eyeControl_theme_label_display_2',
+	'name' => 'xeControl_theme_label_display_2',
 	'father' => $eyeContainer,
 	'x' => 160,
 	'y' => $ContentY,
@@ -90,7 +90,7 @@ $myLabel->show();
 $ContentY += 30;
 // Author
 $myLabel = new Label(array(
-	'name' => 'eyeControl_theme_label_author_1',
+	'name' => 'xeControl_theme_label_author_1',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -98,7 +98,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myLabel = new Label(array(
-	'name' => 'eyeControl_theme_label_author_2',
+	'name' => 'xeControl_theme_label_author_2',
 	'father' => $eyeContainer,
 	'x' => 160,
 	'y' => $ContentY,
@@ -108,7 +108,7 @@ $myLabel->show();
 $ContentY += 30;
 // Screenshot
 $myLabel = new Label(array(
-	'name' => 'eyeControl_theme_label_screenshot',
+	'name' => 'xeControl_theme_label_screenshot',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -116,7 +116,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myImagebox = new Imagebox(array(
-	'name' => 'eyeControl_theme_imagebox',
+	'name' => 'xeControl_theme_imagebox',
 	'father' => $eyeContainer,
 	'width' => 160,
 	'height' => 120,

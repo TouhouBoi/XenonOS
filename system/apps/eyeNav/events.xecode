@@ -425,7 +425,7 @@ function eyeNav_on_open_searches_now($params = '')
 function eyeNav_on_Settings($params = '')
 {
 	proc('launch',
-		array ('eyeControl',
+		array ('xeControl',
 			array (
 				'category' => 'system',
 				'content' => 'eyenav',

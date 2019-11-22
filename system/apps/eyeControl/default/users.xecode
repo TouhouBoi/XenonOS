@@ -18,12 +18,12 @@ global $checknum;
 global $currentUser;
 global $myPid;
 
-if ($currentUser != ROOTUSER && !um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
+if ($currentUser != ROOTUSER && !um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
 	eyex('messageBox',array('content' => 'You are not allowed to manage users!'));
-	eyeControl_lib_loadContent();
+	xeControl_lib_loadContent();
 	return;
-} elseif (um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
-	$myUserXml = um('retrieveUser',array(eyeControl_lib_getConfigUser()));
+} elseif (um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
+	$myUserXml = um('retrieveUser',array(xeControl_lib_getConfigUser()));
 }
 
 // $myTable
@@ -31,7 +31,7 @@ $sortypes = array('String','String','String','String','Date','Date', 'Date');
 $theader = array('User Name','Full Name','E-mail','Groups','Created On','Last login', 'Expiration Date');
 
 $myTable = new Sortabletable(array(
-	'name' => 'eyeControl_users_sortabletable',
+	'name' => 'xeControl_users_sortabletable',
 	'father' => $eyeContainer,
 	'sortypes' => $sortypes,
 	'theader' => $theader,
@@ -44,11 +44,11 @@ $myTable = new Sortabletable(array(
 $myTable->show();
 $selUser = $contentParams[0];
 if ($selUser) {
-	$_SESSION['eyeControl'][$myPid]['content']['users'] = $selUser;
+	$_SESSION['xeControl'][$myPid]['content']['users'] = $selUser;
 }
 $allUsers = array();
 $oldUser = $currentUser;
-if (um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
+if (um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
 	$currentUser = ROOTUSER;
 	foreach ($myUserXml['eyeUser'][0]['mngUser'] as $oneUser) {
 		if (um('userExist',array($oneUser))) {
@@ -120,7 +120,7 @@ foreach ($allUsers as $user) {
 $currentUser = $oldUser;
 // New
 $myButton = new Button(array(
-	'name' => 'eyeControl_users_button_new',
+	'name' => 'xeControl_users_button_new',
 	'father' => $eyeContainer,
 	'signal' => 'users_new',
 	'caption' => 'New',
@@ -132,7 +132,7 @@ $myButton = new Button(array(
 $myButton->show();
 // Edit
 $myButton = new Button(array(
-	'name' => 'eyeControl_users_button_edit',
+	'name' => 'xeControl_users_button_edit',
 	'father' => $eyeContainer,
 	'signal' => 'users_edit',
 	'caption' => 'Edit',
@@ -145,7 +145,7 @@ $myButton->addFriend($myTable);
 $myButton->show();
 // Delete
 $myButton = new Button(array(
-	'name' => 'eyeControl_users_button_delete',
+	'name' => 'xeControl_users_button_delete',
 	'father' => $eyeContainer,
 	'signal' => 'users_delete',
 	'caption' => 'Delete',
@@ -156,10 +156,10 @@ $myButton = new Button(array(
 ));
 $myButton->addFriend($myTable);
 $myButton->show();
-if (!um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
+if (!um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
 	// Load
 	$myButton = new Button(array(
-		'name' => 'eyeControl_users_button_load',
+		'name' => 'xeControl_users_button_load',
 		'father' => $eyeContainer,
 		'signal' => 'users_load',
 		'caption' => 'Load',
@@ -172,7 +172,7 @@ if (!um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
 	if ($selUser == '[all]') {
 		// x user(s) registered.
 		$myLabel = new Label(array(
-			'name' => 'eyeControl_account_label_users',
+			'name' => 'xeControl_account_label_users',
 			'father' => $eyeContainer,
 			'horiz' => 1,
 			'y' => 2,

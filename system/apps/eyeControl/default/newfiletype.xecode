@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 $ContentY = 10;
 // Filetype
 $myLabel = new Label(array(
-	'name' => 'eyeControl_newfiletype_label_filetype',
+	'name' => 'xeControl_newfiletype_label_filetype',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -25,7 +25,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myTextbox_filetype = new Textbox(array(
-	'name' => 'eyeControl_newfiletype_textbox_filetype',
+	'name' => 'xeControl_newfiletype_textbox_filetype',
 	'father' => $eyeContainer,
 	'x' => 160,
 	'y' => $ContentY
@@ -35,7 +35,7 @@ $myTextbox_filetype->focus();
 $ContentY += 30;
 // Title
 $myLabel = new Label(array(
-	'name' => 'eyeControl_newfiletype_label_title',
+	'name' => 'xeControl_newfiletype_label_title',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -43,7 +43,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myTextbox_title = new Textbox(array(
-	'name' => 'eyeControl_newfiletype_textbox_title',
+	'name' => 'xeControl_newfiletype_textbox_title',
 	'father' => $eyeContainer,
 	'x' => 160,
 	'y' => $ContentY
@@ -52,7 +52,7 @@ $myTextbox_title->show();
 $ContentY += 30;
 // Application
 $myLabel = new Label(array(
-	'name' => 'eyeControl_newfiletype_label_application',
+	'name' => 'xeControl_newfiletype_label_application',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -60,7 +60,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $mySelect = new Select(array(
-	'name' => 'eyeControl_newfiletype_select_application',
+	'name' => 'xeControl_newfiletype_select_application',
 	'father' => $eyeContainer,
 	'width' => 118,
 	'x' => 160,
@@ -78,7 +78,7 @@ foreach (vfs('real_getDirContent', array(XENONOS_ROOT . '/' . APP_DIR . '/')) as
 $ContentY += 30;
 // Description
 $myLabel = new Label(array(
-	'name' => 'eyeControl_newfiletype_label_description',
+	'name' => 'xeControl_newfiletype_label_description',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -86,7 +86,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myTextbox_description = new Textbox(array(
-	'name' => 'eyeControl_newfiletype_textbox_description',
+	'name' => 'xeControl_newfiletype_textbox_description',
 	'father' => $eyeContainer,
 	'x' => 160,
 	'y' => $ContentY
@@ -95,7 +95,7 @@ $myTextbox_description->show();
 $ContentY += 30;
 // Create filetype
 $myButton = new Button(array(
-	'name' => 'eyeControl_newfiletype_button_save',
+	'name' => 'xeControl_newfiletype_button_save',
 	'father' => $eyeContainer,
 	'x' => 40,
 	'y' => $ContentY,

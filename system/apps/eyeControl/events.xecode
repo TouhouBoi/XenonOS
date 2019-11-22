@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 global $currentUser;
 
 // Include all libraries
-$dir = XENONOS_ROOT . '/' . APP_DIR . '/eyeControl/libraries/';
+$dir = XENONOS_ROOT . '/' . APP_DIR . '/xeControl/libraries/';
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
 $openDir = vfs('real_getDirContent',array($dir,'*' . XE_CODE_EXTENSION));
@@ -27,7 +27,7 @@ foreach ($openDir as $file) {
 }
 
 // Include all events
-$dir = XENONOS_ROOT . '/' . APP_DIR . '/eyeControl/events/';
+$dir = XENONOS_ROOT . '/' . APP_DIR . '/xeControl/events/';
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
 $openDir = vfs('real_getDirContent',array($dir,'*' . XE_CODE_EXTENSION));
@@ -36,15 +36,15 @@ foreach ($openDir as $file) {
 	include_once($file);
 }
 
-function eyeControl_on_help($params=null) {
-	proc('launch',array('eyeHelp','eyeControl'));
+function xeControl_on_help($params=null) {
+	proc('launch',array('eyeHelp','xeControl'));
 }
 
-function eyeControl_on_Message($params = '') {
+function xeControl_on_Message($params = '') {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeControl_on_Close($params = '') {
+function xeControl_on_Close($params = '') {
 	proc('end');
 }
 ?>

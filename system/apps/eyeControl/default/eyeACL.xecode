@@ -18,7 +18,7 @@ $sortypes = array('Hidden','String','String','String','String');
 $theader = array('Id','ACL Name','Action','Service','Function');
 
 $myTable = new Sortabletable(array(
-	'name' => 'eyeControl_acl_sortabletable',
+	'name' => 'xeControl_acl_sortabletable',
 	'father' => $eyeContainer,
 	'sortypes' => $sortypes,
 	'theader' => $theader,
@@ -32,7 +32,7 @@ $myTable = new Sortabletable(array(
 $myTable->show();
 
 $myButton = new Button(array(
-	'name' => 'eyeControl_acl_button_add',
+	'name' => 'xeControl_acl_button_add',
 	'father' => $eyeContainer,
 	'signal' => 'acl_add',
 	'caption' => 'Add ACL',
@@ -44,7 +44,7 @@ $myButton = new Button(array(
 $myButton->show();
 
 $myButton1 = new Button(array(
-	'name' => 'eyeControl_acl_button_edit',
+	'name' => 'xeControl_acl_button_edit',
 	'father' => $eyeContainer,
 	'signal' => 'acl_edit',
 	'caption' => 'Edit ACL',
@@ -57,7 +57,7 @@ $myButton1->addFriend($myTable);
 $myButton1->show();
 
 $myButton3 = new Button(array(
-	'name' => 'eyeControl_acl_button_delete',
+	'name' => 'xeControl_acl_button_delete',
 	'father' => $eyeContainer,
 	'signal' => 'acl_delete',
 	'caption' => 'Delete ACL',

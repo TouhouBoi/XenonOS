@@ -14,20 +14,20 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeControl_on_index_button($params = '') {
+function xeControl_on_index_button($params = '') {
 	foreach($params as $key => $value) {
-		if ( /* utf8 */ stripos($key,'eyeControl_index_hiddenCAT_') !== false) {
-			$key = substr($key, strlen('eyeControl_index_hiddenCAT_') - strlen($key)); // utf8
-			eyeControl_lib_loadContent($GLOBALS['eyeControl_index_hiddenCAT_' . $key]->text,$GLOBALS['eyeControl_index_hiddenNAME_' . $key]->text);
+		if ( /* utf8 */ stripos($key,'xeControl_index_hiddenCAT_') !== false) {
+			$key = substr($key, strlen('xeControl_index_hiddenCAT_') - strlen($key)); // utf8
+			xeControl_lib_loadContent($GLOBALS['xeControl_index_hiddenCAT_' . $key]->text,$GLOBALS['xeControl_index_hiddenNAME_' . $key]->text);
 		}
 	}
 }
 
-function eyeControl_on_index_category($params = '') {
+function xeControl_on_index_category($params = '') {
 	foreach($params as $key => $value) {
-		if ( /* utf8 */ stripos($key,'eyeControl_index_hiddenCAT_') !== false) {
-			$key = substr($key, strlen('eyeControl_index_hiddenCAT_') - strlen($key)); // utf8
-			eyeControl_lib_loadContent($GLOBALS['eyeControl_index_hiddenCAT_' . $key]->text);
+		if ( /* utf8 */ stripos($key,'xeControl_index_hiddenCAT_') !== false) {
+			$key = substr($key, strlen('xeControl_index_hiddenCAT_') - strlen($key)); // utf8
+			xeControl_lib_loadContent($GLOBALS['xeControl_index_hiddenCAT_' . $key]->text);
 		}
 	}
 }

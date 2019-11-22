@@ -14,27 +14,27 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeControl_on_aclServChange($params=""){
+function xeControl_on_aclServChange($params=""){
 	$switch=$params[arg0][0];
-	$GLOBALS['eyeControl_acl_function_select']->delAllOptions();
-	$GLOBALS['eyeControl_acl_function_select']->addOption('---',1,1);
-	$GLOBALS['eyeControl_acl_func_desc']->setText("---");
+	$GLOBALS['xeControl_acl_function_select']->delAllOptions();
+	$GLOBALS['xeControl_acl_function_select']->addOption('---',1,1);
+	$GLOBALS['xeControl_acl_func_desc']->setText("---");
 	
 	if ($switch > 1) {
-		$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/eyeControl/others/acl-servfunc.xml';
+		$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/xeControl/others/acl-servfunc.xml';
 		$servfunc = eyeXML('getXMLfile', array($sf_file));
 		$sCnt = 2;
 		$fCnt = 2;
 		if ($servfunc) {
 			foreach($servfunc['servfunc'][0]['serv'] as $serv) {
 				if ($sCnt == $switch) {
-					$GLOBALS['eyeControl_acl_serv_desc']->setText($serv['sdesc'][0]);
+					$GLOBALS['xeControl_acl_serv_desc']->setText($serv['sdesc'][0]);
 					foreach ($serv['func'] as $func) {
 						if ($params[arg1][0]=="false") {
-							$GLOBALS['eyeControl_acl_function_select']->addOption($func['fname'][0],$fCnt);
+							$GLOBALS['xeControl_acl_function_select']->addOption($func['fname'][0],$fCnt);
 						} else {
 							if (!isset($func['hazard'])) {
-								$GLOBALS['eyeControl_acl_function_select']->addOption($func['fname'][0],$fCnt);
+								$GLOBALS['xeControl_acl_function_select']->addOption($func['fname'][0],$fCnt);
 							}
 						}
 						$fCnt++;
@@ -44,14 +44,14 @@ function eyeControl_on_aclServChange($params=""){
 			}
 		}
 	} else {
-		$GLOBALS['eyeControl_acl_serv_desc']->setText("---");
+		$GLOBALS['xeControl_acl_serv_desc']->setText("---");
 	}
 }
 
-function eyeControl_on_aclFuncChange($params=""){
+function xeControl_on_aclFuncChange($params=""){
 	$switch=$params[arg0][0];
 	if ($switch > 1) {
-		$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/eyeControl/others/acl-servfunc.xml';
+		$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/xeControl/others/acl-servfunc.xml';
 		$servfunc = eyeXML('getXMLfile', array($sf_file));
 		$sCnt = 2;
 		$fCnt = 2;
@@ -60,7 +60,7 @@ function eyeControl_on_aclFuncChange($params=""){
 				if ($sCnt == $params[arg1][0]) {
 					foreach ($serv['func'] as $func) {
 						if ($fCnt==$switch) {
-							$GLOBALS['eyeControl_acl_func_desc']->setText($func['fdesc'][0]);
+							$GLOBALS['xeControl_acl_func_desc']->setText($func['fdesc'][0]);
 						}
 						$fCnt++;
 					}
@@ -69,29 +69,29 @@ function eyeControl_on_aclFuncChange($params=""){
 			}
 		}
 	} else {
-		$GLOBALS['eyeControl_acl_func_desc']->setText("---");
+		$GLOBALS['xeControl_acl_func_desc']->setText("---");
 	}
 }
 
-function eyeControl_on_acl_hideHazard($params) {
+function xeControl_on_acl_hideHazard($params) {
 	if ($params[arg0][0] == "false") {
 		eyeX('messageBox',array('content'=>'Denying these can cause serious problems. Please be very careful!'));
 	}
-	eyeControl_on_aclServChange(array('arg0'=>array($params[arg1][0]),'arg1'=>array($params[arg0][0])));
+	xeControl_on_aclServChange(array('arg0'=>array($params[arg1][0]),'arg1'=>array($params[arg0][0])));
 }
 
-function eyeControl_on_add_settings($params=""){
+function xeControl_on_add_settings($params=""){
 
-	$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/eyeControl/others/acl-servfunc.xml';
+	$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/xeControl/others/acl-servfunc.xml';
 	$servfunc = eyeXML('getXMLfile', array($sf_file));
 	$sCnt = 2;
 	$fCnt = 2;
 	if ($servfunc) {
 		foreach($servfunc['servfunc'][0]['serv'] as $serv) {
-			if ($sCnt == $GLOBALS['eyeControl_acl_service_select']->selected) {
+			if ($sCnt == $GLOBALS['xeControl_acl_service_select']->selected) {
 				$service = $serv['sname'][0];
 				foreach ($serv['func'] as $func) {
-					if ($fCnt==$GLOBALS['eyeControl_acl_function_select']->selected) {
+					if ($fCnt==$GLOBALS['xeControl_acl_function_select']->selected) {
 						$call = $func['fname'][0];
 						if (is_array($func['fparam'])) {
 							$fParam = $func['fparam'][0];
@@ -100,7 +100,7 @@ function eyeControl_on_add_settings($params=""){
 						}
 						$paramType = new Hidden(array(
 							'name' => 'param_type',
-							'father' => 'eyeControl_container_big',
+							'father' => 'xeControl_container_big',
 							'text' => $fParam
 						));
 						eyeWidgets('serialize',array($paramType));
@@ -112,21 +112,21 @@ function eyeControl_on_add_settings($params=""){
 		}
 	}
 	
-	if($GLOBALS['eyeControl_acl_allowDeny_select']->selected == 2){
+	if($GLOBALS['xeControl_acl_allowDeny_select']->selected == 2){
 		$action = 'Allow';
-	} elseif ($GLOBALS['eyeControl_acl_allowDeny_select']->selected == 3){
+	} elseif ($GLOBALS['xeControl_acl_allowDeny_select']->selected == 3){
 		$action = 'Deny';
 	}
 	
 	$id0 = $GLOBALS['uniqid']->text;
 	//$id1 = uniqid();
-	$aclName = $GLOBALS['eyeControl_acl_textbox']->text;
+	$aclName = $GLOBALS['xeControl_acl_textbox']->text;
 
 	if(empty($id0) || empty($aclName) || empty($service) || empty($call) || empty($action)) {
 		eyeX('messageBox',array('content'=>'Please fill and select all fields'));
 	} else {
 		//$row = array ($id0, $aclName, $service, $call, $action);
-		//$GLOBALS['eyeControl_acl_target_sortabletable']->addRow($row);
+		//$GLOBALS['xeControl_acl_target_sortabletable']->addRow($row);
 		$acl = array(
 			'id' => array($id0),
 			'description' => array($aclName),
@@ -154,14 +154,14 @@ function eyeControl_on_add_settings($params=""){
 		}
 		//eyeX('messageBox', array('content' => print_r($config, true), 'type' => 2));
 		eyeXML('setXMLfile', array($file,$config));
-		eyeControl_lib_loadContent('only_root','newtarget');
+		xeControl_lib_loadContent('only_root','newtarget');
 	}
 }
 
-function eyeControl_on_update_settings($params=""){
+function xeControl_on_update_settings($params=""){
 
-	$id0 = $GLOBALS['eyeControl_acl_sortabletable']->selected;
-	$aclName = $GLOBALS['eyeControl_acl_textbox']->text;
+	$id0 = $GLOBALS['xeControl_acl_sortabletable']->selected;
+	$aclName = $GLOBALS['xeControl_acl_textbox']->text;
 
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 	$config = eyeXML('getXMLfile', array($file));
@@ -177,9 +177,9 @@ function eyeControl_on_update_settings($params=""){
 		}
 	}
 
-	if($GLOBALS['eyeControl_acl_allowDeny_select']->selected == 2){
+	if($GLOBALS['xeControl_acl_allowDeny_select']->selected == 2){
 		$action = 'Allow';
-	} elseif ($GLOBALS['eyeControl_acl_allowDeny_select']->selected == 3){
+	} elseif ($GLOBALS['xeControl_acl_allowDeny_select']->selected == 3){
 		$action = 'Deny';
 	}
 
@@ -218,13 +218,13 @@ function eyeControl_on_update_settings($params=""){
 	}
 }
 
-function eyeControl_on_target_edit($params=""){
+function xeControl_on_target_edit($params=""){
 	$edit = new Hidden(array(
 			'name' => 'edit_target',
-			'father' => 'eyeControl_container_big',
+			'father' => 'xeControl_container_big',
 			'text' => 'edit'
 		));
 	eyeWidgets('serialize',array($edit));
-	eyeControl_lib_loadContent('only_root','newtarget');
+	xeControl_lib_loadContent('only_root','newtarget');
 }
 ?>

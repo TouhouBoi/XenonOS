@@ -14,37 +14,37 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeControl_on_userconfig_methodSelect ($params = '') {
+function xeControl_on_userconfig_methodSelect ($params = '') {
 	$switch = $params[arg0][0];
 	$xmlfile = XENONOS_ROOT .'/'. SYSTEM_DIR .'/' . SYSTEM_CONF_DIR . '/userconfig/'. $switch .'.xml';
 	$xml = eyeXML('getXMLfile', array($xmlfile));
-	$GLOBALS['eyeControl_userconfig_hidden_xml']->setText($xmlfile);
+	$GLOBALS['xeControl_userconfig_hidden_xml']->setText($xmlfile);
 	
 	if ($switch == CONFIG_MODULE) {
-		$GLOBALS['eyeControl_userconfig_button_switch']->disable();
-	} else if ($GLOBALS['eyeControl_userconfig_button_switch']->enabled === 0) {
-		$GLOBALS['eyeControl_userconfig_button_switch']->enable();
+		$GLOBALS['xeControl_userconfig_button_switch']->disable();
+	} else if ($GLOBALS['xeControl_userconfig_button_switch']->enabled === 0) {
+		$GLOBALS['xeControl_userconfig_button_switch']->enable();
 	}
-	$GLOBALS['eyeControl_userconfig_label_description']->setText($xml['eyeConfig_module'][0]['description'][0]);
+	$GLOBALS['xeControl_userconfig_label_description']->setText($xml['eyeConfig_module'][0]['description'][0]);
 	
-	$GLOBALS['eyeControl_userconfig_table_params']->delAllRows();
+	$GLOBALS['xeControl_userconfig_table_params']->delAllRows();
 	if (isset($xml['eyeConfig_module'][0]['constant'])) {
 		foreach($xml['eyeConfig_module'][0]['constant'] as $setting) {
-			$GLOBALS['eyeControl_userconfig_table_params']->addRow(array($setting['name'][0], $setting['ui_name'][0], $setting['value'][0], $setting['default'][0]));
+			$GLOBALS['xeControl_userconfig_table_params']->addRow(array($setting['name'][0], $setting['ui_name'][0], $setting['value'][0], $setting['default'][0]));
 		}
 	} else {
 		// I would disable the button, but image button doesn't support that (at the moment)
 	}
 }
 
-function eyeControl_on_userconfig_paramEdit ($params = '') {
-	$sel = $GLOBALS['eyeControl_userconfig_table_params']->selected;
+function xeControl_on_userconfig_paramEdit ($params = '') {
+	$sel = $GLOBALS['xeControl_userconfig_table_params']->selected;
 	if ($sel == '') {
 		eyeX('messageBox', array('content' => "Please select an option from the table."));
 		return;
 	}
 	
-	$xmlfile = $GLOBALS['eyeControl_userconfig_hidden_xml']->text;
+	$xmlfile = $GLOBALS['xeControl_userconfig_hidden_xml']->text;
 	$xml = eyeXML('getXMLfile', array($xmlfile));
 	
 	foreach($xml['eyeConfig_module'][0]['constant'] as $setting) {
@@ -52,15 +52,15 @@ function eyeControl_on_userconfig_paramEdit ($params = '') {
 			eyex('messageBox',array(
 				'buttons' => array(array('userconfig_paramEdit_save','Save'), array('userconfig_dialog_cancel','Cancel')),
 				'content' => '%s',
-				'father' => 'eyeControl_container_big',
+				'father' => 'xeControl_container_big',
 				'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/rename.png',
 				'textbox_event' => 'userconfig_paramEdit_save',
-				'textbox_name' => 'eyeControl_userconfig_textbox_param_newValue',
+				'textbox_name' => 'xeControl_userconfig_textbox_param_newValue',
 				'textbox_text' => $setting['value'][0],
 				'title' => 'Edit Value',
 				'tokens' => array($setting['ui_name'][0]),
 				'type' => 3,
-				'win_name' => 'eyeControl_userconfig_dialog',
+				'win_name' => 'xeControl_userconfig_dialog',
 				'win_removepid' => 0,
 				'win_style' => TITLE + CLOSE
 			));
@@ -69,10 +69,10 @@ function eyeControl_on_userconfig_paramEdit ($params = '') {
 	}
 }
 
-function eyeControl_on_userconfig_paramEdit_save ($params = '') {
-	$sel = $GLOBALS['eyeControl_userconfig_table_params']->selected;
-	$val = $params['eyeControl_userconfig_textbox_param_newValue'][0];
-	$xmlfile = $GLOBALS['eyeControl_userconfig_hidden_xml']->text;
+function xeControl_on_userconfig_paramEdit_save ($params = '') {
+	$sel = $GLOBALS['xeControl_userconfig_table_params']->selected;
+	$val = $params['xeControl_userconfig_textbox_param_newValue'][0];
+	$xmlfile = $GLOBALS['xeControl_userconfig_hidden_xml']->text;
 	$xml = eyeXML('getXMLfile', array($xmlfile));
 	
 	for ($s = 0; $s<count($xml['eyeConfig_module'][0]['constant']); $s++) {
@@ -85,19 +85,19 @@ function eyeControl_on_userconfig_paramEdit_save ($params = '') {
 		}
 	}
 	
-	$GLOBALS['eyeControl_userconfig_dialog']->close();
+	$GLOBALS['xeControl_userconfig_dialog']->close();
 	eyeXML('setXMLfile', array($xmlfile, $xml));
 	
-	$val = $GLOBALS['eyeControl_userconfig_select_method']->selected;
+	$val = $GLOBALS['xeControl_userconfig_select_method']->selected;
 	eyeX('messageBox', array('content' => "New Parameter Value Saved"));
-	eyeControl_on_userconfig_methodSelect(array('arg0' => array(0 => $val)));
+	xeControl_on_userconfig_methodSelect(array('arg0' => array(0 => $val)));
 }
 
-function eyeControl_on_userconfig_dialog_cancel ($params = '') {
-	$GLOBALS['eyeControl_userconfig_dialog']->close();
+function xeControl_on_userconfig_dialog_cancel ($params = '') {
+	$GLOBALS['xeControl_userconfig_dialog']->close();
 }
 
-function eyeControl_on_userconfig_switchMethod_submit ($params = '') {
+function xeControl_on_userconfig_switchMethod_submit ($params = '') {
 	if (!is_array($params) || !isset($params["from"]) || !isset($params["to"])) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
@@ -106,17 +106,17 @@ function eyeControl_on_userconfig_switchMethod_submit ($params = '') {
 	$args = array($params['from'][0], $params['to'][0], $GLOBALS['checknum']);
 	$ret = eyeConfig('swap', $args);
 	
-	if ($GLOBALS['eyeControl_userconfig_dialog']) {
-		$GLOBALS['eyeControl_userconfig_dialog']->close();
-		$GLOBALS['eyeControl_userconfig_button_switch']->disable();
+	if ($GLOBALS['xeControl_userconfig_dialog']) {
+		$GLOBALS['xeControl_userconfig_dialog']->close();
+		$GLOBALS['xeControl_userconfig_button_switch']->disable();
 	}
 }
 
-function eyeControl_on_userconfig_switchMethod ($params = '') {
+function xeControl_on_userconfig_switchMethod ($params = '') {
 	
 //	error_log(print_r($params, true), 0);
 	
-	$sel = $GLOBALS['eyeControl_userconfig_select_method']->selected;
+	$sel = $GLOBALS['xeControl_userconfig_select_method']->selected;
 	if ($sel == CONFIG_MODULE) {
 		eyex('messageBox',array('content' => 'This is the current method. You cannot change to it.'));
 		return true;
@@ -131,17 +131,17 @@ function eyeControl_on_userconfig_switchMethod ($params = '') {
 		'buttons' => array(array('userconfig_switchMethod_submit','Yes'), array('userconfig_dialog_cancel','Cancel')),
 		'content' => 'You are about to switch from %s to %s. Are you sure you want to do this?',
 		'tokens' => array(utf8_strtoupper(CONFIG_MODULE), utf8_strtoupper($sel)),
-		'father' => 'eyeControl_container_big',
+		'father' => 'xeControl_container_big',
 		'img' => '?',
 		'hiddens' => array(array("from", CONFIG_MODULE), array("to", $sel)),
 		'title' => 'Confirm Change',
 		'type' => 3,
-		'win_name' => 'eyeControl_userconfig_dialog',
+		'win_name' => 'xeControl_userconfig_dialog',
 		'win_removepid' => 0,
 		'win_style' => TITLE,
 	));
 	
-//	eyeControl_on_userconfig_switchMethod_submit(array(CONFIG_MODULE, $sel));
+//	xeControl_on_userconfig_switchMethod_submit(array(CONFIG_MODULE, $sel));
 	
 /*		*/
 }

@@ -20,14 +20,14 @@ global $checknum;
 
 if ($currentUser != ROOTUSER) {
 	eyex('messageBox',array('content' => 'You are not allowed to manage users!'));
-	eyeControl_lib_loadContent();
+	xeControl_lib_loadContent();
 	return;
 }
 
 
 $myLabel = new Label(array(
 	'father' => $eyeContainer,
-	'name' => 'eyeControl_userconfig_label_method',
+	'name' => 'xeControl_userconfig_label_method',
 	'x' => 8,
 	'y' => 24,
 	'text' => 'Storage Method'
@@ -39,7 +39,7 @@ $myLabel->setCss(array(
 
 $mySelect = new Select(array(
 	'father' => $eyeContainer,
-	'name' => 'eyeControl_userconfig_select_method',
+	'name' => 'xeControl_userconfig_select_method',
 	'x' => 128,
 	'y' => 24,
 	'width' => 128
@@ -60,7 +60,7 @@ $mySelect->addEvent('onchange','sendMsg('.$checknum.',"userconfig_methodSelect",
 
 $myButton = new Button(array(
 	'father' => $eyeContainer,
-	'name' => 'eyeControl_userconfig_button_switch',
+	'name' => 'xeControl_userconfig_button_switch',
 	'caption' => 'Change Method',
 	'signal' => 'userconfig_switchMethod',
 	'x' => 24,
@@ -73,7 +73,7 @@ $myButton->show(0);
 
 $myLabel = new Label(array(
 	'father' => $eyeContainer,
-	'name' => 'eyeControl_userconfig_label_description',
+	'name' => 'xeControl_userconfig_label_description',
 	'x' => 24,
 	'y' => 48,
 	'text' => '-'
@@ -82,7 +82,7 @@ $myLabel->show(0);
 
 $myLabel = new Label(array(
 	'father' => $eyeContainer,
-	'name' => 'eyeControl_userconfig_label_settings',
+	'name' => 'xeControl_userconfig_label_settings',
 	'x' => 8,
 	'y' => $GLOBALS[$eyeContainer]->height / 2 + 24,
 	'vert' => 1,
@@ -95,13 +95,13 @@ $myLabel->setCss(array(
 
 $myHidden = new Hidden(array(
 	'father' => $eyeContainer,
-	'name' => 'eyeControl_userconfig_hidden_xml'
+	'name' => 'xeControl_userconfig_hidden_xml'
 ));
 $myHidden->show();
 
 $myTable = new Sortabletable(array(
 	'father' => $eyeContainer,
-	'name' => 'eyeControl_userconfig_table_params',
+	'name' => 'xeControl_userconfig_table_params',
 	'x' => 0,
 	'y' => 16,
 	'vert' => 1,
@@ -114,7 +114,7 @@ $myTable->show(0);
 
 $myButton = new Button(array(
 	'father' => $eyeContainer,
-	'name' => 'eyeControl_userconfig_button_params_edit',
+	'name' => 'xeControl_userconfig_button_params_edit',
 	'caption' => 'Edit',
 	'signal' => 'userconfig_paramEdit',
 	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/edit.png',

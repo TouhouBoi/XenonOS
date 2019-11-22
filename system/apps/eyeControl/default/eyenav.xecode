@@ -19,7 +19,7 @@ global $currentUser;
 $ContentY = 10;
 // Configure the startpage
 $myLabel = new Label(array(
-	'name' => 'eyeControl_eyenav_label_startpages',
+	'name' => 'xeControl_eyenav_label_startpages',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -30,10 +30,10 @@ $myLabel->setCss(array(
 	'font-weight' => 'bold'
 ));
 $ContentY += 30;
-$NavUserConf = eyeControl_lib_getXMLconfig(array('eyeNav','conf.xml'));
+$NavUserConf = xeControl_lib_getXMLconfig(array('eyeNav','conf.xml'));
 // Startpage
 $myLabel = new Label(array(
-	'name' => 'eyeControl_eyenav_label_startpage',
+	'name' => 'xeControl_eyenav_label_startpage',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -41,7 +41,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myTextbox = new Textbox(array(
-	'name' => 'eyeControl_eyenav_textbox_startpage',
+	'name' => 'xeControl_eyenav_textbox_startpage',
 	'father' => $eyeContainer,
 	'x' => 160,
 	'y' => $ContentY,
@@ -53,7 +53,7 @@ $myTextbox->addEnterEventMsg('eyenav_test');
 $myTextbox->focus();
 // Test address
 $myLabel = new Label(array(
-	'name' => 'eyeControl_eyenav_label_test',
+	'name' => 'xeControl_eyenav_label_test',
 	'father' => $eyeContainer,
 	'x' => 320,
 	'y' => $ContentY + 3,
@@ -70,7 +70,7 @@ $myLabel->setCss(array(
 $ContentY += 30;
 // Browse Plugin
 $myLabel = new Label(array(
-	'name' => 'eyeControl_eyenav_label_plugin',
+	'name' => 'xeControl_eyenav_label_plugin',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -78,7 +78,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $mySelect = new Select(array(
-	'name' => 'eyeControl_eyenav_select_plugin',
+	'name' => 'xeControl_eyenav_select_plugin',
 	'father' => $eyeContainer,
 	'width' => 145,
 	'x' => 160,
@@ -104,7 +104,7 @@ foreach ($openDir as $plugin) {
 $ContentY += 30;
 // Save Changes
 $myButton = new Button(array(
-	'name' => 'eyeControl_eyenav_button_save',
+	'name' => 'xeControl_eyenav_button_save',
 	'father' => $eyeContainer,
 	'x' => 50,
 	'y' => $ContentY,
@@ -117,7 +117,7 @@ $myButton->show();
 $ContentY += 60;
 // Export default bookmarks and search engines
 $myLabel = new Label(array(
-	'name' => 'eyeControl_eyenav_label_export',
+	'name' => 'xeControl_eyenav_label_export',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -130,7 +130,7 @@ $myLabel->setCss(array(
 $ContentY += 30;
 // Export
 $myButton = new Button(array(
-	'name' => 'eyeControl_eyenav_button_export',
+	'name' => 'xeControl_eyenav_button_export',
 	'father' => $eyeContainer,
 	'signal' => 'eyenav_export',
 	'caption' => 'Export',
@@ -143,7 +143,7 @@ $myButton->show();
 $ContentY += 60;
 // Manage default bookmarks
 $myLabel = new Label(array(
-	'name' => 'eyeControl_eyenav_label_bookmarks_import',
+	'name' => 'xeControl_eyenav_label_bookmarks_import',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -156,7 +156,7 @@ $myLabel->setCss(array(
 $ContentY += 30;
 // Import
 $myButton = new Button(array(
-	'name' => 'eyeControl_eyenav_button_bookmarks_import',
+	'name' => 'xeControl_eyenav_button_bookmarks_import',
 	'father' => $eyeContainer,
 	'signal' => 'eyenav_bookmarks_import',
 	'caption' => 'Import',
@@ -166,10 +166,10 @@ $myButton = new Button(array(
 	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/folder.png'
 ));
 $myButton->show();
-if (eyeControl_lib_getConfigUser() != '[skel]') {
+if (xeControl_lib_getConfigUser() != '[skel]') {
 	// Use defaults
 	$myButton = new Button(array(
-		'name' => 'eyeControl_eyenav_button_bookmarks_default',
+		'name' => 'xeControl_eyenav_button_bookmarks_default',
 		'father' => $eyeContainer,
 		'signal' => 'eyenav_bookmarks_default',
 		'caption' => 'Use Defaults',
@@ -183,7 +183,7 @@ if (eyeControl_lib_getConfigUser() != '[skel]') {
 $ContentY += 60;
 // Manage default search engines
 $myLabel = new Label(array(
-	'name' => 'eyeControl_eyenav_label_search_import',
+	'name' => 'xeControl_eyenav_label_search_import',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -196,7 +196,7 @@ $myLabel->setCss(array(
 $ContentY += 30;
 // Import
 $myButton = new Button(array(
-	'name' => 'eyeControl_eyenav_button_search_import',
+	'name' => 'xeControl_eyenav_button_search_import',
 	'father' => $eyeContainer,
 	'signal' => 'eyenav_search_import',
 	'caption' => 'Import',
@@ -206,10 +206,10 @@ $myButton = new Button(array(
 	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/folder.png'
 ));
 $myButton->show();
-if (eyeControl_lib_getConfigUser() != '[skel]') {
+if (xeControl_lib_getConfigUser() != '[skel]') {
 	// Use defaults
 	$myButton = new Button(array(
-		'name' => 'eyeControl_eyenav_button_search_default',
+		'name' => 'xeControl_eyenav_button_search_default',
 		'father' => $eyeContainer,
 		'signal' => 'eyenav_search_default',
 		'caption' => 'Use Defaults',

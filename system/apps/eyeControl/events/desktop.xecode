@@ -14,16 +14,16 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeControl_on_desktop_savedblclicks($params = '') {
+function xeControl_on_desktop_savedblclicks($params = '') {
 	global $currentUser;
-	$xml = eyeControl_lib_getXMLconfig(array('eyeFile','conf.xml'));
+	$xml = xeControl_lib_getXMLconfig(array('eyeFile','conf.xml'));
 	if ($params['selected'][0] == 'false') {
 		$xml['eyeFiles'][0]['clickMethod'][0] = '1';
 	} else {
 		$xml['eyeFiles'][0]['clickMethod'][0] = '2';
 	}
-	eyeControl_lib_setXMLconfig(array('eyeFiles','conf.xml',$xml));
-	if (eyeControl_lib_getConfigUser() == $currentUser) {
+	xeControl_lib_setXMLconfig(array('eyeFiles','conf.xml',$xml));
+	if (xeControl_lib_getConfigUser() == $currentUser) {
 		$desk_checknum = proc('findChecknumByName',array('eyeDesk'));
 		if ($desk_checknum) {
 			eyex('rawjs',array('js' => 'sendMsg(' . $desk_checknum . ',"OpenPath","");'));
@@ -32,11 +32,11 @@ function eyeControl_on_desktop_savedblclicks($params = '') {
 	eyex('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
-function eyeControl_on_desktop_reset_icons($params = '') {
+function xeControl_on_desktop_reset_icons($params = '') {
 	global $currentUser;
-	$path = um('getUserDir',array(eyeControl_lib_getConfigUser())) . '/' . CONF_USER_DIR . '/eyeDesk/icons.xml';
+	$path = um('getUserDir',array(xeControl_lib_getConfigUser())) . '/' . CONF_USER_DIR . '/eyeDesk/icons.xml';
 	vfs('real_delete',array($path));
-	if (eyeControl_lib_getConfigUser() == $currentUser) {
+	if (xeControl_lib_getConfigUser() == $currentUser) {
 		$desk_checknum = proc('findChecknumByName',array('eyeDesk'));
 		if ($desk_checknum) {
 			eyex('rawjs',array('js' => 'sendMsg(' . $desk_checknum . ',"OpenPath","");'));
@@ -45,9 +45,9 @@ function eyeControl_on_desktop_reset_icons($params = '') {
 	eyex('messageBox', array('content' => 'Changes successfully saved.'));
 }
 
-function eyeControl_on_desktop_save_icons($params = '') {
+function xeControl_on_desktop_save_icons($params = '') {
 	global $currentUser;
-	$xml = eyeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
+	$xml = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
 	if ($params['selected'][0] === 'fielded') {
 		$xml['eyeDesk'][0]['loadIconPositions'][0] = 2;
 	} elseif ($params['selected'][0] === 'fixed') {
@@ -55,8 +55,8 @@ function eyeControl_on_desktop_save_icons($params = '') {
 	} else {
 		$xml['eyeDesk'][0]['loadIconPositions'][0] = 1;
 	}
-	eyeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$xml));
-	if (eyeControl_lib_getConfigUser() == $currentUser) {
+	xeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$xml));
+	if (xeControl_lib_getConfigUser() == $currentUser) {
 		$desk_checknum = proc('findChecknumByName',array('eyeDesk'));
 		if ($desk_checknum) {
 			eyex('rawjs',array('js' => 'sendMsg(' . $desk_checknum . ',"OpenPath","");'));
@@ -65,19 +65,19 @@ function eyeControl_on_desktop_save_icons($params = '') {
 	eyex('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
-function eyeControl_on_desktop_savewinpos($params = '') {
-	$xml = eyeControl_lib_getXMLconfig(array('eyex','eyeX.xml'));
+function xeControl_on_desktop_savewinpos($params = '') {
+	$xml = xeControl_lib_getXMLconfig(array('eyex','eyeX.xml'));
 	if ($params['selected'][0] == 'false') {
 		$xml['eyex'][0]['saveWindowPositions'][0] = '0';
 	} else {
 		$xml['eyex'][0]['saveWindowPositions'][0] = '1';
 	}
-	eyeControl_lib_setXMLconfig(array('eyex','eyeX.xml',$xml));
+	xeControl_lib_setXMLconfig(array('eyex','eyeX.xml',$xml));
 	eyex('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
-function eyeControl_on_desktop_reset_windows($params = '') {
-	$path = um('getUserDir',array(eyeControl_lib_getConfigUser())) . '/' . CONF_USER_DIR . '/eyex/';
+function xeControl_on_desktop_reset_windows($params = '') {
+	$path = um('getUserDir',array(xeControl_lib_getConfigUser())) . '/' . CONF_USER_DIR . '/eyex/';
 	$files = vfs('real_getDirContent',array($path,'*.xml'));
 	foreach ($files as $file) {
 		if ( /* utf8 */ strtolower(basename($file)) !== 'eyex.xml') {
@@ -87,18 +87,18 @@ function eyeControl_on_desktop_reset_windows($params = '') {
 	eyex('messageBox',array('content' => 'Windows successfully restored. Please restart the applications now.'));
 }
 
-function eyeControl_on_desktop_select($params = '') {
+function xeControl_on_desktop_select($params = '') {
 	global $checknum;
 	proc('launch',array('eyeDialog',array(0,'desktop_select_now',$checknum)));
 }
 
-function eyeControl_on_desktop_select_now($params=null) {
+function xeControl_on_desktop_select_now($params=null) {
 	$file = $params['arg'][0];
 	if ($file) {
-		$fileX = eyeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $file;
+		$fileX = xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $file;
 		if (vfs('filesize', array($fileX)) > 0 && in_array(strtolower(substr($file, -4)), array('.jpg', '.gif', '.bmp', '.png', '.tif')) === true) { // utf8
-			$GLOBALS['eyeControl_desktop_textbox_select']->setText($file);
-			$GLOBALS['eyeControl_desktop_checkbox_use']->check();
+			$GLOBALS['xeControl_desktop_textbox_select']->setText($file);
+			$GLOBALS['xeControl_desktop_checkbox_use']->check();
 		} else if (in_array(strtolower(substr($file, -4)), array('.jpg', '.gif', '.bmp', '.png', '.tif')) === false) { // utf8
 			eyex('messageBox',array('content' => 'Sorry, this file is not allowed to be a wallpaper.'));
 		} else {
@@ -107,11 +107,11 @@ function eyeControl_on_desktop_select_now($params=null) {
 	}
 }
 
-function eyeControl_on_desktop_save($params=null) {
+function xeControl_on_desktop_save($params=null) {
 	global $checknum;
-	$config = eyeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
-	if ($GLOBALS['eyeControl_desktop_checkbox_use']->checked) {
-		$file = eyeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $GLOBALS['eyeControl_desktop_textbox_select']->text;
+	$config = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
+	if ($GLOBALS['xeControl_desktop_checkbox_use']->checked) {
+		$file = xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $GLOBALS['xeControl_desktop_textbox_select']->text;
 		if (vfs('filesize', array($file)) > 0 && in_array(strtolower(substr($file, -4)), array('.jpg', '.gif', '.bmp', '.png', '.tif')) === true) { // utf8
 			$config['eyeDesk'][0]['wallpaper'][0] = $file;
 		} else if (in_array(strtolower(substr($file, -4)), array('.jpg', '.gif', '.bmp', '.png', '.tif')) === false) { // utf8
@@ -124,16 +124,16 @@ function eyeControl_on_desktop_save($params=null) {
 	} else {
 		unset($config['eyeDesk'][0]['wallpaper'][0]);
 	}
-	if ($GLOBALS['eyeControl_desktop_checkbox_use_color']->checked) {
-		$config['eyeDesk'][0]['bgColor'][0] = $GLOBALS['eyeControl_desktop_textbox_color']->text;
+	if ($GLOBALS['xeControl_desktop_checkbox_use_color']->checked) {
+		$config['eyeDesk'][0]['bgColor'][0] = $GLOBALS['xeControl_desktop_textbox_color']->text;
 	} else {
 		unset($config['eyeDesk'][0]['bgColor'][0]);
 	}
-	$repeat = $GLOBALS['eyeControl_desktop_select_repeat']->selected;
-	$center = $GLOBALS['eyeControl_desktop_checkbox_center']->checked;
+	$repeat = $GLOBALS['xeControl_desktop_select_repeat']->selected;
+	$center = $GLOBALS['xeControl_desktop_checkbox_center']->checked;
 	$config['eyeDesk'][0]['wallpaperRepeat'][0] = $repeat;
 	$config['eyeDesk'][0]['wallpaperCenter'][0] = $center;
-	eyeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$config));
+	xeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$config));
 	eyex('setWallpaper',array(
 		'center' => $center,
 		'color' => $config['eyeDesk'][0]['bgColor'][0],
@@ -143,20 +143,20 @@ function eyeControl_on_desktop_save($params=null) {
 	eyex('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
-function eyeControl_on_desktop_Soundclicks($params = '') {
+function xeControl_on_desktop_Soundclicks($params = '') {
 	global $currentUser;
-	$xml = eyeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
+	$xml = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
 	if ($params['selected'][0] == 'false') {
 		$xml['eyeDesk'][0]['systemSounds'][0] = '1';
 	} else {
 		$xml['eyeDesk'][0]['systemSounds'][0] = '0';
 	}
-	eyeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$xml));
+	xeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$xml));
 	eyex('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
-function eyeControl_on_getWallpaper($params = '') {
-	$config = eyeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
+function xeControl_on_getWallpaper($params = '') {
+	$config = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
 	$url = $config['eyeDesk'][0]['wallpaper'][0];
 	if ($url != '') {
 		$length = vfs('filesize',array($url));

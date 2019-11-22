@@ -14,31 +14,31 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeControl_on_filetypes_new($params = '') {
-	eyeControl_lib_loadContent('only_root','newfiletype');
+function xeControl_on_filetypes_new($params = '') {
+	xeControl_lib_loadContent('only_root','newfiletype');
 }
 
-function eyeControl_on_filetypes_edit($params = '') {
-	$filetype = $GLOBALS['eyeControl_filetypes_sortabletable']->selected;
+function xeControl_on_filetypes_edit($params = '') {
+	$filetype = $GLOBALS['xeControl_filetypes_sortabletable']->selected;
 	if ($filetype) {
-		eyeControl_lib_loadContent('only_root','editfiletype',array($filetype));
+		xeControl_lib_loadContent('only_root','editfiletype',array($filetype));
 	} else {
 		eyex('messageBox',array('content' => 'Please choose a filetype to be edited.'));
 	}
 }
 
-function eyeControl_on_filetypes_delete($params = '') {
-	$filetype = $GLOBALS['eyeControl_filetypes_sortabletable']->selected;
+function xeControl_on_filetypes_delete($params = '') {
+	$filetype = $GLOBALS['xeControl_filetypes_sortabletable']->selected;
 	if ($filetype) {
 		eyex('messageBox',array(
 			'buttons' => array(array('filetypes_delete_yes', 'Yes'), array('filetypes_delete_no', 'No')),
 			'content' => 'Do you really want to remove this filetype?',
-			'father' => 'eyeControl_container_big',
+			'father' => 'xeControl_container_big',
 			'hiddens' => array(array('filetypes_delete_hidden', $filetype)),
 			'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/editClean.png',
 			'title' => 'Delete filetype',
 			'type' => 3,
-			'win_name' => 'eyeControl_filetypes_delete_window',
+			'win_name' => 'xeControl_filetypes_delete_window',
 			'win_removepid' => 0,
 			'win_style' => TITLE + CLOSE
 		));
@@ -47,16 +47,16 @@ function eyeControl_on_filetypes_delete($params = '') {
 	}
 }
 
-function eyeControl_on_filetypes_delete_yes($params = '') {
+function xeControl_on_filetypes_delete_yes($params = '') {
 	$filetype = $GLOBALS['filetypes_delete_hidden']->text;
 	if ($filetype) {
 		vfs('real_delete', array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/' . $filetype . '.xml'));
 		eyex('messageBox',array('content' => 'Filetype successfully deleted.'));
-		eyeControl_lib_loadContent('only_root','filetypes');
+		xeControl_lib_loadContent('only_root','filetypes');
 	}
 }
 
-function eyeControl_on_filetypes_delete_no($params = '') {
-	$GLOBALS['eyeControl_filetypes_delete_window']->close();
+function xeControl_on_filetypes_delete_no($params = '') {
+	$GLOBALS['xeControl_filetypes_delete_window']->close();
 }
 ?>

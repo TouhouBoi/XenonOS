@@ -18,7 +18,7 @@ $folder = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . XENONOS_TMP_DIR . 
 
 if ($folder != array()) {
 	$myLabel = new Label(array(
-		'name' => 'eyeControl_cleantemp_label',
+		'name' => 'xeControl_cleantemp_label',
 		'father' => $eyeContainer,
 		'x' => 20,
 		'y' => 20,
@@ -30,7 +30,7 @@ if ($folder != array()) {
 	));
 
 	$myButton = new Button(array(
-		'name' => 'eyeControl_cleantemp_button',
+		'name' => 'xeControl_cleantemp_button',
 		'father' => $eyeContainer,
 		'width' => 100,
 		'x' => 60,
@@ -43,7 +43,7 @@ if ($folder != array()) {
 	$myButton->focus();
 } else {
 	$myLabel = new Label(array(
-		'name' => 'eyeControl_cleantemp_label',
+		'name' => 'xeControl_cleantemp_label',
 		'father' => $eyeContainer,
 		'x' => 20,
 		'y' => 20,

@@ -14,18 +14,18 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeControl_on_lang_change($params = '') {
-	$dir = eyeControl_lib_getConfigUserPath() . '/' . CONF_USER_DIR . '/i18n/';
-	$LangXML = eyeControl_lib_getXMLconfig(array('i18n','lang.xml'));
-	$LangXML['lang'][0] = $GLOBALS['eyeControl_lang_select']->selected;
+function xeControl_on_lang_change($params = '') {
+	$dir = xeControl_lib_getConfigUserPath() . '/' . CONF_USER_DIR . '/i18n/';
+	$LangXML = xeControl_lib_getXMLconfig(array('i18n','lang.xml'));
+	$LangXML['lang'][0] = $GLOBALS['xeControl_lang_select']->selected;
 	if (!file_exists($dir)) {
 		vfs('real_mkdir',array($dir));
 	}
-	eyeControl_lib_setXMLconfig(array('i18n','lang.xml',$LangXML));
+	xeControl_lib_setXMLconfig(array('i18n','lang.xml',$LangXML));
 	eyex('messageBox',array('content' => 'Language changed. Please restart oneye now.'));
 }
 
-function eyeControl_on_lang_eyeosorg($params = '') {
+function xeControl_on_lang_eyeosorg($params = '') {
 	proc('launch',array('eyeNav','http://oneye-project.org/downloads/'));
 }
 ?>

@@ -82,8 +82,8 @@ function lib_eyeConfig_swap ($params) {
 	}
 
 	// Required as the function mentioned is used to bounce off of to switch module functions and constants
-	if (!function_exists(eyeControl_on_userconfig_switchMethod_submit)) {
-		// Also ensures that this library function can only be used whilst eyeControl is running.
+	if (!function_exists(xeControl_on_userconfig_switchMethod_submit)) {
+		// Also ensures that this library function can only be used whilst xeControl is running.
 		return false;
 	}
 
@@ -119,9 +119,9 @@ function lib_eyeConfig_swap ($params) {
 		$xml['CONFIG'][0]['CONFIG_MODULE'][0] = $to;
 		eyeXML('setXMLFile',array($xmlfile, $xml));
 
-		// If we don't want to finish off in XML, restart server process to reload new module functions (bounces off eyeControl)
+		// If we don't want to finish off in XML, restart server process to reload new module functions (bounces off xeControl)
 		if ($to !== "xml") {
-			// $params[2] = the checknum of eyeControl
+			// $params[2] = the checknum of xeControl
 			$ret = eyex('rawjs', array('js' => 'sendMsg("' .$params[2]. '", "userConfig_switchMethod_submit", eyeParam("from", "'. $from .'") + eyeParam("to", "'. $to .'"))'));
 		} else {
 			eyex('messageBox', array('content' => 'Switch complete. You are now using XML as your Storage Method.'));

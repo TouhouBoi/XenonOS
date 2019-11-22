@@ -16,12 +16,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 global $currentUser;
 
-if ($currentUser != ROOTUSER && !um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
+if ($currentUser != ROOTUSER && !um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
 	eyex('messageBox',array('content' => 'You are not allowed to manage groups!'));
-	eyeControl_lib_loadContent();
+	xeControl_lib_loadContent();
 	return;
-} elseif (um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
-	$myUserXml = um('retrieveUser',array(eyeControl_lib_getConfigUser()));
+} elseif (um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
+	$myUserXml = um('retrieveUser',array(xeControl_lib_getConfigUser()));
 }
 
 // $myTable
@@ -29,7 +29,7 @@ $sortypes = array('String');
 $theader = array('Groupname');
 
 $myTable = new Sortabletable(array(
-	'name' => 'eyeControl_groups_sortabletable',
+	'name' => 'xeControl_groups_sortabletable',
 	'father' => $eyeContainer,
 	'sortypes' => $sortypes,
 	'theader' => $theader,
@@ -40,7 +40,7 @@ $myTable = new Sortabletable(array(
 	'dblsignal' => 'groups_edit'
 ));
 $myTable->show();
-if (um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
+if (um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
 	foreach ($myUserXml['eyeUser'][0]['maintain'] as $value) {
 		$path = XENONOS_ROOT . '/' . GROUPS_DIR . '/' . $value . '/';
 		if ($value && vfs('real_fileExists',array($path)) && vfs('isdir',array($path))) {
@@ -61,7 +61,7 @@ if (um('checkMaintainer',array(eyeControl_lib_getConfigUser()))) {
 }
 // New
 $myButton = new Button(array(
-	'name' => 'eyeControl_groups_button_new',
+	'name' => 'xeControl_groups_button_new',
 	'father' => $eyeContainer,
 	'signal' => 'groups_new',
 	'caption' => 'New',
@@ -73,7 +73,7 @@ $myButton = new Button(array(
 $myButton->show();
 // Edit
 $myButton = new Button(array(
-	'name' => 'eyeControl_groups_button_edit',
+	'name' => 'xeControl_groups_button_edit',
 	'father' => $eyeContainer,
 	'signal' => 'groups_edit',
 	'caption' => 'Edit',
@@ -86,7 +86,7 @@ $myButton->addFriend($myTable);
 $myButton->show();
 // Delete
 $myButton = new Button(array(
-	'name' => 'eyeControl_groups_button_delete',
+	'name' => 'xeControl_groups_button_delete',
 	'father' => $eyeContainer,
 	'signal' => 'groups_delete',
 	'caption' => 'Delete',
@@ -97,10 +97,10 @@ $myButton = new Button(array(
 ));
 $myButton->addFriend($myTable);
 $myButton->show();
-if (eyeControl_lib_getConfigUser() == ROOTUSER) {
+if (xeControl_lib_getConfigUser() == ROOTUSER) {
 	// Set as default
 	$myButton = new Button(array(
-		'name' => 'eyeControl_groups_button_default',
+		'name' => 'xeControl_groups_button_default',
 		'father' => $eyeContainer,
 		'signal' => 'groups_default',
 		'caption' => 'Set as default',
@@ -114,7 +114,7 @@ if (eyeControl_lib_getConfigUser() == ROOTUSER) {
 	$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml'));
 	// Default group: x | x group(s)
 	$myLabel = new Label(array(
-		'name' => 'eyeControl_account_label_groups',
+		'name' => 'xeControl_account_label_groups',
 		'father' => $eyeContainer,
 		'horiz' => 1,
 		'y' => 2,

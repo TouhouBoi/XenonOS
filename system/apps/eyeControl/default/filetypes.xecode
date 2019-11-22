@@ -19,7 +19,7 @@ $sortypes = array('String','String','String','String');
 $theader = array('Filetype', 'Title', 'Application', 'Description');
 
 $myTable = new Sortabletable(array(
-	'name' => 'eyeControl_filetypes_sortabletable',
+	'name' => 'xeControl_filetypes_sortabletable',
 	'father' => $eyeContainer,
 	'sortypes' => $sortypes,
 	'theader' => $theader,
@@ -40,7 +40,7 @@ foreach (vfs('real_getDirContent', array(XENONOS_ROOT . '/' . APP_DIR . '/' . AP
 }
 // New
 $myButton = new Button(array(
-	'name' => 'eyeControl_filetypes_button_new',
+	'name' => 'xeControl_filetypes_button_new',
 	'father' => $eyeContainer,
 	'signal' => 'filetypes_new',
 	'caption' => 'New',
@@ -52,7 +52,7 @@ $myButton = new Button(array(
 $myButton->show();
 // Edit
 $myButton = new Button(array(
-	'name' => 'eyeControl_filetypes_button_edit',
+	'name' => 'xeControl_filetypes_button_edit',
 	'father' => $eyeContainer,
 	'signal' => 'filetypes_edit',
 	'caption' => 'Edit',
@@ -65,7 +65,7 @@ $myButton->addFriend($myTable);
 $myButton->show();
 // Delete
 $myButton = new Button(array(
-	'name' => 'eyeControl_filetypes_button_delete',
+	'name' => 'xeControl_filetypes_button_delete',
 	'father' => $eyeContainer,
 	'signal' => 'filetypes_delete',
 	'caption' => 'Delete',
@@ -78,7 +78,7 @@ $myButton->addFriend($myTable);
 $myButton->show();
 // x filetype(s)
 $myLabel = new Label(array(
-	'name' => 'eyeControl_filetypes_label_mirrors',
+	'name' => 'xeControl_filetypes_label_mirrors',
 	'father' => $eyeContainer,
 	'horiz' => 1,
 	'y' => 2,

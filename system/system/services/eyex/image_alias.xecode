@@ -293,11 +293,11 @@ $alias[1][APP_DIR . '/eyeChess/IE/12.png'] = 'images/' . APP_DIR . '/eyeChess/IE
 $alias[1][APP_DIR . '/eyeChess/IE/13.png'] = 'images/' . APP_DIR . '/eyeChess/IE/13.png';
 $alias[1][APP_DIR . '/eyeChess/IE/14.png'] = 'images/' . APP_DIR . '/eyeChess/IE/14.png';
 
-// eyeControl
-$alias[1][APP_DIR . '/eyeControl/gfx/back.png'] = 'icons/16x16/back.png';
-$alias[1][APP_DIR . '/eyeControl/gfx/exec.png'] = 'icons/16x16/exec.png';
-$alias[1][APP_DIR . '/eyeControl/gfx/norepeat.png'] = 'images/' . APP_DIR . '/eyeControl/norepeat.png';
-$alias[1][APP_DIR . '/eyeControl/gfx/repeat.png'] = 'images/' . APP_DIR . '/eyeControl/repeat.png';
+// xeControl
+$alias[1][APP_DIR . '/xeControl/gfx/back.png'] = 'icons/16x16/back.png';
+$alias[1][APP_DIR . '/xeControl/gfx/exec.png'] = 'icons/16x16/exec.png';
+$alias[1][APP_DIR . '/xeControl/gfx/norepeat.png'] = 'images/' . APP_DIR . '/xeControl/norepeat.png';
+$alias[1][APP_DIR . '/xeControl/gfx/repeat.png'] = 'images/' . APP_DIR . '/xeControl/repeat.png';
 
 // eyeFeeds
 $alias[1][APP_DIR . '/eyeFeeds/gfx/addfeed.png'] = 'images/' . APP_DIR . '/eyeFeeds/toolbar/addfeed.png';

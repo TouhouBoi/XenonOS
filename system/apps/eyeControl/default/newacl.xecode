@@ -16,7 +16,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 $edit = new Hidden(array(
 			'name' => 'edit_target',
-			'father' => 'eyeControl_container_big',
+			'father' => 'xeControl_container_big',
 			'text' => 'NOedit'
 		));
 eyeWidgets('serialize',array($edit));
@@ -27,7 +27,7 @@ global $checknum;
 // Window design
 $myTextBox0 = new Textbox(array(
 	'father' => $eyeContainer,
-	'name' => 'eyeControl_acl_textbox',
+	'name' => 'xeControl_acl_textbox',
 	'x' => 205,
 	'y' => 65,
 	'width' => 159
@@ -36,7 +36,7 @@ $myTextBox0->show();
 
 $myLabel0 = new Label(array(
 	'father' => $eyeContainer,
-	'name' =>  'eyeControl_acl_txtbox_lbl',
+	'name' =>  'xeControl_acl_txtbox_lbl',
 	'text' => 'ACL Name:',
 	'x' => 365,
 	'y' => 67,
@@ -47,7 +47,7 @@ $myLabel0->setCSS(array('font-weight' => 'bolder'));
 
 $myLabel1 = new Label(array(
 	'father' => $eyeContainer,
-	'name' =>  'eyeControl_acl_service_lbl',
+	'name' =>  'xeControl_acl_service_lbl',
 	'text' => 'Service:',
 	'x' => 365,
 	'y' => 92,
@@ -58,7 +58,7 @@ $myLabel1->setCSS(array('font-weight' => 'bolder'));
 
 $myLabel2 = new Label(array(
 	'father' => $eyeContainer,
-	'name' =>  'eyeControl_acl_function_lbl',
+	'name' =>  'xeControl_acl_function_lbl',
 	'text' => 'Function:',
 	'x' => 365,
 	'y' => 117,
@@ -69,7 +69,7 @@ $myLabel2->setCSS(array('font-weight' => 'bolder'));
 
 $myLabel3 = new Label(array(
 	'father' => $eyeContainer,
-	'name' =>  'eyeControl_acl_action_lbl',
+	'name' =>  'xeControl_acl_action_lbl',
 	'text' => 'Action:',
 	'x' => 365,
 	'y' => 142,
@@ -80,7 +80,7 @@ $myLabel3->setCSS(array('font-weight' => 'bolder'));
 
 $myLabel4 = new Label(array(
 	'father' => $eyeContainer,
-	'name' =>  'eyeControl_acl_serv_desc_subtitle',
+	'name' =>  'xeControl_acl_serv_desc_subtitle',
 	'text' => 'Service Description:',
 	'x' => 10,
 	'y' => 220
@@ -90,7 +90,7 @@ $myLabel4->setCSS(array('font-weight' => 'bolder'));
 
 $myLabel5 = new Label(array(
 	'father' => $eyeContainer,
-	'name' =>  'eyeControl_acl_serv_desc',
+	'name' =>  'xeControl_acl_serv_desc',
 	'text' => '---',
 	'x' => 20,
 	'y' => 240
@@ -99,7 +99,7 @@ $myLabel5->show(0);
 
 $myLabel6 = new Label(array(
 	'father' => $eyeContainer,
-	'name' =>  'eyeControl_acl_func_desc_subtitle',
+	'name' =>  'xeControl_acl_func_desc_subtitle',
 	'text' => 'Function Description:',
 	'x' => 10,
 	'y' => 300
@@ -109,7 +109,7 @@ $myLabel6->setCSS(array('font-weight' => 'bolder'));
 
 $myLabel7 = new Label(array(
 	'father' => $eyeContainer,
-	'name' =>  'eyeControl_acl_func_desc',
+	'name' =>  'xeControl_acl_func_desc',
 	'text' => '---',
 	'x' => 20,
 	'y' => 320
@@ -119,14 +119,14 @@ $myLabel7->show(0);
 
 $mySelect = new Select(array(
 	'father' => $eyeContainer,
-	'name' => 'eyeControl_acl_service_select',
+	'name' => 'xeControl_acl_service_select',
 	'x' => 205,
 	'y' => 90,
 	'width' => 163
 ));
 $mySelect->show();
 $mySelect->addOption('---',1,1);
-$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/eyeControl/others/acl-servfunc.xml';
+$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/xeControl/others/acl-servfunc.xml';
 $servfunc = eyeXML('getXMLfile', array($sf_file));
 $sCnt = 2;
 if ($servfunc) {
@@ -135,22 +135,22 @@ if ($servfunc) {
 		$sCnt++;
 	}
 }
-$mySelect->addEvent('onchange','sendMsg('.$checknum.',"aclServChange",eyeParam("arg0",this.value)+eyeParam("arg1",document.getElementById("'.$mySelect->creatorPid.'_eyeControl_acl_settings_hideHazard").checked));');
+$mySelect->addEvent('onchange','sendMsg('.$checknum.',"aclServChange",eyeParam("arg0",this.value)+eyeParam("arg1",document.getElementById("'.$mySelect->creatorPid.'_xeControl_acl_settings_hideHazard").checked));');
 
 $mySelect1 = new Select(array(
 	'father' => $eyeContainer,
-	'name' => 'eyeControl_acl_function_select',
+	'name' => 'xeControl_acl_function_select',
 	'x' => 205,
 	'y' => 115,
 	'width' => 163
 ));
 $mySelect1->show();
 $mySelect1->addOption('---',1,1);
-$mySelect1->addEvent('onchange','sendMsg('.$checknum.',"aclFuncChange",eyeParam("arg0",this.value)+eyeParam("arg1",document.getElementById("'.$mySelect1->creatorPid.'_eyeControl_acl_service_select").value));');
+$mySelect1->addEvent('onchange','sendMsg('.$checknum.',"aclFuncChange",eyeParam("arg0",this.value)+eyeParam("arg1",document.getElementById("'.$mySelect1->creatorPid.'_xeControl_acl_service_select").value));');
 
 $mySelect3 = new Select(array(
 	'father' => $eyeContainer,
-	'name' => 'eyeControl_acl_allowDeny_select',
+	'name' => 'xeControl_acl_allowDeny_select',
 	'x' => 205,
 	'y' => 140,
 	'width' => 163
@@ -161,7 +161,7 @@ $mySelect3->addOption(Allow,2);
 $mySelect3->addOption(Deny,3);
 
 $myButton03 = new Button(array(
-	'name' => 'eyeControl_acl_settings_add_button',
+	'name' => 'xeControl_acl_settings_add_button',
 	'father' => $eyeContainer,
 	'signal' => 'add_settings',
 	'caption' => 'Add Rule',
@@ -175,7 +175,7 @@ $myButton03->addFriend($mySelect3);
 $myButton03->show();
 
 $myCheckbox = new Checkbox(array(
-	'name' => 'eyeControl_acl_settings_hideHazard',
+	'name' => 'xeControl_acl_settings_hideHazard',
 	'father' => $eyeContainer,
 	'text' => 'Hide Hazardous Options',
 	'x' => 10,
@@ -185,7 +185,7 @@ $myCheckbox = new Checkbox(array(
 	'checked' => 1
 ));
 $myCheckbox->show();
-$myCheckbox->addEvent('onchange','sendMsg('.$checknum.',"acl_hideHazard",eyeParam("arg0",this.checked)+eyeParam("arg1",document.getElementById("'.$myCheckbox->creatorPid.'_eyeControl_acl_service_select").value));');
+$myCheckbox->addEvent('onchange','sendMsg('.$checknum.',"acl_hideHazard",eyeParam("arg0",this.checked)+eyeParam("arg1",document.getElementById("'.$myCheckbox->creatorPid.'_xeControl_acl_service_select").value));');
 
 //Add or edit
 $text=$GLOBALS['addEdit']->text;
@@ -211,7 +211,7 @@ if($text == 'add'){
 	$myLabel3->setY(92);
 	$mySelect3->setY(90);
 	
-	$id = $GLOBALS['eyeControl_acl_sortabletable']->selected;
+	$id = $GLOBALS['xeControl_acl_sortabletable']->selected;
 	$myHidden = new Hidden(array(
 			'name' => 'uniqid',
 			'father' => $eyeContainer,
@@ -220,7 +220,7 @@ if($text == 'add'){
 	eyeWidgets('serialize',array($myHidden));
 
 	$myButton99 = new Button(array(
-		'name' => 'eyeControl_acl_settings_update_button',
+		'name' => 'xeControl_acl_settings_update_button',
 		'father' => $eyeContainer,
 		'signal' => 'update_settings',
 		'caption' => 'Update Rule',
@@ -232,7 +232,7 @@ if($text == 'add'){
 	$myButton99->show();
 
 	$myButton01 = new Button(array(
-		'name' => 'eyeControl_acl_target_button_edit',
+		'name' => 'xeControl_acl_target_button_edit',
 		'father' => $eyeContainer,
 		'signal' => 'target_edit',
 		'caption' => 'Edit Targets',
@@ -244,7 +244,7 @@ if($text == 'add'){
 	));
 	$myButton01->show();
 
-	$id0 = $GLOBALS['eyeControl_acl_sortabletable']->selected;
+	$id0 = $GLOBALS['xeControl_acl_sortabletable']->selected;
 
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 	$config = eyeXML('getXMLfile', array($file));
@@ -274,7 +274,7 @@ if($text == 'add'){
 									}
 									$paramType = new Hidden(array(
 										'name' => 'param_type',
-										'father' => 'eyeControl_container_big',
+										'father' => 'xeControl_container_big',
 										'text' => $fParam
 									));
 									eyeWidgets('serialize',array($paramType));

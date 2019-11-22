@@ -19,7 +19,7 @@ $sortypes = array('String');
 $theader = array('Mirror');
 
 $myTable = new Sortabletable(array(
-	'name' => 'eyeControl_eyesoft_sortabletable',
+	'name' => 'xeControl_eyesoft_sortabletable',
 	'father' => $eyeContainer,
 	'sortypes' => $sortypes,
 	'theader' => $theader,
@@ -38,7 +38,7 @@ foreach ($mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'] as $mirror) {
 }
 // New
 $myButton = new Button(array(
-	'name' => 'eyeControl_eyesoft_button_new',
+	'name' => 'xeControl_eyesoft_button_new',
 	'father' => $eyeContainer,
 	'signal' => 'eyesoft_new',
 	'caption' => 'New',
@@ -50,7 +50,7 @@ $myButton = new Button(array(
 $myButton->show();
 // Edit
 $myButton = new Button(array(
-	'name' => 'eyeControl_eyesoft_button_edit',
+	'name' => 'xeControl_eyesoft_button_edit',
 	'father' => $eyeContainer,
 	'signal' => 'eyesoft_edit',
 	'caption' => 'Edit',
@@ -63,7 +63,7 @@ $myButton->addFriend($myTable);
 $myButton->show();
 // Test
 $myButton = new Button(array(
-	'name' => 'eyeControl_eyesoft_button_test',
+	'name' => 'xeControl_eyesoft_button_test',
 	'father' => $eyeContainer,
 	'signal' => 'eyesoft_test',
 	'caption' => 'Test',
@@ -76,7 +76,7 @@ $myButton->addFriend($myTable);
 $myButton->show();
 // Delete
 $myButton = new Button(array(
-	'name' => 'eyeControl_eyesoft_button_delete',
+	'name' => 'xeControl_eyesoft_button_delete',
 	'father' => $eyeContainer,
 	'signal' => 'eyesoft_delete',
 	'caption' => 'Delete',
@@ -89,7 +89,7 @@ $myButton->addFriend($myTable);
 $myButton->show();
 // x mirror(s)
 $myLabel = new Label(array(
-	'name' => 'eyeControl_eyesoft_label_mirrors',
+	'name' => 'xeControl_eyesoft_label_mirrors',
 	'father' => $eyeContainer,
 	'horiz' => 1,
 	'y' => 2,

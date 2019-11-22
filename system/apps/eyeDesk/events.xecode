@@ -43,7 +43,7 @@ function eyeDesk_on_Paste($params = '') {
 }
 
 function eyeDesk_on_Preferences($params = '') {
-	proc('launch',array('eyeControl', array('category' => 'look_and_feel', 'content' => 'desktop')));
+	proc('launch',array('xeControl', array('category' => 'look_and_feel', 'content' => 'desktop')));
 }
 
 function eyeDesk_on_Action($params = '') {

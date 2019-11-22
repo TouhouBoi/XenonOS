@@ -14,18 +14,18 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeControl_on_acl_add($params=''){
+function xeControl_on_acl_add($params=''){
 		$myHidden = new Hidden(array(
 			'name' => 'addEdit',
-			'father' => 'eyeControl_container_big',
+			'father' => 'xeControl_container_big',
 			'text' => 'add'
 		));
 		eyeWidgets('serialize',array($myHidden));
-		eyeControl_lib_loadContent('only_root','newacl');
+		xeControl_lib_loadContent('only_root','newacl');
 }
 
-function eyeControl_on_acl_edit($params=''){
-	$id = $GLOBALS['eyeControl_acl_sortabletable']->selected;
+function xeControl_on_acl_edit($params=''){
+	$id = $GLOBALS['xeControl_acl_sortabletable']->selected;
 
 	if(empty($id)){
 		eyeX('messageBox',array('content'=>"Please choose an ACL to edit from the list"));
@@ -33,17 +33,17 @@ function eyeControl_on_acl_edit($params=''){
 	} else {
 		$myHidden = new Hidden(array(
 			'name' => 'addEdit',
-			'father' => 'eyeControl_container_big',
+			'father' => 'xeControl_container_big',
 			'text' => 'edit'
 		));
 		eyeWidgets('serialize',array($myHidden));
-		eyeControl_lib_loadContent('only_root','newacl');
+		xeControl_lib_loadContent('only_root','newacl');
 	}
 }
 
-function eyeControl_on_acl_delete($params=''){
+function xeControl_on_acl_delete($params=''){
 
-	$id = $GLOBALS['eyeControl_acl_sortabletable']->selected;
+	$id = $GLOBALS['xeControl_acl_sortabletable']->selected;
 
 	if(empty($id)){
 		eyeX('messageBox',array('content'=>'Please choose an ACL to delete'));
@@ -65,8 +65,8 @@ function eyeControl_on_acl_delete($params=''){
 }
 
 
-function eyeControl_on_yDelete0($params=''){
-	$id0 = $GLOBALS['eyeControl_acl_sortabletable']->selected;
+function xeControl_on_yDelete0($params=''){
+	$id0 = $GLOBALS['xeControl_acl_sortabletable']->selected;
 
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 	$config = eyeXML('getXMLfile', array($file));
@@ -81,11 +81,11 @@ function eyeControl_on_yDelete0($params=''){
 		}
 	}
 	eyeXML('setXMLfile', array($file,$config));
-	$GLOBALS['eyeControl_acl_sortabletable']->delRow($id0);
+	$GLOBALS['xeControl_acl_sortabletable']->delRow($id0);
 	$GLOBALS['delete_warning0']->close();
 }
 
-function eyeControl_on_nDelete0($params=''){
+function xeControl_on_nDelete0($params=''){
 	$GLOBALS['delete_warning0']->close();
 }
 

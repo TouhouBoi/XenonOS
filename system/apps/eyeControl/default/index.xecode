@@ -19,21 +19,21 @@ $x = 0;
 $boxY = 0;
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
-$categoriesXML = getConfig('eyeControl','categories.xml');
+$categoriesXML = getConfig('xeControl','categories.xml');
 $currentUser = $oldUser;
-$array = eyeControl_lib_findArrayByText(array($categoriesXML['eyeControl'][0]['category'],'no',array('show',0),2));
+$array = xeControl_lib_findArrayByText(array($categoriesXML['xeControl'][0]['category'],'no',array('show',0),2));
 foreach($array as $category) {
 	if ($category['permissions'][0] == 'all'
-	|| $category['permissions'][0] == 'root' && eyeControl_lib_getConfigUser() == ROOTUSER
-	|| $category['permissions'][0] == 'maintainer' && (eyeControl_lib_getConfigUser() == ROOTUSER || um('checkMaintainer',array(eyeControl_lib_getConfigUser())))
-	|| $category['permissions'][0] == 'user' && eyeControl_lib_getConfigUser() != ROOTUSER
-	|| $category['permissions'][0] == 'only_real' && eyeControl_lib_getConfigUser() != '[skel]'
-	|| $category['permissions'][0] == 'only_this' && eyeControl_lib_getConfigUser() == $currentUser) {
+	|| $category['permissions'][0] == 'root' && xeControl_lib_getConfigUser() == ROOTUSER
+	|| $category['permissions'][0] == 'maintainer' && (xeControl_lib_getConfigUser() == ROOTUSER || um('checkMaintainer',array(xeControl_lib_getConfigUser())))
+	|| $category['permissions'][0] == 'user' && xeControl_lib_getConfigUser() != ROOTUSER
+	|| $category['permissions'][0] == 'only_real' && xeControl_lib_getConfigUser() != '[skel]'
+	|| $category['permissions'][0] == 'only_this' && xeControl_lib_getConfigUser() == $currentUser) {
 		$x++;
 		if ($x > 1) {
 			// $myLine
 			$myLine = new Line(array(
-				'name' => 'eyeControl_index_line_' . $x,
+				'name' => 'xeControl_index_line_' . $x,
 				'father' => $eyeContainer,
 				'x' => 0,
 				'y' => $boxY,
@@ -44,14 +44,14 @@ foreach($array as $category) {
 		}
 		// $myHiddenCAT
 		$myHiddenCAT = new Hidden(array(
-			'name' => 'eyeControl_index_hiddenCAT_' . $x,
+			'name' => 'xeControl_index_hiddenCAT_' . $x,
 			'father' => $eyeContainer,
 			'text' => $category['name'][0]
 		));
 		$myHiddenCAT->show();
 		// $myLabel
 		$myLabel = new Label(array(
-			'name' => 'eyeControl_index_label_' . $x,
+			'name' => 'xeControl_index_label_' . $x,
 			'father' => $eyeContainer,
 			'text' => $category['display'][0],
 			'x' => 0,
@@ -68,14 +68,14 @@ foreach($array as $category) {
 		));
 		$boxY += 25;
 		$z = -1;
-		$array = eyeControl_lib_findArrayByText(array($category['content'],'no',array('show',0),2));
+		$array = xeControl_lib_findArrayByText(array($category['content'],'no',array('show',0),2));
 		foreach($array as $content) {
 			if ($content['permissions'][0] == 'all'
-			|| $content['permissions'][0] == 'root' && eyeControl_lib_getConfigUser() == ROOTUSER
-			|| $content['permissions'][0] == 'maintainer' && (eyeControl_lib_getConfigUser() == ROOTUSER || um('checkMaintainer',array(eyeControl_lib_getConfigUser())))
-			|| $content['permissions'][0] == 'user' && eyeControl_lib_getConfigUser() != ROOTUSER
-			|| $content['permissions'][0] == 'only_real' && eyeControl_lib_getConfigUser() != '[skel]'
-			|| $content['permissions'][0] == 'only_this' && eyeControl_lib_getConfigUser() == $currentUser) {
+			|| $content['permissions'][0] == 'root' && xeControl_lib_getConfigUser() == ROOTUSER
+			|| $content['permissions'][0] == 'maintainer' && (xeControl_lib_getConfigUser() == ROOTUSER || um('checkMaintainer',array(xeControl_lib_getConfigUser())))
+			|| $content['permissions'][0] == 'user' && xeControl_lib_getConfigUser() != ROOTUSER
+			|| $content['permissions'][0] == 'only_real' && xeControl_lib_getConfigUser() != '[skel]'
+			|| $content['permissions'][0] == 'only_this' && xeControl_lib_getConfigUser() == $currentUser) {
 				$x++;
 				if ($z == 2) {
 					$z = 0;
@@ -84,19 +84,19 @@ foreach($array as $category) {
 					$z++;
 				}
 				$myHiddenCAT = new Hidden(array(
-					'name' => 'eyeControl_index_hiddenCAT_' . $x,
+					'name' => 'xeControl_index_hiddenCAT_' . $x,
 					'father' => $eyeContainer,
 					'text' => $category['name'][0]
 				));
 				$myHiddenCAT->show();
 				$myHiddenNAME = new Hidden(array(
-					'name' => 'eyeControl_index_hiddenNAME_' . $x,
+					'name' => 'xeControl_index_hiddenNAME_' . $x,
 					'father' => $eyeContainer,
 					'text' => $content['name'][0]
 				));
 				$myHiddenNAME->show();
 				$myButton = new Button(array(
-					'name' => 'eyeControl_index_button_' . $x,
+					'name' => 'xeControl_index_button_' . $x,
 					'father' => $eyeContainer,
 					'caption' => $content['display'][0],
 					'x' => 10 + ($z * 170),
@@ -116,7 +116,7 @@ foreach($array as $category) {
 }
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
-$openDir = vfs('real_getDirContent',array(XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeControl/others/','*.xml'));
+$openDir = vfs('real_getDirContent',array(XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/xeControl/others/','*.xml'));
 $currentUser = $oldUser;
 if (is_array($openDir) && isset($openDir[0]) === true) {
 	$x++;
@@ -131,11 +131,11 @@ if (is_array($openDir) && isset($openDir[0]) === true) {
 		$currentUser = $oldUser;
 		$content = $content['content'][0];
 		if ($content['show'][0] != 'no' && ($content['permissions'][0] == 'all'
-		|| $content['permissions'][0] == 'root' && eyeControl_lib_getConfigUser() == ROOTUSER
-		|| $content['permissions'][0] == 'maintainer' && (eyeControl_lib_getConfigUser() == ROOTUSER || um('checkMaintainer',array(eyeControl_lib_getConfigUser())))
-		|| $content['permissions'][0] == 'user' && eyeControl_lib_getConfigUser() != ROOTUSER
-		|| $content['permissions'][0] == 'only_real' && eyeControl_lib_getConfigUser() != '[skel]'
-		|| $content['permissions'][0] == 'only_this' && eyeControl_lib_getConfigUser() == $currentUser)) {
+		|| $content['permissions'][0] == 'root' && xeControl_lib_getConfigUser() == ROOTUSER
+		|| $content['permissions'][0] == 'maintainer' && (xeControl_lib_getConfigUser() == ROOTUSER || um('checkMaintainer',array(xeControl_lib_getConfigUser())))
+		|| $content['permissions'][0] == 'user' && xeControl_lib_getConfigUser() != ROOTUSER
+		|| $content['permissions'][0] == 'only_real' && xeControl_lib_getConfigUser() != '[skel]'
+		|| $content['permissions'][0] == 'only_this' && xeControl_lib_getConfigUser() == $currentUser)) {
 			$x++;
 			if ($z == 2) {
 				$z = 0;
@@ -144,19 +144,19 @@ if (is_array($openDir) && isset($openDir[0]) === true) {
 				$z++;
 			}
 			$myHiddenCAT = new Hidden(array(
-				'name' => 'eyeControl_index_hiddenCAT_' . $x,
+				'name' => 'xeControl_index_hiddenCAT_' . $x,
 				'father' => $eyeContainer,
 				'text' => 'others'
 			));
 			$myHiddenCAT->show();
 			$myHiddenNAME = new Hidden(array(
-				'name' => 'eyeControl_index_hiddenNAME_' . $x,
+				'name' => 'xeControl_index_hiddenNAME_' . $x,
 				'father' => $eyeContainer,
 				'text' => $content['name'][0]
 			));
 			$myHiddenNAME->show();
 			$myButton = new Button(array(
-				'name' => 'eyeControl_index_button_' . $x,
+				'name' => 'xeControl_index_button_' . $x,
 				'father' => $eyeContainer,
 				'caption' => $content['display'][0],
 				'x' => 10 + ($z * 170),
@@ -173,7 +173,7 @@ if (is_array($openDir) && isset($openDir[0]) === true) {
 	if ($x > $x_others) {
 		// $myLine
 		$myLine = new Line(array(
-			'name' => 'eyeControl_index_line_others',
+			'name' => 'xeControl_index_line_others',
 			'father' => $eyeContainer,
 			'x' => 0,
 			'y' => $boxY_others,
@@ -182,13 +182,13 @@ if (is_array($openDir) && isset($openDir[0]) === true) {
 		$myLine->show();
 		// $myLabel
 		$myHiddenCAT = new Hidden(array(
-			'name' => 'eyeControl_index_hiddenCAT_' . $x_others,
+			'name' => 'xeControl_index_hiddenCAT_' . $x_others,
 			'father' => $eyeContainer,
 			'text' => 'Others'
 		));
 		$myHiddenCAT->show();
 		$myLabel = new Label(array(
-			'name' => 'eyeControl_index_label_' . $x_others,
+			'name' => 'xeControl_index_label_' . $x_others,
 			'father' => $eyeContainer,
 			'text' => 'Others',
 			'x' => 0,

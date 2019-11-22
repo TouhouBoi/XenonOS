@@ -14,57 +14,57 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeControl_on_targetTypeChange($params="") {
-	$GLOBALS['eyeControl_acl_target_targetname_select']->delAllOptions();
-	$GLOBALS['eyeControl_acl_target_targetname_select']->addOption('---',1,1);
-	$GLOBALS['eyeControl_acl_target_targetname_txtbox']->hide();
-	$GLOBALS['eyeControl_acl_target_targetname_select']->unhide();
+function xeControl_on_targetTypeChange($params="") {
+	$GLOBALS['xeControl_acl_target_targetname_select']->delAllOptions();
+	$GLOBALS['xeControl_acl_target_targetname_select']->addOption('---',1,1);
+	$GLOBALS['xeControl_acl_target_targetname_txtbox']->hide();
+	$GLOBALS['xeControl_acl_target_targetname_select']->unhide();
 	
 	$switch = $params[arg0][0];
 	switch ($switch) {
 		case 2:
-			$GLOBALS['eyeControl_acl_target_targetname_lbl']->setText("Username:");
-			$GLOBALS['eyeControl_acl_target_targetname_select']->hide();
-			$GLOBALS['eyeControl_acl_target_targetname_txtbox']->unhide();
+			$GLOBALS['xeControl_acl_target_targetname_lbl']->setText("Username:");
+			$GLOBALS['xeControl_acl_target_targetname_select']->hide();
+			$GLOBALS['xeControl_acl_target_targetname_txtbox']->unhide();
 			break;
 		case 3:
-			$GLOBALS['eyeControl_acl_target_targetname_lbl']->setText("Group Name:");
+			$GLOBALS['xeControl_acl_target_targetname_lbl']->setText("Group Name:");
 			$openDir = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . GROUPS_DIR . '/'));
 			$g = 1;
 			foreach ($openDir as $group) {
 				if (is_dir($group)) {
 					$g++;
-					$GLOBALS['eyeControl_acl_target_targetname_select']->addOption(basename($group),$g);
+					$GLOBALS['xeControl_acl_target_targetname_select']->addOption(basename($group),$g);
 				}
 			}
 			break;
 		case 4:
-			$GLOBALS['eyeControl_acl_target_targetname_lbl']->setText("Admin's Name:");
+			$GLOBALS['xeControl_acl_target_targetname_lbl']->setText("Admin's Name:");
 			$users = um('getAllUsers');
 			$u = 1;
 			foreach ($users as $user) {
 				$userXml = um('retrieveUser',array($user));
 				if ($userXml['eyeUser'][0]['admin'][0] == 1) {
 					$u++;
-					$GLOBALS['eyeControl_acl_target_targetname_select']->addOption($user,$u);
+					$GLOBALS['xeControl_acl_target_targetname_select']->addOption($user,$u);
 				}
 			}
 			break;
 		case 5:
-			$GLOBALS['eyeControl_acl_target_targetname_lbl']->setText("Privilege Level:");
-			$GLOBALS['eyeControl_acl_target_targetname_select']->addOption("User",2);
-			$GLOBALS['eyeControl_acl_target_targetname_select']->addOption("Maintainer",3);
-			$GLOBALS['eyeControl_acl_target_targetname_select']->addOption("Admin",4);
+			$GLOBALS['xeControl_acl_target_targetname_lbl']->setText("Privilege Level:");
+			$GLOBALS['xeControl_acl_target_targetname_select']->addOption("User",2);
+			$GLOBALS['xeControl_acl_target_targetname_select']->addOption("Maintainer",3);
+			$GLOBALS['xeControl_acl_target_targetname_select']->addOption("Admin",4);
 			break;
 		default:
-			$GLOBALS['eyeControl_acl_target_targetname_lbl']->setText("Name:");
+			$GLOBALS['xeControl_acl_target_targetname_lbl']->setText("Name:");
 			
 	}
 }
 
-function eyeControl_on_params_add($params = ""){
+function xeControl_on_params_add($params = ""){
 
-	$id = $GLOBALS['eyeControl_acl_params_sortabletable']->selected;
+	$id = $GLOBALS['xeControl_acl_params_sortabletable']->selected;
  
 	if(empty($id)){
 		eyeX('messageBox',array('content'=>"Select a target from the list to add parameters to"));
@@ -73,26 +73,26 @@ function eyeControl_on_params_add($params = ""){
 				'content' => 'Type in the parameter you want to filter:',
 				'type' => 3,
 				'title' => 'New parameter',
-				'win_name' => 'eyeControl_newparam_popup',
+				'win_name' => 'xeControl_newparam_popup',
 				'win_style' => TITLE + CLOSE,
 				'win_removepid' => 0,
 				'btn1_capt' => 'Add',
 				'btn1_name' => 'newparam_add',
 				'btn2_capt' => 'Cancel',
 				'btn2_name' => 'newparam_cancel',
-				'textbox_name' => 'eyeControl_newparam_textbox',
+				'textbox_name' => 'xeControl_newparam_textbox',
 				'textbox_event' => 'newparam_add',
-				'father' => 'eyeControl_container_big'
+				'father' => 'xeControl_container_big'
 			));
 	}
 }
 
-function eyeControl_on_typeTarget_add($params = ""){
-	$switch = $GLOBALS['eyeControl_acl_target_type_select']->selected;
+function xeControl_on_typeTarget_add($params = ""){
+	$switch = $GLOBALS['xeControl_acl_target_type_select']->selected;
 	switch ($switch) {
 		case 2:
 			$type = 'user';
-			$targetName = $GLOBALS['eyeControl_acl_target_targetname_txtbox']->text;
+			$targetName = $GLOBALS['xeControl_acl_target_targetname_txtbox']->text;
 			if (!um('userExist',array($targetName))) {
 				eyex('messageBox',array('content' => 'This user does not exist.'));
 				return;
@@ -101,7 +101,7 @@ function eyeControl_on_typeTarget_add($params = ""){
 		case 3:
 			$type = 'group';
 			$files = vfs('real_getDirContent', array(XENONOS_ROOT . '/' . GROUPS_DIR . '/'));
-			$targetName = $GLOBALS['eyeControl_acl_target_targetname_select']->selected - 2;
+			$targetName = $GLOBALS['xeControl_acl_target_targetname_select']->selected - 2;
 			if (isset($files[$targetName]) === false || is_dir($files[$targetName]) === false) {
 				eyex('messageBox', array('content' => 'This group does not exist.'));
 				return;
@@ -116,7 +116,7 @@ function eyeControl_on_typeTarget_add($params = ""){
 				$userXml = um('retrieveUser',array($user));
 				if ($userXml['eyeUser'][0]['admin'][0] == 1) {
 					$u++;
-					if ($u == $GLOBALS['eyeControl_acl_target_targetname_select']->selected) {
+					if ($u == $GLOBALS['xeControl_acl_target_targetname_select']->selected) {
 						$targetName = basename($user);
 					}
 				}
@@ -124,7 +124,7 @@ function eyeControl_on_typeTarget_add($params = ""){
 			break;
 		case 5:
 			$type = 'privilege';
-			$targetName = $GLOBALS['eyeControl_acl_target_targetname_select']->selected;
+			$targetName = $GLOBALS['xeControl_acl_target_targetname_select']->selected;
 			switch ($targetName) {
 				case 2:
 					$targetName = "user";
@@ -148,15 +148,15 @@ function eyeControl_on_typeTarget_add($params = ""){
 	} else{
 		$myHidden = new Hidden(array(
 			'name' => 'targetType',
-			'father' => 'eyeControl_container_big',
+			'father' => 'xeControl_container_big',
 			'text' => $type
 		));
 		eyeWidgets('serialize',array($myHidden));
 		$id0 = $GLOBALS['uniqid']->text;
 		$id1 = uniqid();
 		$row = array($id0,$id1,$type,$targetName);
-		$GLOBALS['eyeControl_acl_params_sortabletable']->addRow($row);
-		$GLOBALS['eyeControl_acl_typeTarget_done_button']->enable();
+		$GLOBALS['xeControl_acl_params_sortabletable']->addRow($row);
+		$GLOBALS['xeControl_acl_typeTarget_done_button']->enable();
 
 		$target = array(
 			'id' => array($id1),
@@ -184,23 +184,23 @@ function eyeControl_on_typeTarget_add($params = ""){
 	}
 }
 
-function eyeControl_on_newparam_add($params = ""){
+function xeControl_on_newparam_add($params = ""){
 
 	$id0 = $GLOBALS['uniqid']->text;
-	$id1 = $GLOBALS['eyeControl_acl_params_sortabletable']->selected;
+	$id1 = $GLOBALS['xeControl_acl_params_sortabletable']->selected;
 
 	$type = $GLOBALS['targetType']->text;
 
-	$targetName = $GLOBALS['eyeControl_acl_target_targetname_txtbox']->text;
-	$param = $GLOBALS['eyeControl_newparam_textbox']->text;
+	$targetName = $GLOBALS['xeControl_acl_target_targetname_txtbox']->text;
+	$param = $GLOBALS['xeControl_newparam_textbox']->text;
 
 	if(empty($param)){
 		eyeX('messageBox',array('content'=>'Please type in the parameter to filter'));
 	} else {
 		//Añadir columna
 		$row = array($id0,$id1,$param);
-		$GLOBALS['eyeControl_acl_params2_sortabletable']->addRow($row);
-		$GLOBALS['eyeControl_newparam_popup']->close();
+		$GLOBALS['xeControl_acl_params2_sortabletable']->addRow($row);
+		$GLOBALS['xeControl_newparam_popup']->close();
 		$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 		$config = eyeXML('getXMLfile', array($file));
 
@@ -233,9 +233,9 @@ function eyeControl_on_newparam_add($params = ""){
 	}
 }
 
-function eyeControl_on_show_rights($params = "") {
-	$GLOBALS['eyeControl_acl_params2_sortabletable']->delAllRows();
-	$id1 = $GLOBALS['eyeControl_acl_params_sortabletable']->selected;
+function xeControl_on_show_rights($params = "") {
+	$GLOBALS['xeControl_acl_params2_sortabletable']->delAllRows();
+	$id1 = $GLOBALS['xeControl_acl_params_sortabletable']->selected;
 	$id0 = $GLOBALS['uniqid']->text;
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 	$config = eyeXML('getXMLfile', array($file));
@@ -249,7 +249,7 @@ function eyeControl_on_show_rights($params = "") {
 					foreach($target['params'][0]['param'] as $param){
 						$parami = $target['params'][0]['param'][$i];
 						$row = array($id0,$id1,$parami);
-						$GLOBALS['eyeControl_acl_params2_sortabletable']->addRow($row);
+						$GLOBALS['xeControl_acl_params2_sortabletable']->addRow($row);
 						$i++;
 					}
 				}
@@ -258,9 +258,9 @@ function eyeControl_on_show_rights($params = "") {
 	}
 }
 
-function eyeControl_on_params_delete($params = "") {
+function xeControl_on_params_delete($params = "") {
 
-	$id = $GLOBALS['eyeControl_acl_params_sortabletable']->selected;
+	$id = $GLOBALS['xeControl_acl_params_sortabletable']->selected;
 
 	if(empty($id)){
 		eyeX('messageBox',array('content'=>'Please choose a target to delete'));
@@ -281,9 +281,9 @@ function eyeControl_on_params_delete($params = "") {
 	}
 }
 
-function eyeControl_on_yDelete(){
-	$id1 = $GLOBALS['eyeControl_acl_params_sortabletable']->selected;
-	$GLOBALS['eyeControl_acl_params_sortabletable']->delRow($id1);
+function xeControl_on_yDelete(){
+	$id1 = $GLOBALS['xeControl_acl_params_sortabletable']->selected;
+	$GLOBALS['xeControl_acl_params_sortabletable']->delRow($id1);
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
 	$config = eyeXML('getXMLfile', array($file));
 	
@@ -306,9 +306,9 @@ function eyeControl_on_yDelete(){
 					if(!array_key_exists('target',$config['GACL'][0]['ACL'][$i])){
 						$config['GACL'][0]['ACL'][$i] = array_merge($config['GACL'][0]['ACL'][$i],$targetN);
 						eyeXML('setXMLfile', array($file,$config));
-						$GLOBALS['eyeControl_acl_typeTarget_done_button']->disable();
+						$GLOBALS['xeControl_acl_typeTarget_done_button']->disable();
 					}
-					$GLOBALS['eyeControl_acl_params2_sortabletable']->delAllRows();
+					$GLOBALS['xeControl_acl_params2_sortabletable']->delAllRows();
 				}
 				$x++;
 			}
@@ -321,20 +321,20 @@ function eyeControl_on_yDelete(){
 	$GLOBALS['delete_warning']->close();
 }
 
-function eyeControl_on_nDelete(){
+function xeControl_on_nDelete(){
 	$GLOBALS['delete_warning']->close();
 	return true;
 }
 
-function eyeControl_on_newparam_cancel($params = "") {
-	$GLOBALS['eyeControl_newparam_popup']->close();
+function xeControl_on_newparam_cancel($params = "") {
+	$GLOBALS['xeControl_newparam_popup']->close();
 }
 
-function eyeControl_on_done_signal($params=""){
-	eyeControl_lib_loadContent('only_root','eyeACL');
+function xeControl_on_done_signal($params=""){
+	xeControl_lib_loadContent('only_root','eyeACL');
 }
-function eyeControl_on_params_delete2($params=""){
-	$id = $GLOBALS['eyeControl_acl_params2_sortabletable']->selected;
+function xeControl_on_params_delete2($params=""){
+	$id = $GLOBALS['xeControl_acl_params2_sortabletable']->selected;
 
 	if(empty($id)){
 		eyeX('messageBox',array('content'=>'Please choose a parameter to delete'));
@@ -355,9 +355,9 @@ function eyeControl_on_params_delete2($params=""){
 	}
 }
 
-function eyeControl_on_yDelete1($params=""){
-	$params = $GLOBALS['eyeControl_acl_params2_sortabletable']->selected;
-	$id1 = $GLOBALS['eyeControl_acl_params_sortabletable']->selected;
+function xeControl_on_yDelete1($params=""){
+	$params = $GLOBALS['xeControl_acl_params2_sortabletable']->selected;
+	$id1 = $GLOBALS['xeControl_acl_params_sortabletable']->selected;
 	$id0 = $GLOBALS['uniqid']->text;
 	$Params = array('params' => array(''));
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
@@ -383,7 +383,7 @@ function eyeControl_on_yDelete1($params=""){
 								$config['GACL'][0]['ACL'][$x]['target'][$y] = $Params;
 								eyeXML('setXMLfile', array($file,$config));
 							}
-							$GLOBALS['eyeControl_acl_params2_sortabletable']->delRow($parami);
+							$GLOBALS['xeControl_acl_params2_sortabletable']->delRow($parami);
 						}
 						$i++;
 					}
@@ -396,7 +396,7 @@ function eyeControl_on_yDelete1($params=""){
 	$GLOBALS['delete_warning1']->close();
 }
 
-function eyeControl_on_nDelete1($params=""){
+function xeControl_on_nDelete1($params=""){
 	$GLOBALS['delete_warning1']->close();
 	return true;
 }

@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 $filetype = $contentParams[0];
 if (!$filetype) {
 	eyex('messageBox',array('content' => 'Please choose a filetype to be edited.'));
-	eyeControl_lib_loadContent('only_root','filetypes');
+	xeControl_lib_loadContent('only_root','filetypes');
 	return;
 }
 
@@ -26,14 +26,14 @@ $xml = eyeXML('getXMLfile', array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_
 $ContentY = 10;
 // $myHidden
 $myHidden = new Hidden(array(
-	'name' => 'eyeControl_editfiletype_hidden',
+	'name' => 'xeControl_editfiletype_hidden',
 	'father' => $eyeContainer,
 	'text' => $filetype
 ));
 $myHidden->show();
 // Filetype
 $myLabel = new Label(array(
-	'name' => 'eyeControl_editfiletype_label_filetype_1',
+	'name' => 'xeControl_editfiletype_label_filetype_1',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -41,7 +41,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myLabel_filetype = new Label(array(
-	'name' => 'eyeControl_editfiletype_label_filetype_2',
+	'name' => 'xeControl_editfiletype_label_filetype_2',
 	'father' => $eyeContainer,
 	'x' => 160,
 	'y' => $ContentY + 3,
@@ -51,7 +51,7 @@ $myLabel_filetype->show();
 $ContentY += 30;
 // Title
 $myLabel = new Label(array(
-	'name' => 'eyeControl_editfiletype_label_title',
+	'name' => 'xeControl_editfiletype_label_title',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -59,7 +59,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myTextbox_title = new Textbox(array(
-	'name' => 'eyeControl_editfiletype_textbox_title',
+	'name' => 'xeControl_editfiletype_textbox_title',
 	'father' => $eyeContainer,
 	'x' => 160,
 	'y' => $ContentY,
@@ -70,7 +70,7 @@ $myTextbox_title->focus();
 $ContentY += 30;
 // Application
 $myLabel = new Label(array(
-	'name' => 'eyeControl_editfiletype_label_application',
+	'name' => 'xeControl_editfiletype_label_application',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -78,7 +78,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $mySelect = new Select(array(
-	'name' => 'eyeControl_editfiletype_select_application',
+	'name' => 'xeControl_editfiletype_select_application',
 	'father' => $eyeContainer,
 	'width' => 118,
 	'x' => 160,
@@ -96,7 +96,7 @@ foreach (vfs('real_getDirContent', array(XENONOS_ROOT . '/' . APP_DIR . '/')) as
 $ContentY += 30;
 // Description
 $myLabel = new Label(array(
-	'name' => 'eyeControl_editfiletype_label_description',
+	'name' => 'xeControl_editfiletype_label_description',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -104,7 +104,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myTextbox_description = new Textbox(array(
-	'name' => 'eyeControl_editfiletype_textbox_description',
+	'name' => 'xeControl_editfiletype_textbox_description',
 	'father' => $eyeContainer,
 	'x' => 160,
 	'y' => $ContentY,
@@ -114,7 +114,7 @@ $myTextbox_description->show();
 $ContentY += 30;
 // Save Changes
 $myButton = new Button(array(
-	'name' => 'eyeControl_editfiletype_button_save',
+	'name' => 'xeControl_editfiletype_button_save',
 	'father' => $eyeContainer,
 	'x' => 40,
 	'y' => $ContentY,
