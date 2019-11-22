@@ -72,9 +72,10 @@ function eyeInfo_run($params = '')
 			'width' => '398px'
 		)
 	);
+}
 
-	function eyeInfo_end($params = '')
-	{
-		eyeWidgets('unserialize', $params);
-	}
+function eyeInfo_end($params = '')
+{
+	eyeWidgets('unserialize', $params);
+}
 ?>
