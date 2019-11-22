@@ -84,9 +84,9 @@ define('XENONOS_INDEX', 1);
 
 /*
 * Includes are required before Doing anything else,
-* only "settings.php" should be here.
+* only "xe_config.php" should be here.
 */
-require_once('settings.php');
+require_once('xe_config.php');
 
 /*
 *Chaning the current work directory to XENONOS_ROOT
