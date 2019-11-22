@@ -1,0 +1,144 @@
+<?php 
+
+
+function accountInfo_run($params=null) {
+
+	//get the current user
+	global $currentUser;
+	
+	//create the main window
+	$myWindow = new Window(array(
+		'title'=>'Account Information',
+		'name'=>'WND_1',
+		'father' => 'eyeApps',
+		'cent'=>1,
+		'width'=>300,
+		'height'=>350,
+		'style'=>LISTED+CLOSE+MIN+TITLE
+	));
+	$myWindow->show();
+	
+	//create the title label
+	$text = "Current user information";
+	
+	$myLabel = new Label(array(
+		'name'=>'LBL_1',
+		'father'=>'WND_1_Content',
+		'x'=>10,
+		'y'=>15,
+		'text'=>$text
+	));
+	$myLabel->show();
+	
+	//make it bold
+	$myLabel->setCss(array('font-weight'=>'bold'));
+	
+	//create the username label
+	$text = "Username: ";
+	
+	$myLabel = new Label(array(
+		'name'=>'LBL_2',
+		'father'=>'WND_1_Content',
+		'x'=>10,
+		'y'=>45,
+		'text'=>$text
+	));
+	$myLabel->show();
+	
+	//make it bold
+	$myLabel->setCss(array('font-weight'=>'bold'));
+	
+	//show the currentUser
+	$text = $currentUser;
+	
+	$myLabel = new Label(array(
+		'name'=>'LBL_3',
+		'father'=>'WND_1_Content',
+		'x'=>120,
+		'y'=>45,
+		'text'=>$text
+	));
+	$myLabel->show();
+	
+	$text = "Privileges:";
+	
+	$myLabel = new Label(array(
+		'name'=>'LBL_4',
+		'father'=>'WND_1_Content',
+		'x'=>10,
+		'y'=>75,
+		'text'=>$text
+	));
+	$myLabel->show();
+
+	$myLabel->setCss(array('font-weight'=>'bold'));
+	
+	if($currentUser == ROOTUSER) {
+		$text = "Administrator";
+	} else {
+		$text = "User";
+	}
+	
+	$myLabel = new Label(array(
+		'name'=>'LBL_5',
+		'father'=>'WND_1_Content',
+		'x'=>120,
+		'y'=>75,
+		'text'=>$text
+	));
+	$myLabel->show();
+	
+	$groups = um('getCurrentGroups');
+	
+	$text = "Groups (".count($groups).")";
+	
+	$myLabel = new Label(array(
+		'name'=>'LBL_6',
+		'father'=>'WND_1_Content',
+		'x'=>10,
+		'y'=>105,
+		'text'=>$text
+	));
+	$myLabel->show();
+
+	$myLabel->setCss(array('font-weight'=>'bold'));
+	
+	$myWindow = new Window(array(
+		'title'=>'user information',
+		'name'=>'WND_2',
+		'father' => 'WND_1_Content',
+		'x'=>8,
+		'y'=>110,
+		'width'=>290,
+		'height'=>210,
+		'type'=>INVISIBLE_WINDOW
+	));
+	$myWindow->show();
+	
+	$sortypes = array('String');
+	$myHeader = array('Name');
+	
+	$myTable = new Sortabletable(array(
+		'name'=>'table_1',
+		'father'=>'WND_2_Content',
+		'sortypes'=>$sortypes,
+		'theader'=>$myHeader,
+		'x'=>1,
+		'y'=>1,
+		'width'=>270,
+		'height'=>180
+	));
+	
+	$myTable->show();
+
+	foreach($groups as $key=>$value) {
+		$myTable->addRow(array($key));
+	}
+
+}
+
+function accountInfo_end() {
+	eyeWidgets('unserialize');
+}
+
+?>

@@ -1,0 +1,10 @@
+<package>
+	<name>AccountInfo</name>
+	<category>System</category>
+	<version>1.0</version>
+	<description>XenonOS Account Information</description>
+	<author>Trinity</author>
+	<license>AGPL</license>
+	<type>Application</type>
+	<icon>index.php?extern=apps/eyeX/themes/default/icons/48x48/aboutme.png</icon>
+</package>
