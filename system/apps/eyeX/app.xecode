@@ -88,10 +88,7 @@ function eyeX_run($params = '') {
 		}
 	}
 
-	if (IE) {
-		echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=css/eyeOS_IE' . IE . '.css&amp;type=css" id="eyeOSIE' . IE . 'Css" rel="stylesheet" type="text/css" />' . "\n";
-		$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSIE' . IE . 'Css';
-	} else if (stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'chrome') !== false) { // utf8
+	if (stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'chrome') !== false) { // utf8
 		echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=css/eyeOS_chrome.css&amp;type=css" id="eyeOSchromeCss" rel="stylesheet" type="text/css" />' . "\n";
 		$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSchromeCss';
 	} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false) {
