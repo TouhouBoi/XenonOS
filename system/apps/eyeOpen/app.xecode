@@ -51,7 +51,7 @@ function eyeOpen_run($params = '') {
 			'height' => $myWindow->height - 25,
 			'name' => 'eyeOpen_Container',
 			'width' => $myWindow->width - 4,
-			'x' => intval(!IE || IE > 6),
+			'x' => 0,
 			'y' => 0
 		));
 		$myContainer->show();
