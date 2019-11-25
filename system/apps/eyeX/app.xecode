@@ -54,14 +54,8 @@ function eyeX_run($params = '') {
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		' . $viewport . '
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />' . "\n";
-	if (!IE || IE > 7) { // We need a better workaround for this IE6 and IE7 problem!
-		//echo "\t\t" . '<base href="' . INDEX_BASE . '" />' . "\n";
-	}
 	echo "\t\t" . '<title>' . utf8_htmlspecialchars(i18n('translate', array('Welcome to %s',array(XENONOS_HOSTNAME))), ENT_QUOTES) . '</title>
 		<link href="index.php?extern=apps/eyeX/css/system.css&amp;type=css" id="systemCss" rel="stylesheet" type="text/css" />' . "\n";
-	if (IE) {
-		echo "\t\t" . '<link href="index.php?extern=apps/eyeX/css/system_IE' . IE . '.css&amp;type=css" id="systemIE' . IE . 'Css" rel="stylesheet" type="text/css" />' . "\n";
-	}
 
 	$oldUser = $currentUser;
 	$currentUser = REAL_ROOTUSER;
