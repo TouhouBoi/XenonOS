@@ -89,7 +89,7 @@ class Icon {
 		isset($params['overClass']) ? $this->overClass = $params['overClass'] : $this->overClass = 'eyeIcon';
 		isset($params['useClass']) ? $this->useClass = $params['useClass'] : $this->useClass = 0;
 
-		if ($this->cent || /* utf8 */ stripos($this->image, 'extern=') !== false && IE > 0 && IE < 7) {
+		if ($this->cent || /* utf8 */ stripos($this->image, 'extern=') !== false) {
 			$info = @getimagesize(eyex('getThemeImage',array($this->image,3)));
 			$this->width = $info[0];
 			$this->height = $info[1];
