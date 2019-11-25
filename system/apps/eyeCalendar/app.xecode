@@ -144,13 +144,8 @@ function eyeCalendar_run($params = '') {
 	//Scroll box
 	//FF: 180
 	$height = $windowHeight-(83+40);
-	if(IE == 6){
-		$width = $windowWidth-185;
-	}elseif(IE == 7){
-		$width = $windowWidth-169;
-	}else{
-		$width = $windowWidth-182-4;
-	}
+	$width = $windowWidth-182-4;
+
 	$myContainer = new Simplebox(array('name'=>'calendarContainer','father'=>'container','x'=>167,'y'=>1,'width'=>$width,'height'=>$height,'border'=>0));
 	$myContainer->show(0);
 
