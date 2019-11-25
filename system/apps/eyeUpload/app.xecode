@@ -61,7 +61,7 @@ function eyeUpload_run($params = '') {
 		'tabwidth' => 90,
 		'useDisplay' => 0,
 		'width' => 466,
-		'x' => intval(!IE || IE > 6),
+		'x' => 0,
 		'y' => 5
 	));
 	$myTab->show();
