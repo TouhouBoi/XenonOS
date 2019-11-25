@@ -149,12 +149,6 @@ function eyeCalendar_run($params = '') {
 	$myContainer = new Simplebox(array('name'=>'calendarContainer','father'=>'container','x'=>167,'y'=>1,'width'=>$width,'height'=>$height,'border'=>0));
 	$myContainer->show(0);
 
-	if(!IE || IE < 7){
-		$myContainer->width += 15;
-		$width += 15;
-		$GLOBALS['calendarContainer']->setWidth($width);
-		$GLOBALS['calendarContainer']->setHeight($height);
-	}
 // 	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_calendarContainer_Container").style.overflowX="hidden";
 // 	document.getElementById("'.$myPid.'_calendarContainer_Container").style.overflowY="scroll";'));
 
