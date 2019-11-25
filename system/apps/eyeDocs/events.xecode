@@ -275,9 +275,6 @@ function eyeDocs_on_SelectFileSaveClose($params=null) {
 
 //no, I don't to save, so delete
 function eyeDocs_on_nDelete(){
-	if(!IE || IE > 7) {
-		$GLOBALS['fileContent']->richClean();
-	}
 	$GLOBALS['delete_warning']->close();
 	proc('end');
 }
