@@ -302,48 +302,82 @@
 				<entries-id>4</entries-id>
 			</element-7>
 			<element-8>
-				<type>line</type>
+				<hideImage>0</hideImage>
+				<hideText>0</hideText>
+				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/development.png</image>
+				<text>Developer</text>
+				<type>menu</type>
+				<entries>
+					<entry-1>
+						<command>eyeChess.app</command>
+						<hideImage>0</hideImage>
+						<hideText>0</hideText>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeChess.png</image>
+						<text>Chess Game</text>
+						<type>icon</type>
+					</entry-1>
+					<entry-2>
+						<command>eyeTetravex.app</command>
+						<hideImage>0</hideImage>
+						<hideText>0</hideText>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeTetravex.png</image>
+						<text>Tetravex Game</text>
+						<type>icon</type>
+					</entry-2>
+					<entry-3>
+						<command>eyeCatch.app</command>
+						<hideImage>0</hideImage>
+						<hideText>0</hideText>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeCatch.png</image>
+						<text>Catching Game</text>
+						<type>icon</type>
+					</entry-3>
+				</entries>
+				<entries-id>4</entries-id>
 			</element-8>
 			<element-9>
+				<type>line</type>
+			</element-9>
+			<element-10>
 				<command>eyeFiles.app</command>
 				<hideImage>0</hideImage>
 				<hideText>1</hideText>
 				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeFiles.png</image>
 				<text>File Manager</text>
 				<type>icon</type>
-			</element-9>
-			<element-10>
+			</element-10>
+			<element-11>
 				<command>eyeDocs.app</command>
 				<hideImage>0</hideImage>
 				<hideText>1</hideText>
 				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeDocs.png</image>
 				<text>Word Processor</text>
 				<type>icon</type>
-			</element-10>
-			<element-11>
+			</element-11>
+			<element-12>
 				<command>eyeShow.app</command>
 				<hideImage>0</hideImage>
 				<hideText>1</hideText>
 				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeShow.png</image>
 				<text>Presentation</text>
 				<type>icon</type>
-			</element-11>
-			<element-12>
+			</element-12>
+			<element-13>
 				<command>eyeMessages.app</command>
 				<hideImage>0</hideImage>
 				<hideText>1</hideText>
 				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeMessages.png</image>
 				<text>Messenger</text>
 				<type>icon</type>
-			</element-12>
-			<element-13>
+			</element-13>
+			<element-14>
 				<command>eyeCalendar.app</command>
 				<hideImage>0</hideImage>
 				<hideText>1</hideText>
 				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeCalendar.png</image>
 				<text>Calendar</text>
 				<type>icon</type>
-			</element-13>
+			</element-14>
 		</left>
 		<right>
 			<element-1>
