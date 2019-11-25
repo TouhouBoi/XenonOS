@@ -181,12 +181,7 @@ function eyeDesk_run($params = '') {
 			'id' => 'eyeOSCss',
 			'url' => 'index.php?theme=' . $theme . '&extern=css/eyeOS.css&type=css'
 		));
-		if (IE) {
-			eyex('loadCSS',array(
-				'id' => 'eyeOSIE' . IE . 'Css',
-				'url' => 'index.php?theme=' . $theme . '&extern=css/eyeOS_IE' . IE . '.css&type=css'
-			));
-		} else if (stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'chrome') !== false) { // utf8
+		if (stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'chrome') !== false) { // utf8
 			eyex('loadCSS',array(
 				'id' => 'eyeOSchromeCss',
 				'url' => 'index.php?theme=' . $theme . '&extern=css/eyeOS_chrome.css&type=css'
