@@ -74,7 +74,7 @@ class Imagebox {
 		isset($params['cssClass']) ? $this->myClass = $params['cssClass'] : $this->myClass = '';
 		isset($params['disableMsg']) ? $this->disableMsg = $params['disableMsg'] : $this->disableMsg = 1;
 		isset($params['signal']) ? $this->signal = $params['signal'] : $this->signal = $this->name;
-		if ($this->cent || /* utf8 */ stripos($this->url, 'extern=') !== false && IE > 0 && IE < 7) {
+		if ($this->cent || /* utf8 */ stripos($this->url, 'extern=') !== false) {
 			$info = @getimagesize(eyex('getThemeImage',array($this->url,3)));
 			if (!$this->width || $this->width == -1) {
 				$this->width = $info[0];
