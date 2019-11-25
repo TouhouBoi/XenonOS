@@ -30,10 +30,6 @@ function eyeCalendar_on_Launch($params="") {
 	$defaultView = eyeCalendar('getDefaultView');
 	_changeView($defaultView);
 	_paintDaysOfMonth();
-	if(IE > 5){
-		eyeX('sendMessage',array('msg'=>'reshow'));
-		return true;
-	}
 }
 function _getMonthDays($numOfMonth,$year){
 	$intDate = mktime(0,0,0,$numOfMonth+1,0,$year);
