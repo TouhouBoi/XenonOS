@@ -211,9 +211,6 @@ function eyeDocs_on_Close($params=null) {
 			'win_removepid' => 0
 		));
 	} else {
-		if(!IE || IE > 7) {
-			$GLOBALS['fileContent']->richClean();
-		}
 		proc('end');
 	}
 }
