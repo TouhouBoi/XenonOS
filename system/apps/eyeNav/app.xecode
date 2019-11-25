@@ -48,14 +48,7 @@ function eyeNav_run($params = '')
 
 	$myY = 65;
 
-	if (IE && IE < 8)
-	{
-		$myYimg = 66;
-	}
-	else
-	{
-		$myYimg = 65;
-	}
+	$myYimg = 65;
 
 	$myTextbox = new Textbox(
 		array (
