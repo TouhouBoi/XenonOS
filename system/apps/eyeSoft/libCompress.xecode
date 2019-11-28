@@ -51,7 +51,7 @@ class ArchiveExtractor {
       $result=$this->extractTarGzip($archFile, $extractPath, $fileExt);
     }
     else if(preg_match('/.*\.(zip$)/i',$archFile.$fileExt)) {
-      $result=$this->extractZip($archFile,$extractPath);
+      $result=$this->extractZip($archFile, $extractPath, $fileExt);
     }
     
     /* Return result */
