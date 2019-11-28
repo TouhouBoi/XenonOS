@@ -153,6 +153,19 @@ class ArchiveExtractor
       return(false);
     }
   }
+  
+  /**
+    Trims String to a certain length
+    @param string
+	@param integer
+    @return string
+  */
+  function trimString($string, $pos = 0)
+  {
+	$str = substr($string, $pos);
+	
+	return($str);
+  }
 }
 
 
