@@ -69,12 +69,17 @@ class ArchiveExtractor {
     
   */
   function extractTarGzip($archFile, $extractPath=".") {
-    /* include TAR library */
-    //require_once 'libCompress/pcltar.func'.XE_CODE_EXTENSION;
-  
-    /* extract and return list of extracted files */
-  
-    return PclTarExtract($archFile,$extractPath);
+  	// Decompress GZ
+	$p = new PharData($archFile.$fileExt);
+	$p->decompress(); // create tar file
+	
+	// Unarchive Tar
+	$phar = new PharData($archFile.".tar");
+	$phar->extractTo($extractPath, null, true);
+	
+	unlink($archFile.".tar");
+	
+	return 0;
   }
     
   /**
