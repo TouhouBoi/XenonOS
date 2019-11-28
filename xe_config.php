@@ -70,14 +70,17 @@ define('REAL_ROOTUSER', 'root');
 if (file_exists(XENONOS_COMMIT_PATH."developer"))
 {
 	$xenonos_commit_hash = file_get_contents(XENONOS_COMMIT_PATH."developer");
+	$xenonos_branch = "Developer";
 }
 else if (file_exists(XENONOS_COMMIT_PATH."master"))
 {
 	$xenonos_commit_hash = file_get_contents(XENONOS_COMMIT_PATH."master");
+	$xenonos_branch = "Production";
 }
 else
 {
 	$xenonos_commit_hash = "N/A";
+	$xenonos_branch = "N/A";
 }
 define('XENONOS_VERSION', '1.0.3alpha');
 define('XENONOS_COMMIT', $xenonos_commit_hash);
