@@ -61,7 +61,7 @@ function xeInstaller_on_Accept($params=null) {
 	$myButton->show();
 }
 
-function eyeInstaller_on_Close(){
+function xeInstaller_on_Close(){
 	proc('end');
 }
 
