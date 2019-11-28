@@ -39,7 +39,7 @@ function xeInstaller_on_Accept($params=null) {
 	$file_ext = ".xepackage";
 	copy($rfile, $path.$file_ext);
 	include(XENONOS_ROOT.'/'.APP_DIR.'/xeSoft/libCompress'.XE_CODE_EXTENSION);
-	lib_eyeCompress_extractFile(array(XENONOS_ROOT, $path, $file_ext));
+	lib_xeCompress_extractFile(array(XENONOS_ROOT, $path, $file_ext));
 	unlink($path.$file_ext);
 	$GLOBALS['Installing']->clear();
 	$myLabel1 = new Label(array(
