@@ -69,7 +69,7 @@ define('REAL_ROOTUSER', 'root');
 // XenonOS Version
 if (file_exists(XENONOS_COMMIT_PATH))
 {
-	$xenonos_commit_hash = file_get_contents("./.git/refs/remotes/origin/master");
+	$xenonos_commit_hash = file_get_contents(XENONOS_COMMIT_PATH);
 }
 else
 {
