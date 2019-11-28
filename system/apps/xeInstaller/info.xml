@@ -1,7 +1,7 @@
 <package>
-	<name>eyeInstaller</name>
+	<name>xeInstaller</name>
 	<category>System</category>
-	<version>1.9</version>
+	<version>1.0</version>
 	<description>Utility to install applications</description>
 	<author>Trinity</author>
 	<license>AGPL</license>

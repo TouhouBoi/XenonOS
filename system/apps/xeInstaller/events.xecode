@@ -1,0 +1,68 @@
+<?php
+/*
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+
+
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+
+*/
+
+function xeInstaller_on_Message($params="") {
+	global $currentUser;
+	if($currentUser != ROOTUSER) {
+		proc('end');
+		return;
+	}
+	eyeWidgets('updateContent',$params);
+}
+
+function xeInstaller_on_Cancel($params=null) {
+	proc('end');
+}
+
+function xeInstaller_on_Accept($params=null) {
+	$rfile = $GLOBALS['rfile']->text;
+	$path = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/swap/'.uniqid();
+	$file_ext = ".xepackage";
+	copy($rfile, $path.$file_ext);
+	include(XENONOS_ROOT.'/'.APP_DIR.'/xeSoft/libCompress'.XE_CODE_EXTENSION);
+	lib_xeCompress_extractFile(array(XENONOS_ROOT, $path, $file_ext));
+	unlink($path.$file_ext);
+	$GLOBALS['Installing']->clear();
+	$myLabel1 = new Label(array(
+		'name'=>'Label1',
+		'father'=>'Installing_Content',
+		'text'=>"Package installed successfully!",
+		'y'=>25,'x'=>20
+	));
+	$myLabel1->show();
+	$myButton = new Button(array(
+		'name'=> 'OK',
+		'father'=> 'Installing_Content',
+		'caption'=> 'OK',
+		'cent'=> 1,
+		'x'=> 0,'y'=> 20,
+		'width' => 70,
+		'signal'=> 'Close'
+	));
+	$myButton->show();
+}
+
+function xeInstaller_on_Close(){
+	proc('end');
+}
+
+?>

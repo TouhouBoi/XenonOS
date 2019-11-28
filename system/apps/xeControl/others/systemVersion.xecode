@@ -28,7 +28,20 @@ $myLabel = new Label(
 		'father' => $eyeContainer,
 		'horiz' => -0,
 		'y' => 2,
-		'text' => 'Xenon OS Version: '.XENONOS_VERSION,
+		'text' => 'XenonOS Version: '.XENONOS_VERSION,
+		'tokens' => array($it)
+	)
+);
+
+$myLabel->show();
+
+$myLabel = new Label(
+	array(
+		'name' => 'xeControl_systemversion_label_xenonbranch',
+		'father' => $eyeContainer,
+		'horiz' => -0,
+		'y' => 20,
+		'text' => 'XenonOS Branch: '.XENONOS_BRANCH,
 		'tokens' => array($it)
 	)
 );
@@ -40,7 +53,7 @@ $myLabel = new Label(
 		'name' => 'xeControl_systemversion_label_xenoncommit',
 		'father' => $eyeContainer,
 		'horiz' => -0,
-		'y' => 20,
+		'y' => 38,
 		'text' => 'XenonOS Commit: '.XENONOS_COMMIT,
 		'tokens' => array($it)
 	)
@@ -53,7 +66,7 @@ $myLabel = new Label(
 		'name' => 'xeControl_systemversion_label_xekernelversion',
 		'father' => $eyeContainer,
 		'horiz' => -0,
-		'y' => 38,
+		'y' => 56,
 		'text' => 'XeKernel Version: '.KE_KERNEL_VERSION,
 		'tokens' => array($it)
 	)
@@ -66,7 +79,7 @@ $myLabel = new Label(
 		'name' => 'xeControl_systemversion_label_xekernelhash',
 		'father' => $eyeContainer,
 		'horiz' => -0,
-		'y' => 56,
+		'y' => 74,
 		'text' => 'XeKernel SHA256 Hash: '.KE_KERNEL_HASH,
 		'tokens' => array($it)
 	)
@@ -79,7 +92,7 @@ $myLabel = new Label(
 		'name' => 'xeControl_systemversion_label_phpversion',
 		'father' => $eyeContainer,
 		'horiz' => -0,
-		'y' => 86,
+		'y' => 104,
 		'text' => 'Running PHP Version: '.$php_version,
 		'tokens' => array($it)
 	)
@@ -92,7 +105,7 @@ $myButton = new Button(
 		'name' => 'xeControl_systemversion_button_phpinfo',
 		'father' => $eyeContainer,
 		'horiz' => -0,
-		'y' => 104,
+		'y' => 122,
 		'caption' => 'PHP Info',
 		'signal' => 'php_info'
 	)

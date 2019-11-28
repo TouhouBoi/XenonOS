@@ -50,6 +50,7 @@ define('FILES_GROUP_DIR', 'files');
 define('CONF_GROUP_DIR', 'conf');
 define('LOG_DIR', 'logs');
 define('XENONOS_TMP_DIR', 'tmp');
+define('XENONOS_COMMIT_PATH', "./.git/refs/remotes/origin/");
 
 // XenonOS file extensions
 define('XENONOS_INFO_EXT', 'eyeInfo');
@@ -66,8 +67,24 @@ define('UM_MODULE', 'xenonos');
 define('REAL_ROOTUSER', 'root');
 
 // XenonOS Version
+if (file_exists(XENONOS_COMMIT_PATH."developer"))
+{
+	$xenonos_commit_hash = file_get_contents(XENONOS_COMMIT_PATH."developer");
+	$xenonos_branch = "Developer";
+}
+else if (file_exists(XENONOS_COMMIT_PATH."master"))
+{
+	$xenonos_commit_hash = file_get_contents(XENONOS_COMMIT_PATH."master");
+	$xenonos_branch = "Production";
+}
+else
+{
+	$xenonos_commit_hash = "N/A";
+	$xenonos_branch = "N/A";
+}
 define('XENONOS_VERSION', '1.0.3alpha');
-define('XENONOS_COMMIT', file_get_contents("./.git/refs/remotes/origin/master"));
+define('XENONOS_COMMIT', $xenonos_commit_hash);
+define('XENONOS_BRANCH', $xenonos_branch);
 
 // XeKernel Version
 define('KE_KERNEL_VERSION', '1.0.2alpha');

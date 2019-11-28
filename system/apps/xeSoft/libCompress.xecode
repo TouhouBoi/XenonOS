@@ -1,5 +1,23 @@
 <?php
-/**
+/*
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+
+
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+
 
   +----------------------------------------------------------+
   |                                                          |
@@ -23,16 +41,20 @@
 */
 
 
-function lib_eyeCompress_extractFile($params){
+function lib_xeCompress_extractFile($params)
+{
 	$dirToExtract = $params[0];
 	$fileToExtract = $params[1];
-    /* Init. ArchiveExtractor Object */
-	$archExtractor=new ArchiveExtractor();
-	$debug = $archExtractor->extractArchive($fileToExtract,$dirToExtract);
+	$fileExt = $params[2];
+	
+	$archExtractor = new ArchiveExtractor();
+	
+	$debug = $archExtractor->extractArchive($fileToExtract, $dirToExtract, $fileExt);
 }
 
 
-class ArchiveExtractor {
+class ArchiveExtractor
+{
   /**
 
     Extract Archive(TarGzip, Zip) based on file suffix
@@ -43,18 +65,20 @@ class ArchiveExtractor {
     @return array
 
   */
-  function extractArchive($archFile, $extractPath=".") {
-    $result="";
+  function extractArchive($archFile, $extractPath=".", $fileExt)
+  {
+    $result = "";
     
-    if(preg_match('/.*\.(tgz$)|(tar\.gz$)|(gz$)|(tar$)|(xepackage$)/i',$archFile)) {
-      $result=$this->extractTarGzip($archFile,$extractPath);
+    if (preg_match('/.*\.(tgz$)|(tar\.gz$)|(gz$)|(tar$)|(xepackage$)/i', $archFile.$fileExt))
+	{
+      $result = $this->extractTarGzip($archFile, $extractPath, $fileExt);
     }
-    else if(preg_match('/.*\.(zip$)/i',$archFile)) {
-      $result=$this->extractZip($archFile,$extractPath);
+    else if (preg_match('/.*\.(zip$)/i', $archFile.$fileExt))
+	{
+      $result = $this->extractZip($archFile, $extractPath, $fileExt);
     }
     
-    /* Return result */
-    return $result;
+    return($result);
   }
 
   /**
@@ -67,13 +91,40 @@ class ArchiveExtractor {
     @return string
     
   */
-  function extractTarGzip($archFile, $extractPath=".") {
-    /* include TAR library */
-    //require_once 'libCompress/pcltar.func'.XE_CODE_EXTENSION;
+  function extractTarGzip($archFile, $extractPath=".", $fileExt)
+  {
+  	// Decompress GZ
+	$p = new PharData($archFile.$fileExt);
+	$p->decompress(); // Create Tar File
+	
+	// Unarchive Tar
+	$phar = new PharData($archFile.".tar");
+	$phar->extractTo($extractPath, null, true);
+	
+	unlink($archFile.".tar");
+	
+	return(0);
+  }
   
-    /* extract and return list of extracted files */
-  
-    return PclTarExtract($archFile,$extractPath);
+  /**
+
+    Zip file extractor function
+    
+    @param string Archive file
+    @param string extraction path
+    
+    @return string
+    
+  */
+  function extractZip($archFile, $extractPath=".", $fileExt)
+  {	
+	// Unarchive Zip
+	$phar = new PharData($archFile.$fileExt);
+	$phar->extractTo($extractPath, null, true);
+	
+	unlink($archFile.$fileExt);
+	
+	return(0);
   }
     
   /**
@@ -81,12 +132,9 @@ class ArchiveExtractor {
     @param string
     @return array
   */
-  function getTarGzipList($archFile) {
-    /* include TAR library */
-  //  require_once 'libCompress/pcltar.func'.XE_CODE_EXTENSION.';
-    
-    /* return list */
-    return PclTarList($archFile);
+  function getTarGzipList($archFile)
+  {
+    return(PclTarList($archFile));
   }
 }
 
