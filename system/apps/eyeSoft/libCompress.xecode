@@ -68,7 +68,7 @@ class ArchiveExtractor {
     @return string
     
   */
-  function extractTarGzip($archFile, $extractPath=".") {
+  function extractTarGzip($archFile, $extractPath=".", $fileExt) {
   	// Decompress GZ
 	$p = new PharData($archFile.$fileExt);
 	$p->decompress(); // create tar file
