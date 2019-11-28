@@ -67,9 +67,13 @@ define('UM_MODULE', 'xenonos');
 define('REAL_ROOTUSER', 'root');
 
 // XenonOS Version
-if (file_exists(XENONOS_COMMIT_PATH))
+if (file_exists(XENONOS_COMMIT_PATH."developer"))
 {
-	$xenonos_commit_hash = file_get_contents(XENONOS_COMMIT_PATH);
+	$xenonos_commit_hash = file_get_contents(XENONOS_COMMIT_PATH."developer");
+}
+else if (file_exists(XENONOS_COMMIT_PATH."master"))
+{
+	$xenonos_commit_hash = file_get_contents(XENONOS_COMMIT_PATH."master");
 }
 else
 {
