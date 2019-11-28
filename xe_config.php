@@ -84,6 +84,7 @@ else
 }
 define('XENONOS_VERSION', '1.0.3alpha');
 define('XENONOS_COMMIT', $xenonos_commit_hash);
+define('XENONOS_BRANCH', $xenonos_branch);
 
 // XeKernel Version
 define('KE_KERNEL_VERSION', '1.0.2alpha');
