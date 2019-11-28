@@ -14,16 +14,16 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeSoft_on_Help($params = '') {
-	proc('launch',array('eyeHelp','eyeSoft'));
+function xeSoft_on_Help($params = '') {
+	proc('launch',array('eyeHelp','xeSoft'));
 }
 
-function eyeSoft_on_Message($params="") {
+function xeSoft_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
  
-function eyeSoft_on_Update($params=""){
-	// delete the old eyeSoft cache before downloading the new one
+function xeSoft_on_Update($params=""){
+	// delete the old xeSoft cache before downloading the new one
 	$dir = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/cache/';
 	if (vfs('real_fileExists', array($dir))) {
 		vfs('real_rmdir', array($dir));
@@ -47,14 +47,14 @@ function eyeSoft_on_Update($params=""){
 			}
 		}
 	}
-	eyeX('messageBox',array('content'=>'eyeSoft: Package list updated'));
-	eyeSoft_loadList();
+	eyeX('messageBox',array('content'=>'xeSoft: Package list updated'));
+	xeSoft_loadList();
 }
  
 function getInstalled($app) {
 	$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml'));
 	if (is_array($xml) === true) {
-		foreach($xml['eyeSoft'][0]['package'] as $package) {
+		foreach($xml['xeSoft'][0]['package'] as $package) {
 			if ($package['name'][0] == $app['name'][0]) {
 				if ($package['version'][0] != $app['version'][0]) {
 					return $package['version'][0];
@@ -66,14 +66,14 @@ function getInstalled($app) {
 	}
 }
  
-function eyeSoft_loadList($category=null,$search=null) {
+function xeSoft_loadList($category=null,$search=null) {
 	global $myPid;
-	eyeX('rawjs',array('js'=>"document.getElementById('".$myPid."_eyeSoftHidden_Content').innerHTML='';"));
+	eyeX('rawjs',array('js'=>"document.getElementById('".$myPid."_xeSoftHidden_Content').innerHTML='';"));
 	$content = vfs('real_getDirContent',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/cache/'));
 	$myHeader = array('App Name','Version','Installed');
 	$sortypes = array("String","String","String");
  
-	$myTable = new Sortabletable(array('name'=>'table_1','father'=>'eyeSoftHidden_Content',
+	$myTable = new Sortabletable(array('name'=>'table_1','father'=>'xeSoftHidden_Content',
 		'sortypes'=>$sortypes,'theader'=>$myHeader,'x'=>5,'y'=>0,'width'=>415,'height'=>330,'signal'=>'ClickTable'));
 	$myTable->show();
 	if($content) {
@@ -107,7 +107,7 @@ function eyeSoft_loadList($category=null,$search=null) {
 	}
 }
  
-function eyeSoft_on_ClickTable($params=null) {
+function xeSoft_on_ClickTable($params=null) {
 	$myApp = $GLOBALS['table_1']->selected;
 	$content = vfs('real_getDirContent',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/cache/'));
 	if($content) {
@@ -135,12 +135,12 @@ function eyeSoft_on_ClickTable($params=null) {
 	}
 }
  
-function eyeSoft_on_catExecute($params=null) {
+function xeSoft_on_catExecute($params=null) {
 	foreach($params as $key=>$value) {
 		if ( /* utf8 */ strpos($key, 'cat_lbl_') !== false) {
 			$category = $value[0];
 			if($category == i18n('translate',array('All'))) {
-				eyeSoft_loadList();
+				xeSoft_loadList();
 			} else {
 				global $language;
 				foreach ($language as $key => $value) {
@@ -149,20 +149,20 @@ function eyeSoft_on_catExecute($params=null) {
 						break;
 					}
 				}
-				eyeSoft_loadList($category);
+				xeSoft_loadList($category);
 			}
 			return;
 		}
 	}
 }
  
-function eyeSoft_on_Install($params=null){
+function xeSoft_on_Install($params=null){
 	$myApp = $GLOBALS['table_1']->selected;
 	if ($myApp) {
 		global $myPid;
 		global $checknum;
 		$info = getAppInformation($myApp);
-		$myWindow = new Window(array('name'=>'Installing','father'=>'eyeSoft_Content',
+		$myWindow = new Window(array('name'=>'Installing','father'=>'xeSoft_Content',
 			'type'=>NOLIST_CLOSE_WINDOW,'cent'=>1,'width'=>350,'height'=>240,
 			'title'=>'Installing','removepid'=>0));
 		$myWindow->show();
@@ -222,7 +222,7 @@ function eyeSoft_on_Install($params=null){
 	}
 }
  
-function eyeSoft_on_Accept($params=null) {
+function xeSoft_on_Accept($params=null) {
 	$GLOBALS['Installing']->clear();
 	$myApp = $GLOBALS['myApp']->text;
 	$myLabel1 = new Label(array('name'=>'Label1','father'=>'Installing_Content',
@@ -232,7 +232,7 @@ function eyeSoft_on_Accept($params=null) {
 	eyeX('sendMessage',array('msg'=>'stepInstall'));
 }
  
-function eyeSoft_on_stepInstall($params=null) {
+function xeSoft_on_stepInstall($params=null) {
 	$myApp = $GLOBALS['myApp']->text;
 	$info = getAppInformation($myApp);
 	$host = $info['address'][0];
@@ -247,29 +247,29 @@ function eyeSoft_on_stepInstall($params=null) {
 		$myLabel1->show();
 		return;
 	}
-	include(XENONOS_ROOT.'/'.APP_DIR.'/eyeSoft/libCompress'.XE_CODE_EXTENSION);
+	include(XENONOS_ROOT.'/'.APP_DIR.'/xeSoft/libCompress'.XE_CODE_EXTENSION);
 	lib_eyeCompress_extractFile(array(XENONOS_ROOT,$fpath));
 	unlink($fpath);
 	$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml'));
 	if (is_array($xml) === true) {
-		foreach ($xml['eyeSoft'][0]['package'] as $key => $value) {
+		foreach ($xml['xeSoft'][0]['package'] as $key => $value) {
 			if ($value['name'][0] == $info['name'][0]) {
-				unset($xml['eyeSoft'][0]['package'][$key]);
+				unset($xml['xeSoft'][0]['package'][$key]);
 			}
 		}
 	}
 	$array['name'][0] = $info['name'][0];
 	$array['version'][0] = $info['version'][0];
-	$xml['eyeSoft'][0]['package'][] = $array;
+	$xml['xeSoft'][0]['package'][] = $array;
 	eyeXML('setXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml',$xml));
 	$GLOBALS['Installing']->clear();
 	$myLabel1 = new Label(array('name'=>'Label1','father'=>'Installing_Content',
 		'text'=>"%s installed succesfully!",'tokens' => array($myApp),'y'=>15,'x'=>20));
 	$myLabel1->show();
-	eyeSoft_loadList();
+	xeSoft_loadList();
 }
  
-function eyeSoft_on_Cancel($params=null) {
+function xeSoft_on_Cancel($params=null) {
 	$GLOBALS['Installing']->close();
 }
  
@@ -294,22 +294,22 @@ function getAppInformation($myApp) {
 	}
 }
  
-function eyeSoft_on_search() {
-	eyeSoft_loadList(null,$GLOBALS['search']->text);
+function xeSoft_on_search() {
+	xeSoft_loadList(null,$GLOBALS['search']->text);
 }
  
-function eyeSoft_on_Close(){
+function xeSoft_on_Close(){
 	proc('end');
 }
  
-function eyeSoft_on_Uninstall($params = '') {
+function xeSoft_on_Uninstall($params = '') {
 	$app = $GLOBALS['table_1']->selected;
 	if ($app) {
 		eyex('messageBox',array(
 			'content' => 'Do you really want to uninstall this application?',
 			'type' => 3,
 			'title' => 'Uninstall application',
-			'win_name' => 'eyeSoft_uninstall_window',
+			'win_name' => 'xeSoft_uninstall_window',
 			'win_style' => TITLE + CLOSE,
 			'win_removepid' => 0,
 			'btn1_capt' => 'Yes',
@@ -318,7 +318,7 @@ function eyeSoft_on_Uninstall($params = '') {
 			'btn2_name' => 'Uninstall_no',
 			'hidden_text' => $app,
 			'hidden_name' => 'uninstall_hidden',
-			'father' => 'eyeSoft_Content',
+			'father' => 'xeSoft_Content',
 			'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/editClean.png'
 		));
 	} else {
@@ -326,7 +326,7 @@ function eyeSoft_on_Uninstall($params = '') {
 	}
 }
  
-function eyeSoft_on_Uninstall_yes($params = '') {
+function xeSoft_on_Uninstall_yes($params = '') {
 	$app = $GLOBALS['uninstall_hidden']->text;
 	if ($app) {
 		$appDir = XENONOS_ROOT . '/' . APP_DIR . '/' . $app;
@@ -343,9 +343,9 @@ function eyeSoft_on_Uninstall_yes($params = '') {
 				}
 				$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml'));
 				$x = 0;
-				foreach($xml['eyeSoft'][0]['package'] as $package) {
+				foreach($xml['xeSoft'][0]['package'] as $package) {
 					if ($package['name'][0] == $app) {
-						unset($xml['eyeSoft'][0]['package'][$x]);
+						unset($xml['xeSoft'][0]['package'][$x]);
 					}
 					$x++;
 				}
@@ -355,12 +355,12 @@ function eyeSoft_on_Uninstall_yes($params = '') {
 			return;
 		}
 		eyex('messageBox',array('content' => 'The application was successfully uninstalled.'));
-		$GLOBALS['eyeSoft_uninstall_window']->close();
-		eyeSoft_loadList();
+		$GLOBALS['xeSoft_uninstall_window']->close();
+		xeSoft_loadList();
 	}
 }
  
-function eyeSoft_on_Uninstall_no($params = '') {
-	$GLOBALS['eyeSoft_uninstall_window']->close();
+function xeSoft_on_Uninstall_no($params = '') {
+	$GLOBALS['xeSoft_uninstall_window']->close();
 }
 ?>

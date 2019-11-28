@@ -149,7 +149,7 @@ function xeControl_on_eyesoft_delete($params = '') {
 	if ($mirror && $mirror != EYECONTROL_DEFAULT_REPOSITORY) {
 		eyex('messageBox',array(
 			'buttons' => array(array('eyesoft_delete_yes','Yes'),array('eyesoft_delete_no','No')),
-			'content' => 'Do you really want to remove this mirror from eyeSoft?',
+			'content' => 'Do you really want to remove this mirror from xeSoft?',
 			'father' => 'xeControl_container_big',
 			'hiddens' => array(array('eyesoft_delete_hidden',$mirror)),
 			'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/editClean.png',

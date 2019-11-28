@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeSoft_run($params=null) {
+function xeSoft_run($params=null) {
 	global $currentUser;
 	global $myPid;
 	if($currentUser != ROOTUSER) {
@@ -24,38 +24,38 @@ function eyeSoft_run($params=null) {
 	}
 	$config = eyeXML('getXMLfile',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports.xml'));
 
-	$myWindow = new Window(array('name'=>'eyeSoft','father'=>'eyeApps',
+	$myWindow = new Window(array('name'=>'xeSoft','father'=>'eyeApps',
 	'cent'=>1,'width'=>650,'height'=>570,'title'=>'Packages Manager','style' => TITLE + LISTED + MIN + CLOSE,'savePosition' => 1));
 	$myWindow->show();
 
-	$myWindow = new Window(array('name'=>'eyeSoftHidden','father'=>'eyeSoft_Content',
+	$myWindow = new Window(array('name'=>'xeSoftHidden','father'=>'xeSoft_Content',
 	'width'=>430,'height'=>360,'type'=>100,'x'=>207,'y'=>33));
 	$myWindow->show();
 
-	$myTextBox = new Textbox(array('name'=>'search','father'=>'eyeSoft_Content',
+	$myTextBox = new Textbox(array('name'=>'search','father'=>'xeSoft_Content',
 		'x'=>90,'y'=>15,'width'=>180,'horiz'=>1));
 	$myTextBox->show();
 	$myTextBox->addEnterEventMsg('search');
 
-	$myButton = new Button(array('name'=>'doSearch','father'=>'eyeSoft_Content',
+	$myButton = new Button(array('name'=>'doSearch','father'=>'xeSoft_Content',
 		'caption'=>'Search','x'=>12,'y'=>$myTextBox->y-1,'signal'=>'search','horiz'=>1));
 	$myButton->addFriend($myTextBox);
 	$myButton->show();
 
-	$myBox = new Box(array('name'=>'BOX_1','father'=>'eyeSoft_Content','x'=>15,'y'=>56,'width'=>182,
+	$myBox = new Box(array('name'=>'BOX_1','father'=>'xeSoft_Content','x'=>15,'y'=>56,'width'=>182,
 		'height'=>331,'title'=>'Categories'));
 	$myBox->show();
 
 	$myHeader = array('App Name','Version','Installed');
 	$sortypes = array("String","String","String");
 
-	$myTable = new Sortabletable(array('name'=>'table_1','father'=>'eyeSoftHidden_Content',
+	$myTable = new Sortabletable(array('name'=>'table_1','father'=>'xeSoftHidden_Content',
 		'sortypes'=>$sortypes,'theader'=>$myHeader,'x'=>5,'y'=>0,'width'=>415,'height'=>330));
 	$myTable->show();
 
 	$myButton = new Button(array(
 		'name'=>'Install',
-		'father'=>'eyeSoft_Content',
+		'father'=>'xeSoft_Content',
 		'signal'=>'Install',
 		'caption'=>'Install',
 		'x'=>20,'y'=>15,
@@ -66,7 +66,7 @@ function eyeSoft_run($params=null) {
 
 	$myButton = new Button(array(
 		'name'=>'Update',
-		'father'=>'eyeSoft_Content',
+		'father'=>'xeSoft_Content',
 		'signal'=>'Update',
 		'caption'=>'Update',
 		'x'=>110,'y'=>15,
@@ -76,7 +76,7 @@ function eyeSoft_run($params=null) {
 
 	$myButton = new Button(array(
 		'name'=>'Uninstall',
-		'father'=>'eyeSoft_Content',
+		'father'=>'xeSoft_Content',
 		'signal'=>'Uninstall',
 		'caption'=>'Uninstall',
 		'x'=>200,'y'=>15,
@@ -87,7 +87,7 @@ function eyeSoft_run($params=null) {
 
 	$myButton = new Button(array(
 		'name'=>'Help',
-		'father'=>'eyeSoft_Content',
+		'father'=>'xeSoft_Content',
 		'signal'=>'Help',
 		'caption'=>'Help',
 		'x'=>300,'y'=>15,
@@ -95,7 +95,7 @@ function eyeSoft_run($params=null) {
 	));
 	$myButton->show();
 
-	$myTextArea = new Textarea(array('name'=>'description','father'=>'eyeSoft_Content',
+	$myTextArea = new Textarea(array('name'=>'description','father'=>'xeSoft_Content',
 		'width'=>614,'height'=>145,'x'=>15,'y'=>392,'enabled'=>0));
 	$myTextArea->show();
 	//read categories
@@ -109,11 +109,11 @@ function eyeSoft_run($params=null) {
 		$myLabel1->setCss(array('cursor'=>'Pointer'));
 		$counter++;
 	}
-	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeSoft/events'.XE_CODE_EXTENSION);
-	eyeSoft_loadList();
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/xeSoft/events'.XE_CODE_EXTENSION);
+	xeSoft_loadList();
 }
 
-function eyeSoft_end($params=null) {
+function xeSoft_end($params=null) {
 	eyeWidgets('unserialize');
 }
 

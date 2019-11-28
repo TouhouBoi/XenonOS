@@ -423,10 +423,10 @@ $alias[1][APP_DIR . '/eyeSnow/1.png'] = 'images/' . APP_DIR . '/eyeSnow/1.png';
 $alias[1][APP_DIR . '/eyeSnow/2.png'] = 'images/' . APP_DIR . '/eyeSnow/2.png';
 $alias[1][APP_DIR . '/eyeSnow/3.png'] = 'images/' . APP_DIR . '/eyeSnow/3.png';
 
-// eyeSoft
-$alias[1][APP_DIR . '/eyeSoft/gfx/install.png'] = 'icons/16x16/plus.png';
-$alias[1][APP_DIR . '/eyeSoft/gfx/refresh.png'] = 'icons/16x16/refresh.png';
-$alias[1][APP_DIR . '/eyeSoft/gfx/uninstall.png'] = 'icons/16x16/minus.png';
+// xeSoft
+$alias[1][APP_DIR . '/xeSoft/gfx/install.png'] = 'icons/16x16/plus.png';
+$alias[1][APP_DIR . '/xeSoft/gfx/refresh.png'] = 'icons/16x16/refresh.png';
+$alias[1][APP_DIR . '/xeSoft/gfx/uninstall.png'] = 'icons/16x16/minus.png';
 
 // eyeTrash
 $alias[1][APP_DIR . '/eyeTrash/gfx/empty.png'] = 'icons/16x16/delete.png';

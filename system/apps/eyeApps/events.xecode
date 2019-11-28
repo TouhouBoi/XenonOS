@@ -48,7 +48,7 @@ function eyeApps_on_Icon_Clicked($params = '') {
 }
 
 function eyeApps_on_InstallApps($params = '') {
-	proc('launch',array('eyeSoft'));
+	proc('launch',array('xeSoft'));
 }
 
 function eyeApps_on_ManageDock($params = '') {
