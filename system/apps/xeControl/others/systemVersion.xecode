@@ -79,7 +79,7 @@ $myLabel = new Label(
 		'name' => 'xeControl_systemversion_label_xekernelhash',
 		'father' => $eyeContainer,
 		'horiz' => -0,
-		'y' => 86,
+		'y' => 74,
 		'text' => 'XeKernel SHA256 Hash: '.KE_KERNEL_HASH,
 		'tokens' => array($it)
 	)
