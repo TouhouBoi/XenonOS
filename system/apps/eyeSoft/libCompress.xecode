@@ -47,7 +47,7 @@ class ArchiveExtractor {
   function extractArchive($archFile, $extractPath=".", $fileExt) {
     $result="";
     
-    if(preg_match('/.*\.(tgz$)|(tar\.gz$)|(gz$)|(tar$)|(xepackage$)/i',$archFile)) {
+    if(preg_match('/.*\.(tgz$)|(tar\.gz$)|(gz$)|(tar$)|(xepackage$)/i',$archFile.$fileExt)) {
       $result=$this->extractTarGzip($archFile,$extractPath);
     }
     else if(preg_match('/.*\.(zip$)/i',$archFile)) {
