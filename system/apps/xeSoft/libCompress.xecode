@@ -166,6 +166,50 @@ class ArchiveExtractor
 	
 	return($str);
   }
+  
+  /**
+    getReducedPath Function
+    @param string
+    @return string
+  */  
+  function getReducedPath($dir)
+  {
+    $result = "";
+
+    // ----- Look for not empty path
+    if ($dir != "")
+    {
+      // ----- Explode path by directory names
+      $list = explode("/", $dir);
+
+      // ----- Study directories from last to first
+      for ($i=sizeof($list)-1; $i>=0; $i--)
+      {
+        // ----- Look for current path
+        if ($list[$i] == ".")
+        {
+          // ----- Ignore this directory
+          // Should be the first $i=0, but no check is done
+        }
+        else if ($list[$i] == "..")
+        {
+          // ----- Ignore it and ignore the $i-1
+          $i--;
+        }
+        else if (($list[$i] == "") && ($i!=(sizeof($list)-1)) && ($i!=0))
+        {
+          // ----- Ignore only the double '//' in path,
+          // but not the first and last '/'
+        }
+        else
+        {
+          $result = $list[$i].($i!=(sizeof($list)-1)?"/".$result:"");
+        }
+      }
+    }
+
+    return($result);
+  }
 }
 
 
