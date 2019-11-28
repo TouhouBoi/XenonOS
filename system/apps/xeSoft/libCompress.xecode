@@ -136,6 +136,23 @@ class ArchiveExtractor
   {
     return(PclTarList($archFile));
   }
+  
+  /**
+	Checks if crc32 is valid
+	@param string
+	@return bool
+  */
+  function crc32HashCheck($crc32)
+  {
+    if (preg_match("/^\d+$/", $crc32))
+	{
+      return(true);
+    }
+	else
+	{
+      return(false);
+    }
+  }
 }
 
 
