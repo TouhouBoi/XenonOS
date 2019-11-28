@@ -20,7 +20,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeInstaller_run($params=null) {
+function xeInstaller_run($params=null) {
 	global $currentUser;
 	if($currentUser != ROOTUSER) {
 		eyeX('messageBox', array('content' => 'Only root can install packages'));
@@ -100,7 +100,7 @@ function eyeInstaller_run($params=null) {
 	eyeWidgets('serialize',array($myHidden));
 }
 
-function eyeInstaller_end($params=null) {
+function xeInstaller_end($params=null) {
 	eyeWidgets('unserialize');
 }
 
