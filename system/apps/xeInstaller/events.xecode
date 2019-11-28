@@ -20,7 +20,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeInstaller_on_Message($params="") {
+function xeInstaller_on_Message($params="") {
 	global $currentUser;
 	if($currentUser != ROOTUSER) {
 		proc('end');
