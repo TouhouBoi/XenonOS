@@ -20,27 +20,32 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function xeSoft_run($params=null) {
+function xeSoft_run($params = null)
+{
 	global $currentUser;
 	global $myPid;
-	if($currentUser != ROOTUSER) {
-		eyex('messageBox',array('content'=>'Only root can install eyeApps'));
+	
+	if ($currentUser != ROOTUSER)
+	{
+		eyex('messageBox', array('content' => 'Only the Root Account Can Install xeApps'));
 		proc('end');
-		return;
+		return();
 	}
+	
 	$config = eyeXML('getXMLfile',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports.xml'));
 
-	$myWindow = new Window(array('name'=>'xeSoft','father'=>'eyeApps',
-	'cent'=>1,'width'=>650,'height'=>570,'title'=>'Packages Manager','style' => TITLE + LISTED + MIN + CLOSE,'savePosition' => 1));
+	$myWindow = new Window(array('name' => 'xeSoft', 'father' => 'eyeApps', 'cent' => 1, 'width' => 650, 'height' => 570, 'title' => 'Packages Manager', 'style' => TITLE + LISTED + MIN + CLOSE, 'savePosition' => 1));
+	
 	$myWindow->show();
 
-	$myWindow = new Window(array('name'=>'xeSoftHidden','father'=>'xeSoft_Content',
-	'width'=>430,'height'=>360,'type'=>100,'x'=>207,'y'=>33));
+	$myWindow = new Window(array('name' => 'xeSoftHidden', 'father' => 'xeSoft_Content', 'width' => 430, 'height' => 360, 'type' => 100, 'x' => 207, 'y' => 33));
+	
 	$myWindow->show();
 
-	$myTextBox = new Textbox(array('name'=>'search','father'=>'xeSoft_Content',
-		'x'=>90,'y'=>15,'width'=>180,'horiz'=>1));
+	$myTextBox = new Textbox(array('name' => 'search', 'father' => 'xeSoft_Content', 'x' => 90, 'y' => 15, 'width' => 180, 'horiz' => 1));
+	
 	$myTextBox->show();
+	
 	$myTextBox->addEnterEventMsg('search');
 
 	$myButton = new Button(array('name'=>'doSearch','father'=>'xeSoft_Content',
@@ -107,7 +112,7 @@ function xeSoft_run($params=null) {
 	//read categories
 	$counter=1;
 
-	foreach($config['eyePorts'][0]['categories'][0]['category'] as $value) {;
+	foreach($config['eyePorts'][0]['categories'][0]['category'] as $value) {
 		$Yofset = $counter * 25+10;
 		$myLabel1 = new Label(array('name'=>'cat_lbl_'.$counter,
 			'father'=>'BOX_1','text'=>$value,'y'=>$Yofset,'x'=>15,'disablemsg'=>0,'signal'=>'catExecute'));
@@ -115,11 +120,14 @@ function xeSoft_run($params=null) {
 		$myLabel1->setCss(array('cursor'=>'Pointer'));
 		$counter++;
 	}
+	
 	include_once(XENONOS_ROOT.'/'.APP_DIR.'/xeSoft/events'.XE_CODE_EXTENSION);
+	
 	xeSoft_loadList();
 }
 
-function xeSoft_end($params=null) {
+function xeSoft_end($params = null)
+{
 	eyeWidgets('unserialize');
 }
 
