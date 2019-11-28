@@ -28,7 +28,7 @@ $myLabel = new Label(
 		'father' => $eyeContainer,
 		'horiz' => -0,
 		'y' => 2,
-		'text' => 'Xenon OS Version: '.XENONOS_VERSION,
+		'text' => 'XenonOS Version: '.XENONOS_VERSION,
 		'tokens' => array($it)
 	)
 );
