@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function lib_eyeCompress_extractFile($params=null){
+function lib_xeCompress_extractFile($params=null){
 
 	if($params == null || count($params) < 3){
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
