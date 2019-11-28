@@ -29,7 +29,7 @@ function xeInstaller_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeInstaller_on_Cancel($params=null) {
+function xeInstaller_on_Cancel($params=null) {
 	proc('end');
 }
 
