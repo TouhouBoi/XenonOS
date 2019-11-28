@@ -134,7 +134,62 @@ class ArchiveExtractor
   */
   function getTarGzipList($archFile)
   {
-    return(PclTarList($archFile));
+	$list = array();
+	$archive = new PharData($archFile);
+	
+	foreach(new RecursiveIteratorIterator($archive) as $file)
+	{
+		$file_status = "";
+		$file_typeflag = 0;
+		
+		$archive_filename = basename($archFile);
+		
+		$file_checksum = $file->getCRC32();
+		$file_name = $file->getBasename();
+		$file_mode = $file->getPerms();
+		$file_uid = $file->getOwner();
+		$file_gid = $file->getGroup();
+		$file_size = $file->getSize();
+		$file_mtime = $file->getMTime();
+		$file_path = $this->getReducedPath($file);
+		
+		$tar_filename_count = strpos($file_path, $archive_filename);
+		$tar_filename = $this->trimString($file_path, $tar_filename_count);
+		$tar_filepath = str_replace($archive_filename, "", $tar_filename);
+		
+		if ($file->isDir())
+		{
+			$file_typeflag = 5;
+		}
+		else
+		{
+			$file_typeflag = 0;
+		}
+		
+		if ($this->crc32HashCheck($file_checksum) == true)
+		{
+			$file_status = "ok";
+		}
+		else
+		{
+			$file_status = "checksum_failed";
+		}
+		
+		$file_details = array(
+			"checksum" => $file_checksum,
+			"filename" => $tar_filepath,
+			"mode" => $file_mode,
+			"uid" => $file_uid,
+			"gid" => $file_gid,
+			"size" => $file_size,
+			"mtime" => $file_mtime,
+			"typeflag" => $file_typeflag,
+			"status" => $file_status
+		);
+		
+		array_push($list, $file_details);
+	}
+	return($list);
   }
   
   /**
