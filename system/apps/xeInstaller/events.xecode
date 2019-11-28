@@ -33,7 +33,7 @@ function xeInstaller_on_Cancel($params=null) {
 	proc('end');
 }
 
-function eyeInstaller_on_Accept($params=null) {
+function xeInstaller_on_Accept($params=null) {
 	$rfile = $GLOBALS['rfile']->text;
 	$path = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/swap/'.uniqid();
 	$file_ext = ".xepackage";
