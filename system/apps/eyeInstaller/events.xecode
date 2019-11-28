@@ -33,7 +33,7 @@ function eyeInstaller_on_Accept($params=null) {
 	$file_ext = ".xepackage";
 	copy($rfile, $path.$file_ext);
 	include(XENONOS_ROOT.'/'.APP_DIR.'/eyeSoft/libCompress'.XE_CODE_EXTENSION);
-	lib_eyeCompress_extractFile(array(XENONOS_ROOT,$path));
+	lib_eyeCompress_extractFile(array(XENONOS_ROOT, $path, $file_ext));
 	unlink($path);
 	$GLOBALS['Installing']->clear();
 	$myLabel1 = new Label(array(
