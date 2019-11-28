@@ -81,6 +81,26 @@ class ArchiveExtractor {
 	
 	return 0;
   }
+  
+  /**
+
+    Zip file extractor function
+    
+    @param string Archive file
+    @param string extraction path
+    
+    @return string
+    
+  */
+  function extractZip($archFile, $extractPath=".", $fileExt) {	
+	// Unarchive Zip
+	$phar = new PharData($archFile.$fileExt);
+	$phar->extractTo($extractPath, null, true);
+	
+	unlink($archFile.$fileExt);
+	
+	return 0;
+  }
     
   /**
     Get Tar/Gzip archive's file list
