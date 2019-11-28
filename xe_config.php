@@ -50,6 +50,7 @@ define('FILES_GROUP_DIR', 'files');
 define('CONF_GROUP_DIR', 'conf');
 define('LOG_DIR', 'logs');
 define('XENONOS_TMP_DIR', 'tmp');
+define('XENONOS_COMMIT_PATH', "./.git/refs/remotes/origin/master");
 
 // XenonOS file extensions
 define('XENONOS_INFO_EXT', 'eyeInfo');
