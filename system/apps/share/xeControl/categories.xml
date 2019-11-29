@@ -154,7 +154,7 @@
 			<description>Manage the packages repositories</description>
 			<display>Repositories</display>
 			<img>index.php?theme=USERTHEME&amp;extern=icons/48x48/software.png</img>
-			<name>eyesoft</name>
+			<name>xeSoft</name>
 			<permissions>root</permissions>
 			<title>yes</title>
 		</content>
