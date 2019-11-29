@@ -21,10 +21,16 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 /*
-	XenonOS Main Configuration file.
+	XenonOS XeBuild File.
 */
 
-// File Paths
+/*
+	WARNING
+	This File Contains Build Information for XenonOS and Should Not Be Edited!
+	Editing This File Could Break your Installation of XenonOS.
+*/
+
+// System File Paths
 define('XENONOS_ROOT', '.');
 define('REAL_XENONOS_ROOT', 'system');
 define('SYSTEM_DIR', 'system');
