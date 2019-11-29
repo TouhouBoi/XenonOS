@@ -75,39 +75,8 @@ class HTTP_Request extends HTTP_Request2 {
 */
 function lib_eyeURL_getRawFile($params) {
 	$url = $params['url'];
-
-	if (!$url) {
-		return false;
-	}
-
-	preg_match('/^\\s*(?:\\w+:\\/{2})?(.*?)(:\\d+)?(\\/.*)$/',$url, $matches);
-
-	$host = $matches[1];
-	$port = $matches[2];
-	$path = $matches[3];
-
-	if (!$port) {
-		$port = 80;
-	}
-
-	if (!$path) {
-		$path = '/';
-	}
-
-	$socket = fsockopen($host, $port);
-    if (!$socket) {
-		return false;
-    }
-	fwrite ($socket, "GET $path HTTP/1.1\n");
-	fwrite ($socket, "Host: $host\n");
-	fwrite ($socket, "Connection: close\n\n");
-	$bufer = "";
-	while (! feof ($socket)) {
-		$bufer .= fread ($socket, 4096);
-	}
-	fclose ($socket);
-	$bufer = preg_replace('/^.*?(\\r?\\n){2}/s', '', $bufer);
-	return $bufer;
+	$content = file_get_contents($url);
+	return($content);
 }
 
 /**
