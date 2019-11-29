@@ -246,7 +246,7 @@ function xeSoft_on_stepInstall($params=null) {
 	$url = "https://".$host.$path;
 	$fpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/swap/'.basename($info['filename'][0]);
 	vfs('real_putFileContent', array($fpath, eyeURL('getRawFile', array('url' => $url))));
-	if(md5_file($fpath) != $info['key'][0]) {
+	if(md5_file($fpath) != $info['sha256'][0]) {
 		$GLOBALS['Installing']->clear();
 		$myLabel1 = new Label(array('name'=>'Label1','father'=>'Installing_Content',
 			'text'=>'%s download is corrupted! unable to install','tokens' => array($myApp),'y'=>15,'x'=>20));
