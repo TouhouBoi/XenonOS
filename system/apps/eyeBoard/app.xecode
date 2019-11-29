@@ -25,12 +25,12 @@ function eyeBoard_run($params=null) {
 	global $currentUser;
 
 	$myWindow = new Window(array(
-		'name'=>'Local Messaging',
+		'name'=>'eyeBoard_Content',
 		'father'=>'eyeApps',
 		'type'=>NORMAL_WINDOW,
 		'cent'=>1,'width'=>450,
 		'height'=>380,
-		'title'=>'Public Board',
+		'title'=>'Local Messaging',
 		'savePosition' => 1,
 		'sendResizeMsg'=>1,
 		'sigResize'=>'mainResize'

@@ -134,7 +134,136 @@ class ArchiveExtractor
   */
   function getTarGzipList($archFile)
   {
-    return(PclTarList($archFile));
+	$list = array();
+	$archive = new PharData($archFile);
+	
+	foreach(new RecursiveIteratorIterator($archive) as $file)
+	{
+		$file_status = "";
+		$file_typeflag = 0;
+		
+		$archive_filename = basename($archFile);
+		
+		$file_checksum = $file->getCRC32();
+		$file_name = $file->getBasename();
+		$file_mode = $file->getPerms();
+		$file_uid = $file->getOwner();
+		$file_gid = $file->getGroup();
+		$file_size = $file->getSize();
+		$file_mtime = $file->getMTime();
+		$file_path = $this->getReducedPath($file);
+		
+		$tar_filename_count = strpos($file_path, $archive_filename);
+		$tar_filename = $this->trimString($file_path, $tar_filename_count);
+		$tar_filepath = str_replace($archive_filename, "", $tar_filename);
+		
+		if ($file->isDir())
+		{
+			$file_typeflag = 5;
+		}
+		else
+		{
+			$file_typeflag = 0;
+		}
+		
+		if ($this->crc32HashCheck($file_checksum) == true)
+		{
+			$file_status = "ok";
+		}
+		else
+		{
+			$file_status = "checksum_failed";
+		}
+		
+		$file_details = array(
+			"checksum" => $file_checksum,
+			"filename" => $tar_filepath,
+			"mode" => $file_mode,
+			"uid" => $file_uid,
+			"gid" => $file_gid,
+			"size" => $file_size,
+			"mtime" => $file_mtime,
+			"typeflag" => $file_typeflag,
+			"status" => $file_status
+		);
+		
+		array_push($list, $file_details);
+	}
+	return($list);
+  }
+  
+  /**
+	Checks if crc32 is valid
+	@param string
+	@return bool
+  */
+  function crc32HashCheck($crc32)
+  {
+    if (preg_match("/^\d+$/", $crc32))
+	{
+      return(true);
+    }
+	else
+	{
+      return(false);
+    }
+  }
+  
+  /**
+    Trims String to a certain length
+    @param string
+	@param integer
+    @return string
+  */
+  function trimString($string, $pos = 0)
+  {
+	$str = substr($string, $pos);
+	
+	return($str);
+  }
+  
+  /**
+    getReducedPath Function
+    @param string
+    @return string
+  */  
+  function getReducedPath($dir)
+  {
+    $result = "";
+
+    // ----- Look for not empty path
+    if ($dir != "")
+    {
+      // ----- Explode path by directory names
+      $list = explode("/", $dir);
+
+      // ----- Study directories from last to first
+      for ($i=sizeof($list)-1; $i>=0; $i--)
+      {
+        // ----- Look for current path
+        if ($list[$i] == ".")
+        {
+          // ----- Ignore this directory
+          // Should be the first $i=0, but no check is done
+        }
+        else if ($list[$i] == "..")
+        {
+          // ----- Ignore it and ignore the $i-1
+          $i--;
+        }
+        else if (($list[$i] == "") && ($i!=(sizeof($list)-1)) && ($i!=0))
+        {
+          // ----- Ignore only the double '//' in path,
+          // but not the first and last '/'
+        }
+        else
+        {
+          $result = $list[$i].($i!=(sizeof($list)-1)?"/".$result:"");
+        }
+      }
+    }
+
+    return($result);
   }
 }
 

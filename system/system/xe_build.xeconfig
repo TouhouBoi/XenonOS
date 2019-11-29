@@ -21,10 +21,16 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 /*
-	XenonOS Main Configuration file.
+	XenonOS XeBuild File.
 */
 
-// File Paths
+/*
+	WARNING
+	This File Contains Build Information for XenonOS and Should Not Be Edited!
+	Editing This File Could Break your Installation of XenonOS.
+*/
+
+// System File Paths
 define('XENONOS_ROOT', '.');
 define('REAL_XENONOS_ROOT', 'system');
 define('SYSTEM_DIR', 'system');
@@ -82,7 +88,7 @@ else
 	$xenonos_commit_hash = "N/A";
 	$xenonos_branch = "N/A";
 }
-define('XENONOS_VERSION', '1.0.3alpha');
+define('XENONOS_VERSION', '1.0.4alpha');
 define('XENONOS_COMMIT', $xenonos_commit_hash);
 define('XENONOS_BRANCH', $xenonos_branch);
 

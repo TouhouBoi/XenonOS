@@ -312,29 +312,13 @@
 				<type>menu</type>
 				<entries>
 					<entry-1>
-						<command>eyeChess.app</command>
+						<command>xeControl.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeChess.png</image>
-						<text>Chess Game</text>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/info.png</image>
+						<text>System Version</text>
 						<type>icon</type>
 					</entry-1>
-					<entry-2>
-						<command>eyeTetravex.app</command>
-						<hideImage>0</hideImage>
-						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeTetravex.png</image>
-						<text>Tetravex Game</text>
-						<type>icon</type>
-					</entry-2>
-					<entry-3>
-						<command>eyeCatch.app</command>
-						<hideImage>0</hideImage>
-						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeCatch.png</image>
-						<text>Catching Game</text>
-						<type>icon</type>
-					</entry-3>
 				</entries>
 				<entries-id>4</entries-id>
 			</element-9>

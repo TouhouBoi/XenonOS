@@ -86,7 +86,7 @@ define('XENONOS_INDEX', 1);
 * Includes are required before Doing anything else,
 * only "xe_config.php" should be here.
 */
-require_once('xe_config.php');
+require_once('system/system/xe_build.xeconfig');
 
 /*
 *Chaning the current work directory to XENONOS_ROOT
