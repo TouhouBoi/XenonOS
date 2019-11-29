@@ -29,7 +29,7 @@ function xeSoft_run($params = null)
 	{
 		eyex('messageBox', array('content' => 'Only the Root Account Can Install xeApps'));
 		proc('end');
-		return();
+		return;
 	}
 	
 	$config = eyeXML('getXMLfile',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports.xml'));
