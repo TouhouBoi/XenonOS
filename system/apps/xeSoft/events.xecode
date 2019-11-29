@@ -292,7 +292,8 @@ function getAppInformation($myApp) {
 					if($value['name'][0] == $myApp) {
 						$address = $myArray['address'][0];
 						$path = $value['filename'][0];
-						$data = array("address" => $address, "path" => $path);
+						$sha256 = $value['sha256'][0];
+						$data = array("address" => $address, "path" => $path, "sha256" => $sha256);
 						return $data;
 					}
 				}
