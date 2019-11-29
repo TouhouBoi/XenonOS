@@ -243,7 +243,7 @@ function xeSoft_on_stepInstall($params=null) {
 	$info = getAppInformation($myApp);
 	$host = $info['address'];
 	$path = $info['path'];
-	$url = "https://".$host.$path;
+	$url = "https://".$host.'/'.$path;
 	$fpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/swap/'.basename($info['filename'][0]);
 	vfs('real_putFileContent', array($fpath, eyeURL('getRawFile', array('url' => $url))));
 	if(hash_file('sha256', $fpath) !== $info['sha256']) {
