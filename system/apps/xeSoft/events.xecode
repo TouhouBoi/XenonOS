@@ -290,9 +290,10 @@ function getAppInformation($myApp) {
 				$myArray = eyeXML('xml2array',array($xml));
 				foreach($myArray['packages'][0]['package'] as $value) {
 					if($value['name'][0] == $myApp) {
-						$value['address'][0] = $myArray['address'][0];
-						$value['path'][0] = $myArray['path'][0];
-						return $value;
+						$address = $myArray['address'][0];
+						$path = $value['filename'][0];
+						$data = array("address" => $address, "path" => $path);
+						return $data;
 					}
 				}
 			}
