@@ -43,7 +43,7 @@ function xeSoft_on_Update($params=""){
 		if (is_array($myServer) === true) {
 			foreach($myServer['eyePorts'][0]['portServer'] as $pValue) {
 				$myPname = basename($pValue['name'][0]);
-				$pContent = eyeURL('getRawFile', array('url' => 'https://' . $pValue['address'][0] . $pValue['path'][0]));
+				$pContent = eyeURL('getRawFile', array('url' => 'http://' . $pValue['address'][0] . $pValue['path'][0]));
 				if(!file_exists(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/cache/'.$myPname.'.xml')) {
 					vfs('real_create',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/cache/'.$myPname.'.xml'));
 				}
