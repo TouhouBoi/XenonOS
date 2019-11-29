@@ -438,7 +438,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 }
 
 .eyeDesk_iconsOver, .eyeFiles_icons {
-	color: #333333;
+	color: white;
 	cursor: pointer;
 	margin-top: -4px;
 	padding-top: 4px;
