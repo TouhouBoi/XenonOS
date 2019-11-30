@@ -254,7 +254,8 @@ function xeSoft_on_stepInstall($params=null) {
 		return;
 	}
 	include(XENONOS_ROOT.'/'.APP_DIR.'/xeSoft/libCompress'.XE_CODE_EXTENSION);
-	lib_xeCompress_extractFile(array(XENONOS_ROOT,$fpath));
+	$tar_path = str_replace(".xepackage", "", $fpath);
+	lib_xeCompress_extractFile(array(XENONOS_ROOT, $tar_path, ".xepackage"));
 	unlink($fpath);
 	$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml'));
 	if (is_array($xml) === true) {
