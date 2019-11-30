@@ -260,13 +260,13 @@ function xeSoft_on_stepInstall($params=null) {
 	$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml'));
 	if (is_array($xml) === true) {
 		foreach ($xml['xeSoft'][0]['package'] as $key => $value) {
-			if ($value['name'][0] == $info['name'][0]) {
+			if ($value['name'][0] == $info['name']) {
 				unset($xml['xeSoft'][0]['package'][$key]);
 			}
 		}
 	}
-	$array['name'][0] = $info['name'][0];
-	$array['version'][0] = $info['version'][0];
+	$array['name'][0] = $info['name'];
+	$array['version'][0] = $info['version'];
 	$xml['xeSoft'][0]['package'][] = $array;
 	eyeXML('setXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml',$xml));
 	$GLOBALS['Installing']->clear();
