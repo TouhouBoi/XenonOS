@@ -741,6 +741,12 @@ function xeMemoryWrite($location, $data)
 	apc_store($location, $data);
 }
 
+function xeMemoryRead($location)
+{
+	$data = apc_fetch($location);
+	return($data);
+}
+
 createFunctionAlias();
 
 if (ACL_SUPPORT == 1)
