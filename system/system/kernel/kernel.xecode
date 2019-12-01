@@ -491,6 +491,7 @@ function _getAlias($path, $baseFunc, $noListen)
 					{
 						return '.$baseFunc.'(\''.$file.'\', $call, $args, $noListen);
 					}';
+					
 					eval($function);
 				}
 			}
