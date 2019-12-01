@@ -490,7 +490,14 @@ function _getAlias($path,$baseFunc,$noListen)
 					}
 				}
 
-				$alias .= 'if (!function_exists(\''.$file.'\')) {function '.$file.'($call, $args=null, $noListen='.$noListen.') { return '.$baseFunc.'(\''.$file.'\', $call, $args, $noListen); }}';
+				if (!function_exists($file))
+				{
+					$function = 'function '.$file.'($call, $args = null, $noListen='.$noListen.')
+					{
+						return '.$baseFunc.'(\''.$file.'\', $call, $args, $noListen);
+					}';
+					eval($function);
+				}
 			}
 		}
 
