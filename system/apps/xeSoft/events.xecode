@@ -173,7 +173,7 @@ function xeSoft_on_Install($params=null){
 			'title'=>'Installing','removepid'=>0));
 		$myWindow->show();
 		$myLabel1 = new Label(array('name'=>'Label1','father'=>'Installing_Content',
-			'text'=>"You are installing a new App in your oneye system",'y'=>15,'x'=>20));
+			'text'=>"You are Installing a New Program in your XenonOS System",'y'=>15,'x'=>20));
 		$myLabel1->show();
  
 		$myLabel2 = new Label(array('name'=>'Label2','father'=>'Installing_Content',
