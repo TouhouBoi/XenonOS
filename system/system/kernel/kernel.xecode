@@ -501,7 +501,7 @@ function _getAlias($path, $baseFunc, $noListen)
 		closedir($handler);
 	}
 
-	return($alias);
+	return("");
 }
 
 function checkACL($sec_servicename, $servicefunction, $params)
