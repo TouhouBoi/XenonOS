@@ -736,22 +736,42 @@ function msgACLreject($params = null)
 	eyeX('messageBox', array('content' => $disObj.' has been disabled by your Administrator'));
 }
 
-function xeMemoryWrite($location, $data)
+if (function_exists('apcu_store') && function_exists('apcu_fetch') && function_exists('apcu_delete'))
 {
-	apcu_store($location, $data);
-	return(0);
-}
+	function xeMemoryWrite($location, $data)
+	{
+		apcu_store($location, $data);
+		return(0);
+	}
 
-function xeMemoryRead($location)
-{
-	$data = apcu_fetch($location);
-	return($data);
-}
+	function xeMemoryRead($location)
+	{
+		$data = apcu_fetch($location);
+		return($data);
+	}
 
-function xeMemoryDelete($location)
+	function xeMemoryDelete($location)
+	{
+		apcu_delete($location);
+		return(0);
+	}
+}
+else
 {
-	apcu_delete($location);
-	return(0);
+	function xeMemoryWrite($location, $data)
+	{
+		return("PECL APCU PHP Extension is Not Installed!");
+	}
+
+	function xeMemoryRead($location)
+	{
+		return("PECL APCU PHP Extension is Not Installed!");
+	}
+
+	function xeMemoryDelete($location)
+	{
+		return("PECL APCU PHP Extension is Not Installed!");
+	}	
 }
 
 createFunctionAlias();
