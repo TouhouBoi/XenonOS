@@ -452,7 +452,7 @@ if ($currentUser == REAL_ROOTUSER) {
 	$myTextbox_password->show();
 	$myTextbox_password->addEnterEventMsg('system_uninstall');
 	$ContentY += 40;
-	// Uninstall oneye
+	// Uninstall XenonOS
 	$myButton = new Button(array(
 		'name' => 'xeControl_system_uninstall_button_uninstall',
 		'father' => $uninstallTab,
