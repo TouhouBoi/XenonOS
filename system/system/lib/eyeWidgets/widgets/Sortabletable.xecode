@@ -382,11 +382,11 @@ class SortabletableSelected {
 	function delAllRows() {
 		global $myPid;
 		$name = $myPid.'_' . $this->name . '_Body';
-		if(!IE) {
+		//if(!IE) {
 			eyeX('rawjs', array('js' => 'document.getElementById("'.$name.'").innerHTML = "";'));
-		} else {
-			eyeX('rawjs', array('js' => 't = document.getElementById("'.$name.'");while(t.firstChild){t.removeChild(t.firstChild);}'));
-		}
+		//} else {
+			//eyeX('rawjs', array('js' => 't = document.getElementById("'.$name.'");while(t.firstChild){t.removeChild(t.firstChild);}'));
+		//}
 		eyex('rawjs', array('js' => 'Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
 	}
 }
