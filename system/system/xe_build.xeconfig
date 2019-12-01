@@ -58,6 +58,9 @@ define('LOG_DIR', 'logs');
 define('XENONOS_TMP_DIR', 'tmp');
 define('XENONOS_COMMIT_PATH', "./.git/refs/remotes/origin/");
 
+// System Full Paths
+define('SERVICE_FULL_PATH', XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/');
+
 // XenonOS file extensions
 define('XENONOS_INFO_EXT', 'eyeInfo');
 define('XENONOS_FILE_EXT', 'eyeFile');
