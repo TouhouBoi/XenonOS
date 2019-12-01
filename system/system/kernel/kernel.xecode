@@ -755,6 +755,20 @@ if (function_exists('apcu_store') && function_exists('apcu_fetch') && function_e
 		apcu_delete($location);
 		return(0);
 	}
+	
+	function xeMemoryLocationExist($location)
+	{
+		$data = apcu_fetch($location);
+
+		if (!empty($data))
+		{
+			return(0);
+		}
+		else
+		{
+			return(1);
+		}
+	}
 }
 else
 {
@@ -772,6 +786,11 @@ else
 	{
 		return("PECL APCU PHP Extension is Not Installed!");
 	}	
+
+	function xeMemoryLocationExist($location)
+	{
+		return("PECL APCU PHP Extension is Not Installed!");
+	}
 }
 
 createFunctionAlias();
