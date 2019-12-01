@@ -60,6 +60,7 @@ define('XENONOS_COMMIT_PATH', "./.git/refs/remotes/origin/");
 
 // System Full Paths
 define('SERVICE_FULL_PATH', XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/');
+define('LIB_FULL_PATH', XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/');
 
 // XenonOS file extensions
 define('XENONOS_INFO_EXT', 'eyeInfo');
