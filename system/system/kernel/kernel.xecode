@@ -459,12 +459,8 @@ function removeGenericListenerCallByPid($type, $pid = null, $postExecution = 0)
 */
 function createFunctionAlias()
 {
-	$servpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/';
-	
-	$libpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/';
-	
-	_getAlias($servpath, 'service', 0);
-	_getAlias($libpath, 'reqLib', 1);
+	_getAlias(SERVICE_FULL_PATH, 'service', 0);
+	_getAlias(LIB_FULL_PATH, 'reqLib', 1);
 }
 
 function _getAlias($path, $baseFunc, $noListen)
