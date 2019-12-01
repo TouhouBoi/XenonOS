@@ -316,7 +316,7 @@ function eyeFTP_on_eyeFTP_uploadRemote_notifyEndOfUpload($params=null) {
 
 		//error: file not uploaded to oneye
 		case 'UPLOAD_PHP_FAILED':
-			eyeFTP_logConsole('Error, can\'t upload file "%s" to oneye server (check maximum filesize accepted by PHP?)',
+			eyeFTP_logConsole('Error, can\'t upload file "%s" to XenonOS Server (check maximum filesize accepted by PHP?)',
 				array($params['filename'][0]),
 				EYEFTP_LOGSTYLE_ERROR
 			);
