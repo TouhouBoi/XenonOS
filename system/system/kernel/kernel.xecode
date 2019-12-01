@@ -26,8 +26,6 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 $ua = $_SERVER['HTTP_USER_AGENT'];
 
-define('IE', 0); // DEPRECATED
-
 function service($servicename, $servicefunction = null, $params = null, $noListen = 0)
 {
 	$sec_servicename = basename($servicename);
