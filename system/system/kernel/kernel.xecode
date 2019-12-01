@@ -744,7 +744,7 @@ function xeMemoryWrite($location, $data)
 
 function xeMemoryRead($location)
 {
-	$data = apc_fetch($location);
+	$data = apcu_fetch($location);
 	return($data);
 }
 
