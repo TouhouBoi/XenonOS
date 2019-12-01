@@ -463,14 +463,11 @@ function createFunctionAlias()
 	
 	$libpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/';
 	
-	$alias = _getAlias($servpath, 'service', 0);
-	
-	$alias .= _getAlias($libpath, 'reqLib', 1);
-
-	eval($alias);
+	_getAlias($servpath, 'service', 0);
+	_getAlias($libpath, 'reqLib', 1);
 }
 
-function _getAlias($path,$baseFunc,$noListen)
+function _getAlias($path, $baseFunc, $noListen)
 {
 	$alias = "";
 
