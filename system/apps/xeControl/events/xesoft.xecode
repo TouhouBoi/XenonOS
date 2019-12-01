@@ -20,7 +20,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-define('EYECONTROL_DEFAULT_REPOSITORY', 'http://soft.oneye-project.org/');
+define('EYECONTROL_DEFAULT_REPOSITORY', 'http://localhost:81/');
 
 function xeControl_on_xeSoft_new($params = '') {
 	eyex('messageBox',array(
