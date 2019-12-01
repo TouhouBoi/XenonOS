@@ -747,6 +747,11 @@ function xeMemoryRead($location)
 	return($data);
 }
 
+function xeMemoryDelete($location)
+{
+	apc_delete($location);
+}
+
 createFunctionAlias();
 
 if (ACL_SUPPORT == 1)
