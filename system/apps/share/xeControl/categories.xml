@@ -88,7 +88,7 @@
 		</content>
 		<content>
 			<description>Remove temporary files and folders from your oneye system</description>
-			<display>Clean oneye</display>
+			<display>Clean XenonOS</display>
 			<img>index.php?theme=USERTHEME&amp;extern=icons/48x48/editClean.png</img>
 			<name>cleantemp</name>
 			<permissions>root</permissions>
