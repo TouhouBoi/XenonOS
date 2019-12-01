@@ -469,8 +469,6 @@ function createFunctionAlias()
 
 function _getAlias($path, $baseFunc, $noListen)
 {
-	$alias = "";
-
 	if ($handler = opendir($path))
 	{
 		while (false !== ($file = readdir($handler)))
