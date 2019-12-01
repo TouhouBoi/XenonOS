@@ -739,6 +739,7 @@ function msgACLreject($params = null)
 function xeMemoryWrite($location, $data)
 {
 	apc_store($location, $data);
+	return(0);
 }
 
 function xeMemoryRead($location)
