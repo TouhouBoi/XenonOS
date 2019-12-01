@@ -458,7 +458,7 @@ if ($currentUser == REAL_ROOTUSER) {
 		'father' => $uninstallTab,
 		'x' => 40,
 		'y' => $ContentY,
-		'caption' => 'Uninstall oneye',
+		'caption' => 'Uninstall XenonOS',
 		'signal' => 'system_uninstall'
 	));
 	$myButton->addFriend($myTextbox_password);
