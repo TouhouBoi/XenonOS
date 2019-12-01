@@ -81,7 +81,7 @@ function service($servicename, $servicefunction = null, $params = null, $noListe
 /*
 *The reqLib have noListen as true by default since the libraries listener calls are not usually used
 */
-function reqLib( $libname, $function, $params = null, $noListen = true )
+function reqLib($libname, $function, $params = null, $noListen = true)
 {
 	$sec_libname = basename($libname);
 
