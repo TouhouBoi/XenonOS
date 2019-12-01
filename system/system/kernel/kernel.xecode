@@ -750,7 +750,7 @@ function xeMemoryRead($location)
 
 function xeMemoryDelete($location)
 {
-	apc_delete($location);
+	apcu_delete($location);
 	return(0);
 }
 
