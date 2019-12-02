@@ -22,7 +22,7 @@
    +------------------------------------------------------------------------------+
 */
 
-// error_reporting(E_ALL); // oneye
+// error_reporting(E_ALL);
 
 //
 // CONFIGURABLE OPTIONS
@@ -30,19 +30,19 @@
 
 $GLOBALS['_config']            = array
                     (
-                        'url_var_name'             => 'page', // oneye
+                        'url_var_name'             => 'page',
                         'flags_var_name'           => 'hl',
                         'get_form_name'            => '____pgfa',
                         'basic_auth_var_name'      => '____pbavn',
                         'max_file_size'            => -1,
-                        'allow_hotlinking'         => 1, // oneye
+                        'allow_hotlinking'         => 1,
                         'upon_hotlink'             => 1,
-                        'compress_output'          => 1 // oneye
+                        'compress_output'          => 1
                     );
 $GLOBALS['_flags']             = array
                     (
-                        'include_form'    => 0, // oneye
-                        'remove_scripts'  => 0, // oneye
+                        'include_form'    => 0,
+                        'remove_scripts'  => 0,
                         'accept_cookies'  => 1,
                         'show_images'     => 1,
                         'show_referer'    => 1,
@@ -54,7 +54,7 @@ $GLOBALS['_flags']             = array
                         'allow_304'       => 1
                     );
 $GLOBALS['_frozen_flags']      = array
-                    ( // oneye
+                    (
                         'include_form'    => 1,
                         'remove_scripts'  => 1,
                         'accept_cookies'  => 1,
@@ -883,7 +883,7 @@ if (!isset($GLOBALS['_proxify'][$GLOBALS['_content_type']]))
     do
     {
         $data = fread($GLOBALS['_socket'], 8192);
-		if (isset($handler)) { // oneye
+		if (isset($handler)) {
 			fwrite($handler, $data);
 		} else {
 			echo $data;
@@ -892,7 +892,7 @@ if (!isset($GLOBALS['_proxify'][$GLOBALS['_content_type']]))
     while (isset($data{0}));
 
     fclose($GLOBALS['_socket']);
-	if (isset($handler)) { // oneye
+	if (isset($handler)) {
 		fclose($handler);
 		echo '<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -1005,7 +1005,7 @@ else
             continue;
         }
 
-		$body = false; // oneye
+		$body = false;
         $rebuild    = false;
         $extra_html = $temp = '';
         $attrs      = array();
@@ -1050,16 +1050,16 @@ else
 
                         if (trim($attrs['action']) === '')
                         {
-							$attrs['action'] = $GLOBALS['_script_url']; // oneye
-							$extra_html.= '<input type="hidden" name="msg" value="doOutput" />'; // oneye
-							$extra_html.= '<input type="hidden" name="checknum" value="' . $checknum . '" />'; // oneye
+							$attrs['action'] = $GLOBALS['_script_url'];
+							$extra_html.= '<input type="hidden" name="msg" value="doOutput" />';
+							$extra_html.= '<input type="hidden" name="checknum" value="' . $checknum . '" />';
                         }
                         if (!isset($attrs['method']) || strtolower(trim($attrs['method'])) === 'get')
                         {
                             $extra_html = '<input type="hidden" name="' . $GLOBALS['_config']['get_form_name'] . '" value="' . encode_url(complete_url($attrs['action'], false)) . '" />';
-							$attrs['action'] = $GLOBALS['_script_url']; // oneye
-							$extra_html.= '<input type="hidden" name="msg" value="doOutput" />'; // oneye
-							$extra_html.= '<input type="hidden" name="checknum" value="' . $checknum . '" />'; // oneye
+							$attrs['action'] = $GLOBALS['_script_url'];
+							$extra_html.= '<input type="hidden" name="msg" value="doOutput" />';
+							$extra_html.= '<input type="hidden" name="checknum" value="' . $checknum . '" />';
                             break;
                         }
 
@@ -1187,7 +1187,7 @@ else
                     }
                     break;
             }
-			if ($tag == 'body') { // oneye
+			if ($tag == 'body') {
 				$body = true;
 				$rebuild = true;
 				$delim = strpos($value, '"') && !strpos($value, "'") ? '"' : "'";
@@ -1201,13 +1201,13 @@ else
             foreach ($attrs as $name => $value)
             {
                 $delim = strpos($value, '"') && !strpos($value, "'") ? "'" : '"';
-                $new_tag .= ' ' . $name . ($value !== false ? '=' . $delim . str_replace('&', '&amp;', $value) . $delim : ''); // oneye
+                $new_tag .= ' ' . $name . ($value !== false ? '=' . $delim . str_replace('&', '&amp;', $value) . $delim : '');
             }
 
             $GLOBALS['_response_body'] = str_replace($matches[0][$i], $new_tag . '>' . $extra_html, $GLOBALS['_response_body']);
         }
     }
-	$GLOBALS['_response_body'] = str_replace('<body>', '<body onload=\'window.parent.sendMsg(' . $checknum . ', "SetAddress", "&lt;address&gt;' . base64_encode($GLOBALS['_url']) . '&lt;/address&gt;");\'>', $GLOBALS['_response_body']); // oneye
+	$GLOBALS['_response_body'] = str_replace('<body>', '<body onload=\'window.parent.sendMsg(' . $checknum . ', "SetAddress", "&lt;address&gt;' . base64_encode($GLOBALS['_url']) . '&lt;/address&gt;");\'>', $GLOBALS['_response_body']);
 
     if ($GLOBALS['_flags']['include_form'] && !isset($_GET['nf']))
     {
