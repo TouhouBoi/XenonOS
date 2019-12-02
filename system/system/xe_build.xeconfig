@@ -92,7 +92,7 @@ else
 	$xenonos_commit_hash = "N/A";
 	$xenonos_branch = "N/A";
 }
-define('XENONOS_VERSION', '1.0.4alpha');
+define('XENONOS_VERSION', '1.0.5alpha');
 define('XENONOS_COMMIT', $xenonos_commit_hash);
 define('XENONOS_BRANCH', $xenonos_branch);
 
