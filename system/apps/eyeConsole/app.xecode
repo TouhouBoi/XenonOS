@@ -59,7 +59,7 @@ function eyeConsole_run($params=null) {
 		'x'=>5,
 		'y' => 5,
 		'vert' => 1,
-		'text' => 'oneye> '
+		'text' => 'XenonOS> '
 	));
 	$myLabel->show();
 
