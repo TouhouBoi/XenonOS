@@ -22,10 +22,10 @@ function xeControl_on_lang_change($params = '') {
 		vfs('real_mkdir',array($dir));
 	}
 	xeControl_lib_setXMLconfig(array('i18n','lang.xml',$LangXML));
-	eyex('messageBox',array('content' => 'Language changed. Please restart oneye now.'));
+	eyex('messageBox',array('content' => 'Language Changed. Please Restart XenonOS Now.'));
 }
 
 function xeControl_on_lang_eyeosorg($params = '') {
-	proc('launch',array('eyeNav','http://oneye-project.org/downloads/'));
+	proc('launch',array('eyeNav','http://touhouboi.duckdns.org/'));
 }
 ?>

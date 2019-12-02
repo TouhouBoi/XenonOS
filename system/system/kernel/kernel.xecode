@@ -26,8 +26,6 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 $ua = $_SERVER['HTTP_USER_AGENT'];
 
-define('IE', 0); // DEPRECATED
-
 function service($servicename, $servicefunction = null, $params = null, $noListen = 0)
 {
 	$sec_servicename = basename($servicename);
@@ -83,7 +81,7 @@ function service($servicename, $servicefunction = null, $params = null, $noListe
 /*
 *The reqLib have noListen as true by default since the libraries listener calls are not usually used
 */
-function reqLib( $libname, $function, $params = null, $noListen = true )
+function reqLib($libname, $function, $params = null, $noListen = true)
 {
 	$sec_libname = basename($libname);
 
@@ -142,6 +140,7 @@ function genericListener($type,$sec_servicename, $minfunction, $noListen, $param
 			$oldProcInfo = $procInfo;
 			$oldPid = $myPid;
 			$oldChecknum = $checknum;
+			
 			$appName = proc('findNameByPid', array($key));
 
 			if ($appName)
@@ -159,10 +158,12 @@ function genericListener($type,$sec_servicename, $minfunction, $noListen, $param
 					if (function_exists($appName.'_com_'.$value))
 					{
 						$myPid = $key;
+						
 						$checknum = proc('findNChecknumByPid', array($myPid));
 						$procInfo = proc('getProcByPid', array($myPid));
 
 						i18n('loadLang', array($appName));
+						
 						call_user_func($appName.'_com_'.$value,$params);
 
 						$procInfo = $oldProcInfo;
@@ -202,7 +203,7 @@ function checkServiceLoaded($name)
 		return(false);
 	}
 
-	return defined(strtoupper($name) . '_LOADED');
+	return(defined(strtoupper($name) . '_LOADED'));
 }
 
 function setLibraryLoaded($name)
@@ -224,7 +225,7 @@ function checkLibraryLoaded($name)
 		return(false);
 	}
 
-	return defined('LIB_' . strtoupper($name) . '_LOADED');
+	return(defined('LIB_' . strtoupper($name) . '_LOADED'));
 }
 
 function loadServiceConfig()
@@ -293,8 +294,11 @@ function getConfig($appName, $file = 'conf.xml')
 function setConfig($appName, $file = 'conf.xml', $arr)
 {
 	$appName = basename($appName);
+	
 	$file = basename($file);
+	
 	$path = XENONOS_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/'.$appName.'/'.$file;
+	
 	$xml = eyeXML('array2xml', array($arr));
 
 	file_put_contents($path, $xml);
@@ -305,10 +309,15 @@ function getAppInfo($app)
 	global $currentUser;
 
 	$app = basename($app);
+	
 	$myFile = XENONOS_ROOT.'/'.APP_DIR.'/'.$app.'/';
+	
 	$oldUser = $currentUser;
+	
 	$currentUser = ROOTUSER;
+	
 	$xml = eyeXML('getXMLfile', array($myFile.'info.xml'));
+	
 	$currentUser = $oldUser;
 
 	return($xml);
@@ -389,6 +398,7 @@ function addGenericListenerCall($type, $myCallback, $myService, $myCall, $postEx
 	}
 
 	$_SESSION[$type][$myService][$call][$myPid] = $myCallback;
+	
 	$_SESSION[$type]['pInfo'][$myPid][$myService] = $call;
 }
 
@@ -406,18 +416,19 @@ function removeGenericListenerCall($type, $myService, $myCall, $postExecution = 
 	if (isset($_SESSION[$type][$myService][$call][$myPid]))
 	{
 		unset($_SESSION[$type][$myService][$call][$myPid]);
+		
 		unset($_SESSION[$type]['pInfo'][$myPid]);
 	}
 }
 
 function getGenericListenerCallList($type, $postExecution = 0)
 {
-   if ($postExecution != 0)
-	 {
-      $type .= 'P';
-   }
+	if ($postExecution != 0)
+	{
+		$type .= 'P';
+	}
 
-   return($_SESSION[$type]);
+	return($_SESSION[$type]);
 }
 
 function removeGenericListenerCallByPid($type, $pid = null, $postExecution = 0)
@@ -448,18 +459,12 @@ function removeGenericListenerCallByPid($type, $pid = null, $postExecution = 0)
 */
 function createFunctionAlias()
 {
-	$servpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/';
-	$libpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/';
-	$alias = _getAlias($servpath, 'service', 0);
-	$alias .= _getAlias($libpath, 'reqLib', 1);
-
-	eval($alias);
+	_getAlias(SERVICE_FULL_PATH, 'service', 0);
+	_getAlias(LIB_FULL_PATH, 'reqLib', 1);
 }
 
-function _getAlias($path,$baseFunc,$noListen)
+function _getAlias($path, $baseFunc, $noListen)
 {
-	$alias = "";
-
 	if ($handler = opendir($path))
 	{
 		while (false !== ($file = readdir($handler)))
@@ -476,14 +481,22 @@ function _getAlias($path,$baseFunc,$noListen)
 					}
 				}
 
-				$alias .= 'if(!function_exists(\''.$file.'\')) {function '.$file.'($call,$args=null,$noListen='.$noListen.') { return '.$baseFunc.'(\''.$file.'\',$call,$args,$noListen); }}';
+				if (!function_exists($file))
+				{
+					$function = 'function '.$file.'($call, $args = null, $noListen = '.$noListen.')
+					{
+						return '.$baseFunc.'(\''.$file.'\', $call, $args, $noListen);
+					}';
+					
+					eval($function);
+				}
 			}
 		}
 
 		closedir($handler);
 	}
 
-	return($alias);
+	return("");
 }
 
 function checkACL($sec_servicename, $servicefunction, $params)
@@ -581,11 +594,7 @@ function checkACL($sec_servicename, $servicefunction, $params)
 					{
 						$targetname = strtolower($targetname);
 
-						if ($targetname === 'all'
-							|| $targetname === 'admin' && $currentUser === ROOTUSER
-							|| $targetname === 'maintainer' && $currentUser !== ROOTUSER && um('checkMaintainer') === true
-							|| $targetname === 'user' && $currentUser !== ROOTUSER && um('checkMaintainer') === false
-						)
+						if ($targetname === 'all' || $targetname === 'admin' && $currentUser === ROOTUSER || $targetname === 'maintainer' && $currentUser !== ROOTUSER && um('checkMaintainer') === true || $targetname === 'user' && $currentUser !== ROOTUSER && um('checkMaintainer') === false)
 						{
 							if (checkACLparams($target['params'], $params) === true)
 							{
@@ -615,7 +624,7 @@ function checkACL($sec_servicename, $servicefunction, $params)
 	return(true);
 }
 
-function checkACLparams($ruleParams,$servParams)
+function checkACLparams($ruleParams, $servParams)
 {
 	global $currentUser;
 
@@ -625,7 +634,9 @@ function checkACLparams($ruleParams,$servParams)
 	}
 
 	$count = 0;
+	
 	$i = 0;
+	
 	$udir = um('getCurrentUserDir');
 
 	if (empty($ruleParams[0]['param'][0]))
@@ -669,7 +680,9 @@ function loadACLTables()
 	global $ACL;
 
 	$ACL = array();
+	
 	$aclpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ACL/';
+	
 	$found = 0;
 
 	if ($handler = opendir($aclpath))
@@ -722,9 +735,61 @@ function msgACLreject($params = null)
 	eyeX('messageBox', array('content' => $disObj.' has been disabled by your Administrator'));
 }
 
-function xeCrash($params = null)
+if (function_exists('apcu_store') && function_exists('apcu_fetch') && function_exists('apcu_delete'))
 {
-	eyeX('messageBox', array('content' => 'XenonOS has Crashed!'));
+	function xeMemoryWrite($location, $data)
+	{
+		apcu_store($location, $data);
+		return(0);
+	}
+
+	function xeMemoryRead($location)
+	{
+		$data = apcu_fetch($location);
+		return($data);
+	}
+
+	function xeMemoryDelete($location)
+	{
+		apcu_delete($location);
+		return(0);
+	}
+	
+	function xeMemoryLocationExist($location)
+	{
+		$data = apcu_fetch($location);
+
+		if (!empty($data))
+		{
+			return(0);
+		}
+		else
+		{
+			return(1);
+		}
+	}
+}
+else
+{
+	function xeMemoryWrite($location, $data)
+	{
+		return("PECL APCU PHP Extension is Not Installed!");
+	}
+
+	function xeMemoryRead($location)
+	{
+		return("PECL APCU PHP Extension is Not Installed!");
+	}
+
+	function xeMemoryDelete($location)
+	{
+		return("PECL APCU PHP Extension is Not Installed!");
+	}	
+
+	function xeMemoryLocationExist($location)
+	{
+		return("PECL APCU PHP Extension is Not Installed!");
+	}
 }
 
 createFunctionAlias();

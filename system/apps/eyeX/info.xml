@@ -1,8 +1,8 @@
 <package>
 	<name>eyeX</name>
 	<category>System</category>
-	<version>1.9</version>
-	<description>X system for oneye</description>
+	<version>1.0</version>
+	<description>X System for XenonOS</description>
 	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>System</type>

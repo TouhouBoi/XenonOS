@@ -317,7 +317,8 @@ function service_eyex_getThemeImage($params)
 
 function eyex_getExistingPath($path)
 {
-	if (IE > 0 && IE < 7 && substr($path, -4) === '.png' && vfs('real_fileExists', array(substr($path, 0, -3) . 'gif')) === true)
+	//if (IE > 0 && IE < 7 && substr($path, -4) === '.png' && vfs('real_fileExists', array(substr($path, 0, -3) . 'gif')) === true)
+	if (substr($path, -4) === '.png' && vfs('real_fileExists', array(substr($path, 0, -3) . 'gif')) === true)
 	{
 		return(substr($path, 0, -3) . 'gif');
 	}

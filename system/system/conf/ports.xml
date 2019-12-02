@@ -1,6 +1,6 @@
 <eyePorts>
 	<mirrors>
-		<mirror>http://soft.oneye-project.org/</mirror>
+		<mirror>http://localhost:81/</mirror>
 	</mirrors>
 	<categories>
 		<category>All</category>

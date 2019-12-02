@@ -43,7 +43,7 @@ function xeSoft_on_Update($params=""){
 		if (is_array($myServer) === true) {
 			foreach($myServer['eyePorts'][0]['portServer'] as $pValue) {
 				$myPname = basename($pValue['name'][0]);
-				$pContent = eyeURL('getRawFile', array('url' => 'https://' . $pValue['address'][0] . $pValue['path'][0]));
+				$pContent = eyeURL('getRawFile', array('url' => 'http://' . $pValue['address'][0] . $pValue['path'][0]));
 				if(!file_exists(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/cache/'.$myPname.'.xml')) {
 					vfs('real_create',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/cache/'.$myPname.'.xml'));
 				}
@@ -173,7 +173,7 @@ function xeSoft_on_Install($params=null){
 			'title'=>'Installing','removepid'=>0));
 		$myWindow->show();
 		$myLabel1 = new Label(array('name'=>'Label1','father'=>'Installing_Content',
-			'text'=>"You are installing a new App in your oneye system",'y'=>15,'x'=>20));
+			'text'=>"You are Installing a New Program in your XenonOS System",'y'=>15,'x'=>20));
 		$myLabel1->show();
  
 		$myLabel2 = new Label(array('name'=>'Label2','father'=>'Installing_Content',
@@ -241,12 +241,12 @@ function xeSoft_on_Accept($params=null) {
 function xeSoft_on_stepInstall($params=null) {
 	$myApp = $GLOBALS['myApp']->text;
 	$info = getAppInformation($myApp);
-	$host = $info['address'][0];
-	$path = $info['path'][0].'/'.$info['filename'][0];
-	$url = "https://".$host.$path;
-	$fpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/swap/'.basename($info['filename'][0]);
+	$host = $info['address'];
+	$path = $info['path'];
+	$url = "https://".$host.'/'.$path;
+	$fpath = XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/swap/'.basename($info['path']);
 	vfs('real_putFileContent', array($fpath, eyeURL('getRawFile', array('url' => $url))));
-	if(md5_file($fpath) != $info['key'][0]) {
+	if(hash_file('sha256', $fpath) !== $info['sha256']) {
 		$GLOBALS['Installing']->clear();
 		$myLabel1 = new Label(array('name'=>'Label1','father'=>'Installing_Content',
 			'text'=>'%s download is corrupted! unable to install','tokens' => array($myApp),'y'=>15,'x'=>20));
@@ -254,18 +254,19 @@ function xeSoft_on_stepInstall($params=null) {
 		return;
 	}
 	include(XENONOS_ROOT.'/'.APP_DIR.'/xeSoft/libCompress'.XE_CODE_EXTENSION);
-	lib_xeCompress_extractFile(array(XENONOS_ROOT,$fpath));
+	$tar_path = str_replace(".xepackage", "", $fpath);
+	lib_xeCompress_extractFile(array(XENONOS_ROOT, $tar_path, ".xepackage"));
 	unlink($fpath);
 	$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml'));
 	if (is_array($xml) === true) {
 		foreach ($xml['xeSoft'][0]['package'] as $key => $value) {
-			if ($value['name'][0] == $info['name'][0]) {
+			if ($value['name'][0] == $info['name']) {
 				unset($xml['xeSoft'][0]['package'][$key]);
 			}
 		}
 	}
-	$array['name'][0] = $info['name'][0];
-	$array['version'][0] = $info['version'][0];
+	$array['name'][0] = $info['name'];
+	$array['version'][0] = $info['version'];
 	$xml['xeSoft'][0]['package'][] = $array;
 	eyeXML('setXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml',$xml));
 	$GLOBALS['Installing']->clear();
@@ -290,9 +291,13 @@ function getAppInformation($myApp) {
 				$myArray = eyeXML('xml2array',array($xml));
 				foreach($myArray['packages'][0]['package'] as $value) {
 					if($value['name'][0] == $myApp) {
-						$value['address'][0] = $myArray['address'][0];
-						$value['path'][0] = $myArray['path'][0];
-						return $value;
+						$address = $myArray['address'][0];
+						$path = $value['filename'][0];
+						$sha256 = $value['sha256'][0];
+						$name = $value['name'][0];
+						$version = $value['version'][0];
+						$data = array("address" => $address, "path" => $path, "sha256" => $sha256, "name" => $name, "version" => $version);
+						return $data;
 					}
 				}
 			}

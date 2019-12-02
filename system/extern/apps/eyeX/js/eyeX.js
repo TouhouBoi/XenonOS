@@ -783,7 +783,7 @@ function sendMsg(checknum, msg, parameters) {
 		}
 	}
 	if (!http_request) {
-		alert('Sorry, but oneye only works with AJAX capable browsers!');
+		alert('Sorry, but XenonOS Only Works with AJAX Capable Web Browsers!');
 		return false;
 	}
 	if (msg !== 'ping') {

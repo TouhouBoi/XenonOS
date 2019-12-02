@@ -88,7 +88,7 @@
 		</content>
 		<content>
 			<description>Remove temporary files and folders from your oneye system</description>
-			<display>Clean oneye</display>
+			<display>Clean XenonOS</display>
 			<img>index.php?theme=USERTHEME&amp;extern=icons/48x48/editClean.png</img>
 			<name>cleantemp</name>
 			<permissions>root</permissions>
@@ -154,7 +154,7 @@
 			<description>Manage the packages repositories</description>
 			<display>Repositories</display>
 			<img>index.php?theme=USERTHEME&amp;extern=icons/48x48/software.png</img>
-			<name>eyesoft</name>
+			<name>xeSoft</name>
 			<permissions>root</permissions>
 			<title>yes</title>
 		</content>
@@ -213,7 +213,7 @@
 		</content>
 		<content>
 			<description>Change your eyeBoard settings</description>
-			<display>oneye Board</display>
+			<display>Local Messages</display>
 			<img>index.php?theme=USERTHEME&amp;extern=icons/48x48/eyeBoard.png</img>
 			<name>eyeboard</name>
 			<permissions>all</permissions>

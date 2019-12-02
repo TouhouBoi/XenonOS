@@ -77,6 +77,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	background-image: url('index.php?theme=USERTHEME&extern=images/wallpapers/default.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
+	background-position: center center;
 	height: 100%;
 	position: absolute;
 	width: 100%;
@@ -437,7 +438,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 }
 
 .eyeDesk_iconsOver, .eyeFiles_icons {
-	color: #333333;
+	color: white;
 	cursor: pointer;
 	margin-top: -4px;
 	padding-top: 4px;
@@ -1129,7 +1130,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 .eyeIcon_Text {
 	font-size: 11px;
-	text-shadow: 0px 2px 2px #bbbbbb;
+	text-shadow: 0px 2px 2px black;
 }
 
 .eyeLine {

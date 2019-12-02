@@ -1,8 +1,8 @@
 <package>
 	<name>Media Player</name>
 	<category>Multimedia</category>
-	<version>1.9</version>
-	<description>oneye Media Player</description>
+	<version>1.0</version>
+	<description>XenonOS Media Player</description>
 	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>Application</type>

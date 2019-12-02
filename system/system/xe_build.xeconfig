@@ -58,6 +58,10 @@ define('LOG_DIR', 'logs');
 define('XENONOS_TMP_DIR', 'tmp');
 define('XENONOS_COMMIT_PATH', "./.git/refs/remotes/origin/");
 
+// System Full Paths
+define('SERVICE_FULL_PATH', XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/');
+define('LIB_FULL_PATH', XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/');
+
 // XenonOS file extensions
 define('XENONOS_INFO_EXT', 'eyeInfo');
 define('XENONOS_FILE_EXT', 'eyeFile');
@@ -88,13 +92,13 @@ else
 	$xenonos_commit_hash = "N/A";
 	$xenonos_branch = "N/A";
 }
-define('XENONOS_VERSION', '1.0.4alpha');
+define('XENONOS_VERSION', '1.0.5alpha');
 define('XENONOS_COMMIT', $xenonos_commit_hash);
 define('XENONOS_BRANCH', $xenonos_branch);
 
 // XeKernel Version
-define('KE_KERNEL_VERSION', '1.0.2alpha');
-define('KE_KERNEL_HASH', '41c9f0ef62e15fcb25bbf9488d60eace8f8bcfe9eee9b494a58a1950637aea00'); // SHA256 Hash of "kernel.xecode"
+define('KE_KERNEL_VERSION', '1.0.3alpha');
+define('KE_KERNEL_HASH', '88205e0994dc37b650db1cd9aae1c2bb8b4edd945b8ab56f2ce510ac05cc7779'); // SHA256 Hash of "kernel.xecode"
 
 // Define XenonOS Dialog Types
 define('EYEDIALOG_TYPE_OPENFILE', 0);

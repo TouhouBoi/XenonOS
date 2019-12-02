@@ -1,8 +1,8 @@
 <package>
 	<name>xeSoft</name>
 	<category>Utilities</category>
-	<version>1.9</version>
-	<description>Utilities to download and install applications form oneye repositories</description>
+	<version>1.0</version>
+	<description>Utilities to download and install applications from XenonOS Repositories</description>
 	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>Utility</type>

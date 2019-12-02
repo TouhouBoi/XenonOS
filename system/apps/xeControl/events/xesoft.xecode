@@ -1,40 +1,46 @@
 <?php
 /*
-  ___  _ __   ___ _   _  ___
- / _ \| '_ \ / _ \ | | |/ _ \
-| (_) | | | |  __/ |_| |  __/
- \___/|_| |_|\___|\__, |\___|
-                  |___/
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
 
-oneye is released under the GNU Affero General Public License Version 3 (AGPL3)
- -> provided with this release in license.txt
- -> or via web at www.gnu.org/licenses/agpl-3.0.txt
 
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
 Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
+
 */
 
-define('EYECONTROL_DEFAULT_REPOSITORY', 'http://soft.oneye-project.org/');
+define('EYECONTROL_DEFAULT_REPOSITORY', 'http://localhost:81/');
 
-function xeControl_on_eyesoft_new($params = '') {
+function xeControl_on_xeSoft_new($params = '') {
 	eyex('messageBox',array(
-		'buttons' => array(array('eyesoft_add','Add'),array('eyesoft_add_test','Test'),array('eyesoft_add_cancel','Cancel')),
+		'buttons' => array(array('xeSoft_add','Add'),array('xeSoft_add_test','Test'),array('xeSoft_add_cancel','Cancel')),
 		'content' => 'Mirror address (example: %s)',
 		'father' => 'xeControl_container_big',
 		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/repositories.png',
-		'textbox_event' => 'eyesoft_add',
-		'textbox_name' => 'xeControl_eyesoft_add_textbox',
+		'textbox_event' => 'xeSoft_add',
+		'textbox_name' => 'xeControl_xeSoft_add_textbox',
 		'title' => 'Add mirror',
 		'tokens' => array(EYECONTROL_DEFAULT_REPOSITORY),
 		'type' => 3,
-		'win_name' => 'xeControl_eyesoft_add_window',
+		'win_name' => 'xeControl_xeSoft_add_window',
 		'win_removepid' => 0,
 		'win_style' => TITLE + CLOSE
 	));
 }
 
-function xeControl_on_eyesoft_add($params = '') {
-	$selected = $GLOBALS['xeControl_eyesoft_add_textbox']->text;
+function xeControl_on_xeSoft_add($params = '') {
+	$selected = $GLOBALS['xeControl_xeSoft_add_textbox']->text;
 	if ($selected) {
 		$dir = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml';
 		$mirrorXML = eyeXML('getXMLfile',array($dir));
@@ -45,15 +51,15 @@ function xeControl_on_eyesoft_add($params = '') {
 			$mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'][] = $selected;
 			eyeXML('setXMLfile',array($dir,$mirrorXML));
 			eyex('messageBox',array('content' => 'Mirror successfully saved.'));
-			xeControl_lib_loadContent('only_root','eyesoft');
+			xeControl_lib_loadContent('only_root','xeSoft');
 		}
 	} else {
 		eyex('messageBox',array('content' => 'Please type an address!'));
 	}
 }
 
-function xeControl_on_eyesoft_add_test($params = '') {
-	$selected = $GLOBALS['xeControl_eyesoft_add_textbox']->text;
+function xeControl_on_xeSoft_add_test($params = '') {
+	$selected = $GLOBALS['xeControl_xeSoft_add_textbox']->text;
 	if ($selected) {
 		$httpClient = eyeURL('getHTTPClient');
 		$httpClient->setURL($selected);
@@ -70,25 +76,25 @@ function xeControl_on_eyesoft_add_test($params = '') {
 	}
 }
 
-function xeControl_on_eyesoft_add_cancel($params = '') {
-	$GLOBALS['xeControl_eyesoft_add_window']->close();
+function xeControl_on_xeSoft_add_cancel($params = '') {
+	$GLOBALS['xeControl_xeSoft_add_window']->close();
 }
 
-function xeControl_on_eyesoft_edit($params = '') {
-	$mirror = $GLOBALS['xeControl_eyesoft_sortabletable']->selected;
+function xeControl_on_xeSoft_edit($params = '') {
+	$mirror = $GLOBALS['xeControl_xeSoft_sortabletable']->selected;
 	if ($mirror && $mirror != EYECONTROL_DEFAULT_REPOSITORY) {
 		eyex('messageBox',array(
-			'buttons' => array(array('eyesoft_edit_save','Save'),array('eyesoft_edit_test','Test'),array('eyesoft_edit_cancel','Cancel')),
+			'buttons' => array(array('xeSoft_edit_save','Save'),array('xeSoft_edit_test','Test'),array('xeSoft_edit_cancel','Cancel')),
 			'content' => 'Type the new mirror address:',
 			'father' => 'xeControl_container_big',
-			'hiddens' => array(array('xeControl_eyesoft_edit_hidden',$mirror)),
+			'hiddens' => array(array('xeControl_xeSoft_edit_hidden',$mirror)),
 			'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/repositories.png',
-			'textbox_event' => 'eyesoft_edit_save',
-			'textbox_name' => 'xeControl_eyesoft_edit_textbox',
+			'textbox_event' => 'xeSoft_edit_save',
+			'textbox_name' => 'xeControl_xeSoft_edit_textbox',
 			'textbox_text' => $mirror,
 			'title' => 'Edit mirror',
 			'type' => 3,
-			'win_name' => 'xeControl_eyesoft_edit_window',
+			'win_name' => 'xeControl_xeSoft_edit_window',
 			'win_removepid' => 0,
 			'win_style' => TITLE + CLOSE
 		));
@@ -99,9 +105,9 @@ function xeControl_on_eyesoft_edit($params = '') {
 	}
 }
 
-function xeControl_on_eyesoft_edit_save($params = '') {
-	$mirror_old = $GLOBALS['xeControl_eyesoft_edit_hidden']->text;
-	$mirror_new = $GLOBALS['xeControl_eyesoft_edit_textbox']->text;
+function xeControl_on_xeSoft_edit_save($params = '') {
+	$mirror_old = $GLOBALS['xeControl_xeSoft_edit_hidden']->text;
+	$mirror_new = $GLOBALS['xeControl_xeSoft_edit_textbox']->text;
 	if ($mirror_new && $mirror_new != EYECONTROL_DEFAULT_REPOSITORY) {
 		$dir = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml';
 		$mirrorXML = eyeXML('getXMLfile',array($dir));
@@ -111,7 +117,7 @@ function xeControl_on_eyesoft_edit_save($params = '') {
 			$mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'][$x] = $mirror_new;
 			eyeXML('setXMLFile',array($dir,$mirrorXML));
 			eyex('messageBox',array('content' => 'Mirror successfully saved.'));
-			xeControl_lib_loadContent('only_root','eyesoft');
+			xeControl_lib_loadContent('only_root','xeSoft');
 		} else {
 			eyex('messageBox',array('content' => 'Mirror does not exist!'));
 		}
@@ -122,8 +128,8 @@ function xeControl_on_eyesoft_edit_save($params = '') {
 	}
 }
 
-function xeControl_on_eyesoft_edit_test($params = '') {
-	$selected = $GLOBALS['xeControl_eyesoft_edit_textbox']->text;
+function xeControl_on_xeSoft_edit_test($params = '') {
+	$selected = $GLOBALS['xeControl_xeSoft_edit_textbox']->text;
 	if ($selected) {
 		$httpClient = eyeURL('getHTTPClient');
 		$httpClient->setURL($selected);
@@ -140,22 +146,22 @@ function xeControl_on_eyesoft_edit_test($params = '') {
 	}
 }
 
-function xeControl_on_eyesoft_edit_cancel($params = '') {
-	$GLOBALS['xeControl_eyesoft_edit_window']->close();
+function xeControl_on_xeSoft_edit_cancel($params = '') {
+	$GLOBALS['xeControl_xeSoft_edit_window']->close();
 }
 
-function xeControl_on_eyesoft_delete($params = '') {
-	$mirror = $GLOBALS['xeControl_eyesoft_sortabletable']->selected;
+function xeControl_on_xeSoft_delete($params = '') {
+	$mirror = $GLOBALS['xeControl_xeSoft_sortabletable']->selected;
 	if ($mirror && $mirror != EYECONTROL_DEFAULT_REPOSITORY) {
 		eyex('messageBox',array(
-			'buttons' => array(array('eyesoft_delete_yes','Yes'),array('eyesoft_delete_no','No')),
+			'buttons' => array(array('xeSoft_delete_yes','Yes'),array('xeSoft_delete_no','No')),
 			'content' => 'Do you really want to remove this mirror from xeSoft?',
 			'father' => 'xeControl_container_big',
-			'hiddens' => array(array('eyesoft_delete_hidden',$mirror)),
+			'hiddens' => array(array('xeSoft_delete_hidden',$mirror)),
 			'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/editClean.png',
 			'title' => 'Delete mirror',
 			'type' => 3,
-			'win_name' => 'xeControl_eyesoft_delete_window',
+			'win_name' => 'xeControl_xeSoft_delete_window',
 			'win_removepid' => 0,
 			'win_style' => TITLE + CLOSE
 		));
@@ -166,8 +172,8 @@ function xeControl_on_eyesoft_delete($params = '') {
 	}
 }
 
-function xeControl_on_eyesoft_delete_yes($params = '') {
-	$mirror = $GLOBALS['eyesoft_delete_hidden']->text;
+function xeControl_on_xeSoft_delete_yes($params = '') {
+	$mirror = $GLOBALS['xeSoft_delete_hidden']->text;
 	if ($mirror && $mirror != EYECONTROL_DEFAULT_REPOSITORY) {
 		$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml';
 		$mirrorXML = eyeXML('getXMLfile',array($file));
@@ -176,12 +182,12 @@ function xeControl_on_eyesoft_delete_yes($params = '') {
 		unset($mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'][$x]);
 		eyeXML('setXMLFile',array($file,$mirrorXML));
 		eyex('messageBox',array('content' => 'Mirror successfully deleted.'));
-		xeControl_lib_loadContent('only_root','eyesoft');
+		xeControl_lib_loadContent('only_root','xeSoft');
 	}
 }
 
-function xeControl_on_eyesoft_test($params = '') {
-	$mirror = $GLOBALS['xeControl_eyesoft_sortabletable']->selected;
+function xeControl_on_xeSoft_test($params = '') {
+	$mirror = $GLOBALS['xeControl_xeSoft_sortabletable']->selected;
 	if ($mirror) {
 		$httpClient = eyeURL('getHTTPClient');
 		$httpClient->setURL($mirror);
@@ -198,7 +204,7 @@ function xeControl_on_eyesoft_test($params = '') {
 	}
 }
 
-function xeControl_on_eyesoft_delete_no($params = '') {
-	$GLOBALS['xeControl_eyesoft_delete_window']->close();
+function xeControl_on_xeSoft_delete_no($params = '') {
+	$GLOBALS['xeControl_xeSoft_delete_window']->close();
 }
 ?>

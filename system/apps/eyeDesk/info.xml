@@ -1,8 +1,8 @@
 <package>
 	<name>eyeDesk</name>
 	<category>System</category>
-	<version>1.9</version>
-	<description>oneye desktop</description>
+	<version>1.0</version>
+	<description>XenonOS Desktop</description>
 	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>System</type>
