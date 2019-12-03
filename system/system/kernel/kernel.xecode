@@ -24,6 +24,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	XenonOS XeKernel
 */
 
+
 function service($servicename, $servicefunction = null, $params = null, $noListen = 0)
 {
 	$sec_servicename = basename($servicename);
@@ -32,13 +33,13 @@ function service($servicename, $servicefunction = null, $params = null, $noListe
 	{
 		if (!checkACL($sec_servicename, $servicefunction, $params))
 		{
-			return false;
+			return(false);
 		}
 	}
 
 	if (!checkServiceLoaded($sec_servicename))
 	{
-		if ( is_readable(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/'.$sec_servicename.'/main'.XE_CODE_EXTENSION) )
+		if (is_readable(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/'.$sec_servicename.'/main'.XE_CODE_EXTENSION))
 		{
 			include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/'.$sec_servicename.'/main'.XE_CODE_EXTENSION);
 
@@ -76,9 +77,7 @@ function service($servicename, $servicefunction = null, $params = null, $noListe
 	return($ret);
 }
 
-/*
-*The reqLib have noListen as true by default since the libraries listener calls are not usually used
-*/
+// The reqLib have noListen as true by default since the libraries listener calls are not usually used
 function reqLib($libname, $function, $params = null, $noListen = true)
 {
 	$sec_libname = basename($libname);
@@ -335,8 +334,9 @@ function delShortUrl($shortUrl)
 	unset($_SESSION['shortUrls'][$shortUrl]);
 }
 
+
 /*
-*Listener Calls for Services (used in service call)
+	Listener Calls for Services (used in service call)
 */
 function addListenerServiceCall($myCallback, $myService, $myCall, $postExecution = 0)
 {
@@ -357,9 +357,13 @@ function getListenerServiceCallList($postExecution = 0)
 {
    getGenericListenerCallList('KListenerList', $postExecution);
 }
+/*
+	End
+*/
+
 
 /*
-*Listener Calls for Libraries (used in reqLib function)
+	Listener Calls for Libraries (used in reqLib function)
 */
 function addListenerLibraryCall($myCallback, $myService, $myCall, $postExecution = 0)
 {
@@ -380,9 +384,13 @@ function getListenerLibraryCallList($postExecution = 0)
 {
    getGenericListenerCallList('LListenerList', $postExecution);
 }
+/*
+	End
+*/
+
 
 /*
-*Generic functions for Listener calls, only the name of the array change
+	Generic functions for Listener calls, only the name of the array change
 */
 function addGenericListenerCall($type, $myCallback, $myService, $myCall, $postExecution = 0)
 {
@@ -451,9 +459,13 @@ function removeGenericListenerCallByPid($type, $pid = null, $postExecution = 0)
 
 	unset($_SESSION[$type]['pInfo'][$pid]);
 }
+/*
+	End
+*/
+
 
 /*
-*That function create dynamically an alias for each service/library
+	That function create dynamically an alias for each service/library
 */
 function createFunctionAlias()
 {
@@ -732,7 +744,14 @@ function msgACLreject($params = null)
 
 	eyeX('messageBox', array('content' => $disObj.' has been disabled by your Administrator'));
 }
+/*
+	End
+*/
 
+
+/*
+	xeMemory Functions
+*/
 if (function_exists('apcu_store') && function_exists('apcu_fetch') && function_exists('apcu_delete'))
 {
 	function xeMemoryWrite($location, $data)
@@ -789,6 +808,10 @@ else
 		return("PECL APCU PHP Extension is Not Installed!");
 	}
 }
+/*
+	End
+*/
+
 
 createFunctionAlias();
 
