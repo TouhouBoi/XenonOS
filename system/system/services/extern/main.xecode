@@ -23,144 +23,214 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 define('MAX_FILE_EXTENSION', false);
 define('MAX_FILE_NAME_LEN', false);
 
-function service_extern_init($params = null) {
+function service_extern_init($params = null)
+{
 	global $externRequest;
+	
 	$externRequest = true;
 }
 
-function service_extern_getContent($params) {
-	if (isset($params[0]) === false) {
+function service_extern_getContent($params)
+{
+	if (isset($params[0]) === false)
+	{
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
-		return false;
+		
+		return(false);
 	}
 
-	// DOWNLOAD
-	if (isset($params[2]) === true && $params[2] !== false) {
+	// FILE DOWNLOAD
+	if (isset($params[2]) === true && $params[2] !== false)
+	{
 		header('Content-Description: File Transfer');
-		header('Content-Disposition: attachment; filename="' . $params[2] . '"');
+		
+		header('Content-Disposition: attachment; filename="'.$params[2].'"');
 	}
 
 	// HEADER
 	$params[1] = extern('getContentType', array($params[1]));
-	if ($params[1] !== false) {
-		header('Content-Type: ' . $params[1]);
+	
+	if ($params[1] !== false)
+	{
+		header('Content-Type: '.$params[1]);
 	}
-	header('Content-Length: ' . /* utf8 */ strlen($params[0]));
+	
+	header('Content-Length: '.strlen($params[0]));
+	
 	header('Accept-Ranges: bytes');
-	echo $params[0];
-	exit;
+	
+	print($params[0]);
+	
+	exit();
 }
 
-function service_extern_getContentType($params) {
+function service_extern_getContentType($params)
+{
 	$type = isset($params[0]) && is_string($params[0]) ? $params[0] : null;
+	
 	$all = isset($params[1]) && is_bool($params[1]) ? $params[1] : false;
 
-	if ($all === true) {
-		$config = unserialize(file_get_contents(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/extern/mimetypes-all.data'));
-	} else {
+	if ($all === true)
+	{
+		$config = unserialize(file_get_contents(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/extern/mimetypes-all.data'));
+	}
+	else
+	{
 		$config = unserialize(file_get_contents(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/extern/mimetypes.data'));
 	}
-	$type = /* utf8 */ strtolower($type);
-	if (isset($config[$type]) === true) {
-		if (($type === 'xht' || $type === 'xhtml') && /* utf8 */ stripos($_SERVER['HTTP_ACCEPT'], $config['xhtml']) === false) {
-			$type = 'html';
+	
+	$type = strtolower($type);
+	
+	if (isset($config[$type]) === true)
+	{
+		if (($type === 'xht' || $type === 'xhtml') && stripos($_SERVER['HTTP_ACCEPT'], $config['xhtml']) === false)
+		{
+			$type = "html";
 		}
+		
 		$contentType = $config[$type];
 
 		// Charset
-		if (substr($contentType, 0, 5) === 'text/' || substr($contentType, -4) === '/xml' || substr($contentType, -4) === '+xml' || $type === 'js' || $type === 'json') { // utf8
-			$contentType .= '; charset=utf-8';
+		if (substr($contentType, 0, 5) === 'text/' || substr($contentType, -4) === '/xml' || substr($contentType, -4) === '+xml' || $type === 'js' || $type === 'json')
+		{
+			$contentType .= "; charset=utf-8";
 		}
 
-		return $contentType;
+		return($contentType);
 	}
-	if ($all === true) {
-		return false;
+	
+	if ($all === true)
+	{
+		return(false);
 	}
-	return extern('getContentType', array($type, true));
+	
+	return(extern('getContentType', array($type, true)));
 }
 
-function service_extern_getFile($params) {
-	if (isset($params[0]) === false) {
+function service_extern_getFile($params)
+{
+	if (isset($params[0]) === false)
+	{
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
-		return false;
+		
+		return(false);
 	}
+	
 	$type = null;
-	if (isset($params[1]) === true) {
+	
+	if (isset($params[1]) === true)
+	{
 		$type = $params[1];
 	}
 
 	// PATH
-	if (isset($_REQUEST['theme']) === true) {
-		if ($_REQUEST['theme'] === '0') {
-			$path = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . $params[0];
-		} else {
-			$path = eyex('getThemeImage', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/default/' . $params[0], 3));
+	if (isset($_REQUEST['theme']) === true)
+	{
+		if ($_REQUEST['theme'] === '0')
+		{
+			$path = XENONOS_ROOT.'/'.EXTERN_DIR.'/'.$params[0];
 		}
-	} else {
-		$path = eyex('getThemeImage', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . $params[0], 3));
+		else
+		{
+			$path = eyex('getThemeImage', array(XENONOS_ROOT.'/'.EXTERN_DIR.'/'.THEMES_DIR.'/default/'.$params[0], 3));
+		}
 	}
-	if ($path === false) {
-		return false;
+	else
+	{
+		$path = eyex('getThemeImage', array(XENONOS_ROOT.'/'.EXTERN_DIR.'/'.$params[0], 3));
+	}
+	
+	if ($path === false)
+	{
+		return(false);
 	}
 
 	// INFO
 	$info = pathinfo($path);
+	
 	$basename = $info['basename'];
-	$dirname = $info['dirname'] .  '/' . $basename;
+	
+	$dirname = $info['dirname'].'/'.$basename;
+	
 	$extension = $info['extension'];
-	if (MAX_FILE_NAME_LEN !== false && utf8_strlen($basename) > MAX_FILE_NAME_LEN === true) {
-		return false;
+	
+	if (MAX_FILE_NAME_LEN !== false && utf8_strlen($basename) > MAX_FILE_NAME_LEN === true)
+	{
+		return(false);
 	}
-	if (MAX_FILE_EXTENSION !== false && utf8_strlen($extension) > MAX_FILE_EXTENSION === true) {
-		return false;
+	
+	if (MAX_FILE_EXTENSION !== false && utf8_strlen($extension) > MAX_FILE_EXTENSION === true)
+	{
+		return(false);
 	}
-	if ( /* utf8 */ strpos(realpath($dirname), realpath(XENONOS_ROOT . '/' . EXTERN_DIR . '/')) !== 0) {
-		return false;
+	
+	if (strpos(realpath($dirname), realpath(XENONOS_ROOT . '/' . EXTERN_DIR . '/')) !== 0)
+	{
+		return(false);
 	}
 
-	if (is_readable($dirname) === true) {
-		$content = '';
+	if (is_readable($dirname) === true)
+	{
+		$content = "";
 
 		// DYNAMIC
-		if ($type === 'dynamic') {
+		if ($type === 'dynamic')
+		{
 			$download = false;
+			
 			$type = null;
-			include_once $dirname;
-			if (function_exists('get_dynamic_content') === true) {
+			
+			include_once($dirname);
+			
+			if (function_exists('get_dynamic_content') === true)
+			{
 				$content = get_dynamic_content($_GET['params']);
 			}
-		} else {
+		}
+		else
+		{
 			// COMPRESSED
-			if (USE_COMPRESSED && substr($dirname, - strlen('.min.' . $extension)) !== '.min.' . $extension) { // utf8
-				$dirname2 = substr($dirname, 0, - strlen($extension)) . 'min.' . $extension; // utf8
-				if (is_readable($dirname2) === true && filemtime($dirname2) >= filemtime($dirname)) {
+			if (USE_COMPRESSED && substr($dirname, - strlen('.min.' . $extension)) !== '.min.' . $extension)
+			{
+				$dirname2 = substr($dirname, 0, - strlen($extension)).'min.'.$extension;
+				
+				if (is_readable($dirname2) === true && filemtime($dirname2) >= filemtime($dirname))
+				{
 					$dirname = $dirname2;
 				}
 			}
 
 			// DOWNLOAD
 			$download = false;
-			if ($type === 'download') {
+			
+			if ($type === 'download')
+			{
 				$download = $basename;
 			}
 
 			// CACHE
-			if ($download === false) {
-				$last_modified = gmdate('r', filemtime($dirname)) . ' GMT';
-				header('Last-Modified: ' . $last_modified);
-				if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) === true && $_SERVER['HTTP_IF_MODIFIED_SINCE'] === $last_modified) {
-					header($_SERVER['SERVER_PROTOCOL'] . ' 304 Not Modified');
-					exit;
+			if ($download === false)
+			{
+				$last_modified = gmdate('r', filemtime($dirname)).' GMT';
+				
+				header('Last-Modified: '.$last_modified);
+				
+				if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) === true && $_SERVER['HTTP_IF_MODIFIED_SINCE'] === $last_modified)
+				{
+					header($_SERVER['SERVER_PROTOCOL'].' 304 Not Modified');
+					
+					exit();
 				}
 			}
 
 			// USERTHEME
 			$content = file_get_contents($dirname);
-			$content = str_replace('theme=USERTHEME', 'theme=' . $_SESSION['usertheme'], $content);
+			
+			$content = str_replace('theme=USERTHEME', 'theme='.$_SESSION['usertheme'], $content);
 		}
+		
 		extern('getContent', array($content, $extension, $download));
 	}
-	return true;
+	return(true);
 }
 ?>
