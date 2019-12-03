@@ -24,18 +24,27 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	XenonOS XeKernel PHP Version Compatibility Layer
 */
 
-date_default_timezone_set(TIMEZONE);
 
+date_default_timezone_set(TIMEZONE); // Set PHP Default Timezone
+
+/*
+	get_tmp_dir() - Get XenonOS Temporary Directory
+*/
 function get_tmp_dir()
 {
 	$tmp_dir = XENONOS_ROOT . '/' . XENONOS_TMP_DIR;
 	return($tmp_dir);
 }
 
+/*
+	ini_get_size()
+*/
 function ini_get_size($sName)
 {
     $sSize = ini_get($sName);
+	
     $sUnit = substr($sSize, -1);
+	
     $iSize = (int)substr($sSize, 0, -1);
 
     switch (strtoupper($sUnit))
@@ -84,20 +93,20 @@ if (!function_exists('json_encode'))
 		{
 			if (is_float($a))
 			{
-        return(floatval(str_replace(",", ".", strval($a))));
-      }
+				return(floatval(str_replace(",", ".", strval($a))));
+			}
 
 			if (is_string($a))
 			{
-        	static $jsonReplaces = array(array("\\", "/", "\n", "\t", "\r", "\b", "\f", '"'), array('\\\\', '\\/', '\\n', '\\t', '\\r', '\\b', '\\f', '\"'));
+				static $jsonReplaces = array(array("\\", "/", "\n", "\t", "\r", "\b", "\f", '"'), array('\\\\', '\\/', '\\n', '\\t', '\\r', '\\b', '\\f', '\"'));
 
-        	return('"' . str_replace($jsonReplaces[0], $jsonReplaces[1], $a) . '"');
-      }
+				return('"' . str_replace($jsonReplaces[0], $jsonReplaces[1], $a) . '"');
+			}
 			else
 			{
-        return($a);
-      }
-    }
+				return($a);
+			}
+		}
 
 		$isList = true;
 
@@ -111,22 +120,22 @@ if (!function_exists('json_encode'))
 			}
 		}
 
-    $result = array();
+		$result = array();
 
-    if ($isList)
+		if ($isList)
 		{
-    	foreach ($a as $v) $result[] = json_encode($v);
-    	return '[' . join(',', $result) . ']';
-    }
+			foreach ($a as $v) $result[] = json_encode($v);
+			return '[' . join(',', $result) . ']';
+		}
 		else
 		{
-    	foreach ($a as $k => $v)
+			foreach ($a as $k => $v)
 			{
-    		$result[] = json_encode($k).':'.json_encode($v);
-    	}
+				$result[] = json_encode($k).':'.json_encode($v);
+			}
 
-    	return('{' . join(',', $result) . '}');
-    }
+			return('{' . join(',', $result) . '}');
+		}
 	}
 }
 
