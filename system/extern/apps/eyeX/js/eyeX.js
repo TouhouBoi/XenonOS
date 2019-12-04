@@ -428,7 +428,7 @@ function viewLoading() {
 		oCursor.style.left = mouseX + 10 + 'px';
 		oCursor.style.display = 'block';
 	} else {
-		oApps.style.cursor = 'url(index.php?theme=' + USERTHEME + '&extern=images/desktop/loadingcursor/loading.cur), wait';
+		oApps.style.cursor = 'url(index.php?theme=' + USERTHEME + '&extern=images/desktop/loadingcursor/loading.png), wait';
 	}
 	return true;
 }
