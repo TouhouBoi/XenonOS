@@ -21,19 +21,25 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 /*
+	XenonOS Images Alias
+*/
+
+
+/*
 	STYLE ALIASES
 */
 
-$alias[1][APP_DIR . '/eyeCalendar/css/eyeCalendar.css'] = 'css/' . APP_DIR . '/eyeCalendar/eyeCalendar.css';
-$alias[1][APP_DIR . '/eyeFTP/css/eyeFTP.css'] = 'css/' . APP_DIR . '/eyeFTP/eyeFTP.css';
-$alias[1][APP_DIR . '/eyeManageApps/css/eyeManageApps.css'] = 'css/' . APP_DIR . '/eyeManageApps/eyeManageApps.css';
-$alias[1][APP_DIR . '/eyeSheets/print.css'] = 'css/' . APP_DIR . '/eyeSheets/print.css';
-$alias[1][APP_DIR . '/eyeSheets/print_noline.css'] = 'css/' . APP_DIR . '/eyeSheets/print_noline.css';
-$alias[1][APP_DIR . '/eyeSheets/styles.css'] = 'css/' . APP_DIR . '/eyeSheets/styles.css';
-$alias[1][APP_DIR . '/eyeSheets/styles_noline.css'] = 'css/' . APP_DIR . '/eyeSheets/styles_noline.css';
-$alias[1][APP_DIR . '/miniCalendar/css/miniCalendar.css'] = 'css/' . APP_DIR . '/miniCalendar/miniCalendar.css';
-$alias[1][APP_DIR . '/miniHome/css/miniHome.css'] = 'css/' . APP_DIR . '/miniHome/miniHome.css';
-$alias[1][APP_DIR . '/miniMessages/css/miniMessages.css'] = 'css/' . APP_DIR . '/miniMessages/miniMessages.css';
+$alias[1][APP_DIR . '/eyeCalendar/css/eyeCalendar.css'] = 'css/'.APP_DIR.'/eyeCalendar/eyeCalendar.css';
+$alias[1][APP_DIR . '/eyeFTP/css/eyeFTP.css'] = 'css/'.APP_DIR.'/eyeFTP/eyeFTP.css';
+$alias[1][APP_DIR . '/eyeManageApps/css/eyeManageApps.css'] = 'css/'.APP_DIR.'/eyeManageApps/eyeManageApps.css';
+$alias[1][APP_DIR . '/eyeSheets/print.css'] = 'css/'.APP_DIR.'/eyeSheets/print.css';
+$alias[1][APP_DIR . '/eyeSheets/print_noline.css'] = 'css/'.APP_DIR.'/eyeSheets/print_noline.css';
+$alias[1][APP_DIR . '/eyeSheets/styles.css'] = 'css/'.APP_DIR.'/eyeSheets/styles.css';
+$alias[1][APP_DIR . '/eyeSheets/styles_noline.css'] = 'css/'.APP_DIR.'/eyeSheets/styles_noline.css';
+$alias[1][APP_DIR . '/miniCalendar/css/miniCalendar.css'] = 'css/'.APP_DIR.'/miniCalendar/miniCalendar.css';
+$alias[1][APP_DIR . '/miniHome/css/miniHome.css'] = 'css/'.APP_DIR.'/miniHome/miniHome.css';
+$alias[1][APP_DIR . '/miniMessages/css/miniMessages.css'] = 'css/'.APP_DIR.'/miniMessages/miniMessages.css';
+
 
 /*
 	THEMES ALIASES
@@ -133,7 +139,7 @@ $toolbar = array(
 
 foreach ($toolbar as $toolbarHome)
 {
-	$alias[0]['images/toolbar/'. $toolbarHome .'.png'] = 'icons/22x22/'. $toolbarHome .'.png';
+	$alias[0]['images/toolbar/'.$toolbarHome.'.png'] = 'icons/22x22/'.$toolbarHome.'.png';
 }
 
 //20x20
@@ -198,7 +204,7 @@ $pic22 = array(
 
 foreach ($pic22 as $pic22Home)
 {
-	$alias[0]['icons/20x20/'. $pic22Home .'.png'] = 'icons/22x22/'. $pic22Home .'.png';
+	$alias[0]['icons/20x20/'.$pic22Home.'.png'] = 'icons/22x22/'.$pic22Home.'.png';
 }
 
 $alias[0]['icons/20x20/home.png'] = 'icons/22x22/homeFolder.png';
@@ -248,6 +254,7 @@ $alias[0]['icons/48x48/manageusers.png'] = 'icons/48x48/public.png';
 $alias[0]['icons/48x48/webbrowser.png'] = 'icons/48x48/eyeNav.png';
 $alias[0]['images/widgets/folder.png'] = 'icons/16x16/folder.png';
 $alias[0]['images/widgets/folder_open.png'] = 'icons/16x16/folder_open.png';
+
 
 /*
 	EXTERN ALIASES
@@ -386,26 +393,26 @@ $alias[1][APP_DIR . '/eyeLightDesk/icon3.png'] = 'images/' . APP_DIR . '/eyeLigh
 $alias[1][APP_DIR . '/eyeLightDesk/menubg.png'] = 'images/' . APP_DIR . '/eyeLightDesk/menubg.png';
 
 // eyeLogin
-$alias[1][APP_DIR . '/eyeLogin/themes/default/gfx/bg_login.png'] = 'images/' . APP_DIR . '/eyeLogin/bg_login.png';
-$alias[1][APP_DIR . '/eyeLogin/themes/default/gfx/bg_newuser.png'] = 'images/' . APP_DIR . '/eyeLogin/bg_newuser.png';
-$alias[1][APP_DIR . '/eyeLogin/themes/default/gfx/IE/bg_newuser.png'] = 'images/' . APP_DIR . '/eyeLogin/bg_newuser_ie.png';
-$alias[1][APP_DIR . '/eyeLogin/themes/default/gfx/box.png'] = 'images/' . APP_DIR . '/eyeLogin/box.png';
-$alias[1][APP_DIR . '/eyeLogin/themes/default/gfx/box_x.png'] = 'images/' . APP_DIR . '/eyeLogin/box_x.png';
-$alias[1][APP_DIR . '/eyeLogin/themes/default/gfx/createaccount.png'] = 'images/' . APP_DIR . '/eyeLogin/createaccount.png';
-$alias[1][APP_DIR . '/eyeLogin/themes/default/gfx/enter.png'] = 'images/' . APP_DIR . '/eyeLogin/enter.png';
-$alias[1][APP_DIR . '/eyeLogin/themes/default/gfx/eyeoslogo.png'] = 'images/' . APP_DIR . '/eyeLogin/eyeoslogo.png';
-$alias[1][APP_DIR . '/eyeLogin/themes/default/gfx/line.png'] = 'images/' . APP_DIR . '/eyeLogin/line.png';
-$alias[1][APP_DIR . '/eyeLogin/themes/default/gfx/line_x.png'] = 'images/' . APP_DIR . '/eyeLogin/line_x.png';
-$alias[1][APP_DIR . '/eyeLogin/themes/default/gfx/new.png'] = 'images/' . APP_DIR . '/eyeLogin/new.png';
-$alias[1][APP_DIR . '/eyeLogin/themes/default/gfx/new_x.png'] = 'images/' . APP_DIR . '/eyeLogin/new_x.png';
+$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/bg_login.png'] = 'images/'.APP_DIR.'/eyeLogin/bg_login.png';
+$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/bg_newuser.png'] = 'images/'.APP_DIR.'/eyeLogin/bg_newuser.png';
+$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/IE/bg_newuser.png'] = 'images/'.APP_DIR.'/eyeLogin/bg_newuser_ie.png';
+$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/box.png'] = 'images/'.APP_DIR.'/eyeLogin/box.png';
+$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/box_x.png'] = 'images/'.APP_DIR.'/eyeLogin/box_x.png';
+$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/createaccount.png'] = 'images/'.APP_DIR.'/eyeLogin/createaccount.png';
+$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/enter.png'] = 'images/'.APP_DIR.'/eyeLogin/enter.png';
+$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/eyeoslogo.png'] = 'images/'.APP_DIR.'/eyeLogin/eyeoslogo.png';
+$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/line.png'] = 'images/'.APP_DIR.'/eyeLogin/line.png';
+$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/line_x.png'] = 'images/'.APP_DIR.'/eyeLogin/line_x.png';
+$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/new.png'] = 'images/'.APP_DIR.'/eyeLogin/new.png';
+$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/new_x.png'] = 'images/'.APP_DIR.'/eyeLogin/new_x.png';
 
 // eyeMail
-$alias[1][APP_DIR . '/eyeMail/gfx/delete.png'] = 'icons/16x16/message_trash.png';
-$alias[1][APP_DIR . '/eyeMail/gfx/email.png'] = 'images/' . APP_DIR . '/eyeMail/email.png';
-$alias[1][APP_DIR . '/eyeMail/gfx/identify.png'] = 'icons/16x16/unread.png';
-$alias[1][APP_DIR . '/eyeMail/gfx/inbox.png'] = 'icons/16x16/inbox.png';
-$alias[1][APP_DIR . '/eyeMail/gfx/open.png'] = 'icons/16x16/read.png';
-$alias[1][APP_DIR . '/eyeMail/gfx/send.png'] = 'icons/16x16/sent.png';
+$alias[1][APP_DIR.'/eyeMail/gfx/delete.png'] = 'icons/16x16/message_trash.png';
+$alias[1][APP_DIR.'/eyeMail/gfx/email.png'] = 'images/'.APP_DIR.'/eyeMail/email.png';
+$alias[1][APP_DIR.'/eyeMail/gfx/identify.png'] = 'icons/16x16/unread.png';
+$alias[1][APP_DIR.'/eyeMail/gfx/inbox.png'] = 'icons/16x16/inbox.png';
+$alias[1][APP_DIR.'/eyeMail/gfx/open.png'] = 'icons/16x16/read.png';
+$alias[1][APP_DIR.'/eyeMail/gfx/send.png'] = 'icons/16x16/sent.png';
 $alias[0]['images/apps/eyeMail/mail-receive.png'] = 'icons/22x22/mail-receive.png';
 $alias[0]['images/apps/eyeMail/mail-message-new.png'] = 'icons/22x22/message_new.png';
 $alias[0]['images/apps/eyeMail/user-trash.png'] = 'icons/22x22/message_delete.png';
@@ -414,14 +421,14 @@ $alias[0]['images/apps/eyeMail/mail-forward.png'] = 'icons/22x22/mail-forward.pn
 $alias[0]['images/apps/eyeMail/preferences-system.png'] = 'icons/22x22/settings.png';
 
 // eyeNav
-$alias[1][APP_DIR . '/eyeNav/gfx/delete.png'] = 'images/' . APP_DIR . '/eyeNav/delete.png';
-$alias[1][APP_DIR . '/eyeNav/gfx/link.png'] = 'images/' . APP_DIR . '/eyeNav/link.png';
+$alias[1][APP_DIR . '/eyeNav/gfx/delete.png'] = 'images/'.APP_DIR.'/eyeNav/delete.png';
+$alias[1][APP_DIR . '/eyeNav/gfx/link.png'] = 'images/'.APP_DIR.'/eyeNav/link.png';
 
 // eyeSnow
-$alias[1][APP_DIR . '/eyeSnow/0.png'] = 'images/' . APP_DIR . '/eyeSnow/0.png';
-$alias[1][APP_DIR . '/eyeSnow/1.png'] = 'images/' . APP_DIR . '/eyeSnow/1.png';
-$alias[1][APP_DIR . '/eyeSnow/2.png'] = 'images/' . APP_DIR . '/eyeSnow/2.png';
-$alias[1][APP_DIR . '/eyeSnow/3.png'] = 'images/' . APP_DIR . '/eyeSnow/3.png';
+$alias[1][APP_DIR . '/eyeSnow/0.png'] = 'images/'.APP_DIR.'/eyeSnow/0.png';
+$alias[1][APP_DIR . '/eyeSnow/1.png'] = 'images/'.APP_DIR.'/eyeSnow/1.png';
+$alias[1][APP_DIR . '/eyeSnow/2.png'] = 'images/'.APP_DIR.'/eyeSnow/2.png';
+$alias[1][APP_DIR . '/eyeSnow/3.png'] = 'images/'.APP_DIR.'/eyeSnow/3.png';
 
 // xeSoft
 $alias[1][APP_DIR . '/xeSoft/gfx/install.png'] = 'icons/16x16/plus.png';
@@ -436,11 +443,11 @@ $alias[1][APP_DIR . '/eyeTrash/gfx/restore.png'] = 'icons/16x16/restore.png';
 $alias[1][APP_DIR . '/eyeTrash/gfx/restore_big.png'] = 'icons/48x48/rename.png';
 
 // miniActions
-$alias[1][APP_DIR . '/miniActions/images/bg.png'] = 'images/' . APP_DIR . '/miniActions/bg.png';
-$alias[1][APP_DIR . '/miniActions/images/button.png'] = 'images/' . APP_DIR . '/miniActions/button.png';
-$alias[1][APP_DIR . '/miniActions/images/close.png'] = 'images/' . APP_DIR . '/miniActions/close.png';
-$alias[1][APP_DIR . '/miniActions/images/document.png'] = 'images/' . APP_DIR . '/miniActions/document.png';
-$alias[1][APP_DIR . '/miniActions/images/message.png'] = 'images/' . APP_DIR . '/miniActions/message.png';
-$alias[1][APP_DIR . '/miniActions/images/spreadsheet.png'] = 'images/' . APP_DIR . '/miniActions/spreadsheet.png';
-$alias[1][APP_DIR . '/miniActions/images/upload.png'] = 'images/' . APP_DIR . '/miniActions/upload.png';
+$alias[1][APP_DIR . '/miniActions/images/bg.png'] = 'images/'.APP_DIR.'/miniActions/bg.png';
+$alias[1][APP_DIR . '/miniActions/images/button.png'] = 'images/'.APP_DIR.'/miniActions/button.png';
+$alias[1][APP_DIR . '/miniActions/images/close.png'] = 'images/'.APP_DIR.'/miniActions/close.png';
+$alias[1][APP_DIR . '/miniActions/images/document.png'] = 'images/'.APP_DIR.'/miniActions/document.png';
+$alias[1][APP_DIR . '/miniActions/images/message.png'] = 'images/'.APP_DIR.'/miniActions/message.png';
+$alias[1][APP_DIR . '/miniActions/images/spreadsheet.png'] = 'images/'.APP_DIR.'/miniActions/spreadsheet.png';
+$alias[1][APP_DIR . '/miniActions/images/upload.png'] = 'images/'.APP_DIR.'/miniActions/upload.png';
 ?>
