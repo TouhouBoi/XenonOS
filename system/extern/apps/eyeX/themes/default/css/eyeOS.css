@@ -427,7 +427,8 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 }
 
 .eyecursor {
-	background-image: url('index.php?theme=USERTHEME&extern=images/desktop/loadingcursor/loading.png');
+	background-image: url('index.php?theme=USERTHEME&extern=images/desktop/loadingcursor/loading.gif');
+	background-size: 18px 18px;
 	display: none;
 	height: 30px;
 	left: 0;
