@@ -20,25 +20,31 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeChess_run($params = '') {
+function eyeChess_run($params = '')
+{
 	global $checknum;
 	global $myPid;
 	
-	$myWindow = new Window(array(
-		'cent' => 1,
-		'father' => 'eyeApps',
-		'height' => 530,
-		'name' => 'eyeChess_Window',
-		'savePosition' => 1,
-		'title' => 'Chess Game',
-		'type' => NORESIZE_WINDOW,
-		'width' => 600
-	));
+	$myWindow = new Window(
+		array(
+			'cent' => 1,
+			'father' => 'eyeApps',
+			'height' => 530,
+			'name' => 'eyeChess_Window',
+			'savePosition' => 1,
+			'title' => 'Chess Game',
+			'type' => NORESIZE_WINDOW,
+			'width' => 600
+		)
+	);
+	
 	$myWindow->show();
-	eyex('loadScript',array('url' => 'index.php?extern=apps/eyeChess/eyeChess' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid . '&params[]=' . $checknum));
+	
+	eyex('loadScript', array('url' => 'index.php?extern=apps/eyeChess/eyeChess'.XE_CODE_EXTENSION.'&type=dynamic&params[]='.$myPid.'&params[]='.$checknum));
 }
 
-function eyeChess_end($params = '') {
-	eyeWidgets('unserialize',$params);
+function eyeChess_end($params = '')
+{
+	eyeWidgets('unserialize', $params);
 }
 ?>
