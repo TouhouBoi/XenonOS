@@ -23,6 +23,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 /*
 	Process Manager service
 */
+
 /*
  	Process table structure
 
@@ -32,14 +33,16 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	...
 */
 
-//Warning: TABLENAME is too generic to be a define, maybe we should change it an break a bit the compatibility.
-define('TABLENAME','ProcessTable');
+// Warning: TABLENAME is too generic to be a define, maybe we should change it an break a bit the compatibility.
+define('TABLENAME', 'ProcessTable');
 
-function service_proc_init() {
+function service_proc_init()
+{
 	//create the process table if it hadn't been created
-	if(eyeSessions('checkVar',array(TABLENAME)) == false){
-		eyeSessions('makeArrayVar',array(TABLENAME));
-		eyeSessions('setVar',array('next_tty',0));
+	if (eyeSessions('checkVar', array(TABLENAME)) == false)
+	{
+		eyeSessions('makeArrayVar', array(TABLENAME));
+		eyeSessions('setVar', array('next_tty', 0));
 	}
 }
 
@@ -49,9 +52,11 @@ function service_proc_init() {
 * @return This function does not return any value.
 * @date 2008/03/11
 */
-function service_proc_end($params=null) {
+function service_proc_end($params = null)
+{
 	global $myPid;
-	proc('close',array($myPid));
+	
+	proc('close', array($myPid));
 }
 
 /**
@@ -74,19 +79,27 @@ function service_proc_end($params=null) {
 * @exception PROC_APP_DONT_HAVE_RUN_FUNCTION The application does not have a start function.
 * @date 2008/03/18
 */
-function service_proc_launch($params) {
+function service_proc_launch($params)
+{
 	//Needed params to start
-	if(!isset($params[0])) {
-		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
-		return false;
+	if (!isset($params[0]))
+	{
+		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
+		
+		return(false);
 	}
+	
 	$appName = basename($params[0]);
 
-	//All params and needed vars.
+	// All params and needed vars.
 	global $currentUser;
-	if(isset($params[1])) {
+	
+	if (isset($params[1]))
+	{
 		$appArgs = $params[1];
-	} else {
+	}
+	else
+	{
 		$appArgs = array();
 	}
 
@@ -97,58 +110,94 @@ function service_proc_launch($params) {
 
 	//Getting unique pid.
 	$oldPid = $myPid;
+	
 	$myPid = make_unique_pid();
 
 	//Filling the proc values.
 	global $procInfo;
+	
 	$oldProcInfo = $procInfo;
-	$procInfo['appName'] = $appName;//Provided by argument.
+	
+	$procInfo['appName'] = $appName; // Provided by argument.
+	
 	$procInfo['checknum'] = make_unique_checknum();
+	
 	$procInfo['time'] = time();
-	$procInfo['currentUser'] = $currentUser;//Provided by global var.
+	
+	$procInfo['currentUser'] = $currentUser; // Provided by global var.
+	
 	$procInfo['pid'] = $myPid;
+	
 	$procInfo['tty'] = get_tty($oldPid);
+	
 	$procInfo['exec'] = 'launch';
-	if (isset($params[2])) {
+	
+	if (isset($params[2]))
+	{
 		$procInfo['xArgs'] = $params[2];
-	} else {
+	}
+	else
+	{
 		$procInfo['xArgs'] = "";
 	}
 
 	//Try running app.
-	if(!is_readable(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/app'.XE_CODE_EXTENSION)) {
+	if (!is_readable(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/app'.XE_CODE_EXTENSION))
+	{
 		$myPid = $oldPid;
+		
 		$procInfo = $oldProcInfo;
-		errorCodes('setErrorCode',array(PROC_APP_NOT_FOUND));
-		return false;
+		
+		errorCodes('setErrorCode', array(PROC_APP_NOT_FOUND));
+		
+		return(false);
 	}
+	
 	//Including app php code.
 	include_once(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/app'.XE_CODE_EXTENSION);
 
-	if(function_exists($appName.'_run')){
+	if (function_exists($appName.'_run'))
+	{
 		//Adding process in the process table.
-		eyeSessions('AddArrayValueByKey',array(TABLENAME,$procInfo,$myPid));
+		eyeSessions('AddArrayValueByKey', array(TABLENAME, $procInfo, $myPid));
+		
 		//Setting new cheknum in global
 		global $checknum;
+		
 		$oldchecknum = $checknum;
-		$checknum = $procInfo['checknum'];//Set global for new Checknum.
+		
+		$checknum = $procInfo['checknum']; // Set global for new Checknum.
+		
 		//load i18n
-		i18n('loadLang',array($appName));
+		i18n('loadLang', array($appName));
+		
 		//Calling the run function and returning the result.
-		if (!is_array($appArgs)) {
+		if (!is_array($appArgs))
+		{
 			$appArgs = array($appArgs);
 		}
+		
 		call_user_func($appName.'_run',$appArgs);
+		
 		$return = $myPid;
+		
 		$checknum = $oldchecknum;
+		
 		$myPid = $oldPid;
+		
 		$procInfo = $oldProcInfo;
-		return $return;
-	}else{
+		
+		return($return);
+	}
+	else
+	{
 		$myPid = $oldPid;
+		
 		$procInfo = $oldProcInfo;
-		errorCodes('setErrorCode',array(PROC_APP_DONT_HAVE_RUN_FUNCTION));
-		return false;
+		
+		errorCodes('setErrorCode', array(PROC_APP_DONT_HAVE_RUN_FUNCTION));
+		
+		return(false);
 	}
 }
 
@@ -170,63 +219,100 @@ function service_proc_launch($params) {
 * @exception PROC_APP_DONT_HAVE_RUN_FUNCTION The application does not have a start function.
 * @date 2008/03/11
 */
-function service_proc_getTask($params) {
+function service_proc_getTask($params)
+{
 	//Get the needed arguments to start
-	if(!isset($params[0])) {
-		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
-		return false;
+	if (!isset($params[0]))
+	{
+		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
+		
+		return(false);
 	}
+	
 	global $myPid;
+	
 	global $procInfo;
+	
 	global $checknum;
+	
 	$oldPid = $myPid;
+	
 	$myPid = intval($params[0]);
+	
 	$oldProcInfo = $procInfo;
 
-
-
-	$procInfo = proc('getProcByPid',array($myPid));
-	if(!$procInfo['checknum'] || !$procInfo['appName'])
+	$procInfo = proc('getProcByPid', array($myPid));
+	
+	if (!$procInfo['checknum'] || !$procInfo['appName'])
 	{
 		$myPid = $oldPid;
+		
 		$checknum = $oldchecknum;
+		
 		$procInfo = $oldProcInfo;
-		errorCodes('setErrorCode',array(PROC_APP_NOT_ARE_RUNNING));
-		return false;
+		
+		errorCodes('setErrorCode', array(PROC_APP_NOT_ARE_RUNNING));
+		
+		return(false);
 	}
 
-	if(!is_readable(XENONOS_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/app'.XE_CODE_EXTENSION)) {
+	if (!is_readable(XENONOS_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/app'.XE_CODE_EXTENSION))
+	{
 		$myPid = $oldPid;
+		
 		$checknum = $oldchecknum;
+		
 		$procInfo = $oldProcInfo;
-		errorCodes('setErrorCode',array(PROC_APP_NOT_FOUND));
-		return false;
+		
+		errorCodes('setErrorCode', array(PROC_APP_NOT_FOUND));
+		
+		return(false);
 	}
+	
 	include_once(XENONOS_ROOT.'/'.APP_DIR.'/'.$procInfo['appName'].'/app'.XE_CODE_EXTENSION);
-	if(isset($params[1])) {
+	
+	if (isset($params[1]))
+	{
 		$appArgs = $params[1];
-	} else {
+	}
+	else
+	{
 		$appArgs = "";
 	}
+	
 	//Set the new checknum
-
 	$oldchecknum = $checknum;
+	
 	$checknum = $procInfo['checknum'];
-	if(function_exists($procInfo['appName'].'_run')){
-		i18n('loadLang',array($procInfo['appName']));
+	
+	if (function_exists($procInfo['appName'].'_run'))
+	{
+		i18n('loadLang', array($procInfo['appName']));
+		
 		//Calling the run function and returning the result
 		$procInfo['exec'] = 'task';
-		$return = call_user_func($procInfo['appName'].'_run',array($appArgs));
+		
+		$return = call_user_func($procInfo['appName'].'_run', array($appArgs));
+		
 		$myPid = $oldPid;
+		
 		$checknum = $oldchecknum;
+		
 		$procInfo = $oldProcInfo;
-		return $return;
-	}else{
+		
+		return($return);
+	}
+	else
+	{
 		$myPid = $oldPid;
+		
 		$checknum = $oldchecknum;
+		
 		$procInfo = $oldProcInfo;
-		errorCodes('setErrorCode',array(PROC_APP_DONT_HAVE_RUN_FUNCTION));
-		return false;
+		
+		errorCodes('setErrorCode', array(PROC_APP_DONT_HAVE_RUN_FUNCTION));
+		
+		return(false);
 	}
 }
 
@@ -245,47 +331,72 @@ function service_proc_getTask($params) {
 * @exception INCORRECT_PARAMS No pid is specified.
 * @date 2008/03/11
 */
-function service_proc_close($params) {
-	if(!isset($params[0])) {
-		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
-		return false;
+function service_proc_close($params)
+{
+	if (!isset($params[0]))
+	{
+		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
+		
+		return(false);
 	}
+	
 	$pid = $params[0];
+	
 	//Get the appName and check if app is running.
 	$appName = proc('findNameByPid',array($pid));
 
- 	if(empty($appName)){
-		return false;
+ 	if (empty($appName))
+	{
+		return(false);
  	}
+	
 	//Calling the _end funciton if it exists
 	include_once(XENONOS_ROOT.'/'.APP_DIR.'/'.$appName.'/app'.XE_CODE_EXTENSION);
-	if(function_exists($appName.'_end')) {
-		global $myPid,$checknum,$procInfo;
-		$appProc = proc('getProcByPid',array($pid));
+	
+	if (function_exists($appName.'_end'))
+	{
+		global $myPid, $checknum, $procInfo;
+		
+		$appProc = proc('getProcByPid', array($pid));
+		
 		$oldPid = $myPid;
+		
 		$myPid = $pid;
+		
 		$oldChecknum = $checknum;
+		
 		$checknum = $appProc['checknum'];
+		
 		$oldProc = $procInfo;
+		
 		$procInfo = $appProc;
-		$procInfo['exec'] = 'close';//Maybe the _end user can call another function not only designed for the close action
+		
+		$procInfo['exec'] = 'close'; // Maybe the _end user can call another function not only designed for the close action
+		
 		$myTempVar = call_user_func($appName.'_end');
+		
 		$myPid = $oldPid;
+		
 		$checknum = $oldChecknum;
+		
 		$procInfo = $oldProc;
 	}
-	//Deleting possible listener service calls
+	
+	// Deleting possible listener service calls
 	removeListenerServiceCallByPid($pid);
-	removeListenerServiceCallByPid($pid,1);
-	//Delete the proc
-	eyeSessions('DelArrayValueByKey',array(TABLENAME,$pid));
+	removeListenerServiceCallByPid($pid, 1);
+	
+	// Delete the proc
+	eyeSessions('DelArrayValueByKey', array(TABLENAME, $pid));
 
-	//If doesn't have end function, return true.
-	if(isset($myTempVar))
+	// If doesn't have end function, return true.
+	if (isset($myTempVar))
 	{
-		return $myTempVar;
-	}else{
-		return true;
+		return($myTempVar);
+	}
+	else
+	{
+		return(true);
 	}
 }
 
@@ -296,9 +407,10 @@ function service_proc_close($params) {
 *	processes.
 * @date 2008/03/11
 */
-function service_proc_getProcessTable() {
+function service_proc_getProcessTable()
+{
 	//Get the process table from session.
-	return eyeSessions('getVar',array(TABLENAME));
+	return(eyeSessions('getVar', array(TABLENAME)));
 }
 
 /**
@@ -307,9 +419,11 @@ function service_proc_getProcessTable() {
 * @return Array containing all process pids.
 * @date 2009/02/18
 */
-function service_proc_getProcessList() {
+function service_proc_getProcessList()
+{
 	//Get the process table from session.
-	return array_keys(eyeSessions('getVar',array(TABLENAME)));exit;
+	return(array_keys(eyeSessions('getVar', array(TABLENAME))));
+	exit();
 }
 
 /**
@@ -324,23 +438,32 @@ function service_proc_getProcessList() {
 * @exception PROC_APP_NOT_ARE_RUNNING No process with the specified ID exists.
 * @date 2008/03/11
 */
-function service_proc_setProcessUser($params) {
-	if(!isset($params[0])) {
-		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
-		return false;
+function service_proc_setProcessUser($params)
+{
+	if (!isset($params[0]))
+	{
+		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
+		
+		return(false);
 	}
+	
 	$pid = $params[0];
+	
 	global $currentUser;
 
-	$proc = eyeSessions('getArrayValueByKey',array(TABLENAME,$pid));
-	if(!$proc) {
-		errorCodes('setErrorCode',array(PROC_APP_NOT_ARE_RUNNING));
-		return false;
+	$proc = eyeSessions('getArrayValueByKey', array(TABLENAME, $pid));
+	
+	if (!$proc) {
+		errorCodes('setErrorCode', array(PROC_APP_NOT_ARE_RUNNING));
+		
+		return(false);
 	}
 
-	$proc['currentUser'] = $currentUser;//Set the current user in proc array.
-	eyeSessions('addArrayValueByKey',array(TABLENAME,$proc,$pid));
-	return true;
+	$proc['currentUser'] = $currentUser; // Set the current user in proc array.
+	
+	eyeSessions('addArrayValueByKey', array(TABLENAME, $proc, $pid));
+	
+	return(true);
 }
 
 /**
@@ -355,25 +478,36 @@ function service_proc_setProcessUser($params) {
 * @exception INCORRECT_PARAMS No pid is specified.
 * @date 2008/03/11
 */
-function service_proc_findPidByName($params) {
-	if(!isset($params[0])) {
-		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
-		return false;
+function service_proc_findPidByName($params)
+{
+	if (!isset($params[0]))
+	{
+		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
+		
+		return(false);
 	}
+	
 	$appName = $params[0];
-	if(!$appName) {
-		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
-		return false;
+	
+	if (!$appName)
+	{
+		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
+		
+		return(false);
 	}
+	
 	$processTable = proc('getProcessTable');
-	foreach ($processTable as $key => $array){
-		//If the apName in the proc are the same that provided by arguments.
+	
+	foreach ($processTable as $key => $array)
+	{
+		// If the apName in the proc are the same that provided by arguments.
 		if($array['appName'] == $appName)
 		{
-			return $key;//return the pid.
+			return($key); // return the pid.
 		}
 	}
-	return false;
+	
+	return(false);
 }
 
 /**
