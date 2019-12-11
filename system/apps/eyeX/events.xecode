@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeX_on_baseapp($params = '') {
+function xenonX_on_baseapp($params = '') {
 	global $procInfo;
 	$_SESSION['SCREEN']['eyeApps']['touch'] = $params['touch'][0] ? 1 : 0;
 	$_SESSION['SCREEN']['eyeApps']['height'] = 0;
@@ -23,7 +23,7 @@ function eyeX_on_baseapp($params = '') {
 	$_SESSION['SCREEN']['eyeApps']['y'] = 0;
 	$_SESSION['SCREEN']['height'] = 0;
 	$_SESSION['SCREEN']['width'] = 0;
-	eyeX_on_resizedBrowser($params);
+	xenonX_on_resizedBrowser($params);
 	$_SESSION['SCREEN']['flash'] = $params['flash'][0];
 	$_SESSION['SCREEN']['flash_version'] = $params['flashmajor'][0];
 	$_SESSION['SCREEN']['oggVorbisSupported'] = $params['oggVorbisSupported'][0];
@@ -51,7 +51,7 @@ function eyeX_on_baseapp($params = '') {
 	}
 }
 
-function eyeX_on_resizedBrowser($params = '') {
+function xenonX_on_resizedBrowser($params = '') {
 	if(!is_array($params) || !isset($params['height']) || !isset($params['width'])){
  		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
  		return false;
@@ -75,7 +75,7 @@ function eyeX_on_resizedBrowser($params = '') {
 	xenonx('rawjs', array('js' => 'var e = document.getElementById("eyeApps"); e.style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px"; e.style.width = "' . $_SESSION['SCREEN']['eyeApps']['width'] . 'px";'));
 }
 
-function eyeX_on_viewTempImg($params = '') {
+function xenonX_on_viewTempImg($params = '') {
 	$path = um('getCurrentUserDir') . '/tmp/' . basename($params);
 	$info = @getimagesize($path);
 	if ($info !== false) {
@@ -86,7 +86,7 @@ function eyeX_on_viewTempImg($params = '') {
 	exit;
 }
 
-function eyeX_on_saveWinPosition($params = '') {
+function xenonX_on_saveWinPosition($params = '') {
 	// X and Y
 	$x = intval($params['left'][0]);
 	$y = intval($params['top'][0]);
@@ -117,7 +117,7 @@ function eyeX_on_saveWinPosition($params = '') {
 	}
 }
 
-function eyeX_on_saveWinSize($params = '') {
+function xenonX_on_saveWinSize($params = '') {
 	// Height and Width
 	$w = intval($params['width'][0]);
 	$h = intval($params['height'][0]);
@@ -148,7 +148,7 @@ function eyeX_on_saveWinSize($params = '') {
 	}
 }
 
-function eyeX_on_saveWinMax($params = '') {
+function xenonX_on_saveWinMax($params = '') {
 	// Read value
 	intval($params['maximized'][0]) > 0 ? $m = 1 : $m = 0;
 
