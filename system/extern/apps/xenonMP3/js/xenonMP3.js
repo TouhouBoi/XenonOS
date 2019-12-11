@@ -1,4 +1,5 @@
-<?php
+/*global Windows */
+/*jslint browser: true, devel: true, newcap: true, sloppy: true, todo: true, windows: true */
 /*
 ##     ## ######## ##    ##  #######  ##    ##  #######   ######
  ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
@@ -20,25 +21,9 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeMp3_on_Close($params = '')
-{
-	proc('end');
+function xenonMP3_loadSound(myPid, path, title) {
+	var e = document.getElementById(myPid + '_xenonMP3_Flash');
+	e.SetVariable('jsValue', path);
+	e.SetVariable('jsMethod', 'newfile');
+	Windows.SetTitle(myPid + '_xenonMP3_Window', title);
 }
-
-function eyeMp3_on_Message($params = '')
-{
-	eyeWidgets('updateContent', $params);
-}
-
-function eyeMp3_on_getFile($params = '')
-{
-	header('Content-Type: audio/mpeg');
-	header("Cache-Control: no-cache, must-revalidate");
-	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-	header('Content-Length: ' . vfs('filesize', array($GLOBALS['eyeMp3_Hidden']->text), 1));
-	header('Accept-Ranges: bytes');
-	vfs('readfile', array($GLOBALS['eyeMp3_Hidden']->text));
-	delShortUrl('index.php/.mp3');
-	exit;
-}
-?>

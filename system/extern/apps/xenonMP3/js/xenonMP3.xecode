@@ -1,5 +1,4 @@
-/*global Windows */
-/*jslint browser: true, devel: true, newcap: true, sloppy: true, todo: true, windows: true */
+<?php
 /*
 ##     ## ######## ##    ##  #######  ##    ##  #######   ######
  ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
@@ -21,9 +20,26 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeMp3_loadSound(myPid, path, title) {
-	var e = document.getElementById(myPid + '_eyeMp3_Flash');
-	e.SetVariable('jsValue', path);
-	e.SetVariable('jsMethod', 'newfile');
-	Windows.SetTitle(myPid + '_eyeMp3_Window', title);
+function get_dynamic_content($params = '')
+{
+	header('Content-type: text/javascript; charset=utf-8');
+	
+	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonMP3/js/xenonMP3.min.js';
+	
+	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonMP3/js/xenonMP3.js';
+	
+	if (USE_COMPRESSED && is_readable($path_compressed) && filemtime($path_compressed) >= filemtime($path_uncompressed))
+	{
+		$content = file_get_contents($path_compressed);
+	}
+	else
+	{
+		$content = file_get_contents($path_uncompressed);
+	}
+	
+	$content = str_replace('$myPid', $params[0], $content);
+	$content = str_replace('$checknum', $params[1], $content);
+	
+	return($content);
 }
+?>

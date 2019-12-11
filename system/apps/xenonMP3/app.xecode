@@ -20,13 +20,13 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeMp3_run($params=null) {
+function xenonMP3_run($params=null) {
 	global $myPid,$checknum;
 	if ($params[0]) {
 		$processTable = proc('getProcessTable');
 		$count = 0;
 		foreach (proc('getProcessTable') as $process) {
-			if ($process['appName'] == 'eyeMp3' && $checknum != $process['checknum']) {
+			if ($process['appName'] == 'xenonMP3' && $checknum != $process['checknum']) {
 				if (!$count) {
 					$proc = $process;
 				}
@@ -40,31 +40,31 @@ function eyeMp3_run($params=null) {
 		}
 		$myHidden = new Hidden(array(
 			'father' => 'xenonApps',
-			'name' => 'eyeMp3_Hidden',
+			'name' => 'xenonMP3_Hidden',
 			'text' => $params[0]
 		));
 		$myHidden->show();
 		addShortUrl('.mp3','getFile');
 		if ($proc) {
-			xenonx('runjs',array('js' => 'eyeMp3_loadSound(' . $myPid . ',"index.php/.mp3",%s);','tokens' => array(basename($params[0]) . ' - eyeMp3')));
+			xenonx('runjs',array('js' => 'xenonMP3_loadSound(' . $myPid . ',"index.php/.mp3",%s);','tokens' => array(basename($params[0]) . ' - xenonMP3')));
 		} else {
-			xenonx('loadScript',array('url' => 'index.php?extern=apps/eyeMp3/js/eyeMp3' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid . '&params[]=' . $checknum));
+			xenonx('loadScript',array('url' => 'index.php?extern=apps/xenonMP3/js/xenonMP3' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid . '&params[]=' . $checknum));
 
 			$myWindow = new Window(array(
 				'cent' => 1,
 				'father' => 'xenonApps',
 				'height' => 88,
-				'name' => 'eyeMp3_Window',
+				'name' => 'xenonMP3_Window',
 				'savePosition' => 1,
 				'style' => TITLE + LISTED + MIN + CLOSE,
-				'title' => basename($params[0]) . ' - eyeMp3',
+				'title' => basename($params[0]) . ' - xenonMP3',
 				'width' => 280
 			));
 			$myWindow->show();
 
 			$myLabel = new Label(array(
-				'father' => 'eyeMp3_Window_Content',
-				'name' => 'eyeMp3_Label',
+				'father' => 'xenonMP3_Window_Content',
+				'name' => 'xenonMP3_Label',
 				'text' => 'This is not a bug. Unfortunately it is a problem with your Flash player!',
 				'x' => 20,
 				'y' => 20
@@ -72,12 +72,12 @@ function eyeMp3_run($params=null) {
 			$myLabel->show();
 
 			$myFlash = new Flash(array(
-				'father' => 'eyeMp3_Window_Content',
+				'father' => 'xenonMP3_Window_Content',
 				'flashParamsNames' => array('flashvars','menu','scale','bgcolor'),
 				'flashParamsValues' => array('src=index.php/.mp3&autostart=yes&loop=no&jscontrol=true','false','noscale','#c0c0c0'),
 				'height' => 64,
-				'name' => 'eyeMp3_Flash',
-				'src' => 'index.php?extern=apps/eyeMp3/swf/webplayer.swf&type=swf',
+				'name' => 'xenonMP3_Flash',
+				'src' => 'index.php?extern=apps/xenonMP3/swf/webplayer.swf&type=swf',
 				'width' => 278,
 				'x' => 0,
 				'y' => 0
@@ -89,7 +89,7 @@ function eyeMp3_run($params=null) {
 	}
 }
 
-function eyeMp3_end($params = '') {
+function xenonMP3_end($params = '') {
 	eyeWidgets('unserialize',$params);
 }
 ?>
