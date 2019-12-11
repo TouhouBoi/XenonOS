@@ -20,7 +20,7 @@ function eyeSheets_run($params=null) {
 
 	$myWindow = new Window(array(
 		'name'=>'eyeSheetsWND',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'cent'=>1,
 		'width'=>950,
 		'height'=>600,
@@ -49,7 +49,7 @@ function eyeSheets_run($params=null) {
 
 		$myHidden = new Hidden(array(
 			'name'=>'sheetPath',
-			'father'=>'eyeApps',
+			'father'=>'xenonApps',
 			'text'=>$file));
 		eyeWidgets('serialize',array($myHidden));
 	} else {

@@ -28,7 +28,7 @@ function eyeFeeds_run($params=null) {
 
 	$mainWindow = new Window(array(
 		'name' => 'eyeFeeds_WND',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'cent' => 1,
 		'width' => EYEFEEDS_WIN_WIDTH,
 		'height' => EYEFEEDS_WIN_HEIGHT,

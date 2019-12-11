@@ -128,7 +128,7 @@ function mouseUp(event) {
 	if (!e || !e.target || !e.target.id) {
 		return false;
 	}
-	if (e.target.id !== 'eyeApps') {
+	if (e.target.id !== 'xenonApps') {
 		if (!e.target.pid) {
 			pid = calendar_GetPid(e.target);
 			if (!pid) {

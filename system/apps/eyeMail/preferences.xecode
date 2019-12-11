@@ -1182,7 +1182,7 @@ function eyeMail_finalize1($params=null) {
 	eyeMail_drawBoxes();
 	$myHidden = new Hidden(array(
 		'name'=>'defaultMail',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'text'=>$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]
 	));
 	eyeWidgets('serialize',array($myHidden));
@@ -1222,7 +1222,7 @@ function eyeMail_finalize2($params=null) {
 	eyeMail_drawBoxes();
 	$myHidden = new Hidden(array(
 		'name'=>'defaultMail',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'text'=>$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]
 	));
 	eyeWidgets('serialize',array($myHidden));

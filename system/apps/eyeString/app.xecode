@@ -18,7 +18,7 @@ function eyeString_run($params=null){
 	
 	$myWindow1 = new Window(array(
 		'name' => 'eyeString_wnd',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'cent' => 1,
 		'width' => 655,
 		'height' => 560,

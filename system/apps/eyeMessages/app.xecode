@@ -41,7 +41,7 @@ function eyeMessages_run($params = null)
 	$myWindow = new Window(
 		array(
 			'name' => 'eyeMessagesWND',
-			'father' => 'eyeApps',
+			'father' => 'xenonApps',
 			'cent' => 1,
 			'width' => 700,
 			'height' => 500,

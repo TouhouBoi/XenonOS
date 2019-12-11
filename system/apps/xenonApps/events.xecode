@@ -20,9 +20,9 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeApps_on_Action($params = '') {
+function xenonApps_on_Action($params = '') {
 	global $myPid;
-	foreach (eyeApps_lib_GetCategories() as $category => $action) {
+	foreach (xenonApps_lib_GetCategories() as $category => $action) {
 		xenonx('rawjs', array('js' => '
 			var e = document.getElementById("' . $myPid . '_' . $category . '_Container");
 			e.className = "";
@@ -30,61 +30,61 @@ function eyeApps_on_Action($params = '') {
 			e.style.border = "0";'
 		));
 	}
-	$GLOBALS['eyeApps_Container']->remove();
+	$GLOBALS['xenonApps_Container']->remove();
 
-	eyeApps_lib_ShowApps($params['category'][0]);
+	xenonApps_lib_ShowApps($params['category'][0]);
 
-	$xml = xenonXML('getXMLconfig', array('eyeApps', 'conf.xml'));
-	$xml['eyeApps'][0]['category'][0] = $params['category'][0];
-	xenonXML('setXMLconfig', array('eyeApps', 'conf.xml', $xml));
+	$xml = xenonXML('getXMLconfig', array('xenonApps', 'conf.xml'));
+	$xml['xenonApps'][0]['category'][0] = $params['category'][0];
+	xenonXML('setXMLconfig', array('xenonApps', 'conf.xml', $xml));
 }
 
-function eyeApps_on_Close($params = '') {
+function xenonApps_on_Close($params = '') {
 	proc('end');
 }
 
-function eyeApps_on_Icon_Clicked($params = '') {
+function xenonApps_on_Icon_Clicked($params = '') {
 	proc('launch',array($params['arg0'][0]));
 }
 
-function eyeApps_on_InstallApps($params = '') {
+function xenonApps_on_InstallApps($params = '') {
 	proc('launch',array('xeSoft'));
 }
 
-function eyeApps_on_ManageDock($params = '') {
+function xenonApps_on_ManageDock($params = '') {
 	proc('launch',array('eyeManageApps'));
 }
 
-function eyeApps_on_fullScreen() {
-	$GLOBALS['eyeApps_Window']->setFullScreen();
+function xenonApps_on_fullScreen() {
+	$GLOBALS['xenonApps_Window']->setFullScreen();
 }
 
-function eyeApps_on_Resize($params = '') {
+function xenonApps_on_Resize($params = '') {
 	global $myPid;
-	$GLOBALS['eyeApps_Window']->height = intval($params['arg'][1]);
-	$GLOBALS['eyeApps_Window']->width = intval($params['arg'][0]);
-	$GLOBALS['eyeApps_MenuContainer']->setHeight($GLOBALS['eyeApps_Window']->height - 82);
-	$GLOBALS['eyeApps_Line']->setHeight($GLOBALS['eyeApps_MenuContainer']->height);
-	$GLOBALS['eyeApps_Container']->setHeight($GLOBALS['eyeApps_MenuContainer']->height);
-	$GLOBALS['eyeApps_Container']->setWidth($GLOBALS['eyeApps_Window']->width - 4 - $GLOBALS['eyeApps_Line']->x);
+	$GLOBALS['xenonApps_Window']->height = intval($params['arg'][1]);
+	$GLOBALS['xenonApps_Window']->width = intval($params['arg'][0]);
+	$GLOBALS['xenonApps_MenuContainer']->setHeight($GLOBALS['xenonApps_Window']->height - 82);
+	$GLOBALS['xenonApps_Line']->setHeight($GLOBALS['xenonApps_MenuContainer']->height);
+	$GLOBALS['xenonApps_Container']->setHeight($GLOBALS['xenonApps_MenuContainer']->height);
+	$GLOBALS['xenonApps_Container']->setWidth($GLOBALS['xenonApps_Window']->width - 4 - $GLOBALS['xenonApps_Line']->x);
 
 	xenonx('rawjs',array('js' => 'var i = 0;
 	var x = 20;
 	var y = 20;
-	var e = document.getElementById("' . $myPid . '_eyeApps_Icon_0_Container");
+	var e = document.getElementById("' . $myPid . '_xenonApps_Icon_0_Container");
 	while (e) {
-		xSlideTo("' . $myPid . '_eyeApps_Icon_" + i + "_Container",x,y,500);
+		xSlideTo("' . $myPid . '_xenonApps_Icon_" + i + "_Container",x,y,500);
 		x += 88;
-		if (xWidth("' . $myPid . '_eyeApps_Container") - x - 88 < 0) {
+		if (xWidth("' . $myPid . '_xenonApps_Container") - x - 88 < 0) {
 			x = 20;
 			y += 88;
 		}
 		i++;
-		e = document.getElementById("' . $myPid . '_eyeApps_Icon_" + i + "_Container");
+		e = document.getElementById("' . $myPid . '_xenonApps_Icon_" + i + "_Container");
 	}'));
 }
 
-function eyeApps_lib_GetAllApps() {
+function xenonApps_lib_GetAllApps() {
 	$array = array();
 	foreach (scandir(XENONOS_ROOT . '/' . APP_DIR . '/') as $app) {
 		$xml = getAppInfo($app);
@@ -95,7 +95,7 @@ function eyeApps_lib_GetAllApps() {
 	return $array;
 }
 
-function eyeApps_lib_GetApps() {
+function xenonApps_lib_GetApps() {
 	$array = array();
 	foreach (scandir(XENONOS_ROOT . '/' . APP_DIR . '/') as $app) {
 		$xml = getAppInfo($app);
@@ -106,7 +106,7 @@ function eyeApps_lib_GetApps() {
 	return $array;
 }
 
-function eyeApps_lib_GetCategories() {
+function xenonApps_lib_GetCategories() {
 	$array = array();
 	foreach (scandir(XENONOS_ROOT . '/' . APP_DIR . '/') as $app) {
 		$xml = getAppInfo($app);
@@ -118,7 +118,7 @@ function eyeApps_lib_GetCategories() {
 	return array_merge(array('All Applications' => ''), $array);
 }
 
-function eyeApps_lib_GetCategoryIcon($category) {
+function xenonApps_lib_GetCategoryIcon($category) {
 	$icons = array(
 		'All Applications' => 'rating_g',
 		'File Management' => 'homeFolder',
@@ -136,13 +136,13 @@ function eyeApps_lib_GetCategoryIcon($category) {
 	}
 }
 
-function eyeApps_lib_ShowApps($category) {
+function xenonApps_lib_ShowApps($category) {
 	global $myPid;
 	if ($category == '') {
-		$apps = eyeApps_lib_GetAllApps();
+		$apps = xenonApps_lib_GetAllApps();
 		$category = 'All Applications';
 	} else {
-		$apps = eyeApps_lib_GetApps();
+		$apps = xenonApps_lib_GetApps();
 		$apps = $apps[$category];
 	}
 	xenonx('rawjs', array('js' => '
@@ -154,11 +154,11 @@ function eyeApps_lib_ShowApps($category) {
 	));
 
 	$myContainer = new Container(array(
-		'father' => 'eyeApps_Window_Content',
-		'height' => $GLOBALS['eyeApps_Window']->height - 82,
-		'name' => 'eyeApps_Container',
-		'width' => $GLOBALS['eyeApps_Window']->width - 4 - $GLOBALS['eyeApps_Line']->x,
-		'x' => $GLOBALS['eyeApps_Line']->x + 1,
+		'father' => 'xenonApps_Window_Content',
+		'height' => $GLOBALS['xenonApps_Window']->height - 82,
+		'name' => 'xenonApps_Container',
+		'width' => $GLOBALS['xenonApps_Window']->width - 4 - $GLOBALS['xenonApps_Line']->x,
+		'x' => $GLOBALS['xenonApps_Line']->x + 1,
 		'y' => 57
 	));
 	$myContainer->show();
@@ -176,14 +176,14 @@ function eyeApps_lib_ShowApps($category) {
 	$x = 20;
 	$y = 20;
 	foreach ($apps as $app) {
-		if ($app[0] != 'eyeApps') {
+		if ($app[0] != 'xenonApps') {
 			$title = i18n('translate', array($app[2]));
 			$myIcon = new Icon(array(
 				'content' => array($app[0]),
 				'draggable' => 0,
-				'father' => 'eyeApps_Container',
+				'father' => 'xenonApps_Container',
 				'image' => $app[1],
-				'name' => 'eyeApps_Icon_' . $i,
+				'name' => 'xenonApps_Icon_' . $i,
 				'onclick' => $conf['eyeFiles'][0]['clickMethod'][0],
 				'overClass' => 'eyeFiles_icons',
 				'text' => $title,

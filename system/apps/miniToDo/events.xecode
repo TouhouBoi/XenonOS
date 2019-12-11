@@ -19,7 +19,7 @@ function miniToDo_on_addNoteSignal(){
 	$myWindow = new Window(array(
 		'title' => 'Add Your To Do Note',
 		'name' => 'addNote_WND',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'cent' => 1,
 		'width' => 400,
 		'height' => 315,
@@ -67,7 +67,7 @@ function miniToDo_on_viewNoteSignal(){
 	$myWindow = new Window(array(
 		'title' => $title,
 		'name' => 'viewNote_WND',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'cent' => 1,
 		'width' => 400,
 		'height' => 315,

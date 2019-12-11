@@ -221,7 +221,7 @@ function xeSoft_on_Install($params=null){
 			'caption'=>'Cancel','x'=>200,'y'=>170,'signal'=>'Cancel'));
 		$myButton2->show();
  
-		$myHidden = new Hidden(array('name'=>'myApp','father'=>'eyeApps','text'=>$myApp));
+		$myHidden = new Hidden(array('name'=>'myApp','father'=>'xenonApps','text'=>$myApp));
 		eyeWidgets('serialize',array($myHidden));
 	} else {
 		xenonx('messageBox',array('content' => 'Please choose an applictaion to be installed.'));

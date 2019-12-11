@@ -25,7 +25,7 @@ function eyeInfo_run($params = '')
 	$myWindow = new Window(
 		array(
 			'cent' => 1,
-			'father' => 'eyeApps',
+			'father' => 'xenonApps',
 			'height' => 400,
 			'name' => 'eyeInfo_Window',
 			'title' => 'About',

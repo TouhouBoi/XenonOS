@@ -36,7 +36,7 @@ var sendMsg_active = false;
 var sendMsg_list = [];
 var TimeViewClock = 2000;
 var zindex = 100;
-var zLayers = 11; // One more than eyeApps (default and base layer for all apps)
+var zLayers = 11; // One more than xenonApps (default and base layer for all apps)
 
 /*
  * DETECTIONS

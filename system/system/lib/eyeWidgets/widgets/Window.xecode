@@ -260,8 +260,8 @@ class Window {
 				if (is_array($position['width'])) { $this->width = intval($position['width'][0]); }
 				
 				if ($this->saveSize === RELATIVE) {
-					$this->width = $_SESSION['SCREEN']['eyeApps']['width'] * ($this->width / 100);
-					$this->height = $_SESSION['SCREEN']['eyeApps']['height'] * ($this->height / 100);
+					$this->width = $_SESSION['SCREEN']['xenonApps']['width'] * ($this->width / 100);
+					$this->height = $_SESSION['SCREEN']['xenonApps']['height'] * ($this->height / 100);
 				}
 				
 			}
@@ -272,8 +272,8 @@ class Window {
 				if (is_array($position['top'])) { $this->y = intval($position['top'][0]); }
 				
 				if ($this->savePosition === RELATIVE) {
-					$this->x = $_SESSION['SCREEN']['eyeApps']['width'] * ($this->x / 100);
-					$this->y = $_SESSION['SCREEN']['eyeApps']['width'] * ($this->y / 100);
+					$this->x = $_SESSION['SCREEN']['xenonApps']['width'] * ($this->x / 100);
+					$this->y = $_SESSION['SCREEN']['xenonApps']['width'] * ($this->y / 100);
 				}
 			}
 			
@@ -293,7 +293,7 @@ class Window {
 			}
 		}
 		
-		if ($this->father === "eyeApps") {
+		if ($this->father === "xenonApps") {
 			$wCnt = 0;
 			foreach (proc('getProcessTable') as $process) {
 				if ($process['appName'] == $procInfo['appName'] && $process['pid'] != $myPid) {
@@ -306,19 +306,19 @@ class Window {
 			}
 		}
 		
-		if ($this->x > ($_SESSION['SCREEN']['eyeApps']['width'] - 32)) {
-			$this->x = $_SESSION['SCREEN']['eyeApps']['width'] - $this->width;
+		if ($this->x > ($_SESSION['SCREEN']['xenonApps']['width'] - 32)) {
+			$this->x = $_SESSION['SCREEN']['xenonApps']['width'] - $this->width;
 		}
-		if ($this->y > ($_SESSION['SCREEN']['eyeApps']['height'] - 32)) {
-			$this->y = $_SESSION['SCREEN']['eyeApps']['height'] - $this->height;
+		if ($this->y > ($_SESSION['SCREEN']['xenonApps']['height'] - 32)) {
+			$this->y = $_SESSION['SCREEN']['xenonApps']['height'] - $this->height;
 		}
 		
 		if ($this->resize === 1) {
-			if ($this->height > $_SESSION['SCREEN']['eyeApps']['height']) {
-				$this->height = $_SESSION['SCREEN']['eyeApps']['height'];
+			if ($this->height > $_SESSION['SCREEN']['xenonApps']['height']) {
+				$this->height = $_SESSION['SCREEN']['xenonApps']['height'];
 			}
-			if ($this->width > $_SESSION['SCREEN']['eyeApps']['width']) {
-				$this->width = $_SESSION['SCREEN']['eyeApps']['width'];
+			if ($this->width > $_SESSION['SCREEN']['xenonApps']['width']) {
+				$this->width = $_SESSION['SCREEN']['xenonApps']['width'];
 			}
 			if ($this->height < $this->minHeight){
 				$this->height = $this->minHeight;
@@ -480,8 +480,8 @@ class Window {
 		$oldHeight = $this->height;
 		if (!$fullscreen || $fullscreen == 2 && $this->fullScreen) {
 			$this->fullScreen = 0;
-			$_SESSION['SCREEN']['eyeApps']['height'] = $_SESSION['SCREEN']['eyeApps']['oldHeight'];
-			$_SESSION['SCREEN']['eyeApps']['width'] = $_SESSION['SCREEN']['eyeApps']['oldWidth'];
+			$_SESSION['SCREEN']['xenonApps']['height'] = $_SESSION['SCREEN']['xenonApps']['oldHeight'];
+			$_SESSION['SCREEN']['xenonApps']['width'] = $_SESSION['SCREEN']['xenonApps']['oldWidth'];
 			xenonx('rawjs',array('js' => 'var eyeScreen = document.getElementById("eyeScreen").childNodes;
 			for (var i = 0; i < eyeScreen.length; i++) {
 				if (typeof(eyeScreen[i].id) != "undefined" && eyeScreen[i].oldDisplay) {
@@ -489,11 +489,11 @@ class Window {
 					eyeScreen[i].oldDisplay = 0;
 				}
 			}
-			var eyeApps = document.getElementById("eyeApps");
-			eyeApps.style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px";
-			eyeApps.style.width = "' . $_SESSION['SCREEN']['eyeApps']['width'] . 'px";
-			eyeApps.style.left = "' . $_SESSION['SCREEN']['eyeApps']['x'] . 'px";
-			eyeApps.style.top = "' . $_SESSION['SCREEN']['eyeApps']['y'] . 'px";
+			var xenonApps = document.getElementById("xenonApps");
+			xenonApps.style.height = "' . $_SESSION['SCREEN']['xenonApps']['height'] . 'px";
+			xenonApps.style.width = "' . $_SESSION['SCREEN']['xenonApps']['width'] . 'px";
+			xenonApps.style.left = "' . $_SESSION['SCREEN']['xenonApps']['x'] . 'px";
+			xenonApps.style.top = "' . $_SESSION['SCREEN']['xenonApps']['y'] . 'px";
 			document.getElementById("' . $myPid . '_' . $this->name . '").className = "eyeWindowMain";'));
 			$this->setHeight($this->oldHeight);
 			$this->setWidth($this->oldWidth);
@@ -517,13 +517,13 @@ class Window {
 			$this->oldMax = $this->max;
 			$this->oldMin = $this->min;
 			$this->oldResize = $this->resize;
-			$_SESSION['SCREEN']['eyeApps']['oldHeight'] = $_SESSION['SCREEN']['eyeApps']['height'];
-			$_SESSION['SCREEN']['eyeApps']['height'] = $_SESSION['SCREEN']['height'];
-			$_SESSION['SCREEN']['eyeApps']['oldWidth'] = $_SESSION['SCREEN']['eyeApps']['width'];
-			$_SESSION['SCREEN']['eyeApps']['width'] = $_SESSION['SCREEN']['width'];
+			$_SESSION['SCREEN']['xenonApps']['oldHeight'] = $_SESSION['SCREEN']['xenonApps']['height'];
+			$_SESSION['SCREEN']['xenonApps']['height'] = $_SESSION['SCREEN']['height'];
+			$_SESSION['SCREEN']['xenonApps']['oldWidth'] = $_SESSION['SCREEN']['xenonApps']['width'];
+			$_SESSION['SCREEN']['xenonApps']['width'] = $_SESSION['SCREEN']['width'];
 			xenonx('rawjs',array('js' => 'var eyeScreen = document.getElementById("eyeScreen").childNodes;
 			for (var i = 0; i < eyeScreen.length; i++) {
-				if (typeof(eyeScreen[i].id) != "undefined" && eyeScreen[i].id != "eyeApps" && eyeScreen[i].id != "eyecursor" && !eyeScreen[i].oldDisplay && eyeScreen[i].style.display != "none") {
+				if (typeof(eyeScreen[i].id) != "undefined" && eyeScreen[i].id != "xenonApps" && eyeScreen[i].id != "eyecursor" && !eyeScreen[i].oldDisplay && eyeScreen[i].style.display != "none") {
 					if (eyeScreen[i].style.display) {
 						eyeScreen[i].oldDisplay = eyeScreen[i].style.display;
 					} else {
@@ -532,14 +532,14 @@ class Window {
 					eyeScreen[i].style.display = "none";
 				}
 			}
-			var eyeApps = document.getElementById("eyeApps");
-			eyeApps.style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px";
-			eyeApps.style.width = "' . $_SESSION['SCREEN']['eyeApps']['width'] . 'px";
-			eyeApps.style.left = "0";
-			eyeApps.style.top = "0";
+			var xenonApps = document.getElementById("xenonApps");
+			xenonApps.style.height = "' . $_SESSION['SCREEN']['xenonApps']['height'] . 'px";
+			xenonApps.style.width = "' . $_SESSION['SCREEN']['xenonApps']['width'] . 'px";
+			xenonApps.style.left = "0";
+			xenonApps.style.top = "0";
 			document.getElementById("' . $myPid . '_' . $this->name . '").className = "eyeWindowMain eyeWindowFullScreen";'));
-			$this->setHeight($_SESSION['SCREEN']['eyeApps']['height']);
-			$this->setWidth($_SESSION['SCREEN']['eyeApps']['width']);
+			$this->setHeight($_SESSION['SCREEN']['xenonApps']['height']);
+			$this->setWidth($_SESSION['SCREEN']['xenonApps']['width']);
 			$this->setX(0);
 			$this->setY(0);
 			$this->setNoDrag(1);

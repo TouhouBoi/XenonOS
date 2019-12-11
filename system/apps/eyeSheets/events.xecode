@@ -241,7 +241,7 @@ function eyeSheets_on_SelectFileSave($params=null) {
 			} else {
 				$myHidden = new Hidden(array(
 					'name'=>'sheetPath',
-					'father'=>'eyeApps',
+					'father'=>'xenonApps',
 					'text'=>$file));
 				eyeWidgets('serialize',array($myHidden));
 			}
@@ -256,7 +256,7 @@ function eyeSheets_on_resetPath($params=null) {
 	} else {
 		$myHidden = new Hidden(array(
 			'name'=>'sheetPath',
-			'father'=>'eyeApps',
+			'father'=>'xenonApps',
 			'text'=>''));
 		eyeWidgets('serialize',array($myHidden));
 	}

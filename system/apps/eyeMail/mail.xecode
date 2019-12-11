@@ -107,10 +107,10 @@ function eyeMail_createXMLmail($params=null) {
 	$cXMLprogress->show(0);
 	imap_close($connection);
 
-	$myHidden = new Hidden(array('name'=>'savednm','father'=>'eyeApps','text'=>$nm->uidnext));
+	$myHidden = new Hidden(array('name'=>'savednm','father'=>'xenonApps','text'=>$nm->uidnext));
 	eyeWidgets('serialize',array($myHidden));
 
-	$myHidden2 = new Hidden(array('name'=>'steps','father'=>'eyeApps','text'=>1));
+	$myHidden2 = new Hidden(array('name'=>'steps','father'=>'xenonApps','text'=>1));
 	eyeWidgets('serialize',array($myHidden2));
 	xenonx('sendMessage',array('msg'=>'getMails'));
 }
@@ -170,7 +170,7 @@ function eyeMail_on_getMails($params=null) {
 
 	$x+=300;
 
-	$myHidden2 = new Hidden(array('name'=>'steps','father'=>'eyeApps','text'=>$x));
+	$myHidden2 = new Hidden(array('name'=>'steps','father'=>'xenonApps','text'=>$x));
 	eyeWidgets('serialize',array($myHidden2));
 
 	xenonx('sendMessage',array('msg'=>'getMails'));
@@ -399,7 +399,7 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 	$myWindow = new Window(array(
 		'title'=>'Write a new mail',
         'name'=>'eyeMail_Compose',
-        'father'=>'eyeApps',
+        'father'=>'xenonApps',
         'cent'=>1,
         'width'=>450,
         'height'=> 500,
@@ -648,7 +648,7 @@ function eyeMail_drawBoxes() {
 		if($y == 0) {
 			$myHidden = new Hidden(array(
 				'name'=>'defaultMail',
-				'father'=>'eyeApps',
+				'father'=>'xenonApps',
 				'text'=>$value
 			));
 			eyeWidgets('serialize',array($myHidden));
@@ -755,7 +755,7 @@ function eyeMail_drawContacts() {
 	$myWindow = new Window(array(
 		'title'=>'Contacts',
         'name'=>'eyeMail_Contacts',
-        'father'=>'eyeApps',
+        'father'=>'xenonApps',
         'cent'=>1,
         'width'=>350,
         'height'=> 300,

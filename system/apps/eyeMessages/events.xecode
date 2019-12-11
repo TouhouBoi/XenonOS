@@ -53,7 +53,7 @@ function eyeMessages_on_open($params) {
 
 	$myWindow3 = new Window(array(
 		'name' => 'openMessage_WND',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'removepid' => 0,
 		'style' => TITLE + MIN + CLOSE,
 		'width' => 410,
@@ -248,7 +248,7 @@ function eyeMessages_on_empty($params=null) {
 		'btn1_name' => 'emptyYes',
 		'btn2_capt' => 'Cancel',
 		'btn2_name' => 'emptyNo',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/editClean.png'
 	));
 }

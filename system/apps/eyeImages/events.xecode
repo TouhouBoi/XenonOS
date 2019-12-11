@@ -94,7 +94,7 @@ function eyeImages_on_Init($params = '') {
 	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 	$myWindow = new Window(array(
 		'cent' => 1,
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'height' => $info[1] + 99,
 		'minHeight' => 200,
 		'minWidth' => 200,

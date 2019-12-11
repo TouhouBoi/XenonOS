@@ -21,7 +21,7 @@ function eyeDock_on_AddElement($params = '') {
 
 	$myWindow = new Window(array(
 		'cent' => 1,
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'height' => 200,
 		'name' => 'eyeDock_AddElement_Window',
 		'removepid' => 0,
@@ -179,7 +179,7 @@ function eyeDock_on_ChangeCommand($params = '') {
 	xenonx('messageBox',array(
 		'buttons' => array(array('ChangeCommand_do','Change'),array('ChangeCommand_cancel','Cancel')),
 		'content' => 'Please specifiy the new command for this element.',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'hiddens' => array(array('ChangeCommand_type',$params['type'][0]),array('ChangeCommand_place',$params['place'][0]),array('ChangeCommand_id',$params['id'][0]),array('ChangeCommand_entry',$params['entry'][0])),
 		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/rename.png',
 		'textbox_event' => 'ChangeCommand_do',
@@ -218,7 +218,7 @@ function eyeDock_on_ChangeFormat($params = '') {
 	xenonx('messageBox',array(
 		'buttons' => array(array('ChangeFormat_do','Change'),array('ChangeFormat_cancel','Cancel')),
 		'content' => 'Please specifiy the new format for this element.',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'hiddens' => array(array('ChangeFormat_type',$params['type'][0]),array('ChangeFormat_place',$params['place'][0]),array('ChangeFormat_id',$params['id'][0])),
 		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/rename.png',
 		'textbox_event' => 'ChangeFormat_do',
@@ -258,7 +258,7 @@ function eyeDock_on_ChangeHeight($params = '') {
 	xenonx('messageBox',array(
 		'buttons' => array(array('ChangeHeight_do','Change'),array('ChangeHeight_cancel','Cancel')),
 		'content' => 'Please specifiy the new height for this element.',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'hiddens' => array(array('ChangeHeight_type',$params['type'][0]),array('ChangeHeight_place',$params['place'][0]),array('ChangeHeight_id',$params['id'][0]),array('ChangeHeight_entry',$params['entry'][0])),
 		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/filetypes/rename.png',
 		'textbox_event' => 'ChangeHeight_do',
@@ -304,7 +304,7 @@ function eyeDock_on_ChangeImage($params = '') {
 	$mySelect = xenonx('messageBox',array(
 		'buttons' => array(array('ChangeImage_do','Change'),array('ChangeImage_cancel','Cancel')),
 		'content' => 'Please specifiy the new image for this element.',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'hiddens' => array(array('ChangeImage_type',$params['type'][0]),array('ChangeImage_place',$params['place'][0]),array('ChangeImage_id',$params['id'][0]),array('ChangeImage_entry',$params['entry'][0])),
 		'img' => str_replace('theme=USERTHEME', 'theme=' . $_SESSION['usertheme'], $text),
 		'select_event' => 'ChangeImage_do',
@@ -369,7 +369,7 @@ function eyeDock_on_ChangeText($params = '') {
 	xenonx('messageBox',array(
 		'buttons' => array(array('ChangeText_do','Change'),array('ChangeText_cancel','Cancel')),
 		'content' => 'Please specifiy the new text for this element.',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'hiddens' => array(array('ChangeText_type',$params['type'][0]),array('ChangeText_place',$params['place'][0]),array('ChangeText_id',$params['id'][0]),array('ChangeText_entry',$params['entry'][0])),
 		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/rename.png',
 		'textbox_event' => 'ChangeText_do',
@@ -423,7 +423,7 @@ function eyeDock_on_ChangeWidth($params = '') {
 	xenonx('messageBox',array(
 		'buttons' => array(array('ChangeWidth_do','Change'),array('ChangeWidth_cancel','Cancel')),
 		'content' => 'Please specifiy the new width for this element.',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'hiddens' => array(array('ChangeWidth_type',$params['type'][0]),array('ChangeWidth_place',$params['place'][0]),array('ChangeWidth_id',$params['id'][0])),
 		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/filetypes/rename.png',
 		'textbox_event' => 'ChangeWidth_do',
@@ -550,7 +550,7 @@ function eyeDock_on_Remove($params = '') {
 	xenonx('messageBox',array(
 		'buttons' => array(array('Remove_do','Remove'),array('Remove_cancel','Cancel')),
 		'content' => 'Do you really want to remove this element?',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'hiddens' => array(array('Remove_type',$params['type'][0]),array('Remove_place',$params['place'][0]),array('Remove_id',$params['id'][0]),array('Remove_entry',$params['entry'][0])),
 		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/editClean.png',
 		'title' => 'Remove element',

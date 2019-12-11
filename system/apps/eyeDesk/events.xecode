@@ -88,11 +88,11 @@ function eyeDesk_on_Icon_Moved($params = '') {
 	$conf = xenonXML('getXMLconfig',array('eyeDesk','conf.xml'));
 	if ($conf['eyeDesk'][0]['loadIconPositions'][0] == 2) {
 		$x = 30 + round(($x - 30) / 88) * 88;
-		if ($_SESSION['SCREEN']['eyeApps']['width'] - $x - 88 < 0) {
+		if ($_SESSION['SCREEN']['xenonApps']['width'] - $x - 88 < 0) {
 			$x -= 88;
 		}
 		$y = 30 + round(($y - 30) / 88) * 88;
-		if ($_SESSION['SCREEN']['eyeApps']['height'] - $y - 88 < 0) {
+		if ($_SESSION['SCREEN']['xenonApps']['height'] - $y - 88 < 0) {
 			$y -= 88;
 		}
 		xenonx('rawjs',array('js' => 'i = 0;
@@ -172,16 +172,16 @@ function eyeDesk_on_OpenPath($params = '') {
 	if (isset($GLOBALS['eyeDesk_Container']) === true && is_object($GLOBALS['eyeDesk_Container'])) {
 		$GLOBALS['eyeDesk_Container']->remove();
 	}
-	if ($_SESSION['SCREEN']['eyeApps']['height'] == $_SESSION['SCREEN']['height']) {
-		$container_height = $_SESSION['SCREEN']['eyeApps']['height'] - 64; // 64 pixel is eyeDock top + bottom bars' height. This is necessary, because the $_SESSION['SCREEN']['eyeApps']['height'] variable has not been updated yet (eyeDock is loaded AFTER eyeDesk)
+	if ($_SESSION['SCREEN']['xenonApps']['height'] == $_SESSION['SCREEN']['height']) {
+		$container_height = $_SESSION['SCREEN']['xenonApps']['height'] - 64; // 64 pixel is eyeDock top + bottom bars' height. This is necessary, because the $_SESSION['SCREEN']['xenonApps']['height'] variable has not been updated yet (eyeDock is loaded AFTER eyeDesk)
 	} else {
-		$container_height = $_SESSION['SCREEN']['eyeApps']['height'];
+		$container_height = $_SESSION['SCREEN']['xenonApps']['height'];
 	}
 	$myContainer = new Container(array(
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'name' => 'eyeDesk_Container',
 		'height' => $container_height,
-		'width' => $_SESSION['SCREEN']['eyeApps']['width'],
+		'width' => $_SESSION['SCREEN']['xenonApps']['width'],
 		'x' => 0,
 		'y' => 0
 	));

@@ -78,7 +78,7 @@ function eyeIframize_on_Do($params = '')
 	}
 	else
 	{
-		$window_width = $_SESSION['SCREEN']['eyeApps']['width']*0.75;
+		$window_width = $_SESSION['SCREEN']['xenonApps']['width']*0.75;
 	}
 
 	if (!empty($params[3]))
@@ -87,7 +87,7 @@ function eyeIframize_on_Do($params = '')
 	}
 	else
 	{
-		$window_height = $_SESSION['SCREEN']['eyeApps']['height']*0.75;
+		$window_height = $_SESSION['SCREEN']['xenonApps']['height']*0.75;
 	}
 
 	if (isset($params[4]) && $params[4] == 1)
@@ -102,7 +102,7 @@ function eyeIframize_on_Do($params = '')
 	$myWindow = new Window(
 		array(
 			'cent' => 1,
-			'father' => 'eyeApps',
+			'father' => 'xenonApps',
 			'height' => $window_height,
 			'name' => 'eyeIframize_Window',
 			'savePosition' => RELATIVE,

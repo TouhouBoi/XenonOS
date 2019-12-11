@@ -31,7 +31,7 @@ function newMessage_run($params=null) {
 
 	$myWindow = new Window(array(
 		'name' => 'newMessageWND',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'removepid' => 1,
 		'type' => NORESIZE_WINDOW,
 		'width' => 400,

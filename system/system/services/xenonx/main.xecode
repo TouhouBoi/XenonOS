@@ -24,7 +24,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	XenonOS Xe system, for visual tasks
 */
 
-define('GLOBAL_FATHER','eyeApps');
+define('GLOBAL_FATHER','xenonApps');
 
 function service_xenonx_init()
 {
@@ -620,7 +620,7 @@ function service_xenonx_messageBox($params = '') {
 		}
 
 		if (!isset($params['father'])) {
-			$params['father'] = 'eyeApps';
+			$params['father'] = 'xenonApps';
 		}
 		if (!isset($params['win_style'])) {
 			$params['win_style'] = TITLE;
@@ -1648,8 +1648,8 @@ function service_xenonx_resizedBrowser($params=''){
  	}
 	$_SESSION['SCREEN']['width'] = $params['width'];
 	$_SESSION['SCREEN']['height'] = $params['height'];
-	$_SESSION['SCREEN']['eyeApps']['height'] = $params['appHeight'];
-	$_SESSION['SCREEN']['eyeApps']['width'] = $params['appWidth'];
+	$_SESSION['SCREEN']['xenonApps']['height'] = $params['appHeight'];
+	$_SESSION['SCREEN']['xenonApps']['width'] = $params['appWidth'];
  	return true;
 }
 

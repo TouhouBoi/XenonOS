@@ -71,7 +71,7 @@ function eyeFTP_run($params=null) {
 
 	$mainWindow = new Window(array(
 		'name' => 'eyeFTP_WND',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'cent' => 1,
 		'width' => EYEFTP_WINSIZE_WIDTH,
 		'height' => EYEFTP_WINSIZE_HEIGHT,

@@ -20,7 +20,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeApps_run($params = '')
+function xenonApps_run($params = '')
 {
 	global $checknum;
 	global $currentUser;
@@ -31,9 +31,9 @@ function eyeApps_run($params = '')
 	$myWindow = new Window(
 		array (
 			'cent' => 1,
-			'father' => 'eyeApps',
+			'father' => 'xenonApps',
 			'height' => 430,
-			'name' => 'eyeApps_Window',
+			'name' => 'xenonApps_Window',
 			'title' => 'XenonOS Programs',
 			'savePosition' => 1,
 			'sendResizeMsg' => 1,
@@ -44,12 +44,12 @@ function eyeApps_run($params = '')
 
 	$myWindow->show();
 
-	$GLOBALS['eyeApps_Window'] = $myWindow;
+	$GLOBALS['xenonApps_Window'] = $myWindow;
 
 	$myToolbar = new Toolbar(
 		array (
 			'father' => $myWindow->name . '_Content',
-			'name' => 'eyeApps_Toolbar'
+			'name' => 'xenonApps_Toolbar'
 		)
 	);
 
@@ -66,7 +66,7 @@ function eyeApps_run($params = '')
 
 	$myLine = new Line(
 		array (
-			'name' => 'eyeApps_Line',
+			'name' => 'xenonApps_Line',
 			'father' => $myWindow->name . '_Content',
 			'x' => 140,
 			'y' => 57,
@@ -77,13 +77,13 @@ function eyeApps_run($params = '')
 
 	$myLine->show(0);
 
-	$GLOBALS['eyeApps_Line'] = $myLine;
+	$GLOBALS['xenonApps_Line'] = $myLine;
 
 	$myMenuContainer = new Container(
 		array(
 			'father' => $myWindow->name . '_Content',
 			'height' => $myWindow->height - 82,
-			'name' => 'eyeApps_MenuContainer',
+			'name' => 'xenonApps_MenuContainer',
 			'width' => $myLine->x + 1,
 			'x' => 0,
 			'y' => 57
@@ -100,11 +100,11 @@ function eyeApps_run($params = '')
 		)
 	);
 
-	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeApps/events' . XE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonApps/events' . XE_CODE_EXTENSION);
 
 	$i = 0;
 
-	foreach (eyeApps_lib_GetCategories() as $category => $action)
+	foreach (xenonApps_lib_GetCategories() as $category => $action)
 	{
 		$myContainer = new Container(
 			array (
@@ -123,7 +123,7 @@ function eyeApps_run($params = '')
 			array (
 				'father' => $myContainer->name,
 				'name' => $category . '_Imagebox',
-				'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/' . eyeApps_lib_GetCategoryIcon($category) . '.png',
+				'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/' . xenonApps_lib_GetCategoryIcon($category) . '.png',
 				'x' => 5,
 				'y' => 5,
 			)
@@ -169,17 +169,17 @@ function eyeApps_run($params = '')
 
 	if (isset($params[0]))
 	{
-		eyeApps_lib_ShowApps($params[0]);
+		xenonApps_lib_ShowApps($params[0]);
 	}
 	else
 	{
-		$xml = xenonXML('getXMLconfig', array('eyeApps', 'conf.xml'));
+		$xml = xenonXML('getXMLconfig', array('xenonApps', 'conf.xml'));
 
-		eyeApps_lib_ShowApps($xml['eyeApps'][0]['category'][0]);
+		xenonApps_lib_ShowApps($xml['xenonApps'][0]['category'][0]);
 	}
 }
 
-function eyeApps_end($params = '')
+function xenonApps_end($params = '')
 {
 	removeListenerServiceCall('xenonx','resizedbrowser');
 

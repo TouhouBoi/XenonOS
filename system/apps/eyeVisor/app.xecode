@@ -22,7 +22,7 @@ function eyeVisor_run($params=null) {
 
 	$myWindow = new Window(array(
 		'name' => 'eyeVisorWND',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'cent' => 1,
 		'width' => 600,
 		'height' => 600,
@@ -43,7 +43,7 @@ function eyeVisor_run($params=null) {
 	
 	$myHidden = new Hidden(array(
 		'name' => 'vPath',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'text' => $file
 	));
 	$myHidden->show();

@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function eyeNotes_run($params=null) {
 	global $myPid;
 	$content = ' ';
-	$myWindow = new Window(array('name'=>'eyeNotesWND','father'=>'eyeApps', 'removeWin' => 2,
+	$myWindow = new Window(array('name'=>'eyeNotesWND','father'=>'xenonApps', 'removeWin' => 2,
 	'cent'=>1,'width'=>600,'height'=>500,'title'=>'Text Editor','sendResizeMsg'=>1,'sigResize'=>'Resize','savePosition' => 1));
 
 	if (stripos($_SERVER['HTTP_USER_AGENT'], 'safari') !== false) {

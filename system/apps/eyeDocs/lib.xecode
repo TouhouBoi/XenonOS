@@ -85,7 +85,7 @@ function eyeDocs_saveFile($content) {
 
 	$myHiddenMD5 = new Hidden(array(
 		'name'=>'fileMD5',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'text'=>md5($content)
 	));
 	eyeWidgets('serialize',array($myHiddenMD5));
@@ -131,7 +131,7 @@ function eyeDocs_openFile($file) {
 
 		$myHiddenHeader = new Hidden(array(
 			'name'=>'fileHeader',
-			'father'=>'eyeApps',
+			'father'=>'xenonApps',
 			'text'=>$header
 		));
 		eyeWidgets('serialize',array($myHiddenHeader));
@@ -155,7 +155,7 @@ function eyeDocs_openFile($file) {
 	//when closing, and know if we have to ask for saving
 	$myHiddenMD5 = new Hidden(array(
 		'name'=>'fileMD5',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'text'=>md5($content)
 	));
 	eyeWidgets('serialize',array($myHiddenMD5));
@@ -179,7 +179,7 @@ function eyeDocs_setCurrentFile($file) {
 	
 	$myHiddenPath = new Hidden(array(
 		'name'=>'filePath',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'text'=>$file
 	));
 	eyeWidgets('serialize',array($myHiddenPath));

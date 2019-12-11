@@ -29,7 +29,7 @@ function xeInstaller_run($params=null) {
 	}
 	$myWindow = new Window(array(
 		'name'=>'Installing',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'type'=>NORESIZE_WINDOW,
 		'cent'=>1,
 		'width'=>400,
@@ -94,7 +94,7 @@ function xeInstaller_run($params=null) {
 
 	$myHidden = new Hidden(array(
 		'name'=>'rfile',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'text'=>$rfile
 	));
 	eyeWidgets('serialize',array($myHidden));

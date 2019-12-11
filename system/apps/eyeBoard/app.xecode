@@ -26,7 +26,7 @@ function eyeBoard_run($params=null) {
 
 	$myWindow = new Window(array(
 		'name'=>'eyeBoard_Content',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'type'=>NORMAL_WINDOW,
 		'cent'=>1,'width'=>450,
 		'height'=>380,

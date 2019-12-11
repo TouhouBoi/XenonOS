@@ -39,7 +39,7 @@ function miniActions_on_closeApp($params=null) {
 			'btn1_name' => 'auto_yes',
 			'btn2_capt' => 'No',
 			'btn2_name' => 'auto_no',
-			'father' => 'eyeApps',
+			'father' => 'xenonApps',
 			'img' => '?'
 		));
 	} else {

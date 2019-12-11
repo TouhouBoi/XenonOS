@@ -109,13 +109,13 @@ function eyeMail_on_nextAccButton($params=null) {
 function eyeMail_on_new($params=null) {
 	$myHidden = new Hidden(array(
 		'name'=>'attachments',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'text'=>array()
 	));
 	eyeWidgets('serialize',array($myHidden));
 	$myHidden2 = new Hidden(array(
 		'name'=>'focused',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'text'=>'body'
 	));
 	eyeWidgets('serialize',array($myHidden2));
@@ -137,7 +137,7 @@ function eyeMail_on_resizeSplit($params=null) {
 	if(is_numeric($first)) {
 		$myHidden = new Hidden(array(
 			'name'=>'splitSize',
-			'father'=>'eyeApps',
+			'father'=>'xenonApps',
 			'text'=>intval($first)
 		));
 		eyeWidgets('serialize',array($myHidden));
@@ -207,7 +207,7 @@ function eyeMail_on_SelectFileOpen($params=null) {
 function eyeMail_on_changeFocus($params=null) {
 	$myHidden = new Hidden(array(
 		'name'=>'focused',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'text'=>$params['field'][0]
 	));
 	eyeWidgets('serialize',array($myHidden));
@@ -333,13 +333,13 @@ function eyeMail_on_openMailBox($params) {
 		if(intval($value['id'][0]) == $id) {
 			$myHidden = new Hidden(array(
 				'name'=>'defaultMail',
-				'father'=>'eyeApps',
+				'father'=>'xenonApps',
 				'text'=>$value
 			));
 			eyeWidgets('serialize',array($myHidden));
 		}
 	}
-	$myHidden4 = new Hidden(array('name'=>'location','father'=>'eyeApps','text'=>'inbox'));
+	$myHidden4 = new Hidden(array('name'=>'location','father'=>'xenonApps','text'=>'inbox'));
 	eyeWidgets('serialize',array($myHidden4));
 	eyeMail_on_printMails();
 }
@@ -351,13 +351,13 @@ function eyeMail_on_openMailSent($params) {
 		if(intval($value['id'][0]) == $id) {
 			$myHidden = new Hidden(array(
 				'name'=>'defaultMail',
-				'father'=>'eyeApps',
+				'father'=>'xenonApps',
 				'text'=>$value
 			));
 			eyeWidgets('serialize',array($myHidden));
 		}
 	}
-	$myHidden4 = new Hidden(array('name'=>'location','father'=>'eyeApps','text'=>'sent'));
+	$myHidden4 = new Hidden(array('name'=>'location','father'=>'xenonApps','text'=>'sent'));
 	eyeWidgets('serialize',array($myHidden4));
 	eyeMail_on_printSent();
 }

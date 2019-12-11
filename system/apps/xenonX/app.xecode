@@ -25,8 +25,8 @@ function xenonX_run($params = '') {
 	global $currentUser;
 
 	eyeSessions('setVar',array('usertheme',DEFAULT_THEME));
-	if (isset($_SESSION[LTABLE]) === false || !$_SESSION[LTABLE]['eyeApps']) {
-		$_SESSION[LTABLE]['eyeApps'] = ' ';
+	if (isset($_SESSION[LTABLE]) === false || !$_SESSION[LTABLE]['xenonApps']) {
+		$_SESSION[LTABLE]['xenonApps'] = ' ';
 	}
 	$_SESSION['mmap_directOutputEnabled'] = FALSE; // It is not safe to change this default value. Use mmap('enableDirectOutput') to TEMPORARY enable direct output, and then mmap('disableDirectOutput') to disable it again as soon as you don't need it anymore
 
@@ -167,7 +167,7 @@ function xenonX_run($params = '') {
 			<div id="eyeScreen">
 				<div class="eyecursor" id="eyecursor"></div>
 				<div id="eyeWallpaper"></div>
-				<div id="eyeApps"><div id="eyeWidgets" style="height: 100%; width: 100%;"></div></div>
+				<div id="xenonApps"><div id="eyeWidgets" style="height: 100%; width: 100%;"></div></div>
 				<div id="error" style="color: #ffffff; line-height: 2; text-align: center;">
 					<div id="xenonx-info"><noscript>' . str_replace('%s','<span style="font-weight: bold;">touhouboi.duckdns.org</span>',utf8_htmlspecialchars(i18n('translate',array($textJavascript)), ENT_QUOTES)) . '</noscript></div>
 					<div id="xenonx-powered">' . utf8_htmlspecialchars(i18n('translate', array('Running XenonOS')), ENT_QUOTES) . '</div>

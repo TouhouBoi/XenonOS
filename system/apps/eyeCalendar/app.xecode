@@ -61,7 +61,7 @@ function eyeCalendar_run($params = '') {
 	//Making the main window
 	$windowWidth = 864;
 	$windowHeight = 550;
-	$myWindow1 = new Window(array('title'=>'Calendar','name'=>'eyeCalendarWin1','father' => 'eyeApps',
+	$myWindow1 = new Window(array('title'=>'Calendar','name'=>'eyeCalendarWin1','father' => 'xenonApps',
 	'y'=>35,'type'=>NORMAL_WINDOW,'sendResizeMsg'=>1,'sigResize'=>'mainResize','x'=>0,'cent'=>2,'width'=>$windowWidth,'height'=>$windowHeight,'savePosition' => 1));
 	$myWindow1->show();
 	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeCalendarWin1_Content").style.overflow = "hidden";'));

@@ -33,7 +33,7 @@ function eyeNav_run($params = '')
 	$myWindow = new Window(
 		array (
 			'name' => 'eyeNav_window',
-			'father' => 'eyeApps',
+			'father' => 'xenonApps',
 			'title' => 'Browser',
 			'cent' => 1,
 			'width' => 800,

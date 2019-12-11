@@ -26,7 +26,7 @@ function eyeTetravex_run($params=null) {
 
 	$myWindow = new Window(array(
 		'name'=>'eyeTetravex_WND',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'style'=>TITLE+LISTED+MIN+CLOSE,
 		'cent'=>1,
 		'width'=>702,

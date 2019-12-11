@@ -154,7 +154,7 @@ function eyeLogin_on_successLogin($params = '') {
 function eyeLogin_dialog_ResetPassword() {
 	$myWindow = new Window(array(
 		'cent' => 1,
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'height' => 200,
 		'name' => 'eyeLogin_Window_ResetPassword',
 		'style' => TITLE,

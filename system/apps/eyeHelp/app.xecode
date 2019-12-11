@@ -47,7 +47,7 @@ function eyeHelp_run($params = null)
 		array(
 			'title' => 'Help Console',
 			'name' => 'WND_1',
-			'father' => 'eyeApps',
+			'father' => 'xenonApps',
 			'type' => 1,
 			'y' => 35,
 			'x' => 0,

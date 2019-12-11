@@ -39,7 +39,7 @@ function eyeMp3_run($params=null) {
 			$myPid = $proc['pid'];
 		}
 		$myHidden = new Hidden(array(
-			'father' => 'eyeApps',
+			'father' => 'xenonApps',
 			'name' => 'eyeMp3_Hidden',
 			'text' => $params[0]
 		));
@@ -52,7 +52,7 @@ function eyeMp3_run($params=null) {
 
 			$myWindow = new Window(array(
 				'cent' => 1,
-				'father' => 'eyeApps',
+				'father' => 'xenonApps',
 				'height' => 88,
 				'name' => 'eyeMp3_Window',
 				'savePosition' => 1,

@@ -1367,7 +1367,7 @@ function eyePictures_on_colorEdit($params=null) {
 	$x = $width + $xPos;
 
 	$window = new Window(array(
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'name' => 'editColors_Wnd',
 		'width' => 340,
 		'height' => 290,

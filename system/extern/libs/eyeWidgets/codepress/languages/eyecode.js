@@ -50,7 +50,7 @@ Language.snippets = [
 	{ input : 'end', output: 'function $0_end($params=null) {\n\treqLib(\'eyeWidgets\',\'unserialize\');\n}'},
 	{ input : 'tapp', output: '<?php\nfunction $0_run($params=null) {\n\n}\n\nfunction _end($params=null) {\n\treqLib(\'eyeWidgets\',\'unserialize\');\n}\n?>'},
 	{ input : 'tevt', output : '<?php\nfunction $0_on_Message($params=\'\') {\n\treqLib(\'eyeWidgets\', \'updateContent\', $params);\n}\n\nfunction _on_Close($params=\'\'){\n\tproc(\'end\');\n}\n?>' },
-	{ input : 'window', output: "\t$myWindow = new Window(array(\n\t\t'name'=>'_WND_1',\n\t\t'father'=>'eyeApps',\n\t\t'type'=>NORMAL_WINDOW,\n\t\t'width'=>450,\n\t\t'height'=>450,\n\t\t'title'=>''\n\t));\n\t$myWindow->show();\n"},
+	{ input : 'window', output: "\t$myWindow = new Window(array(\n\t\t'name'=>'_WND_1',\n\t\t'father'=>'xenonApps',\n\t\t'type'=>NORMAL_WINDOW,\n\t\t'width'=>450,\n\t\t'height'=>450,\n\t\t'title'=>''\n\t));\n\t$myWindow->show();\n"},
 	{ input : 'tree', output: "\t$myTree = new Tree(array(\n\t\t'name'=>'_TREE_1',\n\t\t'father'=>'_WND_1_Content',\n\t\t'x'=>20,\n\t\t'y'=>20,\n\t\t'width' =>200,\n\t\t'height' => 200,\n\t));\n\t$myTree->show();\n"},
 	{ input : 'toolbar', output: "\t$toolbar = new Toolbar(array(\n\t\t'name' => '_TLB_1',\n\t\t'father' => '_WND_1_Content',\n\t\t'x' => 20,\n\t\t'y' => 20\n\t));\n\t$toolbar->show();\n"},
 	{ input : 'textbox', output: "\t$urlTextbox = new Textbox(array(\n\t\t'name' => '_TXT_',\n\t\t'father' => '_WND_1_Content',\n\t\t'x' => 20,\n\t\t'y' => 20,\n\t\t'width' => 200,\n\t\t'text' => ''\n\t));\n\t$urlTextbox->show();\n"},

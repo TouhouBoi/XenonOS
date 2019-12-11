@@ -47,7 +47,7 @@ function eyeCalc_run($params = '') {
 
 	$myWindow = new Window(array(
 		'cent' => 1,
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'height' => 240,
 		'name' => 'eyeCalc_Window',
 		'savePosition' => 1,

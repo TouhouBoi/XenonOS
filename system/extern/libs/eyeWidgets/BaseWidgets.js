@@ -1227,7 +1227,7 @@ function execDragCallback(clickCallback, ele, mouseX, mouseY, xEventObj) {
 //checknum = checknum, needed for sendMsg
 //clickCallback = if the user only click, it can activate a callback
 //clickSignal = if the user only click, a msg is send
-//cursor = the cursor that will be setted on global father (eyeapps)
+//cursor = the cursor that will be setted on global father (xenonApps)
 //cursorPos = 0: natural position, 1: the mouse is in the top-left corner.
 //overload = When overload is true, only the *Back functions are called.
 //params, name, father, x, y, horiz, vert, checknum
@@ -1281,11 +1281,11 @@ function WidgetDrag_show(params, name, father, x, y, horiz, vert, checknum, cent
 
 		//Respect where de user click in the drag object
 
-		left = xLeft('eyeApps');
+		left = xLeft('xenonApps');
 		if (!left) {
 			left = 0;
 		}
-		top = xTop('eyeApps');
+		top = xTop('xenonApps');
 		if (!top) {
 			top = 0;
 		}
@@ -1302,16 +1302,16 @@ function WidgetDrag_show(params, name, father, x, y, horiz, vert, checknum, cent
 
 	//Called when dragWidget is moved (onmousemove)
 	widgetDragMove = function widgetDragMove(ele, mouseDX, mouseDY, bWithinRect, xEventObj) {
-		var eyeApps, i;
+		var xenonApps, i;
 
 		//If the drag isn't started, start it. Set some vars and create the real dragWidget
 		if (!dragStarted) {
 			dragStarted = true;//Now drag is started because mouse is moved
 
-			eyeApps = xGetElementById('eyeApps');//Getting global father
+			xenonApps = xGetElementById('xenonApps');//Getting global father
 
 			//Setting the style
-			eyeApps.style.cursor = cursor;
+			xenonApps.style.cursor = cursor;
 			dragWidget.style.cursor = cursor;
 
 			//Moving the dragWidget to start position
@@ -1319,7 +1319,7 @@ function WidgetDrag_show(params, name, father, x, y, horiz, vert, checknum, cent
 
 			//Adding it to global father
 			dragWidget.setAttribute('id', father + '_drag');//Setting a unique id
-			eyeApps.appendChild(dragWidget);
+			xenonApps.appendChild(dragWidget);
 
 			xZIndex(widget, zindex);
 			raiseZIndex(1);
@@ -1370,10 +1370,10 @@ function WidgetDrag_show(params, name, father, x, y, horiz, vert, checknum, cent
 		} else {
 			dragWidget.parentNode.removeChild(dragWidget);
 		}
-		xGetElementById('eyeApps').style.cursor  = cursorBack;
+		xGetElementById('xenonApps').style.cursor  = cursorBack;
 	};
 
-	xEnableDrag(widget, widgetDragStart, widgetDragMove, widgetDragEnd, 'eyeApps');
+	xEnableDrag(widget, widgetDragStart, widgetDragMove, widgetDragEnd, 'xenonApps');
 }
 
 function iconDragUpdate(widgetid, ancientX, ancientY, newX, newY, checknum, content) {
@@ -2720,7 +2720,7 @@ var Windows = {
 		if (params.allDrag) {
 			xEnableDrag(id, function () { Windows.MoveBefore(id); }, function (e, x, y) { Windows.MoveEvent(id, x, y); }, function () { Windows.MoveAfter(id); });
 		}
-		if (params.minElement && params.listed && document.getElementById(id).parentNode.id === 'eyeApps') {
+		if (params.minElement && params.listed && document.getElementById(id).parentNode.id === 'xenonApps') {
 			params.minElement.onclick = function () {
 				Windows.Minimize(id);
 			};
@@ -2766,7 +2766,7 @@ var Windows = {
 		var e, e1, e2, e3;
 		e = document.getElementById(id);
 		if (id && e) {
-			if (e.parentNode.id === 'eyeApps') {
+			if (e.parentNode.id === 'xenonApps') {
 				Windows.Unfocus(Windows.Infos.focus);
 				Windows.Infos.focus = id;
 				Taskbars.FocusEntry(id);
@@ -2934,7 +2934,7 @@ var Windows = {
 		if (Windows.List[Windows.Infos.focus].minimized) {
 			for (id in Windows.List) {
 				if (Windows.List.hasOwnProperty(id)) {
-					if (Windows.List[id] && Windows.List[id].minimized === 2 && document.getElementById(id).parentNode.id === 'eyeApps') {
+					if (Windows.List[id] && Windows.List[id].minimized === 2 && document.getElementById(id).parentNode.id === 'xenonApps') {
 						Windows.List[id].minimized = 0;
 						Windows.Unhide(id);
 					}
@@ -2944,7 +2944,7 @@ var Windows = {
 		} else {
 			for (id in Windows.List) {
 				if (Windows.List.hasOwnProperty(id)) {
-					if (Windows.List[id] && document.getElementById(id).parentNode.id === 'eyeApps') {
+					if (Windows.List[id] && document.getElementById(id).parentNode.id === 'xenonApps') {
 						Windows.Minimize(id, 1);
 					}
 				}
@@ -3148,7 +3148,7 @@ var Windows = {
 			father = e.parentNode.id;
 			widthE = xWidth(e);
 			widthEparent = xWidth(e.parentNode);
-			if (father !== 'eyeApps') {
+			if (father !== 'xenonApps') {
 				if (x < 0) {
 					x = 0;
 				} else if (x > widthEparent - widthE) {
@@ -3177,7 +3177,7 @@ var Windows = {
 				father = e.parentNode.id;
 				heightE = xHeight(e);
 				heightEparent = xHeight(e.parentNode);
-				if (father !== 'eyeApps' && y > heightEparent - heightE) {
+				if (father !== 'xenonApps' && y > heightEparent - heightE) {
 					y = heightEparent - heightE;
 				} else if (y > heightEparent - 25) {
 					y = heightEparent - 25;
@@ -3191,8 +3191,8 @@ var Windows = {
 
 	SplitX: function (objects) {
 		var height, i, width, x;
-		height = xHeight('eyeApps');
-		width = xWidth('eyeApps') / objects.length;
+		height = xHeight('xenonApps');
+		width = xWidth('xenonApps') / objects.length;
 		x = 0;
 		for (i = 0; i < objects.length; i += 1) {
 			Windows.SetHeight(objects[i], height);
@@ -3205,8 +3205,8 @@ var Windows = {
 
 	SplitY: function (objects) {
 		var height, i, width, y;
-		height = xHeight('eyeApps') / objects.length;
-		width = xWidth('eyeApps');
+		height = xHeight('xenonApps') / objects.length;
+		width = xWidth('xenonApps');
 		y = 0;
 		for (i = 0; i < objects.length; i += 1) {
 			Windows.SetHeight(objects[i], height);
@@ -3220,7 +3220,7 @@ var Windows = {
 	Unfocus: function (id) {
 		var e, e1, e2, e3;
 		e = document.getElementById(id);
-		if (id && e && e.parentNode.id === 'eyeApps') {
+		if (id && e && e.parentNode.id === 'xenonApps') {
 			e1 = document.getElementById(id + '_WindowTitle');
 			e2 = document.getElementById(id + '_WindowTitle_border_left');
 			e3 = document.getElementById(id + '_WindowTitle_border_right');
@@ -3861,8 +3861,8 @@ function showContextMenu(e, menuName) {
 	myMenu = document.getElementById(menuName);
 	myMenu.style.display = 'block';
 	widthMenu = xWidth(myMenu);
-	widthApps = xWidth('eyeApps');
-	leftApps = xLeft('eyeApps');
+	widthApps = xWidth('xenonApps');
+	leftApps = xLeft('xenonApps');
 	if (left < leftApps + 5) {
 		left = leftApps + 5;
 	}
@@ -3873,8 +3873,8 @@ function showContextMenu(e, menuName) {
 		}
 	}
 	heightMenu = xHeight(myMenu);
-	heightApps = xHeight('eyeApps');
-	topApps = xTop('eyeApps');
+	heightApps = xHeight('xenonApps');
+	topApps = xTop('xenonApps');
 	if (top < topApps + 5) {
 		top = topApps + 5;
 	}

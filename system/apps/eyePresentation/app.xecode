@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function eyePresentation_run($params=null) {
 	global $myPid;
 
-	$myWindow = new Window(array('name'=>'presentationWND','father'=>'eyeApps',
+	$myWindow = new Window(array('name'=>'presentationWND','father'=>'xenonApps',
 		'cent'=>1,'width'=>680,'height'=>590,'title'=>'Presentations','sendResizeMsg'=>1,'sigResize'=>'Resize','savePosition' => 1));
 	$myWindow->show();
 	$myToolbar = new Toolbar(array('name'=>'myToolbar','father'=>'presentationWND_Content'));

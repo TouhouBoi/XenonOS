@@ -20,7 +20,7 @@ function eyeShow_run($params=null) {
 	
 	$myWindow = new Window(array(
 		'name'=>'eyeShowWND',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'cent'=>1,
 		'width' => 930,
 		'height'=>590,
@@ -44,7 +44,7 @@ function eyeShow_run($params=null) {
 		}
 		$myHidden = new Hidden(array(
 			'name'=>'ShowPath',
-			'father'=>'eyeApps',
+			'father'=>'xenonApps',
 			'text'=>$file));
 
 		eyeWidgets('serialize',array($myHidden));

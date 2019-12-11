@@ -18,7 +18,7 @@ function systemConsole_run($params=null) {
 	global $myPid;
 
 	$myWindow = new Window(array(
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'name' => 'Window',
 		'title' => 'System console log',
 		'width' => 500,

@@ -16,11 +16,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 function xenonX_on_baseapp($params = '') {
 	global $procInfo;
-	$_SESSION['SCREEN']['eyeApps']['touch'] = $params['touch'][0] ? 1 : 0;
-	$_SESSION['SCREEN']['eyeApps']['height'] = 0;
-	$_SESSION['SCREEN']['eyeApps']['width'] = 0;
-	$_SESSION['SCREEN']['eyeApps']['x'] = 0;
-	$_SESSION['SCREEN']['eyeApps']['y'] = 0;
+	$_SESSION['SCREEN']['xenonApps']['touch'] = $params['touch'][0] ? 1 : 0;
+	$_SESSION['SCREEN']['xenonApps']['height'] = 0;
+	$_SESSION['SCREEN']['xenonApps']['width'] = 0;
+	$_SESSION['SCREEN']['xenonApps']['x'] = 0;
+	$_SESSION['SCREEN']['xenonApps']['y'] = 0;
 	$_SESSION['SCREEN']['height'] = 0;
 	$_SESSION['SCREEN']['width'] = 0;
 	xenonX_on_resizedBrowser($params);
@@ -40,7 +40,7 @@ function xenonX_on_baseapp($params = '') {
 		$tty = $procInfo['tty'];
 	}
 
-	xenonx('createDiv',array('class' => 'systemConsole','father' => 'eyeApps','name' => $tty.'_tty','nopid' => 1,'removepid' => 1));
+	xenonx('createDiv',array('class' => 'systemConsole','father' => 'xenonApps','name' => $tty.'_tty','nopid' => 1,'removepid' => 1));
 	xenonx('updateCss',array('name'=> $tty.'_tty','property'=>'display','value'=>'none'));
 	xenonx('rawjs',array('js' => 'xGetElementById("xenonx-info").style.display = "none"; xGetElementById("xenonx-powered").style.display = "none";'));
 	$pid = proc('findPidByName',array(BASE_APP));
@@ -69,10 +69,10 @@ function xenonX_on_resizedBrowser($params = '') {
 	}
 	$diffHeight = $_SESSION['SCREEN']['height'] - $height;
 	$diffWidth = $_SESSION['SCREEN']['width'] - $width;
-	$appHeight = $_SESSION['SCREEN']['eyeApps']['height'] - $diffHeight;
-	$appWidth = $_SESSION['SCREEN']['eyeApps']['width'] - $diffWidth;
+	$appHeight = $_SESSION['SCREEN']['xenonApps']['height'] - $diffHeight;
+	$appWidth = $_SESSION['SCREEN']['xenonApps']['width'] - $diffWidth;
 	xenonx('resizedBrowser',array('height' => $height,'width' => $width,'appWidth' => $appWidth,'appHeight' => $appHeight));
-	xenonx('rawjs', array('js' => 'var e = document.getElementById("eyeApps"); e.style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px"; e.style.width = "' . $_SESSION['SCREEN']['eyeApps']['width'] . 'px";'));
+	xenonx('rawjs', array('js' => 'var e = document.getElementById("xenonApps"); e.style.height = "' . $_SESSION['SCREEN']['xenonApps']['height'] . 'px"; e.style.width = "' . $_SESSION['SCREEN']['xenonApps']['width'] . 'px";'));
 }
 
 function xenonX_on_viewTempImg($params = '') {
@@ -102,9 +102,9 @@ function xenonX_on_saveWinPosition($params = '') {
 		$_SESSION[WTABLE][$pid][$name]->y = $y;
 		// Convert to Relative if Appropriate
 		if ($_SESSION[WTABLE][$pid][$name]->savePosition === RELATIVE) {
-			$x = ($x / $_SESSION['SCREEN']['eyeApps']['width']) * 100;
+			$x = ($x / $_SESSION['SCREEN']['xenonApps']['width']) * 100;
 			$x = round($x, 2);	// gives a percentage
-			$y = ($y / $_SESSION['SCREEN']['eyeApps']['height']) * 100;
+			$y = ($y / $_SESSION['SCREEN']['xenonApps']['height']) * 100;
 			$y = round($y, 2);	// gives a percentage
 		}
 		// Update XML file
@@ -133,9 +133,9 @@ function xenonX_on_saveWinSize($params = '') {
 		$_SESSION[WTABLE][$pid][$name]->height = $h;
 		// Convert to Relative if Appropriate
 		if ($_SESSION[WTABLE][$pid][$name]->saveSize === RELATIVE) {
-			$w = ($w / $_SESSION['SCREEN']['eyeApps']['width']) * 100;
+			$w = ($w / $_SESSION['SCREEN']['xenonApps']['width']) * 100;
 			$w = round($w, 2);	// gives a percentage
-			$h = ($h / $_SESSION['SCREEN']['eyeApps']['height']) * 100;
+			$h = ($h / $_SESSION['SCREEN']['xenonApps']['height']) * 100;
 			$h = round($h, 2);	// gives a percentage
 		}
 		// Update XML file

@@ -12,7 +12,7 @@
 				<type>showdesktop</type>
 			</element-1>
 			<element-2>
-				<command>eyeApps.app Widgets</command>
+				<command>xenonApps.app Widgets</command>
 				<hideText>1</hideText>
 				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/desktop_widgets.png</image>
 				<text>Manage Widgets</text>
@@ -52,7 +52,7 @@
 						<type>icon</type>
 					</entry-1>
 					<entry-2>
-						<command>eyeApps.app</command>
+						<command>xenonApps.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
 						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/apps.png</image>

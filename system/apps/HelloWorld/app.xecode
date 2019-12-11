@@ -18,7 +18,7 @@ function HelloWorld_run($params = '') {
 	// First we create a new Window:
 	$myWindow = new Window(array(
 		'cent' => 1,
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'height' => 150,
 		'name' => 'HelloWorld_Window',
 		'title' => 'Example Application',

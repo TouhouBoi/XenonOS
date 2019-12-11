@@ -118,26 +118,26 @@ function eyePdf_on_getPdf($params = '') {
 function eyePdf_on_Load($params = '') {
 	global $checknum, $myPid;
 	//THE TOOLBAR HAS BEEN DELETED addListenerServiceCall('fullResized','xenonx','resizedbrowser');
-	if ($_SESSION['SCREEN']['eyeApps']['width'] >= 600) {
-		$window_width = $_SESSION['SCREEN']['eyeApps']['width']*0.75;
+	if ($_SESSION['SCREEN']['xenonApps']['width'] >= 600) {
+		$window_width = $_SESSION['SCREEN']['xenonApps']['width']*0.75;
 		if ($params['start_maximized'][0]) {
 			$start_maximized = TRUE;
 		} else {
 			$start_maximized = FALSE;
 		}
 	} else {
-		$window_width = $_SESSION['SCREEN']['eyeApps']['width'];
+		$window_width = $_SESSION['SCREEN']['xenonApps']['width'];
 		$start_maximized = FALSE;
 	}
-	if ($_SESSION['SCREEN']['eyeApps']['height'] >= 480) {
-		$window_height = $_SESSION['SCREEN']['eyeApps']['height']*0.75;
+	if ($_SESSION['SCREEN']['xenonApps']['height'] >= 480) {
+		$window_height = $_SESSION['SCREEN']['xenonApps']['height']*0.75;
 	} else {
-		$window_height = $_SESSION['SCREEN']['eyeApps']['height'];
+		$window_height = $_SESSION['SCREEN']['xenonApps']['height'];
 		$start_maximized = FALSE;
 	}
 	$myWindow = new Window(array(
 		'cent' => 1,
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'height' => $window_height,
 		'minHeight' => 200,
 		'minWidth' => 200,

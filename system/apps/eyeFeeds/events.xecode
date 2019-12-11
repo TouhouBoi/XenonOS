@@ -230,7 +230,7 @@ function eyeFeeds_on_openEnclosure($params=null) {
 
 	$enclosureWindow = new Window(array(
 		'name' => 'enclosure_WND_'.$itemId,
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'type' => NORMAL_WINDOW,
 		'style' => TITLE+MIN+MAX+CLOSE+RESIZE,
 		'cent' => 1,

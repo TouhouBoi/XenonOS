@@ -34,7 +34,7 @@ function eyeFiles_run($params = '') {
 
 	$myWindow = new Window(array(
 		'cent' => 1,
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'height' => 550,
 		'name' => 'eyeFiles_Window',
 		'savePosition' => 1,

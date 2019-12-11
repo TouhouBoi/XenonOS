@@ -34,7 +34,7 @@ function editLink_run($params = '') {
 		
 		$myWindow = new Window(array(
 			'cent' => 1,
-			'father' => 'eyeApps',
+			'father' => 'xenonApps',
 			'name' => 'editLink_Window',
 			'savePosition' => 1,
 			'style' => TITLE + CLOSE + LISTED + MIN,

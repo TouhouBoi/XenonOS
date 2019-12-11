@@ -20,7 +20,7 @@ function eyeDocs_run($params=null) {
 	//create the main window
 	$myWindow = new Window(array(
 		'name'=>'eyeDocsWND',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'cent'=>1,
 		'width'=>780,
 		'height'=>550,

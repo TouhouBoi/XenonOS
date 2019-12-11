@@ -24,7 +24,7 @@ function miniActions_run($params=null) {
 		}
 	}
 
-	$width = $_SESSION['SCREEN']['eyeApps']['width']-236;
+	$width = $_SESSION['SCREEN']['xenonApps']['width']-236;
 	// Window
 	$myWindow = new Window(array(
 		'name'=>'miniActionsWND',

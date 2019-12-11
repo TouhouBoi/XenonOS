@@ -11,7 +11,7 @@
 	</serv>
 	<serv>
 		<sname>xenonx</sname>
-		<sdesc>The xenonx service is responsible for drawing the contents of the page and the manipulation of CSS and JS files. It is also responsible for the control of the layer system, part of which is the 'eyeApps' layer, in which all the applications and the desktop are drawn.</sdesc>
+		<sdesc>The xenonx service is responsible for drawing the contents of the page and the manipulation of CSS and JS files. It is also responsible for the control of the layer system, part of which is the 'xenonApps' layer, in which all the applications and the desktop are drawn.</sdesc>
 		<func>
 			<fname>addEvent</fname>
 			<fdesc>Specifies which JavaScript code must be executed every time a widget triggers a JS event.</fdesc>

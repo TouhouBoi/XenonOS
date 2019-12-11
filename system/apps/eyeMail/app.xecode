@@ -47,7 +47,7 @@ function eyeMail_run($params=null) {
 	$myWindow = new Window(array(
 		'title'=>'eyeMail',
 		'name'=>'eyeMail_WND_1',
-		'father'=>'eyeApps',
+		'father'=>'xenonApps',
 		'cent'=>1,
 		'width'=>800,
 		'height'=> 570,
@@ -251,9 +251,9 @@ function eyeMail_run($params=null) {
 	$mailBody->setCSS(array('border'=>'none','background-color'=>'transparent','text-shadow'=>'0px 0px 0px #ffffff','font-size'=> '12px'));
 	xenonx('rawjs',array('js'=>'document.getElementById("'.$myPid.'_eyeMail_mailBody").setAttribute("READONLY","READONLY");'));
 
-	$myHidden3 = new Hidden(array('name'=>'page','father'=>'eyeApps','text'=>0));
+	$myHidden3 = new Hidden(array('name'=>'page','father'=>'xenonApps','text'=>0));
 	eyeWidgets('serialize',array($myHidden3));
-	$myHidden4 = new Hidden(array('name'=>'location','father'=>'eyeApps','text'=>'inbox'));
+	$myHidden4 = new Hidden(array('name'=>'location','father'=>'xenonApps','text'=>'inbox'));
 	eyeWidgets('serialize',array($myHidden4));
 	eyeMail_starter();
 }

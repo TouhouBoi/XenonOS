@@ -41,14 +41,14 @@ function exit_run($params=null) {
 		$timeout = '1';
 	}
 	
-	// Hide eyeDock and eyeApps divs
+	// Hide eyeDock and xenonApps divs
 	xenonx('rawjs', array('js' => '
 			var dock_top_div = xGetElementById("' . $eyeDock_pid . '_eyeDock_top");
 			var dock_bottom_div = xGetElementById("' . $eyeDock_pid . '_eyeDock_bottom");
-			var eyeApps_div = xGetElementById("eyeApps");
+			var xenonApps_div = xGetElementById("xenonApps");
 			dock_top_div.style.display = "none";
 			dock_bottom_div.style.display = "none";
-			eyeApps_div.style.display = "none";
+			xenonApps_div.style.display = "none";
 		'));
 	
 	// Put a lightbox in front of all the screen, with the color and opacity set at the beginning

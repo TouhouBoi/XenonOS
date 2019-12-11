@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function xKill_on_Click($params = '') {
 	$pid = /* utf8 */ substr($params['arg0'][0], 0, 5);
 	proc('close',array($pid));
-	xenonx('rawjs',array('js' => 'EventHandler.Remove("click","xKill"); document.getElementById("eyeApps").style.cursor = "auto";'));
+	xenonx('rawjs',array('js' => 'EventHandler.Remove("click","xKill"); document.getElementById("xenonApps").style.cursor = "auto";'));
 	proc('end');
 }
 ?>

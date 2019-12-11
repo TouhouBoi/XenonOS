@@ -701,7 +701,7 @@ function eyeCalendar_on_hideLeftPanel(){
 	//hidding panel content
 	$hidden = true;
 	if(!$GLOBALS['hiddenPanel']){
-		$myHidden = new Hidden(array('name'=>'hiddenPanel','father'=>'eyeApps','text'=>true));
+		$myHidden = new Hidden(array('name'=>'hiddenPanel','father'=>'xenonApps','text'=>true));
 		eyeWidgets('serialize',array($myHidden));
 	}else{
 		if($GLOBALS['hiddenPanel']->text == true){
@@ -716,7 +716,7 @@ function eyeCalendar_on_hideLeftPanel(){
 	//Hide panel
 	if($hidden == true){
 		if(!$GLOBALS['verticalX']){
-			$myHidden = new Hidden(array('name'=>'verticalX','father'=>'eyeApps','text'=>$GLOBALS['verticalPanel']->x));
+			$myHidden = new Hidden(array('name'=>'verticalX','father'=>'xenonApps','text'=>$GLOBALS['verticalPanel']->x));
 			eyeWidgets('serialize',array($myHidden));
 		}else{
 			$GLOBALS['verticalX']->setText($GLOBALS['verticalPanel']->x);

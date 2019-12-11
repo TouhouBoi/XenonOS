@@ -32,7 +32,7 @@ function downZip_run($params = '') {
 		} else {
 			$_SESSION['downZip'][$myPid] = $path[1] . '://' . $path[2] . '/' . $file;
 			$myIframe = new Iframe(array(
-				'father' => 'eyeApps',
+				'father' => 'xenonApps',
 				'name' => 'downZip_Iframe',
 				'url' => 'index.php?msg=download&checknum=' . $checknum,
 				'visible' => 0

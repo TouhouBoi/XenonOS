@@ -16,7 +16,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 function eyeImport_run($params=null) {
 	global $myPid;
-	$myWindow = new Window(array('name'=>'eyeImportWND','type'=>NOLIST_CLOSE_WINDOW,'father'=>'eyeApps',
+	$myWindow = new Window(array('name'=>'eyeImportWND','type'=>NOLIST_CLOSE_WINDOW,'father'=>'xenonApps',
 		'cent'=>1,'width'=>400,'height'=>150,'title'=>'eyeImport','savePosition' => 1));
 	$myWindow->show();
 

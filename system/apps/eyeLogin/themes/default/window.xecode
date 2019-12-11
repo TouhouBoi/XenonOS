@@ -37,7 +37,7 @@ $myCss_Title['font-weight'] = '700';
 
 $myWindow = new Window(
 	array (
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'name' => 'eyeLogin_window',
 		'cssReplace' => array("wContent" => "eyeWindowContent eyeLoginWindow"),
 		'type' => INVISIBLE_WINDOW,

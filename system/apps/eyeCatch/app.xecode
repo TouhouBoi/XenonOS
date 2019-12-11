@@ -18,7 +18,7 @@ function eyeCatch_run($params = '') {
 
 	$GLOBALS['eyeCatch_Window'] = new Window(array(
 		'cent' => 1,
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'height' => 600,
 		'name' => 'eyeCatch_Window',
 		'savePosition' => 1,

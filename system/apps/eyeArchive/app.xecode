@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function eyeArchive_run($params=null) {
 	global $myPid,$checknum;
 
-	$myWindow = new Window(array('name'=>'mainWindow','title'=>'Archive Manager','father'=>'eyeApps',
+	$myWindow = new Window(array('name'=>'mainWindow','title'=>'Archive Manager','father'=>'xenonApps',
 		'type'=>NORESIZE_WINDOW,'width'=>548,'height'=>530,'cent'=>1,'savePosition' => 1));
 	$myWindow->show();
 
@@ -46,12 +46,12 @@ function eyeArchive_run($params=null) {
 
 	$myTable->show();
 
-	$myHidden = new Hidden(array('name'=>'projectStarted','father'=>'eyeApps','text'=>'false'));
+	$myHidden = new Hidden(array('name'=>'projectStarted','father'=>'xenonApps','text'=>'false'));
 	eyeWidgets('serialize',array($myHidden));
 
 	if(isset($params[0])){
 		$myHidden->setText('true');
-		$myHidden2 = new Hidden(array('name'=>'argSrc','father'=>'eyeApps','text'=>$params[0]));
+		$myHidden2 = new Hidden(array('name'=>'argSrc','father'=>'xenonApps','text'=>$params[0]));
 		eyeWidgets('serialize',array($myHidden2));
 		xenonx('rawjs',array('js'=>"sendMsg($checknum,'SelectOpenFile');"));
 	}

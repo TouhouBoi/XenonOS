@@ -40,11 +40,11 @@ function eyePictures_run($params="") {
 	}
 	
 	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
-	if ($_SESSION['SCREEN']['eyeApps']['height'] > 505) $window_height = 505;
-	else $window_height = $_SESSION['SCREEN']['eyeApps']['height'];
+	if ($_SESSION['SCREEN']['xenonApps']['height'] > 505) $window_height = 505;
+	else $window_height = $_SESSION['SCREEN']['xenonApps']['height'];
 	
 	$window = new Window(array(
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'name' => 'eyePictures_MainWnd',
 		'width' => 705,
 		'height' => $window_height,

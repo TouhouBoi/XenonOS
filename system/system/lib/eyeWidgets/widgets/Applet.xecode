@@ -45,7 +45,7 @@ class Applet {
 		$this->creatorPid = $myPid;
 		//generic widget options without default
 		$this->name = $params['name'];
-		isset($params['father']) ? $this->father = $params['father'] : $this->father = 'eyeApps';
+		isset($params['father']) ? $this->father = $params['father'] : $this->father = 'xenonApps';
 		//generic widget options with default
 		isset($params['horiz']) ? $this->horiz = $params['horiz'] : $this->horiz = 0;
 		isset($params['vert']) ? $this->vert = $params['vert'] : $this->vert = 0;

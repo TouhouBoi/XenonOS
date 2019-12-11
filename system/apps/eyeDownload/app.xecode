@@ -29,7 +29,7 @@ function eyeDownload_run($params = '') {
 		} else {
 			$_SESSION['eyeDownload'][$myPid] = $path[1] . '://' . $path[2] . '/' . $file;
 			$myIframe = new Iframe(array(
-				'father' => 'eyeApps',
+				'father' => 'xenonApps',
 				'name' => 'eyeDownload_Iframe',
 				'url' => 'index.php?msg=download&checknum=' . $checknum,
 				'visible' => 0

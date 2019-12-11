@@ -35,7 +35,7 @@ function xeControl_run($params = '') {
 	if (isset($params['hidemenu']) === true && $params['hidemenu'] == 1 || isset($params[3]) === true && $params[3] == 1) {
 		$myWindow = new Window(array(
 			'name' => 'xeControl_window',
-			'father' => 'eyeApps',
+			'father' => 'xenonApps',
 			'cent' => 1,
 			'width' => 585,
 			'height' => 490,
@@ -59,7 +59,7 @@ function xeControl_run($params = '') {
 // $myWindow
 		$myWindow = new Window(array(
 			'name' => 'xeControl_window',
-			'father' => 'eyeApps',
+			'father' => 'xenonApps',
 			'cent' => 1,
 			'width' => 765,
 			'height' => 520,

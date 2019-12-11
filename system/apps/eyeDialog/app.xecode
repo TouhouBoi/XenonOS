@@ -179,7 +179,7 @@ function eyeDialog_run($params=null) {
 
 	$mainWindow = new Window(array(
 		'name' => 'eyeDialog_WND',
-		'father' => 'eyeApps',
+		'father' => 'xenonApps',
 		'type' => NOLIST_CLOSE_WINDOW,
 		'cent' => 1,
 		'width' => 600,

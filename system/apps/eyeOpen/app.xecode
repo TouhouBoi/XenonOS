@@ -19,7 +19,7 @@ function eyeOpen_run($params = '') {
 	if ($params[0]) {
 		$myWindow = new Window(array(
 			'cent' => 1,
-			'father' => 'eyeApps',
+			'father' => 'xenonApps',
 			'height' => 340,
 			'name' => 'eyeOpen_Window',
 			'title' => i18n('translate',array('Open "%s" with...',array(basename($params[0])))),
