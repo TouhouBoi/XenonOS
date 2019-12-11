@@ -23,7 +23,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
  *
  * @param unknown_type $params
  */
-function eyeArchive_on_Open($params=null){
+function xenonArchive_on_Open($params=null){
 	global $checknum;
 	$options = array(
 		EYEDIALOG_TYPE_OPENFILE,
@@ -53,7 +53,7 @@ function eyeArchive_on_Open($params=null){
  *
  * @param unknown_type $params
  */
-function eyeArchive_on_SelectOpenFile($params = null){
+function xenonArchive_on_SelectOpenFile($params = null){
 	global $currentUser,$archivedExtensions,$myPid;
 	
 	//Getting real path (eyDialog return ~/ path).
@@ -68,7 +68,7 @@ function eyeArchive_on_SelectOpenFile($params = null){
 	
 	//Include the correct wrapper
 	if(vfs('isDir',array($file))){
-		require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeArchive/libraries/directory_wrapper.xecode');
+		require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonArchive/libraries/directory_wrapper.xecode');
 		if($GLOBALS['workingPath']->text == '/'){
 			$GLOBALS['workingPath']->setText($GLOBALS['workingPath']->text.basename($file).'.zip');
 		}else{
@@ -76,10 +76,10 @@ function eyeArchive_on_SelectOpenFile($params = null){
 		}
 		$GLOBALS['actionLabel']->setText('Compress to...');
 	}elseif(array_search($extension,$archivedExtensions) !== false){
-		require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeArchive/libraries/archived_wrapper.xecode');
+		require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonArchive/libraries/archived_wrapper.xecode');
 		$GLOBALS['actionLabel']->setText('Extract to...');
 	}else{
-		require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeArchive/libraries/file_wrapper.xecode');
+		require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonArchive/libraries/file_wrapper.xecode');
 	}
 
 	//Getting files from source
@@ -91,18 +91,18 @@ function eyeArchive_on_SelectOpenFile($params = null){
 	//Getting the working path (for output result)
 	$workPath = $GLOBALS['workingPath']->text;
 
-	require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeArchive/libraries/project_class.xecode');
+	require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonArchive/libraries/project_class.xecode');
 	//Getting the project object.
 	$myClass = new project(array('files'=>$content,'type'=>$type,'src'=>$file,'workPath'=>$workPath));
 
 	//Saving the project object
-	_eyeArchive_setProject($myClass);
+	_xenonArchive_setProject($myClass);
 
 	//Setting a started project
 	$GLOBALS['projectStarted']->setText('true');
 
 	//Print the files
-	require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeArchive/libraries/main.xecode');
+	require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonArchive/libraries/main.xecode');
 	_updateTable($content);
 }
 ?>

@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeArchive_on_Message($params="") {
+function xenonArchive_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
 
@@ -24,31 +24,31 @@ $archivedExtensions = array('tar','tgz','tbz','tbz2','zip','gzip','tar.gz','tar.
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
 
-$eventsFiles = vfs('real_getDirContent',array(XENONOS_ROOT.'/'.APP_DIR.'/eyeArchive/events/','*.xecode'));
+$eventsFiles = vfs('real_getDirContent',array(XENONOS_ROOT.'/'.APP_DIR.'/xenonArchive/events/','*.xecode'));
 $currentUser = $oldUser;
 foreach($eventsFiles as $file){
 	include_once($file);
 }
 
-function _eyeArchive_getProject(){
+function _xenonArchive_getProject(){
 	global $myPid;
 	//Filling the object
-	require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeArchive/libraries/project_class.xecode');
+	require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonArchive/libraries/project_class.xecode');
 
 	//Getting the project object.
 	$myProject = new project;
-	$projectInfo = xenonXML('getXMLConfig',array('eyeArchive','myProject.xml'));
+	$projectInfo = xenonXML('getXMLConfig',array('xenonArchive','myProject.xml'));
 	$myProject = unserialize($projectInfo[$myPid][0]);
 
 	return $myProject;
 }
 
-function _eyeArchive_setProject(&$project){
+function _xenonArchive_setProject(&$project){
 	global $myPid;
 	//Filling the object
-	require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeArchive/libraries/project_class.xecode');
+	require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonArchive/libraries/project_class.xecode');
 
-	$dir = um('getCurrentUserDir').'/'.CONF_USER_DIR.'/eyeArchive';
+	$dir = um('getCurrentUserDir').'/'.CONF_USER_DIR.'/xenonArchive';
 
 	if(!vfs('isdir',array($dir))){
 		if(!vfs('real_mkDir',array($dir))){
@@ -56,16 +56,16 @@ function _eyeArchive_setProject(&$project){
 		}
 	}
 
-	$projectInfo = xenonXML('getXMLConfig',array('eyeArchive','myProject.xml'));
+	$projectInfo = xenonXML('getXMLConfig',array('xenonArchive','myProject.xml'));
 
 	//Serialize it for save
 	$s = serialize($project);
 	//Saving on app conf file
 	$projectInfo[$myPid] = array($s);
-	xenonXML('setXMLconfig',array('eyeArchive','myProject.xml',$projectInfo));
+	xenonXML('setXMLconfig',array('xenonArchive','myProject.xml',$projectInfo));
 }
 
-function eyeArchive_on_Close() {
+function xenonArchive_on_Close() {
 	proc('end');
 }
 ?>

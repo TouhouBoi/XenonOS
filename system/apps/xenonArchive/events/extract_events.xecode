@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeArchive_on_Extract($params="") {
+function xenonArchive_on_Extract($params="") {
 	global $currentUser,$myPid;
 	//Checking if started is already opened
 
@@ -23,7 +23,7 @@ function eyeArchive_on_Extract($params="") {
 		return false;
 	}
 
-	$myProject = _eyeArchive_getProject();
+	$myProject = _xenonArchive_getProject();
 	$path = $myProject->getFilesName();
 	$myRealFile = vfs('getRealName',array($myProject->getSrc()));
 	array_unshift($path,$myRealFile);
@@ -52,7 +52,7 @@ function eyeArchive_on_Extract($params="") {
 	return true;
 }
 
-function eyeArchive_on_SelectDest(){
+function xenonArchive_on_SelectDest(){
 	global $checknum;
 	$options = array(
 		EYEDIALOG_TYPE_SELECTFOLDER,
@@ -62,7 +62,7 @@ function eyeArchive_on_SelectDest(){
 	proc('launch',array('eyeDialog',$options));
 }
 
-function eyeArchive_on_SelectDestDialog($params = null){
+function xenonArchive_on_SelectDestDialog($params = null){
 	global $currentUser,$checknum,$myPid;
 
 	$workPath = $params['arg'][0];
@@ -70,9 +70,9 @@ function eyeArchive_on_SelectDestDialog($params = null){
 	//If project are started, fill the object with the new workPath
 	if($GLOBALS['projectStarted']->text == 'true'){
 		//Filling the object
-		$myProject = _eyeArchive_getProject();
+		$myProject = _xenonArchive_getProject();
 		$myProject->setWorkPath($workPath);
-		_eyeArchive_setProject($myProject);
+		_xenonArchive_setProject($myProject);
 
 		if($myProject->type == 'directory'){
 			$name = basename($GLOBALS['workingPath']->text);
@@ -87,7 +87,7 @@ function eyeArchive_on_SelectDestDialog($params = null){
 
 }
 
-function eyeArchive_on_CancelSelect(){
+function xenonArchive_on_CancelSelect(){
 	$GLOBALS['outWindow']->close();
 }
 ?>

@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeArchive_on_Compress($params){
+function xenonArchive_on_Compress($params){
 
 	if(isset($params['workingPath'][0]) && !empty($params['workingPath'][0])){
 		$dest = $params['workingPath'][0];
@@ -30,7 +30,7 @@ function eyeArchive_on_Compress($params){
 	}
 	$dest = um('getCurrentUserDir').'/'.FILES_USER_DIR.'/'.$dest;
 
-	$myProject = _eyeArchive_getProject();
+	$myProject = _xenonArchive_getProject();
 	$path = $myProject->getFilesName();
 	array_unshift($path,$myProject->getSrc());
 	$fpath[] = $path;
