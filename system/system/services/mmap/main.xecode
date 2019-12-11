@@ -217,7 +217,7 @@ function service_mmap_array2jsArg($params) {
 * directly printed to the browser (even PHP errors are!).
 * Use carefully and always remember to enable it only for the time that is
 * necessary, and then re-disable it.
-* It it automatically disabled at every boot (eyeX_run function)
+* It it automatically disabled at every boot (xenonX_run function)
 *
 * @return The function does not return anything
 * @date 2012/02/08
