@@ -145,7 +145,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 /*border-radius*/
 
-.activeWindow, .eyeWindowTitle, .inactiveWindow, .eyeWindowMainDrag, .eyeDock_bottom_right_menu_entries, .eyeDock_bottom_right_datetime_calendar, .eyeWindowTitle_text, #noteTitle {
+.activeWindow, .eyeWindowTitle, .inactiveWindow, .eyeWindowMainDrag, .xenonDock_bottom_right_menu_entries, .xenonDock_bottom_right_datetime_calendar, .eyeWindowTitle_text, #noteTitle {
 	-moz-border-radius-topleft: 5px;
 	-moz-border-radius-topright: 5px;
 	-webkit-border-top-left-radius: 5px;
@@ -187,7 +187,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	border-radius: 10px;
 }
 
-.eyeWindowContent, .eyeWindowMainDrag, .eyeDock_top_left_menu_entries, .eyeWindowBottom_center {
+.eyeWindowContent, .eyeWindowMainDrag, .xenonDock_top_left_menu_entries, .eyeWindowBottom_center {
 	-moz-border-radius-bottomleft: 5px;
 	-moz-border-radius-bottomright: 5px;
 	-webkit-border-bottom-left-radius: 5px;
@@ -420,7 +420,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 }
 
 .eyeContextMenuEntry:hover {
-	background: url('index.php?theme=USERTHEME&extern=images/apps/eyeDock/backgrounds/select.png') repeat-y right;
+	background: url('index.php?theme=USERTHEME&extern=images/apps/xenonDock/backgrounds/select.png') repeat-y right;
 	background-color: #f5f5f5;
 	border-bottom: 1px solid #ffffff;
 	border-top: 1px solid #cccccc;
@@ -454,37 +454,37 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 /* all */
 
-.eyeDock_bottom, .eyeDock_left, .eyeDock_right, .eyeDock_top {
+.xenonDock_bottom, .xenonDock_left, .xenonDock_right, .xenonDock_top {
 	color: #ffffff;
 	font-weight: bold;
 	position: absolute;
 	white-space: nowrap;
 }
 
-.eyeDock_bottom_left_icon, .eyeDock_bottom_right_icon, .eyeDock_left_top_icon, .eyeDock_right_top_icon, .eyeDock_top_left_icon, .eyeDock_top_right_icon, .eyeDock_bottom_left_menu, .eyeDock_bottom_right_menu, .eyeDock_left_top_menu, .eyeDock_right_top_menu, .eyeDock_top_left_menu, .eyeDock_top_right_menu {
+.xenonDock_bottom_left_icon, .xenonDock_bottom_right_icon, .xenonDock_left_top_icon, .xenonDock_right_top_icon, .xenonDock_top_left_icon, .xenonDock_top_right_icon, .xenonDock_bottom_left_menu, .xenonDock_bottom_right_menu, .xenonDock_left_top_menu, .xenonDock_right_top_menu, .xenonDock_top_left_menu, .xenonDock_top_right_menu {
 	cursor: pointer;
 }
 
-.eyeDock_bottom_left_icon_div, .eyeDock_bottom_right_icon_div, .eyeDock_left_top_icon_div, .eyeDock_right_top_icon_div, .eyeDock_top_left_icon_div, .eyeDock_top_right_icon_div, .eyeDock_bottom_left_menu_div, .eyeDock_bottom_right_menu_div, .eyeDock_left_top_menu_div, .eyeDock_right_top_menu_div, .eyeDock_top_left_menu_div, .eyeDock_top_right_menu_div {
+.xenonDock_bottom_left_icon_div, .xenonDock_bottom_right_icon_div, .xenonDock_left_top_icon_div, .xenonDock_right_top_icon_div, .xenonDock_top_left_icon_div, .xenonDock_top_right_icon_div, .xenonDock_bottom_left_menu_div, .xenonDock_bottom_right_menu_div, .xenonDock_left_top_menu_div, .xenonDock_right_top_menu_div, .xenonDock_top_left_menu_div, .xenonDock_top_right_menu_div {
 	height: 24px;
 	padding-left: 2px;
 	padding-right: 2px;
 	padding-top: 8px;
 }
 
-.eyeDock_bottom_left_icon_img, .eyeDock_bottom_right_icon_img, .eyeDock_left_top_icon_img, .eyeDock_top_left_icon_img, .eyeDock_top_right_icon_img {
+.xenonDock_bottom_left_icon_img, .xenonDock_bottom_right_icon_img, .xenonDock_left_top_icon_img, .xenonDock_top_left_icon_img, .xenonDock_top_right_icon_img {
 	margin-top: 5px;
 	padding-left: 2px;
 	padding-right: 2px;
 	vertical-align: top;
 }
 
-.eyeDock_bottom_right_menu_div, .eyeDock_top_right_menu_div {
+.xenonDock_bottom_right_menu_div, .xenonDock_top_right_menu_div {
 	height: 24px;
 	padding-top: 8px;
 }
 
-.eyeDock_bottom_left_menu_entries, .eyeDock_bottom_right_menu_entries, .eyeDock_left_top_menu_entries, .eyeDock_right_top_menu_entries, .eyeDock_top_left_menu_entries, .eyeDock_top_right_menu_entries {
+.xenonDock_bottom_left_menu_entries, .xenonDock_bottom_right_menu_entries, .xenonDock_left_top_menu_entries, .xenonDock_right_top_menu_entries, .xenonDock_top_left_menu_entries, .xenonDock_top_right_menu_entries {
 	background: #dddddd url('index.php?theme=USERTHEME&extern=images/windows/toolbar.png') repeat-x bottom;
 	border-left: 2px groove #ffffff;
 	border-right: 2px ridge #ffffff;
@@ -495,7 +495,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	position: absolute;
 }
 
-.eyeDock_bottom_left_menu_entry_icon, .eyeDock_bottom_right_menu_entry_icon, .eyeDock_left_top_menu_entry_icon, .eyeDock_right_top_menu_entry_icon, .eyeDock_top_left_menu_entry_icon, .eyeDock_top_right_menu_entry_icon {
+.xenonDock_bottom_left_menu_entry_icon, .xenonDock_bottom_right_menu_entry_icon, .xenonDock_left_top_menu_entry_icon, .xenonDock_right_top_menu_entry_icon, .xenonDock_top_left_menu_entry_icon, .xenonDock_top_right_menu_entry_icon {
 	border-bottom: 1px solid #cccccc;
 	color: #000000;
 	cursor: pointer;
@@ -504,8 +504,8 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	padding: 8px 0 4px 0;
 }
 
-.eyeDock_bottom_left_menu_entry_icon:hover, .eyeDock_bottom_right_menu_entry_icon:hover, .eyeDock_left_top_menu_entry_icon:hover, .eyeDock_right_top_menu_entry_icon:hover, .eyeDock_top_left_menu_entry_icon:hover, .eyeDock_top_right_menu_entry_icon:hover {
-	background: url('index.php?theme=USERTHEME&extern=images/apps/eyeDock/backgrounds/select.png') repeat-y left;
+.xenonDock_bottom_left_menu_entry_icon:hover, .xenonDock_bottom_right_menu_entry_icon:hover, .xenonDock_left_top_menu_entry_icon:hover, .xenonDock_right_top_menu_entry_icon:hover, .xenonDock_top_left_menu_entry_icon:hover, .xenonDock_top_right_menu_entry_icon:hover {
+	background: url('index.php?theme=USERTHEME&extern=images/apps/xenonDock/backgrounds/select.png') repeat-y left;
 	background-color: #d1d1d1;
 	border-bottom: 1px solid #ffffff;
 	border-top: 1px solid #888888;
@@ -515,49 +515,49 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	padding: 7px 10px 4px;
 }
 
-.eyeDock_bottom_left_menu_entry_icon_arrow, .eyeDock_bottom_right_menu_entry_icon_arrow, .eyeDock_left_top_menu_entry_icon_arrow, .eyeDock_right_top_menu_entry_icon_arrow, .eyeDock_top_left_menu_entry_icon_arrow, .eyeDock_top_right_menu_entry_icon_arrow,.eyeDock_bottom_left_menu_entry_icon_arrow_exists, .eyeDock_bottom_right_menu_entry_icon_arrow_exists, .eyeDock_left_top_menu_entry_icon_arrow_exists, .eyeDock_right_top_menu_entry_icon_arrow_exists, .eyeDock_top_left_menu_entry_icon_arrow_exists, .eyeDock_top_right_menu_entry_icon_arrow_exists {
+.xenonDock_bottom_left_menu_entry_icon_arrow, .xenonDock_bottom_right_menu_entry_icon_arrow, .xenonDock_left_top_menu_entry_icon_arrow, .xenonDock_right_top_menu_entry_icon_arrow, .xenonDock_top_left_menu_entry_icon_arrow, .xenonDock_top_right_menu_entry_icon_arrow,.xenonDock_bottom_left_menu_entry_icon_arrow_exists, .xenonDock_bottom_right_menu_entry_icon_arrow_exists, .xenonDock_left_top_menu_entry_icon_arrow_exists, .xenonDock_right_top_menu_entry_icon_arrow_exists, .xenonDock_top_left_menu_entry_icon_arrow_exists, .xenonDock_top_right_menu_entry_icon_arrow_exists {
 	float: right;
 	height: 20px;
 	margin-left: 15px;
 	width: 20px;
 }
 
-.eyeDock_bottom_left_menu_entry_icon_arrow, .eyeDock_bottom_right_menu_entry_icon_arrow, .eyeDock_left_top_menu_entry_icon_arrow, .eyeDock_right_top_menu_entry_icon_arrow, .eyeDock_top_left_menu_entry_icon_arrow, .eyeDock_top_right_menu_entry_icon_arrow {
+.xenonDock_bottom_left_menu_entry_icon_arrow, .xenonDock_bottom_right_menu_entry_icon_arrow, .xenonDock_left_top_menu_entry_icon_arrow, .xenonDock_right_top_menu_entry_icon_arrow, .xenonDock_top_left_menu_entry_icon_arrow, .xenonDock_top_right_menu_entry_icon_arrow {
 	background-image: url('index.php?theme=USERTHEME&extern=icons/22x22/rating.png');
 	margin-top: 0;
 	opacity: 0.8;
 }
 
-.eyeDock_bottom_left_menu_entry_icon_arrow_exists, .eyeDock_bottom_right_menu_entry_icon_arrow_exists, .eyeDock_left_top_menu_entry_icon_arrow_exists, .eyeDock_right_top_menu_entry_icon_arrow_exists, .eyeDock_top_left_menu_entry_icon_arrow_exists, .eyeDock_top_right_menu_entry_icon_arrow_exists {
+.xenonDock_bottom_left_menu_entry_icon_arrow_exists, .xenonDock_bottom_right_menu_entry_icon_arrow_exists, .xenonDock_left_top_menu_entry_icon_arrow_exists, .xenonDock_right_top_menu_entry_icon_arrow_exists, .xenonDock_top_left_menu_entry_icon_arrow_exists, .xenonDock_top_right_menu_entry_icon_arrow_exists {
 	background-image: url('index.php?theme=USERTHEME&extern=icons/22x22/rating_g.png');
 	cursor: default;
 	margin-top: 0;
 	opacity: 0.8;
 }
 
-.eyeDock_bottom_left_menu_entry_icon_div, .eyeDock_bottom_right_menu_entry_icon_div, .eyeDock_left_top_menu_entry_icon_div, .eyeDock_right_top_menu_entry_icon_div, .eyeDock_top_left_menu_entry_icon_div, .eyeDock_top_right_menu_entry_icon_div {
+.xenonDock_bottom_left_menu_entry_icon_div, .xenonDock_bottom_right_menu_entry_icon_div, .xenonDock_left_top_menu_entry_icon_div, .xenonDock_right_top_menu_entry_icon_div, .xenonDock_top_left_menu_entry_icon_div, .xenonDock_top_right_menu_entry_icon_div {
 	display: inline;
 	padding-left: 5px;
 }
 
-.eyeDock_bottom_left_menu_entry_icon_img, .eyeDock_bottom_right_menu_entry_icon_img, .eyeDock_left_top_menu_entry_icon_img, .eyeDock_right_top_menu_entry_icon_img, .eyeDock_top_left_menu_entry_icon_img, .eyeDock_top_right_menu_entry_icon_img {
+.xenonDock_bottom_left_menu_entry_icon_img, .xenonDock_bottom_right_menu_entry_icon_img, .xenonDock_left_top_menu_entry_icon_img, .xenonDock_right_top_menu_entry_icon_img, .xenonDock_top_left_menu_entry_icon_img, .xenonDock_top_right_menu_entry_icon_img {
 	margin-bottom: 3px;
 	vertical-align: middle;
 }
 
-.eyeDock_bottom_left_menu_entry_line, .eyeDock_bottom_right_menu_entry_line, .eyeDock_left_top_menu_entry_line, .eyeDock_right_top_menu_entry_line, .eyeDock_top_left_menu_entry_line, .eyeDock_top_right_menu_entry_line {
+.xenonDock_bottom_left_menu_entry_line, .xenonDock_bottom_right_menu_entry_line, .xenonDock_left_top_menu_entry_line, .xenonDock_right_top_menu_entry_line, .xenonDock_top_left_menu_entry_line, .xenonDock_top_right_menu_entry_line {
 	border-bottom: 1px solid #0b3256;
 	height: 0;
 	margin-bottom: 10px;
 	width: 100%;
 }
 
-.eyeDock_bottom_left_menu_entry_text, .eyeDock_bottom_right_menu_entry_text, .eyeDock_left_top_menu_entry_text, .eyeDock_right_top_menu_entry_text, .eyeDock_top_left_menu_entry_text, .eyeDock_top_right_menu_entry_text {
+.xenonDock_bottom_left_menu_entry_text, .xenonDock_bottom_right_menu_entry_text, .xenonDock_left_top_menu_entry_text, .xenonDock_right_top_menu_entry_text, .xenonDock_top_left_menu_entry_text, .xenonDock_top_right_menu_entry_text {
 	font-weight: bold;
 	margin-bottom: 15px;
 }
 
-.eyeDock_bottom_left_menu_img, .eyeDock_bottom_right_menu_img, .eyeDock_left_top_menu_img, .eyeDock_right_top_menu_img, .eyeDock_top_left_menu_img, .eyeDock_top_right_menu_img {
+.xenonDock_bottom_left_menu_img, .xenonDock_bottom_right_menu_img, .xenonDock_left_top_menu_img, .xenonDock_right_top_menu_img, .xenonDock_top_left_menu_img, .xenonDock_top_right_menu_img {
 	margin-bottom: 6px;
 	margin-top: 6px;
 	padding-left: 2px;
@@ -565,20 +565,20 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	vertical-align: top;
 }
 
-.eyeDock_bottom_left_menu_selected, .eyeDock_bottom_right_menu_selected, .eyeDock_left_top_menu_selected, .eyeDock_right_top_menu_selected, .eyeDock_top_left_menu_selected, .eyeDock_top_right_menu_selected {
+.xenonDock_bottom_left_menu_selected, .xenonDock_bottom_right_menu_selected, .xenonDock_left_top_menu_selected, .xenonDock_right_top_menu_selected, .xenonDock_top_left_menu_selected, .xenonDock_top_right_menu_selected {
 	cursor: pointer;
 	height: 31px;
 }
 
 /* bottom and top */
 
-.eyeDock_bottom, .eyeDock_top {
+.xenonDock_bottom, .xenonDock_top {
 	max-height: 31px;
 	width: 100%;
 	z-index: 12;
 }
 
-.eyeDock_bottom_left_datetime_calendar, .eyeDock_top_left_datetime_calendar {
+.xenonDock_bottom_left_datetime_calendar, .xenonDock_top_left_datetime_calendar {
 	background-color: #dddddd;
 	border: 2px groove #ffffff;
 	cursor: default;
@@ -591,77 +591,77 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: 178px;
 }
 
-.eyeDock_bottom_left_datetime_clock, .eyeDock_top_left_datetime_clock {
+.xenonDock_bottom_left_datetime_clock, .xenonDock_top_left_datetime_clock {
 	display: inline-block;
 	height: 21px;
 	padding-top: 11px;
 }
 
-.eyeDock_bottom_left_icon, .eyeDock_top_left_icon {
+.xenonDock_bottom_left_icon, .xenonDock_top_left_icon {
 	display: inline-block;
 	float: left;
 	padding: 0 0 0 10px;
 	width: auto;
 }
 
-.eyeDock_bottom_left_icon {
+.xenonDock_bottom_left_icon {
 	padding: 0 1px;
 }
 
-.eyeDock_bottom_left_icon_div, .eyeDock_top_left_icon_div, .eyeDock_bottom_left_menu_div, .eyeDock_top_left_menu_div, .eyeDock_left_top_icon:hover, .eyeDock_left_top_icon_div, .eyeDock_right_top_icon:hover, .eyeDock_right_top_icon_div, .eyeDock_left_top_menu:hover, .eyeDock_left_top_menu_div, .eyeDock_right_top_menu:hover, .eyeDock_right_top_menu_div, .eyeDock_top_right_icon_div, .eyeDock_bottom_left_menu_div, .eyeDock_top_left_menu_div, .eyeDock_left_top_icon:hover, .eyeDock_left_top_icon_div, .eyeDock_right_top_icon:hover, .eyeDock_right_top_icon_div, .eyeDock_left_top_menu:hover, .eyeDock_left_top_menu_div, .eyeDock_right_top_menu:hover, .eyeDock_right_top_menu_div, .eyeDock_top_right_icon_div, .eyeDock_top_left_icon_div {
+.xenonDock_bottom_left_icon_div, .xenonDock_top_left_icon_div, .xenonDock_bottom_left_menu_div, .xenonDock_top_left_menu_div, .xenonDock_left_top_icon:hover, .xenonDock_left_top_icon_div, .xenonDock_right_top_icon:hover, .xenonDock_right_top_icon_div, .xenonDock_left_top_menu:hover, .xenonDock_left_top_menu_div, .xenonDock_right_top_menu:hover, .xenonDock_right_top_menu_div, .xenonDock_top_right_icon_div, .xenonDock_bottom_left_menu_div, .xenonDock_top_left_menu_div, .xenonDock_left_top_icon:hover, .xenonDock_left_top_icon_div, .xenonDock_right_top_icon:hover, .xenonDock_right_top_icon_div, .xenonDock_left_top_menu:hover, .xenonDock_left_top_menu_div, .xenonDock_right_top_menu:hover, .xenonDock_right_top_menu_div, .xenonDock_top_right_icon_div, .xenonDock_top_left_icon_div {
 	display: inline-block;
 }
 
-.eyeDock_bottom_left_line, .eyeDock_bottom_right_line {
-	background: transparent url('index.php?theme=USERTHEME&extern=images/apps/eyeDock/backgrounds/bottom_menu_line.png') no-repeat top;
+.xenonDock_bottom_left_line, .xenonDock_bottom_right_line {
+	background: transparent url('index.php?theme=USERTHEME&extern=images/apps/xenonDock/backgrounds/bottom_menu_line.png') no-repeat top;
 	display: inline-block;
 	float: left;
 	height: 31px;
 	width: 3px;
 }
 
-.eyeDock_bottom_left_menu, .eyeDock_top_left_menu {
+.xenonDock_bottom_left_menu, .xenonDock_top_left_menu {
 	display: inline-block;
 	float: left;
 	padding: 0 10px;
 	width: auto;
 }
 
-.eyeDock_bottom_left_menu:hover, .eyeDock_bottom_right_menu:hover, .eyeDock_bottom_left_icon:hover {
-	background-image: url('index.php?theme=USERTHEME&extern=images/apps/eyeDock/backgrounds/Icon_hover_bottom.png');
+.xenonDock_bottom_left_menu:hover, .xenonDock_bottom_right_menu:hover, .xenonDock_bottom_left_icon:hover {
+	background-image: url('index.php?theme=USERTHEME&extern=images/apps/xenonDock/backgrounds/Icon_hover_bottom.png');
 }
 
-.eyeDock_bottom_left_menu:hover,.eyeDock_top_left_menu:hover, .eyeDock_bottom_right_menu:hover, .eyeDock_bottom_left_icon:hover, .eyeDock_top_right_icon:hover, .eyeDock_bottom_right_menu_selected, .eyeDock_top_right_menu_selected, .eyeDock_top_left_menu_selected {
+.xenonDock_bottom_left_menu:hover,.xenonDock_top_left_menu:hover, .xenonDock_bottom_right_menu:hover, .xenonDock_bottom_left_icon:hover, .xenonDock_top_right_icon:hover, .xenonDock_bottom_right_menu_selected, .xenonDock_top_right_menu_selected, .xenonDock_top_left_menu_selected {
 	background-color: #dddddd;
 	background-position: top;
 	background-repeat: repeat-x;
 	height: 32px;
 }
 
-.eyeDock_top_left_menu:hover, .eyeDock_top_right_icon:hover {
+.xenonDock_top_left_menu:hover, .xenonDock_top_right_icon:hover {
 	color: #333333;
 	height: 32px;
 }
 
-.eyeDock_bottom_left_menu_entries, .eyeDock_top_left_menu_entries {
+.xenonDock_bottom_left_menu_entries, .xenonDock_top_left_menu_entries {
 	margin-left: -10px;
 }
 
-.eyeDock_bottom_left_menu_selected, .eyeDock_top_left_menu_selected {
+.xenonDock_bottom_left_menu_selected, .xenonDock_top_left_menu_selected {
 	display: inline-block;
 	float: left;
 	padding: 0 10px;
 	width: auto;
 }
 
-.eyeDock_bottom_left_space, .eyeDock_top_left_space {
+.xenonDock_bottom_left_space, .xenonDock_top_left_space {
 	display: inline-block;
 	float: left;
 	height: 31px;
 	width: auto;
 }
 
-.eyeDock_bottom_left_text, .eyeDock_top_left_text {
+.xenonDock_bottom_left_text, .xenonDock_top_left_text {
 	display: inline-block;
 	float: left;
 	font-weight: bold;
@@ -670,7 +670,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: auto;
 }
 
-.eyeDock_bottom_right_datetime_calendar, .eyeDock_top_right_datetime_calendar {
+.xenonDock_bottom_right_datetime_calendar, .xenonDock_top_right_datetime_calendar {
 	background-color: #dddddd;
 	border-left: 2px groove #ffffff;
 	border-right: 2px ridge #ffffff;
@@ -686,25 +686,25 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: 178px;
 }
 
-.eyeDock_bottom_right_datetime_clock, .eyeDock_top_right_datetime_clock {
+.xenonDock_bottom_right_datetime_clock, .xenonDock_top_right_datetime_clock {
 	direction: ltr;
 	display: inline-block;
 	height: 21px;
 	padding-top: 11px;
 }
 
-.eyeDock_bottom_right_icon, .eyeDock_top_right_icon {
+.xenonDock_bottom_right_icon, .xenonDock_top_right_icon {
 	display: inline-block;
 	float: right;
 	padding: 0 10px;
 	width: auto;
 }
 
-.eyeDock_bottom_right_icon_div, .eyeDock_top_right_icon_div {
+.xenonDock_bottom_right_icon_div, .xenonDock_top_right_icon_div {
 	display: inline-block;
 }
 
-.eyeDock_bottom_right_line, .eyeDock_top_right_line {
+.xenonDock_bottom_right_line, .xenonDock_top_right_line {
 	border-right: 1px solid #4e92C5;
 	display: inline-block;
 	float: right;
@@ -712,30 +712,30 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: 0;
 }
 
-.eyeDock_bottom_right_line, .eyeDock_top_right_line {
+.xenonDock_bottom_right_line, .xenonDock_top_right_line {
 	border: 0;
 	width: 3px;
 }
 
-.eyeDock_bottom_right_menu, .eyeDock_top_right_menu {
+.xenonDock_bottom_right_menu, .xenonDock_top_right_menu {
 	display: inline-block;
 	float: right;
 	padding: 0 10px;
 	width: auto;
 }
 
-.eyeDock_bottom_right_menu_div, .eyeDock_top_right_menu_div {
-	background: transparent url('index.php?theme=USERTHEME&extern=images/apps/eyeDock/backgrounds/clock.png') no-repeat center center;
+.xenonDock_bottom_right_menu_div, .xenonDock_top_right_menu_div {
+	background: transparent url('index.php?theme=USERTHEME&extern=images/apps/xenonDock/backgrounds/clock.png') no-repeat center center;
 	direction: ltr;
 	display: inline-block;
 }
 
-.eyeDock_bottom_right_menu_entries, .eyeDock_top_right_menu_entries {
+.xenonDock_bottom_right_menu_entries, .xenonDock_top_right_menu_entries {
 	direction: ltr;
 	margin-right: -12px;
 }
 
-.eyeDock_bottom_right_menu_selected, .eyeDock_top_right_menu_selected {
+.xenonDock_bottom_right_menu_selected, .xenonDock_top_right_menu_selected {
 	border-left: 2px groove #ffffff;
 	border-right: 2px ridge #ffffff;
 	color: #000000;
@@ -748,14 +748,14 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: auto;
 }
 
-.eyeDock_bottom_right_space, .eyeDock_top_right_space {
+.xenonDock_bottom_right_space, .xenonDock_top_right_space {
 	display: inline-block;
 	float: right;
 	height: 31px;
 	width: auto;
 }
 
-.eyeDock_bottom_right_text, .eyeDock_top_right_text {
+.xenonDock_bottom_right_text, .xenonDock_top_right_text {
 	display: inline-block;
 	float: right;
 	font-weight: bold;
@@ -766,7 +766,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 /* left and right */
 
-.eyeDock_left, .eyeDock_right {
+.xenonDock_left, .xenonDock_right {
 	border-top: 1px solid #163055;
 	height: 100%;
 	margin-top: 31px;
@@ -774,26 +774,26 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	z-index: 11;
 }
 
-.eyeDock_left_top_icon, .eyeDock_right_top_icon {
+.xenonDock_left_top_icon, .xenonDock_right_top_icon {
 	padding: 0 7px;
 }
 
-.eyeDock_left_top_icon_div, .eyeDock_right_top_icon_div {
+.xenonDock_left_top_icon_div, .xenonDock_right_top_icon_div {
 	display: none;
 }
 
-.eyeDock_left_top_line, .eyeDock_right_top_line {
+.xenonDock_left_top_line, .xenonDock_right_top_line {
 	border-bottom: 1px solid #0b3256;
 	height: 0;
 	width: 31px;
 }
 
-.eyeDock_left_top_menu, .eyeDock_right_top_menu {
+.xenonDock_left_top_menu, .xenonDock_right_top_menu {
 	height: 27px;
 	padding: 0 7px 5px;
 }
 
-.eyeDock_left_top_menu_div, .eyeDock_right_top_menu_div {
+.xenonDock_left_top_menu_div, .xenonDock_right_top_menu_div {
 	background-color: #224371;
 	border: 1px solid #163055;
 	display: none;
@@ -802,43 +802,43 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	padding-right: 7px;
 }
 
-.eyeDock_left_top_menu_entries, .eyeDock_right_top_menu_entries {
+.xenonDock_left_top_menu_entries, .xenonDock_right_top_menu_entries {
 	margin-left: 25px;
 	margin-top: -27px;
 }
 
-.eyeDock_left_top_menu_entry_icon_arrow, .eyeDock_left_top_menu_entry_icon_arrow_exists, .eyeDock_right_top_menu_entry_icon_arrow, .eyeDock_right_top_menu_entry_icon_arrow_exists {
+.xenonDock_left_top_menu_entry_icon_arrow, .xenonDock_left_top_menu_entry_icon_arrow_exists, .xenonDock_right_top_menu_entry_icon_arrow, .xenonDock_right_top_menu_entry_icon_arrow_exists {
 	position: relative;
 }
 
-.eyeDock_left_top_menu_selected, .eyeDock_right_top_menu_selected {
+.xenonDock_left_top_menu_selected, .xenonDock_right_top_menu_selected {
 	padding: 0 7px;
 }
 
 /* bottom */
 
-.eyeDock_bottom {
+.xenonDock_bottom {
 	background-color: #85C2FF;
-	background-image: url('index.php?theme=USERTHEME&extern=images/apps/eyeDock/backgrounds/bottom.png');
+	background-image: url('index.php?theme=USERTHEME&extern=images/apps/xenonDock/backgrounds/bottom.png');
 	bottom: 0;
 	color: #0968b0;
 	background-size: 100% 200px;
 }
 
-.eyeDock_bottom_left_datetime_calendar {
+.xenonDock_bottom_left_datetime_calendar {
 	bottom: 31px;
 }
 
-.eyeDock_bottom_left_menu_entries {
+.xenonDock_bottom_left_menu_entries {
 	border-top: 2px ridge #ffffff;
 	bottom: 31px;
 }
 
-.eyeDock_bottom_left_menu_selected {
+.xenonDock_bottom_left_menu_selected {
 	background-color: #dddddd;
 }
 
-.eyeDock_bottom_left_taskbar {
+.xenonDock_bottom_left_taskbar {
 	color: #000000;
 	display: inline-block;
 	float: left;
@@ -848,40 +848,40 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: auto;
 }
 
-.eyeDock_bottom_left_taskbar_entries {
+.xenonDock_bottom_left_taskbar_entries {
 	display: inline-block;
 	position: relative;
 }
 
-.eyeDock_bottom_left_taskbar_entry, .eyeDock_bottom_left_taskbar_entry_focus {
+.xenonDock_bottom_left_taskbar_entry, .xenonDock_bottom_left_taskbar_entry_focus {
 	display: inline-block;
 	margin-top: 2px;
 	width: 163px;
 }
 
-.eyeDock_bottom_left_taskbar_entry {
+.xenonDock_bottom_left_taskbar_entry {
 	background: transparent url('index.php?theme=USERTHEME&extern=images/minimized/minbar_off.png') no-repeat scroll center top;
 }
 
-.eyeDock_bottom_left_taskbar_entry:hover {
+.xenonDock_bottom_left_taskbar_entry:hover {
 	background: transparent url('index.php?theme=USERTHEME&extern=images/minimized/minbar_off_x.png') no-repeat scroll center top;
 }
 
-.eyeDock_bottom_left_taskbar_entry_focus {
+.xenonDock_bottom_left_taskbar_entry_focus {
 	background: transparent url('index.php?theme=USERTHEME&extern=images/minimized/minbar_on.png') no-repeat scroll center top;
 }
 
-.eyeDock_bottom_left_taskbar_entry_focus:hover {
+.xenonDock_bottom_left_taskbar_entry_focus:hover {
 	background: transparent url('index.php?theme=USERTHEME&extern=images/minimized/minbar_on_x.png') no-repeat scroll center top;
 }
 
-.eyeDock_bottom_left_taskbar_entry > img, .eyeDock_bottom_left_taskbar_entry_focus > img {
+.xenonDock_bottom_left_taskbar_entry > img, .xenonDock_bottom_left_taskbar_entry_focus > img {
 	margin-left: 10px;
 	height: 16px;
 	width: 16px;
 }
 
-.eyeDock_bottom_left_taskbar_entry_div {
+.xenonDock_bottom_left_taskbar_entry_div {
 	cursor: pointer;
 	display: inline-block;
 	height: 29px;
@@ -893,11 +893,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: 126px;
 }
 
-.eyeDock_bottom_left_taskbar_left, .eyeDock_bottom_left_taskbar_right {
+.xenonDock_bottom_left_taskbar_left, .xenonDock_bottom_left_taskbar_right {
 	display: none;
 }
 
-.eyeDock_bottom_left_taskbar_move_left, .eyeDock_bottom_left_taskbar_move_right {
+.xenonDock_bottom_left_taskbar_move_left, .xenonDock_bottom_left_taskbar_move_right {
 	background-position: 0 2px;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -907,21 +907,21 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: 32px;
 }
 
-.eyeDock_bottom_left_taskbar_move_left {
+.xenonDock_bottom_left_taskbar_move_left {
 	background-image: url('index.php?theme=USERTHEME&extern=images/minimized/arrow_l.png');
 	margin-right: -12px;
 }
 
-.eyeDock_bottom_left_taskbar_move_right {
+.xenonDock_bottom_left_taskbar_move_right {
 	background-image: url('index.php?theme=USERTHEME&extern=images/minimized/arrow_r.png');
 	margin-left: -12px;
 }
 
-.eyeDock_bottom_right_datetime_calendar {
+.xenonDock_bottom_right_datetime_calendar {
 	bottom: 31px;
 }
 
-.eyeDock_bottom_right_menu_entries {
+.xenonDock_bottom_right_menu_entries {
 	border-top: 2px groove #ffffff;
 	bottom: 31px;
 	float: left;
@@ -930,30 +930,30 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 /* left */
 
-.eyeDock_left {
-	background-image: url('index.php?theme=USERTHEME&extern=images/apps/eyeDock/backgrounds/left.png');
+.xenonDock_left {
+	background-image: url('index.php?theme=USERTHEME&extern=images/apps/xenonDock/backgrounds/left.png');
 }
 
 /* right */
 
-.eyeDock_right {
-	background-image: url('index.php?theme=USERTHEME&extern=images/apps/eyeDock/backgrounds/right.png');
+.xenonDock_right {
+	background-image: url('index.php?theme=USERTHEME&extern=images/apps/xenonDock/backgrounds/right.png');
 	right: 0;
 }
 
-.eyeDock_right_top_menu {
+.xenonDock_right_top_menu {
 	direction: rtl;
 }
 
-.eyeDock_right_top_menu_entries {
+.xenonDock_right_top_menu_entries {
 	right: 32px;
 }
 
 /* top */
 
-.eyeDock_top {
+.xenonDock_top {
 	background-color: #5ACD5A;
-	background-image: url('index.php?theme=USERTHEME&extern=images/apps/eyeDock/backgrounds/top.png');
+	background-image: url('index.php?theme=USERTHEME&extern=images/apps/xenonDock/backgrounds/top.png');
 	background-repeat: repeat-x;
 	background-position: bottom;
 	border-bottom: 2px ridge #5ACD5A;
@@ -962,7 +962,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	z-index: 12;
 }
 
-.eyeDock_top_left_datetime_calendar {
+.xenonDock_top_left_datetime_calendar {
 	background-color: #224371;
 	border: 1px solid #163055;
 	cursor: default;
@@ -975,20 +975,20 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: 168px;
 }
 
-.eyeDock_top_left_datetime_clock {
+.xenonDock_top_left_datetime_clock {
 	display: inline-block;
 	height: 21px;
 	padding-top: 11px;
 }
 
-.eyeDock_top_left_icon {
+.xenonDock_top_left_icon {
 	display: inline-block;
 	float: left;
 	padding: 0 10px;
 	width: auto;
 }
 
-.eyeDock_top_left_line {
+.xenonDock_top_left_line {
 	border-right: 1px solid #007d08;
 	display: inline-block;
 	float: left;
@@ -996,19 +996,19 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: 0;
 }
 
-.eyeDock_top_left_menu {
+.xenonDock_top_left_menu {
 	display: inline-block;
 	float: left;
 	padding: 0 10px;
 	width: auto;
 }
 
-.eyeDock_top_left_menu_entries {
+.xenonDock_top_left_menu_entries {
 	border-bottom: 2px ridge #ffffff;
 	width: 195px;
 }
 
-.eyeDock_top_left_menu_selected {
+.xenonDock_top_left_menu_selected {
 	border-left: 2px groove #ffffff;
 	border-right: 2px ridge #ffffff;
 	color: #000000;
@@ -1018,14 +1018,14 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: auto;
 }
 
-.eyeDock_top_left_space {
+.xenonDock_top_left_space {
 	display: inline-block;
 	float: left;
 	height: 31px;
 	width: auto;
 }
 
-.eyeDock_top_left_text {
+.xenonDock_top_left_text {
 	display: inline-block;
 	float: left;
 	font-weight: bold;
@@ -1034,7 +1034,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: auto;
 }
 
-.eyeDock_top_right_datetime_calendar {
+.xenonDock_top_right_datetime_calendar {
 	background-color: #224371;
 	border: 1px solid #163055;
 	cursor: default;
@@ -1048,21 +1048,21 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: 168px;
 }
 
-.eyeDock_top_right_datetime_clock {
+.xenonDock_top_right_datetime_clock {
 	direction: ltr;
 	display: inline-block;
 	height: 21px;
 	padding-top: 11px;
 }
 
-.eyeDock_top_right_icon {
+.xenonDock_top_right_icon {
 	display: inline-block;
 	float: right;
 	padding: 0 2px;
 	width: auto;
 }
 
-.eyeDock_top_right_line {
+.xenonDock_top_right_line {
 	border-right: 1px solid #007d08;
 	display: inline-block;
 	float: right;
@@ -1070,24 +1070,24 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: 0;
 }
 
-.eyeDock_top_right_menu {
+.xenonDock_top_right_menu {
 	display: inline-block;
 	float: right;
 	padding: 0 10px;
 	width: auto;
 }
 
-.eyeDock_top_right_menu_div {
+.xenonDock_top_right_menu_div {
 	direction: ltr;
 	display: inline-block;
 }
 
-.eyeDock_top_right_menu_entries {
+.xenonDock_top_right_menu_entries {
 	direction: ltr;
 	margin-right: -10px;
 }
 
-.eyeDock_top_right_menu_selected {
+.xenonDock_top_right_menu_selected {
 	background-color: #000000;
 	direction: rtl;
 	display: inline-block;
@@ -1096,14 +1096,14 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: auto;
 }
 
-.eyeDock_top_right_space {
+.xenonDock_top_right_space {
 	display: inline-block;
 	float: right;
 	height: 31px;
 	width: auto;
 }
 
-.eyeDock_top_right_text {
+.xenonDock_top_right_text {
 	display: inline-block;
 	float: right;
 	font-weight: bold;
@@ -1544,11 +1544,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 /*opacity*/
 
-.eyeProgressBar, .eyeDock_bottom_left_menu, .eyeDock_top_left_icon, .eyeDesk_iconsOver {
+.eyeProgressBar, .xenonDock_bottom_left_menu, .xenonDock_top_left_icon, .eyeDesk_iconsOver {
 	opacity: 0.8;
 }
 
-.eyeDesk_iconsOver:hover, .eyeDock_bottom_left_menu:hover, .eyeDock_top_left_icon:hover, .eyeDock_bottom_right_menu_selected, .eyeIcon:hover, .eyeFiles_icons:hover {
+.eyeDesk_iconsOver:hover, .xenonDock_bottom_left_menu:hover, .xenonDock_top_left_icon:hover, .xenonDock_bottom_right_menu_selected, .eyeIcon:hover, .eyeFiles_icons:hover {
 	opacity: 1.0;
 }
 
@@ -1666,7 +1666,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 }
 
 @media (max-width: 800px) {
-	.eyeDock_bottom_left_icon_div, .eyeDock_bottom_right_icon_div, .eyeDock_left_top_icon_div, .eyeDock_right_top_icon_div, .eyeDock_top_left_icon_div, .eyeDock_top_right_icon_div, .eyeDock_bottom_left_menu_div, .eyeDock_bottom_right_menu_div, .eyeDock_left_top_menu_div, .eyeDock_right_top_menu_div, .eyeDock_top_left_menu_div, .eyeDock_top_right_menu_div, .eyeWindowMaxButton, .eyeWindowResizeButton {
+	.xenonDock_bottom_left_icon_div, .xenonDock_bottom_right_icon_div, .xenonDock_left_top_icon_div, .xenonDock_right_top_icon_div, .xenonDock_top_left_icon_div, .xenonDock_top_right_icon_div, .xenonDock_bottom_left_menu_div, .xenonDock_bottom_right_menu_div, .xenonDock_left_top_menu_div, .xenonDock_right_top_menu_div, .xenonDock_top_left_menu_div, .xenonDock_top_right_menu_div, .eyeWindowMaxButton, .eyeWindowResizeButton {
 		display: none !important;
 	}
 	.eyeWindowMain {

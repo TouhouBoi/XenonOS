@@ -159,7 +159,7 @@ function xenonX_run($params = '') {
 		}
 	}
 	echo "\t\t" . '<script src="index.php?extern=libs/eyeSound/soundmanager2.js" type="text/javascript"></script>
-		<script src="index.php?extern=apps/eyeDock/eyeDock.js" type="text/javascript"></script>
+		<script src="index.php?extern=apps/xenonDock/xenonDock.js" type="text/javascript"></script>
 		<link rel="icon" href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=images/favicon/favicon.ico" type="image/x-icon" />
 	</head>
 	<body onload=\'jscolor.dir = "index.php?extern=libs/eyeWidgets/jscolor/"; oCursor = xGetElementById("eyecursor"); oApps = xGetElementById("eyeScreen"); if (cookieEnabled()) { xGetElementById("xenonx-info").innerHTML = "' . utf8_htmlspecialchars(i18n('translate', array('Please wait...')), ENT_QUOTES) . '"; setInterval("sendMsg(\\"\\",\\"ping\\",\\"\\");", 1000 * ' . PING_INTERVAL . '); sendMsg(' . $checknum . ',"baseapp",eyeParam("flash",FlashDetect.installed) + eyeParam("flashmajor",FlashDetect.major) + eyeParam("height",xClientHeight()) + eyeParam("width",xClientWidth()) + eyeParam("touch", touchscreen ? 1 : 0) + eyeParam("oggVorbisSupported", OggVorbisAudioSupported ? 1 : 0)); xAddEventListener(window,"resize",resizedBrowser.resize,false); } else { document.getElementById("xenonx-info").innerHTML = "' . utf8_htmlspecialchars(i18n('translate', array($textCookies,array('<span style=\\"font-weight: bold;\\">www.oneye-project.org</span>'))), ENT_QUOTES) . '"; }\'>

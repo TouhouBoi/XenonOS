@@ -173,7 +173,7 @@ function eyeDesk_on_OpenPath($params = '') {
 		$GLOBALS['eyeDesk_Container']->remove();
 	}
 	if ($_SESSION['SCREEN']['xenonApps']['height'] == $_SESSION['SCREEN']['height']) {
-		$container_height = $_SESSION['SCREEN']['xenonApps']['height'] - 64; // 64 pixel is eyeDock top + bottom bars' height. This is necessary, because the $_SESSION['SCREEN']['xenonApps']['height'] variable has not been updated yet (eyeDock is loaded AFTER eyeDesk)
+		$container_height = $_SESSION['SCREEN']['xenonApps']['height'] - 64; // 64 pixel is xenonDock top + bottom bars' height. This is necessary, because the $_SESSION['SCREEN']['xenonApps']['height'] variable has not been updated yet (xenonDock is loaded AFTER eyeDesk)
 	} else {
 		$container_height = $_SESSION['SCREEN']['xenonApps']['height'];
 	}

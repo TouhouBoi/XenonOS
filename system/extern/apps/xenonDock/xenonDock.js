@@ -32,7 +32,7 @@ var DockMenu = {
 		WeekDaysShort: getArrayArg('Sun""Mon""Tue""Wed""Thu""Fri""Sat'),
 
 		Create: function (checknum, pid, type, place, id, format, startDay) {
-			DockMenu.DateTime.Formats[pid + '_eyeDock_' + type + '_' + place + '_' + id] = format;
+			DockMenu.DateTime.Formats[pid + '_xenonDock_' + type + '_' + place + '_' + id] = format;
 			DockMenu.DateTime.Update(pid, type, place, id);
 			var params = [];
 			params.backgroundNames = '#519eda';
@@ -64,13 +64,13 @@ var DockMenu = {
 			params.weekEnd = '#519eda';
 			params.width = 168;
 			params.workDays = '#444444';
-			Calendar_show(params, pid + '_eyeDock_' + type + '_' + place + '_' + id + '_calendar', pid + '_eyeDock_' + type + '_' + place + '_' + id + '_entries', 5, 5, 0, 0, checknum, 0);
-			setWidgetPos(pid + '_eyeDock_' + type + '_' + place + '_' + id + '_calendar', pid + '_eyeDock_' + type + '_' + place + '_' + id + '_entries', 0, 0, 5, 5, 1);
+			Calendar_show(params, pid + '_xenonDock_' + type + '_' + place + '_' + id + '_calendar', pid + '_xenonDock_' + type + '_' + place + '_' + id + '_entries', 5, 5, 0, 0, checknum, 0);
+			setWidgetPos(pid + '_xenonDock_' + type + '_' + place + '_' + id + '_calendar', pid + '_xenonDock_' + type + '_' + place + '_' + id + '_entries', 0, 0, 5, 5, 1);
 		},
 
 		Update: function (pid, type, place, id) {
 			var date, day, e, hour, minute, month, second, text, weekDay, year;
-			e = document.getElementById(pid + '_eyeDock_' + type + '_' + place + '_' + id + '_div');
+			e = document.getElementById(pid + '_xenonDock_' + type + '_' + place + '_' + id + '_div');
 			if (e) {
 				date = new Date();
 				year = date.getFullYear();
@@ -80,7 +80,7 @@ var DockMenu = {
 				hour = date.getHours();
 				minute = date.getMinutes();
 				second = date.getSeconds();
-				text = DockMenu.DateTime.Formats[pid + '_eyeDock_' + type + '_' + place + '_' + id];
+				text = DockMenu.DateTime.Formats[pid + '_xenonDock_' + type + '_' + place + '_' + id];
 
 				text = text.replace(/\%G/, hour);
 				text = text.replace(/\%D/, DockMenu.DateTime.WeekDaysShort[weekDay]);
@@ -140,22 +140,22 @@ var DockMenu = {
 				e.innerHTML = tinyMCE.entityDecode(text);
 				setTimeout('DockMenu.DateTime.Update("' + pid + '", "' + type + '", "' + place + '", "' + id + '");', 1000);
 			} else {
-				DockMenu.DateTime.Formats[pid + '_eyeDock_' + type + '_' + place + '_' + id] = 0;
+				DockMenu.DateTime.Formats[pid + '_xenonDock_' + type + '_' + place + '_' + id] = 0;
 			}
 		}
 	},
 
 	Hide: function (pid, type, place, id) {
 		var e, f;
-		e = document.getElementById(pid + '_eyeDock_' + type + '_' + place + '_' + id + '_entries');
+		e = document.getElementById(pid + '_xenonDock_' + type + '_' + place + '_' + id + '_entries');
 		if (e) {
 			e.style.display = 'none';
 		}
-		f = document.getElementById(pid + '_eyeDock_' + type + '_' + place + '_' + id);
+		f = document.getElementById(pid + '_xenonDock_' + type + '_' + place + '_' + id);
 		if (f) {
-			f.className = 'eyeDock_' + type + '_' + place + '_menu';
+			f.className = 'xenonDock_' + type + '_' + place + '_menu';
 		}
-		if (DockMenu.Selected.id === pid + '_eyeDock_' + type + '_' + place + '_' + id) {
+		if (DockMenu.Selected.id === pid + '_xenonDock_' + type + '_' + place + '_' + id) {
 			DockMenu.Selected.id = 0;
 		}
 	},
@@ -187,19 +187,19 @@ var DockMenu = {
 			document.getElementById(DockMenu.Selected.id + '_entries').style.display = 'none';
 			document.getElementById(DockMenu.Selected.id).className = DockMenu.Selected.className;
 		}
-		DockMenu.Selected.className = 'eyeDock_' + type + '_' + place + '_menu';
-		DockMenu.Selected.id = pid + '_eyeDock_' + type + '_' + place + '_' + id;
-		document.getElementById(DockMenu.Selected.id).className = 'eyeDock_' + type + '_' + place + '_menu_selected';
+		DockMenu.Selected.className = 'xenonDock_' + type + '_' + place + '_menu';
+		DockMenu.Selected.id = pid + '_xenonDock_' + type + '_' + place + '_' + id;
+		document.getElementById(DockMenu.Selected.id).className = 'xenonDock_' + type + '_' + place + '_menu_selected';
 		var entries = document.getElementById(DockMenu.Selected.id + '_entries');
 		entries.style.display = 'block';
 		if (!entries.handled) {
 			entries.handled = 1;
-			EventHandler.Add('click', pid + '_eyeDock_' + type + '_' + place + '_' + id, 'DockMenu.Hide("' + pid + '", "' + type + '", "' + place + '", "' + id + '");', 1, DockMenu.OnClick);
+			EventHandler.Add('click', pid + '_xenonDock_' + type + '_' + place + '_' + id, 'DockMenu.Hide("' + pid + '", "' + type + '", "' + place + '", "' + id + '");', 1, DockMenu.OnClick);
 		}
 	},
 
 	Shuffle: function (pid, type, place, id) {
-		if (document.getElementById(pid + '_eyeDock_' + type + '_' + place + '_' + id + '_entries').style.display === 'block') {
+		if (document.getElementById(pid + '_xenonDock_' + type + '_' + place + '_' + id + '_entries').style.display === 'block') {
 			DockMenu.Hide(pid, type, place, id);
 		} else {
 			DockMenu.Show(pid, type, place, id);
@@ -217,7 +217,7 @@ var Taskbars = {
 	Add: function (pid, type, place, id) {
 		var key, x;
 		Taskbars.PID = pid;
-		key = pid + '_eyeDock_' + type + '_' + place + '_' + id;
+		key = pid + '_xenonDock_' + type + '_' + place + '_' + id;
 		if (type === 'bottom') {
 			Taskbars.Bottom += 1;
 		} else if (type === 'bottom') {
@@ -232,7 +232,7 @@ var Taskbars = {
 		for (x in Taskbars.Entries) {
 			if (Taskbars.Entries.hasOwnProperty(x)) {
 				if (Taskbars.Entries[x]) {
-					document.getElementById(key + '_entries').innerHTML += '<div class="eyeDock_' + type + '_' + place + '_taskbar_entry" id="' + key + '_' + x + '_entry"><div class="eyeDock_' + type + '_' + place + '_taskbar_entry_div" id="' + key + '_' + x + '_entry_div" onclick="' + Taskbars.Entries[x].onclick + '">' + tinyMCE.entityDecode(Taskbars.Entries[x].title) + '</div></div>';
+					document.getElementById(key + '_entries').innerHTML += '<div class="xenonDock_' + type + '_' + place + '_taskbar_entry" id="' + key + '_' + x + '_entry"><div class="xenonDock_' + type + '_' + place + '_taskbar_entry_div" id="' + key + '_' + x + '_entry_div" onclick="' + Taskbars.Entries[x].onclick + '">' + tinyMCE.entityDecode(Taskbars.Entries[x].title) + '</div></div>';
 				}
 			}
 		}
@@ -252,7 +252,7 @@ var Taskbars = {
 				if (Taskbars.List[key]) {
 					type = Taskbars.List[key].type;
 					place = Taskbars.List[key].place;
-					document.getElementById(key + '_entries').innerHTML += '<div class="eyeDock_' + type + '_' + place + '_taskbar_entry_focus" id="' + key + '_' + id + '_entry" onclick="' + onclick + '">' + image + '<div class="eyeDock_' + type + '_' + place + '_taskbar_entry_div" id="' + key + '_' + id + '_entry_div">' + tinyMCE.entityDecode(title) + '</div></div>';
+					document.getElementById(key + '_entries').innerHTML += '<div class="xenonDock_' + type + '_' + place + '_taskbar_entry_focus" id="' + key + '_' + id + '_entry" onclick="' + onclick + '">' + image + '<div class="xenonDock_' + type + '_' + place + '_taskbar_entry_div" id="' + key + '_' + id + '_entry_div">' + tinyMCE.entityDecode(title) + '</div></div>';
 				}
 			}
 		}
@@ -345,20 +345,20 @@ var Taskbars = {
 		var bottom, cB, cT, csB, csT, e, fB, fT, key, top, width, widthEntries;
 		if (Taskbars.Bottom && (type === 'bottom' || type === undefined)) {
 			bottom = 0;
-			fB = document.getElementById(Taskbars.PID + '_eyeDock_bottom');
+			fB = document.getElementById(Taskbars.PID + '_xenonDock_bottom');
 			csB = fB.childNodes;
 			for (cB = 0; cB < csB.length; cB += 1) {
-				if (!Taskbars.List[csB[cB].id] && csB[cB].className !== 'eyeDock_bottom_left_taskbar_move_left' && csB[cB].className !== 'eyeDock_bottom_right_taskbar_move_left' && csB[cB].className !== 'eyeDock_bottom_left_taskbar_move_right' && csB[cB].className !== 'eyeDock_bottom_right_taskbar_move_right') {
+				if (!Taskbars.List[csB[cB].id] && csB[cB].className !== 'xenonDock_bottom_left_taskbar_move_left' && csB[cB].className !== 'xenonDock_bottom_right_taskbar_move_left' && csB[cB].className !== 'xenonDock_bottom_left_taskbar_move_right' && csB[cB].className !== 'xenonDock_bottom_right_taskbar_move_right') {
 					bottom += xWidth(csB[cB]);
 				}
 			}
 		}
 		if (Taskbars.Top && (type === 'top' || type === undefined)) {
 			top = 0;
-			fT = document.getElementById(Taskbars.PID + '_eyeDock_top');
+			fT = document.getElementById(Taskbars.PID + '_xenonDock_top');
 			csT = fT.childNodes;
 			for (cT = 0; cT < csT.length; cT += 1) {
-				if (!Taskbars.List[csT[cT].id] && csT[cT].className !== 'eyeDock_top_left_taskbar_move_left' && csT[cT].className !== 'eyeDock_top_right_taskbar_move_left' && csT[cT].className !== 'eyeDock_top_left_taskbar_move_right' && csT[cT].className !== 'eyeDock_top_right_taskbar_move_right') {
+				if (!Taskbars.List[csT[cT].id] && csT[cT].className !== 'xenonDock_top_left_taskbar_move_left' && csT[cT].className !== 'xenonDock_top_right_taskbar_move_left' && csT[cT].className !== 'xenonDock_top_left_taskbar_move_right' && csT[cT].className !== 'xenonDock_top_right_taskbar_move_right') {
 					top += xWidth(csT[cT]);
 				}
 			}

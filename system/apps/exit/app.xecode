@@ -31,8 +31,8 @@ function exit_run($params=null) {
 	$lightbox_color = '#FFFFFF';
 	$lightbox_opacity = 0.5; // It must be a number between 0 and 1
 	
-	// Get eyeDock PID (it will be useful later)
-	$eyeDock_pid = proc('findPidByName', array('eyeDock'));
+	// Get xenonDock PID (it will be useful later)
+	$xenonDock_pid = proc('findPidByName', array('xenonDock'));
 	
 	// Play logout sound
 	if (xenonx('systemSound', array('logout'))) {
@@ -41,10 +41,10 @@ function exit_run($params=null) {
 		$timeout = '1';
 	}
 	
-	// Hide eyeDock and xenonApps divs
+	// Hide xenonDock and xenonApps divs
 	xenonx('rawjs', array('js' => '
-			var dock_top_div = xGetElementById("' . $eyeDock_pid . '_eyeDock_top");
-			var dock_bottom_div = xGetElementById("' . $eyeDock_pid . '_eyeDock_bottom");
+			var dock_top_div = xGetElementById("' . $xenonDock_pid . '_xenonDock_top");
+			var dock_bottom_div = xGetElementById("' . $xenonDock_pid . '_xenonDock_bottom");
 			var xenonApps_div = xGetElementById("xenonApps");
 			dock_top_div.style.display = "none";
 			dock_bottom_div.style.display = "none";

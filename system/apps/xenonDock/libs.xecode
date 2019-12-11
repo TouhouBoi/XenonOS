@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeDock_lib_array_movedown($key,$array) {
+function xenonDock_lib_array_movedown($key,$array) {
 	$value = $array[$key];
 	$keys = array_keys($array);
 	$id = array_search($key,$keys);
@@ -28,7 +28,7 @@ function eyeDock_lib_array_movedown($key,$array) {
 	return $array;
 }
 
-function eyeDock_lib_array_moveup($key,$array) {
+function xenonDock_lib_array_moveup($key,$array) {
 	$value = $array[$key];
 	$keys = array_keys($array);
 	$id = array_search($key,$keys);
@@ -42,44 +42,44 @@ function eyeDock_lib_array_moveup($key,$array) {
 	return $array;
 }
 
-function eyeDock_lib_checkFavorite($xml, $command) {
-	if (is_array($xml['eyeDock'][0]['bottom'][0]['left'][0]) === true) {
-		foreach ($xml['eyeDock'][0]['bottom'][0]['left'][0] as $element_id => $element) {
+function xenonDock_lib_checkFavorite($xml, $command) {
+	if (is_array($xml['xenonDock'][0]['bottom'][0]['left'][0]) === true) {
+		foreach ($xml['xenonDock'][0]['bottom'][0]['left'][0] as $element_id => $element) {
 			if (isset($element[0]['command'][0]) && $element[0]['command'][0] == $command) {
 				return array('type' => 'bottom', 'place' => 'left', 'id' => $element_id);
 			}
 		}
 	}
-	if (is_array($xml['eyeDock'][0]['bottom'][0]['right'][0]) === true) {
-		foreach ($xml['eyeDock'][0]['bottom'][0]['right'][0] as $element_id => $element) {
+	if (is_array($xml['xenonDock'][0]['bottom'][0]['right'][0]) === true) {
+		foreach ($xml['xenonDock'][0]['bottom'][0]['right'][0] as $element_id => $element) {
 			if (isset($element[0]['command'][0]) && $element[0]['command'][0] == $command) {
 				return array('type' => 'bottom', 'place' => 'right', 'id' => $element_id);
 			}
 		}
 	}
-	/*if (is_array($xml['eyeDock'][0]['left'][0]['top'][0]) === true) {
-		foreach ($xml['eyeDock'][0]['left'][0]['top'][0] as $element_id => $element) {
+	/*if (is_array($xml['xenonDock'][0]['left'][0]['top'][0]) === true) {
+		foreach ($xml['xenonDock'][0]['left'][0]['top'][0] as $element_id => $element) {
 			if (isset($element[0]['command'][0]) && $element[0]['command'][0] == $command) {
 				return array('type' => 'left', 'place' => 'top', 'id' => $element_id);
 			}
 		}
 	}
-	if (is_array($xml['eyeDock'][0]['right'][0]['top'][0]) === true) {
-		foreach ($xml['eyeDock'][0]['right'][0]['top'][0] as $element_id => $element) {
+	if (is_array($xml['xenonDock'][0]['right'][0]['top'][0]) === true) {
+		foreach ($xml['xenonDock'][0]['right'][0]['top'][0] as $element_id => $element) {
 			if (isset($element[0]['command'][0]) && $element[0]['command'][0] == $command) {
 				return array('type' => 'right', 'place' => 'top', 'id' => $element_id);
 			}
 		}
 	}*/
-	if (is_array($xml['eyeDock'][0]['top'][0]['left'][0]) === true) {
-		foreach ($xml['eyeDock'][0]['top'][0]['left'][0] as $element_id => $element) {
+	if (is_array($xml['xenonDock'][0]['top'][0]['left'][0]) === true) {
+		foreach ($xml['xenonDock'][0]['top'][0]['left'][0] as $element_id => $element) {
 			if (isset($element[0]['command'][0]) && $element[0]['command'][0] == $command) {
 				return array('type' => 'top', 'place' => 'left', 'id' => $element_id);
 			}
 		}
 	}
-	if (is_array($xml['eyeDock'][0]['top'][0]['right'][0]) === true) {
-		foreach ($xml['eyeDock'][0]['top'][0]['right'][0] as $element_id => $element) {
+	if (is_array($xml['xenonDock'][0]['top'][0]['right'][0]) === true) {
+		foreach ($xml['xenonDock'][0]['top'][0]['right'][0] as $element_id => $element) {
 			if (isset($element[0]['command'][0]) && $element[0]['command'][0] == $command) {
 				return array('type' => 'top', 'place' => 'right', 'id' => $element_id);
 			}
@@ -88,13 +88,13 @@ function eyeDock_lib_checkFavorite($xml, $command) {
 	return false;
 }
 
-function eyeDock_lib_Load($types = array('bottom'/*,'left','right'*/,'top')) {
+function xenonDock_lib_Load($types = array('bottom'/*,'left','right'*/,'top')) {
 	global $checknum;
 	global $myPid;
 
-	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('xenonDock','conf.xml'));
 	foreach ($types as $type) {
-		if ($xml['eyeDock'][0][$type][0]['show'][0]) {
+		if ($xml['xenonDock'][0][$type][0]['show'][0]) {
 			if ($type == 'bottom') {
 				$_SESSION['SCREEN']['xenonApps']['height'] -= 32;
 				xenonx('rawjs',array('js' => 'document.getElementById("xenonApps").style.height = "' . $_SESSION['SCREEN']['xenonApps']['height'] . 'px";'));
@@ -111,59 +111,59 @@ function eyeDock_lib_Load($types = array('bottom'/*,'left','right'*/,'top')) {
 				xenonx('rawjs',array('js' => 'var e = document.getElementById("xenonApps"); e.style.height = "' . $_SESSION['SCREEN']['xenonApps']['height'] . 'px"; e.style.top = "' . $_SESSION['SCREEN']['xenonApps']['y'] . 'px";'));
 			}
 			xenonx('createDiv',array(
-				'class' => 'eyeDock_' . $type,
+				'class' => 'xenonDock_' . $type,
 				'father' => 'eyeScreen',
-				'name' => 'eyeDock_' . $type,
+				'name' => 'xenonDock_' . $type,
 				'removepid' => 1
 			));
 			$myContextMenu = new ContextMenu(array(
-				'father' => 'eyeDock_' . $type,
-				'mfather' => 'eyeDock_' . $type,
-				'name' => 'eyeDock_' . $type . '_context'
+				'father' => 'xenonDock_' . $type,
+				'mfather' => 'xenonDock_' . $type,
+				'name' => 'xenonDock_' . $type . '_context'
 			));
 			$myContextMenu->show();
-			$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDock_' . $type . '_context_refresh_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=icons/16x16/refresh.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Refresh')), ENT_QUOTES),'eyeDock_' . $type . '_context_refresh','Refresh','<type>' . $type . '</type>',$myPid . '_eyeDock_' . $type . '_context_refresh_img');
-			$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDock_' . $type . '_context_managedock_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=icons/16x16/exec.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Manage Dock')), ENT_QUOTES),'eyeDock_' . $type . '_context_managedock','ManageDock','',$myPid . '_eyeDock_' . $type . '_context_managedock_img');
-			foreach ($xml['eyeDock'][0][$type][0] as $place => $elements) {
+			$myContextMenu->addEntry('<img id="' . $myPid . '_xenonDock_' . $type . '_context_refresh_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=icons/16x16/refresh.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Refresh')), ENT_QUOTES),'xenonDock_' . $type . '_context_refresh','Refresh','<type>' . $type . '</type>',$myPid . '_xenonDock_' . $type . '_context_refresh_img');
+			$myContextMenu->addEntry('<img id="' . $myPid . '_xenonDock_' . $type . '_context_managedock_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=icons/16x16/exec.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Manage Dock')), ENT_QUOTES),'xenonDock_' . $type . '_context_managedock','ManageDock','',$myPid . '_xenonDock_' . $type . '_context_managedock_img');
+			foreach ($xml['xenonDock'][0][$type][0] as $place => $elements) {
 				if (is_array($elements[0])) {
 					foreach ($elements[0] as $id => $element) {
 						if ($element[0]['type'][0] === 'taskbar' && ($type !== 'bottom' || $place !== 'left')) {
-							unset($xml['eyeDock'][0][$type][0][$place][0][$id]);
-						} else if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/modules/' . $element[0]['type'][0] . XE_CODE_EXTENSION))) {
-							include(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/modules/' . $element[0]['type'][0] . XE_CODE_EXTENSION);
+							unset($xml['xenonDock'][0][$type][0][$place][0][$id]);
+						} else if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/xenonDock/modules/' . $element[0]['type'][0] . XE_CODE_EXTENSION))) {
+							include(XENONOS_ROOT . '/' . APP_DIR . '/xenonDock/modules/' . $element[0]['type'][0] . XE_CODE_EXTENSION);
 						}
 					}
 				}
 			}
 		}
 	}
-	xenonXML('setXMLconfig', array('eyeDock', 'conf.xml', $xml));
+	xenonXML('setXMLconfig', array('xenonDock', 'conf.xml', $xml));
 	xenonx('rawjs',array('js' => 'Taskbars.SetWidth();'));
 }
 
-function eyeDock_lib_Remove($types = array('bottom'/*,'left','right'*/,'top')) {
+function xenonDock_lib_Remove($types = array('bottom'/*,'left','right'*/,'top')) {
 	global $myPid;
-	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
-	if (in_array('bottom',$types) && $xml['eyeDock'][0]['bottom'][0]['show']) {
+	$xml = xenonXML('getXMLconfig',array('xenonDock','conf.xml'));
+	if (in_array('bottom',$types) && $xml['xenonDock'][0]['bottom'][0]['show']) {
 		$_SESSION['SCREEN']['xenonApps']['height'] += 32;
 		xenonx('rawjs',array('js' => 'document.getElementById("xenonApps").style.height = "' . $_SESSION['SCREEN']['xenonApps']['height'] . 'px";'));
 	/*}
-	if (in_array('left',$types) && $xml['eyeDock'][0]['left'][0]['show']) {
+	if (in_array('left',$types) && $xml['xenonDock'][0]['left'][0]['show']) {
 		$_SESSION['SCREEN']['xenonApps']['width'] += 32;
 		$_SESSION['SCREEN']['xenonApps']['x'] = 0;
 		xenonx('rawjs',array('js' => 'var e = document.getElementById("xenonApps"); e.style.width = "' . $_SESSION['SCREEN']['xenonApps']['height'] . 'px"; e.style.left = "' . $_SESSION['SCREEN']['xenonApps']['x'] . 'px";'));
 	}
-	if (in_array('right',$types) && $xml['eyeDock'][0]['right'][0]['show']) {
+	if (in_array('right',$types) && $xml['xenonDock'][0]['right'][0]['show']) {
 		$_SESSION['SCREEN']['xenonApps']['width'] += 32;
 		xenonx('rawjs',array('js' => 'document.getElementById("xenonApps").style.width = "' . $_SESSION['SCREEN']['xenonApps']['width'] . 'px";'));*/
 	}
-	if (in_array('top',$types) && $xml['eyeDock'][0]['top'][0]['show']) {
+	if (in_array('top',$types) && $xml['xenonDock'][0]['top'][0]['show']) {
 		$_SESSION['SCREEN']['xenonApps']['height'] += 32;
 		$_SESSION['SCREEN']['xenonApps']['y'] = 0;
 		xenonx('rawjs',array('js' => 'var e = document.getElementById("xenonApps"); e.style.height = "' . $_SESSION['SCREEN']['xenonApps']['height'] . 'px"; e.style.top = "' . $_SESSION['SCREEN']['xenonApps']['y'] . 'px";'));
 	}
 	foreach ($types as $type) {
-		xenonx('rawjs',array('js' => 'var e = document.getElementById("' . $myPid . '_eyeDock_' . $type . '"); if (e) { e.parentNode.removeChild(e); } Taskbars.' . /* utf8 */ ucfirst($type) . ' = 0;'));
+		xenonx('rawjs',array('js' => 'var e = document.getElementById("' . $myPid . '_xenonDock_' . $type . '"); if (e) { e.parentNode.removeChild(e); } Taskbars.' . /* utf8 */ ucfirst($type) . ' = 0;'));
 	}
 }
 ?>

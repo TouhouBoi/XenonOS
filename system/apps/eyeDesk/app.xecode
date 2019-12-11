@@ -46,14 +46,14 @@ function eyeDesk_run($params = '') {
 		// eyeos 1.9.0.0preview1
 		if (check_versions($xml['eyeDesk'][0]['confVersion'][0], '1.9.0.0preview1') === 2) {
 			foreach ($xml['eyeDesk'][0]['autolaunch'] as $key => $value) {
-				if (in_array($value, array('eyeBar', 'eyeDesk_extras', 'eyeDockText'))) {
+				if (in_array($value, array('eyeBar', 'eyeDesk_extras', 'xenonDockText'))) {
 					unset($xml['eyeDesk'][0]['autolaunch'][$key]);
 				}
 			}
-			if (array_search('eyeDock', $xml['eyeDesk'][0]['autolaunch']) === false) {
-				$xml['eyeDesk'][0]['autolaunch'][] = 'eyeDock';
+			if (array_search('xenonDock', $xml['eyeDesk'][0]['autolaunch']) === false) {
+				$xml['eyeDesk'][0]['autolaunch'][] = 'xenonDock';
 			}
-			copy(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . CONF_USER_DIR . '/skel/' . CONF_USER_DIR . '/eyeDock/conf.xml', $userDir . '/' . CONF_USER_DIR . '/eyeDock/conf.xml');
+			copy(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . CONF_USER_DIR . '/skel/' . CONF_USER_DIR . '/xenonDock/conf.xml', $userDir . '/' . CONF_USER_DIR . '/xenonDock/conf.xml');
 
 			$navXml = xenonXML('getXMLconfig', array('eyeNav', 'conf.xml'));
 			$bookmarks = array();
@@ -85,39 +85,39 @@ function eyeDesk_run($params = '') {
 			if ($xml['eyeDesk'][0]['theme'][0] === 'default') {
 				$xml['eyeDesk'][0]['theme'][0] = 'defaultPlus';
 			}
-			$dockXml = xenonXML('getXMLconfig', array('eyeDock', 'conf.xml'));
-			foreach ($dockXml['eyeDock'][0] as $k1 => $v1) {
+			$dockXml = xenonXML('getXMLconfig', array('xenonDock', 'conf.xml'));
+			foreach ($dockXml['xenonDock'][0] as $k1 => $v1) {
 				foreach ($v1[0] as $k2 => $v2) {
 					foreach ($v2[0] as $k3 => $v3) {
 						if (is_string($v3[0]['image'][0]) === true) {
-							$dockXml['eyeDock'][0][$k1][0][$k2][0][$k3][0]['image'][0] = str_replace('version=EXTERN_CACHE_VERSION&theme=1', 'theme=USERTHEME', $v3[0]['image'][0]);
+							$dockXml['xenonDock'][0][$k1][0][$k2][0][$k3][0]['image'][0] = str_replace('version=EXTERN_CACHE_VERSION&theme=1', 'theme=USERTHEME', $v3[0]['image'][0]);
 						}
 						foreach ($v3[0]['entries'][0] as $k4 => $v4) {
 							if (is_string($v4[0]['image'][0]) === true) {
-								$dockXml['eyeDock'][0][$k1][0][$k2][0][$k3][0]['entries'][0][$k4][0]['image'][0] = str_replace('version=EXTERN_CACHE_VERSION&theme=1', 'theme=USERTHEME', $v4[0]['image'][0]);
+								$dockXml['xenonDock'][0][$k1][0][$k2][0][$k3][0]['entries'][0][$k4][0]['image'][0] = str_replace('version=EXTERN_CACHE_VERSION&theme=1', 'theme=USERTHEME', $v4[0]['image'][0]);
 							}
 						}
 					}
 				}
 			}
-			xenonXML('setXMLconfig', array('eyeDock', 'conf.xml', $dockXml));
+			xenonXML('setXMLconfig', array('xenonDock', 'conf.xml', $dockXml));
 		}
 
 		// oneye 0.8.1
 		if (check_versions($xml['eyeDesk'][0]['confVersion'][0], '1.10.1.0') === 2) {
-			$dockXml = xenonXML('getXMLconfig', array('eyeDock', 'conf.xml'));
-			foreach ($dockXml['eyeDock'][0] as $k1 => $v1) {
+			$dockXml = xenonXML('getXMLconfig', array('xenonDock', 'conf.xml'));
+			foreach ($dockXml['xenonDock'][0] as $k1 => $v1) {
 				foreach ($v1[0] as $k2 => $v2) {
 					foreach ($v2[0] as $k3 => $v3) {
 						foreach ($v3[0]['entries'][0] as $k4 => $v4) {
 							if (is_string($v4[0]['text'][0]) === true) {
-								$dockXml['eyeDock'][0][$k1][0][$k2][0][$k3][0]['entries'][0][$k4][0]['text'][0] = /* utf8 */ str_ireplace('eyeos', 'oneye', $v4[0]['text'][0]);
+								$dockXml['xenonDock'][0][$k1][0][$k2][0][$k3][0]['entries'][0][$k4][0]['text'][0] = /* utf8 */ str_ireplace('eyeos', 'oneye', $v4[0]['text'][0]);
 							}
 						}
 					}
 				}
 			}
-			xenonXML('setXMLconfig', array('eyeDock', 'conf.xml', $dockXml));
+			xenonXML('setXMLconfig', array('xenonDock', 'conf.xml', $dockXml));
 		}
 
 		// oneye 0.9.6 Preview

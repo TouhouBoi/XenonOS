@@ -14,13 +14,13 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeDock/libs' . XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonDock/libs' . XE_CODE_EXTENSION);
 
-function eyeDock_run($params = '') {
+function xenonDock_run($params = '') {
 	global $myPid;
 
 	foreach (proc('getProcessTable') as $process) {
-		if ($process['appName'] == 'eyeDock' && $process['pid'] != $myPid) {
+		if ($process['appName'] == 'xenonDock' && $process['pid'] != $myPid) {
 			return proc('end');
 		}
 	}
@@ -33,11 +33,11 @@ DockMenu.DateTime.WeekDays1 = \'' . mmap('array2jsArg',array(array(i18n('transla
 DockMenu.DateTime.WeekDaysFull = \'' . mmap('array2jsArg',array(array(i18n('translate',array('Sunday')),i18n('translate',array('Monday')),i18n('translate',array('Tuesday')),i18n('translate',array('Wednesday')),i18n('translate',array('Thursday')),i18n('translate',array('Friday')),i18n('translate',array('Saturday'))))) . '\';
 DockMenu.DateTime.WeekDaysShort = \'' . mmap('array2jsArg',array(array(i18n('translate',array('Sun')),i18n('translate',array('Mon')),i18n('translate',array('Tue')),i18n('translate',array('Wed')),i18n('translate',array('Thu')),i18n('translate',array('Fri')),i18n('translate',array('Sat'))))) . '\';'));
 
-	eyeDock_lib_Load();
+	xenonDock_lib_Load();
 }
 
-function eyeDock_end($params = '') {
+function xenonDock_end($params = '') {
 	eyeWidgets('unserialize',$params);
-	eyeDock_lib_Remove();
+	xenonDock_lib_Remove();
 }
 ?>
