@@ -26,7 +26,7 @@ function eyeProcess_on_BringToFront($params = '') {
 			return;
 		}
 	}
-	eyex('messageBox', array('content' => 'Could not find a related window.'));
+	xenonx('messageBox', array('content' => 'Could not find a related window.'));
 }
 
 function eyeProcess_on_Close($params = '') {
@@ -39,7 +39,7 @@ function eyeProcess_on_help($params=null) {
 
 function eyeProcess_on_Kill($params = '') {
 	proc('close',array($GLOBALS['eyeProcess_Sortabletable']->selected));
-	eyex('messageBox',array('content' => 'Process killed successfully.'));
+	xenonx('messageBox',array('content' => 'Process killed successfully.'));
 }
 
 function eyeProcess_on_New($params = '') {
@@ -48,7 +48,7 @@ function eyeProcess_on_New($params = '') {
 
 function eyeProcess_on_Killapp($params = ''){
 	proc('close',array($GLOBALS['eyeProcess_appSortabletable']->selected));
-	eyex('messageBox',array('content' => 'Application killed successfully.'));
+	xenonx('messageBox',array('content' => 'Application killed successfully.'));
 }
 
 function eyeProcess_on_Message($params = '') {

@@ -80,7 +80,7 @@ class widgetDrop {
 			'vert' => 0
 		);
 
-		eyex('createWidget',$mywidgetDrop);
+		xenonx('createWidget',$mywidgetDrop);
 		$this->showed=1;
 		if($noserialize == 0) {
 			eyeWidgets('serialize',array($this));
@@ -104,12 +104,12 @@ class widgetDrop {
 		}
 		$dropParams = mmap('array2js',array($dropParams));
 		$js = "addDropBehaviour(".$dropParams.",'".$name."','".$type."');";
-		eyeX('rawjs',array('js'=>$js));
+		xenonx('rawjs',array('js'=>$js));
 	}
 	function remove() {
 	/*	global $myPid;
 		$name = $this->name.'_Container';
-		eyex('removeWidget',array('name'=>$name));
+		xenonx('removeWidget',array('name'=>$name));
 		eyeWidgets('singleUnserialize',array($this->name));*/
 	}
 }

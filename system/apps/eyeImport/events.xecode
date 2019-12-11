@@ -26,12 +26,12 @@ function eyeImport_on_Import($params="") {
 
 function eyeImport_on_doImport($params="") {
 	if(empty($GLOBALS['mtextbox']->text)) {
-		eyeX('messageBox',array('content'=>'You have to select a directory to import files'));
+		xenonx('messageBox',array('content'=>'You have to select a directory to import files'));
 		return;
 	}
 	$path = um('getCurrentUserDir').'/'.FILES_USER_DIR.'/'.$GLOBALS['mtextbox']->text;
 	$num = vfs('realToVirtualDir',array($path));
-	eyeX('messageBox',array('content'=>'%s files imported!','tokens' => array($num)));
+	xenonx('messageBox',array('content'=>'%s files imported!','tokens' => array($num)));
 	$GLOBALS['lbl']->setText('%s files imported!',array($num));
 }
 

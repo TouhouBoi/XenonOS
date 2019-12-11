@@ -59,7 +59,7 @@ class Toolbar {
 		if($this->showed == 0) {
 			$this->show();
 		}
-		eyex('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
+		xenonx('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
 	}
 
 	function show($noserialize = 1) {
@@ -84,7 +84,7 @@ class Toolbar {
 		if ($noserialize == 0) {
 			eyeWidgets('serialize',array($this));
 		}
-		eyex('createWidget',$myToolbar);
+		xenonx('createWidget',$myToolbar);
 	}
 
 
@@ -92,14 +92,14 @@ class Toolbar {
 		global $myPid;
 		if(is_array($params)) {
 			foreach($params as $key => $value) {
-				eyex('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
+				xenonx('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
 			}
 		}
 	}
 
 	function remove() {
 		global $myPid;
-		eyex('removeWidget', array('name' => $this->name));
+		xenonx('removeWidget', array('name' => $this->name));
 	}
 
 	function addGroup($params) {
@@ -112,7 +112,7 @@ class Toolbar {
 		}
 		$thefriends = mmap("array2js",array($thefriends));
 		$js = 'Toolbar_groups('.$ids.','.$checknum.','.$myPid.','.$thefriends.');';
-		eyex('rawjs',array('js' => $js));
+		xenonx('rawjs',array('js' => $js));
 	}
 
 	function pressItem($params) {
@@ -122,7 +122,7 @@ class Toolbar {
 		}
 		foreach ($params as $value) {
 			$js = 'Toolbar_pressed("'.$myPid.'_'.$value.'_Container",true);';
-			eyeX('rawjs',array('js' => $js));
+			xenonx('rawjs',array('js' => $js));
 		}
 	}
 
@@ -133,14 +133,14 @@ class Toolbar {
 		}
 		foreach ($params as $value) {
 			$js = 'Toolbar_pressed("'.$myPid.'_'.$value.'_Container",false);';
-			eyeX('rawjs',array('js' => $js));
+			xenonx('rawjs',array('js' => $js));
 		}
 	}
 
 	function addLine($id = '',$right = 0) {
 		global $myPid;
 		$js = 'addLineToBar("'.$myPid.'_'.$this->name.'","' . $id . '",' . $right . ');';
-		eyeX('rawjs',array('js'=>$js));
+		xenonx('rawjs',array('js'=>$js));
 	}
 
 	function addItem($itemName,$img,$text,$ofriends=null,$right=0,$height = 22,$width = 22) {
@@ -163,7 +163,7 @@ class Toolbar {
 		$friends[$itemName] = $thefriends;
 		$tokens = array($itemName,$img,$text);
 		$js = 'addItemToBar("'.$myPid.'_'.$this->name.'", %s , %s , %s ,"'.$thefriends.'",'.$checknum.','.$height.','.$width.','.$right.','.$myPid.');';
-		eyex('runjs',array('js'=>$js,'tokens'=>$tokens));
+		xenonx('runjs',array('js'=>$js,'tokens'=>$tokens));
 		return $itemName;
 	}
 }

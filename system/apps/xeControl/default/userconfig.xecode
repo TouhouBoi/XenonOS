@@ -19,7 +19,7 @@ global $checknum;
 //global $myPid;
 
 if ($currentUser != ROOTUSER) {
-	eyex('messageBox',array('content' => 'You are not allowed to manage users!'));
+	xenonx('messageBox',array('content' => 'You are not allowed to manage users!'));
 	xeControl_lib_loadContent();
 	return;
 }
@@ -127,6 +127,6 @@ $myButton->addFriend($myTable);
 $myButton->addFriend($mySelect);
 $myButton->show(0);
 
-eyeX('runjs', array('js' => 'sendMsg('.$checknum.',"userconfig_methodSelect",eyeParam("arg0",%s));', 'tokens' => array($selval)));
+xenonx('runjs', array('js' => 'sendMsg('.$checknum.',"userconfig_methodSelect",eyeParam("arg0",%s));', 'tokens' => array($selval)));
 
 ?>

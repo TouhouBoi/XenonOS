@@ -39,7 +39,7 @@ function eyeShow_run($params=null) {
 		}
 		$fp = vfs('open',array($file,'r'));
 		if(!$fp) {
-			eyex('messageBox',array('content'=>'File not found'));
+			xenonx('messageBox',array('content'=>'File not found'));
 			return;
 		}
 		$myHidden = new Hidden(array(

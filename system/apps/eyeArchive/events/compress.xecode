@@ -25,7 +25,7 @@ function eyeArchive_on_Compress($params){
 	$type = substr(strrchr($dest, '.'), 1); // utf8
 	$types = eyeFileArchive('supportedTypes');
 	if(array_search($type,$types) === false){
-		eyex('messageBox',array('content'=>'The compress type is not supported'));
+		xenonx('messageBox',array('content'=>'The compress type is not supported'));
 		return false;
 	}
 	$dest = um('getCurrentUserDir').'/'.FILES_USER_DIR.'/'.$dest;
@@ -40,10 +40,10 @@ function eyeArchive_on_Compress($params){
 	$params[1] = $dest;
 
 	if(!eyeFileArchive('compress',$params)){
-		eyex('messageBox',array('content'=>'Compression failed'));
+		xenonx('messageBox',array('content'=>'Compression failed'));
 		return false;
 	}
 	eyeFiles('update',array(dirname($dest)));
-	eyex('messageBox',array('content'=>'Compressed successfully'));
+	xenonx('messageBox',array('content'=>'Compressed successfully'));
 }
 ?>

@@ -46,7 +46,7 @@ function eyeLogin_run($params = '') {
 		// Load themable eyeLogin part
 		loadConfig('eyeLogin');
 		eyeSessions('setVar', array('usertheme', LOGIN_THEME));
-		eyex('runjs', array('js' => 'USERTHEME = %s;', 'tokens' => array(LOGIN_THEME)));
+		xenonx('runjs', array('js' => 'USERTHEME = %s;', 'tokens' => array(LOGIN_THEME)));
 		if (SECURE_LOGIN == 1 && function_exists('service_um_loginWithHash')) {
 			$_SESSION['sawasc'] = md5(uniqid(rand()));
 		} else {
@@ -61,7 +61,7 @@ function eyeLogin_run($params = '') {
 			} else {
 				$password = base64_encode($password);
 			}
-			eyex('runjs', array('js' => 'xGetElementById("' . $myPid . '_eyeLogin_Textbox_1_User").value = %s;
+			xenonx('runjs', array('js' => 'xGetElementById("' . $myPid . '_eyeLogin_Textbox_1_User").value = %s;
 	sendMsg(' . $checknum . ', "Login", eyeParam("eyeLogin_Textbox_1_User", %s) + eyeParam("eyeLogin_Textbox_1_Password", %s) + eyeParam("eyeLogin_Select_1_Language", %s));', 'tokens' => array($_SESSION['username'], $_SESSION['username'], $password, $_SESSION['language'])));
 			unset($_SESSION['username']);
 			unset($_SESSION['password']);

@@ -19,7 +19,7 @@ function miniHome_run($params=null) {
 
 	foreach (proc('getProcessTable') as $process) {
 		if ($process['appName'] == 'miniHome' && $process['pid'] != $myPid) {
-			eyex('messageBox', array('content' => 'miniHome is already running!'));
+			xenonx('messageBox', array('content' => 'miniHome is already running!'));
 			return proc('end');
 		}
 	}
@@ -39,7 +39,7 @@ function miniHome_run($params=null) {
 	/**
 	*@Todo if Windows Widget gets class fix this
 	*/
-	eyeX('rawjs',array('js'=>
+	xenonx('rawjs',array('js'=>
 		'document.getElementById("'.$myPid.'_' . $myWindow->name . '").className = "miniWND";
 		document.getElementById("'.$myPid.'_' . $myWindow->name . '_Content").className = "miniWND";
 		'
@@ -96,13 +96,13 @@ function miniHome_run($params=null) {
 	$quotaBar->show();
 	eyeWidgets('serialize', array($quotaBar));
 
-	eyex('rawjs',array('js' =>
+	xenonx('rawjs',array('js' =>
 		'document.getElementById("' . $myPid . '_' . $myLabel0->name . '").className = "miniAppTitle";
 		'
 	));
 
 	//CSS
-	eyex('loadCss',array(
+	xenonx('loadCss',array(
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/miniApps/miniApps.css&type=css',
 		'id' => 'miniApps'
 	));

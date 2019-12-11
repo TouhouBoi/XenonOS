@@ -18,7 +18,7 @@ function xeControl_on_cleantemp_do($params = '') {
 	global $currentUser;
 	if ($currentUser == ROOTUSER) {
 		xeControl_lib_deleteDirContent(XENONOS_ROOT . '/' . XENONOS_TMP_DIR . '/');
-		eyex('messageBox',array('content' => 'Temporary files and folders successfully removed.'));
+		xenonx('messageBox',array('content' => 'Temporary files and folders successfully removed.'));
 		xeControl_lib_loadContent('only_root','cleantemp');
 	}
 }

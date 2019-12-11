@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function xeControl_on_eyedesk_new($params = '') {
-	$mySelect = eyex('messageBox',array(
+	$mySelect = xenonx('messageBox',array(
 		'buttons' => array(array('eyedesk_new_add','Add'),array('eyedesk_new_cancel','Cancel')),
 		'content' => 'Type the command you want to run at login.',
 		'father' => 'xeControl_container_big',
@@ -51,15 +51,15 @@ function xeControl_on_eyedesk_new_add($params = '') {
 		$autorunXML = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
 		$arrayIds = xeControl_lib_findIdByText(array($autorunXML['eyeDesk'][0]['autolaunch'],$autorun));
 		if (isset($arrayIds[0])) {
-			eyex('messageBox',array('content' => 'That command is already configured!'));
+			xenonx('messageBox',array('content' => 'That command is already configured!'));
 		} else {
 			$autorunXML['eyeDesk'][0]['autolaunch'][] = $autorun;
 			xeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$autorunXML));
-			eyex('messageBox',array('content' => 'Command successfully added.'));
+			xenonx('messageBox',array('content' => 'Command successfully added.'));
 			xeControl_lib_loadContent('system','eyedesk');
 		}
 	} else {
-		eyex('messageBox',array('content' => 'Please type a command!'));
+		xenonx('messageBox',array('content' => 'Please type a command!'));
 	}
 }
 
@@ -70,7 +70,7 @@ function xeControl_on_eyedesk_new_cancel($params = '') {
 function xeControl_on_eyedesk_edit($params = '') {
 	$autorun = $GLOBALS['xeControl_eyedesk_sortabletable']->selected;
 	if ($autorun) {
-		$mySelect = eyex('messageBox',array(
+		$mySelect = xenonx('messageBox',array(
 			'buttons' => array(array('eyedesk_edit_save','Save'),array('eyedesk_edit_cancel','Cancel')),
 			'content' => 'Type the command you want to run at login.',
 			'father' => 'xeControl_container_big',
@@ -93,7 +93,7 @@ function xeControl_on_eyedesk_edit($params = '') {
 			}
 		}
 	} else {
-		eyex('messageBox',array('content' => 'Please choose a command to be edited.'));
+		xenonx('messageBox',array('content' => 'Please choose a command to be edited.'));
 	}
 }
 
@@ -107,13 +107,13 @@ function xeControl_on_eyedesk_edit_save($params = '') {
 		if (isset($arrayIds)) {
 			$autorunXML['eyeDesk'][0]['autolaunch'][$arrayIds] = $autorun_new;
 			xeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$autorunXML));
-			eyex('messageBox',array('content' => 'Command successfully saved.'));
+			xenonx('messageBox',array('content' => 'Command successfully saved.'));
 			xeControl_lib_loadContent('system','eyedesk');
 		} else {
-			eyex('messageBox',array('content' => 'That command does not exist!'));
+			xenonx('messageBox',array('content' => 'That command does not exist!'));
 		}
 	} else {
-		eyex('messageBox',array('content' => 'Please type a command!'));
+		xenonx('messageBox',array('content' => 'Please type a command!'));
 	}
 }
 
@@ -122,7 +122,7 @@ function xeControl_on_eyedesk_edit_cancel($params = '') {
 }
 
 function xeControl_on_eyedesk_default($params = '') {
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'buttons' => array(array('eyedesk_default_yes','Yes'),array('eyedesk_default_no','No')),
 		'content' => 'Do you really want to restore the default eyeDesk settings?',
 		'father' => 'xeControl_container_big',
@@ -144,7 +144,7 @@ function xeControl_on_eyedesk_default_yes($params = '') {
 	$xmlNew = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
 	$xmlNew['eyeDesk'][0]['autolaunch'] = $xmlDef['eyeDesk'][0]['autolaunch'];
 	xeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$xmlNew));
-	eyex('messageBox',array('content' => 'Default settings successfully set.'));
+	xenonx('messageBox',array('content' => 'Default settings successfully set.'));
 	xeControl_lib_loadContent('system','eyedesk');
 }
 
@@ -155,7 +155,7 @@ function xeControl_on_eyedesk_default_no($params = '') {
 function xeControl_on_eyedesk_delete($params = '') {
 	$autorun = $GLOBALS['xeControl_eyedesk_sortabletable']->selected;
 	if ($autorun) {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'buttons' => array(array('eyedesk_delete_yes','Yes'),array('eyedesk_delete_no','No')),
 			'content' => 'Do you really want to remove this command?',
 			'father' => 'xeControl_container_big',
@@ -168,7 +168,7 @@ function xeControl_on_eyedesk_delete($params = '') {
 			'win_style' => TITLE + CLOSE
 		));
 	} else {
-		eyex('messageBox',array('content' => 'Please choose a command to be deleted.'));
+		xenonx('messageBox',array('content' => 'Please choose a command to be deleted.'));
 	}
 }
 
@@ -180,7 +180,7 @@ function xeControl_on_eyedesk_delete_yes($params = '') {
 		$x = $x[0];
 		unset($autorunXML['eyeDesk'][0]['autolaunch'][$x]);
 		xeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$autorunXML));
-		eyex('messageBox',array('content' => 'Command successfully deleted.'));
+		xenonx('messageBox',array('content' => 'Command successfully deleted.'));
 		xeControl_lib_loadContent('system','eyedesk');
 	}
 }

@@ -31,7 +31,7 @@ function eyeEmbedder_on_ChooseApplicationIcon($params = null) {
 	$GLOBALS['eyeEmbedder_Select_ApplicationIcon']->selectValue('exec');
 	
 	// Update imagebox
-	eyex('runjs', array('js' => 'xGetElementById("' . $myPid . '_eyeEmbedder_Imagebox_ApplicationIcon").src = "index.php?checknum=' . strval($checknum) . '&msg=GetApplicationIcon&icon=exec";'));
+	xenonx('runjs', array('js' => 'xGetElementById("' . $myPid . '_eyeEmbedder_Imagebox_ApplicationIcon").src = "index.php?checknum=' . strval($checknum) . '&msg=GetApplicationIcon&icon=exec";'));
 }
 
 function eyeEmbedder_on_ChooseApplicationIcon2($params = null) {
@@ -42,7 +42,7 @@ function eyeEmbedder_on_ChooseApplicationIcon2($params = null) {
 	// Validate image
 	$image = images_imagecreatefromfile(vfs('getRealName', array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0])));
 	if ($image === false) {
-		eyex('messageBox', array('content' => 'Selected file is not an image.'));
+		xenonx('messageBox', array('content' => 'Selected file is not an image.'));
 		return;
 	}
 	
@@ -50,7 +50,7 @@ function eyeEmbedder_on_ChooseApplicationIcon2($params = null) {
 	imagedestroy($image);
 	
 	// Update select widget
-	eyex('runjs', array('js' => 'var i, options, select;
+	xenonx('runjs', array('js' => 'var i, options, select;
 	select = xGetElementById("' . strval($myPid) . '_eyeEmbedder_Select_ApplicationIcon");
 	options = select.getElementsByTagName("option");
 	for (i = 0; i < options.length; i += 1) {
@@ -64,7 +64,7 @@ function eyeEmbedder_on_ChooseApplicationIcon2($params = null) {
 	}', 'tokens' => array(i18n('translate', array('Custom: %s', array(basename($params['arg'][0])))), 'custom:' . $params['arg'][0])));
 	
 	// Update imagebox
-	eyex('runjs', array('js' => 'xGetElementById("' . $myPid . '_eyeEmbedder_Imagebox_ApplicationIcon").src = "index.php?checknum=' . strval($checknum) . '&msg=GetApplicationIcon&icon=custom:' . urlencode($params['arg'][0]) . '";'));
+	xenonx('runjs', array('js' => 'xGetElementById("' . $myPid . '_eyeEmbedder_Imagebox_ApplicationIcon").src = "index.php?checknum=' . strval($checknum) . '&msg=GetApplicationIcon&icon=custom:' . urlencode($params['arg'][0]) . '";'));
 }
 
 function eyeEmbedder_on_Close($params = null) {
@@ -83,7 +83,7 @@ function eyeEmbedder_on_GetApplicationIcon($params = null) {
 	if (substr($icon, 0, 7) === 'custom:') {
 		eyeEmbedder_lib_ResizeIcon(vfs('getRealName', array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . substr($icon, 7))), null, 22);
 	} else {
-		$oldPath = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeX/themes/default/icons';
+		$oldPath = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonx/themes/default/icons';
 		$icon = basename($icon) . '.png';
 		
 		if (is_file($oldPath . '/22x22/' . $icon)) {
@@ -156,7 +156,7 @@ function eyeEmbedder_on_Package2($params = null) {
 		eyeEmbedder_lib_ResizeIcon($oldPath, $newPath . '/48x48/' . $applicationName . '.png', 48);
 		eyeEmbedder_lib_ResizeIcon($oldPath, $newPath . '/22x22/' . $applicationName . '.png', 22);
 	} else {
-		$oldPath = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeX/themes/default/icons';
+		$oldPath = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonx/themes/default/icons';
 		$icon = basename($icon) . '.png';
 		
 		vfs('real_copy', array($oldPath . '/48x48/' . $icon, $newPath . '/48x48/' . $applicationName . '.png'));
@@ -198,7 +198,7 @@ function eyeEmbedder_on_Package2($params = null) {
 	
 	// Create xePackage
 	if (!eyeFileArchive('compress', array(array('simple' => array($temp . '/' . APP_DIR, $temp . '/' . EXTERN_DIR)), $xePackage, 'eqTypes' => array('xepackage' => 'tgz')))) {
-		eyex('messageBox', array('content' => 'Failed packaging.'));
+		xenonx('messageBox', array('content' => 'Failed packaging.'));
 	} else {
 		eyeFiles('update', array(dirname($xePackage)));
 	}
@@ -207,7 +207,7 @@ function eyeEmbedder_on_Package2($params = null) {
 	vfs('real_rmdir', array($temp));
 	
 	// Success
-	eyex('messageBox', array('content' => 'Package created.'));
+	xenonx('messageBox', array('content' => 'Package created.'));
 }
 
 function eyeEmbedder_on_Test($params = null) {

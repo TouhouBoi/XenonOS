@@ -39,7 +39,7 @@ function eyeFTP_bounceRequest($params=null) {
 	}
 	$sendMsgParams .= 'eyeParam("__bounce","1")';
 
-	eyeX('rawjs',array('js' => 'sendMsg('.$checknum.',"'.$params['__signal'].'",'.$sendMsgParams.');'));
+	xenonx('rawjs',array('js' => 'sendMsg('.$checknum.',"'.$params['__signal'].'",'.$sendMsgParams.');'));
 }
 
 /**
@@ -137,12 +137,12 @@ function eyeFTP_logConsole($text, $tokens=null, $type=EYEFTP_LOGSTYLE_NORMAL, $d
 
 	global $myPid;
 	$text_b64 = base64_encode(i18n('translate',array($text,$tokens)));
-	eyeX('rawjs',array('js' => 'eyeFTP_logConsole("'.$myPid.'","'.$text_b64.'",100,"'.$type.'",'.$debug.')'));
+	xenonx('rawjs',array('js' => 'eyeFTP_logConsole("'.$myPid.'","'.$text_b64.'",100,"'.$type.'",'.$debug.')'));
 }
 
 function eyeFTP_clearLogConsole() {
 	global $myPid;
-	eyeX('rawjs',array('js' => 'eyeFTP_clearConsole("'.$myPid.'")'));
+	xenonx('rawjs',array('js' => 'eyeFTP_clearConsole("'.$myPid.'")'));
 }
 
 /**

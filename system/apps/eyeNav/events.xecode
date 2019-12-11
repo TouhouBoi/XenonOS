@@ -75,7 +75,7 @@ function eyeNav_on_Fullscreen($params = '')
 		$press = 'Press';
 	}
 
-	eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_toolbar");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_toolbar");
 	for (var i = 0; i < e.childNodes.length; i++) {
 		if (e.childNodes[i].id == "Fullscreen_Container") {
 			e.childNodes[i].className = "blockbarItem' . $press . '_right";
@@ -87,7 +87,7 @@ function eyeNav_on_Back($params = null)
 {
 	global $myPid;
 
-	eyex('runjs', array('js' => 'var contentWindow, frame;
+	xenonx('runjs', array('js' => 'var contentWindow, frame;
 	frame = parent.frames["' . strval($myPid) . '_eyeNav_frame"];
 	contentWindow = frame.contentWindow ? frame.contentWindow : frame.window;
 	contentWindow.history.back();'));
@@ -99,7 +99,7 @@ function eyeNav_on_Forward($params = null)
 {
 	global $myPid;
 
-	eyex('runjs', array('js' => 'var contentWindow, frame;
+	xenonx('runjs', array('js' => 'var contentWindow, frame;
 	frame = parent.frames["' . strval($myPid) . '_eyeNav_frame"];
 	contentWindow = frame.contentWindow ? frame.contentWindow : frame.window;
 	contentWindow.history.forward();'));
@@ -111,7 +111,7 @@ function eyeNav_on_Refresh($params = null)
 {
 	global $myPid;
 
-	eyex('runjs', array('js' => 'var contentDocument, frame, iframe;
+	xenonx('runjs', array('js' => 'var contentDocument, frame, iframe;
 	frame = parent.frames["' . strval($myPid) . '_eyeNav_frame"];
 	contentDocument = frame.contentDocument ? frame.contentDocument : frame.document;
 	iframe = contentDocument.getElementsByTagName("iframe")[0];
@@ -149,7 +149,7 @@ function eyeNav_on_Bookmarks($params = '')
 		$GLOBALS['eyeNav_frame']->setX($GLOBALS['eyeNav_window_box']->width + 20);
 		$GLOBALS['eyeNav_line']->unhide();
 
-		eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_toolbar");
+		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_toolbar");
 		for (var i = 0; i < e.childNodes.length; i++) {
 			if (e.childNodes[i].id == "Bookmarks_Container") {
 				e.childNodes[i].className = "blockbarItemPress";
@@ -182,7 +182,7 @@ function eyeNav_on_delBookmark($params = '')
 	{
 		if (stripos($key, 'eyeNav_box_hidden_del_') !== false)
 		{
-			eyex('messageBox',
+			xenonx('messageBox',
 				array(
 					'buttons' => array(array('delBookmark_yes','Yes'), array('delBookmark_no','No')),
 					'content' => 'Do you really want to delete this bookmark?',
@@ -265,18 +265,18 @@ function eyeNav_on_delBookmark_yes($params = '')
 				eyeXML('setXMLfile', array(vfs('getRealName', array($path)), $xml));
 			}
 
-			eyex('messageBox', array('content' => 'Link successfully deleted.'));
+			xenonx('messageBox', array('content' => 'Link successfully deleted.'));
 
 			eyeNav_lib_ShowBookmarks();
 		}
 		else
 		{
-			eyex('messageBox', array('content' => 'Bookmark does not exist!'));
+			xenonx('messageBox', array('content' => 'Bookmark does not exist!'));
 		}
 	}
 	else
 	{
-		eyex('messageBox', array('content' => 'Bookmark does not exist!'));
+		xenonx('messageBox', array('content' => 'Bookmark does not exist!'));
 	}
 
 	$GLOBALS['eyeNav_window_delBookmark']->close();
@@ -371,7 +371,7 @@ function eyeNav_on_Search($params = '')
 		$GLOBALS['eyeNav_frame']->setX($GLOBALS['eyeNav_window_box']->width + 20);
 		$GLOBALS['eyeNav_line']->unhide();
 
-		eyex('rawjs', array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_toolbar");
+		xenonx('rawjs', array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_toolbar");
 		for (var i = 0; i < e.childNodes.length; i++) {
 			if (e.childNodes[i].id == "Search_Container") {
 				e.childNodes[i].className = "blockbarItemPress";
@@ -458,7 +458,7 @@ function eyeNav_on_addFolder_add_BTN($params = null)
 
 	if (empty($text))
 	{
-		eyex('messageBox', array ('content' => 'You must enter a name'));
+		xenonx('messageBox', array ('content' => 'You must enter a name'));
 		return;
 	}
 
@@ -473,13 +473,13 @@ function eyeNav_on_addFolder_add_BTN($params = null)
 
 	if (eyeXML('setXMLconfig',array('eyeNav', 'conf.xml', $xml)))
 	{
-		eyeX('messageBox', array ('content'=> 'Folder successfully added'));
+		xenonx('messageBox', array ('content'=> 'Folder successfully added'));
 		eyeNav_lib_refreshTree();
 		eyeNav_on_addFolder_cancel_BTN();
 	}
 	else
 	{
-		eyeX('messageBox', array ('content'=> 'Error adding folder'));
+		xenonx('messageBox', array ('content'=> 'Error adding folder'));
 	}
 }
 
@@ -520,7 +520,7 @@ function eyeNav_on_addBookmark_add_BTN($params = null)
 
 	if (empty($name) || empty($url))
 	{
-		eyex('messageBox', array ('content' => 'You must enter all fields'));
+		xenonx('messageBox', array ('content' => 'You must enter all fields'));
 		return;
 	}
 
@@ -546,13 +546,13 @@ function eyeNav_on_addBookmark_add_BTN($params = null)
 
 	if (eyeXML('setXMLconfig', array ('eyeNav', 'conf.xml', $xml)))
 	{
-		eyeX('messageBox', array ('content'=> 'Bookmark successfully added'));
+		xenonx('messageBox', array ('content'=> 'Bookmark successfully added'));
 		eyeNav_lib_refreshTree();
 		eyeNav_on_addBookmark_cancel_BTN();
 	}
 	else
 	{
-		eyeX('messageBox', array ('content'=> 'Error adding bookmark'));
+		xenonx('messageBox', array ('content'=> 'Error adding bookmark'));
 	}
 }
 
@@ -589,13 +589,13 @@ function eyeNav_on_editBookmark_apply_BTN($params = null)
 
 	if (eyeXML('setXMLconfig', array ('eyeNav', 'conf.xml', $xml)))
 	{
-		eyeX('messageBox', array ('content'=> 'Bookmark successfully edited'));
+		xenonx('messageBox', array ('content'=> 'Bookmark successfully edited'));
 		eyeNav_lib_refreshTree();
 		eyeNav_on_editBookmark_cancel_BTN();
 	}
 	else
 	{
-		eyeX('messageBox', array ('content'=> 'Error editing bookmark'));
+		xenonx('messageBox', array ('content'=> 'Error editing bookmark'));
 	}
 }
 
@@ -625,13 +625,13 @@ function eyeNav_on_editFolder_apply_BTN($params = null)
 
 	if (eyeXML('setXMLconfig', array ('eyeNav', 'conf.xml', $xml)))
 	{
-		eyeX('messageBox', array ('content'=> 'Bookmark successfully edited'));
+		xenonx('messageBox', array ('content'=> 'Bookmark successfully edited'));
 		eyeNav_lib_refreshTree();
 		eyeNav_on_editFolder_cancel_BTN();
 	}
 	else
 	{
-		eyeX('messageBox', array ('content'=> 'Error editing bookmark'));
+		xenonx('messageBox', array ('content'=> 'Error editing bookmark'));
 	}
 }
 

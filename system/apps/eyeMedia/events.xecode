@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 include(XENONOS_ROOT.'/'.APP_DIR.'/eyeMedia/lib'.XE_CODE_EXTENSION);
 
 // $users_home_dir = um('getCurrentUserDir');
-// eyex('messageBox',array('content'=>'This is a message', 'sound' => ''));
+// xenonx('messageBox',array('content'=>'This is a message', 'sound' => ''));
 
 function eyeMedia_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
@@ -36,12 +36,12 @@ function eyeMedia_on_Select_Folder($params=null) {
 			foreach($files as $curfile) {
 				$GLOBALS['eyeMedia_tblPlaylist']->addRow(array(str_replace(um('getCurrentUserDir').FILES_USER_DIR, "", $curfile)));
 			}
-			eyex('messageBox',array('content'=>'Successfully opened: %s','tokens' => array($folder), 'sound' => ''));
+			xenonx('messageBox',array('content'=>'Successfully opened: %s','tokens' => array($folder), 'sound' => ''));
 		} else {
-			eyex('messageBox',array('content'=>'Error opening: %s','tokens' => array($folder), 'sound' => ''));
+			xenonx('messageBox',array('content'=>'Error opening: %s','tokens' => array($folder), 'sound' => ''));
 		}
 	} else {
-		eyex('messageBox',array('content'=>'No folder selected.', 'sound' => ''));
+		xenonx('messageBox',array('content'=>'No folder selected.', 'sound' => ''));
 	}
 }
 
@@ -51,12 +51,12 @@ function eyeMedia_on_Select_File($params=null) {
 		if (vfs('fileExists',array(um('getCurrentUserDir').FILES_USER_DIR.$file)))
 		{
 			$GLOBALS['eyeMedia_tblPlaylist']->addRow(array($file));
-			eyex('messageBox',array('content'=>'Successfully opened: %s','tokens' => array($file), 'sound' => ''));
+			xenonx('messageBox',array('content'=>'Successfully opened: %s','tokens' => array($file), 'sound' => ''));
 		} else {
-			eyex('messageBox',array('content'=>'Error opening: %s','tokens' => array($file), 'sound' => ''));
+			xenonx('messageBox',array('content'=>'Error opening: %s','tokens' => array($file), 'sound' => ''));
 		}
 	} else {
-		eyex('messageBox',array('content'=>'No file selected.', 'sound' => ''));
+		xenonx('messageBox',array('content'=>'No file selected.', 'sound' => ''));
 	}
 }
 
@@ -86,7 +86,7 @@ function eyeMedia_on_tlbToolbar_Remove_File($params=null) {
 	{
 		$GLOBALS['eyeMedia_tblPlaylist']->delRow($Selected_Row);
 	} else {
-		eyex('messageBox',array('content'=>'No file selected.', 'sound' => ''));
+		xenonx('messageBox',array('content'=>'No file selected.', 'sound' => ''));
 	}
 }
 
@@ -117,12 +117,12 @@ function eyeMedia_on_tlbToolbar_Repeat($params=null) {
 	if ($Current_Value)
 	{
 		$GLOBALS['eyeMedia_hdnRepeat']->setText('0');
-		eyeX('rawjs',array('js'=>"if(document.getElementById('".$myPid."_tlbToolbar_Repeat_Container').className == 'blockbarItemPress') {document.getElementById('".$myPid."_tlbToolbar_Repeat_Container').className = 'blockbarItem';}"));
-		//eyex('messageBox',array('content'=>'Repeat is off now.', 'sound' => ''));
+		xenonx('rawjs',array('js'=>"if(document.getElementById('".$myPid."_tlbToolbar_Repeat_Container').className == 'blockbarItemPress') {document.getElementById('".$myPid."_tlbToolbar_Repeat_Container').className = 'blockbarItem';}"));
+		//xenonx('messageBox',array('content'=>'Repeat is off now.', 'sound' => ''));
 	} else {
 		$GLOBALS['eyeMedia_hdnRepeat']->setText('1');
-		eyeX('rawjs', array('js' => "document.getElementById('".$myPid."_tlbToolbar_Repeat_Container').className = 'blockbarItemPress';"));
-		//eyex('messageBox',array('content'=>'Repeat is on now.', 'sound' => ''));
+		xenonx('rawjs', array('js' => "document.getElementById('".$myPid."_tlbToolbar_Repeat_Container').className = 'blockbarItemPress';"));
+		//xenonx('messageBox',array('content'=>'Repeat is on now.', 'sound' => ''));
 	}
 }
 
@@ -132,12 +132,12 @@ function eyeMedia_on_tlbToolbar_Shuffle($params=null) {
 	if ($Current_Value)
 	{
 		$GLOBALS['eyeMedia_hdnShuffle']->setText('0');
-		eyeX('rawjs',array('js'=>"if(document.getElementById('".$myPid."_tlbToolbar_Shuffle_Container').className == 'blockbarItemPress') {document.getElementById('".$myPid."_tlbToolbar_Repeat_Container').className = 'blockbarItem';}"));
-		//eyex('messageBox',array('content'=>'Shuffle is off now.', 'sound' => ''));
+		xenonx('rawjs',array('js'=>"if(document.getElementById('".$myPid."_tlbToolbar_Shuffle_Container').className == 'blockbarItemPress') {document.getElementById('".$myPid."_tlbToolbar_Repeat_Container').className = 'blockbarItem';}"));
+		//xenonx('messageBox',array('content'=>'Shuffle is off now.', 'sound' => ''));
 	} else {
 		$GLOBALS['eyeMedia_hdnShuffle']->setText('1');
-		eyeX('rawjs', array('js' => "document.getElementById('".$myPid."_tlbToolbar_Shuffle_Container').className = 'blockbarItemPress';"));
-		//eyex('messageBox',array('content'=>'Shuffle is on now.', 'sound' => ''));
+		xenonx('rawjs', array('js' => "document.getElementById('".$myPid."_tlbToolbar_Shuffle_Container').className = 'blockbarItemPress';"));
+		//xenonx('messageBox',array('content'=>'Shuffle is on now.', 'sound' => ''));
 	}
 }
 

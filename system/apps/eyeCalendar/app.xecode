@@ -28,7 +28,7 @@ function eyeCalendar_run($params = '') {
 	
 	foreach (proc('getProcessTable') as $process) {
 		if ($process['appName'] == 'eyeCalendar' && $process['pid'] != $myPid) {
-			eyex('messageBox', array('content' => 'eyeCalendar is already running!'));
+			xenonx('messageBox', array('content' => 'eyeCalendar is already running!'));
 			return proc('end');
 		}
 	}
@@ -48,11 +48,11 @@ function eyeCalendar_run($params = '') {
 		$fullScreen = false;
 	}
 	//Call component js part
-	//eyeX('messageBox',array('content'=>$_SESSION['SCREEN']['refresh'],'type'=>2));
+	//xenonx('messageBox',array('content'=>$_SESSION['SCREEN']['refresh'],'type'=>2));
 	if(!isset($_SESSION['eyeCalendarJs']) || $_SESSION['eyeCalendarJs'] < $_SESSION['SCREEN']['refresh']){
-		eyeX('rawjs',array('js'=>'eyeCalendarChecknum = '.$checknum.';'));
-		eyex('loadScript',array('url' => 'index.php?extern=apps/eyeCalendar/js/components/eyeCalendar' . XE_CODE_EXTENSION . '&type=dynamic'));
-		eyex('loadCss',array('url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/eyeCalendar/eyeCalendar.css&type=css','id' =>'eyeCalendar.css'));
+		xenonx('rawjs',array('js'=>'eyeCalendarChecknum = '.$checknum.';'));
+		xenonx('loadScript',array('url' => 'index.php?extern=apps/eyeCalendar/js/components/eyeCalendar' . XE_CODE_EXTENSION . '&type=dynamic'));
+		xenonx('loadCss',array('url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/eyeCalendar/eyeCalendar.css&type=css','id' =>'eyeCalendar.css'));
 	}
 
 	$currentDate = time();
@@ -64,7 +64,7 @@ function eyeCalendar_run($params = '') {
 	$myWindow1 = new Window(array('title'=>'Calendar','name'=>'eyeCalendarWin1','father' => 'eyeApps',
 	'y'=>35,'type'=>NORMAL_WINDOW,'sendResizeMsg'=>1,'sigResize'=>'mainResize','x'=>0,'cent'=>2,'width'=>$windowWidth,'height'=>$windowHeight,'savePosition' => 1));
 	$myWindow1->show();
-	eyeX('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeCalendarWin1_Content").style.overflow = "hidden";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeCalendarWin1_Content").style.overflow = "hidden";'));
 	$windowHeight = 535;
 
 
@@ -113,9 +113,9 @@ function eyeCalendar_run($params = '') {
 	$calendarContents = new Simplebox(array('name'=>'calendarsContainer','father'=>'container','x'=>0,'y'=>0,'width'=>158,'height'=>$windowHeight-62-148-20,'border'=>0));
 	$calendarContents->show(0);
 	$js = 'xGetElementById("'.$myPid.'_calendarsContainer_Container").style.overflowY = "auto";';
-	eyeX('rawjs',array('js'=>$js));
+	xenonx('rawjs',array('js'=>$js));
 	$js = 'xGetElementById("'.$myPid.'_calendarsContainer_Container").style.overflowX = "hidden";';
-	eyeX('rawjs',array('js'=>$js));
+	xenonx('rawjs',array('js'=>$js));
 
 	//Calendar widget.
 	$i10n = eyeCalendar('geti10n');
@@ -149,7 +149,7 @@ function eyeCalendar_run($params = '') {
 	$myContainer = new Simplebox(array('name'=>'calendarContainer','father'=>'container','x'=>167,'y'=>1,'width'=>$width,'height'=>$height,'border'=>0));
 	$myContainer->show(0);
 
-// 	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_calendarContainer_Container").style.overflowX="hidden";
+// 	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_calendarContainer_Container").style.overflowX="hidden";
 // 	document.getElementById("'.$myPid.'_calendarContainer_Container").style.overflowY="scroll";'));
 
 	//VERSION CHECK; this is needed since 1.0 version.
@@ -162,7 +162,7 @@ function eyeCalendar_run($params = '') {
 
 	$calendarView = new Hidden(array('name'=>'calendarView','text'=>''));
 	eyeWidgets('serialize',array($calendarView));
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 	//The weekPlanner is loaded in launch event
 	if(!isset($_SESSION['eyeCalendarJs']) || $_SESSION['eyeCalendarJs'] < $_SESSION['SCREEN']['refresh']){
 		$_SESSION['eyeCalendarJs'] = $_SESSION['SCREEN']['refresh'];
@@ -173,7 +173,7 @@ function eyeCalendar_run($params = '') {
 }
 
 function eyeCalendar_end($params=null) {
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }
 

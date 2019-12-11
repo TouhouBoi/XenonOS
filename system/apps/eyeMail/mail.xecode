@@ -23,15 +23,15 @@ function eyeMail_starter() {
 		eyeMail_checkNew();
 	}
 	if($settings['eyeMail'][0]['checkDelay'][0] == 5) {
-		eyeX('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*5*60);'));
+		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*5*60);'));
 	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 15) {
-		eyeX('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*15*60);'));
+		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*15*60);'));
 	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 30) {
-		eyeX('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*30*60);'));
+		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*30*60);'));
 	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 60) {
-		eyeX('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*60*60);'));
+		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*60*60);'));
 	}
-	eyeX('sendMessage',array('msg'=>'printMails'));
+	xenonx('sendMessage',array('msg'=>'printMails'));
 
 	//check if accounts list is empty
 
@@ -112,7 +112,7 @@ function eyeMail_createXMLmail($params=null) {
 
 	$myHidden2 = new Hidden(array('name'=>'steps','father'=>'eyeApps','text'=>1));
 	eyeWidgets('serialize',array($myHidden2));
-	eyeX('sendMessage',array('msg'=>'getMails'));
+	xenonx('sendMessage',array('msg'=>'getMails'));
 }
 
 function eyeMail_on_getMails($params=null) {
@@ -140,7 +140,7 @@ function eyeMail_on_getMails($params=null) {
 	if($x > $nm) {
 		$GLOBALS['eyeMail_cXMLwindow']->close();
 		eyeMail_on_printMails();
-		eyeX('messageBox',array('content'=>'Your account e-mails has been imported'));
+		xenonx('messageBox',array('content'=>'Your account e-mails has been imported'));
 		return;
 	}
 
@@ -173,7 +173,7 @@ function eyeMail_on_getMails($params=null) {
 	$myHidden2 = new Hidden(array('name'=>'steps','father'=>'eyeApps','text'=>$x));
 	eyeWidgets('serialize',array($myHidden2));
 
-	eyeX('sendMessage',array('msg'=>'getMails'));
+	xenonx('sendMessage',array('msg'=>'getMails'));
 }
 
 function eyeMail_on_printMails($params=null) {
@@ -274,9 +274,9 @@ function eyeMail_checkNew($params=null) {
 		$settings = eyeXML('getXMLconfig',array('eyeMail','settings.xml'));
 		if($settings['eyeMail'][0]['visualAlert'][0] == 1) {
 			if($dif == 1) {
-				eyeX('messageBox',array('content'=>'You have %s new mail','tokens' => array($dif)));
+				xenonx('messageBox',array('content'=>'You have %s new mail','tokens' => array($dif)));
 			} else {
-				eyeX('messageBox',array('content'=>'You have %s new mails','tokens' => array($dif)));
+				xenonx('messageBox',array('content'=>'You have %s new mails','tokens' => array($dif)));
 			}
 		}
 	}
@@ -289,13 +289,13 @@ function eyeMail_on_fetch($params) {
 	eyeMail_checkNew();
 	$settings = eyeXML('getXMLconfig',array('eyeMail','settings.xml'));
 	if($settings['eyeMail'][0]['checkDelay'][0] == 5) {
-		eyeX('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*5*60);'));
+		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*5*60);'));
 	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 15) {
-		eyeX('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*15*60);'));
+		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*15*60);'));
 	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 30) {
-		eyeX('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*30*60);'));
+		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*30*60);'));
 	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 60) {
-		eyeX('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*60*60);'));
+		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*60*60);'));
 	}
 }
 
@@ -377,11 +377,11 @@ function eyeMail_sendMail($to,$cc,$cco,$sbj,$body) {
 			eyeMail_on_printSent();
 		}
 		if($config['eyeMail'][0]['visualAlert'][0] == 1) {
-			eyeX('messageBox',array('content'=>'Your message has been sent'));
+			xenonx('messageBox',array('content'=>'Your message has been sent'));
 		}
 	} else {
 		$GLOBALS['eyeMail_activityImgContainer']->hide();
-		eyeX('messageBox',array('content'=>'Error sending mail'));
+		xenonx('messageBox',array('content'=>'Error sending mail'));
 	}
 
 }
@@ -409,7 +409,7 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 		'sigClose' => 'closeCompose'
 	));
 	$myWindow->show();
-	eyeX('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_Compose_Content").style.overflow = "hidden";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_Compose_Content").style.overflow = "hidden";'));
 
 	if(is_array($attachments)) {
 		$pos = 190;
@@ -516,7 +516,7 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 		'y'=>$y+10,
 	));
 	$toLabel->show();
-	eyeX('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_to_lbl").style.width = "60px";xGetElementById("'.$myPid.'_eyeMail_to_lbl").style.textAlign="right";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_to_lbl").style.width = "60px";xGetElementById("'.$myPid.'_eyeMail_to_lbl").style.textAlign="right";'));
 
 	$toTextbox = new Textbox(array(
 		'name' => 'eyeMail_to_TXT',
@@ -541,7 +541,7 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 		'y'=>$y+10,
 	));
 	$ccLabel->show();
-	eyeX('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_cc_lbl").style.width = "60px";xGetElementById("'.$myPid.'_eyeMail_cc_lbl").style.textAlign="right";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_cc_lbl").style.width = "60px";xGetElementById("'.$myPid.'_eyeMail_cc_lbl").style.textAlign="right";'));
 
 	$ccTextbox = new Textbox(array(
 		'name' => 'eyeMail_cc_TXT',
@@ -564,7 +564,7 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 		'y'=>$y+10,
 	));
 	$ccoLabel->show();
-	eyeX('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_cco_lbl").style.width = "60px";xGetElementById("'.$myPid.'_eyeMail_cco_lbl").style.textAlign="right";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_cco_lbl").style.width = "60px";xGetElementById("'.$myPid.'_eyeMail_cco_lbl").style.textAlign="right";'));
 
 	$ccoTextbox = new Textbox(array(
 		'name' => 'eyeMail_cco_TXT',
@@ -587,7 +587,7 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 		'y'=>$y+10,
 	));
 	$sbjLabel->show();
-	eyeX('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_sbj_lbl").style.width = "60px";xGetElementById("'.$myPid.'_eyeMail_sbj_lbl").style.textAlign="right";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_sbj_lbl").style.width = "60px";xGetElementById("'.$myPid.'_eyeMail_sbj_lbl").style.textAlign="right";'));
 
 	$sbjTextbox = new Textbox(array(
 		'name' => 'eyeMail_sbj_TXT',
@@ -634,7 +634,7 @@ function eyeMail_drawBoxes() {
 		'title' => ''
 	));
 	$menuContainer->show(0);
-	eyeX('rawjs',array('js'=>'
+	xenonx('rawjs',array('js'=>'
 		xGetElementById("'.$myPid.'_eyeMail_menuContainer_Container").style.overflowX = "hidden";
 		xGetElementById("'.$myPid.'_eyeMail_menuContainer_Container").style.overflowY = "auto";
 	'));

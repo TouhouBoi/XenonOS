@@ -18,7 +18,7 @@ function eyeCatch_on_ChooseMap($params = '') {
 	global $currentUser;
 	global $myPid;
 	if (!$params['run']) {
-		eyex('rawjs',array('js' => 'eyeCatch.Remove("' . $myPid . '_eyeCatch_Game");'));
+		xenonx('rawjs',array('js' => 'eyeCatch.Remove("' . $myPid . '_eyeCatch_Game");'));
 
 		$GLOBALS['eyeCatch_Label']->setText('Please choose a map and click "Play Map". You need to move the player by dragging it. You should try to not fall into holes, while enemies try to catch you. Try to survive as long as possible!');
 		$GLOBALS['eyeCatch_Container']->setContent('');
@@ -72,11 +72,11 @@ function eyeCatch_on_PlayMap($params = '') {
 	global $myPid;
 	$map = $params['eyeCatch_Sortabletable'][0];
 	if ($map) {
-		eyex('rawjs',array('js' => 'eyeCatch.Remove("' . $myPid . '_eyeCatch_Game");'));
+		xenonx('rawjs',array('js' => 'eyeCatch.Remove("' . $myPid . '_eyeCatch_Game");'));
 		if (is_object($GLOBALS['eyeCatch_Sortabletable'])) {
 			$GLOBALS['eyeCatch_Sortabletable']->remove();
 		}
-		eyex('rawjs',array('js' => 'if (!document.getElementById("eyeCatch_' . $map . '")) { dhtmlLoadCSS("index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/eyeCatch/' . $map . '.css","eyeCatch_' . $map . '"); }'));
+		xenonx('rawjs',array('js' => 'if (!document.getElementById("eyeCatch_' . $map . '")) { dhtmlLoadCSS("index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/eyeCatch/' . $map . '.css","eyeCatch_' . $map . '"); }'));
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
 		$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeCatch/maps/' . $map . '.xml'));
@@ -89,19 +89,19 @@ function eyeCatch_on_PlayMap($params = '') {
 		$GLOBALS['eyeCatch_Container']->setHeight($xml['map'][0]['field'][0]['height'][0]);
 		$GLOBALS['eyeCatch_Container']->setY(89 + ($GLOBALS['eyeCatch_Window']->height - 113 - $GLOBALS['eyeCatch_Container']->height) / 2);
 
-		eyex('runjs',array('js' => 'eyeCatch.CreateField("' . $myPid . '_eyeCatch_Game","' . $myPid . '_eyeCatch_Container","' . $myPid . '_eyeCatch_Label",%s,' . mmap('array2js',array($xml['map'][0]['speed'][0])) . ',0,0,' . intval($xml['map'][0]['field'][0]['width'][0]) . ',' . intval($xml['map'][0]['field'][0]['height'][0]) . ');','tokens' => array($xml['map'][0]['field'][0]['className'][0])));
-		eyex('runjs',array('js' => 'eyeCatch.CreatePlayer("' . $myPid . '_eyeCatch_Game",%s,' . intval($xml['map'][0]['player'][0]['left'][0]) . ',' . intval($xml['map'][0]['player'][0]['top'][0]) . ',' . intval($xml['map'][0]['player'][0]['width'][0]) . ',' . intval($xml['map'][0]['player'][0]['height'][0]) . ');','tokens' => array($xml['map'][0]['player'][0]['className'][0])));
+		xenonx('runjs',array('js' => 'eyeCatch.CreateField("' . $myPid . '_eyeCatch_Game","' . $myPid . '_eyeCatch_Container","' . $myPid . '_eyeCatch_Label",%s,' . mmap('array2js',array($xml['map'][0]['speed'][0])) . ',0,0,' . intval($xml['map'][0]['field'][0]['width'][0]) . ',' . intval($xml['map'][0]['field'][0]['height'][0]) . ');','tokens' => array($xml['map'][0]['field'][0]['className'][0])));
+		xenonx('runjs',array('js' => 'eyeCatch.CreatePlayer("' . $myPid . '_eyeCatch_Game",%s,' . intval($xml['map'][0]['player'][0]['left'][0]) . ',' . intval($xml['map'][0]['player'][0]['top'][0]) . ',' . intval($xml['map'][0]['player'][0]['width'][0]) . ',' . intval($xml['map'][0]['player'][0]['height'][0]) . ');','tokens' => array($xml['map'][0]['player'][0]['className'][0])));
 		foreach ($xml['map'][0]['holes'][0]['hole'] as $hole) {
 			if (!$hole['message'][0]) {
 				$hole['message'][0] = 'You fell into a hole after %s seconds.';
 			}
-			eyex('runjs',array('js' => 'eyeCatch.AddHole("' . $myPid . '_eyeCatch_Game",%s,%s,' . intval($hole['left'][0]) . ',' . intval($hole['top'][0]) . ',' . intval($hole['width'][0]) . ',' . intval($hole['height'][0]) . ');','tokens' => array($hole['className'][0],i18n('translate',array('<div style="font-weight: bold; text-align: center;">' . $hole['message'][0] . '</div>')))));
+			xenonx('runjs',array('js' => 'eyeCatch.AddHole("' . $myPid . '_eyeCatch_Game",%s,%s,' . intval($hole['left'][0]) . ',' . intval($hole['top'][0]) . ',' . intval($hole['width'][0]) . ',' . intval($hole['height'][0]) . ');','tokens' => array($hole['className'][0],i18n('translate',array('<div style="font-weight: bold; text-align: center;">' . $hole['message'][0] . '</div>')))));
 		}
 		foreach ($xml['map'][0]['enemies'][0]['enemy'] as $enemy) {
 			if (!$enemy['message'][0]) {
 				$enemy['message'][0] = 'You were caught after %s seconds.';
 			}
-			eyex('runjs',array('js' => 'eyeCatch.AddEnemy("' . $myPid . '_eyeCatch_Game",%s,%s,' . intval($enemy['left'][0]) . ',' . intval($enemy['top'][0]) . ',' . intval($enemy['width'][0]) . ',' . intval($enemy['height'][0]) . ',' . intval($enemy['movex'][0]) . ',' . intval($enemy['movey'][0]) . ');','tokens' => array($enemy['className'][0],i18n('translate',array('<div style="font-weight: bold; text-align: center;">' . $enemy['message'][0] . '</div>')))));
+			xenonx('runjs',array('js' => 'eyeCatch.AddEnemy("' . $myPid . '_eyeCatch_Game",%s,%s,' . intval($enemy['left'][0]) . ',' . intval($enemy['top'][0]) . ',' . intval($enemy['width'][0]) . ',' . intval($enemy['height'][0]) . ',' . intval($enemy['movex'][0]) . ',' . intval($enemy['movey'][0]) . ');','tokens' => array($enemy['className'][0],i18n('translate',array('<div style="font-weight: bold; text-align: center;">' . $enemy['message'][0] . '</div>')))));
 		}
 
 		$GLOBALS['eyeCatch_Toolbar']->remove();
@@ -112,11 +112,11 @@ function eyeCatch_on_PlayMap($params = '') {
 		$myToolbar->show();
 		eyeWidgets('serialize',array($myToolbar));
 		$myToolbar->addItem('ChooseMap','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/details.png','Choose Map');
-		eyex('runjs',array('js' => 'addItemToBar("' . $myPid . '_eyeCatch_Toolbar","PlayMap","index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/refresh.png",%s,"' . base64_encode('eyeParam("eyeCatch_Sortabletable","' . $map . '")') . '",' . $checknum . ',22,22,0,' . $myPid . ');','tokens' => array(i18n('translate',array('Restart Game')))));
+		xenonx('runjs',array('js' => 'addItemToBar("' . $myPid . '_eyeCatch_Toolbar","PlayMap","index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/refresh.png",%s,"' . base64_encode('eyeParam("eyeCatch_Sortabletable","' . $map . '")') . '",' . $checknum . ',22,22,0,' . $myPid . ');','tokens' => array(i18n('translate',array('Restart Game')))));
 		$myToolbar->addLine();
 		$myToolbar->addItem('Fullscreen','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png','Full Screen','',1);
 	} else {
-		eyex('messageBox',array('content' => 'Please select a map first.'));
+		xenonx('messageBox',array('content' => 'Please select a map first.'));
 	}
 }
 
@@ -130,7 +130,7 @@ function eyeCatch_on_Fullscreen($params = '') {
 	if ($GLOBALS['eyeCatch_Window']->fullScreen) {
 		$press = 'Press';
 	}
-	eyex('rawjs',array('js' => 'e = document.getElementById("' . $myPid . '_eyeCatch_Toolbar");
+	xenonx('rawjs',array('js' => 'e = document.getElementById("' . $myPid . '_eyeCatch_Toolbar");
 	for (var i = 0; i < e.childNodes.length; i++) {
 		if (e.childNodes[i].id == "' . $myPid . '_Fullscreen_Container") {
 			e.childNodes[i].className = "blockbarItem' . $press . '_right";

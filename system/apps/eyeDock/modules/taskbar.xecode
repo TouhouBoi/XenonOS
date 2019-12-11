@@ -14,38 +14,38 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-eyex('createDiv',array(
+xenonx('createDiv',array(
 	'class' => 'eyeDock_' . $type . '_' . $place . '_taskbar_left',
 	'father' => 'eyeDock_' . $type,
 	'name' => 'eyeDock_' . $type . '_' . $place . '_' . $id . '_left'
 ));
-eyex('createDiv',array(
+xenonx('createDiv',array(
 	'class' => 'eyeDock_' . $type . '_' . $place . '_taskbar_move_left',
 	'father' => 'eyeDock_' . $type,
 	'name' => 'eyeDock_' . $type . '_' . $place . '_' . $id . '_move_left'
 ));
-eyex('createDiv',array(
+xenonx('createDiv',array(
 	'class' => 'eyeDock_' . $type . '_' . $place . '_taskbar',
 	'father' => 'eyeDock_' . $type,
 	'name' => 'eyeDock_' . $type . '_' . $place . '_' . $id
 ));
-eyex('createDiv',array(
+xenonx('createDiv',array(
 	'class' => 'eyeDock_' . $type . '_' . $place . '_taskbar_entries',
 	'father' => 'eyeDock_' . $type . '_' . $place . '_' . $id,
 	'name' => 'eyeDock_' . $type . '_' . $place . '_' . $id . '_entries'
 ));
-eyex('createDiv',array(
+xenonx('createDiv',array(
 	'class' => 'eyeDock_' . $type . '_' . $place . '_taskbar_move_right',
 	'father' => 'eyeDock_' . $type,
 	'name' => 'eyeDock_' . $type . '_' . $place . '_' . $id . '_move_right'
 ));
-eyex('createDiv',array(
+xenonx('createDiv',array(
 	'class' => 'eyeDock_' . $type . '_' . $place . '_taskbar_right',
 	'father' => 'eyeDock_' . $type,
 	'name' => 'eyeDock_' . $type . '_' . $place . '_' . $id . '_right'
 ));
 
-eyex('rawjs',array('js' => 'Taskbars.Add("' . $myPid . '","' . $type . '","' . $place . '","' . $id . '");'));
+xenonx('rawjs',array('js' => 'Taskbars.Add("' . $myPid . '","' . $type . '","' . $place . '","' . $id . '");'));
 
 $myContextMenu = new ContextMenu(array(
 	'father' => 'eyeDock_' . $type . '_' . $place . '_' . $id,

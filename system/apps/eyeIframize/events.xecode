@@ -127,7 +127,7 @@ function eyeIframize_on_Do($params = '')
 
 	if ($start_maximized == TRUE)
 	{
-		eyex('runjs', array('js' => "Windows.Maximize('".$myPid."_".$myWindow->name."');"));
+		xenonx('runjs', array('js' => "Windows.Maximize('".$myPid."_".$myWindow->name."');"));
 	}
 
 	$myIframe = new Iframe(

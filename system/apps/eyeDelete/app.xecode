@@ -21,7 +21,7 @@ function eyeDelete_run($params = '') {
 		if ($path[1] != 'real' && vfs('fileExists',array($path[0] . '/' . $file))) {
 			if (vfs('delete',array($path[0] . '/' . $file,1))) {
 				eyeFiles('update',array('trash:///',$path[1] . '://' . $path[2]));
-				eyex('messageBox',array('content' => '"%s" moved to trash successfully.','tokens' => array($file)));
+				xenonx('messageBox',array('content' => '"%s" moved to trash successfully.','tokens' => array($file)));
 			} else {
 				$error = 1;
 			}
@@ -31,13 +31,13 @@ function eyeDelete_run($params = '') {
 			}
 			if (vfs('real_delete',array($path[0] . '/' . $file))) {
 				eyeFiles('update',array('trash://',$path[1] . '://' . $path[2]));
-				eyex('messageBox',array('content' => '"%s" has been removed successfully.','tokens' => array($file)));
+				xenonx('messageBox',array('content' => '"%s" has been removed successfully.','tokens' => array($file)));
 			} else {
 				$error = 1;
 			}
 		}
 		if ($error) {
-			eyex('messageBox',array('content' => 'Error deleting file!'));
+			xenonx('messageBox',array('content' => 'Error deleting file!'));
 		} else {
 			if ($xmlLink) {
 				$file = $xmlLink['eyeLink'][0]['content'][0];
@@ -54,7 +54,7 @@ function eyeDelete_run($params = '') {
 				}
 			}
 			if ($params[1]) {
-				eyex('rawjs',array('js' => $params[1]));
+				xenonx('rawjs',array('js' => $params[1]));
 			}
 		}
 	}

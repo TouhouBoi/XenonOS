@@ -32,11 +32,11 @@ function xeControl_on_account_save($params = '') {
 		'email' => $GLOBALS['xeControl_account_textbox_email']->text,
 		'fullname' => $GLOBALS['xeControl_account_textbox_fullname']->text
 	));
-	eyex('messageBox',array('content' => 'Changes successfully saved and user updated.'));
+	xenonx('messageBox',array('content' => 'Changes successfully saved and user updated.'));
 }
 
 function xeControl_on_account_delete($params = '') {
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'buttons' => array(array('account_delete_yes','Yes'),array('account_delete_no','No')),
 		'content' => 'Please type your password to remove this account.',
 		'father' => 'xeControl_container_big',
@@ -56,7 +56,7 @@ function xeControl_on_account_delete_yes($params = '') {
 	global $currentUser;
 	if (xeControl_lib_getConfigUser() != REAL_ROOTUSER && um('login',array($currentUser,base64_decode($GLOBALS['account_delete_password']->text)))) {
 		um('deleteUser',array(xeControl_lib_getConfigUser()));
-		eyex('messageBox',array('content' => 'The account was successfully deleted.','type' => 2));
+		xenonx('messageBox',array('content' => 'The account was successfully deleted.','type' => 2));
 		if ($currentUser == xeControl_lib_getConfigUser()) {
 			proc('launch',array('xeControl'));
 			proc('end');
@@ -64,7 +64,7 @@ function xeControl_on_account_delete_yes($params = '') {
 			proc('launch',array('exit'));
 		}
 	} else {
-		eyex('messageBox',array('content' => 'Incorrect password!'));
+		xenonx('messageBox',array('content' => 'Incorrect password!'));
 	}
 }
 

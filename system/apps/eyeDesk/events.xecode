@@ -95,7 +95,7 @@ function eyeDesk_on_Icon_Moved($params = '') {
 		if ($_SESSION['SCREEN']['eyeApps']['height'] - $y - 88 < 0) {
 			$y -= 88;
 		}
-		eyex('rawjs',array('js' => 'i = 0;
+		xenonx('rawjs',array('js' => 'i = 0;
 		e = xGetElementById("' . $myPid . '_eyeDesk_View_Icons_Icon_0_Content");
 		while (e) {
 			if (e.value == "' . utf8_htmlentities($content, ENT_QUOTES) . '") {
@@ -137,7 +137,7 @@ function eyeDesk_on_Icon_Dropped($params = '') {
 			$file = $appName . '_' . $i;
 		}
 		$xml['eyeLink'][0]['content'][0] = $app . '.app';
-		if (vfs('real_fileExists',array(eyex('getThemeImage',array('icons/48x48/' . $app . '.png',2))))) {
+		if (vfs('real_fileExists',array(xenonx('getThemeImage',array('icons/48x48/' . $app . '.png',2))))) {
 			$xml['eyeLink'][0]['icon'][0] = $app;
 		} else {
 			$xml['eyeLink'][0]['icon'][0] = 'file';
@@ -320,7 +320,7 @@ function eyeDesk_on_OpenPath($params = '') {
 			'y' => $y2
 		));
 		$myIcon->show();
-		eyex('rawjs',array('js' => 'xGetElementById("' . $myPid . '_' . $myIcon->name . '_Container").style.textAlign = "center"; xGetElementById("img_' . $myPid . '_' . $myIcon->name . '").style.marginLeft = "-1px";'));
+		xenonx('rawjs',array('js' => 'xGetElementById("' . $myPid . '_' . $myIcon->name . '_Container").style.textAlign = "center"; xGetElementById("img_' . $myPid . '_' . $myIcon->name . '").style.marginLeft = "-1px";'));
 
 		$myWidgetDrag = new widgetDrag(array(
 			'content' => array($file[1],'home://Desktop/' . $file[0]),
@@ -358,7 +358,7 @@ function eyeDesk_on_OpenPath($params = '') {
 		}
 
 		if (in_array($i,$_SESSION['eyeDesk'][$myPid]['trashes']) && count(vfs('getDirContent',array(um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/')))) {
-			eyex('rawjs',array('js' => 'xGetElementById("img_' . $myPid . '_eyeDesk_View_Icons_Icon_' . $i . '").src = "index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/trash_full.png";'));
+			xenonx('rawjs',array('js' => 'xGetElementById("img_' . $myPid . '_eyeDesk_View_Icons_Icon_' . $i . '").src = "index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/trash_full.png";'));
 		}
 
 		$myContextMenu = new ContextMenu(array(

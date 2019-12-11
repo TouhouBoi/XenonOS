@@ -37,7 +37,7 @@ function miniToDo_on_viewNoteSignal(){
 
 	$id = $GLOBALS['miniToDo_Sortabletable']->selected;
 	if(empty($id)){
-		eyeX('messageBox',array('content'=>"Please choose a note title"));
+		xenonx('messageBox',array('content'=>"Please choose a note title"));
 		return true;
 	}
 
@@ -50,7 +50,7 @@ function miniToDo_on_viewNoteSignal(){
 
 	$viewNote_CNT = eyeXML('getXMLconfig',array('miniToDo','notes.xml'));
 	if(!$viewNote_CNT){
-		eyeX('messageBox',array('content'=>"Please choose a note title"));
+		xenonx('messageBox',array('content'=>"Please choose a note title"));
 		return false;
 	}
 
@@ -150,11 +150,11 @@ function miniToDo_on_deleteNoteSignal() {
 	$noteId = $GLOBALS['miniToDo_Sortabletable']->selected;
 
 	if(empty($noteId)){
-		eyeX('messageBox',array('content'=>'Please choose a note'));
+		xenonx('messageBox',array('content'=>'Please choose a note'));
 	return true;
 	}
 
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'content' => 'Are you sure you want to delete this note?',
 		'type' => 3,
 		'title' => 'Delete warning',
@@ -211,19 +211,19 @@ function miniToDo_on_Add($params) {
 	$NotePriority = $GLOBALS['miniToDo_txtB2']->text;
 
 	if ( /* utf8 */ trim($NoteTitle) === '') {
-		eyex('messageBox',array('content'=>'Title field is empty.'));
+		xenonx('messageBox',array('content'=>'Title field is empty.'));
 		return;
 	}
 	if ( /* utf8 */ trim($NoteArea) === '') {
-		eyex('messageBox',array('content'=>'Note field is empty.'));
+		xenonx('messageBox',array('content'=>'Note field is empty.'));
 		return;
 	}
 	if ( /* utf8 */ trim($NotePriority) === '') {
-		eyex('messageBox',array('content'=>'Priority field is empty.'));
+		xenonx('messageBox',array('content'=>'Priority field is empty.'));
 		return;
 	}
 	if (!is_numeric($NotePriority)) {
-		eyex('messageBox',array('content'=>'Priority field is not a number.'));
+		xenonx('messageBox',array('content'=>'Priority field is not a number.'));
 		return;
 	}
 
@@ -260,7 +260,7 @@ function miniToDo_on_Add($params) {
 	$GLOBALS['addNote_WND']->close();
 
 	//Mostramos el messagebox para informar que la nota ha sido añadida
-	eyex('messageBox',array('content'=>'New note created successfully.'));
+	xenonx('messageBox',array('content'=>'New note created successfully.'));
 	return true;
 }
 
@@ -272,19 +272,19 @@ function miniToDo_on_updateNote_SGNL($params){
 	$NotePriority = $GLOBALS['miniToDo_txtB2']->text;
 
 	if ( /* utf8 */ trim($NoteTitle) === '') {
-		eyex('messageBox',array('content'=>'Title field is empty.'));
+		xenonx('messageBox',array('content'=>'Title field is empty.'));
 		return;
 	}
 	if ( /* utf8 */ trim($NoteArea) === '') {
-		eyex('messageBox',array('content'=>'Note field is empty.'));
+		xenonx('messageBox',array('content'=>'Note field is empty.'));
 		return;
 	}
 	if ( /* utf8 */ trim($NotePriority) === '') {
-		eyex('messageBox',array('content'=>'Priority field is empty.'));
+		xenonx('messageBox',array('content'=>'Priority field is empty.'));
 		return;
 	}
 	if (!is_numeric($NotePriority)) {
-		eyex('messageBox',array('content'=>'Priority field is not a number.'));
+		xenonx('messageBox',array('content'=>'Priority field is not a number.'));
 		return;
 	}
 

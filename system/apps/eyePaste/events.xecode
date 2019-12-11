@@ -45,7 +45,7 @@ function eyePaste_libs_Dialog($from,$file,$to,$callback) {
 	if (is_object($GLOBALS['eyePaste_Window'])) {
 		$GLOBALS['eyePaste_Window']->close();
 	}
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'buttons' => $buttons,
 		'content' => '"%s" already exists. Please enter a new name or replace the existing one.',
 		'hiddens' => array(array('eyePaste_Hidden_FromPath',$from),array('eyePaste_Hidden_FromFilename',$file),array('eyePaste_Hidden_ToPath',$to),array('eyePaste_Hidden_Callback',$callback)),
@@ -68,11 +68,11 @@ function eyePaste_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 	$from = eyeFiles('cleanPath',array($from));
 	$to = eyeFiles('cleanPath',array($to));
 	if ($from[1] == 'trash') {
-		eyex('messageBox',array('content' => '"%s" cannot be copied from trash.','tokens' => array($file)));
+		xenonx('messageBox',array('content' => '"%s" cannot be copied from trash.','tokens' => array($file)));
 	} elseif ($to[1] == 'trash') {
-		eyex('messageBox',array('content' => '"%s" cannot be copied to trash.','tokens' => array($file)));
+		xenonx('messageBox',array('content' => '"%s" cannot be copied to trash.','tokens' => array($file)));
 	} elseif ($from[1] !== 'real' && strtolower(strrchr($file, '.')) === '.' . strtolower(XENONOS_LINK_EXT) && vfs('real_fileExists', array($from[0] . '/' . $file)) === true) { // utf8
-		eyex('messageBox',array('content' => 'Links cannot be pasted!'));
+		xenonx('messageBox',array('content' => 'Links cannot be pasted!'));
 	} else {
 		if ($from[1] . '://' . $from[2] . '/' . $file == $to[1] . '://' . $to[2] . '/' . $file2) {
 			return eyePaste_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
@@ -122,7 +122,7 @@ function eyePaste_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 			}
 		}
 		if ($callback) {
-			eyex('rawjs',array('js' => $callback));
+			xenonx('rawjs',array('js' => $callback));
 		}
 		eyeFiles('update',array($to[1] . '://' . $to[2]));
 	}

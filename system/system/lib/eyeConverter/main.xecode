@@ -26,7 +26,7 @@ function lib_eyeConverter_convert($params) {
 	$python = /* utf8 */ trim(shell_exec(escapeshellarg(OFFICE_PYTHON_PATH) . ' --version 2>&1'));
 	$python = ( /* utf8 */ strpos($python, 'not found') > -1) ? FALSE : TRUE;
 	if (!$unoconv || !$python) {
-		eyex('messageBox',array('content' => 'Office Support has not been configured correctly. Please contact your system admin.'));
+		xenonx('messageBox',array('content' => 'Office Support has not been configured correctly. Please contact your system admin.'));
 		return false;
 	}
 	

@@ -97,7 +97,7 @@ class Tab {
 			'params' => $widgetsparams
 		);
 
-		eyex('createWidget',$myTab);
+		xenonx('createWidget',$myTab);
 		$this->showed=1;
 		if($noserialize == 0) {
 			eyeWidgets('serialize',array($this));
@@ -111,14 +111,14 @@ class Tab {
 		if($this->showed == 0) {
 			$this->show();
 		}
-		eyex('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
+		xenonx('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
 	}
 
 	function setCss($params) {
 		global $myPid;
 		if(is_array($params)) {
 			foreach($params as $key => $value) {
-				eyex('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
+				xenonx('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
 			}
 		}
 	}
@@ -126,24 +126,24 @@ class Tab {
 	function hide() {
 		global $myPid;
 		$this->visible = 0;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.visibility=visible'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.visibility=visible'));
 	}
 
 	function unhide() {
 		global $myPid;
 		$this->visible = 1;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.visibility=hidden'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.visibility=hidden'));
 	}
 
 	function setWidth($width) {
 		global $myPid;
 		$this->width = intval($width);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.width="'.$this->width.'px";'));
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.width="'.$this->width.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.width="'.$this->width.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.width="'.$this->width.'px";'));
 		foreach($this->myTabs as $key=>$value) {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$key.'").style.width="'.$this->width.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$key.'").style.width="'.$this->width.'px";'));
 		}
-		eyex('rawjs',array('js' => '
+		xenonx('rawjs',array('js' => '
 		document.getElementById("' . $myPid . '_' . $this->name . '_buttonLeft").style.display = "block";
 		document.getElementById("' . $myPid . '_' . $this->name . '_buttonRight").style.display = "block";
 		document.getElementById("' . $myPid . '_' . $this->name . '_header").style.width = String(' . $this->width . ' - xWidth("' . $myPid . '_' . $this->name . '_buttonRight") - xWidth("' . $myPid . '_' . $this->name . '_buttonRight")) + "px";
@@ -156,23 +156,23 @@ class Tab {
 	function setHeight($height) {
 		global $myPid;
 		$this->height = intval($height);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.height="'.$this->height.'px";'));
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.height="'.$this->height.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.height="'.$this->height.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.height="'.$this->height.'px";'));
 		foreach ($this->myTabs as $key => $value) {
-			eyex('rawjs', array('js' => 'document.getElementById("' . $myPid . '_' . $key . '").style.height = String(' . $this->height . ' - xHeight("' . $myPid . '_' . $this->name . '_header")) + "px";'));
+			xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_' . $key . '").style.height = String(' . $this->height . ' - xHeight("' . $myPid . '_' . $this->name . '_header")) + "px";'));
 		}
 	}
 
 	function setX($x) {
 		global $myPid;
 		$this->x = intval($x);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.left="'.$this->x.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.left="'.$this->x.'px";'));
 	}
 
 	function setY($y) {
 		global $myPid;
 		$this->y = intval($y);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.top="'.$this->y.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.top="'.$this->y.'px";'));
 	}
 
 	function addTab($tabname,$noclose=0) {
@@ -184,7 +184,7 @@ class Tab {
 			$tabname = i18n('translate',array($tabname));
 		}
 		$tokens[] = $tabname;
-		eyex('runjs',array('js' => $name.'.addTab( %s ,'.$this->counter.','.$noclose.');','tokens'=>$tokens));
+		xenonx('runjs',array('js' => $name.'.addTab( %s ,'.$this->counter.','.$noclose.');','tokens'=>$tokens));
 		$this->counter++;
 		return $ret;
 	}
@@ -192,7 +192,7 @@ class Tab {
 	function remove() {
 		global $myPid;
 		$name = $this->name.'_Container';
-		eyex('removeWidget',array('name'=>$name));
+		xenonx('removeWidget',array('name'=>$name));
 		eyeWidgets('singleUnserialize',array($this->name));
 	}
 
@@ -202,7 +202,7 @@ class Tab {
 		$tabid = $myPid.'_'.$tabName;
 		$tabid = /* utf8 */ substr($tabid, 0, -8);
 		$tokens[] = $tabid;
-		eyex('runjs',array('js' => $name.'.removeTab( %s );','tokens'=>$tokens));
+		xenonx('runjs',array('js' => $name.'.removeTab( %s );','tokens'=>$tokens));
 		unset($this->myTabs[$tabName]);
 	}
 
@@ -234,7 +234,7 @@ class Tab {
 		$tabid = $myPid.'_'.$tabName;
 		$tabid = /* utf8 */ substr($tabid, 0, -8);
 		$tokens[] = $tabid;
-		eyex('runjs',array('js' => $name.'.selectTab( %s );','tokens'=>$tokens));
+		xenonx('runjs',array('js' => $name.'.selectTab( %s );','tokens'=>$tokens));
 	}
 
 	function selectTab($tabName) {
@@ -242,7 +242,7 @@ class Tab {
 		$name = 'tab_'.$myPid.'_'.$this->name;
 		$tabid = $myPid.'_'.$tabName;
 		$tokens[] = $tabid;
-		eyex('runjs',array('js' => $name.'.selectTab( %s );','tokens'=>$tokens));
+		xenonx('runjs',array('js' => $name.'.selectTab( %s );','tokens'=>$tokens));
 	}
 
 	function selectByName($tabname) {

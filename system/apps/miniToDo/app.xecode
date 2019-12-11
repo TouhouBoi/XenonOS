@@ -19,7 +19,7 @@ function miniToDo_run($params = '') {
 
 	foreach (proc('getProcessTable') as $process) {
 		if ($process['appName'] == 'miniToDo' && $process['pid'] != $myPid) {
-			eyex('messageBox', array('content' => 'miniToDo is already running!'));
+			xenonx('messageBox', array('content' => 'miniToDo is already running!'));
 			return proc('end');
 		}
 	}
@@ -39,7 +39,7 @@ function miniToDo_run($params = '') {
 	/**
 	*@Todo if Windows Widget gets class fix this
 	*/
-	eyeX('rawjs',array('js'=>
+	xenonx('rawjs',array('js'=>
 		'document.getElementById("'.$myPid.'_' . $myWindow->name . '").className = "miniWND";
 		document.getElementById("'.$myPid.'_' . $myWindow->name . '_Content").className = "miniWND";
 		'
@@ -138,13 +138,13 @@ function miniToDo_run($params = '') {
 	}
 
 	//set class for title
-	eyex('rawjs',array('js' =>
+	xenonx('rawjs',array('js' =>
 		'document.getElementById("' . $myPid . '_' . $myLabel->name . '").className = "miniAppTitle";
 		'
 	));
 
 	//CSS
-	eyex('loadCss',array(
+	xenonx('loadCss',array(
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/miniApps/miniApps.css&type=css',
 		'id' => 'miniApps'
 	));

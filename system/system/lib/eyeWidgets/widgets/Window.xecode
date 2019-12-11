@@ -121,7 +121,7 @@ class Window {
 		$this->creatorPid = $myPid;
 		$this->father = $params['father'];
 		$this->name = $params['name'];
-		$this->xChecknum = proc('findChecknumByName',array('eyeX'));
+		$this->xChecknum = proc('findChecknumByName',array('xenonx'));
 
 		isset($params['allDrag']) ? $this->allDrag = $params['allDrag'] : $this->allDrag = '';
 		isset($params['background']) ? $this->background = $params['background'] : $this->background = '';
@@ -164,8 +164,8 @@ class Window {
 		} elseif (isset($params['forcePosition']) === true && $params['forcePosition']) {
 			$this->savePosition = NO_SAVE;
 		} else {
-			$xml = eyeXML('getXMLconfig',array('eyex','eyeX.xml'));
-			if ($xml['eyex'][0]['saveWindowPositions'][0] == '0') {
+			$xml = eyeXML('getXMLconfig',array('xenonx','xenonx.xml'));
+			if ($xml['xenonx'][0]['saveWindowPositions'][0] == '0') {
 				$this->savePosition = NO_SAVE;
 			}
 		}
@@ -340,7 +340,7 @@ class Window {
 		if (!$this->showed) {
 			$this->show();
 		}
-		eyex('addEvent',array(
+		xenonx('addEvent',array(
 			'action' => $action,
 			'args' => $args,
 			'event' => $event,
@@ -360,15 +360,15 @@ class Window {
 
 	function clear() {
 		global $myPid;
-		eyex('rawjs',array('js' => 'Windows.Clear("' . $myPid . '_' . $this->name . '");'));
+		xenonx('rawjs',array('js' => 'Windows.Clear("' . $myPid . '_' . $this->name . '");'));
 	}
 
 	function close($closingType = 0) {
 		global $myPid;
 		if ($closingType) {
-			eyex('rawjs',array('js' => 'Windows.Close("' . $myPid . '_' . $this->name . '",' . intval($closingType) . ',1);'));
+			xenonx('rawjs',array('js' => 'Windows.Close("' . $myPid . '_' . $this->name . '",' . intval($closingType) . ',1);'));
 		} else {
-			eyex('rawjs',array('js' => 'Windows.Close("' . $myPid . '_' . $this->name . '",0,1);'));
+			xenonx('rawjs',array('js' => 'Windows.Close("' . $myPid . '_' . $this->name . '",0,1);'));
 		}
 		eyeWidgets('singleUnserialize',array($this->name));
 	}
@@ -377,23 +377,23 @@ class Window {
 		global $myPid;
 		if (!$close || $close == 2 && $this->close) {
 			$this->close = 0;
-			eyex('rawjs',array('js' => 'Windows.CloseButton("' . $myPid . '_' . $this->name . '",0);'));
+			xenonx('rawjs',array('js' => 'Windows.CloseButton("' . $myPid . '_' . $this->name . '",0);'));
 		} else {
 			$this->close = 1;
-			eyex('rawjs',array('js' => 'Windows.CloseButton("' . $myPid . '_' . $this->name . '",1);'));
+			xenonx('rawjs',array('js' => 'Windows.CloseButton("' . $myPid . '_' . $this->name . '",1);'));
 		}
 		return $this->close;
 	}
 
 	function focus() {
 		global $myPid;
-		eyex('rawjs',array('js' => 'Windows.Focus("' . $myPid . '_' . $this->name . '");'));
+		xenonx('rawjs',array('js' => 'Windows.Focus("' . $myPid . '_' . $this->name . '");'));
 	}
 
 	/*	Gets stored positions and size from relevant file, returns as array	*/
 	function getSavedPositions() {
 		global $myPid;
-		$xml = eyeXML('getXMLconfig',array('eyex',proc('findNameByPid',array($myPid)) . '.xml'));
+		$xml = eyeXML('getXMLconfig',array('xenonx',proc('findNameByPid',array($myPid)) . '.xml'));
 		if (!$xml || !is_array($xml)) {
 			return false;
 		}
@@ -403,7 +403,7 @@ class Window {
 	function hide() {
 		global $myPid;
 		$this->visible = 0;
-		eyex('rawjs',array('js' => 'Windows.Hide("' . $myPid . '_' . $this->name . '");'));
+		xenonx('rawjs',array('js' => 'Windows.Hide("' . $myPid . '_' . $this->name . '");'));
 	}
 
 	function listenerResizeFullScreen($params) {
@@ -433,10 +433,10 @@ class Window {
 		global $myPid;
 		if (!$max || $max == 2 && $this->max) {
 			$this->max = 0;
-			eyex('rawjs',array('js' => 'Windows.MaximizeButton("' . $myPid . '_' . $this->name . '",0);'));
+			xenonx('rawjs',array('js' => 'Windows.MaximizeButton("' . $myPid . '_' . $this->name . '",0);'));
 		} else {
 			$this->max = 1;
-			eyex('rawjs',array('js' => 'Windows.MaximizeButton("' . $myPid . '_' . $this->name . '",1);'));
+			xenonx('rawjs',array('js' => 'Windows.MaximizeButton("' . $myPid . '_' . $this->name . '",1);'));
 		}
 		return $this->max;
 	}
@@ -445,10 +445,10 @@ class Window {
 		global $myPid;
 		if (!$min || $min == 2 && $this->min) {
 			$this->min = 0;
-			eyex('rawjs',array('js' => 'Windows.MinimizeButton("' . $myPid . '_' . $this->name . '",0);'));
+			xenonx('rawjs',array('js' => 'Windows.MinimizeButton("' . $myPid . '_' . $this->name . '",0);'));
 		} else {
 			$this->min = 1;
-			eyex('rawjs',array('js' => 'Windows.MinimizeButton("' . $myPid . '_' . $this->name . '",1);'));
+			xenonx('rawjs',array('js' => 'Windows.MinimizeButton("' . $myPid . '_' . $this->name . '",1);'));
 		}
 		return $this->min;
 	}
@@ -457,10 +457,10 @@ class Window {
 		global $myPid;
 		if (!$resize || $resize == 2 && $this->resize) {
 			$this->resize = 0;
-			eyex('rawjs',array('js' => 'Windows.ResizeButton("' . $myPid . '_' . $this->name . '",0);'));
+			xenonx('rawjs',array('js' => 'Windows.ResizeButton("' . $myPid . '_' . $this->name . '",0);'));
 		} else {
 			$this->resize = 1;
-			eyex('rawjs',array('js' => 'Windows.ResizeButton("' . $myPid . '_' . $this->name . '",1);'));
+			xenonx('rawjs',array('js' => 'Windows.ResizeButton("' . $myPid . '_' . $this->name . '",1);'));
 		}
 		return $this->resize;
 	}
@@ -469,7 +469,7 @@ class Window {
 		global $myPid;
 		if (is_array($params)) {
 			foreach($params as $key => $value) {
-				eyex('updateCss',array('name' => $myPid . '_' . $this->name,'property' => $key,'value' => $value));
+				xenonx('updateCss',array('name' => $myPid . '_' . $this->name,'property' => $key,'value' => $value));
 			}
 		}
 	}
@@ -482,7 +482,7 @@ class Window {
 			$this->fullScreen = 0;
 			$_SESSION['SCREEN']['eyeApps']['height'] = $_SESSION['SCREEN']['eyeApps']['oldHeight'];
 			$_SESSION['SCREEN']['eyeApps']['width'] = $_SESSION['SCREEN']['eyeApps']['oldWidth'];
-			eyex('rawjs',array('js' => 'var eyeScreen = document.getElementById("eyeScreen").childNodes;
+			xenonx('rawjs',array('js' => 'var eyeScreen = document.getElementById("eyeScreen").childNodes;
 			for (var i = 0; i < eyeScreen.length; i++) {
 				if (typeof(eyeScreen[i].id) != "undefined" && eyeScreen[i].oldDisplay) {
 					eyeScreen[i].style.display = eyeScreen[i].oldDisplay;
@@ -521,7 +521,7 @@ class Window {
 			$_SESSION['SCREEN']['eyeApps']['height'] = $_SESSION['SCREEN']['height'];
 			$_SESSION['SCREEN']['eyeApps']['oldWidth'] = $_SESSION['SCREEN']['eyeApps']['width'];
 			$_SESSION['SCREEN']['eyeApps']['width'] = $_SESSION['SCREEN']['width'];
-			eyex('rawjs',array('js' => 'var eyeScreen = document.getElementById("eyeScreen").childNodes;
+			xenonx('rawjs',array('js' => 'var eyeScreen = document.getElementById("eyeScreen").childNodes;
 			for (var i = 0; i < eyeScreen.length; i++) {
 				if (typeof(eyeScreen[i].id) != "undefined" && eyeScreen[i].id != "eyeApps" && eyeScreen[i].id != "eyecursor" && !eyeScreen[i].oldDisplay && eyeScreen[i].style.display != "none") {
 					if (eyeScreen[i].style.display) {
@@ -565,45 +565,45 @@ class Window {
 	function setHeight($height) {
 		global $myPid;
 		$this->height = intval($height);
-		eyex('rawjs',array('js' => 'Windows.SetHeight("' . $myPid . '_' . $this->name . '",' . $this->height . ',1);'));
+		xenonx('rawjs',array('js' => 'Windows.SetHeight("' . $myPid . '_' . $this->name . '",' . $this->height . ',1);'));
 	}
 
 	function setMaxHeight($maxHeight) {
 		global $myPid;
 		
 		$this->maxHeight = intval($maxHeight);
-		eyex('rawjs', array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"].maxHeight = ' . strval($this->maxHeight) . ';'));
+		xenonx('rawjs', array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"].maxHeight = ' . strval($this->maxHeight) . ';'));
 	}
 
 	function setMaxWidth($maxWidth) {
 		global $myPid;
 		
 		$this->maxWidth = intval($maxWidth);
-		eyex('rawjs', array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"].maxWidth = ' . strval($this->maxWidth) . ';'));
+		xenonx('rawjs', array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"].maxWidth = ' . strval($this->maxWidth) . ';'));
 	}
 
 	function setMinHeight($minHeight) {
 		global $myPid;
 		
 		$this->minHeight = intval($minHeight);
-		eyex('rawjs', array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"].minHeight = ' . strval($this->minHeight) . ';'));
+		xenonx('rawjs', array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"].minHeight = ' . strval($this->minHeight) . ';'));
 	}
 
 	function setMinWidth($minWidth) {
 		global $myPid;
 		
 		$this->minWidth = intval($minWidth);
-		eyex('rawjs', array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"].minWidth = ' . strval($this->minWidth) . ';'));
+		xenonx('rawjs', array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"].minWidth = ' . strval($this->minWidth) . ';'));
 	}
 
 	function setNoDrag($nodrag = 2) {
 		global $myPid;
 		if (!$nodrag || $nodrag == 2 && $this->nodrag) {
 			$this->nodrag = 0;
-			eyex('rawjs',array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"]["noDrag"] = 0;'));
+			xenonx('rawjs',array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"]["noDrag"] = 0;'));
 		} else {
 			$this->nodrag = 1;
-			eyex('rawjs',array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"]["noDrag"] = 1;'));
+			xenonx('rawjs',array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"]["noDrag"] = 1;'));
 		}
 		return $this->nodrag;
 	}
@@ -612,10 +612,10 @@ class Window {
 		global $myPid;
 		if (!$noresize || $noresize == 2 && $this->noresize) {
 			$this->noresize = 0;
-			eyex('rawjs',array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"]["noResize"] = 0;'));
+			xenonx('rawjs',array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"]["noResize"] = 0;'));
 		} else {
 			$this->noresize = 1;
-			eyex('rawjs',array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"]["noResize"] = 1;'));
+			xenonx('rawjs',array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"]["noResize"] = 1;'));
 		}
 		return $this->noresize;
 	}
@@ -624,48 +624,48 @@ class Window {
 		global $myPid;
 		if (!$nozindex || $nozindex == 2 && $this->noZindex) {
 			$this->noZindex = 0;
-			eyex('rawjs',array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"]["noZindex"] = 0;'));
+			xenonx('rawjs',array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"]["noZindex"] = 0;'));
 		} else {
 			$this->noZindex = 1;
-			eyex('rawjs',array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"]["noZindex"] = 1;'));
+			xenonx('rawjs',array('js' => 'Windows.List["' . $myPid . '_' . $this->name . '"]["noZindex"] = 1;'));
 		}
 		return $this->noZindex;
 	}
 
 	function SetRawContent($content) {
 		global $myPid;
-		eyex('rawjs',array('js' => 'Windows.SetRawContent("' . $myPid . '_' . $this->name . '","' . base64_encode($content) . '",1);'));
+		xenonx('rawjs',array('js' => 'Windows.SetRawContent("' . $myPid . '_' . $this->name . '","' . base64_encode($content) . '",1);'));
 	}
 
 	function setTitle($title,$tokens = '') {
 		global $myPid;
 		$this->title = i18n('translate',array($title,$tokens));
-		eyex('runjs',array('js' => 'Windows.SetTitle("' . $myPid . '_' . $this->name . '",%s);','tokens' => array($this->title)));
+		xenonx('runjs',array('js' => 'Windows.SetTitle("' . $myPid . '_' . $this->name . '",%s);','tokens' => array($this->title)));
 	}
 
 	function setWidth($width) {
 		global $myPid;
 		$this->width = intval($width);
-		eyex('rawjs',array('js' => 'Windows.SetWidth("' . $myPid . '_' . $this->name . '",' . $this->width . ',1);'));
+		xenonx('rawjs',array('js' => 'Windows.SetWidth("' . $myPid . '_' . $this->name . '",' . $this->width . ',1);'));
 	}
 
 	function setX($x) {
 		global $myPid;
 		$this->x = intval($x);
-		eyex('rawjs',array('js' => 'Windows.SetX("' . $myPid . '_' . $this->name . '",' . $this->x . ');'));
+		xenonx('rawjs',array('js' => 'Windows.SetX("' . $myPid . '_' . $this->name . '",' . $this->x . ');'));
 	}
 
 	function setY($y) {
 		global $myPid;
 		$this->y = intval($y);
-		eyex('rawjs',array('js' => 'Windows.SetY("' . $myPid . '_' . $this->name . '",' . $this->y . ');'));
+		xenonx('rawjs',array('js' => 'Windows.SetY("' . $myPid . '_' . $this->name . '",' . $this->y . ');'));
 	}
 
 	function show() {
 		global $currentUser;
 		$user = $currentUser;
 		foreach (proc('getProcessTable') as $process) {
-			if ( /* utf8 */ strtolower($process['appName']) === 'eyex' && $currentUser === $process['currentUser']) {
+			if ( /* utf8 */ strtolower($process['appName']) === 'xenonx' && $currentUser === $process['currentUser']) {
 				$user = '';
 			}
 		}
@@ -742,7 +742,7 @@ class Window {
 		}
 		$this->showed = 1;
 		$this->visible = 1;
-		eyex('createWidget',$widget);
+		xenonx('createWidget',$widget);
 		if (!$this->noZindex) {
 			$this->focus();
 		}
@@ -755,7 +755,7 @@ class Window {
 	function unhide() {
 		global $myPid;
 		$this->visible = 1;
-		eyex('rawjs',array('js' => 'Windows.Unhide("' . $myPid . '_' . $this->name . '");'));
+		xenonx('rawjs',array('js' => 'Windows.Unhide("' . $myPid . '_' . $this->name . '");'));
 	}
 
 	function unserialize() {

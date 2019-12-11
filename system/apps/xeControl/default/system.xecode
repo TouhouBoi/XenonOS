@@ -322,7 +322,7 @@ $myLabel = new Label(array(
 	'text' => ''
 ));
 $myLabel->show();
-eyex('runjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_system_office_label_text").innerHTML = %s;','tokens' => array($text)));
+xenonx('runjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_system_office_label_text").innerHTML = %s;','tokens' => array($text)));
 
 $ContentY += 50;
 // Python path

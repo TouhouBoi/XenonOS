@@ -127,9 +127,9 @@ function eyeCalendar_on_calendarConfig($params=""){
 	$cancelBtn->show();
 	global $myPid;
 	$js = 'xGetElementById("'.$myPid.'_hiddenWin").style.overflowY = "auto";';
-	eyeX('rawjs',array('js'=>$js));
+	xenonx('rawjs',array('js'=>$js));
 	$js = 'xGetElementById("'.$myPid.'_hiddenWin").style.overflowX = "hidden";';
-	eyeX('rawjs',array('js'=>$js));
+	xenonx('rawjs',array('js'=>$js));
 }
 
 /*
@@ -272,7 +272,7 @@ function eyeCalendar_on_generalConfig(){
 				nodes[x].style.paddingLeft = "40%";
 			}
 			';
-	eyeX('rawjs',array('js'=>$js));
+	xenonx('rawjs',array('js'=>$js));
 
 	$y += 30;
 	$yForm += 30;
@@ -332,7 +332,7 @@ function eyeCalendar_on_updateCalendars($params=""){
 		$value =  $value[0];
 		if($type == 'selectNum'){
 			if(!is_numeric($value)){
-				eyeX('messageBox',array('content'=>'Invalid Num %s','tokens'=>array($value)));
+				xenonx('messageBox',array('content'=>'Invalid Num %s','tokens'=>array($value)));
 				return false;
 			}
 			$paramsInfo[$preNum]['num'] = $value;
@@ -341,7 +341,7 @@ function eyeCalendar_on_updateCalendars($params=""){
 			if($value == 'true' || $value == 'false'){
 				$paramsInfo[$preNum]['show'] = $value;
 			}else{
-				eyeX('messageBox',array('content'=>'Invalid checkbox value'));
+				xenonx('messageBox',array('content'=>'Invalid checkbox value'));
 				return false;
 			}
 		}else if($type == 'calendarName'){
@@ -363,7 +363,7 @@ function eyeCalendar_on_updateCalendars($params=""){
 				unset($paramsInfo[$key]);
 				continue;
 			}else{
-				eyeX('messageBox',array('content'=>'At least, one calendar is required!'));
+				xenonx('messageBox',array('content'=>'At least, one calendar is required!'));
 				break;//We need at least one calendar
 			}
 		}
@@ -375,14 +375,14 @@ function eyeCalendar_on_updateCalendars($params=""){
 	//Checking if the ids are repeated
 	foreach($nums as $num){
 		if($num > 1){
-			eyeX('messageBox',array('content'=>'Two calendars cannot share the same ID!'));
+			xenonx('messageBox',array('content'=>'Two calendars cannot share the same ID!'));
 			return false;
 		}
 	}
 	//Checking if name are differents
 	foreach($names as $name){
 		if($name > 1){
-			eyeX('messageBox',array('content'=>'Two calendars cannot share the same name!'));
+			xenonx('messageBox',array('content'=>'Two calendars cannot share the same name!'));
 			return false;
 		}
 	}
@@ -412,7 +412,7 @@ function eyeCalendar_on_updateCalendars($params=""){
 	$notes = eyeCalendar('getWeekNotes',array($myDays));
 	$GLOBALS['weekPlanner']->cleanNotes();
 	$GLOBALS['weekPlanner']->addNotes($notes);
-	eyeX('messageBox',array('content'=>'Configuration Saved'));
+	xenonx('messageBox',array('content'=>'Configuration Saved'));
 }
 function eyeCalendar_on_workViewSave($params=''){
 // 	$configDaySelect = intval($params['configDaySelect'][0]);
@@ -464,7 +464,7 @@ function eyeCalendar_on_workViewSave($params=''){
 	$info['eyeCalendar'][0]['workEndHour'][0] = $workEndHour;
 
 	eyeCalendar('setConfig',array($info));
-	eyeX('messageBox',array('content'=>'Configuration saved correctly'));
+	xenonx('messageBox',array('content'=>'Configuration saved correctly'));
 	if($GLOBALS['calendarView']->text == 'work'){
 		_changeView($GLOBALS['calendarView']->text);
 	}
@@ -524,7 +524,7 @@ function eyeCalendar_on_generalViewSave($params=''){
 	$info['eyeCalendar'][0]['generalEndHour'][0] = $workEndHour;
 
 	eyeCalendar('setConfig',array($info));
-	eyeX('messageBox',array('content'=>'Configuration saved correctly'));
+	xenonx('messageBox',array('content'=>'Configuration saved correctly'));
 	if($GLOBALS['calendarView']->text == 'work'){
 		_changeView($GLOBALS['calendarView']->text);
 	}

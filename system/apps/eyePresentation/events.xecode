@@ -36,11 +36,11 @@ function eyePresentation_on_SelectFileOpen($params=null) {
 		$file = um('getCurrentUserDir').FILES_USER_DIR.'/'.$file;
 		//TODO: SECURITY: MAYBE VFS HERE
 		if(is_dir($file)) {
-			eyex('messageBox',array('content'=>'You need to select a file to open!'));
+			xenonx('messageBox',array('content'=>'You need to select a file to open!'));
 			return;
 		}
 		if (!vfs('checkPermissions', array($file, 'r'))) {
-			eyex('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
+			xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 			return;
 		}
 
@@ -66,7 +66,7 @@ function eyePresentation_on_back($params=null) {
 	global $checknum;
 	$myNumber = intval($GLOBALS['currentSlide']->text);
 	if($myNumber == 0) {
-		eyeX('messagebox',array('content'=>'You are already on the first slide, you cannot go back anymore!'));
+		xenonx('messagebox',array('content'=>'You are already on the first slide, you cannot go back anymore!'));
 	} else {
 		$myNumber--;
 		gotoSlide($myNumber);
@@ -128,7 +128,7 @@ function gotoSlide($num) {
 		eyeWidgets('serialize', array($myHidden));
 		$GLOBALS['currentSlide'] = $myHidden;
 	} else {
-		eyex('messageBox', array('content' => 'You are already on the last slide and cannot go further anymore!'));
+		xenonx('messageBox', array('content' => 'You are already on the last slide and cannot go further anymore!'));
 	}
 }
 

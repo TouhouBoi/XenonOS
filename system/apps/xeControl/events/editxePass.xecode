@@ -70,7 +70,7 @@ function xeControl_on_editxePass_save($params = '') {
 	$xePassXML['xePass'][0][$app][0]['pass'][0] = base64_encode($cryptp) ;
 
 	eyeXML('setXMLconfig',array('xePass','conf.xml',$xePassXML));
-	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 	xeControl_lib_loadContent('others','xePass');
 }
 ?>

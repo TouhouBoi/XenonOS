@@ -47,7 +47,7 @@ function eyeDocs_saveFile($content) {
 		$src = $tempFolder."/".basename($tempFile,".html").".".$extension;
 		
 		if (!vfs('real_fileExists', array($src))) {
-			eyex('messageBox', array('content' => 'Error saving file.'));
+			xenonx('messageBox', array('content' => 'Error saving file.'));
 			return false;
 		}
 		
@@ -66,18 +66,18 @@ function eyeDocs_saveFile($content) {
 		$realContent = /* utf8 */ substr($content, $pos + 10);
 		if(!vfs('fileExists',array($file))) {
 			if(!vfs('create',array($file,'eyeDocs'))) {
-				eyex('messageBox',array('content' => 'Error creating file.'));
+				xenonx('messageBox',array('content' => 'Error creating file.'));
 				return false;
 			}
 		}
 		$fp = vfs('open',array($file,'w'));
 		if(!$fp) {
-			eyex('messageBox',array('content'=>'Error saving file.'));
+			xenonx('messageBox',array('content'=>'Error saving file.'));
 			return false;
 		}
 
 		if (fwrite($fp, $realContent) !== /* utf8 */ strlen($realContent)) {
-			eyex('messageBox',array('content' => 'Error saving file.'));
+			xenonx('messageBox',array('content' => 'Error saving file.'));
 			return false;
 		}
 		fclose($fp);
@@ -90,7 +90,7 @@ function eyeDocs_saveFile($content) {
 	));
 	eyeWidgets('serialize',array($myHiddenMD5));
 
-	eyex('messageBox',array('content' => 'Document saved successfully.'));
+	xenonx('messageBox',array('content' => 'Document saved successfully.'));
 	return true;
 }
 
@@ -102,14 +102,14 @@ function eyeDocs_openFile($file) {
 	$extension = /* utf8 */ strtolower(basename($info['extension']));
 
 	if($extension == 'doc' || $extension == 'odt') {
-		$tCheckNum = proc('findChecknumByName',array('eyeX'));
+		$tCheckNum = proc('findChecknumByName',array('xenonx'));
 		$nfile = um('getCurrentUserDir').'tmp/'.$myPid.'.'.$info['extension'];
 		$myfolder = um('getCurrentUserDir').'tmp/'.$myPid.'_new';
 		$myHTML = $myfolder . '/'.$myPid.'.html';
 		$real = vfs('getRealName',array($file));
 
 		if(!vfs('checkPermissions',array($file))) {
-			eyeX('messageBox',array('content'=>'Sorry, you do not have sufficient permissions!'));
+			xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions!'));
 			return false;
 		}
 
@@ -118,7 +118,7 @@ function eyeDocs_openFile($file) {
 		eyeConverter('convert',array($nfile,$myfolder,$to,1));
 		$fp = vfs('real_open',array($myHTML,'r'));
 		if(!$fp) {
-			eyeX('messageBox',array('content'=>'Sorry, you need to enable OpenOffice Support to view this document.'));
+			xenonx('messageBox',array('content'=>'Sorry, you need to enable OpenOffice Support to view this document.'));
 			return false;
 		}
 		$content = fread($fp,vfs('real_filesize',array($myHTML)));
@@ -138,7 +138,7 @@ function eyeDocs_openFile($file) {
 	} else {
 		$fp = vfs('open',array($file,'r'));
 		if(!$fp) {
-			eyex('messageBox',array('content'=>'File not found.'));
+			xenonx('messageBox',array('content'=>'File not found.'));
 			return false;
 		}
 
@@ -167,7 +167,7 @@ function eyeDocs_updateServerContent() {
 	global $checknum;
 	$sync = $GLOBALS['fileContent']->getSyncString();
 	$js = 'sendMsg('.$checknum.',"updateContent",'.$sync.');';
-	eyeX('rawjs',array('js'=>$js));
+	xenonx('rawjs',array('js'=>$js));
 }
 
 function eyeDocs_setCurrentFile($file) {

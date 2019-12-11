@@ -37,7 +37,7 @@ function eyeFTP_on_eyeFTP_refreshRemote() {
 		eyeFTP_refreshRemote();
 	}
 	else {
-		eyeX('messageBox',array('content'=> 'You must connect first'));
+		xenonx('messageBox',array('content'=> 'You must connect first'));
 	}
 }
 
@@ -53,7 +53,7 @@ function eyeFTP_on_eyeFTP_browseRemote_bounced($params=null) {
 			return;
 		}
 		else {
-			eyeX('messageBox',array('content'=> 'You must connect first'));
+			xenonx('messageBox',array('content'=> 'You must connect first'));
 		}
 	}
 	// === END OF BOUNCED REQUEST PROCESSING ===
@@ -65,7 +65,7 @@ function eyeFTP_on_eyeFTP_createFolderRemote() {
 		showCreateFolderDialog();
 	}
 	else {
-		eyeX('messageBox',array('content'=> 'You must connect first'));
+		xenonx('messageBox',array('content'=> 'You must connect first'));
 	}
 }
 /* EVENT FOR 'CREATE FOLDER' DIALOG BOX */
@@ -86,7 +86,7 @@ function eyeFTP_on_eyeFTP_newFolder_createFolder_BTN($params=null) {
 		$GLOBALS['eyeFTP_newFolder_DLG']->close();
 	}
 	else {
-		eyeX('messageBox',array('content'=> 'Name must not be empty'));
+		xenonx('messageBox',array('content'=> 'Name must not be empty'));
 		return;
 	}
 }
@@ -102,11 +102,11 @@ function eyeFTP_on_eyeFTP_renameMoveRemote() {
 			));
 		}
 		else {
-			eyeX('messageBox',array('content'=> 'You must select a file or a folder first'));
+			xenonx('messageBox',array('content'=> 'You must select a file or a folder first'));
 		}
 	}
 	else {
-		eyeX('messageBox',array('content'=> 'You must connect first'));
+		xenonx('messageBox',array('content'=> 'You must connect first'));
 	}
 }
 /* EVENT FOR 'RENAME FILE/FOLDER' DIALOG BOX */
@@ -128,7 +128,7 @@ function eyeFTP_on_eyeFTP_rename_rename_BTN($params=null) {
 		$GLOBALS['eyeFTP_rename_DLG']->close();
 	}
 	else {
-		eyeX('messageBox',array('content'=> 'Name must not be empty'));
+		xenonx('messageBox',array('content'=> 'Name must not be empty'));
 		return;
 	}
 }
@@ -145,11 +145,11 @@ function eyeFTP_on_eyeFTP_deleteRemote() {
 			));
 		}
 		else {
-			eyeX('messageBox',array('content'=> 'You must select a file or a folder first'));
+			xenonx('messageBox',array('content'=> 'You must select a file or a folder first'));
 		}
 	}
 	else {
-		eyeX('messageBox',array('content'=> 'You must connect first'));
+		xenonx('messageBox',array('content'=> 'You must connect first'));
 	}
 }
 /* EVENTS FOR 'DELETE FILE/FOLDER' DIALOG BOX */
@@ -197,11 +197,11 @@ function eyeFTP_on_eyeFTP_downloadRemote($params=null) {
 			));
 		}
 		else {
-			eyeX('messageBox',array('content'=> 'Only files can be downloaded'));
+			xenonx('messageBox',array('content'=> 'Only files can be downloaded'));
 		}
 	}
 	else {
-		eyeX('messageBox',array('content'=> 'You must connect first'));
+		xenonx('messageBox',array('content'=> 'You must connect first'));
 	}
 }
 function eyeFTP_on_eyeFTP_downloadRemote_finished($params=null) {
@@ -233,7 +233,7 @@ function eyeFTP_on_eyeFTP_uploadRemote($params=null) {
 								));
 	}
 	else {
-		eyeX('messageBox',array('content'=> 'You must connect first'));
+		xenonx('messageBox',array('content'=> 'You must connect first'));
 	}
 }
 

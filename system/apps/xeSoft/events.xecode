@@ -53,7 +53,7 @@ function xeSoft_on_Update($params=""){
 			}
 		}
 	}
-	eyeX('messageBox',array('content'=>'xeSoft: Package list updated'));
+	xenonx('messageBox',array('content'=>'xeSoft: Package list updated'));
 	xeSoft_loadList();
 }
  
@@ -74,7 +74,7 @@ function getInstalled($app) {
  
 function xeSoft_loadList($category=null,$search=null) {
 	global $myPid;
-	eyeX('rawjs',array('js'=>"document.getElementById('".$myPid."_xeSoftHidden_Content').innerHTML='';"));
+	xenonx('rawjs',array('js'=>"document.getElementById('".$myPid."_xeSoftHidden_Content').innerHTML='';"));
 	$content = vfs('real_getDirContent',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports/cache/'));
 	$myHeader = array('App Name','Version','Installed');
 	$sortypes = array("String","String","String");
@@ -224,7 +224,7 @@ function xeSoft_on_Install($params=null){
 		$myHidden = new Hidden(array('name'=>'myApp','father'=>'eyeApps','text'=>$myApp));
 		eyeWidgets('serialize',array($myHidden));
 	} else {
-		eyex('messageBox',array('content' => 'Please choose an applictaion to be installed.'));
+		xenonx('messageBox',array('content' => 'Please choose an applictaion to be installed.'));
 	}
 }
  
@@ -235,7 +235,7 @@ function xeSoft_on_Accept($params=null) {
 		'text'=>'Downloading and Installing %s ... please wait','tokens' => array($myApp),'y'=>15,'x'=>20));
 	$myLabel1->show();
 	//TODO: GIF WITH MOVEMENT HERE
-	eyeX('sendMessage',array('msg'=>'stepInstall'));
+	xenonx('sendMessage',array('msg'=>'stepInstall'));
 }
  
 function xeSoft_on_stepInstall($params=null) {
@@ -316,7 +316,7 @@ function xeSoft_on_Close(){
 function xeSoft_on_Uninstall($params = '') {
 	$app = $GLOBALS['table_1']->selected;
 	if ($app) {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'content' => 'Do you really want to uninstall this application?',
 			'type' => 3,
 			'title' => 'Uninstall application',
@@ -333,7 +333,7 @@ function xeSoft_on_Uninstall($params = '') {
 			'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/editClean.png'
 		));
 	} else {
-		eyex('messageBox',array('content' => 'Please choose an applictaion to be uninstalled.'));
+		xenonx('messageBox',array('content' => 'Please choose an applictaion to be uninstalled.'));
 	}
 }
  
@@ -362,10 +362,10 @@ function xeSoft_on_Uninstall_yes($params = '') {
 				}
 				eyeXML('setXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml',$xml));
 		} else {
-			eyex('messageBox',array('content' => 'The application cannot be uninstalled.'));
+			xenonx('messageBox',array('content' => 'The application cannot be uninstalled.'));
 			return;
 		}
-		eyex('messageBox',array('content' => 'The application was successfully uninstalled.'));
+		xenonx('messageBox',array('content' => 'The application was successfully uninstalled.'));
 		$GLOBALS['xeSoft_uninstall_window']->close();
 		xeSoft_loadList();
 	}

@@ -38,7 +38,7 @@ function eyeIframize_run($params = '')
 	}
 	else
 	{
-		eyex('messageBox',
+		xenonx('messageBox',
 			array(
 				'buttons' => array(array('Do','Open'), array('Close','Cancel')),
 				'content' => 'What URL do you want to open in an IFrame?',

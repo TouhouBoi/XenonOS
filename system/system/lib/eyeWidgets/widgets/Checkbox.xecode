@@ -91,7 +91,7 @@ class Checkbox {
 			'widgetname' => 'Checkbox',
 			'params' => $widgetsparams
 		);
-		eyex('createWidget',$myCheckbox);
+		xenonx('createWidget',$myCheckbox);
 		$this->showed=1;
 		if($noserialize == 0) {
 			eyeWidgets('serialize',array($this));
@@ -106,14 +106,14 @@ class Checkbox {
 		if($this->showed == 0) {
 			$this->show();
 		}
-		eyex('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
+		xenonx('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
 	}
 
 	function setCss($params) {
 		global $myPid;
 		if(is_array($params)) {
 			foreach($params as $key => $value) {
-				eyex('updateCss',array('name' => $myPid.'_'.$this->name.'_Container','property' => $key,'value' => $value));
+				xenonx('updateCss',array('name' => $myPid.'_'.$this->name.'_Container','property' => $key,'value' => $value));
 			}
 		}
 	}
@@ -123,37 +123,37 @@ class Checkbox {
 	function disable() {
 		global $myPid;
 		$this->enabled=0;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").disabled=true'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").disabled=true'));
 	}
 
 	function enable() {
 		global $myPid;
 		$this->enabled=1;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").disabled=false'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").disabled=false'));
 	}
 
 	function hide() {
 		global $myPid;
 		$this->visible = 0;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="none"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="none"'));
 	}
 
 	function unhide() {
 		global $myPid;
 		$this->visible = 1;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="block"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="block"'));
 	}
 
 	function check() {
 		global $myPid;
 		$this->checked = 1;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").checked=true'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").checked=true'));
 	}
 
 	function uncheck() {
 		global $myPid;
 		$this->checked = 0;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").checked=false'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").checked=false'));
 	}
 
 //friend functions
@@ -164,25 +164,25 @@ class Checkbox {
 
 	function focus() {
 		global $myPid;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").focus();'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").focus();'));
 	}
 
 	function setX($x) {
 		global $myPid;
 		$this->x = intval($x);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.left="'.$this->x.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.left="'.$this->x.'px";'));
 	}
 
 	function setY($y) {
 		global $myPid;
 		$this->y = intval($y);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.top="'.$this->y.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.top="'.$this->y.'px";'));
 	}
 
 	function setWidth($width) {
 		global $myPid;
 		$this->width = intval($width);
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.width="' . $this->width . 'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.width="' . $this->width . 'px";'));
 	}
 
 	function setValue($check) {
@@ -196,15 +196,15 @@ class Checkbox {
 	function remove() {
 		global $myPid;
 		$name = $this->name.'_Container';
-		eyex('removeWidget',array('name'=>$name));
+		xenonx('removeWidget',array('name'=>$name));
 		eyeWidgets('singleUnserialize',array($this->name));
 	}
 
 	function setText($text){
 		global $myPid;
 		$this->text = $text;
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '").nextSibling.nodeValue="' . $text . '";'));
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '").value="' . $text . '";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '").nextSibling.nodeValue="' . $text . '";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '").value="' . $text . '";'));
 	}
 }
 ?>

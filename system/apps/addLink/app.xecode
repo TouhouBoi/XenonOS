@@ -21,7 +21,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function addLink_run($params = '') {
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'buttons' => array(array('Do','Create'),array('Close','Cancel')),
 		'content' => 'Please type the title of the link here:',
 		'hiddens' => array(array('addLink_Hidden',$params[1])),

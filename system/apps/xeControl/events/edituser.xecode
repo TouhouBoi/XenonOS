@@ -25,7 +25,7 @@ function xeControl_on_edituser_save($params = '') {
 	$array['username'] = $GLOBALS['xeControl_edituser_hidden']->text;
 
 	if ($currentUser != ROOTUSER && !um('checkMaintainer',array(xeControl_lib_getConfigUser())) || um('checkMaintainer',array(xeControl_lib_getConfigUser())) && !in_array($array['username'],$myUserXml['eyeUser'][0]['mngUser'])) {
-		eyex('messageBox',array('content' => 'You are not allowed to manage users!'));
+		xenonx('messageBox',array('content' => 'You are not allowed to manage users!'));
 		xeControl_lib_loadContent();
 		return;
 	}
@@ -98,7 +98,7 @@ function xeControl_on_edituser_save($params = '') {
 	}
 	um('updateUser',$array);
 	$currentUser = $oldUser;
-	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 	xeControl_lib_loadContent('only_root','users',array($_SESSION['xeControl'][$myPid]['content']['users']));
 }
 
@@ -118,9 +118,9 @@ function xeControl_on_edituser_add($params = '') {
 		}
 		$GLOBALS['xeControl_edituser_label_maintained_users_2']->setText($mngUsers);
 		$GLOBALS['xeControl_edituser_textbox_maintained_users']->setText('');
-		eyex('messageBox',array('content' => 'Changes successfully saved.'));
+		xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 	} else {
-		eyex('messageBox',array('content' => 'The user does not exist.'));
+		xenonx('messageBox',array('content' => 'The user does not exist.'));
 	}
 }
 
@@ -143,6 +143,6 @@ function xeControl_on_edituser_remove($params = '') {
 	$GLOBALS['xeControl_edituser_label_maintained_users_2']->setText($mngUsers);
 	$GLOBALS['xeControl_edituser_textbox_maintained_users']->setText('');
 	um('updateUser',$array);
-	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 }
 ?>

@@ -25,7 +25,7 @@ function xeControl_on_xePass_edit($params = '') {
 	if ($user) {
 		xeControl_lib_loadContent('others','editxePass',array($user));
 	} else {
-		eyex('messageBox',array('content' => 'Please choose an application to be edited.'));
+		xenonx('messageBox',array('content' => 'Please choose an application to be edited.'));
 	}
 }
 

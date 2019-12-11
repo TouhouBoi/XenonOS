@@ -85,7 +85,7 @@ function _paintDaysOfMonth(){
 			$js .= 'xGetElementById("'.$myPid.'_calendarWidget_'.$day.'_rest").style.fontWeight = 900;';
 		}
 	}
-	eyeX('rawjs',array('js'=>$js));
+	xenonx('rawjs',array('js'=>$js));
 }
 
 //Event recivers maybe we'll use messageTables instead recivers functions
@@ -436,11 +436,11 @@ function eyeCalendar_on_addNote($params="") {
 	//Creating the noteTime
 	$id = $params['id'][0];
 	if (!is_numeric($id)) {
-		eyeX('messageBox', array('content' => 'Failed technically. ID is not given or not numeric.'));
+		xenonx('messageBox', array('content' => 'Failed technically. ID is not given or not numeric.'));
 		return false;
 	}
 	if (eyeCalendar('getCalendarName', array($params['calendar'][0])) === false) {
-		eyeX('messageBox', array('content' => 'Failed. You need to select a calendar first.'));
+		xenonx('messageBox', array('content' => 'Failed. You need to select a calendar first.'));
 		return false;
 	}
 	$date = getDate($GLOBALS['weekPlanner']->date);
@@ -467,7 +467,7 @@ function eyeCalendar_on_addNote($params="") {
 		$prefix = 'rest';
 	}
  	$js = 'xGetElementById("'.$GLOBALS['myPid'].'_calendarWidget_'.$params['day'][0].'_'.$prefix.'").style.fontWeight = 900;';
-	eyeX('rawjs',array('js'=>$js));
+	xenonx('rawjs',array('js'=>$js));
 }
 
 function eyeCalendar_on_delNote($params="") {
@@ -498,7 +498,7 @@ function eyeCalendar_on_delNote($params="") {
 			$prefix = 'rest';
 		}
 		$js = 'xGetElementById("'.$GLOBALS['myPid'].'_calendarWidget_'.$nInfo['mday'].'_'.$prefix.'").style.fontWeight = "normal";';
-		eyeX('rawjs',array('js'=>$js));
+		xenonx('rawjs',array('js'=>$js));
 	}
 }
 
@@ -563,7 +563,7 @@ function eyeCalendar_on_moveNote($params=""){
 				$prefix = 'rest';
 			}
 			$js = 'xGetElementById("'.$GLOBALS['myPid'].'_calendarWidget_'.$nInfo['mday'].'_'.$prefix.'").style.fontWeight = "normal";';
-			eyeX('rawjs',array('js'=>$js));
+			xenonx('rawjs',array('js'=>$js));
 		}
 		//Printint the new day, don't worry if it is already painted
 		if($month == $info['mon']){
@@ -574,7 +574,7 @@ function eyeCalendar_on_moveNote($params=""){
 			$prefix = 'rest';
 		}
 		$js = 'xGetElementById("'.$GLOBALS['myPid'].'_calendarWidget_'.$monDay.'_'.$prefix.'").style.fontWeight = 900;';
-		eyeX('rawjs',array('js'=>$js));
+		xenonx('rawjs',array('js'=>$js));
 	}
 }
 function eyeCalendar_on_updateTitle($params=""){
@@ -649,7 +649,7 @@ function eyeCalendar_on_calendarShow($params=""){
 }
 function eyeCalendar_on_addCalendar(){
 	$myCalendars = eyeCalendar('getCalendarsInfo');
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'content' => 'Please specify the calendar name:',
 		'type' => 3,
 		'title' => 'Add Calendar',
@@ -670,17 +670,17 @@ function eyeCalendar_on_addCalendar(){
 function eyeCalendar_on_createCalendar($params=""){
 	$myCalendars = eyeCalendar('getCalendarsInfo');
 	if(!$params['calendarName'][0]){
-		eyeX('messageBox',array('content'=>"Please type a name for the calendar"));
+		xenonx('messageBox',array('content'=>"Please type a name for the calendar"));
 		return false;
 	}
 	$name = $params['calendarName'][0];
 	$info = eyeCalendar('createCalendar',array($name));
 	if(!$info){
-		eyeX('messageBox',array('content'=>"A calendar with the same name already exists!"));
+		xenonx('messageBox',array('content'=>"A calendar with the same name already exists!"));
 		return false;
 	}
 	$GLOBALS['weekPlanner']->addCalendars($info);
-	eyeX('messageBox',array('content'=>"Calendar added succesfully"));
+	xenonx('messageBox',array('content'=>"Calendar added succesfully"));
 	$GLOBALS['addCalendars']->close();
 }
 function eyeCalendar_on_addCalendar_Closed($params=""){

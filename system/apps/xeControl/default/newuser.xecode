@@ -18,7 +18,7 @@ global $currentUser;
 global $myPid;
 
 if ($currentUser != ROOTUSER && !um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
-	eyex('messageBox',array('content' => 'You are not allowed to manage users!'));
+	xenonx('messageBox',array('content' => 'You are not allowed to manage users!'));
 	xeControl_lib_loadContent();
 	return;
 } elseif (um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
@@ -37,7 +37,7 @@ $myLabel = new Label(array(
 	'text' => 'Please fill out all required fields marked with *.'
 ));
 $myLabel->show();
-eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_newuser_label_star_Container").style.width = "190px";'));
+xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_newuser_label_star_Container").style.width = "190px";'));
 // Username
 $myLabel = new Label(array(
 	'name' => 'xeControl_newuser_label_username',
@@ -343,7 +343,7 @@ $myContainer->show();
 $myContainer->setCss(array(
 	'direction' => 'ltr'
 ));
-eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_newuser_window_groups_Content").style.left = "0"; document.getElementById("' . $myPid . '_xeControl_newuser_window_groups_Content").style.top = "0";'));
+xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_newuser_window_groups_Content").style.left = "0"; document.getElementById("' . $myPid . '_xeControl_newuser_window_groups_Content").style.top = "0";'));
 if (xeControl_lib_getConfigUser() == ROOTUSER) {
 	// $myWindow
 	$myWindow = new Window(array(
@@ -374,7 +374,7 @@ if (xeControl_lib_getConfigUser() == ROOTUSER) {
 	$myContainer->setCss(array(
 		'direction' => 'ltr'
 	));
-	eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_newuser_window_maintain_Content").style.left = "0"; document.getElementById("' . $myPid . '_xeControl_newuser_window_maintain_Content").style.top = "0";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_newuser_window_maintain_Content").style.left = "0"; document.getElementById("' . $myPid . '_xeControl_newuser_window_maintain_Content").style.top = "0";'));
 }
 // Add all groups as Checkbox to $myWindow
 if (um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {

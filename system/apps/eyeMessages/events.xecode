@@ -36,7 +36,7 @@ function eyeMessages_on_open($params) {
 	}
 
 	if($hash == "undefined" || !$hash) {
-		eyeX('messageBox', array('content' => "You must choose a message to open"));
+		xenonx('messageBox', array('content' => "You must choose a message to open"));
 		return;
 	}
 
@@ -47,7 +47,7 @@ function eyeMessages_on_open($params) {
 	$msg = eyeMessages('openMessage', array($hash, $folder));
 
 	if(!is_array($msg)) {
-		eyeX('messageBox', array('content' => 'Error opening message'));
+		xenonx('messageBox', array('content' => 'Error opening message'));
 		return;
 	}
 
@@ -228,7 +228,7 @@ function eyeMessages_on_SelectFileSave($params=null) {
 
 		if(eyeSwap('getFile', array($hash.'.fileSwap', $file, 'eyeMessages'))) {
 			eyeFiles('update',array(dirname($file)));
-			eyex('messageBox',array('content'=>'File saved successfully.'));
+			xenonx('messageBox',array('content'=>'File saved successfully.'));
 		}
 	}
 }
@@ -237,7 +237,7 @@ function eyeMessages_on_empty($params=null) {
 	if(!is_object($GLOBALS['section']) || empty($GLOBALS['section']->text)) {
 		return;
 	}
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'content' => 'Are you sure you want to empty all messages of this folder?',
 		'type' => 3,
 		'title' => 'Confirm empty',
@@ -255,7 +255,7 @@ function eyeMessages_on_empty($params=null) {
 
 function eyeMessages_on_emptyYes($params=null) {
 	eyeMessages('empty', array($GLOBALS['section']->text));
-	eyeX('messageBox', array('content' => 'Emptied'));
+	xenonx('messageBox', array('content' => 'Emptied'));
 	$GLOBALS['emptyWND']->close();
 	eyeMessages_on_gotosection();
 }
@@ -271,7 +271,7 @@ function eyeMessages_on_restore($params=null) {
 		$hash = substr($hash, 0, strpos($hash, ',')); // utf8
 	}
 	eyeMessages('restoreMessage', array($hash));
-	eyeX('messageBox', array('content' => 'Message restored in its original folder'));
+	xenonx('messageBox', array('content' => 'Message restored in its original folder'));
 	eyeMessages_on_gotosection();
 }
 
@@ -284,7 +284,7 @@ function eyeMessages_on_delete($params=null) {
 	}
 
 	if($hash == "undefined" || !$hash) {
-		eyeX('messageBox', array('content' => "You must choose a message to delete"));
+		xenonx('messageBox', array('content' => "You must choose a message to delete"));
 		return;
 	}
 
@@ -302,8 +302,8 @@ function eyeMessages_on_gotosection($params=null) {
 	global $myPid;
 
 	$GLOBALS['table_1']->delAllRows();
-	eyeX('rawjs', array('js' => "if(document.getElementById('".$myPid."_read_container').className == 'eyeHighlighted') {document.getElementById('".$myPid."_read_container').className = '';document.getElementById('".$myPid."_read_container').style.backgroundColor='#FFFFFF';}if(document.getElementById('".$myPid."_inbox_container').className == 'eyeHighlighted') {document.getElementById('".$myPid."_inbox_container').className = '';document.getElementById('".$myPid."_inbox_container').style.backgroundColor='#FFFFFF';}if(document.getElementById('".$myPid."_trash_container').className == 'eyeHighlighted') {document.getElementById('".$myPid."_trash_container').className = '';document.getElementById('".$myPid."_trash_container').style.backgroundColor='#FFFFFF';}if(document.getElementById('".$myPid."_sent_container').className == 'eyeHighlighted') {document.getElementById('".$myPid."_sent_container').className = '';document.getElementById('".$myPid."_sent_container').style.backgroundColor='#FFFFFF';}if(document.getElementById('".$myPid."_unread_container').className == 'eyeHighlighted') {document.getElementById('".$myPid."_unread_container').className = '';document.getElementById('".$myPid."_unread_container').style.backgroundColor='#FFFFFF';}"));
-	eyeX('rawjs', array('js' => "document.getElementById('".$myPid."_".$section."_container').className = 'eyeHighlighted';document.getElementById('".$myPid."_".$section."_container').style.backgroundColor = '#579AFF';"));
+	xenonx('rawjs', array('js' => "if(document.getElementById('".$myPid."_read_container').className == 'eyeHighlighted') {document.getElementById('".$myPid."_read_container').className = '';document.getElementById('".$myPid."_read_container').style.backgroundColor='#FFFFFF';}if(document.getElementById('".$myPid."_inbox_container').className == 'eyeHighlighted') {document.getElementById('".$myPid."_inbox_container').className = '';document.getElementById('".$myPid."_inbox_container').style.backgroundColor='#FFFFFF';}if(document.getElementById('".$myPid."_trash_container').className == 'eyeHighlighted') {document.getElementById('".$myPid."_trash_container').className = '';document.getElementById('".$myPid."_trash_container').style.backgroundColor='#FFFFFF';}if(document.getElementById('".$myPid."_sent_container').className == 'eyeHighlighted') {document.getElementById('".$myPid."_sent_container').className = '';document.getElementById('".$myPid."_sent_container').style.backgroundColor='#FFFFFF';}if(document.getElementById('".$myPid."_unread_container').className == 'eyeHighlighted') {document.getElementById('".$myPid."_unread_container').className = '';document.getElementById('".$myPid."_unread_container').style.backgroundColor='#FFFFFF';}"));
+	xenonx('rawjs', array('js' => "document.getElementById('".$myPid."_".$section."_container').className = 'eyeHighlighted';document.getElementById('".$myPid."_".$section."_container').style.backgroundColor = '#579AFF';"));
 
 	if($section == 'trash')	{
 		$js = 'document.getElementById("'.$myPid.'_myBar").lastChild.style.display = "block";';
@@ -315,7 +315,7 @@ function eyeMessages_on_gotosection($params=null) {
 	} else {
 		$js .= 'document.getElementById("'.$myPid.'_table_1").rows[0].firstChild.innerHTML = "' . utf8_htmlspecialchars(i18n('translate', array('From')), ENT_QUOTES) . '";';
 	}
-	eyeX('rawjs', array('js' => $js));
+	xenonx('rawjs', array('js' => $js));
 
 	if($section == 'read') {
 		$list = eyeMessages('getRead');

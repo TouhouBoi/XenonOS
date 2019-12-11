@@ -194,7 +194,7 @@ function eyeSheets_on_saveFile($params=null) {
 	}
 	saveOds($ods, $sheetPath, $convertToExcel);
 	eyeFiles('update',array(dirname($sheetPath)));
-	eyeX('messageBox',array('content'=>'Spreadsheet saved successfully.'));
+	xenonx('messageBox',array('content'=>'Spreadsheet saved successfully.'));
 }
 
 function eyeSheets_on_SelectFileOpen($params=null) {
@@ -205,7 +205,7 @@ function eyeSheets_on_SelectFileOpen($params=null) {
 		$file = um('getCurrentUserDir').FILES_USER_DIR.'/'.$file;
 		$fp = vfs('open',array($file,'r'));
 		if(!$fp) {
-			eyeX('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
+			xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 			return;
 		}
 		fclose($fp);
@@ -245,7 +245,7 @@ function eyeSheets_on_SelectFileSave($params=null) {
 					'text'=>$file));
 				eyeWidgets('serialize',array($myHidden));
 			}
-			eyex('rawjs', array('js' => 'document.getElementById("'.$myPid.'_eyeSheetsFrame").contentWindow.saveCode();'));
+			xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_eyeSheetsFrame").contentWindow.saveCode();'));
 		}
 	}
 }

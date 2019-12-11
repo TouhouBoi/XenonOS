@@ -37,12 +37,12 @@ function eyeLaunch_on_doLaunch($params="") {
 		$user = $GLOBALS['eyeLaunch_user']->text;
 		$pass = base64_decode($GLOBALS['eyeLaunch_pass']->text);
 		if(empty($user) || (empty($pass) && $currentUser != ROOTUSER)) {
-			eyex('messageBox',array('content' => 'Error, empty username or password'));
+			xenonx('messageBox',array('content' => 'Error, empty username or password'));
 			return false;
 		}
 
 		if(!um('userExist',array($user))) {
-			eyex('messageBox',array('content' => 'Invalid username'));
+			xenonx('messageBox',array('content' => 'Invalid username'));
 			return false;
 		}
 
@@ -52,31 +52,31 @@ function eyeLaunch_on_doLaunch($params="") {
 			if(!proc('launch',array($myApp,$arguments))) {
 				$currentUser = $oldUser;
 				if(errorCodes('getErrorCode') == PROC_APP_NOT_FOUND) {
-					eyex('messageBox',array('content' => '%s not found','tokens' => array($myApp)));
+					xenonx('messageBox',array('content' => '%s not found','tokens' => array($myApp)));
 					return false;
 				}elseif(errorCodes('getErrorCode') == PROC_APP_DONT_HAVE_RUN_FUNCTION) {
-					eyex('messageBox',array('content' => '%s has had a problem and could not be executed','tokens' => array($myApp)));
+					xenonx('messageBox',array('content' => '%s has had a problem and could not be executed','tokens' => array($myApp)));
 					return false;
 				}else{
-					eyex('messageBox',array('content' => '%s has had an unknow problem and could not be executed','tokens' => array($myApp)));
+					xenonx('messageBox',array('content' => '%s has had an unknow problem and could not be executed','tokens' => array($myApp)));
 					return false;
 				}
 			}
 			$currentUser = $oldUser;
 		} else {
-			eyex('messageBox',array('content' => 'Error, invalid username or password'));
+			xenonx('messageBox',array('content' => 'Error, invalid username or password'));
 			return false;
 		}
 	} else {
 		if(!proc('launch',array($myApp,$arguments))) {
 			if(errorCodes('getErrorCode') == PROC_APP_NOT_FOUND) {
-				eyex('messageBox',array('content' => '%s not found','tokens' => array($myApp)));
+				xenonx('messageBox',array('content' => '%s not found','tokens' => array($myApp)));
 				return false;
 			}elseif(errorCodes('getErrorCode') == PROC_APP_DONT_HAVE_RUN_FUNCTION) {
-				eyex('messageBox',array('content' => '%s has had a problem and could not be executed','tokens' => array($myApp)));
+				xenonx('messageBox',array('content' => '%s has had a problem and could not be executed','tokens' => array($myApp)));
 				return false;
 			}else{
-				eyex('messageBox',array('content' => '%s has had an unknow problem and could not be executed','tokens' => array($myApp)));
+				xenonx('messageBox',array('content' => '%s has had an unknow problem and could not be executed','tokens' => array($myApp)));
 				return false;
 			}
 		}

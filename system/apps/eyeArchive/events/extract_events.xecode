@@ -19,7 +19,7 @@ function eyeArchive_on_Extract($params="") {
 	//Checking if started is already opened
 
 	if($GLOBALS['projectStarted']->text != 'true'){
-		eyex('messageBox',array('content'=>'No file open'));
+		xenonx('messageBox',array('content'=>'No file open'));
 		return false;
 	}
 
@@ -41,14 +41,14 @@ function eyeArchive_on_Extract($params="") {
 	$params[0] = $myRealFile;
 	//$params[1] = '/home/nasete';
 	if(!eyeFileArchive('extract',$params)){
-		eyex('messageBox',array('content'=>'File extraction failed'));
+		xenonx('messageBox',array('content'=>'File extraction failed'));
 		return false;
 	}
 	//TODO: remove it and put other system that don't need open the archived again
 	//$filesExtracted = eyeFileArchive('list',array('src'=>$path,'virtual'=>1));
 
 	eyeFiles('update',array(dirname($myRealFile)));
-	eyex('messageBox',array('content'=>'File extracted successfully.'));
+	xenonx('messageBox',array('content'=>'File extracted successfully.'));
 	return true;
 }
 

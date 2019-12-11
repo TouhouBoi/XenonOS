@@ -91,11 +91,11 @@ function eyeFTP_on_eyeFTP_connect_ITM($params=null) {
 
 	//only the "host" textfield must be filled in
 	if (! $conf['host']){
-		eyeX('messageBox',array('content'=> 'Please specify a host to connect to'));
+		xenonx('messageBox',array('content'=> 'Please specify a host to connect to'));
 		return;
 	}
 	if (! $conf['username']){
-		eyeX('messageBox',array('content'=> 'Please specify a username'));
+		xenonx('messageBox',array('content'=> 'Please specify a username'));
 		return;
 	}
 
@@ -245,11 +245,11 @@ function eyeFTP_on_eyeFTP_transferToRight_IMG($params=null) {
 	// === END OF BOUNCED REQUEST PROCESSING ===
 
 	if (! $conf['isConnectionActive']) {
-		eyeX('messageBox',array('content'=> 'You must connect first'));
+		xenonx('messageBox',array('content'=> 'You must connect first'));
 		return;
 	}
 	if (! $conf['selectedLocalFile'] || $conf['selectedLocalFile']['type'] == 'l') {
-		eyeX('messageBox',array('content'=> 'You must select a local file'));
+		xenonx('messageBox',array('content'=> 'You must select a local file'));
 		return;
 	}
 
@@ -312,11 +312,11 @@ function eyeFTP_on_eyeFTP_transferToLeft_IMG($params=null) {
 	// === END OF BOUNCED REQUEST PROCESSING ===
 
 	if (! $conf['isConnectionActive']) {
-		eyeX('messageBox',array('content'=> 'You must connect first'));
+		xenonx('messageBox',array('content'=> 'You must connect first'));
 		return;
 	}
 	if (! $conf['selectedRemoteFile']) {
-		eyeX('messageBox',array('content'=> 'You must select a remote file'));
+		xenonx('messageBox',array('content'=> 'You must select a remote file'));
 		return;
 	}
 

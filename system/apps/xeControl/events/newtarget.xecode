@@ -67,9 +67,9 @@ function xeControl_on_params_add($params = ""){
 	$id = $GLOBALS['xeControl_acl_params_sortabletable']->selected;
  
 	if(empty($id)){
-		eyeX('messageBox',array('content'=>"Select a target from the list to add parameters to"));
+		xenonx('messageBox',array('content'=>"Select a target from the list to add parameters to"));
 	} else {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 				'content' => 'Type in the parameter you want to filter:',
 				'type' => 3,
 				'title' => 'New parameter',
@@ -94,7 +94,7 @@ function xeControl_on_typeTarget_add($params = ""){
 			$type = 'user';
 			$targetName = $GLOBALS['xeControl_acl_target_targetname_txtbox']->text;
 			if (!um('userExist',array($targetName))) {
-				eyex('messageBox',array('content' => 'This user does not exist.'));
+				xenonx('messageBox',array('content' => 'This user does not exist.'));
 				return;
 			}
 			break;
@@ -103,7 +103,7 @@ function xeControl_on_typeTarget_add($params = ""){
 			$files = vfs('real_getDirContent', array(XENONOS_ROOT . '/' . GROUPS_DIR . '/'));
 			$targetName = $GLOBALS['xeControl_acl_target_targetname_select']->selected - 2;
 			if (isset($files[$targetName]) === false || is_dir($files[$targetName]) === false) {
-				eyex('messageBox', array('content' => 'This group does not exist.'));
+				xenonx('messageBox', array('content' => 'This group does not exist.'));
 				return;
 			}
 			$targetName = basename($files[$targetName]);
@@ -144,7 +144,7 @@ function xeControl_on_typeTarget_add($params = ""){
 	}
 	
 	if (empty($targetName) || empty($type)){
-		eyeX('messageBox',array('content'=>'Please fill in and select the fields to add a new target'));
+		xenonx('messageBox',array('content'=>'Please fill in and select the fields to add a new target'));
 	} else{
 		$myHidden = new Hidden(array(
 			'name' => 'targetType',
@@ -195,7 +195,7 @@ function xeControl_on_newparam_add($params = ""){
 	$param = $GLOBALS['xeControl_newparam_textbox']->text;
 
 	if(empty($param)){
-		eyeX('messageBox',array('content'=>'Please type in the parameter to filter'));
+		xenonx('messageBox',array('content'=>'Please type in the parameter to filter'));
 	} else {
 		//Añadir columna
 		$row = array($id0,$id1,$param);
@@ -263,9 +263,9 @@ function xeControl_on_params_delete($params = "") {
 	$id = $GLOBALS['xeControl_acl_params_sortabletable']->selected;
 
 	if(empty($id)){
-		eyeX('messageBox',array('content'=>'Please choose a target to delete'));
+		xenonx('messageBox',array('content'=>'Please choose a target to delete'));
 	} else {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'content' => 'Are you sure you want to delete this target?',
 			'type' => 3,
 			'title' => 'Delete warning',
@@ -337,9 +337,9 @@ function xeControl_on_params_delete2($params=""){
 	$id = $GLOBALS['xeControl_acl_params2_sortabletable']->selected;
 
 	if(empty($id)){
-		eyeX('messageBox',array('content'=>'Please choose a parameter to delete'));
+		xenonx('messageBox',array('content'=>'Please choose a parameter to delete'));
 	} else {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'content' => 'Are you sure you want to delete this parameter?',
 			'type' => 3,
 			'title' => 'Delete warning',

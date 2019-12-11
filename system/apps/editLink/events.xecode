@@ -32,7 +32,7 @@ function editLink_on_Do($params = '') {
 	$xml['eyeLink'][0]['xArgs'][0]['winState'][0] = $GLOBALS['editLink_Select_State']->selected;
 	eyeXML('setXMLfile',array($path . $GLOBALS['editLink_Hidden_File']->text,$xml));
 	if ($GLOBALS['editLink_Hidden_Callback']->text) {
-		eyex('rawjs',array('js' => $GLOBALS['editLink_Hidden_Callback']->text));
+		xenonx('rawjs',array('js' => $GLOBALS['editLink_Hidden_Callback']->text));
 	}
 	eyeFiles('update',array('home://Desktop/'));
 	proc('end');

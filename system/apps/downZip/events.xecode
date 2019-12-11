@@ -81,7 +81,7 @@ function downZip_on_download($params = '') {
 }
 
 function downZip_on_notSupported($params = '') {
-	eyex('messageBox',array('content' => 'The server does not support zip files.'));
+	xenonx('messageBox',array('content' => 'The server does not support zip files.'));
 	proc('end');
 }
 ?>

@@ -51,7 +51,7 @@ function miniCalendar_dayNotes($year, $month, $day) {
 	global $myPid;
 
 	$num = eyeCalendar('getDayNotes', array('year' => $year, 'month' => $month, 'mday' => $day));
-	eyeX('setDiv', array('name' => 'miniCalendarInnerRight', 'content' => ' '));
+	xenonx('setDiv', array('name' => 'miniCalendarInnerRight', 'content' => ' '));
 
 	if(is_array($num)) {
 		$gCounter = 0;
@@ -70,7 +70,7 @@ function miniCalendar_dayNotes($year, $month, $day) {
 					'text' => $cname
 				));
 				$myLabel->show();
-				eyeX('rawjs', array('js' => 'document.getElementById("'.$myPid.'_cal_label_'.$gCounter.'_Container").className="cal'.$event['note'][0]['calendar'][0].'";'));
+				xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_cal_label_'.$gCounter.'_Container").className="cal'.$event['note'][0]['calendar'][0].'";'));
 
 				$myLabel1 = new Label(array(
 					'name' => 'hour'.$gCounter,

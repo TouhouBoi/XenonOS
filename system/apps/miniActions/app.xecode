@@ -19,7 +19,7 @@ function miniActions_run($params=null) {
 
 	foreach (proc('getProcessTable') as $process) {
 		if ($process['appName'] == 'miniActions' && $process['pid'] != $myPid) {
-			eyex('messageBox', array('content' => 'miniActions is already running!'));
+			xenonx('messageBox', array('content' => 'miniActions is already running!'));
 			return proc('end');
 		}
 	}
@@ -44,7 +44,7 @@ function miniActions_run($params=null) {
 	/**
 	*@Todo if Windows Widget gets class fix this
 	*/
-	eyeX('rawjs',array('js'=>
+	xenonx('rawjs',array('js'=>
 		'document.getElementById("'.$myPid.'_' . $myWindow->name . '").className = "miniWND";
 		document.getElementById("'.$myPid.'_' . $myWindow->name . '_Content").className = "miniWND";
 		'
@@ -206,7 +206,7 @@ function miniActions_run($params=null) {
 	$myImage9->setCss(array("cursor"=>"pointer"));
 
 	//set css classes for text
-	eyex('rawjs',array('js' =>
+	xenonx('rawjs',array('js' =>
 		'document.getElementById("' . $myPid . '_' . $myLabel1->name . '").className = "miniActionsText";
 		document.getElementById("' . $myPid . '_' . $myLabel2->name . '").className = "miniActionsText";
 		document.getElementById("' . $myPid . '_' . $myLabel3->name . '").className = "miniActionsText";
@@ -215,7 +215,7 @@ function miniActions_run($params=null) {
 	));
 
 	//CSS
-	eyex('loadCss',array(
+	xenonx('loadCss',array(
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/miniApps/miniApps.css&type=css',
 		'id' => 'miniApps'
 	));

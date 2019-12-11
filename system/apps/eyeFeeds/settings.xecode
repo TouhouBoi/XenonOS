@@ -232,10 +232,10 @@ function eyeFeeds_on_settings_save_BTN($params=null) {
 	);
 
 	if (eyeFeeds_saveSettings($newSettings)) {
-		eyeX('messageBox',array('content'=> 'Settings saved successfully'));
+		xenonx('messageBox',array('content'=> 'Settings saved successfully'));
 	}
 	else {
-		eyeX('messageBox',array('content'=> 'Error saving settings'));
+		xenonx('messageBox',array('content'=> 'Error saving settings'));
 	}
 
 	if (is_object($GLOBALS['settings_DLG'])) {

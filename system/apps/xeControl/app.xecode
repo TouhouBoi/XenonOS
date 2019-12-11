@@ -83,7 +83,7 @@ function xeControl_run($params = '') {
 			'overflow' => 'auto',
 			'direction' => 'rtl'
 		));
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_window_box_Content").style.left = "0"; document.getElementById("' . $myPid . '_xeControl_window_box_Content").style.top = "0";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_window_box_Content").style.left = "0"; document.getElementById("' . $myPid . '_xeControl_window_box_Content").style.top = "0";'));
 // $myContainer
 		$myContainer = new Container(array(
 			'name' => 'xeControl_box',

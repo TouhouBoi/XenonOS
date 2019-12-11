@@ -19,7 +19,7 @@ function miniMessages_run($params=null) {
 
 	foreach (proc('getProcessTable') as $process) {
 		if ($process['appName'] == 'miniMessages' && $process['pid'] != $myPid) {
-			eyex('messageBox', array('content' => 'miniMessages is already running!'));
+			xenonx('messageBox', array('content' => 'miniMessages is already running!'));
 			return proc('end');
 		}
 	}
@@ -35,12 +35,12 @@ function miniMessages_run($params=null) {
 		'background' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/miniApps/miniMessages/minimessages.png'
 	));
 	$myWindow->show();
-	eyeX('updateCSS', array('name' => $myPid.'_miniMessagesWND_Content', 'property' => 'overflow', 'value' => 'hidden'));
+	xenonx('updateCSS', array('name' => $myPid.'_miniMessagesWND_Content', 'property' => 'overflow', 'value' => 'hidden'));
 
 	/**
 	*@Todo if Windows Widget gets class fix this
 	*/
-	eyeX('rawjs',array('js'=>
+	xenonx('rawjs',array('js'=>
 		'document.getElementById("'.$myPid.'_' . $myWindow->name . '").className = "miniWND";
 		document.getElementById("'.$myPid.'_' . $myWindow->name . '_Content").className = "miniWND";
 		'
@@ -158,13 +158,13 @@ function miniMessages_run($params=null) {
 			$count++;
 		}
 	}
-	eyex('rawjs',array('js' =>
+	xenonx('rawjs',array('js' =>
 		'document.getElementById("' . $myPid . '_' . $myLabel->name . '").className = "miniAppTitle";
 		'
 	));
 
 	//CSS
-	eyex('loadCss',array(
+	xenonx('loadCss',array(
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/miniApps/miniApps.css&type=css',
 		'id' => 'miniApps'
 	));

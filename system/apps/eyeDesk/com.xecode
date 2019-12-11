@@ -34,9 +34,9 @@ function eyeDesk_com_onEvent($params = '') {
 	if ($trash === true) {
 		foreach ($_SESSION['eyeDesk'][$myPid]['trashes'] as $trash) {
 			if (!count(vfs('getDirContent',array(um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/')))) {
-				eyex('rawjs',array('js' => 'xGetElementById("img_' . $myPid . '_eyeDesk_View_Icons_Icon_' . $trash . '").src = "index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/trash.png";'));
+				xenonx('rawjs',array('js' => 'xGetElementById("img_' . $myPid . '_eyeDesk_View_Icons_Icon_' . $trash . '").src = "index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/trash.png";'));
 			} else {
-				eyex('rawjs',array('js' => 'xGetElementById("img_' . $myPid . '_eyeDesk_View_Icons_Icon_' . $trash . '").src = "index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/trash_full.png";'));
+				xenonx('rawjs',array('js' => 'xGetElementById("img_' . $myPid . '_eyeDesk_View_Icons_Icon_' . $trash . '").src = "index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/trash_full.png";'));
 			}
 		}
 	}

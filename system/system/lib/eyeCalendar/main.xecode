@@ -152,7 +152,7 @@ function lib_eyeCalendar_retriveNote($params){
 	$calendar = eyeCalendar('getCalendarName',array($calendar));
 	if(!is_numeric($dateInt))
 	{
-		eyex('messageBox',array('content' => 'Error %s','tokens' => array($dateInt)));
+		xenonx('messageBox',array('content' => 'Error %s','tokens' => array($dateInt)));
 		return;
 	}
 

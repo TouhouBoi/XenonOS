@@ -21,7 +21,7 @@ function eyeEmbedder_lib_CreateIconsPath($path) {
 	$path .= '/' . APP_DIR;
 	vfs('real_mkDir', array($path));
 	
-	$path .= '/eyeX';
+	$path .= '/xenonx';
 	vfs('real_mkDir', array($path));
 	
 	$path .= '/themes';
@@ -61,7 +61,7 @@ function eyeEmbedder_lib_GetCategories() {
 function eyeEmbedder_lib_GetIcons() {
 	$icons = array();
 	
-	$path = eyex('getThemeImage', array('icons/48x48', 2));
+	$path = xenonx('getThemeImage', array('icons/48x48', 2));
 	foreach (vfs('real_getDirContent', array($path, '*.png')) as $file) {
 		if (is_file($file)) {
 			$icons[] = basename($file, '.png');
@@ -121,7 +121,7 @@ function eyeEmbedder_lib_ValidateApplicationName($applicationName, $showMessage 
 	}
 	
 	if ($showMessage) {
-		eyex('messageBox', array('content' => 'Invalid Technical Name!'));
+		xenonx('messageBox', array('content' => 'Invalid Technical Name!'));
 	}
 	return false;
 }

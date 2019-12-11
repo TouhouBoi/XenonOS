@@ -40,7 +40,7 @@ function xeControl_on_userconfig_methodSelect ($params = '') {
 function xeControl_on_userconfig_paramEdit ($params = '') {
 	$sel = $GLOBALS['xeControl_userconfig_table_params']->selected;
 	if ($sel == '') {
-		eyeX('messageBox', array('content' => "Please select an option from the table."));
+		xenonx('messageBox', array('content' => "Please select an option from the table."));
 		return;
 	}
 	
@@ -49,7 +49,7 @@ function xeControl_on_userconfig_paramEdit ($params = '') {
 	
 	foreach($xml['eyeConfig_module'][0]['constant'] as $setting) {
 		if ($setting['name'][0] == $sel) {
-			eyex('messageBox',array(
+			xenonx('messageBox',array(
 				'buttons' => array(array('userconfig_paramEdit_save','Save'), array('userconfig_dialog_cancel','Cancel')),
 				'content' => '%s',
 				'father' => 'xeControl_container_big',
@@ -89,7 +89,7 @@ function xeControl_on_userconfig_paramEdit_save ($params = '') {
 	eyeXML('setXMLfile', array($xmlfile, $xml));
 	
 	$val = $GLOBALS['xeControl_userconfig_select_method']->selected;
-	eyeX('messageBox', array('content' => "New Parameter Value Saved"));
+	xenonx('messageBox', array('content' => "New Parameter Value Saved"));
 	xeControl_on_userconfig_methodSelect(array('arg0' => array(0 => $val)));
 }
 
@@ -118,7 +118,7 @@ function xeControl_on_userconfig_switchMethod ($params = '') {
 	
 	$sel = $GLOBALS['xeControl_userconfig_select_method']->selected;
 	if ($sel == CONFIG_MODULE) {
-		eyex('messageBox',array('content' => 'This is the current method. You cannot change to it.'));
+		xenonx('messageBox',array('content' => 'This is the current method. You cannot change to it.'));
 		return true;
 	}
 	
@@ -127,7 +127,7 @@ function xeControl_on_userconfig_switchMethod ($params = '') {
 	// - - Is it even currently possible to get a list of users logged in?
 	// - - We could get oneye to maintain a central xml file that's updated everytime someone logs in or out. Has its flaws, though.
 	
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'buttons' => array(array('userconfig_switchMethod_submit','Yes'), array('userconfig_dialog_cancel','Cancel')),
 		'content' => 'You are about to switch from %s to %s. Are you sure you want to do this?',
 		'tokens' => array(utf8_strtoupper(CONFIG_MODULE), utf8_strtoupper($sel)),

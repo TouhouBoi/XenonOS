@@ -75,7 +75,7 @@ function xeControl_on_aclFuncChange($params=""){
 
 function xeControl_on_acl_hideHazard($params) {
 	if ($params[arg0][0] == "false") {
-		eyeX('messageBox',array('content'=>'Denying these can cause serious problems. Please be very careful!'));
+		xenonx('messageBox',array('content'=>'Denying these can cause serious problems. Please be very careful!'));
 	}
 	xeControl_on_aclServChange(array('arg0'=>array($params[arg1][0]),'arg1'=>array($params[arg0][0])));
 }
@@ -123,7 +123,7 @@ function xeControl_on_add_settings($params=""){
 	$aclName = $GLOBALS['xeControl_acl_textbox']->text;
 
 	if(empty($id0) || empty($aclName) || empty($service) || empty($call) || empty($action)) {
-		eyeX('messageBox',array('content'=>'Please fill and select all fields'));
+		xenonx('messageBox',array('content'=>'Please fill and select all fields'));
 	} else {
 		//$row = array ($id0, $aclName, $service, $call, $action);
 		//$GLOBALS['xeControl_acl_target_sortabletable']->addRow($row);
@@ -152,7 +152,7 @@ function xeControl_on_add_settings($params=""){
 			}
 			$config['GACL'][0]['ACL'][] = $acl;
 		}
-		//eyeX('messageBox', array('content' => print_r($config, true), 'type' => 2));
+		//xenonx('messageBox', array('content' => print_r($config, true), 'type' => 2));
 		eyeXML('setXMLfile', array($file,$config));
 		xeControl_lib_loadContent('only_root','newtarget');
 	}
@@ -184,7 +184,7 @@ function xeControl_on_update_settings($params=""){
 	}
 
 	if(empty($aclName) || empty($action)) {
-		eyeX('messageBox',array('content'=>'Please fill and select all fields'));
+		xenonx('messageBox',array('content'=>'Please fill and select all fields'));
 	} else {
 		$x=0;
 		if ($config) {
@@ -213,7 +213,7 @@ function xeControl_on_update_settings($params=""){
 				}
 				$x++;
 			}
-			eyeX('messageBox',array('content'=>'Rule Updated'));
+			xenonx('messageBox',array('content'=>'Rule Updated'));
 		}
 	}
 }

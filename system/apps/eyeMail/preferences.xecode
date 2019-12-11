@@ -267,7 +267,7 @@ function eyeMail_on_saveGeneral($params=null) {
 	$prefConfig['eyeMail'][0]['visualAlert'][0] = $GLOBALS['eyeMail_check3General']->checked;
 	$prefConfig['eyeMail'][0]['checkDelay'][0] = $GLOBALS['eyeMail_select1General']->selected;
 	eyeXML('setXMLconfig',array('eyeMail','settings.xml', $prefConfig));
-	eyex('messageBox', array('content' => 'General settings has been updated.'));
+	xenonx('messageBox', array('content' => 'General settings has been updated.'));
 	$GLOBALS['eyeMail_preferencesWND']->close();
 
 }
@@ -277,14 +277,14 @@ function eyeMail_on_saveSecurity($params=null) {
 	$prefConfig['eyeMail'][0]['sendRich'][0] = $GLOBALS['eyeMail_check1Security']->checked;
 	$prefConfig['eyeMail'][0]['recvRich'][0] = $GLOBALS['eyeMail_check2Security']->checked;
 	eyeXML('setXMLconfig',array('eyeMail','settings.xml', $prefConfig));
-	eyex('messageBox', array('content' => 'Security settings has been updated.'));
+	xenonx('messageBox', array('content' => 'Security settings has been updated.'));
 	$GLOBALS['eyeMail_preferencesWND']->close();
 }
 
 function eyeMail_on_delButton($params=null) {
 	$accountsFile = eyeXML('getXMLconfig',array('eyeMail','accounts.xml'));
 	$thekey = $GLOBALS['eyeMail_tabInfoHidden']->text;
-	eyex('messageBox', array(
+	xenonx('messageBox', array(
 		'title' => 'Remove Account',
 		'win_name' => 'eyeMail_messageRemoveAccount',
 		'father' => 'eyeMail_WND_1',
@@ -385,7 +385,7 @@ function eyeMail_refreshListAcc($params=null) {
 		$accUserBox->addEvent('onclick','sendMsg(' . $checknum . ',"accountFocus",eyeParam("focus",' . $key . '));');
 		if ($key==0 && $params !== true) {
 			$js = 'sendMsg(' . $checknum . ',"accountFocus",eyeParam("focus",' . $key . '));';
-			eyex('rawjs', array('js' => $js));
+			xenonx('rawjs', array('js' => $js));
 		}
 		$imageAccUser = new Imagebox(array(
 			'name' => 'eyeMail_imageAccUser'.$key,
@@ -451,7 +451,7 @@ function eyeMail_on_accountFocus($params=null) {
 		'height' => 250
 	));
 	$tabAcc->show();
-	eyex('rawjs', array('js' => 'document.getElementById("' . $myPid . '_eyeMail_prefTabAcc_header").style.backgroundColor = "#ffffff";'));
+	xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_eyeMail_prefTabAcc_header").style.backgroundColor = "#ffffff";'));
 	$tabInfo = $tabAcc->addTab('Information',1);
 	// $tabMailbox = $tabAcc->addTab('Mailbox',1);
 	$tabAdvanced = $tabAcc->addTab('Advanced',1);
@@ -859,7 +859,7 @@ function eyeMail_on_saveButton($params=null) {
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['smtppassword'][0] = $GLOBALS['eyeMail_tabAdvText_8']->text;
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['smtpssl'][0] = $GLOBALS['eyeMail_tabAdvCheck_2']->checked;
 	eyeXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
-	eyex('messageBox', array('content' => 'Email account has been updated.'));
+	xenonx('messageBox', array('content' => 'Email account has been updated.'));
 	$GLOBALS['eyeMail_preferencesWND']->close();
 }
 
@@ -882,7 +882,7 @@ function eyeMail_generalClick($params=null) {
 	$GLOBALS['eyeMail_accountsContainer']->hide();
 	$GLOBALS['eyeMail_securityContainer']->hide();
 	$GLOBALS['eyeMail_generalContainer']->unhide();
-	eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_preferencesToolbar");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_preferencesToolbar");
 	for (var i = 0; i < e.childNodes.length; i++) {
 		if (e.childNodes[i].id == "' . $myPid . '_prefGeneral_Container") {
 			e.childNodes[i].className = "blockbarItemPress";
@@ -898,7 +898,7 @@ function eyeMail_accountsClick($params=null) {
 	$GLOBALS['eyeMail_generalContainer']->hide();
 	$GLOBALS['eyeMail_securityContainer']->hide();
 	$GLOBALS['eyeMail_accountsContainer']->unhide();
-	eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_preferencesToolbar");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_preferencesToolbar");
 	for (var i = 0; i < e.childNodes.length; i++) {
 		if (e.childNodes[i].id == "' . $myPid . '_prefAccounts_Container") {
 			e.childNodes[i].className = "blockbarItemPress";
@@ -913,7 +913,7 @@ function eyeMail_securityClick($params=null) {
 	$GLOBALS['eyeMail_accountsContainer']->hide();
 	$GLOBALS['eyeMail_generalContainer']->hide();
 	$GLOBALS['eyeMail_securityContainer']->unhide();
-	eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_preferencesToolbar");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_preferencesToolbar");
 	for (var i = 0; i < e.childNodes.length; i++) {
 		if (e.childNodes[i].id == "' . $myPid . '_prefSecurity_Container") {
 			e.childNodes[i].className = "blockbarItemPress";
@@ -1170,7 +1170,7 @@ function eyeMail_finalize1($params=null) {
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtppassword'][0] = $GLOBALS['eyeMail_textAcc3']->text;
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtpssl'][0] = $GLOBALS['eyeMail_infoHidden']->text['smtpssl'][0];
 	eyeXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
-	eyex('messageBox', array('content' => 'Email account has been created.'));
+	xenonx('messageBox', array('content' => 'Email account has been created.'));
 	if(is_object($GLOBALS['eyeMail_listAccContainer'])) {
 		$GLOBALS['eyeMail_listAccContainer']->remove();
 	}
@@ -1213,7 +1213,7 @@ function eyeMail_finalize2($params=null) {
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtppassword'][0] = $GLOBALS['eyeMail_thetextbox8']->text;
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtpssl'][0] = $GLOBALS['eyeMail_smtpsslcheck']->checked;
 	eyeXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
-	eyex('messageBox', array('content' => 'Email account has been created.'));
+	xenonx('messageBox', array('content' => 'Email account has been created.'));
 	eyeMail_refreshListAcc();
 	eyeMail_on_cancelAccButton();
 	if (is_object($GLOBALS['eyeMail_menuContainer'])) {

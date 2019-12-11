@@ -115,7 +115,7 @@ class Textarea {
 			'widgetname' => 'Textarea',
 			'params' => $widgetsparams
 		);
-		eyex('createWidget',$myTextarea);
+		xenonx('createWidget',$myTextarea);
 		$this->showed=1;
 		if($noserialize == 0) {
 			eyeWidgets('serialize',array($this));
@@ -132,7 +132,7 @@ class Textarea {
 		if($this->showed == 0) {
 			$this->show();
 		}
-		eyex('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
+		xenonx('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
 	}
 
 	function setCss($params) {
@@ -140,9 +140,9 @@ class Textarea {
 		if(is_array($params)) {
 			foreach($params as $key => $value) {
 				if ($this->code === 1) {
-					eyex('updateCss', array('name' => $myPid . '_' . $this->name . '_cp', 'property' => $key, 'value' => $value));
+					xenonx('updateCss', array('name' => $myPid . '_' . $this->name . '_cp', 'property' => $key, 'value' => $value));
 				} else {
-					eyex('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
+					xenonx('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
 				}
 			}
 		}
@@ -153,9 +153,9 @@ class Textarea {
 		global $myPid;
 		$this->enabled=0;
 		if($this->code == 1) {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").disabled=true'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").disabled=true'));
 		} else {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").disabled=true'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").disabled=true'));
 		}
 	}
 
@@ -163,9 +163,9 @@ class Textarea {
 		global $myPid;
 		$this->enabled=1;
 		if($this->code == 1) {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").disabled=false'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").disabled=false'));
 		} else {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").disabled=false'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").disabled=false'));
 		}
 	}
 
@@ -173,9 +173,9 @@ class Textarea {
 		global $myPid;
 		$this->visible = 0;
 		if($this->code == 1) {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").style.display="none"'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").style.display="none"'));
 		} else {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="none"'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="none"'));
 		}
 	}
 
@@ -183,9 +183,9 @@ class Textarea {
 		global $myPid;
 		$this->visible = 1;
 		if($this->code == 1) {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").style.display="block"'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").style.display="block"'));
 		} else {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="block"'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="block"'));
 		}
 	}
 
@@ -195,38 +195,38 @@ class Textarea {
 		$content = base64_encode($content);
 		$totalContent = $content;
 		if($this->code == 0) {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").value=""'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").value=""'));
 			while ( /* utf8 */ strlen($totalContent) > 2000) {
 				$subContent = /* utf8 */ substr($totalContent, 0, 2000);
 				$totalContent = /* utf8 */ substr($totalContent, 2000);
-				eyex('concatValueB64',array('value' => $subContent,'name'=>$myPid.'_'.$this->name));
+				xenonx('concatValueB64',array('value' => $subContent,'name'=>$myPid.'_'.$this->name));
 			}
 			if($totalContent) {
-				eyex('concatValueB64',array('value' => $totalContent,'name'=>$myPid.'_'.$this->name));
+				xenonx('concatValueB64',array('value' => $totalContent,'name'=>$myPid.'_'.$this->name));
 			}
 			$name = $myPid.'_'.$this->name;
 			if($this->rich != 0) {
-				eyex('rawjs',array('js'=> "txtAreas['".$myPid.'_'.$this->name."_objTxt'].load()"));
+				xenonx('rawjs',array('js'=> "txtAreas['".$myPid.'_'.$this->name."_objTxt'].load()"));
 			}
 		} else {
 			$name = $myPid.'_'.$this->name;
-		//	eyex('rawjs',array('js' => 'cp_'.$name.'.setCode("")'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp").value=""'));
+		//	xenonx('rawjs',array('js' => 'cp_'.$name.'.setCode("")'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp").value=""'));
 			while ( /* utf8 */ strlen($totalContent) > 2000) {
 				$subContent = /* utf8 */ substr($totalContent, 0, 2000);
 				$totalContent = /* utf8 */ substr($totalContent, 2000);
-				eyex('concatValueB64',array('value' => $subContent,'name'=>$myPid.'_'.$this->name.'_cp'));
+				xenonx('concatValueB64',array('value' => $subContent,'name'=>$myPid.'_'.$this->name.'_cp'));
 			}
 			if($totalContent) {
-				eyex('concatValueB64',array('value' => $totalContent,'name'=>$myPid.'_'.$this->name.'_cp'));
+				xenonx('concatValueB64',array('value' => $totalContent,'name'=>$myPid.'_'.$this->name.'_cp'));
 			}
-			eyex('rawjs',array('js' => 'cp_'.$name.'.setCode(document.getElementById("'.$myPid.'_'.$this->name.'_cp").value)'));
+			xenonx('rawjs',array('js' => 'cp_'.$name.'.setCode(document.getElementById("'.$myPid.'_'.$this->name.'_cp").value)'));
 		}
 	}
 
 	function setRichStatusText($text) {
 		global $myPid;
-		eyex('runjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_path_row").innerHTML = %s;','tokens'=>array($text)));
+		xenonx('runjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_path_row").innerHTML = %s;','tokens'=>array($text)));
 	}
 
 	function setValue($content) {
@@ -236,9 +236,9 @@ class Textarea {
 	function focus() {
 		global $myPid;
 		if ($this->code === 1) {
-			eyex('rawjs', array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_cp").focus();'));
+			xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_cp").focus();'));
 		} else {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").focus();'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").focus();'));
 		}
 	}
 
@@ -259,22 +259,22 @@ class Textarea {
 		global $myPid;
 		$this->width = intval($width);
 		if($this->code == 1) {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.width="'.$this->width.'px";'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").style.width="'.$this->width.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.width="'.$this->width.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").style.width="'.$this->width.'px";'));
 		} elseif($this->rich != 0) {
 			$this->width += 17;
 			if($this->rich == 2 && $noshadow == 0) {
-				eyex('rawjs',array('js' => 'disableEdShadow("'.$myPid.'_'.$this->name.'_ifr");'));
+				xenonx('rawjs',array('js' => 'disableEdShadow("'.$myPid.'_'.$this->name.'_ifr");'));
 			}
-			eyex('rawjs',array('js' => 'disableEdShadow("'.$myPid.'_'.$this->name.'_ifr");'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_tbl").style.width="'.$this->width.'px";'));
-			eyex('rawjs',array('js' => 'enableShadow("'.$myPid.'_'.$this->name.'_ifr");'));
+			xenonx('rawjs',array('js' => 'disableEdShadow("'.$myPid.'_'.$this->name.'_ifr");'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_tbl").style.width="'.$this->width.'px";'));
+			xenonx('rawjs',array('js' => 'enableShadow("'.$myPid.'_'.$this->name.'_ifr");'));
 			if($this->rich == 2 && $noshadow == 0) {
-				eyex('rawjs',array('js' => 'enableShadow("'.$myPid.'_'.$this->name.'_ifr");'));
+				xenonx('rawjs',array('js' => 'enableShadow("'.$myPid.'_'.$this->name.'_ifr");'));
 			}
 		} else {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.width="'.$this->width.'px";'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.width="'.$this->width.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.width="'.$this->width.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.width="'.$this->width.'px";'));
 		}
 	}
 
@@ -282,21 +282,21 @@ class Textarea {
 		global $myPid;
 		$this->height = intval($height);
 		if($this->code == 1) {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.height="'.$this->height.'px";'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").style.height="'.$this->height.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.height="'.$this->height.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").style.height="'.$this->height.'px";'));
 		} elseif($this->rich != 0) {
 			$this->height += 110;
 			if($this->rich == 2 && $noshadow == 0) {
-				eyex('rawjs',array('js' => 'disableEdShadow("'.$myPid.'_'.$this->name.'_ifr");'));
+				xenonx('rawjs',array('js' => 'disableEdShadow("'.$myPid.'_'.$this->name.'_ifr");'));
 			}
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_tbl").style.height="'.$this->height.'px";'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_ifr").style.height="'.($this->height - 127).'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_tbl").style.height="'.$this->height.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_ifr").style.height="'.($this->height - 127).'px";'));
 			if($this->rich == 2 && $noshadow == 0) {
-				eyex('rawjs',array('js' => 'enableShadow("'.$myPid.'_'.$this->name.'_ifr");'));
+				xenonx('rawjs',array('js' => 'enableShadow("'.$myPid.'_'.$this->name.'_ifr");'));
 			}
 		} else {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.height="'.$this->height.'px";'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.height="'.$this->height.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.height="'.$this->height.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.height="'.$this->height.'px";'));
 		}
 	}
 
@@ -304,9 +304,9 @@ class Textarea {
 		global $myPid;
 		$this->x = intval($x);
 		if($this->code == 1) {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").style.left="'.$this->x.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").style.left="'.$this->x.'px";'));
 		} else {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.left="'.$this->x.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.left="'.$this->x.'px";'));
 		}
 	}
 
@@ -314,16 +314,16 @@ class Textarea {
 		global $myPid;
 		$this->y = intval($y);
 		if($this->code == 1) {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").style.top="'.$this->y.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_cp_iframe").style.top="'.$this->y.'px";'));
 
 		} else {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.top="'.$this->y.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.top="'.$this->y.'px";'));
 		}
 	}
 
 	function richClean() {
 		global $myPid;
-		eyex('runjs', array('js' => 'tinymce.Editor(%s).remove();', 'tokens' => array($myPid . '_' . $this->name)));
+		xenonx('runjs', array('js' => 'tinymce.Editor(%s).remove();', 'tokens' => array($myPid . '_' . $this->name)));
 	}
 
 	function remove() {
@@ -333,7 +333,7 @@ class Textarea {
 		} else {
 			$name = $this->name.'_Container';
 		}
-		eyex('removeWidget',array('name'=>$name));
+		xenonx('removeWidget',array('name'=>$name));
 		eyeWidgets('singleUnserialize',array($this->name));
 	}
 }

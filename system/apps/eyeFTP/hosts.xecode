@@ -58,7 +58,7 @@ function eyeFTP_on_eyeFTP_manageHosts_add_BTN($params=null) {
 function eyeFTP_on_eyeFTP_manageHosts_edit_BTN($params=null) {
 	$displayedHosts = unserialize($GLOBALS['eyeFTP_manageHosts_serializedHostsData_HID']->text);
 	if (! $GLOBALS['eyeFTP_manageHosts_savedHosts_TAB']->selected) {
-		eyeX('messageBox',array('content'=>'You must select a host to edit'));
+		xenonx('messageBox',array('content'=>'You must select a host to edit'));
 		return;
 	}
 	eyeFTP_enableHostForm(true);
@@ -85,7 +85,7 @@ function eyeFTP_on_eyeFTP_manageHosts_edit_BTN($params=null) {
 function eyeFTP_on_eyeFTP_manageHosts_delete_BTN($params=null) {
 	$displayedHosts = unserialize($GLOBALS['eyeFTP_manageHosts_serializedHostsData_HID']->text);
 	if (! $GLOBALS['eyeFTP_manageHosts_savedHosts_TAB']->selected) {
-		eyeX('messageBox',array('content'=>'You must select a host to delete'));
+		xenonx('messageBox',array('content'=>'You must select a host to delete'));
 		return;
 	}
 	$id = $GLOBALS['eyeFTP_manageHosts_savedHosts_TAB']->selected;
@@ -106,7 +106,7 @@ function eyeFTP_on_eyeFTP_manageHosts_load_BTN($params=null) {
 	$displayedHosts = unserialize($GLOBALS['eyeFTP_manageHosts_serializedHostsData_HID']->text);
 	if (! $GLOBALS['eyeFTP_manageHosts_savedHosts_TAB']->selected
 		|| ! is_array($displayedHosts[$GLOBALS['eyeFTP_manageHosts_savedHosts_TAB']->selected])) {
-		eyeX('messageBox',array('content'=>'You must select a host to load'));
+		xenonx('messageBox',array('content'=>'You must select a host to load'));
 		return;
 	}
 	$id = $GLOBALS['eyeFTP_manageHosts_savedHosts_TAB']->selected;
@@ -147,7 +147,7 @@ function eyeFTP_on_eyeFTP_manageHosts_save_BTN($params=null) {
 	if (! $GLOBALS['eyeFTP_manageHosts_host_TXTBOX']->text
 		|| ! $GLOBALS['eyeFTP_manageHosts_port_TXTBOX']->text
 		|| ! $GLOBALS['eyeFTP_manageHosts_username_TXTBOX']->text) {
-		eyeX('messageBox',array('content'=>'You must specify a hostname, a port and a username'));
+		xenonx('messageBox',array('content'=>'You must specify a hostname, a port and a username'));
 		return;
 	}
 
@@ -663,7 +663,7 @@ function showManageHostsDialog($params=null) {
 	));
 	eyeWidgets('serialize',array($idEdition));
 
-	eyeX('rawjs',array('js' => 'sendMsg('.$checknum.',"eyeFTP_manageHosts_initComplete","");'));
+	xenonx('rawjs',array('js' => 'sendMsg('.$checknum.',"eyeFTP_manageHosts_initComplete","");'));
 }
 
 ?>

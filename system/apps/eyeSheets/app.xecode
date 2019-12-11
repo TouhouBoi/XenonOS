@@ -30,7 +30,7 @@ function eyeSheets_run($params=null) {
 		'savePosition' => 1
 	));
 	$myWindow->show();
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 
 	if($params[0]) {
 		$file = $params[0];
@@ -42,7 +42,7 @@ function eyeSheets_run($params=null) {
 			$useCode=0;
 		}
 		if(!vfs('fileExists',array($file))){
-			eyex('messageBox',array('content'=>'File not found!'));
+			xenonx('messageBox',array('content'=>'File not found!'));
 			proc('end');
 			return false;
 		}
@@ -86,7 +86,7 @@ function eyeSheets_end($params=null) {
 	    }
 	    closedir($handle);
 	}
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }
 

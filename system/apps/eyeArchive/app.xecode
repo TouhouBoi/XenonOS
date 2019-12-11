@@ -53,7 +53,7 @@ function eyeArchive_run($params=null) {
 		$myHidden->setText('true');
 		$myHidden2 = new Hidden(array('name'=>'argSrc','father'=>'eyeApps','text'=>$params[0]));
 		eyeWidgets('serialize',array($myHidden2));
-		eyex('rawjs',array('js'=>"sendMsg($checknum,'SelectOpenFile');"));
+		xenonx('rawjs',array('js'=>"sendMsg($checknum,'SelectOpenFile');"));
 	}
 }
 

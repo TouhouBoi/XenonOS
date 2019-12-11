@@ -166,12 +166,12 @@ function fixPNG(myImage, type) {
 		if (!myImage.src) {
 			myImage = xGetElementById(myImage);
 		}
-		if (myImage.src.substr(myImage.src.length - 4).toLowerCase() === '.png' && myImage.src.substr(myImage.src.length - 24).toLowerCase() !== 'apps/eyex/gfx/spacer.gif') {
+		if (myImage.src.substr(myImage.src.length - 4).toLowerCase() === '.png' && myImage.src.substr(myImage.src.length - 24).toLowerCase() !== 'apps/xenonx/gfx/spacer.gif') {
 			if (!type) {
 				type = 'scale';
 			}
 			myImage.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + myImage.src + "', sizingMethod='" + type + "')";
-			myImage.src = 'index.php?extern=apps/eyeX/gfx/spacer.gif';
+			myImage.src = 'index.php?extern=apps/xenonx/gfx/spacer.gif';
 		}
 	}
 }

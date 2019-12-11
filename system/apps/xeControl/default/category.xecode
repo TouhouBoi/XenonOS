@@ -81,7 +81,7 @@ if ($selCategory == 'others') {
 					'caption' => $content['display'][0],
 					'x' => 40,
 					'y' => $boxY,
-					'img' => eyex('getThemeImage',array($content['img'][0])),
+					'img' => xenonx('getThemeImage',array($content['img'][0])),
 					'signal' => 'index_button',
 					'width' => 140
 				));
@@ -148,7 +148,7 @@ if ($selCategory == 'others') {
 				'caption' => $content['display'][0],
 				'x' => 40,
 				'y' => $boxY,
-				'img' => eyex('getThemeImage',array($content['img'][0])),
+				'img' => xenonx('getThemeImage',array($content['img'][0])),
 				'signal' => 'index_button',
 					'width' => 140
 			));
@@ -159,7 +159,7 @@ if ($selCategory == 'others') {
 		}
 	}
 } else {
-	eyex('messageBox',array('content' => 'The category does not exist!'));
+	xenonx('messageBox',array('content' => 'The category does not exist!'));
 	xeControl_lib_loadContent();
 }
 ?>

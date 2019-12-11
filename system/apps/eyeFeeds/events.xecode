@@ -133,7 +133,7 @@ function eyeFeeds_on_refreshFeed_ITM($params=null) {
 	bounceRequest($bouncedRequestParams);
 }
 function eyeFeeds_on_settings_ITM($params="") {
-	//eyeX('messageBox',array('content'=> 'Not Implemented Yet'));
+	//xenonx('messageBox',array('content'=> 'Not Implemented Yet'));
 	eyeFeeds_createSettingsDialog();
 }
 
@@ -209,7 +209,7 @@ function eyeFeeds_on_feedItemClick($params=null) {
 
 	global $myPid;
 	$itemId = md5($item['id']);
-	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_titleIcon_'.$itemId.'").src="'.EYEFEEDS_FEEDITEM_ICONURL_READ.'";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_titleIcon_'.$itemId.'").src="'.EYEFEEDS_FEEDITEM_ICONURL_READ.'";'));
 }
 
 function eyeFeeds_on_feedItemDblClick($params=null) {
@@ -314,7 +314,7 @@ function eyeFeeds_doResize() {
 	//RIGHT PANEL - CONTENT BOX
 	$GLOBALS['itemContent_BOX']->setHeight($GLOBALS['itemsContent_SPLT']->height - $GLOBALS['itemsContent_SPLT']->position - 6);
 	$GLOBALS['itemContent_BOX']->setWidth($GLOBALS['itemsContent_SPLT']->width);
-	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_content_LBL_Container").style.height="'.($GLOBALS['itemContent_BOX']->height - 36).'px";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_content_LBL_Container").style.height="'.($GLOBALS['itemContent_BOX']->height - 36).'px";'));
 }
 
 function eyeFeeds_on_fullScreen(){

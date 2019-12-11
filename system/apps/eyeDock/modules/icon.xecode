@@ -22,12 +22,12 @@ if (isset($element[0]['hideImage']) === true && $element[0]['hideImage'][0]) {
 	$displayText = 'none';
 }
 
-eyex('createDiv',array(
+xenonx('createDiv',array(
 	'class' => 'eyeDock_' . $type . '_' . $place . '_icon',
 	'father' => 'eyeDock_' . $type,
 	'name' => 'eyeDock_' . $type . '_' . $place . '_' . $id
 ));
-eyex('runjs',array(
+xenonx('runjs',array(
 	'js' => 'var e = document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '"); e.innerHTML = %s; e.onclick = function (e) { if (DockMenu.OnClick(e)) { sendMsg(' . $checknum . ',"Command",eyeParam("type",%s) + eyeParam("place",%s) + eyeParam("id",%s)); } }; var i = document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '"); i.title = %s; fixPNG(i);',
 	'tokens' => array('<img alt="" class="eyeDock_' . $type . '_' . $place . '_icon_img" id="' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '_img" src="' . str_replace('theme=USERTHEME', 'theme=' . $_SESSION['usertheme'], $element[0]['image'][0]) . '" style="display: ' . $displayImage . '; height: 22px; width: 22px;" /><div class="eyeDock_' . $type . '_' . $place . '_icon_div" id="' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '_div" style="display: ' . $displayText . ';">' . utf8_htmlspecialchars(i18n('translate', array($element[0]['text'][0])), ENT_NOQUOTES, 'UTF-8') . '</div>',$type,$place,$id,i18n('translate', array($element[0]['text'][0])))
 ));

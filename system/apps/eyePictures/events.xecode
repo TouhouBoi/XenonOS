@@ -46,7 +46,7 @@ function eyePictures_cleanBox($params) {
 		$mainBox->setCSS(array(
 			'background-color' => '#666666'
 		));
-		eyex('rawjs', array('js' => 'document.getElementById("'.$myPid.'_eyeMainBox").style.borderRadius="0";
+		xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_eyeMainBox").style.borderRadius="0";
 			document.getElementById("'.$myPid.'_eyeMainBox").style.MozBorderRadius="0";
 			document.getElementById("'.$myPid.'_eyeMainBox").style.WebkitBorderRadius="0";
 		'));
@@ -92,7 +92,7 @@ function eyePictures_cleanBox($params) {
 				'vert' => 0
 			));
 			$dirHomeLevelUp->show(0);
-			eyex('rawjs', array('js' => 'document.getElementById("'.$myPid.'_dirHomeLevelUp_Container").style.overflow="hidden";'));
+			xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_dirHomeLevelUp_Container").style.overflow="hidden";'));
 			
 			$dirHome = new icon(array(
 				'name' => 'dirHome',
@@ -131,7 +131,7 @@ function eyePictures_cleanBox($params) {
 				'vert' => 0
 			));
 			$dirScrollBox->show(0);
-			eyex('rawjs', array('js' => 'document.getElementById("'.$myPid.'_dirScrollBox_Container").style.overflow="auto";
+			xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_dirScrollBox_Container").style.overflow="auto";
 				document.getElementById("'.$myPid.'_dirScrollBox_Container").style.overflowY="auto";
 				document.getElementById("'.$myPid.'_dirScrollBox_Container").style.overflowX="hidden";
 			'));
@@ -148,7 +148,7 @@ function eyePictures_cleanBox($params) {
 				'vert' => 0
 			));
 			$pixScrollBox->show(0);
-			eyex('rawjs', array('js' => 'document.getElementById("'.$myPid.'_pixScrollBox_Container").style.overflow="auto";
+			xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_pixScrollBox_Container").style.overflow="auto";
 				document.getElementById("'.$myPid.'_pixScrollBox_Container").style.overflowY="auto";
 				document.getElementById("'.$myPid.'_pixScrollBox_Container").style.overflowX="hidden";
 			'));
@@ -174,12 +174,12 @@ function eyePictures_imageResizeRotate($noresize = 0, $type, $src, $dst = NULL, 
 
 	if ($noresize == 0 || $rotation_degrees == 90 || $rotation_degrees == -90) {
 		  if(!list($w, $h) = getimagesize($src)) {
-				eyeX('messageBox', array('content' => "This image type is not supported!"));
+				xenonx('messageBox', array('content' => "This image type is not supported!"));
 				return FALSE;
 			}
 
 		  if (($w * $h) > eyeSessions('getVar', array('eyePictures_max_processable_resolution'))) {
-				eyeX('messageBox', array('content' => "The resolution of this photo is too high to be processed! Resize aborted."));
+				xenonx('messageBox', array('content' => "The resolution of this photo is too high to be processed! Resize aborted."));
 				return FALSE;
 			}
 		  
@@ -191,7 +191,7 @@ function eyePictures_imageResizeRotate($noresize = 0, $type, $src, $dst = NULL, 
 			case 'gif': $img = imagecreatefromgif($src); break;
 			case 'jpg': $img = imagecreatefromjpeg($src); break;
 			case 'png': $img = imagecreatefrompng($src); break;
-			default : eyeX('messageBox', array('content' => "This image type is not supported!")); return FALSE;
+			default : xenonx('messageBox', array('content' => "This image type is not supported!")); return FALSE;
 		  }
 
 		  if ($rotation_degrees == 90 || $rotation_degrees == -90) {
@@ -274,7 +274,7 @@ function eyePictures_setDirStatusBarInfo($params) {
 	if ($params['numPix'] == 0){
 		$info = '%s Directories, %s Images';
 	}
-	eyex('rawjs',array('js' => 'varPictures = "'.$info.'";'));
+	xenonx('rawjs',array('js' => 'varPictures = "'.$info.'";'));
 	
 	if (isset($params['onMouseOver']) && $params['onMouseOver'] == 1) {
 		return $info;
@@ -357,7 +357,7 @@ function eyePictures_setPicStatusBarInfo($params) {
 			$info = '<b>' . utf8_htmlspecialchars(i18n('translate', array('Image Size')), ENT_QUOTES) . ':</b>&nbsp;<i>'.$imageSize[0].'x'.$imageSize[1].'</i>&nbsp;&nbsp;&nbsp;<b>' . utf8_htmlspecialchars(i18n('translate', array('Type')), ENT_QUOTES) . ':</b>&nbsp;<i>'.str_replace(array('image/'),'',$imageSize['mime']).'</i>&nbsp;&nbsp;&nbsp;<b>' . utf8_htmlspecialchars(i18n('translate', array('Size')), ENT_QUOTES) . '</b>:&nbsp;<i>'.$realSize.'</i>&nbsp;&nbsp;&nbsp;<b>' . utf8_htmlspecialchars(i18n('translate', array('Creation Date')), ENT_QUOTES) . ':</b>&nbsp;<i>'.$cTime.'</i>&nbsp;&nbsp;&nbsp;<b>' . utf8_htmlspecialchars(i18n('translate', array('Author')), ENT_QUOTES) . ':</b>&nbsp;<i>'.utf8_htmlspecialchars($author, ENT_QUOTES).'</i>'; // TOi18n
 		}
 	
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_statusBarLabel").innerHTML = "'.$info.'";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_statusBarLabel").innerHTML = "'.$info.'";'));
 		
 		return true;
 	}
@@ -439,7 +439,7 @@ function eyePictures_applyFilter($params) {
 	
 	global $myPid;
 	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'browse') {
-		eyeX('messageBox',array('content'=>'Color effects are not available in browse mode, use view mode instead.'));
+		xenonx('messageBox',array('content'=>'Color effects are not available in browse mode, use view mode instead.'));
 		eyePictures_on_closeEditColors();
 		return;
 	}
@@ -583,7 +583,7 @@ function eyePictures_slideShow($params=null) {
 	}
 
 	global $checknum;
-	eyeX('rawjs',array('js' => '
+	xenonx('rawjs',array('js' => '
 			slideShow = 1;
 			cronoID = setTimeout("sendMsg(' . $checknum . ',\"slideShowNextSignal\",eyeParam(\"view\",1))",'.$delay.');
 	'));
@@ -626,7 +626,7 @@ function eyePictures_on_showImage($params) {
 	
 	$params = unserialize($params);
 	if ($params === FALSE) {
-		eyeX('messageBox', array('content' => "Arguments must be passed to showImage serialized. Cannot load the image"));
+		xenonx('messageBox', array('content' => "Arguments must be passed to showImage serialized. Cannot load the image"));
 		return FALSE;
 	}
 	if (count($params) > 1) {
@@ -721,7 +721,7 @@ function eyePictures_on_ResizeAndShowImage($params = NULL) {
 	$data = unserialize($GLOBALS['eyePictures_Resize_Data']->text);
 	if ($data == FALSE) {
 		
-		eyeX('messageBox', array('content' => "An error has occurred during image resize (unserialize failed)"));
+		xenonx('messageBox', array('content' => "An error has occurred during image resize (unserialize failed)"));
 		return FALSE;
 	}
 	
@@ -1006,7 +1006,7 @@ function eyePictures_on_backSignal($params=null) {
 
 			if($file == $currentPic) {
 				if (empty($pix)) {
-					eyex('messageBox',array('content' => 'This is the first image of the folder!'));
+					xenonx('messageBox',array('content' => 'This is the first image of the folder!'));
 					return;
 				}
 				$rpix = array_reverse($pix);
@@ -1054,7 +1054,7 @@ function eyePictures_on_nextSignal($params=null) {
 
 			if ($file == $currentPic) {
 				if (current($files) == 'EOF') {
-					eyex('messageBox',array('content' => 'This is the last image of the folder!'));
+					xenonx('messageBox',array('content' => 'This is the last image of the folder!'));
 					return;
 				}
 				eyePictures_on_showImage(serialize(current($files)));
@@ -1091,13 +1091,13 @@ function eyePictures_on_slideShowNextSignal($params=null) {
 
 			if ($file == $currentPic) {
 				if (current($files) == 'EOF') {
-					eyeX('rawjs',array('js' => '
+					xenonx('rawjs',array('js' => '
 						if (slideShow == 1) {
 							slideShow = 0;
 							clearTimeout(cronoID);
 						}
 					'));
-					eyex('sendMessage', array('msg' => 'slideShowStop', 'params' => ''));
+					xenonx('sendMessage', array('msg' => 'slideShowStop', 'params' => ''));
 					return;
 				}
 				//eyePictures_cleanBox($var='');
@@ -1108,7 +1108,7 @@ function eyePictures_on_slideShowNextSignal($params=null) {
 					//eyePictures_updateCurrentPicHidden();
 				}
 
-				eyeX('rawjs',array('js' => '
+				xenonx('rawjs',array('js' => '
 					if (slideShow == 1) {
 						cronoID = setTimeout("sendMsg(' . $checknum . ',\"slideShowJS\",eyeParam(\"view\",1))",0);
 					}
@@ -1130,7 +1130,7 @@ function eyePictures_on_slideShowStop($params=null) {
 	eyeSessions('setVar', array('eyePictures_mode_'.$myPid, 'view'));
 	$GLOBALS['toolBar']->unpressItem(array('slideShow'));
 	$GLOBALS['toolBar']->pressItem(array('viewSignal'));
-	eyeX('messageBox',array('content'=>'Slideshow stopped. You are now in view mode.'));
+	xenonx('messageBox',array('content'=>'Slideshow stopped. You are now in view mode.'));
 }
 
 function eyePictures_on_slideShow($params=null) {
@@ -1142,14 +1142,14 @@ function eyePictures_on_slideShow($params=null) {
 	if ($old_mode != 'slideshow') {
 	
 		eyeSessions('setVar', array('eyePictures_mode_'.$myPid, 'slideshow'));
-		eyeX('messageBox',array('content'=>'Slideshow mode enabled.'));
+		xenonx('messageBox',array('content'=>'Slideshow mode enabled.'));
 	}
 	
 	if ($old_mode != 'browse') {
 		
 		$GLOBALS['toolBar']->unpressItem(array('viewSignal'));
 		$GLOBALS['toolBar']->pressItem(array('slideShow'));
-		eyeX('rawjs',array('js' => '
+		xenonx('rawjs',array('js' => '
 			if (slideShow == 1) {
 				slideShow = 0;
 				clearTimeout(cronoID);
@@ -1178,13 +1178,13 @@ function eyePictures_on_viewSignal($params) {
 	$mode = eyeSessions('getVar', array('eyePictures_mode_'.$myPid));
 	
 	if ($params['mode'] != 'slideShow' && $mode == 'slideshow') {
-		eyeX('rawjs',array('js' => '
+		xenonx('rawjs',array('js' => '
 			if (slideShow == 1) {
 				slideShow = 0;
 				clearTimeout(cronoID);
 			}
 		'));
-		eyex('sendMessage', array('msg' => 'slideShowStop', 'params' => ''));
+		xenonx('sendMessage', array('msg' => 'slideShowStop', 'params' => ''));
 		eyePictures_on_showImage(serialize(eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid))));
 		return;
 	}
@@ -1239,13 +1239,13 @@ function eyePictures_on_browseSignal($params) {
 		
 		if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'slideshow') {
 			$GLOBALS['toolBar']->unpressItem(array('slideShow'));
-			eyeX('rawjs',array('js' => '
+			xenonx('rawjs',array('js' => '
 				if (slideShow == 1) {
 					clearTimeout(cronoID);
 					slideShow = 0;
 				}
 			'));
-			eyeX('messageBox',array('content'=>'Slideshow stopped. You are now in browse mode.'));
+			xenonx('messageBox',array('content'=>'Slideshow stopped. You are now in browse mode.'));
 		}
 		else $GLOBALS['toolBar']->unpressItem(array('viewSignal'));
 		
@@ -1270,9 +1270,9 @@ function eyePictures_on_rotateRightSignal($params=null) {
 	global $myPid;
 	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'view') {
 		$image = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
-		eyex('sendMessage', array('msg' => 'showImage', 'params' => serialize(array($image, -90))));
+		xenonx('sendMessage', array('msg' => 'showImage', 'params' => serialize(array($image, -90))));
 	}
-	else eyeX('messageBox',array('content' => 'Image rotation is only available in View mode'));
+	else xenonx('messageBox',array('content' => 'Image rotation is only available in View mode'));
 }
 
 function eyePictures_on_rotateLeftSignal($params=null) {
@@ -1280,9 +1280,9 @@ function eyePictures_on_rotateLeftSignal($params=null) {
 	global $myPid;
 	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'view') {
 		$image = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
-		eyex('sendMessage', array('msg' => 'showImage', 'params' => serialize(array($image, 90))));
+		xenonx('sendMessage', array('msg' => 'showImage', 'params' => serialize(array($image, 90))));
 	}
-	else eyeX('messageBox',array('content' => 'Image rotation is only available in View mode'));
+	else xenonx('messageBox',array('content' => 'Image rotation is only available in View mode'));
 }
 
 function eyePictures_on_winResize($params) {
@@ -1299,13 +1299,13 @@ function eyePictures_on_winResize($params) {
 		
 		$path = eyeSessions('getVar', array('eyePictures_currentDir_'.$myPid));
 		eyePictures_cleanBox('list');
-		eyex('sendMessage', array('msg' => 'listContent', 'params' => $path));
+		xenonx('sendMessage', array('msg' => 'listContent', 'params' => $path));
 	} else {
 		
 		$GLOBALS['eyeMainBox']->setWidth($width-2);
 		$GLOBALS['eyeMainBox']->setHeight($height-103);
 		$image = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
-		eyex('sendMessage', array('msg' => 'showImage', 'params' => serialize($image)));
+		xenonx('sendMessage', array('msg' => 'showImage', 'params' => serialize($image)));
 	}
 	
 	$GLOBALS['extrasBox']->setWidth($width-2);
@@ -1344,7 +1344,7 @@ function eyePictures_on_colorEdit($params=null) {
 	global $checknum,$myPid;
 	
 	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) != 'view') {
-		eyeX('messageBox',array('content'=>'Color effects are not available in browse mode, use view mode instead.'));
+		xenonx('messageBox',array('content'=>'Color effects are not available in browse mode, use view mode instead.'));
 		return;
 	}
 	if (isset($GLOBALS['editColors_Wnd']->title)) {
@@ -1354,7 +1354,7 @@ function eyePictures_on_colorEdit($params=null) {
 
 	$GLOBALS['toolBar']->pressItem(array('colorEdit'));
 
-	eyeX('rawjs',array('js' => '
+	xenonx('rawjs',array('js' => '
 		if (slideShow == 1) {
 			slideShow = 0;
 			clearTimeout(cronoID);
@@ -1459,7 +1459,7 @@ function eyePictures_on_undoAll($params=null) {
 
 	global $myPid;
 	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) != 'view') {
-		eyeX('messageBox',array('content'=>'Color effects are not available in browse mode, use view mode instead.'));
+		xenonx('messageBox',array('content'=>'Color effects are not available in browse mode, use view mode instead.'));
 		eyePictures_on_closeEditColors();
 		return;
 	}
@@ -1473,13 +1473,13 @@ function eyePictures_on_saveFile($params=null) {
 	
 	global $myPid;
 	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) != 'view') {
-		eyeX('messageBox',array('content'=>'Color effects are not available in browse mode, use view mode instead.'));
+		xenonx('messageBox',array('content'=>'Color effects are not available in browse mode, use view mode instead.'));
 		eyePictures_on_closeEditColors();
 		return;
 	}
 	
 	if (empty($GLOBALS['editColors_saveFile_txtBox']->text)) {
-		eyeX('messageBox',array('content'=>'File name cannot be empty.'));
+		xenonx('messageBox',array('content'=>'File name cannot be empty.'));
 		return;
 	}
 	
@@ -1496,12 +1496,12 @@ function eyePictures_on_saveFile($params=null) {
 		if(vfs($copy, array($currentPic, $new_file))) {
 			$GLOBALS['eyePictures_MainWnd']->setTitle('eyePictures - '.$file);
 			eyeSessions('setVar', array('eyePictures_currentPic_'.$myPid, $new_file));
-			eyeX('messageBox', array('content' => 'File saved successfully.'));
+			xenonx('messageBox', array('content' => 'File saved successfully.'));
 		}
-		else eyeX('messageBox',array('content'=>'Error during file writing. The file has not been saved'));
+		else xenonx('messageBox',array('content'=>'Error during file writing. The file has not been saved'));
 	}
 	else {
-		eyeX('messageBox',array('content'=>'File name already exists, choose a different file name.'));
+		xenonx('messageBox',array('content'=>'File name already exists, choose a different file name.'));
 		return;
 	}
 	$split = utf8_explode('/files/', $currentFolder, 2);
@@ -1511,7 +1511,7 @@ function eyePictures_on_saveFile($params=null) {
 function eyePictures_on_Close($params=null) {
 
 	global $myPid;
-	eyeX('rawjs',array('js' => '
+	xenonx('rawjs',array('js' => '
 		if (slideShow == 1) {
 			slideShow = 0;
 			clearTimeout(cronoID);

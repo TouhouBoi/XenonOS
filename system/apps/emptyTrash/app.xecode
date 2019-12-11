@@ -34,7 +34,7 @@ function emptyTrash_run($params = '') {
 		$content = 'Do you really want to empty the trash?';
 		$title = 'Empty trash';
 	}
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'buttons' => array(array('Do','Accept'),array('Close','Cancel')),
 		'content' => $content,
 		'hiddens' => array(array('emptyTrash_Hidden_File',$file),array('emptyTrash_Hidden_Callback',$params[1])),

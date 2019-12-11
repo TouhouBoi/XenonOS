@@ -97,7 +97,7 @@ foreach ($files as $file) {
 	));
 	$myIcon->show();
 	$myIcon->setCss(array());
-	eyex('rawjs',array('js' => 'xGetElementById("' . $myPid . '_' . $myIcon->name . '_globalContainer").style.width = "120px"; xGetElementById("' . $myPid . '_' . $myIcon->name . '_text").style.display = "inline"; xGetElementById("' . $myPid . '_' . $myIcon->name . '_text").style.paddingLeft = "3px";'));
+	xenonx('rawjs',array('js' => 'xGetElementById("' . $myPid . '_' . $myIcon->name . '_globalContainer").style.width = "120px"; xGetElementById("' . $myPid . '_' . $myIcon->name . '_text").style.display = "inline"; xGetElementById("' . $myPid . '_' . $myIcon->name . '_text").style.paddingLeft = "3px";'));
 
 	if ($eyeFiles_noactions) {
 		$myWidgetDrag = new widgetDrag(array(

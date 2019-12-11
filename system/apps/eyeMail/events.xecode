@@ -163,7 +163,7 @@ function eyeMail_on_resizeSplitCompose($params=null) {
 function eyeMail_on_sendMail($params=null) {
 	$GLOBALS['eyeMail_activityImgContainer']->unhide();
 	$GLOBALS['eyeMail_Compose']->close();
-	eyeX('sendMessage',array('msg'=>'PerformSendMail'));
+	xenonx('sendMessage',array('msg'=>'PerformSendMail'));
 }
 
 function eyeMail_on_PerformSendMail($params=null) {
@@ -365,7 +365,7 @@ function eyeMail_on_openMailSent($params) {
 function eyeMail_on_delete($params) {
 	$content = 'Do you really want to delete this mail?';
 	$title = 'Are you sure?';
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'btn1_capt' => 'Yes',
 		'btn1_name' => 'doDelete',
 		'btn2_capt' => 'No',
@@ -455,12 +455,12 @@ function eyeMail_on_SelectFileSave($params) {
 	$body = getdecodevalue(imap_fetchbody($connection,$GLOBALS['mailTable']->selected,$id),$type);
 	$file = um('getCurrentUserDir').FILES_USER_DIR.'/'.$file;
 	if(!vfs('create',array($file,'eyeMail'))) {
-		eyex('messageBox',array('content'=>'Unable to create file'));
+		xenonx('messageBox',array('content'=>'Unable to create file'));
 		return;
 	}
 	$fp = vfs('open',array($file,'w'));
 	if(!$fp) {
-		eyex('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
+		xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 		return;
 	}
 	fwrite($fp,$body);

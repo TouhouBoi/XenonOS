@@ -73,7 +73,7 @@ function eyeUpload_on_Close($params = '') {
 	if (isset($_SESSION[$myPid]['advanced']) === true && $_SESSION[$myPid]['advanced'] === 1) {
 		unset($_SESSION[$myPid]['advanced']);
 		if ($GLOBALS['eyeUpload_Hidden_Callback']->text) {
-			eyex('rawjs',array('js' => $GLOBALS['eyeUpload_Hidden_Callback']->text));
+			xenonx('rawjs',array('js' => $GLOBALS['eyeUpload_Hidden_Callback']->text));
 		}
 		eyeFiles('update',array($GLOBALS['eyeUpload_Hidden_Path']->text));
 	}
@@ -134,13 +134,13 @@ function eyeUpload_on_simple_Do($params = '') {
 }
 
 function eyeUpload_on_simple_Done($params = '') {
-	eyeX('messageBox',array('content' => 'The file has been uploaded successfully.'));
+	xenonx('messageBox',array('content' => 'The file has been uploaded successfully.'));
 	eyeFiles('update',array($GLOBALS['eyeUpload_Hidden_Path']->text));
 	proc('end');
 }
 
 function eyeUpload_on_simple_Error($params = '')  {
-	eyex('messageBox',array('content' => 'Error occured during upload process!'));
+	xenonx('messageBox',array('content' => 'Error occured during upload process!'));
 	proc('end');
 }
 
@@ -169,11 +169,11 @@ function eyeUpload_on_web_Do($params = '') {
 			vfs('create',array($path[0]));
 			vfs('writeFile',array($path[0],$http->getResponseBody()));
 		}
-		eyex('messageBox',array('content' => 'File uploaded successfully.'));
+		xenonx('messageBox',array('content' => 'File uploaded successfully.'));
 		eyeFiles('update',array($GLOBALS['eyeUpload_Hidden_Path']->text));
 		$GLOBALS['eyeUpload_web_Textbox']->setText('');
 	} else {
-		eyex('messageBox',array('content' => 'Error uploading file!'));
+		xenonx('messageBox',array('content' => 'Error uploading file!'));
 	}
 }
 ?>

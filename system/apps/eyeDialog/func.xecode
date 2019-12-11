@@ -26,7 +26,7 @@ function eyeDialog_openFile($folderPath, $filename) {
 	$folderPath = eyeDialog_resolvePath($folderPath,true);		//true only for eyeDialog1 compatibility
 	$filePath = eyeDialog_getFormatedDirPath($folderPath.'/'.$filename);
 	if($callback && $callback_checknum) {
-		eyex('rawjs',array('js'=>'sendMsg('.$callback_checknum.',"'.$callback.'",eyeParam("arg","'.$filePath.'"));'));
+		xenonx('rawjs',array('js'=>'sendMsg('.$callback_checknum.',"'.$callback.'",eyeParam("arg","'.$filePath.'"));'));
 	}
 	eyeDialog_closeDialog();
 }
@@ -37,9 +37,9 @@ function eyeDialog_selectFolder($folderPath) {
 
 	$folderPath = eyeDialog_resolvePath($folderPath,true);		//true only for eyeDialog1 compatibility
 	if($callback && $callback_checknum) {
-		eyex('rawjs',array('js'=>'sendMsg('.$callback_checknum.',"'.$callback.'",eyeParam("arg","'.$folderPath.'"));'));
+		xenonx('rawjs',array('js'=>'sendMsg('.$callback_checknum.',"'.$callback.'",eyeParam("arg","'.$folderPath.'"));'));
 	}
-	//eyeX('messageBox',array('content'=> 'Select folder OK: '.$folderPath));
+	//xenonx('messageBox',array('content'=> 'Select folder OK: '.$folderPath));
 	eyeDialog_closeDialog();
 }
 function eyeDialog_saveAs($folderPath, $filename, $overwrite=false) {
@@ -55,7 +55,7 @@ function eyeDialog_saveAs($folderPath, $filename, $overwrite=false) {
 	$filename = eyeDialog_autoSetExtensionToFilename($filename, $dialogParams[6], true);		//force extension if needed
 	$filePath = eyeDialog_getFormatedDirPath($folderPath.'/'.$filename);
 
-	//eyeX('rawjs', array('js' => 'console.log("'.eyeDialog_resolvePath($folderPath).'/'.$filename.'")'));
+	//xenonx('rawjs', array('js' => 'console.log("'.eyeDialog_resolvePath($folderPath).'/'.$filename.'")'));
 	$filenameExtension = eyeDialog_getFilenameAndExtension($filename);
 	$filenameExtension = $filenameExtension[1];
 	if (!$overwrite && vfs('fileExists', array(eyeDialog_resolvePath($folderPath).'/'.$filename))) {
@@ -64,14 +64,14 @@ function eyeDialog_saveAs($folderPath, $filename, $overwrite=false) {
 	}
 
 	if($callback && $callback_checknum) {
-		eyex('rawjs',array('js'=>'sendMsg('.$callback_checknum.',"'.$callback.'",eyeParam("arg","'.$filePath.'")+eyeParam("ext","'.$filenameExtension.'")+eyeParam("fileType","'.$GLOBALS['selectedFileType']->text.'"));'));
+		xenonx('rawjs',array('js'=>'sendMsg('.$callback_checknum.',"'.$callback.'",eyeParam("arg","'.$filePath.'")+eyeParam("ext","'.$filenameExtension.'")+eyeParam("fileType","'.$GLOBALS['selectedFileType']->text.'"));'));
 	}
-	//eyeX('messageBox',array('content'=> 'Save as OK: '.$filePath));
+	//xenonx('messageBox',array('content'=> 'Save as OK: '.$filePath));
 	eyeDialog_closeDialog();
 }
 
 function eyeDialog_confirmFileReplace($folderPath, $filename) {
-	eyeX('messageBox',array(
+	xenonx('messageBox',array(
 		'content' => 'Are you sure you want to replace this file?',
 		'type' => 3,
 		'title' => 'Confirm file replacement',
@@ -109,7 +109,7 @@ function eyeDialog_refreshFilesList() {
 }
 
 function eyeDialog_autoSetExtensionToFilename($filename, $forceExtension=false, $appendExtension=false) {
-	//eyeX('rawjs', array('js' => 'console.log("original name = '.$filename.'")'));
+	//xenonx('rawjs', array('js' => 'console.log("original name = '.$filename.'")'));
 	$return = '';
 	$dialogParams = unserialize($GLOBALS['serialized_dialogParams_HID']->text);
 	$displayedFiletypes = /* utf8 */ explode('|', $GLOBALS['currentFiletypeFilter_HID']->text);
@@ -156,7 +156,7 @@ function eyeDialog_autoSetExtensionToFilename($filename, $forceExtension=false, 
 			$return = $filename;
 		}
 	}
-	//eyeX('rawjs', array('js' => 'console.log("final name = '.$return.'")'));
+	//xenonx('rawjs', array('js' => 'console.log("final name = '.$return.'")'));
 	return $return;
 }
 
@@ -256,10 +256,10 @@ function eyeDialog_drawFoldersTree($selectedFolder='') {
 function eyeDialog_drawFolderNode($treeObject, $parentListNode, $relativePath) {
 	$firstItemId = false;
 	$relativePath = eyeDialog_resolvePath($relativePath, false);
-	//eyeX('rawjs', array('js' => 'console.log("'.print_r('relative path = '.$relativePath,true).'")'));
+	//xenonx('rawjs', array('js' => 'console.log("'.print_r('relative path = '.$relativePath,true).'")'));
 	if ($relativePath !== false) {
 		$dirContent = vfs('getDirContent', array($relativePath));
-		//eyeX('rawjs', array('js' => 'console.log("'.print_r($dirContent,true).'")'));
+		//xenonx('rawjs', array('js' => 'console.log("'.print_r($dirContent,true).'")'));
 		if ($dirContent !== false) {
 			foreach($dirContent as $filepath) {
 				if (vfs('isdir', array($filepath))) {
@@ -295,7 +295,7 @@ function eyeDialog_browseHome($path = '/') {
 
 	$path = eyeDialog_resolvePathInUserDir($path);
 	if ($path === false) {
-		eyeX('messageBox',array('content'=> i18n("translate",array('Error while trying to browse folder'))));
+		xenonx('messageBox',array('content'=> i18n("translate",array('Error while trying to browse folder'))));
 		return;
 	}
 
@@ -381,7 +381,7 @@ function eyeDialog_browseHome($path = '/') {
 //
 //		$fullPath = eyeDialog_resolvePathInGroupsDir($path, false, $groupname);
 //		if ($path === false) {
-//			eyeX('messageBox',array('content'=> i18n("translate",array('Error while trying to browse folder'))));
+//			xenonx('messageBox',array('content'=> i18n("translate",array('Error while trying to browse folder'))));
 //			return;
 //		}
 //		$filesData = eyeDialog_listDir($fullPath, $groupname);

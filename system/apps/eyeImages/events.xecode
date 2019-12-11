@@ -57,7 +57,7 @@ function eyeImages_on_Fullscreen($params = '') {
 	if ($GLOBALS['eyeImages_Window']->fullScreen) {
 		$press = 'Press';
 	}
-	eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeImages_Toolbar");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeImages_Toolbar");
 	for (var i = 0; i < e.childNodes.length; i++) {
 		if (e.childNodes[i].id == "Fullscreen_Container") {
 			e.childNodes[i].className = "blockbarItem' . $press . '_right";
@@ -91,7 +91,7 @@ function eyeImages_on_Init($params = '') {
 		$info[0] = intval(480 / $info[1] * $info[0]);
 		$info[1] = 480;
 	}
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 	$myWindow = new Window(array(
 		'cent' => 1,
 		'father' => 'eyeApps',
@@ -168,7 +168,7 @@ function eyeImages_on_Next($params = '') {
 	if ($image) {
 		eyeImages_lib_Load($image);
 	} else {
-		eyex('messageBox',array('content' => 'No image could be found.'));
+		xenonx('messageBox',array('content' => 'No image could be found.'));
 	}
 }
 
@@ -188,7 +188,7 @@ function eyeImages_on_Previous($params = '') {
 	if ($image) {
 		eyeImages_lib_Load($image);
 	} else {
-		eyex('messageBox',array('content' => 'No image could be found.'));
+		xenonx('messageBox',array('content' => 'No image could be found.'));
 	}
 }
 

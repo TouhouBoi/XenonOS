@@ -48,11 +48,11 @@ function eyeLogin_on_Create($params = '') {
 				$xml = eyeXML('getXMLconfig',array('i18n','lang.xml'));
 				$xml['lang'][0] = $language;
 				eyeXML('setXMLconfig',array('i18n','lang.xml',$xml));
-				eyex('rawjs',array('js' => 'eyeLogin_2_Clean(' . $myPid . ');'));
+				xenonx('rawjs',array('js' => 'eyeLogin_2_Clean(' . $myPid . ');'));
 				if (um('login',array($user,$password1))) {
 					i18n('setLang',array($language));
 					proc('setProcessUser',array($myPid));
-					eyex('rawjs',array('js' => 'xGetElementById("eyex-info").style.display = "block"; xGetElementById("eyex-powered").style.display = "block"; eyeLogin_successLogin("' . sec('cleanOutPutString',array('var' => $user,'noreturn' => 1,'nohtml' => 1)) . '","' . $checknum . '","' . $myPid . '");'));
+					xenonx('rawjs',array('js' => 'xGetElementById("xenonx-info").style.display = "block"; xGetElementById("xenonx-powered").style.display = "block"; eyeLogin_successLogin("' . sec('cleanOutPutString',array('var' => $user,'noreturn' => 1,'nohtml' => 1)) . '","' . $checknum . '","' . $myPid . '");'));
 				}
 			} else {
 				$currentUser = $oldUser;
@@ -96,11 +96,11 @@ function eyeLogin_on_Login($params = '') {
 	if ($loginCorrect == true) {
 		unset($_SESSION['sawasc']);
 		$currentUser = $user;
-		$xml = eyeXML('getXMLconfig',array('eyex','eyex.xml'));
+		$xml = eyeXML('getXMLconfig',array('xenonx','xenonx.xml'));
 		if ($xml['changes'][0]['increase'][0]) {
 			$xml['changes'][0]['times'][0] += $xml['changes'][0]['increase'][0];
 			$xml['changes'][0]['increase'][0] = 0;
-			eyeXML('setXMLconfig',array('eyex','eyex.xml',$xml));
+			eyeXML('setXMLconfig',array('xenonx','xenonx.xml',$xml));
 		}
 		if ($language && $language != '[auto]' && ($language == 'en' || vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/' . $language . '.xml')))) {
 			i18n('setLang',array($language));
@@ -113,12 +113,12 @@ function eyeLogin_on_Login($params = '') {
 			}
 		}
 		proc('setProcessUser',array($myPid));
-		eyex('rawjs',array('js' => 'xGetElementById("eyex-info").style.display = "block"; xGetElementById("eyex-powered").style.display = "block"; eyeLogin_successLogin("' . sec('cleanOutPutString',array('var' => $user,'noreturn' => 1,'nohtml' => 1)) . '","' . $checknum . '","' . $myPid . '");'));
+		xenonx('rawjs',array('js' => 'xGetElementById("xenonx-info").style.display = "block"; xGetElementById("xenonx-powered").style.display = "block"; eyeLogin_successLogin("' . sec('cleanOutPutString',array('var' => $user,'noreturn' => 1,'nohtml' => 1)) . '","' . $checknum . '","' . $myPid . '");'));
 	} else {
 		if (errorCodes('getErrorCode') == UM_USER_IS_DISABLED) {
 			$GLOBALS['eyeLogin_Label_1_Disabled']->unhide();
 		} else {
-			eyex('rawjs',array('js' => 'eyeLogin_badLogin("' . sec('cleanOutPutString',array('var' => $user,'noreturn' => 1,'nohtml' => 1)) . '","' . sec('cleanOutPutString',array('var' => $password,'noreturn' => 1,'nohtml' => 1)) . '","' . $checknum . '","' . $myPid . '");'));
+			xenonx('rawjs',array('js' => 'eyeLogin_badLogin("' . sec('cleanOutPutString',array('var' => $user,'noreturn' => 1,'nohtml' => 1)) . '","' . sec('cleanOutPutString',array('var' => $password,'noreturn' => 1,'nohtml' => 1)) . '","' . $checknum . '","' . $myPid . '");'));
 		}
 	}
 }
@@ -130,15 +130,15 @@ function eyeLogin_on_Message($params = '') {
 function eyeLogin_on_successLogin($params = '') {
 	global $currentUser;
 	if ($currentUser) {
-		$pid = proc('findPidByName',array('eyeX'));
+		$pid = proc('findPidByName',array('xenonx'));
 		proc('setProcessUser',array($pid));
-		eyex('systemSound', array('login'));
+		xenonx('systemSound', array('login'));
 		if ($_SESSION['SCREEN']['is_phone']) {
 			$hide_address_bar = 'window.scrollTo(0,1);';
 		} else {
 			$hide_address_bar = '';
 		}
-		eyex('rawjs',array('js' => 'xGetElementById("eyex-info").style.display = "none"; xGetElementById("eyex-powered").style.display = "none";' . $hide_address_bar));
+		xenonx('rawjs',array('js' => 'xGetElementById("xenonx-info").style.display = "none"; xGetElementById("xenonx-powered").style.display = "none";' . $hide_address_bar));
 
 		$xml = um('retrieveUser',array($currentUser));
 		if (isset($xml['eyeUser'][0]['resetPassword']) === true && $xml['eyeUser'][0]['resetPassword'][0]) {
@@ -236,11 +236,11 @@ function eyeLogin_on_ResetPassword($params = '') {
 		$password2 = base64_decode($GLOBALS['eyeLogin_Textbox_ResetPassword_2']->text);
 
 		if (!$password1 || !$password2) {
-			eyex('messageBox', array('content' => 'Please fill out all fields!'));
+			xenonx('messageBox', array('content' => 'Please fill out all fields!'));
 		} else if (utf8_strlen($password1) < 4) {
-			eyex('messageBox', array('content' => 'Password is too short!'));
+			xenonx('messageBox', array('content' => 'Password is too short!'));
 		} elseif ($password1 != $password2) {
-			eyex('messageBox', array('content' => 'Password fields do not match!'));
+			xenonx('messageBox', array('content' => 'Password fields do not match!'));
 		} else {
 			$oldUser = $currentUser;
 			$currentUser = ROOTUSER;

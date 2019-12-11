@@ -145,7 +145,7 @@ function eyeFTP_ftpListDir($dir) {
 	//FIXME: unable to use setText(), otherwise causes an "undefined entity" error on special chars in browser
 	//$GLOBALS['eyeFTP_path_TXTBOX']->setText($dir);
 	global $myPid;
-	eyeX('rawjs',array('js' => 'document.getElementById("'.$myPid.'_eyeFTP_remotePath_TXTBOX").value=Base64.decode("'.base64_encode($dir).'");'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_eyeFTP_remotePath_TXTBOX").value=Base64.decode("'.base64_encode($dir).'");'));
 
 	eyeFTP_logConsole('Directory listing successful for "%s" (%s file(s) found)',
 		array($dir,$nbFiles),
@@ -195,7 +195,7 @@ function eyeFTP_ftpGetToBrowser($dir,$filename) {
 	$params['tmpfilepath'] = $tmpFilePath;
 	$params['filename'] = $filename;
 	$params = urlencode(serialize($params));
-	eyex('rawjs',array('js' => "document.getElementById('".$myPid."_eyeFTP_download_FRM').src='index.php?checknum=$checknum&msg=eyeFTP_downloadRemote_finished&params=".$params."';"));
+	xenonx('rawjs',array('js' => "document.getElementById('".$myPid."_eyeFTP_download_FRM').src='index.php?checknum=$checknum&msg=eyeFTP_downloadRemote_finished&params=".$params."';"));
 
 	eyeFTP_logConsole('Download finished successfully, %s bytes transfered.',
 		array($filesize),

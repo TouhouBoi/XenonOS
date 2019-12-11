@@ -19,7 +19,7 @@ global $currentUser;
 global $myPid;
 
 if ($currentUser != ROOTUSER && !um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
-	eyex('messageBox',array('content' => 'You are not allowed to manage users!'));
+	xenonx('messageBox',array('content' => 'You are not allowed to manage users!'));
 	xeControl_lib_loadContent();
 	return;
 } elseif (um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
@@ -74,11 +74,11 @@ if (um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
 		$allUsers = um('getAllUsersBy',$array);
 	}
 	if (!$allUsers) {
-		eyex('messageBox',array('content' => 'No registered user could be found.'));
-		eyex('rawjs',array('js' => 'sendMsg(' . $checknum . ',"users_load","");'));
+		xenonx('messageBox',array('content' => 'No registered user could be found.'));
+		xenonx('rawjs',array('js' => 'sendMsg(' . $checknum . ',"users_load","");'));
 	}
 } else {
-	eyex('rawjs',array('js' => 'sendMsg(' . $checknum . ',"users_load","");'));
+	xenonx('rawjs',array('js' => 'sendMsg(' . $checknum . ',"users_load","");'));
 }
 foreach ($allUsers as $user) {
 	$userXML = um('retrieveUser',array($user));

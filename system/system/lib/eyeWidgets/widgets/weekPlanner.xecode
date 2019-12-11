@@ -129,33 +129,33 @@ class weekPlanner {
 			'center' => $this->cent
 		);
 		$this->showed=1;
-		eyex('createWidget',$week);
+		xenonx('createWidget',$week);
 		eyeWidgets('serialize',array($this));
 	}
 
 	function delNote($id)
 	{
 		global $myPid;
-		eyex('rawjs',array('js' => "weekPlanner1.delCalendarNote($id);"));
+		xenonx('rawjs',array('js' => "weekPlanner1.delCalendarNote($id);"));
 	}
 
 	function changeNoteId($oldId,$id)
 	{
-		eyex('rawjs',array('js' => "weekPlanner1.changeCalendarNoteId($oldId,$id);"));
+		xenonx('rawjs',array('js' => "weekPlanner1.changeCalendarNoteId($oldId,$id);"));
 	}
 
 	function setWidth($width) {
 		global $myPid;
 		$this->width = intval($width);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_daysBase").style.width="'.$this->width.'px";'));
-		eyex('rawjs',array('js' => 'onResizeEyeCalendar('.$myPid.');'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_daysBase").style.width="'.$this->width.'px";'));
+		xenonx('rawjs',array('js' => 'onResizeEyeCalendar('.$myPid.');'));
 	}
 
 	function setHeight($height) {
 		global $myPid;
 		$this->height = intval($height);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.height="'.$this->height.'px";'));
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.height="'.$this->height.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.height="'.$this->height.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.height="'.$this->height.'px";'));
 	}
 
 	function addNotes($notes){
@@ -223,7 +223,7 @@ class weekPlanner {
 					}
 				}
 				$tokens = array($event,$calendar);
-				eyex('runjs',array('js' => 'onAddNoteCalendar('.$myPid.','.$day.','.$hourFrom.','.$hourEven.','.$minFrom.','.$minEven.','.$index.', %s , %s ,'.$resizable.','.$movible.' ,'.$title.');','tokens'=>$tokens));
+				xenonx('runjs',array('js' => 'onAddNoteCalendar('.$myPid.','.$day.','.$hourFrom.','.$hourEven.','.$minFrom.','.$minEven.','.$index.', %s , %s ,'.$resizable.','.$movible.' ,'.$title.');','tokens'=>$tokens));
 			}
 		}
 	}
@@ -237,7 +237,7 @@ class weekPlanner {
 			$num = $calendarInfo['num'][0];
 			$show = $calendarInfo['show'][0];
 			$tokens[0] = $name;
-			eyex('runjs',array('js' => 'onAddCalendar('.$myPid.', %s ,'.$num.','.$show.');','tokens'=>$tokens));
+			xenonx('runjs',array('js' => 'onAddCalendar('.$myPid.', %s ,'.$num.','.$show.');','tokens'=>$tokens));
 		}
 	}
 	function getNames(){
@@ -279,35 +279,35 @@ class weekPlanner {
 		$this->getNames();
 
 		$weekDaysJs = mmap('array2jsArg',array($this->weekDays));
-		eyex('rawjs',array('js' => 'var weekDaysJs = getArrayArg(\''.$weekDaysJs.'\');onChangeDateCalendar('.$myPid.',weekDaysJs,'.$this->dayFrom.','.$this->dayEven.');'));
+		xenonx('rawjs',array('js' => 'var weekDaysJs = getArrayArg(\''.$weekDaysJs.'\');onChangeDateCalendar('.$myPid.',weekDaysJs,'.$this->dayFrom.','.$this->dayEven.');'));
 	}
 	function cleanNotes(){
 		global $myPid;
-		eyex('rawjs',array('js' => 'onCleanNotesCalendar('.$myPid.');'));
+		xenonx('rawjs',array('js' => 'onCleanNotesCalendar('.$myPid.');'));
 	}
 	function cleanCalendars(){
 		global $myPid;
-		eyex('rawjs',array('js' => 'onCleanCalendars('.$myPid.');'));
+		xenonx('rawjs',array('js' => 'onCleanCalendars('.$myPid.');'));
 	}
 	function hiddenNotes($num){
 		global $myPid;
-		eyex('rawjs',array('js' => 'onHiddenNotesCalendar('.$myPid.','.$num.');'));
+		xenonx('rawjs',array('js' => 'onHiddenNotesCalendar('.$myPid.','.$num.');'));
 	}
 	function showNotes($num){
 		global $myPid;
-		eyex('rawjs',array('js' => 'onShowNotesCalendar('.$myPid.','.$num.');'));
+		xenonx('rawjs',array('js' => 'onShowNotesCalendar('.$myPid.','.$num.');'));
 	}
 	function deleteNote($id){
 		global $myPid;
-		eyex('rawjs',array('js' => 'onDeleteNote('.$myPid.','.$id.');'));
+		xenonx('rawjs',array('js' => 'onDeleteNote('.$myPid.','.$id.');'));
 	}
 	function deleteCalendarNotes($num){
 		global $myPid;
-		eyex('rawjs',array('js' => 'onDeleteCalendarNotes('.$myPid.','.$num.');'));
+		xenonx('rawjs',array('js' => 'onDeleteCalendarNotes('.$myPid.','.$num.');'));
 	}
 	function selectCalendar($num){
 		global $myPid;
-		eyex('rawjs',array('js' => 'onSelectCalendar('.$myPid.','.$num.');'));
+		xenonx('rawjs',array('js' => 'onSelectCalendar('.$myPid.','.$num.');'));
 	}
 	function getDays(){
 		$date = getdate($this->date);
@@ -397,15 +397,15 @@ class weekPlanner {
 	}
 	function goToFirstNote(){
 		global $myPid;
-		eyex('rawjs',array('js' => 'onGoToFirstNote('.$myPid.');'));
+		xenonx('rawjs',array('js' => 'onGoToFirstNote('.$myPid.');'));
 	}
 	function killme() {
 		global $myPid;
-		eyex('rawjs',array('js' => 'var removeMe = document.getElementById("'.$myPid.'_hoursBase"); if (removeMe) { removeMe.parentNode.removeChild(removeMe); }'));
-		eyex('rawjs',array('js' => 'var removeMe = document.getElementById("'.$myPid.'_daysBase"); if (removeMe) { removeMe.parentNode.removeChild(removeMe); }'));
-		eyex('rawjs',array('js' => 'var removeMe = document.getElementById("'.$myPid.'_calendarsEntryContainer"); if (removeMe) { removeMe.parentNode.removeChild(removeMe); }'));
-		eyex('rawjs',array('js' => 'var removeMe = document.getElementById("'.$myPid.'_fatherDays"); if (removeMe) { removeMe.parentNode.removeChild(removeMe); }'));
-		eyex('rawjs',array('js' => 'var removeMe = document.getElementById("'.$myPid.'_fatherNames"); if (removeMe) { removeMe.parentNode.removeChild(removeMe); }'));
+		xenonx('rawjs',array('js' => 'var removeMe = document.getElementById("'.$myPid.'_hoursBase"); if (removeMe) { removeMe.parentNode.removeChild(removeMe); }'));
+		xenonx('rawjs',array('js' => 'var removeMe = document.getElementById("'.$myPid.'_daysBase"); if (removeMe) { removeMe.parentNode.removeChild(removeMe); }'));
+		xenonx('rawjs',array('js' => 'var removeMe = document.getElementById("'.$myPid.'_calendarsEntryContainer"); if (removeMe) { removeMe.parentNode.removeChild(removeMe); }'));
+		xenonx('rawjs',array('js' => 'var removeMe = document.getElementById("'.$myPid.'_fatherDays"); if (removeMe) { removeMe.parentNode.removeChild(removeMe); }'));
+		xenonx('rawjs',array('js' => 'var removeMe = document.getElementById("'.$myPid.'_fatherNames"); if (removeMe) { removeMe.parentNode.removeChild(removeMe); }'));
 		unset($_SESSION[WTABLE][$myPid][$this->name]);
 	}
 }

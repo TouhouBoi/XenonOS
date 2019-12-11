@@ -22,7 +22,7 @@ function xeControl_on_smtp_save($params = '') {
 		$hostname = $GLOBALS['xeControl_smtp_Textbox_Hostname']->text;
 		$port = $GLOBALS['xeControl_smtp_Textbox_Port']->text;
 		if (!trim($from) || !trim($username) || !trim($password) || !trim($hostname) || !trim($port)) { // utf8
-			eyex('messageBox',array('content' => 'Please fill out all fields.'));
+			xenonx('messageBox',array('content' => 'Please fill out all fields.'));
 		} else {
 			$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/smtp.xml';
 			$xml = eyeXML('getXMLfile',array($file));
@@ -33,7 +33,7 @@ function xeControl_on_smtp_save($params = '') {
 			$xml['CONFIG'][0]['SMTP_PORT'][0] = $port;
 			$xml['CONFIG'][0]['SMTP_SSL'][0] = $GLOBALS['xeControl_smtp_Checkbox_UseSSL']->checked;
 			eyeXML('setXMLFile',array($file,$xml));
-			eyex('messageBox',array('content' => 'Changes successfully saved.'));
+			xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 		}
 	}
 }

@@ -54,7 +54,7 @@ function eyeMessages_run($params = null)
 	
 	$myWindow->show();
 	
-	eyeX('updateCSS', array('name' => $myPid.'_'.$myWindow->name.'_Content', 'property' => 'overflow', 'value' => 'hidden'));
+	xenonx('updateCSS', array('name' => $myPid.'_'.$myWindow->name.'_Content', 'property' => 'overflow', 'value' => 'hidden'));
 
 	$myLine = new Line(
 		array(
@@ -108,7 +108,7 @@ function eyeMessages_run($params = null)
 	
 	$inboxlbl->show();
 	
-	eyeX('rawjs',
+	xenonx('rawjs',
 		array('js' =>
 		'var e = document.getElementById("'. $myPid .'_' . $inboxcontainer->name . '");
 			
@@ -179,7 +179,7 @@ function eyeMessages_run($params = null)
 	
 	$unreadlbl->show();
 
-	eyeX('rawjs',
+	xenonx('rawjs',
 		array('js' =>
 		'var e = document.getElementById("'. $myPid .'_' . $unreadcontainer->name . '");
 		
@@ -250,7 +250,7 @@ function eyeMessages_run($params = null)
 	
 	$readlbl->show();
 
-	eyeX('rawjs', array('js' =>
+	xenonx('rawjs', array('js' =>
 		'var e = document.getElementById("'. $myPid .'_' . $readcontainer->name . '");
 		e.style.cursor = "pointer";
 		e.onmouseover = function(){
@@ -301,7 +301,7 @@ function eyeMessages_run($params = null)
 	));
 	$sentlbl->show();
 
-	eyeX('rawjs',array('js'=>
+	xenonx('rawjs',array('js'=>
 		'var e = document.getElementById("'. $myPid .'_' . $sentcontainer->name . '");
 		e.style.cursor = "pointer";
 		e.onmouseover = function(){
@@ -351,7 +351,7 @@ function eyeMessages_run($params = null)
 	));
 	$trashlbl->show();
 
-	eyeX('rawjs',array('js'=>
+	xenonx('rawjs',array('js'=>
 		'var e = document.getElementById("'. $myPid .'_' . $trashcontainer->name . '");
 		e.style.cursor = "pointer";
 		e.onmouseover = function(){
@@ -380,7 +380,7 @@ function eyeMessages_run($params = null)
 		'height' => 415
 	));
 	$myContainer->show();
-	eyeX('rawjs',array('js' => 'document.getElementById("'.$myPid.'_msgContainer_Container").style.overflowX="hidden";document.getElementById("'.$myPid.'_msgContainer_Container").style.overflowY="auto";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_msgContainer_Container").style.overflowX="hidden";document.getElementById("'.$myPid.'_msgContainer_Container").style.overflowY="auto";'));
 
 	//Initialize section by default to the Inbox
 	$myHidden = new Hidden(array(
@@ -419,12 +419,12 @@ function eyeMessages_run($params = null)
 	$myToolbar->addItem('empty','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/trash_full.png','Empty', array($myTable));
 	$myToolbar->addItem('fullscreen','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png','Full Screen','',1);
 	$myToolbar->addItem('restore', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/message_restore.png', 'Restore', array($myTable));
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
-	eyeX('sendMessage', array('msg' => 'gotosection'));
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
+	xenonx('sendMessage', array('msg' => 'gotosection'));
 }
 
 function eyeMessages_end($params=null) {
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }
 

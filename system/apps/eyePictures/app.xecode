@@ -35,11 +35,11 @@ function eyePictures_run($params="") {
 	if (vfs('real_fileExists', array($tmp_folder))) vfs('real_rmdir', array($tmp_folder));
 	if (!vfs('real_mkDir', array($tmp_folder)) || !vfs('real_mkDir', array($tmp_folder.'/backup')) || !vfs('real_mkDir', array($tmp_folder.'/thumbnails'))) {
 		
-		eyeX('messageBox', array('content' => 'Error during the tmp folder creation. Cannot load eyePictures.'));
+		xenonx('messageBox', array('content' => 'Error during the tmp folder creation. Cannot load eyePictures.'));
 		proc('end');
 	}
 	
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 	if ($_SESSION['SCREEN']['eyeApps']['height'] > 505) $window_height = 505;
 	else $window_height = $_SESSION['SCREEN']['eyeApps']['height'];
 	
@@ -72,7 +72,7 @@ function eyePictures_run($params="") {
 	$mainBox->setCSS(array(
 		'background-color' => '#666666'
 	));
-	eyex('rawjs', array('js' => 'document.getElementById("'.$myPid.'_eyeMainBox").style.borderRadius="0";
+	xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_eyeMainBox").style.borderRadius="0";
 		document.getElementById("'.$myPid.'_eyeMainBox").style.MozBorderRadius="0";
 		document.getElementById("'.$myPid.'_eyeMainBox").style.WebkitBorderRadius="0";
 	'));
@@ -129,12 +129,12 @@ function eyePictures_run($params="") {
 	$myToolbar->addLine();
 	$myToolbar->addItem('fullScreenSignal','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png','Full Screen','',1);
 
-	eyeX('rawjs',array('js' => 'slideShow = 0;'));
+	xenonx('rawjs',array('js' => 'slideShow = 0;'));
 
 	if (!empty($params[0])){
 
 		$myToolbar->pressItem(array('viewSignal'));
-		eyex('sendMessage', array('msg' => 'showImage', 'params' => serialize($params[0])));
+		xenonx('sendMessage', array('msg' => 'showImage', 'params' => serialize($params[0])));
 		return;
 	} else {
 
@@ -179,7 +179,7 @@ function eyePictures_run($params="") {
 			'vert' => 0
 		));
 		$dirHomeLevelUp->show(0);
-		eyex('rawjs', array('js' => 'document.getElementById("'.$myPid.'_dirHomeLevelUp_Container").style.overflow="hidden";'));
+		xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_dirHomeLevelUp_Container").style.overflow="hidden";'));
 		
 		$dirHome = new icon(array(
 			'name' => 'dirHome',
@@ -218,7 +218,7 @@ function eyePictures_run($params="") {
 			'vert' => 0
 		));
 		$dirScrollBox->show(0);
-		eyex('rawjs', array('js' => 'document.getElementById("'.$myPid.'_dirScrollBox_Container").style.overflow="auto";
+		xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_dirScrollBox_Container").style.overflow="auto";
 			document.getElementById("'.$myPid.'_dirScrollBox_Container").style.overflowY="auto";
 			document.getElementById("'.$myPid.'_dirScrollBox_Container").style.overflowX="hidden";
 		'));
@@ -234,13 +234,13 @@ function eyePictures_run($params="") {
 			'vert' => 0
 		));
 		$pixScrollBox->show(0);
-		eyex('rawjs', array('js' => 'document.getElementById("'.$myPid.'_pixScrollBox_Container").style.overflow="auto";
+		xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_pixScrollBox_Container").style.overflow="auto";
 			document.getElementById("'.$myPid.'_pixScrollBox_Container").style.overflowY="auto";
 			document.getElementById("'.$myPid.'_pixScrollBox_Container").style.overflowX="hidden";
 		'));
 		
 		$path = um('getCurrentUserDir').'files';
-		eyex('sendMessage', array('msg' => 'listContent', 'params' => $path));
+		xenonx('sendMessage', array('msg' => 'listContent', 'params' => $path));
 		return;
 	}
 }

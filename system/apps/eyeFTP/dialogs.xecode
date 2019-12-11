@@ -32,7 +32,7 @@ define('EYEFTP_IMG_UPLOADDLG_ICON', 'index.php?theme=' . $_SESSION['usertheme'] 
  * @see eyeFTP_on_eyeFTP_newFolder_createFolder_BTN()
  */
 function showCreateFolderDialog() {
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'btn1_capt' => 'Create',
 		'btn1_name' => 'eyeFTP_newFolder_createFolder_BTN',
 		'content' => 'Type the name of the new folder',
@@ -56,7 +56,7 @@ function showCreateFolderDialog() {
  * @see eyeFTP_on_eyeFTP_rename_rename_BTN()
  */
 function showRenameDialog($params = '') {
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'btn1_capt' => 'Rename',
 		'btn1_name' => 'eyeFTP_rename_rename_BTN',
 		'content' => 'Type the new name/location of the file/folder',
@@ -83,7 +83,7 @@ function showRenameDialog($params = '') {
  * @see eyeFTP_on_eyeFTP_delete_deleteNo_BTN()
  */
 function showConfirmDeleteDialog($params = '') {
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'btn1_capt' => 'Yes',
 		'btn1_name' => 'eyeFTP_delete_deleteYes_BTN',
 		'btn2_capt' => 'No',

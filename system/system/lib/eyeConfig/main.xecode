@@ -109,7 +109,7 @@ function lib_eyeConfig_swap ($params) {
 
 				if ($ret === false) {
 					// If something has gone wrong...
-					eyex('messageBox', array('content' => 'Something went wrong! You have been kept in '. $from .'.'));
+					xenonx('messageBox', array('content' => 'Something went wrong! You have been kept in '. $from .'.'));
 					return false;
 				}
 			}
@@ -122,9 +122,9 @@ function lib_eyeConfig_swap ($params) {
 		// If we don't want to finish off in XML, restart server process to reload new module functions (bounces off xeControl)
 		if ($to !== "xml") {
 			// $params[2] = the checknum of xeControl
-			$ret = eyex('rawjs', array('js' => 'sendMsg("' .$params[2]. '", "userConfig_switchMethod_submit", eyeParam("from", "'. $from .'") + eyeParam("to", "'. $to .'"))'));
+			$ret = xenonx('rawjs', array('js' => 'sendMsg("' .$params[2]. '", "userConfig_switchMethod_submit", eyeParam("from", "'. $from .'") + eyeParam("to", "'. $to .'"))'));
 		} else {
-			eyex('messageBox', array('content' => 'Switch complete. You are now using XML as your Storage Method.'));
+			xenonx('messageBox', array('content' => 'Switch complete. You are now using XML as your Storage Method.'));
 		}
 		return true;
 	}
@@ -153,10 +153,10 @@ function lib_eyeConfig_swap ($params) {
 		if ($ret === false) {
 			$xml['CONFIG'][0]['CONFIG_MODULE'][0] = "xml";
 			eyeXML('setXMLFile',array($xmlfile, $xml));
-			eyex('messageBox', array('content' => 'Something went wrong! Defaulting to XML.'));
+			xenonx('messageBox', array('content' => 'Something went wrong! Defaulting to XML.'));
 			return false;
 		} else {
-			eyex('messageBox', array('content' => 'Switch complete. You are now using %s as your Storage Method.', 'tokens' => array(utf8_strtoupper($to))));
+			xenonx('messageBox', array('content' => 'Switch complete. You are now using %s as your Storage Method.', 'tokens' => array(utf8_strtoupper($to))));
 		}
 	}
 	return true;

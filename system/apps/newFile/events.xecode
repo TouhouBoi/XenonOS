@@ -26,17 +26,17 @@ function newFile_on_Do($params = '') {
 		foreach ($charBlackList as $char){
 			$file = str_replace($char,'',$file);
 		}
-		eyex('messageBox',array('content' => 'Some special chars have been removed.'));
+		xenonx('messageBox',array('content' => 'Some special chars have been removed.'));
 	}
 	$path[0] .= '/' . $file;
 	if ($path[1] == 'real' && vfs('real_create',array($path[0])) || vfs('create',array($path[0]))) {
 		if ($GLOBALS['newFile_Hidden_Callback']->text) {
-			eyex('rawjs',array('js' => $GLOBALS['newFile_Hidden_Callback']->text));
+			xenonx('rawjs',array('js' => $GLOBALS['newFile_Hidden_Callback']->text));
 		}
 		$path = eyeFiles('cleanPath', array(substr(trim($path[0], '/\\'), 0, -strlen(basename($path[0]))))); // utf8
 		eyeFiles('update',array($path[1] . '://' . $path[2]));
 	} else {
-		eyex('messageBox',array('content' => 'Error creating file!'));
+		xenonx('messageBox',array('content' => 'Error creating file!'));
 	}
 	proc('end');
 }

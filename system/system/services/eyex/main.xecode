@@ -229,7 +229,7 @@ function service_eyex_getThemeImage($params)
 
 	if (stripos($path, 'extern=') !== false)
 	{
-		$path = eyex('getRealFromExtern',array($path));
+		$path = xenonx('getRealFromExtern',array($path));
 	}
 
 	$url = $path;
@@ -243,7 +243,7 @@ function service_eyex_getThemeImage($params)
 		{
 			$alias = array();
 
-			include XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/eyex/image_alias' . XE_CODE_EXTENSION;
+			include XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/xenonx/image_alias' . XE_CODE_EXTENSION;
 
 			$temp = substr($url, strlen($themes_path . '/default/'));
 
@@ -290,13 +290,13 @@ function service_eyex_getThemeImage($params)
 		{
 			$alias = array();
 
-			include XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/eyex/image_alias' . XE_CODE_EXTENSION;
+			include XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SERVICE_DIR . '/xenonx/image_alias' . XE_CODE_EXTENSION;
 
 			$path = substr($url, strlen(XENONOS_ROOT . '/' . EXTERN_DIR . '/'));
 
 			if ($alias[1][$path])
 			{
-				$path = eyex('getThemeImage',array($themes_path . '/default/' . $alias[1][$path],3));
+				$path = xenonx('getThemeImage',array($themes_path . '/default/' . $alias[1][$path],3));
 			}
 			else
 			{
@@ -405,7 +405,7 @@ function service_eyex_createDiv($params)
 
 	global $procInfo;
 
-	$isLayer = eyex('isLayer', array('name' => $father));
+	$isLayer = xenonx('isLayer', array('name' => $father));
 
 	if(!$isLayer && !isset($params['removepid']))
 	{
@@ -460,7 +460,7 @@ function service_eyex_createWidget($params)
 	$widgetparams = $params['params'];
 	$horiz = $params['horiz'];
 	$vert = $params['vert'];
-	$isLayer = eyex('isLayer',array('name'=>$father));
+	$isLayer = xenonx('isLayer',array('name'=>$father));
 	if(!$isLayer && (isset($params['removepid']) === false || $params['removepid'] != 1)) {
 		$father = $procInfo['pid'].'_'.$father;
 	}
@@ -616,7 +616,7 @@ function service_eyex_messageBox($params = '') {
 			}
 		}
 		if (!empty($params['sound'])) {
-			eyex('systemSound', array($params['sound']));
+			xenonx('systemSound', array($params['sound']));
 		}
 
 		if (!isset($params['father'])) {
@@ -785,7 +785,7 @@ function service_eyex_messageBox($params = '') {
 					$buttons .= ',"' . $button[0] . '"';
 				}
 			}
-			eyex('rawjs',array('js' => 'var buttons = new Array(' . /* utf8 */ substr($buttons, 1) . ');
+			xenonx('rawjs',array('js' => 'var buttons = new Array(' . /* utf8 */ substr($buttons, 1) . ');
 			var right = 20;
 			for (var b = 0; b < buttons.length; b++) {
 				var e = xGetElementById("' . $myPid . '_" + buttons[b] + "_Container");
@@ -800,7 +800,7 @@ function service_eyex_messageBox($params = '') {
 				$params['sound'] = 'message';
 			}
 			if (!empty($params['sound'])) {
-				eyex('systemSound', array($params['sound']));
+				xenonx('systemSound', array($params['sound']));
 			}
 			$params['type'] = 1;
 		}
@@ -1373,7 +1373,7 @@ function service_eyex_sendMessage($params) {
 }
 
 /**
-* Draws a new layer and serializes it into the eyeX layer table.
+* Draws a new layer and serializes it into the xenonx layer table.
 *
 * @param $params array(name,[class])
 * @param $name Name used to identify the layer.
@@ -1667,7 +1667,7 @@ function service_eyex_print($params='') {
 			return false;
 		}
 		$js = 'printToTty("'.$tty.'",%s);';
-		eyeX('runjs',array('js'=>$js,'tokens'=>array($text)));
+		xenonx('runjs',array('js'=>$js,'tokens'=>array($text)));
 	}
 }
 
@@ -1704,7 +1704,7 @@ function service_eyex_jscolor($params = '') {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
-	$url = eyex('getThemeImage', array(THEME_CONF_DIR . '/jscolor.xml', 2));
+	$url = xenonx('getThemeImage', array(THEME_CONF_DIR . '/jscolor.xml', 2));
 
 	global $currentUser;
 	$oldUser = $currentUser;
@@ -1722,7 +1722,7 @@ function service_eyex_jscolor($params = '') {
 			$prop .= ', ' . $key . ': ' . $value;
 		}
 	}
-	eyex('runjs', array('js' => 'new jscolor.color(document.getElementById(%s), {' . $prop . '});', 'tokens' => array($params[0])));
+	xenonx('runjs', array('js' => 'new jscolor.color(document.getElementById(%s), {' . $prop . '});', 'tokens' => array($params[0])));
 }
 
 /**

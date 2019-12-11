@@ -17,9 +17,9 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function systemConsole_on_Clean($params=null) {
 	global $myPid;
 	$js .= 'document.getElementById("'.$myPid.'_consoleContent").innerHTML = "";';
-	eyeX('rawjs',array('js'=>$js));
+	xenonx('rawjs',array('js'=>$js));
 	$js = 'document.getElementById("1_tty").innerHTML = "";';
-	eyeX('rawjs',array('js'=>$js));
+	xenonx('rawjs',array('js'=>$js));
 }
 
 function systemConsole_on_Resize($params=null) {

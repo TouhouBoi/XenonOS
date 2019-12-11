@@ -167,7 +167,7 @@ function eyeFeeds_clearFeedItems() {
 	));
 	$feedItemsTable->show();
 	//remove border of the table
-	eyex('rawjs', array('js' => 'document.getElementById("'.$myPid.'_feedItems_TAB_Container").firstChild.style.border="none";'));
+	xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_feedItems_TAB_Container").firstChild.style.border="none";'));
 }
 
 function eyeFeeds_clearItemContent() {
@@ -242,7 +242,7 @@ function eyeFeeds_displayItemContent($item) {
 		$content .= $enclosuresLinks;
 		$encodedTextToDisplay = base64_encode($content);
 	}
-	eyeX('rawjs', array('js' => 'document.getElementById("'.$myPid.'_content_LBL").innerHTML=Base64.decode("'.$encodedTextToDisplay.'");'));
+	xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_content_LBL").innerHTML=Base64.decode("'.$encodedTextToDisplay.'");'));
 }
 
 
@@ -574,7 +574,7 @@ function eyeFeeds_fetchFeedFromUrl($url, $forceRefresh=false) {
 	$simplePie->handle_content_type();
 
 	if ($simplePie->error()) {
-		eyeX('messageBox',array('content'=> 'Error getting specified feed'));
+		xenonx('messageBox',array('content'=> 'Error getting specified feed'));
 		return false;
 	}
 
@@ -778,15 +778,15 @@ function eyeFeeds_exportFeeds($outputFilePath) {
 	}
 
 	if (!vfs('create',array($outputFilePath))) {
-		eyeX('messageBox',array('content'=> 'Unable to export list to the specified location'));
+		xenonx('messageBox',array('content'=> 'Unable to export list to the specified location'));
 		return;
 	}
 	if (! vfs('writeFile',array($outputFilePath, $outputXml->asXML()))) {
-		eyeX('messageBox',array('content'=> 'Unable to export list to the specified location'));
+		xenonx('messageBox',array('content'=> 'Unable to export list to the specified location'));
 		return;
 	}
 	eyeFiles('update',array(dirname($outputFilePath)));
-	eyeX('messageBox',array('content'=> 'Feeds list successfully exported'));
+	xenonx('messageBox',array('content'=> 'Feeds list successfully exported'));
 }
 
 function eyeFeeds_attachFeedNodeToOpml($xmlObject, $feed) {
@@ -837,7 +837,7 @@ function bounceRequest($params=null) {
 	}
 	$sendMsgParams .= 'eyeParam("__bounce", "1")';
 
-	eyeX('rawjs', array('js' => 'sendMsg('.$checknum.', "'.$params['__signal'].'", '.$sendMsgParams.');'));
+	xenonx('rawjs', array('js' => 'sendMsg('.$checknum.', "'.$params['__signal'].'", '.$sendMsgParams.');'));
 }
 
 /**

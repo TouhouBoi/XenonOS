@@ -51,7 +51,7 @@ class SimpleMenu {
 		if($this->showed == 0) {
 			$this->show();
 		}
-		eyex('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
+		xenonx('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
 	}
 
 	function show($noserialize=1) {
@@ -78,7 +78,7 @@ class SimpleMenu {
 		if($noserialize == 0) {
 			eyeWidgets('serialize',array($this));
 		}
-		eyex('createWidget',$mySimpleMenu);
+		xenonx('createWidget',$mySimpleMenu);
 	}
 
 	function addEntry($text,$Ename,$signal,$params="",$imgId = '') {
@@ -86,7 +86,7 @@ class SimpleMenu {
 		global $myPid;
 		$tokens = array($text,$params,$imgId);
 		$js = "addSimpleMenuEntry('".$myPid.'_'.$this->name."', %s ,'".$myPid.'_'.$Ename."','".$signal."',".$checknum.", %s , %s );";
-		eyeX('runjs',array('js'=>$js,'tokens'=>$tokens));
+		xenonx('runjs',array('js'=>$js,'tokens'=>$tokens));
 	}
 }
 

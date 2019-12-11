@@ -44,7 +44,7 @@ function eyeFTP_emptyRemoteFilesTable() {
 		'dblsignal' => 'eyeFTP_remoteFilesDblClick'
 	));
 	$remoteFilesTable->show();
-	eyex('addEvent',array(
+	xenonx('addEvent',array(
 		'name' => $myPid.'_eyeFTP_remoteFiles_TAB_Container',
 		'action' => 'sendMsg('.$checknum.',"eyeFTP_remoteFilesClick","")',
 		'event' => 'onclick',
@@ -68,7 +68,7 @@ function eyeFTP_refreshRemote() {
 function eyeFTP_browseRemote($path = '/') {
 	$conf = eyeFTP_getConf();
 	if (! $conf['isConnectionActive']) {
-		eyeX('messageBox',array('content'=>'You must connect first!'));
+		xenonx('messageBox',array('content'=>'You must connect first!'));
 		return;
 	}
 

@@ -20,16 +20,16 @@ function vCardImport_on_Close($params = '') {
 
 function vCardImport_on_Do($params = '') {
 	if (eyeAddressBook('importFromVcard',array($GLOBALS['vCardImport_Hidden']->text))) {
-		eyex('messageBox',array('content'=>'File Imported!'));
+		xenonx('messageBox',array('content'=>'File Imported!'));
 		proc('end');
 	} else {
 		$error = errorCodes('getErrorCode');
 		if ($error == VFS_FILE_NOT_EXISTS) {
-			eyex('messageBox',array('content' => 'The file was not found!'));
+			xenonx('messageBox',array('content' => 'The file was not found!'));
 		} elseif ($error == NO_CONTACT_FOUND) {
-			eyex('messageBox',array('content' => 'No contacts were found in the file!'));
+			xenonx('messageBox',array('content' => 'No contacts were found in the file!'));
 		} else {
-			eyex('messageBox',array('content' => 'Error exporting file!'));
+			xenonx('messageBox',array('content' => 'Error exporting file!'));
 		}
 	}
 }

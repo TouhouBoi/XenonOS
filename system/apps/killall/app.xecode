@@ -40,7 +40,7 @@ function killall_run($params = '')
 
 		if (!$killed)
 		{
-			eyex('messageBox', array('content' => 'No process has been killed!'));
+			xenonx('messageBox', array('content' => 'No process has been killed!'));
 		}
 	}
 

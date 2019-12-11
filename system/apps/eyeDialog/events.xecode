@@ -39,7 +39,7 @@ function eyeDialog_on_places_home_BTN($params=null) {
 }
 //GROUPS BUTTON
 function eyeDialog_on_places_groups_BTN($params=null) {
-	eyeX('messageBox',array('content'=> 'Not available yet'));
+	xenonx('messageBox',array('content'=> 'Not available yet'));
 	/*$GLOBALS['currentPlace_HID']->setText(__EYEDIALOG_PLACE_GROUPS);
 	$GLOBALS['currentGroup_HID']->setText('');
 	eyeDialog_browseGroups('/');
@@ -154,14 +154,14 @@ function eyeDialog_on_closingNotification(){
 		$cancelCallback = $dialogParams[7];
 		$callback_checknum = $dialogParams[2];
 		if($cancelCallback && $callback_checknum) {
-			eyex('rawjs',array('js'=>'sendMsg('.$callback_checknum.',"'.$cancelCallback.'",eyeParam("CanceledByUser","'.'1'.'"));'));
+			xenonx('rawjs',array('js'=>'sendMsg('.$callback_checknum.',"'.$cancelCallback.'",eyeParam("CanceledByUser","'.'1'.'"));'));
 		}
 	}
 }
 
 //OK BUTTON (could be "open" or "select" or "save" according to the type of the dialog)
 function eyeDialog_on_ok_BTN($params=null) {
-	//eyeX('messageBox',array('content'=> $GLOBALS['files_TAB']->selected));
+	//xenonx('messageBox',array('content'=> $GLOBALS['files_TAB']->selected));
 	$dialogParams = unserialize($GLOBALS['serialized_dialogParams_HID']->text);
 	$filename = $GLOBALS['filename_TXTBOX']->text;
 
@@ -176,7 +176,7 @@ function eyeDialog_on_ok_BTN($params=null) {
 	switch($dialogParams[0]) {
 		case EYEDIALOG_TYPE_OPENFILE:
 			if (is_null($selectedFileInfo)) {
-				eyeX('messageBox',array('content'=> i18n("translate",array('You must select a file'))));
+				xenonx('messageBox',array('content'=> i18n("translate",array('You must select a file'))));
 				return;
 			}
 			if ($selectedFileInfo['type'] == 'd') {
@@ -205,7 +205,7 @@ function eyeDialog_on_ok_BTN($params=null) {
 			}
 			else {
 				if ( /* utf8 */ strlen($filename) === 0) {
-					eyeX('messageBox',array('content'=> i18n("translate",array('You must enter a name'))));
+					xenonx('messageBox',array('content'=> i18n("translate",array('You must enter a name'))));
 				}
 				else {
 					eyeDialog_saveAs($GLOBALS['currentPath_HID']->text,$filename);

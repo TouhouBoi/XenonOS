@@ -189,7 +189,7 @@ function eyeAddressBook_on_drawSelectSettings() {
 
 function eyeAddressBook_on_deleteGroup($params=null) {
 	if (eyeAddressBook('delGroup',array($GLOBALS['eyeAddressBook_settingsGroup']->selected))) {
-		eyex('messageBox', array('content' => 'Group deleted succesfully'));
+		xenonx('messageBox', array('content' => 'Group deleted succesfully'));
 		eyeAddressBook_on_drawSelectSettings();
         eyeAddressBook_showSelectGroup();
         if (is_object($GLOBALS['eyeAddressBook_selectGetGroup']))  {
@@ -221,12 +221,12 @@ function eyeAddressBook_on_deleteGroup($params=null) {
             }
         }
 	} else {
-		eyex('messageBox', array('content' => 'Please, select a group'));
+		xenonx('messageBox', array('content' => 'Please, select a group'));
 	}
 }
 
 function eyeAddressBook_on_addSettingsGroup($params=null) {
-	eyex('messageBox', array(
+	xenonx('messageBox', array(
         'title' => 'Add new group',
         'win_name' => 'eyeAddressBook_addNewSettingsGroup',
         'win_style' => TITLE,
@@ -246,7 +246,7 @@ function eyeAddressBook_on_addSettingsGroup($params=null) {
 
 function eyeAddressBook_on_createSettingsGroupYes($params=null) {
 	if (eyeAddressBook('addGroup',array($GLOBALS['eyeAddressBook_createNewGroupText']->text))) {
-		eyex('messageBox', array('content' => 'Group added succesfully'));
+		xenonx('messageBox', array('content' => 'Group added succesfully'));
 		eyeAddressBook_on_drawSelectSettings();
         eyeAddressBook_showSelectGroup();
         if (is_object($GLOBALS['eyeAddressBook_selectGetGroup']))  {
@@ -278,7 +278,7 @@ function eyeAddressBook_on_createSettingsGroupYes($params=null) {
             }
         }
 	} else {
-		eyex('messageBox', array('content' => 'Error creating a group'));
+		xenonx('messageBox', array('content' => 'Error creating a group'));
 	}
 	$GLOBALS['eyeAddressBook_addNewSettingsGroup']->close();
 }
@@ -318,7 +318,7 @@ function eyeAddressBook_on_search($params=null) {
 function eyeAddressBook_on_delete() {
     global $myPid;
     global $checknum;
-    eyeX('rawjs',array('js' => '
+    xenonx('rawjs',array('js' => '
         var boxList = xGetElementById("'.$myPid.'_eyeAddressBook_listBox").childNodes;
         var checkChild;
         var checkIds = new Array();
@@ -334,11 +334,11 @@ function eyeAddressBook_on_delete() {
 
 function eyeAddressBook_on_deleteContactsWindow($params=null) {
     if (!isset($params['ids'][0]) || empty($params['ids'][0])) {
-        eyex('messageBox', array('content' => 'Please, select one or more contacts'));
+        xenonx('messageBox', array('content' => 'Please, select one or more contacts'));
         return false;
     }
     $ids = /* utf8 */ explode(',', $params['ids'][0]);
-    eyex('messageBox', array(
+    xenonx('messageBox', array(
         'title' => 'Delete Contacts',
         'win_name' => 'eyeAddressBook_delwnd',
         'win_style' => TITLE,
@@ -366,9 +366,9 @@ function eyeAddressBook_on_deleteContactYes() {
         return false;
     }
     if (eyeAddressBook('deleteContacts',array($GLOBALS['eyeAddressBook_deleteIds']->text))) {
-        eyex('messageBox', array('content' => 'Contacts deleted succesfully'));
+        xenonx('messageBox', array('content' => 'Contacts deleted succesfully'));
     } else {
-        eyex('messageBox', array('content' => 'Error deleting contacts'));
+        xenonx('messageBox', array('content' => 'Error deleting contacts'));
     }
     $GLOBALS['eyeAddressBook_delwnd']->close();
 	$ids = $GLOBALS['eyeAddressBook_deleteIds']->text;
@@ -438,7 +438,7 @@ function eyeAddressBook_on_newContact() {
         'border' => 0
     ));
     $textSimplebox->show(0);
-    eyex('rawjs',array('js' => 'xGetElementById("'.$myPid.'_eyeAddressBook_textSimplebox_Container").style.overflowX = "hidden";'));
+    xenonx('rawjs',array('js' => 'xGetElementById("'.$myPid.'_eyeAddressBook_textSimplebox_Container").style.overflowX = "hidden";'));
     // show all textbox
     $yPosition = 15;
     $nameLabel = i18n('translate',array('Name'));
@@ -774,7 +774,7 @@ function eyeAddressBook_on_newContact() {
 }
 
 function eyeAddressBook_on_createGroup() {
-	eyex('messageBox', array(
+	xenonx('messageBox', array(
         'title' => 'Add new group',
         'win_name' => 'eyeAddressBook_addNewGroup',
         'win_style' => TITLE,
@@ -838,10 +838,10 @@ function eyeAddressBook_on_saveNewContact($params=null) {
 	global $myPid;
 	$contact = array();
 	if ($GLOBALS['eyeAddressBook_surnameText']->text === 'Surname' || /* utf8 */ trim($GLOBALS['eyeAddressBook_surnameText']->text) === '' || $GLOBALS['eyeAddressBook_surnameText']->text === i18n('translate', array('Surname'))) {
-		eyex('messageBox', array('content' => 'Please, fill in the name and surname'));
+		xenonx('messageBox', array('content' => 'Please, fill in the name and surname'));
 		return false;
 	} else if ($GLOBALS['eyeAddressBook_nameText']->text === 'Name' || /* utf8 */ trim($GLOBALS['eyeAddressBook_nameText']->text) === '' || $GLOBALS['eyeAddressBook_nameText']->text === i18n('translate', array('Name'))) {
-		eyex('messageBox', array('content' => 'Please, fill in the name and surname'));
+		xenonx('messageBox', array('content' => 'Please, fill in the name and surname'));
 		return false;
 	} else {
 		$contact[0]['home'][0]['name'][0] = $GLOBALS['eyeAddressBook_nameText']->text;
@@ -890,12 +890,12 @@ function eyeAddressBook_on_saveNewContact($params=null) {
     }
     $theid = eyeAddressBook('newContact',array($contact,$path));
     if (!empty($theid)) {
-        eyex('messageBox', array('content' => 'New contact created succesfully'));
+        xenonx('messageBox', array('content' => 'New contact created succesfully'));
         $GLOBALS['eyeAddressBook_boxNewContact']->remove();
-		eyex('rawjs',array('js' => 'sendMsg('.$checknum.',"search",eyeParam("value",xGetElementById("'.$myPid.'_eyeAddressBook_txtSearch").value)+eyeParam("group",xGetElementById("'.$myPid.'_eyeAddressBook_selectGroup").value));'));
+		xenonx('rawjs',array('js' => 'sendMsg('.$checknum.',"search",eyeParam("value",xGetElementById("'.$myPid.'_eyeAddressBook_txtSearch").value)+eyeParam("group",xGetElementById("'.$myPid.'_eyeAddressBook_selectGroup").value));'));
         eyeAddressBook_on_viewContact(array('id' => array( 0 => $theid))); // When user created contact, the view contact form appears
     } else {
-        eyex('messageBox', array('content' => 'Cannot create contact'));
+        xenonx('messageBox', array('content' => 'Cannot create contact'));
     }
 }
 
@@ -917,7 +917,7 @@ function eyeAddressBook_on_import() {
 function eyeAddressBook_on_export() {
     global $myPid;
     global $checknum;
-    eyeX('rawjs',array('js' => '
+    xenonx('rawjs',array('js' => '
         var boxList = xGetElementById("'.$myPid.'_eyeAddressBook_listBox").childNodes;
         var checkChild;
         var checkIds = new Array();
@@ -933,7 +933,7 @@ function eyeAddressBook_on_export() {
 
 function eyeAddressBook_on_exportWindow($params=null) {
     if (empty($params['ids'][0])) {
-         eyex('messageBox', array('content' => 'Please, select one or more contacts'));
+         xenonx('messageBox', array('content' => 'Please, select one or more contacts'));
         return false;
     }
     $ids = /* utf8 */ explode(',', $params['ids'][0]);
@@ -960,7 +960,7 @@ function eyeAddressBook_on_exportWindow($params=null) {
 function eyeAddressBook_on_sendMessage() {
 	global $myPid;
     global $checknum;
-    eyeX('rawjs',array('js' => '
+    xenonx('rawjs',array('js' => '
         var boxList = xGetElementById("'.$myPid.'_eyeAddressBook_listBox").childNodes;
         var checkChild;
         var checkIds = new Array();
@@ -976,12 +976,12 @@ function eyeAddressBook_on_sendMessage() {
 
 function eyeAddressBook_on_sendWindow($params=null) {
 	if (empty($params['ids'][0])) {
-        eyex('messageBox', array('content' => 'Please, select one contact to send message'));
+        xenonx('messageBox', array('content' => 'Please, select one contact to send message'));
         return false;
     }
 	$ids = /* utf8 */ explode(',', $params['ids'][0]);
 	if (count($ids)>1) {
-		eyex('messageBox', array('content' => 'Please, select only one contact to send message'));
+		xenonx('messageBox', array('content' => 'Please, select only one contact to send message'));
 		return false;
 	}
 	$contact = eyeAddressBook('getContacts',array($ids[0]));
@@ -989,7 +989,7 @@ function eyeAddressBook_on_sendWindow($params=null) {
 	if (isset($contact[0]['other'][0]['user'][0]) && !empty($contact[0]['other'][0]['user'][0])) {
 		proc('launch',array('newMessage',array('to' => $contact[0]['other'][0]['user'][0])));
 	} else {
-		eyex('messageBox', array('content' => 'Please fill in the oneye username for this contact first'));
+		xenonx('messageBox', array('content' => 'Please fill in the oneye username for this contact first'));
 		return false;
 	}
 }
@@ -1005,7 +1005,7 @@ function eyeAddressBook_on_savevCard($params=null) {
     }
     $ids = $GLOBALS['eyeAddressBook_hiddenExport']->text;
     eyeAddressBook('exportToVcard',array($path,$ids));
-    eyex('messageBox', array('content' => 'Export completed'));
+    xenonx('messageBox', array('content' => 'Export completed'));
 }
 
 function eyeAddressBook_on_loadvCard($params=null) {
@@ -1016,7 +1016,7 @@ function eyeAddressBook_on_loadvCard($params=null) {
     if (!eyeAddressBook('importFromVcard',array($path))) {
         return false;
     } else {
-        eyex('messageBox', array('content' => 'Import completed'));
+        xenonx('messageBox', array('content' => 'Import completed'));
         eyeAddressBook_drawListBox(eyeAddressBook('getContacts'));
     }
 }
@@ -1178,7 +1178,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         'border' => 0
     ));
     $boxTextDetails->show(0);
-    eyex('rawjs',array('js' => 'xGetElementById("'.$myPid.'_eyeAddressBook_boxTextDetails_Container").style.overflowX = "hidden";
+    xenonx('rawjs',array('js' => 'xGetElementById("'.$myPid.'_eyeAddressBook_boxTextDetails_Container").style.overflowX = "hidden";
         xGetElementById("'.$myPid.'_eyeAddressBook_boxTextDetails_Container").style.overflowY = "auto";'));
 
     // Show the name
@@ -1243,7 +1243,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_phone_local_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_phone_local_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_phone_local_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1266,7 +1266,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_phone_mobile_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_phone_mobile_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_phone_mobile_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1289,7 +1289,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_phone_localCompany_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_phone_localCompany_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_phone_localCompany_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1312,7 +1312,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_phone_mobileCompany_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_phone_mobileCompany_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_phone_mobileCompany_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1335,7 +1335,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_phone_faxCompany_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_phone_faxCompany_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_phone_faxCompany_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1364,7 +1364,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_local_email_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_local_email_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_local_email_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1388,7 +1388,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_company_email_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_company_email_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_company_email_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1418,7 +1418,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_local_website_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_local_website_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_local_website_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1442,7 +1442,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_company_website_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_company_website_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_company_website_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1470,7 +1470,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_local_address_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_local_address_Container").offsetLeft
                 + xGetElementById("'.$myPid.'_eyeAddressBook_local_address_Container").offsetWidth + 5 + "px";
         '));
@@ -1495,7 +1495,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_company_address_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_company_address_Container").offsetLeft
                 + xGetElementById("'.$myPid.'_eyeAddressBook_company_address_Container").offsetWidth + 5 + "px";
         '));
@@ -1523,7 +1523,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_nick_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_nick_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_nick_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1547,7 +1547,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_im_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_im_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_im_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1571,7 +1571,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_voip_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_voip_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_voip_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1595,7 +1595,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_user_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_user_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_user_Container").offsetWidth + 5 + "px";
         '));
         $yPosition+=15;
@@ -1623,7 +1623,7 @@ function eyeAddressBook_on_viewContact($params=null) {
         ));
         $drawLabel->show();
         $drawLabel->setCSS(array('font-size' => '10px','color' => 'grey'));
-        eyeX('rawjs',array('js' => '
+        xenonx('rawjs',array('js' => '
             xGetElementById("'.$myPid.'_eyeAddressBook_notes_label_Container").style.left = xGetElementById("'.$myPid.'_eyeAddressBook_notes_Container").offsetLeft + xGetElementById("'.$myPid.'_eyeAddressBook_notes_Container").offsetWidth + 5 + "px";
         '));
     }
@@ -1662,12 +1662,12 @@ function eyeAddressBook_on_editContact($params=null) {
     global $checknum;
 
 	if (!isset($params['ids'][0]) || empty($params['ids'][0])) {
-        eyex('messageBox', array('content' => 'Please, select one contact to edit'));
+        xenonx('messageBox', array('content' => 'Please, select one contact to edit'));
         return false;
     }
 	$ids = /* utf8 */ explode(',', $params['ids'][0]);
 	if (count($ids)>1) {
-		eyex('messageBox', array('content' => 'Please, select only one contact to edit'));
+		xenonx('messageBox', array('content' => 'Please, select only one contact to edit'));
         return false;
 	}
 
@@ -1698,7 +1698,7 @@ function eyeAddressBook_on_editContact($params=null) {
         'border' => 0
     ));
     $editSimplebox->show(0);
-    eyex('rawjs',array('js' => 'xGetElementById("'.$myPid.'_eyeAddressBook_editSimplebox_Container").style.overflowX = "hidden";'));
+    xenonx('rawjs',array('js' => 'xGetElementById("'.$myPid.'_eyeAddressBook_editSimplebox_Container").style.overflowX = "hidden";'));
 
 	$hiddenPhoto = new Hidden(array(
 		'name' => 'eyeAddressBook_hiddenPhoto',
@@ -2266,7 +2266,7 @@ function eyeAddressBook_on_saveEditContact() {
 		$id = $GLOBALS['eyeAddressBook_hiddenPhoto']->text;
 	}
     if ($GLOBALS['eyeAddressBook_surnameText']->text === 'Surname' || trim($GLOBALS['eyeAddressBook_surnameText']->text) === '' || $GLOBALS['eyeAddressBook_nameText']->text === 'Name' || trim($GLOBALS['eyeAddressBook_nameText']->text) === '') { // utf8
-		eyex('messageBox', array('content' => 'Please, fill in the name and surname'));
+		xenonx('messageBox', array('content' => 'Please, fill in the name and surname'));
 		return false;
 	} else {
 		$contact[0]['home'][0]['name'][0]=$GLOBALS['eyeAddressBook_nameText']->text;
@@ -2301,19 +2301,19 @@ function eyeAddressBook_on_saveEditContact() {
         $path = null;
     }
     if (eyeAddressBook('editContact',array($id,$contact,$path))) {
-        eyex('messageBox', array('content' => 'Contact edited succesfully'));
+        xenonx('messageBox', array('content' => 'Contact edited succesfully'));
         $GLOBALS['eyeAddressBook_boxEditContact']->remove();
-        eyex('rawjs',array('js' => 'sendMsg('.$checknum.',"search",eyeParam("value",xGetElementById("'.$myPid.'_eyeAddressBook_txtSearch").value)+eyeParam("group",xGetElementById("'.$myPid.'_eyeAddressBook_selectGroup").value));'));
+        xenonx('rawjs',array('js' => 'sendMsg('.$checknum.',"search",eyeParam("value",xGetElementById("'.$myPid.'_eyeAddressBook_txtSearch").value)+eyeParam("group",xGetElementById("'.$myPid.'_eyeAddressBook_selectGroup").value));'));
         eyeAddressBook_on_viewContact(array('id' => array( 0 => $id))); // When user edited contact, the view contact form appears
     } else {
-        eyex('messageBox', array('content' => 'Cannot edit contact'));
+        xenonx('messageBox', array('content' => 'Cannot edit contact'));
     }
 }
 
 function eyeAddressBook_on_listEditContact($params=null) {
 	global $myPid;
     global $checknum;
-    eyeX('rawjs',array('js' => '
+    xenonx('rawjs',array('js' => '
         var boxList = xGetElementById("'.$myPid.'_eyeAddressBook_listBox").childNodes;
         var checkChild;
         var checkIds = new Array();

@@ -201,7 +201,7 @@ function eyeNav_run($params = '')
 		)
 	);
 
-	eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_window_box"); e.style.visibility = ""; e.style.zIndex = 0;'));
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_window_box"); e.style.visibility = ""; e.style.zIndex = 0;'));
 
 	if (!$xml['eyeNav'][0]['sidebar'][0])
 	{
@@ -245,7 +245,7 @@ function eyeNav_run($params = '')
 
 	$GLOBALS['eyeNav_frame'] = $myIframe;
 
-	eyex('runjs', array('js' => 'var frame, init;
+	xenonx('runjs', array('js' => 'var frame, init;
 
 	init = function () {
 		var contentDocument;
@@ -292,14 +292,14 @@ function eyeNav_run($params = '')
 	$myToolbar->addItem('Fullscreen','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png','Full Screen','',1);
 	$myToolbar->addItem('NewWindow','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/window-duplicate.png','New Window','',1);
 
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 
 	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/libs.xecode');
 
 	if ($xml['eyeNav'][0]['sidebar'][0] == 2)
 	{
 		eyeNav_lib_ShowSearch();
-		eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_toolbar");
+		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_toolbar");
 		for (var i = 0; i < e.childNodes.length; i++) {
 			if (e.childNodes[i].id == "Search_Container") {
 				e.childNodes[i].className = "blockbarItemPress";
@@ -310,7 +310,7 @@ function eyeNav_run($params = '')
 	{
 		eyeNav_lib_ShowBookmarks();
 
-		eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_toolbar");
+		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_toolbar");
 		for (var i = 0; i < e.childNodes.length; i++) {
 			if (e.childNodes[i].id == "Bookmarks_Container") {
 				e.childNodes[i].className = "blockbarItemPress";
@@ -327,7 +327,7 @@ function eyeNav_run($params = '')
 		eyeNav_lib_doUrl();
 	}
 
-	eyeX('createDiv',
+	xenonx('createDiv',
 		array (
 			'name' => 'eyeNav_url_bar',
 			'father' => 'eyeNav_window_Content',
@@ -338,7 +338,7 @@ function eyeNav_run($params = '')
 
 function eyeNav_end($params = '')
 {
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 
 	eyeWidgets('unserialize');
 }

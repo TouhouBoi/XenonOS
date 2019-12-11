@@ -113,7 +113,7 @@ function eyeProperties_run($params = '') {
 		$size = vfs('real_filesize',array($path[0] . '/' . $file));
 		$filetime = vfs('filemtime',array($path[0] . '/' . $file));
 	} else {
-		eyex('messageBox',array('content' => 'The file does not exist!'));
+		xenonx('messageBox',array('content' => 'The file does not exist!'));
 		proc('end');
 		return;
 	}
@@ -189,7 +189,7 @@ function eyeProperties_run($params = '') {
 	));
 	$myTextbox->show();
 	$myTextbox->setCss(array('border' => '0px','font-weight' => 'bold'));
-	eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Title").readOnly = true;'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Title").readOnly = true;'));
 	$contentY += 20;
 // Type
 	$myTextbox = new Textbox(array(
@@ -202,7 +202,7 @@ function eyeProperties_run($params = '') {
 	));
 	$myTextbox->show();
 	$myTextbox->setCss(array('border' => '0px'));
-	eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Type").readOnly = true;'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Type").readOnly = true;'));
 	$contentY += 28;
 // File information
 	$contentY += 20;
@@ -244,7 +244,7 @@ function eyeProperties_run($params = '') {
 	));
 	$myTextbox->show();
 	$myTextbox->setCss(array('border' => '0px'));
-	eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Path").readOnly = true;'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Path").readOnly = true;'));
 	$contentY += 20;
 // Filetime
 	if ($filetime) {
@@ -266,7 +266,7 @@ function eyeProperties_run($params = '') {
 		));
 		$myTextbox->show();
 		$myTextbox->setCss(array('border' => '0px'));
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Filetime").readOnly = true;'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Filetime").readOnly = true;'));
 		$contentY += 20;
 	}
 // Size
@@ -289,7 +289,7 @@ if ($size != '0 ') {
 	));
 	$myTextbox->show();
 	$myTextbox->setCss(array('border' => '0px'));
-	eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Size").readOnly = true;'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Size").readOnly = true;'));
 	$contentY += 20;
 }
 // Author
@@ -312,7 +312,7 @@ if ($size != '0 ') {
 		));
 		$myTextbox->show();
 		$myTextbox->setCss(array('border' => '0px'));
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Author").readOnly = true;'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Author").readOnly = true;'));
 		$contentY += 20;
 	}
 // Command
@@ -335,7 +335,7 @@ if ($size != '0 ') {
 		));
 		$myTextbox->show();
 		$myTextbox->setCss(array('border' => '0px'));
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Command").readOnly = true;'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Command").readOnly = true;'));
 		$contentY += 20;
 	}
 // Creation information
@@ -380,7 +380,7 @@ if ($size != '0 ') {
 			));
 			$myTextbox->show();
 			$myTextbox->setCss(array('border' => '0px'));
-			eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_CreationDate").readOnly = true;'));
+			xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_CreationDate").readOnly = true;'));
 			$contentY += 20;
 		}
 // Created with
@@ -403,7 +403,7 @@ if ($size != '0 ') {
 			));
 			$myTextbox->show();
 			$myTextbox->setCss(array('border' => '0px'));
-			eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_CreatedWith").readOnly = true;'));
+			xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_CreatedWith").readOnly = true;'));
 			$contentY += 20;
 		}
 	}
@@ -450,7 +450,7 @@ if ($size != '0 ') {
 		));
 		$myTextbox->show();
 		$myTextbox->setCss(array('border' => '0px'));
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_DeletionDate").readOnly = true;'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_DeletionDate").readOnly = true;'));
 	}
 }
 

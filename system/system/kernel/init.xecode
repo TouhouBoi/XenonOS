@@ -24,11 +24,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	XenonOS XeKernel Initialization
 */
 
-$pid = proc('findPidByName', array('eyeX'));
+$pid = proc('findPidByName', array('xenonx'));
 
 if (!$pid)
 {
-	proc('launch', array('eyeX'));
+	proc('launch', array('xenonx'));
 }
 else
 {

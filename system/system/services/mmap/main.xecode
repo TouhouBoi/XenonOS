@@ -55,7 +55,7 @@ function service_mmap_releaseBuffer() {
 	  if ($_SESSION['mmap_directOutputEnabled']) {
 		$outputBuffer .= $content;
 	  } else {
-		eyeX('rawjs',array('js'=>'console.log(Base64.decode("'.base64_encode($content).'"));'));
+		xenonx('rawjs',array('js'=>'console.log(Base64.decode("'.base64_encode($content).'"));'));
 	  }
 	}
 
@@ -109,8 +109,8 @@ function service_mmap_routemsg($params) {
 	}
 	if(($_SESSION['AUTH_IP'] != $_SERVER['REMOTE_ADDR']) && sec('protectedIpSessions') || intval(SESSION_EXPIRE) > 0 && time() - intval($_SESSION['ping']) > intval(SESSION_EXPIRE)) {
 		eyeSessions('endSession'); //delete session
-		eyeX('messageBox',array('content'=>'Your session has expired','type'=>2));
-		eyeX('rawjs',array('js'=>'window.location.replace(\'index.php\');')); //refresh the page
+		xenonx('messageBox',array('content'=>'Your session has expired','type'=>2));
+		xenonx('rawjs',array('js'=>'window.location.replace(\'index.php\');')); //refresh the page
 		return mmap('releaseBuffer');
 	}
 

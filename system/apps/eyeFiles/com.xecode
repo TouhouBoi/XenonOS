@@ -38,7 +38,7 @@ function eyeFiles_com_onEvent($params = '') {
 		if (count(vfs('getDirContent',array(um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/')))) {
 			$full = '_full';
 		}
-		eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Toolbar");
+		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Toolbar");
 for (var i = 0; i < e.childNodes.length; i++) {
 	if (e.childNodes[i].id == "' . $myPid . '_Trash_Container") {
 		e.childNodes[i].childNodes[0].src = "index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/trash' . $full . '.png";

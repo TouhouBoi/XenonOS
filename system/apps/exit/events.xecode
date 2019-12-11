@@ -23,7 +23,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function exit_on_logout($timeout)
 {
 	eyeSessions('endSession');
-	eyex('rawjs',array('js' => 'window.onbeforeunload = "";'));
-	eyeX('rawjs',array('js'=>'setTimeout("window.location.replace(\'index.php\');", '.$timeout.');'));
+	xenonx('rawjs',array('js' => 'window.onbeforeunload = "";'));
+	xenonx('rawjs',array('js'=>'setTimeout("window.location.replace(\'index.php\');", '.$timeout.');'));
 }
 ?>

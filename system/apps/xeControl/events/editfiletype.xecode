@@ -23,10 +23,10 @@ function xeControl_on_editfiletype_save($params = '') {
 		$xml['fileType'][0]['description'][0] = $GLOBALS['xeControl_editfiletype_textbox_description']->text;
 		$xml['fileType'][0]['name'][0] = $GLOBALS['xeControl_editfiletype_textbox_title']->text;
 		eyeXML('setXMLfile', array($file, $xml));
-		eyex('messageBox', array('content' => 'Changes successfully saved.'));
+		xenonx('messageBox', array('content' => 'Changes successfully saved.'));
 		xeControl_lib_loadContent('only_root', 'filetypes');
 	} else {
-		eyex('messageBox',array('content' => 'Please fill in all required fields!'));
+		xenonx('messageBox',array('content' => 'Please fill in all required fields!'));
 	}
 }
 ?>

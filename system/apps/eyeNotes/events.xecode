@@ -79,12 +79,12 @@ function eyeNotes_on_Save($params=null) {
 	if(is_object($GLOBALS['notePath']) && $GLOBALS['notePath']->text) {
 		$fp = vfs('open',array($GLOBALS['notePath']->text,'w'));
 		if(!$fp) {
-			eyex('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
+			xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 			return;
 		}
 		fwrite($fp,$GLOBALS['noteContent']->text);
 		fclose($fp);
-		eyex('messageBox',array('content'=>'File saved successfully.'));
+		xenonx('messageBox',array('content'=>'File saved successfully.'));
 		$myHiddenContent = new Hidden(array(
 			'name' => 'textAreaContent',
 			'father' => 'eyeNotesWND_Content',
@@ -127,12 +127,12 @@ function eyeNotes_on_SelectFileSave($params=null) {
 		}
 		$file = um('getCurrentUserDir').FILES_USER_DIR.'/'.$file;
 		if(!vfs('create',array($file,'eyeNotes'))) {
-			eyex('messageBox',array('content'=>'Unable to create file'));
+			xenonx('messageBox',array('content'=>'Unable to create file'));
 			return;
 		}
 		$fp = vfs('open',array($file,'w'));
 		if(!$fp) {
-			eyex('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
+			xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 			return;
 		}
 		fwrite($fp,$GLOBALS['noteContent']->text);
@@ -140,7 +140,7 @@ function eyeNotes_on_SelectFileSave($params=null) {
 		$myHidden = new Hidden(array('name'=>'notePath','father'=>'eyeNotesWND','text'=>$file));
 		eyeWidgets('serialize',array($myHidden));
 		eyeFiles('update',array(dirname($file)));
-		eyex('messageBox',array('content'=>'File saved successfully.'));
+		xenonx('messageBox',array('content'=>'File saved successfully.'));
 		$myHiddenContent = new Hidden(array(
 			'name' => 'textAreaContent',
 			'father' => 'eyeNotesWND_Content',
@@ -190,7 +190,7 @@ function eyeNotes_on_SelectFileOpen($params=null) {
 		}
 		$fp = vfs('open',array($file,'r'));
 		if(!$fp) {
-			eyex('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
+			xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 			return;
 		}
 		$GLOBALS['eyeNotesWND']->setTitle(basename($file.' - '.i18n('translate',array('Text Editor'))));
@@ -215,7 +215,7 @@ function eyeNotes_on_Close($params=null){
 	$content = $GLOBALS['noteContent']->text;
 
 	if($taContent != $content ) {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'content' => 'Do you want to save changes?',
 			'type' => 3,
 			'title' => 'Delete warning',
@@ -260,12 +260,12 @@ function eyeNotes_on_yDelete($params=null){
 	if(is_object($GLOBALS['notePath']) && $GLOBALS['notePath']->text) {
 		$fp = vfs('open',array($GLOBALS['notePath']->text,'w'));
 		if(!$fp) {
-			eyex('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
+			xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 			return;
 		}
 		fwrite($fp,$GLOBALS['noteContent']->text);
 		fclose($fp);
-		eyex('messageBox',array('content'=>'File saved successfully.'));
+		xenonx('messageBox',array('content'=>'File saved successfully.'));
 		proc('end');
 	} else {
 		proc('launch',array('eyeDialog',$options));
@@ -280,12 +280,12 @@ function eyeNotes_on_SelectFileSaveClose($params=null) {
 		}
 		$file = um('getCurrentUserDir').FILES_USER_DIR.'/'.$file;
 		if(!vfs('create',array($file,'eyeNotes'))) {
-			eyex('messageBox',array('content'=>'Unable to create file'));
+			xenonx('messageBox',array('content'=>'Unable to create file'));
 			return;
 		}
 		$fp = vfs('open',array($file,'w'));
 		if(!$fp) {
-			eyex('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
+			xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 			return;
 		}
 		fwrite($fp,$GLOBALS['noteContent']->text);
@@ -293,7 +293,7 @@ function eyeNotes_on_SelectFileSaveClose($params=null) {
 		$myHidden = new Hidden(array('name'=>'notePath','father'=>'eyeNotesWND','text'=>$file));
 		eyeWidgets('serialize',array($myHidden));
 		eyeFiles('update',array(dirname($file)));
-		eyex('messageBox',array('content'=>'File saved successfully.'));
+		xenonx('messageBox',array('content'=>'File saved successfully.'));
 	}
 	proc('end');
 }

@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function xeControl_on_groups_new($params = '') {
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'buttons' => array(array('groups_create','Accept'),array('groups_create_cancel','Cancel')),
 		'content' => 'Type the name of the group you want to create:',
 		'father' => 'xeControl_container_big',
@@ -34,7 +34,7 @@ function xeControl_on_groups_create($params = '') {
 	global $currentUser;
 
 	if ($currentUser != ROOTUSER && !um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
-		eyex('messageBox',array('content' => 'You are not allowed to manage groups!'));
+		xenonx('messageBox',array('content' => 'You are not allowed to manage groups!'));
 		xeControl_lib_loadContent();
 		return;
 	} elseif (um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
@@ -74,9 +74,9 @@ function xeControl_on_groups_create($params = '') {
 		$currentUser = $oldUser;
 		xeControl_lib_loadContent('only_root','groups');
 	} elseif (vfs('real_fileExists',array($dir))) {
-		eyex('messageBox',array('content' => 'The selected group already exists!'));
+		xenonx('messageBox',array('content' => 'The selected group already exists!'));
 	} else {
-		eyex('messageBox',array('content' => 'Please type a correct group name!'));
+		xenonx('messageBox',array('content' => 'Please type a correct group name!'));
 	}
 }
 
@@ -87,7 +87,7 @@ function xeControl_on_groups_create_cancel($params = '') {
 function xeControl_on_groups_edit($params = '') {
 	$group = $GLOBALS['xeControl_groups_sortabletable']->selected;
 	if ($group) {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'buttons' => array(array('groups_rename','Rename'),array('groups_rename_cancel','Cancel')),
 			'content' => 'Type the new group\'s name:',
 			'father' => 'xeControl_container_big',
@@ -103,7 +103,7 @@ function xeControl_on_groups_edit($params = '') {
 			'win_style' => TITLE + CLOSE
 		));
 	} else {
-		eyex('messageBox',array('content' => 'Please choose a group to edit.'));
+		xenonx('messageBox',array('content' => 'Please choose a group to edit.'));
 	}
 }
 
@@ -117,7 +117,7 @@ function xeControl_on_groups_rename($params = '') {
 	$group_old = $GLOBALS['xeControl_groups_rename_hidden']->text;
 
 	if ($currentUser != ROOTUSER && !um('checkMaintainer',array(xeControl_lib_getConfigUser())) || um('checkMaintainer',array(xeControl_lib_getConfigUser())) && !in_array($group_old,$myUserXml['eyeUser'][0]['maintain'])) {
-		eyex('messageBox',array('content' => 'You are not allowed to manage groups!'));
+		xenonx('messageBox',array('content' => 'You are not allowed to manage groups!'));
 		xeControl_lib_loadContent();
 		return;
 	}
@@ -162,9 +162,9 @@ function xeControl_on_groups_rename($params = '') {
 		$currentUser = $oldUser;
 		xeControl_lib_loadContent('only_root','groups');
 	} elseif (vfs('real_fileExists',array($dir_new))) {
-		eyex('messageBox',array('content' => 'The selected group already exists!'));
+		xenonx('messageBox',array('content' => 'The selected group already exists!'));
 	} else {
-		eyex('messageBox',array('content' => 'Please type a correct group name!'));
+		xenonx('messageBox',array('content' => 'Please type a correct group name!'));
 	}
 }
 
@@ -179,18 +179,18 @@ function xeControl_on_groups_default($params = '') {
 		$XML = eyeXML('getXMLfile',array($File));
 		$XML['CONFIG'][0]['DEFAULT_GROUP'][0] = $group;
 		eyeXML('setXMLFile',array($File,$XML));
-		eyex('messageBox',array('content' => 'Default group successfully saved. You need to restart your session now.'));
+		xenonx('messageBox',array('content' => 'Default group successfully saved. You need to restart your session now.'));
 	} elseif ($group == DEFAULT_GROUP) {
-		eyex('messageBox',array('content' => 'The chosen group is already the default group!'));
+		xenonx('messageBox',array('content' => 'The chosen group is already the default group!'));
 	} else {
-		eyex('messageBox',array('content' => 'Please choose a group to set it as default group.'));
+		xenonx('messageBox',array('content' => 'Please choose a group to set it as default group.'));
 	}
 }
 
 function xeControl_on_groups_delete($params = '') {
 	$group = $GLOBALS['xeControl_groups_sortabletable']->selected;
 	if ($group && $group != DEFAULT_GROUP) {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'buttons' => array(array('groups_delete_yes','Yes'),array('groups_delete_no','No')),
 			'content' => 'Do you really want to remove this group from the system?',
 			'father' => 'xeControl_container_big',
@@ -203,9 +203,9 @@ function xeControl_on_groups_delete($params = '') {
 			'win_style' => TITLE + CLOSE
 		));
 	} elseif ($group == DEFAULT_GROUP) {
-		eyex('messageBox',array('content' => 'You cannot delete the default group!'));
+		xenonx('messageBox',array('content' => 'You cannot delete the default group!'));
 	} else {
-		eyex('messageBox',array('content' => 'Please choose a group to delete.'));
+		xenonx('messageBox',array('content' => 'Please choose a group to delete.'));
 	}
 }
 
@@ -219,7 +219,7 @@ function xeControl_on_groups_delete_yes($params = '') {
 	$group = $GLOBALS['groups_delete_hidden']->text;
 
 	if ($currentUser != ROOTUSER && !um('checkMaintainer',array(xeControl_lib_getConfigUser())) || um('checkMaintainer',array(xeControl_lib_getConfigUser())) && !in_array($group,$myUserXml['eyeUser'][0]['maintain'])) {
-		eyex('messageBox',array('content' => 'You are not allowed to manage groups!'));
+		xenonx('messageBox',array('content' => 'You are not allowed to manage groups!'));
 		xeControl_lib_loadContent();
 		return;
 	}
@@ -253,11 +253,11 @@ function xeControl_on_groups_delete_yes($params = '') {
 			if ($_SESSION['groups'][$group] && $oldUser == xeControl_lib_getConfigUser()) {
 				unset($_SESSION['groups'][$group]);
 			}
-			eyex('messageBox',array('content' => 'Group successfully deleted.'));
+			xenonx('messageBox',array('content' => 'Group successfully deleted.'));
 			$currentUser = $oldUser;
 			xeControl_lib_loadContent('only_root','groups');
 		} else {
-			eyex('messageBox',array('content' => 'There was a problem while deleting the group.'));
+			xenonx('messageBox',array('content' => 'There was a problem while deleting the group.'));
 			$currentUser = $oldUser;
 		}
 	}

@@ -19,7 +19,7 @@ function miniCalendar_run($params=null) {
 
 	foreach (proc('getProcessTable') as $process) {
 		if ($process['appName'] == 'miniCalendar' && $process['pid'] != $myPid) {
-			eyex('messageBox', array('content' => 'miniCalendar is already running!'));
+			xenonx('messageBox', array('content' => 'miniCalendar is already running!'));
 			return proc('end');
 		}
 	}
@@ -41,18 +41,18 @@ function miniCalendar_run($params=null) {
 	/**
 	*@Todo if Windows Widget gets class fix this
 	*/
-	eyeX('rawjs',array('js'=>
+	xenonx('rawjs',array('js'=>
 		'document.getElementById("'.$myPid.'_' . $myWindow->name . '").className = "miniWND";
 		document.getElementById("'.$myPid.'_' . $myWindow->name . '_Content").className = "miniWND";
 		'
 	));
 
-	eyeX('createDiv', array(
+	xenonx('createDiv', array(
 		'name' => 'miniCalendarInnerLeft',
 		'father' => 'miniCalendarOuter',
 		'class' => 'miniCalendarInnerLeft'
 	));
-	eyeX('createDiv', array(
+	xenonx('createDiv', array(
 		'name' => 'miniCalendarInnerRight',
 		'father' => 'miniCalendarOuter',
 		'class' => 'miniCalendarInnerRight'
@@ -106,22 +106,22 @@ function miniCalendar_run($params=null) {
 	));
 	$myCalendar->show();
 
-	eyeX('sendMessage', array('msg' => 'today', 'params' => '<date>'.time().'</date>'));
+	xenonx('sendMessage', array('msg' => 'today', 'params' => '<date>'.time().'</date>'));
 
-	eyex('rawjs',array('js' =>
+	xenonx('rawjs',array('js' =>
 		'document.getElementById("' . $myPid . '_' . $myLabel0->name . '").className = "miniAppTitle";
 		'
 	));
 
 	//CSS
-	eyex('loadCss',array(
+	xenonx('loadCss',array(
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/miniApps/miniApps.css&type=css',
 		'id' => 'miniApps'
 	));
 }
 
 function miniCalendar_end() {
-	eyeX('removeWidget', array('name' => 'miniCalendarOuter'));
+	xenonx('removeWidget', array('name' => 'miniCalendarOuter'));
 }
 
 ?>

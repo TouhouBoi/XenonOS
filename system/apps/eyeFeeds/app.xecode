@@ -149,7 +149,7 @@ function eyeFeeds_run($params=null) {
 	));
 	$treeContainer->show();
 	eyeWidgets('serialize',array($treeContainer));
-	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_tree_CTN_Container").style.overflow="auto";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_tree_CTN_Container").style.overflow="auto";'));
 
 	//FEEDS TREE
 	//@see func.xecode#eyeFeeds_drawFeedsTree()
@@ -206,9 +206,9 @@ function eyeFeeds_run($params=null) {
 		'text' => ''
 	));
 	$contentLabel->show(0);
-	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_content_LBL_Container").style.width="99%";'));
-	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_content_LBL_Container").style.height="170px";'));
-	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_content_LBL_Container").style.overflow="auto";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_content_LBL_Container").style.width="99%";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_content_LBL_Container").style.height="170px";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_content_LBL_Container").style.overflow="auto";'));
 
 
 	//"LOADING" IMAGE+LABEL
@@ -261,13 +261,13 @@ function eyeFeeds_run($params=null) {
 	eyeWidgets('serialize',array($selectedFeedId));
 
 	//Listener service call to resize the app in fullScreen mode when browser is resized
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
-	eyeX('rawjs',array('js' => 'sendMsg('.$checknum.',"initComplete","");'));
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
+	xenonx('rawjs',array('js' => 'sendMsg('.$checknum.',"initComplete","");'));
 }
 
 
 function eyeFeeds_end($params=null) {
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }
 ?>

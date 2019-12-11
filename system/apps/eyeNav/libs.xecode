@@ -31,7 +31,7 @@ function eyeNav_lib_ShowBookmarks($params = array()) {
 		$url = um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
 		$xml = eyeXML('getXMLfile',array(vfs('getRealName',array($url))));
 		if (!$xml['eyeNav'][0]['bookmarks'][0] || !is_array($xml['eyeNav'][0]['bookmarks'][0])) {
-			eyex('messageBox',array('content' => 'The selected file is not a valid eyeNav bookmarks file!'));
+			xenonx('messageBox',array('content' => 'The selected file is not a valid eyeNav bookmarks file!'));
 			return;
 		}
 	}
@@ -56,7 +56,7 @@ function eyeNav_lib_ShowBookmarks($params = array()) {
 	$myContainer->setCss(array(
 		'direction' => 'ltr'
 	));
-	eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeNav_window_box_Content").style.top = "0";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeNav_window_box_Content").style.top = "0";'));
 
 	if (!is_object($GLOBALS['eyeNav_hidden_bookmarks_url'])) {
 		// $myHidden
@@ -241,7 +241,7 @@ function eyeNav_on_nav_addBookmark($params=null,$theurl = null) {
 		'clickTree'=>1
 	));
 	$myTree->show();
-	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_addBookmark_folders_TREE").style.overflow = "auto";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_addBookmark_folders_TREE").style.overflow = "auto";'));
 	//root node
 	$myTree->addItem('addBookmark_folders_TREE', 'addBookmark_folders_TREE_root', i18n('translate',array('Bookmarks')));
 	$myTree->addSubList('addBookmark_folders_TREE_root', 'addBookmark#folder_root');
@@ -398,7 +398,7 @@ function eyeNav_on_nav_addFolder($params=null) {
 		'clickTree'=>1
 	));
 	$myTree->show();
-	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_addFolder_folders_TREE").style.overflow = "auto";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_addFolder_folders_TREE").style.overflow = "auto";'));
 
 	//root node
 	$myTree->addItem('addFolder_folders_TREE', 'addFolder_folders_TREE_root', i18n('translate',array('Bookmarks')));
@@ -585,7 +585,7 @@ function eyeNav_on_nav_edit_folder($params=null) {
 		'clickTree'=>1
 	));
 	$myTree->show();
-	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_editFolder_folders_TREE").style.overflow = "auto";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_editFolder_folders_TREE").style.overflow = "auto";'));
 	$myTree->addItem('editFolder_folders_TREE', 'editFolder_folders_TREE_root', i18n('translate',array('Bookmarks')));
 	$myTree->addSubList('editFolder_folders_TREE_root', 'editFolder#folder_root');
 	$xml = eyeXML('getXMLconfig',array('eyeNav','conf.xml'));
@@ -720,7 +720,7 @@ function eyeNav_on_nav_edit_bookmark($params=null) {
 		'clickTree'=>1
 	));
 	$myTree->show();
-	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_editBookmark_folders_TREE").style.overflow = "auto";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_editBookmark_folders_TREE").style.overflow = "auto";'));
 	//root node
 	$myTree->addItem('editBookmark_folders_TREE', 'editBookmark_folders_TREE_root', i18n('translate',array('Bookmarks')));
 	$myTree->addSubList('editBookmark_folders_TREE_root', 'editBookmark#folder_root');
@@ -849,7 +849,7 @@ function eyeNav_on_nav_del($params=null) {
 	$type = $xml['type'][0];
 	$name = $xml['name'][0];
 
-	eyeX('messageBox',array(
+	xenonx('messageBox',array(
 		'content' => 'Are you sure you want to delete this '.$type.'?',		//$type can be 'feed' or 'folder'
 		'type' => 3,
 		'title' => 'Delete bookmark/folder',
@@ -877,10 +877,10 @@ function eyeNav_on_delete_deleteYes_BTN($params=null) {
 	$xml['eyeNav'][0]['bookmarks'][0] = $newBookmarksToSave;
 	eyeXML('setXMLconfig',array('eyeNav','conf.xml',$xml));
 	if (eyeXML('setXMLconfig',array('eyeNav','conf.xml',$xml))){
-		eyeX('messageBox',array('content'=> 'Element successfully deleted'));
+		xenonx('messageBox',array('content'=> 'Element successfully deleted'));
 		eyeNav_lib_refreshTree();
 	}else
-		eyeX('messageBox',array('content'=> 'Error deleting the feed'));
+		xenonx('messageBox',array('content'=> 'Error deleting the feed'));
 
 	if (is_object($GLOBALS['delete_DLG'])) {
 		$GLOBALS['delete_DLG']->close();
@@ -951,7 +951,7 @@ function eyeNav_lib_ShowSearch($params = array()) {
 		$url = um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
 		$xml = eyeXML('getXMLfile',array(vfs('getRealName',array($url))));
 		if (!$xml['eyeNav'][0]['searches'][0] || !is_array($xml['eyeNav'][0]['searches'][0])) {
-			eyex('messageBox',array('content' => 'The selected file is not a valid eyeNav search file!'));
+			xenonx('messageBox',array('content' => 'The selected file is not a valid eyeNav search file!'));
 			return;
 		}
 	}
@@ -976,7 +976,7 @@ function eyeNav_lib_ShowSearch($params = array()) {
 	$myContainer->setCss(array(
 		'direction' => 'ltr'
 	));
-	eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeNav_window_box_Content").style.top = "0";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeNav_window_box_Content").style.top = "0";'));
 
 	if (!is_object($GLOBALS['eyeNav_hidden_search_url'])) {
 		// $myHidden
@@ -1063,7 +1063,7 @@ function eyeNav_lib_ShowSearch($params = array()) {
 			$myImagebox->setCss(array(
 				'cursor' => 'pointer'
 			));
-			eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeNav_box_imagebox_' . $x . '_Container").onclick = function() { window.open("' . str_replace('%s','" + document.getElementById("' . $myPid . '_eyeNav_search").value + "',$link['url'][0]) . '"); return false; }'));
+			xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeNav_box_imagebox_' . $x . '_Container").onclick = function() { window.open("' . str_replace('%s','" + document.getElementById("' . $myPid . '_eyeNav_search").value + "',$link['url'][0]) . '"); return false; }'));
 			$myLabel = new Label(array(
 				'disablemsg' => 0,
 				'father' => 'eyeNav_box',
@@ -1157,7 +1157,7 @@ function eyeNav_lib_doUrl($params = array()) {
 	}
 	$GLOBALS['eyeNav_url']->setText($page);
 	if (!$params['frame'][0]) {
-		eyex('runjs', array('js' => 'var doUrl, frame;
+		xenonx('runjs', array('js' => 'var doUrl, frame;
 
 		doUrl = function () {
 			var contentDocument;
@@ -1182,7 +1182,7 @@ function eyeNav_lib_FocusFrame() {
 
 	$GLOBALS['eyeNav_frame']->focus();
 
-	eyex('runjs', array('js' => 'var focus, frame;
+	xenonx('runjs', array('js' => 'var focus, frame;
 
 	focus = function () {
 		var contentDocument;

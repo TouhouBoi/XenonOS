@@ -18,7 +18,7 @@ include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeMail/mail'.XE_CODE_EXTENSION);
 
 function eyeMail_run($params=null) {
 	if (!function_exists('sqlite_open')) {
-		eyex('messageBox', array(
+		xenonx('messageBox', array(
 			'content' => 'You cannot run eyeMail. The server\'s administrator needs to activate the PHP extension for SQLite first.',
 			'img' => 'x',
 			'title' => 'eyeMail',
@@ -29,7 +29,7 @@ function eyeMail_run($params=null) {
 		return;
 	}
 	if (!function_exists('imap_open')) {
-		eyex('messageBox', array(
+		xenonx('messageBox', array(
 			'content' => 'You cannot run eyeMail. The server\'s administrator needs to activate the PHP extension for IMAP first.',
 			'img' => 'x',
 			'title' => 'eyeMail',
@@ -56,7 +56,7 @@ function eyeMail_run($params=null) {
 		'savePosition' => 1
 	));
 	$myWindow->show();
-	eyeX('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_WND_1_Content").style.overflow = "hidden";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_WND_1_Content").style.overflow = "hidden";'));
 
 	$myToolbar = new Toolbar(array(
 		'name'=>'myBar',
@@ -249,7 +249,7 @@ function eyeMail_run($params=null) {
 	));
 	$mailBody->show(0);
 	$mailBody->setCSS(array('border'=>'none','background-color'=>'transparent','text-shadow'=>'0px 0px 0px #ffffff','font-size'=> '12px'));
-	eyeX('rawjs',array('js'=>'document.getElementById("'.$myPid.'_eyeMail_mailBody").setAttribute("READONLY","READONLY");'));
+	xenonx('rawjs',array('js'=>'document.getElementById("'.$myPid.'_eyeMail_mailBody").setAttribute("READONLY","READONLY");'));
 
 	$myHidden3 = new Hidden(array('name'=>'page','father'=>'eyeApps','text'=>0));
 	eyeWidgets('serialize',array($myHidden3));

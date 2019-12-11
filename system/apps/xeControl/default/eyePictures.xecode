@@ -59,7 +59,7 @@ $myLabel3 = new Label(array(
 	'text' => 'Seconds to wait between every picture'
 ));
 $myLabel3->show();
-eyex('rawjs', array('js' => 'document.getElementById("' . $myPid . '_xeControl_eyePictures_slideShowTime").style.width = "130px";'));
+xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_xeControl_eyePictures_slideShowTime").style.width = "130px";'));
 
 $Y+=44;
 $myLabel1 = new Label(array(

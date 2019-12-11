@@ -39,7 +39,7 @@ function xeControl_on_selectUser($params = '') {
 			proc('launch',array('xeControl',array('user' => $params['selected'][0])));
 			proc('end');
 		} else {
-			eyex('messageBox',array(
+			xenonx('messageBox',array(
 				'buttons' => array(array('selectUser_select','Select'),array('selectUser_cancel','Cancel')),
 				'content' => 'Please type the username here:',
 				'father' => 'xeControl_window',
@@ -62,7 +62,7 @@ function xeControl_on_selectUser_select($params = '') {
 		proc('launch',array('xeControl',array('user' => $user)));
 		proc('end');
 	} else {
-		eyex('messageBox',array('content' => 'That user does not exist.'));
+		xenonx('messageBox',array('content' => 'That user does not exist.'));
 	}
 }
 

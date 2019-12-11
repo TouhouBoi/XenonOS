@@ -28,7 +28,7 @@ function xeControl_on_eyenav_save($params = '') {
 		$xml['eyeNav'][0]['plugin'][0] = 'iframe';
 	}
 	xeControl_lib_setXMLconfig(array('eyeNav','conf.xml',$xml));
-	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
 function xeControl_on_eyenav_export($params = '') {
@@ -43,7 +43,7 @@ function xeControl_on_eyenav_export_now($params = '') {
 	$url = xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
 	vfs('create',array($url));
 	eyeXML('setXMLfile',array(vfs('getRealName',array($url)),$xml));
-	eyex('messageBox',array('content' => 'Bookmarks and search engines successfully exported.'));
+	xenonx('messageBox',array('content' => 'Bookmarks and search engines successfully exported.'));
 }
 
 function xeControl_on_eyenav_bookmarks_import($params = '') {
@@ -55,17 +55,17 @@ function xeControl_on_eyenav_bookmarks_import_now($params = '') {
 	$url = xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
 	$xml = eyeXML('getXMLfile',array(vfs('getRealName',array($url))));
 	if (!$xml['eyeNav'][0]['bookmarks'][0] || !is_array($xml['eyeNav'][0]['bookmarks'][0])) {
-		eyex('messageBox',array('content' => 'The selected file is not an eyeNav bookmarks file.'));
+		xenonx('messageBox',array('content' => 'The selected file is not an eyeNav bookmarks file.'));
 	} else {
 		$old = xeControl_lib_getXMLconfig(array('eyeNav','conf.xml'));
 		$old['eyeNav'][0]['bookmarks'][0] = $xml['eyeNav'][0]['bookmarks'][0];
 		xeControl_lib_setXMLconfig(array('eyeNav','conf.xml',$old));
-		eyex('messageBox',array('content' => 'Bookmarks successfully imported.'));
+		xenonx('messageBox',array('content' => 'Bookmarks successfully imported.'));
 	}
 }
 
 function xeControl_on_eyenav_bookmarks_default($params = '') {
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'buttons' => array(array('eyenav_bookmarks_default_yes','Yes'),array('eyenav_bookmarks_default_no','No')),
 		'content' => 'Do you really want to restore the default eyeNav bookmarks?',
 		'father' => 'xeControl_container_big',
@@ -87,7 +87,7 @@ function xeControl_on_eyenav_bookmarks_default_yes($params = '') {
 	$xmlNew = xeControl_lib_getXMLconfig(array('eyeNav','conf.xml'));
 	$xmlNew['eyeNav'][0]['bookmarks'][0] = $xmlDef['eyeNav'][0]['bookmarks'][0];
 	xeControl_lib_setXMLconfig(array('eyeNav','conf.xml',$xmlNew));
-	eyex('messageBox',array('content' => 'Default settings successfully set.'));
+	xenonx('messageBox',array('content' => 'Default settings successfully set.'));
 	$GLOBALS['xeControl_eyenav_window_bookmarks_default']->close();
 }
 
@@ -104,17 +104,17 @@ function xeControl_on_eyenav_search_import_now($params = '') {
 	$url = xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
 	$xml = eyeXML('getXMLfile',array(vfs('getRealName',array($url))));
 	if (!$xml['eyeNav'][0]['searches'][0] || !is_array($xml['eyeNav'][0]['searches'][0])) {
-		eyex('messageBox',array('content' => 'The selected file is not an eyeNav search engine file.'));
+		xenonx('messageBox',array('content' => 'The selected file is not an eyeNav search engine file.'));
 	} else {
 		$old = xeControl_lib_getXMLconfig(array('eyeNav','conf.xml'));
 		$old['eyeNav'][0]['searches'][0] = $xml['eyeNav'][0]['searches'][0];
 		xeControl_lib_setXMLconfig(array('eyeNav','conf.xml',$old));
-		eyex('messageBox',array('content' => 'Search engines successfully imported.'));
+		xenonx('messageBox',array('content' => 'Search engines successfully imported.'));
 	}
 }
 
 function xeControl_on_eyenav_search_default($params = '') {
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'content' => 'Do you really want to restore the default eyeNav search?',
 		'type' => 3,
 		'title' => 'Use defaults',
@@ -139,7 +139,7 @@ function xeControl_on_eyenav_search_default_yes($params = '') {
 	$xmlNew = xeControl_lib_getXMLconfig(array('eyeNav','conf.xml'));
 	$xmlNew['eyeNav'][0]['searches'][0] = $xmlDef['eyeNav'][0]['searches'][0];
 	xeControl_lib_setXMLconfig(array('eyeNav','conf.xml',$xmlNew));
-	eyex('messageBox',array('content' => 'Default settings successfully set.'));
+	xenonx('messageBox',array('content' => 'Default settings successfully set.'));
 	$GLOBALS['xeControl_eyenav_window_search_default']->close();
 }
 

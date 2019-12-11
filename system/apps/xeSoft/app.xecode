@@ -27,7 +27,7 @@ function xeSoft_run($params = null)
 	
 	if ($currentUser != ROOTUSER)
 	{
-		eyex('messageBox', array('content' => 'Only the Root Account Can Install xeApps'));
+		xenonx('messageBox', array('content' => 'Only the Root Account Can Install xeApps'));
 		proc('end');
 		return;
 	}

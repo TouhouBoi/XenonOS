@@ -26,10 +26,10 @@ function xeControl_on_desktop_savedblclicks($params = '') {
 	if (xeControl_lib_getConfigUser() == $currentUser) {
 		$desk_checknum = proc('findChecknumByName',array('eyeDesk'));
 		if ($desk_checknum) {
-			eyex('rawjs',array('js' => 'sendMsg(' . $desk_checknum . ',"OpenPath","");'));
+			xenonx('rawjs',array('js' => 'sendMsg(' . $desk_checknum . ',"OpenPath","");'));
 		}
 	}
-	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
 function xeControl_on_desktop_reset_icons($params = '') {
@@ -39,10 +39,10 @@ function xeControl_on_desktop_reset_icons($params = '') {
 	if (xeControl_lib_getConfigUser() == $currentUser) {
 		$desk_checknum = proc('findChecknumByName',array('eyeDesk'));
 		if ($desk_checknum) {
-			eyex('rawjs',array('js' => 'sendMsg(' . $desk_checknum . ',"OpenPath","");'));
+			xenonx('rawjs',array('js' => 'sendMsg(' . $desk_checknum . ',"OpenPath","");'));
 		}
 	}
-	eyex('messageBox', array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox', array('content' => 'Changes successfully saved.'));
 }
 
 function xeControl_on_desktop_save_icons($params = '') {
@@ -59,32 +59,32 @@ function xeControl_on_desktop_save_icons($params = '') {
 	if (xeControl_lib_getConfigUser() == $currentUser) {
 		$desk_checknum = proc('findChecknumByName',array('eyeDesk'));
 		if ($desk_checknum) {
-			eyex('rawjs',array('js' => 'sendMsg(' . $desk_checknum . ',"OpenPath","");'));
+			xenonx('rawjs',array('js' => 'sendMsg(' . $desk_checknum . ',"OpenPath","");'));
 		}
 	}
-	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
 function xeControl_on_desktop_savewinpos($params = '') {
-	$xml = xeControl_lib_getXMLconfig(array('eyex','eyeX.xml'));
+	$xml = xeControl_lib_getXMLconfig(array('xenonx','xenonx.xml'));
 	if ($params['selected'][0] == 'false') {
-		$xml['eyex'][0]['saveWindowPositions'][0] = '0';
+		$xml['xenonx'][0]['saveWindowPositions'][0] = '0';
 	} else {
-		$xml['eyex'][0]['saveWindowPositions'][0] = '1';
+		$xml['xenonx'][0]['saveWindowPositions'][0] = '1';
 	}
-	xeControl_lib_setXMLconfig(array('eyex','eyeX.xml',$xml));
-	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xeControl_lib_setXMLconfig(array('xenonx','xenonx.xml',$xml));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
 function xeControl_on_desktop_reset_windows($params = '') {
-	$path = um('getUserDir',array(xeControl_lib_getConfigUser())) . '/' . CONF_USER_DIR . '/eyex/';
+	$path = um('getUserDir',array(xeControl_lib_getConfigUser())) . '/' . CONF_USER_DIR . '/xenonx/';
 	$files = vfs('real_getDirContent',array($path,'*.xml'));
 	foreach ($files as $file) {
-		if ( /* utf8 */ strtolower(basename($file)) !== 'eyex.xml') {
+		if ( /* utf8 */ strtolower(basename($file)) !== 'xenonx.xml') {
 			vfs('real_delete',array($file));
 		}
 	}
-	eyex('messageBox',array('content' => 'Windows successfully restored. Please restart the applications now.'));
+	xenonx('messageBox',array('content' => 'Windows successfully restored. Please restart the applications now.'));
 }
 
 function xeControl_on_desktop_select($params = '') {
@@ -100,9 +100,9 @@ function xeControl_on_desktop_select_now($params=null) {
 			$GLOBALS['xeControl_desktop_textbox_select']->setText($file);
 			$GLOBALS['xeControl_desktop_checkbox_use']->check();
 		} else if (in_array(strtolower(substr($file, -4)), array('.jpg', '.gif', '.bmp', '.png', '.tif')) === false) { // utf8
-			eyex('messageBox',array('content' => 'Sorry, this file is not allowed to be a wallpaper.'));
+			xenonx('messageBox',array('content' => 'Sorry, this file is not allowed to be a wallpaper.'));
 		} else {
-			eyex('messageBox',array('content' => 'Sorry, but that file does not exist.'));
+			xenonx('messageBox',array('content' => 'Sorry, but that file does not exist.'));
 		}
 	}
 }
@@ -115,10 +115,10 @@ function xeControl_on_desktop_save($params=null) {
 		if (vfs('filesize', array($file)) > 0 && in_array(strtolower(substr($file, -4)), array('.jpg', '.gif', '.bmp', '.png', '.tif')) === true) { // utf8
 			$config['eyeDesk'][0]['wallpaper'][0] = $file;
 		} else if (in_array(strtolower(substr($file, -4)), array('.jpg', '.gif', '.bmp', '.png', '.tif')) === false) { // utf8
-			eyex('messageBox',array('content' => 'Sorry, this file is not allowed to be a wallpaper.'));
+			xenonx('messageBox',array('content' => 'Sorry, this file is not allowed to be a wallpaper.'));
 			return;
 		} else {
-			eyex('messageBox',array('content' => 'Sorry, but that file does not exist.'));
+			xenonx('messageBox',array('content' => 'Sorry, but that file does not exist.'));
 			return;
 		}
 	} else {
@@ -134,13 +134,13 @@ function xeControl_on_desktop_save($params=null) {
 	$config['eyeDesk'][0]['wallpaperRepeat'][0] = $repeat;
 	$config['eyeDesk'][0]['wallpaperCenter'][0] = $center;
 	xeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$config));
-	eyex('setWallpaper',array(
+	xenonx('setWallpaper',array(
 		'center' => $center,
 		'color' => $config['eyeDesk'][0]['bgColor'][0],
 		'path' => 'index.php?checknum=' . $checknum . '&msg=getWallpaper&' . time(),
 		'repeat' => $repeat
 	));
-	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
 function xeControl_on_desktop_Soundclicks($params = '') {
@@ -152,7 +152,7 @@ function xeControl_on_desktop_Soundclicks($params = '') {
 		$xml['eyeDesk'][0]['systemSounds'][0] = '0';
 	}
 	xeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$xml));
-	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
 function xeControl_on_getWallpaper($params = '') {

@@ -32,20 +32,20 @@ function xeControl_on_theme_change($params = '') {
 	xeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$ThemeXML));
 	if (xeControl_lib_getConfigUser() == '[skel]') {
 		// DEFAULT_THEME
-		$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/eyex.xml';
-		$eyex = eyeXML('getXMLfile',array($file));
-		$eyex['CONFIG'][0]['DEFAULT_THEME'][0] = $params['xeControl_theme_select'][0];
-		eyeXML('setXMLFile',array($file,$eyex));
+		$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/xenonx.xml';
+		$xenonx = eyeXML('getXMLfile',array($file));
+		$xenonx['CONFIG'][0]['DEFAULT_THEME'][0] = $params['xeControl_theme_select'][0];
+		eyeXML('setXMLFile',array($file,$xenonx));
 		// LOGIN_THEME
 		$eyelogin = getConfig('eyeLogin');
 		$eyelogin['CONFIG'][0]['LOGIN_THEME'][0] = $params['xeControl_theme_select'][0];
 		setConfig('eyeLogin','conf.xml',$eyelogin);
 	} else {
-		$xml = xeControl_lib_getXMLconfig(array('eyex','eyex.xml'));
+		$xml = xeControl_lib_getXMLconfig(array('xenonx','xenonx.xml'));
 		$xml['changes'][0]['increase'][0] = '1';
-		xeControl_lib_setXMLconfig(array('eyex','eyex.xml',$xml));
+		xeControl_lib_setXMLconfig(array('xenonx','xenonx.xml',$xml));
 	}
-	eyex('messageBox',array('content' => 'Theme changed. You must restart your desktop for the changes to become active.'));
+	xenonx('messageBox',array('content' => 'Theme changed. You must restart your desktop for the changes to become active.'));
 }
 
 function xeControl_on_theme_select($params = '') {
@@ -58,10 +58,10 @@ function xeControl_on_theme_select($params = '') {
 	$ThemeXML = eyeXML('getXMLfile',array($dir . $theme . '/info.xml'));
 	$currentUser = $oldUser;
 	$ThemeXML = $ThemeXML['eyeXtheme'][0];
-	eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_theme_label_display_2").innerHTML = "";'));
-	eyex('runjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_theme_label_display_2").appendChild(document.createTextNode(%s));','tokens' => array(i18n('translate',array($ThemeXML['display'][0] . ' %s',array($ThemeXML['version'][0]))))));
-	eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_theme_label_author_2").innerHTML = "";'));
-	eyex('runjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_theme_label_author_2").appendChild(document.createTextNode(%s));','tokens' => array($ThemeXML['author'][0])));
-	eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_theme_imagebox").src = "index.php?theme=0&extern=' . THEMES_DIR . '/' . $theme . '/screenshot.png";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_theme_label_display_2").innerHTML = "";'));
+	xenonx('runjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_theme_label_display_2").appendChild(document.createTextNode(%s));','tokens' => array(i18n('translate',array($ThemeXML['display'][0] . ' %s',array($ThemeXML['version'][0]))))));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_theme_label_author_2").innerHTML = "";'));
+	xenonx('runjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_theme_label_author_2").appendChild(document.createTextNode(%s));','tokens' => array($ThemeXML['author'][0])));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_theme_imagebox").src = "index.php?theme=0&extern=' . THEMES_DIR . '/' . $theme . '/screenshot.png";'));
 }
 ?>

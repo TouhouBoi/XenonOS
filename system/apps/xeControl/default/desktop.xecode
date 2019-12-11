@@ -204,7 +204,7 @@ if (xeControl_lib_getConfigUser() == $currentUser) {
 	$myTextbox_color->show();
 	$myTextbox_color->setCss(array('text-shadow' => 'none'));
 	// INIT
-	eyex('rawjs', array('js' => 'var e = document.getElementById("' . $myPid . '_xeControl_desktop_textbox_color");
+	xenonx('rawjs', array('js' => 'var e = document.getElementById("' . $myPid . '_xeControl_desktop_textbox_color");
 	e.style.backgroundColor = "#ffffff";
 	e.style.backgroundColor = e.value;
 	var bgColor = xParseColor(xGetComputedStyle(e, "background-color"));
@@ -240,7 +240,7 @@ if (xeControl_lib_getConfigUser() == $currentUser) {
 		this.style.color = "rgb(" + String(288 - bgColor.r) + ", " + String(288 - bgColor.g) + ", " + String(288 - bgColor.b) + ")";
 	}');
 	// JSCOLOR
-	eyex('jscolor', array($myPid . '_xeControl_desktop_textbox_color'));
+	xenonx('jscolor', array($myPid . '_xeControl_desktop_textbox_color'));
 	$ContentY += 60;
 	// Save Changes
 	$myButton = new Button(array(
@@ -276,14 +276,14 @@ $myLabel->setCss(array(
 
 // Save window positions
 $ContentY += 25;
-$xml = xeControl_lib_getXMLconfig(array('eyex','eyeX.xml'));
+$xml = xeControl_lib_getXMLconfig(array('xenonx','xenonx.xml'));
 $myCheckbox = new Checkbox(array(
 	'name' => 'xeControl_desktop_checkbox_savewinpos',
 	'father' => $iconsTab,
 	'x' => 50,
 	'y' => $ContentY,
 	'text' => 'Save window positions',
-	'checked' => $xml['eyex'][0]['saveWindowPositions'][0] != '0'
+	'checked' => $xml['xenonx'][0]['saveWindowPositions'][0] != '0'
 ));
 $myCheckbox->show();
 $myCheckbox->addEvent('onclick','if (this.checked) { document.getElementById("' . $myPid . '_xeControl_dektop_reset_windows_Container").style.display = "block"; } else { document.getElementById("' . $myPid . '_xeControl_dektop_reset_windows_Container").style.display = "none"; } sendMsg(' . $checknum . ',"desktop_savewinpos",eyeParam("selected",this.checked));');

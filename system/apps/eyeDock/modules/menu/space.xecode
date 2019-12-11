@@ -14,12 +14,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-eyex('createDiv',array(
+xenonx('createDiv',array(
 	'class' => 'eyeDock_' . $type . '_' . $place . '_menu_entry_space',
 	'father' => 'eyeDock_' . $type . '_' . $place . '_' . $id . '_entries',
 	'name' => 'eyeDock_' . $type . '_' . $place . '_' . $id . '_entry' . '_' . $id2
 ));
-eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '_entry' . '_' . $id2 . '").style.height = "' . intval($entry[0]['height'][0]) . 'px";'));
+xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '_entry' . '_' . $id2 . '").style.height = "' . intval($entry[0]['height'][0]) . 'px";'));
 
 $myContextMenu = new ContextMenu(array(
 	'father' => 'eyeDock_' . $type . '_' . $place . '_' . $id . '_entry' . '_' . $id2,

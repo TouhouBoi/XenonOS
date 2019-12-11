@@ -82,7 +82,7 @@ class Split {
 		if($this->showed == 0) {
 			$this->show();
 		}
-		eyex('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
+		xenonx('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
 	}
 
 	function show($noserialize=1) {
@@ -109,7 +109,7 @@ class Split {
 			'center' => $this->cent
 		);
 		$this->showed=1;
-		eyex('createWidget',$mySplit);
+		xenonx('createWidget',$mySplit);
 		if($noserialize == 0) {
 			eyeWidgets('serialize',array($this));
 		}
@@ -119,7 +119,7 @@ class Split {
 		global $myPid;
 		if(is_array($params)) {
 			foreach($params as $key => $value) {
-				eyex('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
+				xenonx('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
 			}
 		}
 	}
@@ -127,25 +127,25 @@ class Split {
 	function hide() {
 		global $myPid;
 		$this->visible = 0;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="none"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="none"'));
 	}
 
 	function unhide() {
 		global $myPid;
 		$this->visible = 1;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="block"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="block"'));
 	}
 
 	function setX($x) {
 		global $myPid;
 		$this->x = intval($x);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.left="'.$this->x.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.left="'.$this->x.'px";'));
 	}
 
 	function setY($y) {
 		global $myPid;
 		$this->y = intval($y);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.top="'.$this->y.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.top="'.$this->y.'px";'));
 	}
 
 	function setHeight($height) {
@@ -153,15 +153,15 @@ class Split {
 		$oldHeight = $this->height;
 		$this->height = intval($height);
 		if($this->orientation == SPLIT_VERTICAL) {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_split").style.height="'.$this->height.'px";'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_splitter").style.height="'.$this->height.'px";'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_first").style.height="'.$this->height.'px";'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_last").style.height="'.$this->height.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_split").style.height="'.$this->height.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_splitter").style.height="'.$this->height.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_first").style.height="'.$this->height.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_last").style.height="'.$this->height.'px";'));
 		} else {
 			$diff = $this->height-$oldHeight;
 			$js = 'increaseHeight("'.$myPid.'_'.$this->name.'_last",'.$diff.');';
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_split").style.height="'.$this->height.'px";'));
-			eyex('rawjs',array('js' => $js));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_split").style.height="'.$this->height.'px";'));
+			xenonx('rawjs',array('js' => $js));
 		}
 	}
 
@@ -170,7 +170,7 @@ class Split {
 		global $myPid;
 		$this->position = intval($position);
 		$js = 'splitter_setPosition("'.$myPid.'_'.$this->name.'",'.intval($position).','.$this->orientation.','.$checknum.',"'.$this->sigResize.'");';
-		eyex('rawjs',array('js' => $js));
+		xenonx('rawjs',array('js' => $js));
 	}
 
 	function setValue($position) {
@@ -179,12 +179,12 @@ class Split {
 
 	function hideSplitter() {
 		global $myPid;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_splitter").style.display="none"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_splitter").style.display="none"'));
 	}
 
 	function showSplitter() {
 		global $myPid;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_splitter").style.display="block"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_splitter").style.display="block"'));
 	}
 
 	function setWidth($width) {
@@ -192,22 +192,22 @@ class Split {
 		$oldWidth = $this->width;
 		$this->width = intval($width);
 		if($this->orientation == SPLIT_HORIZONTAL) {
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_split").style.width="'.$this->width.'px";'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_splitter").style.width="'.$this->width.'px";'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_first").style.width="'.$this->width.'px";'));
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_last").style.width="'.$this->width.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_split").style.width="'.$this->width.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_splitter").style.width="'.$this->width.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_first").style.width="'.$this->width.'px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_last").style.width="'.$this->width.'px";'));
 		} else {
 			$diff = $this->width-$oldWidth;
 			$js = 'increaseWidth("'.$myPid.'_'.$this->name.'_last",'.$diff.');';
-			eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_split").style.width="'.$this->width.'px";'));
-			eyex('rawjs',array('js' => $js));
+			xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_split").style.width="'.$this->width.'px";'));
+			xenonx('rawjs',array('js' => $js));
 		}
 	}
 
 	function remove() {
 		global $myPid;
 		$name = $this->name;
-		eyex('removeWidget',array('name'=>$name.'_Container'));
+		xenonx('removeWidget',array('name'=>$name.'_Container'));
 		eyeWidgets('singleUnserialize',array($this->name));
 	}
 

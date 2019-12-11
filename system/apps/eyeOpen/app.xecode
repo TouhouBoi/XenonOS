@@ -88,7 +88,7 @@ function eyeOpen_run($params = '') {
 					'y' => $y
 				));
 				$myIcon->show();
-				eyex('rawjs',array('js' => 'xGetElementById("' . $myPid . '_' . $myIcon->name . '_Container").style.textAlign = "center"; xGetElementById("img_' . $myPid . '_' . $myIcon->name . '").style.marginLeft = "-1px";'));
+				xenonx('rawjs',array('js' => 'xGetElementById("' . $myPid . '_' . $myIcon->name . '_Container").style.textAlign = "center"; xGetElementById("img_' . $myPid . '_' . $myIcon->name . '").style.marginLeft = "-1px";'));
 				$x += 88;
 				if ($myContainer->width - $x - 88 < 0) {
 					$x = 20;

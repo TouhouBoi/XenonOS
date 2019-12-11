@@ -32,9 +32,9 @@ function eyeConsole_on_sendCmd($params=null) {
 	$arguments = parseArguments($cmd);
 	$myApp = $arguments[0];
 	array_shift($arguments);
-	eyeX('print', array('XenonOS> '.$cmd));
+	xenonx('print', array('XenonOS> '.$cmd));
 	if(!proc('launch',array($myApp,$arguments))) {
-		eyeX('print',array("Command not found"));
+		xenonx('print',array("Command not found"));
 	}
 }
 

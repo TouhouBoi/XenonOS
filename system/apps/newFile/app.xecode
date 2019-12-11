@@ -16,7 +16,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 function newFile_run($params = '') {
 	if ($params[0]) {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'buttons' => array(array('Do','Accept'),array('Close','Cancel')),
 			'content' => 'Please type the name of the new file here:',
 			'hiddens' => array(array('newFile_Hidden_Path',$params[0]),array('newFile_Hidden_Callback',$params[1])),

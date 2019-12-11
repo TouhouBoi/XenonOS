@@ -29,11 +29,11 @@ function eyePdf_on_Init($params = '') {
 	}
 	$xml = eyeXML('getXMLconfig',array('eyePdf','conf.xml'));
 	if ($xml['eyePdf'][0]['renderer'][0] == 'pdf.js') {
-		eyex('rawjs', array('js' => 'sendMsg(' . $checknum . ',"Load",eyeParam("path","'.$params[0].'") + eyeParam("renderer","pdf.js") + eyeParam("start_maximized","' . $xml['eyePdf'][0]['start_maximized'][0] . '"));'));
+		xenonx('rawjs', array('js' => 'sendMsg(' . $checknum . ',"Load",eyeParam("path","'.$params[0].'") + eyeParam("renderer","pdf.js") + eyeParam("start_maximized","' . $xml['eyePdf'][0]['start_maximized'][0] . '"));'));
 	} elseif ($xml['eyePdf'][0]['renderer'][0] == 'download') {
-		eyex('rawjs', array('js' => 'sendMsg(' . $checknum . ',"downloadPdf",eyeParam("path","'.$params[0].'") + eyeParam("start_maximized","' . $xml['eyePdf'][0]['start_maximized'][0] . '"));'));
+		xenonx('rawjs', array('js' => 'sendMsg(' . $checknum . ',"downloadPdf",eyeParam("path","'.$params[0].'") + eyeParam("start_maximized","' . $xml['eyePdf'][0]['start_maximized'][0] . '"));'));
 	} else {
-		eyex('runjs',array(
+		xenonx('runjs',array(
 			'js' => '
 				if ((navigator.userAgent.indexOf("Safari") !== -1) && (navigator.userAgent.indexOf("mobile") !== -1)) {
 					sendMsg(' . $checknum . ',"Load",eyeParam("path",%s) + eyeParam("start_maximized","' . $xml['eyePdf'][0]['start_maximized'][0] . '") + eyeParam("renderer","safari"));
@@ -81,7 +81,7 @@ function eyePdf_on_Fullscreen($params = '') {
 	if ($GLOBALS['eyePdf_Window']->fullScreen) {
 		$press = 'Press';
 	}
-	eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyePdf_Toolbar");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyePdf_Toolbar");
 	for (var i = 0; i < e.childNodes.length; i++) {
 		if (e.childNodes[i].id == "Fullscreen_Container") {
 			e.childNodes[i].className = "blockbarItem' . $press . '_right";
@@ -117,7 +117,7 @@ function eyePdf_on_getPdf($params = '') {
 
 function eyePdf_on_Load($params = '') {
 	global $checknum, $myPid;
-	//THE TOOLBAR HAS BEEN DELETED addListenerServiceCall('fullResized','eyex','resizedbrowser');
+	//THE TOOLBAR HAS BEEN DELETED addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 	if ($_SESSION['SCREEN']['eyeApps']['width'] >= 600) {
 		$window_width = $_SESSION['SCREEN']['eyeApps']['width']*0.75;
 		if ($params['start_maximized'][0]) {
@@ -150,7 +150,7 @@ function eyePdf_on_Load($params = '') {
 	));
 	$myWindow->show();
 	if ($start_maximized) {
-		eyex('rawjs', array('js' => "Windows.Maximize('".$myPid."_".$myWindow->name."');"));
+		xenonx('rawjs', array('js' => "Windows.Maximize('".$myPid."_".$myWindow->name."');"));
 	}
 
 	if ($params['renderer'][0] == 'pdf.js') {

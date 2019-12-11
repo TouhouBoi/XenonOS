@@ -35,14 +35,14 @@ function exit_run($params=null) {
 	$eyeDock_pid = proc('findPidByName', array('eyeDock'));
 	
 	// Play logout sound
-	if (eyex('systemSound', array('logout'))) {
+	if (xenonx('systemSound', array('logout'))) {
 		$timeout = '2500';
 	} else {
 		$timeout = '1';
 	}
 	
 	// Hide eyeDock and eyeApps divs
-	eyex('rawjs', array('js' => '
+	xenonx('rawjs', array('js' => '
 			var dock_top_div = xGetElementById("' . $eyeDock_pid . '_eyeDock_top");
 			var dock_bottom_div = xGetElementById("' . $eyeDock_pid . '_eyeDock_bottom");
 			var eyeApps_div = xGetElementById("eyeApps");
@@ -82,6 +82,6 @@ function exit_run($params=null) {
 	$myImagebox->show();
 	
 	// Terminate the session and reload the login page
-	eyex('sendMessage', array('msg' => 'logout', 'params' => $timeout));
+	xenonx('sendMessage', array('msg' => 'logout', 'params' => $timeout));
 }
 ?>

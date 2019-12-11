@@ -19,6 +19,6 @@ function xeControl_on_eyeboard_save($params = '') {
 	$xml['eyeBoard'][0]['showFullname'][0] = $GLOBALS['xeControl_eyeboard_checkbox_fullname']->checked;
 	$xml['eyeBoard'][0]['reloadTime'][0] = $GLOBALS['xeControl_eyeboard_select_refresh']->selected;
 	xeControl_lib_setXMLconfig(array('eyeBoard','conf.xml',$xml));
-	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 }
 ?>

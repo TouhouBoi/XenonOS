@@ -43,7 +43,7 @@ function eyeShare_run($params = '') {
 	));
 	$myLabel->show();
 	$myLabel->setCSS(array('font-weight' => 'bold'));
-	eyex('rawjs', array('js' => 'setWidgetPos("' . $myPid . '_eyeShare_Label_Container", "' . $myPid . '_eyeShare_Window_Content", 0, 0, 0, 20, 2);'));
+	xenonx('rawjs', array('js' => 'setWidgetPos("' . $myPid . '_eyeShare_Label_Container", "' . $myPid . '_eyeShare_Window_Content", 0, 0, 0, 20, 2);'));
 
 	$myButton = new Button(array(
 		'cent' => 2,
@@ -81,7 +81,7 @@ function eyeShare_run($params = '') {
 			'y' => $y
 		));
 		$myCheckbox->show();
-		eyex('rawjs', array('js' => 'document.getElementById("' . $myPid . '_eyeShare_Checkbox_' . $group . '_textContainer").style.whiteSpace = "nowrap";'));
+		xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_eyeShare_Checkbox_' . $group . '_textContainer").style.whiteSpace = "nowrap";'));
 		$myButton->addFriend($myCheckbox);
 		$y += 22;
 	}

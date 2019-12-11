@@ -44,7 +44,7 @@ define('FILES_USER_DIR', 'files');
 define('TMP_USER_DIR', 'tmp');
 define('SHARE_USER_DIR', 'share');
 define('PUBLIC_USER_DIR', 'public');
-define('THEMES_DIR', APP_DIR . '/eyeX/themes');
+define('THEMES_DIR', APP_DIR . '/xenonx/themes');
 define('THEME_CONF_DIR', 'conf');
 define('SYSTEM_CONF_DIR', 'conf');
 define('APP_CONF_SHARE', 'share');

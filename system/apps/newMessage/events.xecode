@@ -47,17 +47,17 @@ function newMessage_on_send($params) {
 	$attach = um('getCurrentUserDir').FILES_USER_DIR.'/'.$GLOBALS['tboxAttach']->text;
 
 	if(eyeMessages('sendMessage', array($to_users, $subject, $content, $attach, $to_groups))) {
-		eyeX('messageBox', array('content' => 'Message sent'));
+		xenonx('messageBox', array('content' => 'Message sent'));
 
 		if(is_object($GLOBALS['callback'])) {
 			$appChecknum = $GLOBALS['callback']->text[0];
 			$appMessage = $GLOBALS['callback']->text[1];
-			eyeX('sendMessage', array('checknum' => $appChecknum, 'msg' => $appMessage));
+			xenonx('sendMessage', array('checknum' => $appChecknum, 'msg' => $appMessage));
 		}
 
 		proc('end');
 	} else {
-		eyeX('messageBox', array('content' => 'Error sending message'));
+		xenonx('messageBox', array('content' => 'Error sending message'));
 	}
 }
 

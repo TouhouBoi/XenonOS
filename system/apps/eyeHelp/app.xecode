@@ -71,12 +71,12 @@ function eyeHelp_run($params = null)
 
 	$myToolbar->show();
 
-	$myToolbar->addItem('SendMessage', eyex('getThemeImage', array('images/toolbar/sendmessage.png',1)), 'Ask for help');
+	$myToolbar->addItem('SendMessage', xenonx('getThemeImage', array('images/toolbar/sendmessage.png',1)), 'Ask for help');
 
 	if ($currentUser == ROOTUSER)
 	{
 		$myToolbar->addLine();
-		$myToolbar->addItem('pref', eyex('getThemeImage', array('images/toolbar/lin_agt_wrench.png',1)), 'Preferences');
+		$myToolbar->addItem('pref', xenonx('getThemeImage', array('images/toolbar/lin_agt_wrench.png',1)), 'Preferences');
 	}
 
 	$y = 60;
@@ -145,7 +145,7 @@ function eyeHelp_run($params = null)
 	*@Todo if Windows Widget gets class fix this
 	*/
 
-	eyeX('rawjs',
+	xenonx('rawjs',
 		array(
 			'js' => '
 				document.getElementById("'.$myPid.'_' . $myWindow2->name . '").className = "invisWND";
@@ -213,7 +213,7 @@ function eyeHelp_run($params = null)
 
 	$label2_text = '<span style="color:black; cursor:pointer;" onclick="sendMsg(\''.$checknum.'\',\'open\',\'/\');">'.$title.'</span>';
 
-	eyeX('concatDiv', array('name' => $myPid.'_label2','value' => $label2_text));
+	xenonx('concatDiv', array('name' => $myPid.'_label2','value' => $label2_text));
 
 	//The tree
 	$myTree = new Tree(
@@ -256,7 +256,7 @@ function eyeHelp_run($params = null)
 	eyeHelp_on_goto(array($folder));
 
 	//CSS
-	eyex('loadCss',
+	xenonx('loadCss',
 		array(
 			'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/eyeHelp/eyeHelp.css&type=css',
 			'id' => 'eyeHelp.css'

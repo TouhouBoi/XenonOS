@@ -15,11 +15,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function eyeManageApps_on_Bottom_AddElement($params = '') {
-	eyex('rawjs', array('js' => 'sendMsg(' . proc('findChecknumByName', array('eyeDock')) . ', "AddElement", eyeParam("type", "bottom"));'));
+	xenonx('rawjs', array('js' => 'sendMsg(' . proc('findChecknumByName', array('eyeDock')) . ', "AddElement", eyeParam("type", "bottom"));'));
 }
 
 function eyeManageApps_on_Bottom_Refresh($params = '') {
-	eyex('rawjs', array('js' => 'sendMsg(' . proc('findChecknumByName', array('eyeDock')) . ', "Refresh", eyeParam("type", "bottom"));'));
+	xenonx('rawjs', array('js' => 'sendMsg(' . proc('findChecknumByName', array('eyeDock')) . ', "Refresh", eyeParam("type", "bottom"));'));
 }
 
 function eyeManageApps_on_Bottom_ShowHide($params = '') {
@@ -42,11 +42,11 @@ function eyeManageApps_on_Message($params = '') {
 }
 
 function eyeManageApps_on_Top_AddElement($params = '') {
-	eyex('rawjs', array('js' => 'sendMsg(' . proc('findChecknumByName', array('eyeDock')) . ', "AddElement", eyeParam("type", "top"));'));
+	xenonx('rawjs', array('js' => 'sendMsg(' . proc('findChecknumByName', array('eyeDock')) . ', "AddElement", eyeParam("type", "top"));'));
 }
 
 function eyeManageApps_on_Top_Refresh($params = '') {
-	eyex('rawjs', array('js' => 'sendMsg(' . proc('findChecknumByName', array('eyeDock')) . ', "Refresh", eyeParam("type", "top"));'));
+	xenonx('rawjs', array('js' => 'sendMsg(' . proc('findChecknumByName', array('eyeDock')) . ', "Refresh", eyeParam("type", "top"));'));
 }
 
 function eyeManageApps_on_Top_ShowHide($params = '') {

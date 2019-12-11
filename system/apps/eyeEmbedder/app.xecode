@@ -20,7 +20,7 @@ function eyeEmbedder_run($params = null) {
 	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeEmbedder/libs' . XE_CODE_EXTENSION;
 	
 	if ($currentUser !== ROOTUSER) {
-		eyex('messageBox', array('content' => 'Administrator privilegs required.'));
+		xenonx('messageBox', array('content' => 'Administrator privilegs required.'));
 		
 		proc('end');
 		return;
@@ -101,9 +101,9 @@ function eyeEmbedder_run($params = null) {
 		'y' => $toolbarHeight
 	));
 	$GLOBALS[$name]->show();
-	eyex('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").style.bottom = "0";'));
-	eyex('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").style.overflow = "auto";'));
-	eyex('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").style.right = "0";'));
+	xenonx('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").style.bottom = "0";'));
+	xenonx('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").style.overflow = "auto";'));
+	xenonx('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").style.right = "0";'));
 	
 	$name = $namePrefix . 'Box_Content';
 	$GLOBALS[$name] = new Box(array(
@@ -115,8 +115,8 @@ function eyeEmbedder_run($params = null) {
 		'y' => $boxContentY
 	));
 	$GLOBALS[$name]->show();
-	eyex('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").style.right = "0";'));
-	eyex('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").childNodes[0].style.width = "100%";'));
+	xenonx('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").style.right = "0";'));
+	xenonx('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").childNodes[0].style.width = "100%";'));
 	$y = $boxContentInnerY;
 	
 	$name = $namePrefix . 'Label_Title';
@@ -280,8 +280,8 @@ function eyeEmbedder_run($params = null) {
 		'y' => $boxDetailsY
 	));
 	$GLOBALS[$name]->show();
-	eyex('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").style.right = "0";'));
-	eyex('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").childNodes[0].style.width = "100%";'));
+	xenonx('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").style.right = "0";'));
+	xenonx('runjs', array('js' => 'xGetElementById("' . strval($myPid) . '_' . $name . '_Container").childNodes[0].style.width = "100%";'));
 	$y = $boxDetailsInnerY;
 	
 	$name = $namePrefix . 'Label_ApplicationAuthor';
@@ -386,7 +386,7 @@ function eyeEmbedder_run($params = null) {
 	foreach (eyeEmbedder_lib_getIcons() as $icon) {
 		$GLOBALS[$name]->addOption($icon, null, $icon === $defaultApplicationIcon, null, $defaultGroup);
 	}
-	eyex('runjs', array('js' => 'setTimeout(function () {
+	xenonx('runjs', array('js' => 'setTimeout(function () {
 		var i, options, select;
 		
 		select = xGetElementById("' . strval($myPid) . '_' . $name . '");

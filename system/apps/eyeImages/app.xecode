@@ -34,7 +34,7 @@ function eyeImages_run($params = '') {
 }
 
 function eyeImages_end($params = '') {
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize',$params);
 }
 ?>

@@ -49,7 +49,7 @@ function eyeVisor_on_getFile($params = null) {
 	$file = $GLOBALS['vPath']->text;
 	
 	if (!vfs('checkPermissions', array($file))) {
-		eyex('messageBox', array('content' => 'You do not have sufficient permissions!'));
+		xenonx('messageBox', array('content' => 'You do not have sufficient permissions!'));
 		return false;
 	}
 	
@@ -67,7 +67,7 @@ function eyeVisor_on_getFile($params = null) {
 		if (eyeConverter('convert', array($temp, $temp . '.html', 'html', 1))) {
 			$content = vfs('real_getFileContent', array($temp . '.html/' . basename(substr($temp, 0, strpos($temp, ".",1))) . ".html")); // utf8
 			
-			$checknum = proc('findChecknumByName', array('eyeX'));
+			$checknum = proc('findChecknumByName', array('xenonx'));
 			$content = str_replace('<IMG SRC="', '<IMG SRC="index.php?checknum=' . strval($checknum) . '&amp;msg=viewTempImg&amp;params=', $content);
 		} else {
 			$content = '<p>For some reason the conversion failed. Please try again later.</p>';

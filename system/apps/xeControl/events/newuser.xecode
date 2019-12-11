@@ -19,7 +19,7 @@ function xeControl_on_newuser_save($params = '') {
 	global $myPid;
 
 	if ($currentUser != ROOTUSER && !um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
-		eyex('messageBox',array('content' => 'You are not allowed to manage users!'));
+		xenonx('messageBox',array('content' => 'You are not allowed to manage users!'));
 		xeControl_lib_loadContent();
 		return;
 	} elseif (um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
@@ -109,23 +109,23 @@ function xeControl_on_newuser_save($params = '') {
 			$myUserXml['eyeUser'][0]['mngUser'][] = $username;
 			um('updateUser',array('username' => $oldUser,'mngUser' => $myUserXml['eyeUser'][0]['mngUser']));
 		}
-		eyex('messageBox',array('content' => 'User successfully created.'));
+		xenonx('messageBox',array('content' => 'User successfully created.'));
 		$currentUser = $oldUser;
 		xeControl_lib_loadContent('only_root','users',array($_SESSION['xeControl'][$myPid]['content']['users']));
 	} elseif (!$username || !$password || !$pwd_again) {
-		eyex('messageBox',array('content' => 'Please fill in all necessary fields!'));
+		xenonx('messageBox',array('content' => 'Please fill in all necessary fields!'));
 	} elseif (um('isValidUsername', array($username)) === false) {
-		eyex('messageBox',array('content' => 'Username contains invalid characters, please try another!'));
+		xenonx('messageBox',array('content' => 'Username contains invalid characters, please try another!'));
 	} elseif (um('userExist',array($username))) {
-		eyex('messageBox',array('content' => 'The selected user already exists!'));
+		xenonx('messageBox',array('content' => 'The selected user already exists!'));
 	} elseif ($password != $pwd_again) {
-		eyex('messageBox',array('content' => 'Passwords do not match!'));
+		xenonx('messageBox',array('content' => 'Passwords do not match!'));
 	} elseif (utf8_strlen($username) < 2) {
-		eyex('messageBox',array('content' => 'The selected username is too small!'));
+		xenonx('messageBox',array('content' => 'The selected username is too small!'));
 	} elseif (utf8_strlen($username) > MAX_USERNAME_LEN) {
-		eyex('messageBox',array('content' => 'The selected username is too long!'));
+		xenonx('messageBox',array('content' => 'The selected username is too long!'));
 	} else {
-		eyex('messageBox',array('content' => 'Please correct your typed settings.'));
+		xenonx('messageBox',array('content' => 'Please correct your typed settings.'));
 	}
 	$currentUser = $oldUser;
 }

@@ -36,7 +36,7 @@ function eyePresentation_run($params=null) {
 	if($params[0]) {
 		$file = $params[0];
 		if (!vfs('checkPermissions', array($file, 'r'))) {
-			eyex('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
+			xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 			return;
 		}
 

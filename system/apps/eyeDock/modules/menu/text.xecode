@@ -14,12 +14,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-eyex('createDiv',array(
+xenonx('createDiv',array(
 	'class' => 'eyeDock_' . $type . '_' . $place . '_menu_entry_text',
 	'father' => 'eyeDock_' . $type . '_' . $place . '_' . $id . '_entries',
 	'name' => 'eyeDock_' . $type . '_' . $place . '_' . $id . '_entry' . '_' . $id2
 ));
-eyex('runjs',array(
+xenonx('runjs',array(
 	'js' => 'document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '_entry' . '_' . $id2 . '").innerHTML = %s;',
 	'tokens' => array(i18n('translate', array($entry[0]['text'][0])))
 ));

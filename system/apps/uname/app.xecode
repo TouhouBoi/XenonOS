@@ -24,25 +24,25 @@ function uname_run($params = null)
 {
 	if (count($params) == 0)
 	{
-		eyeX('print', array ('XenonOS'));
+		xenonx('print', array ('XenonOS'));
 	}
 	else
 	{
 		if ($params[0] == '-a')
 		{
-			eyeX('print', array ('XenonOS ' . 'v' . XENONOS_VERSION . 'Kernel' . 'v' . XE_KERNEL_VERSION . 'Hostname (' . XENONOS_HOSTNAME . ')'));
+			xenonx('print', array ('XenonOS ' . 'v' . XENONOS_VERSION . 'Kernel' . 'v' . XE_KERNEL_VERSION . 'Hostname (' . XENONOS_HOSTNAME . ')'));
 		}
 		elseif($params[0] == '-s')
 		{
-			eyeX('print', array ('XenonOS'));
+			xenonx('print', array ('XenonOS'));
 		}
 		elseif($params[0] == '-v')
 		{
-			eyeX('print', array (XENONOS_VERSION));
+			xenonx('print', array (XENONOS_VERSION));
 		}
 		elseif($params[0] == '-n')
 		{
-			eyeX('print', array (XENONOS_HOSTNAME));
+			xenonx('print', array (XENONOS_HOSTNAME));
 		}
 	}
 

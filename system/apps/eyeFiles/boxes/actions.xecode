@@ -42,7 +42,7 @@ foreach ($menus as $menu) {
 			'y' => $counter * 30
 		));
 		$myContainer->show();
-		eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_' . $father . '_' . $entry['action'][0] . '_Container");
+		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_' . $father . '_' . $entry['action'][0] . '_Container");
 		e.style.cursor = "pointer";
 		e.onclick = function() {
 			if (xGetElementById("' . $myPid . '_eyeFiles_Box_View_Radio_Details").checked) {

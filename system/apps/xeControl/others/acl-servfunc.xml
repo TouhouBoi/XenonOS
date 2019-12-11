@@ -10,8 +10,8 @@
 		</func>
 	</serv>
 	<serv>
-		<sname>eyex</sname>
-		<sdesc>The eyeX service is responsible for drawing the contents of the page and the manipulation of CSS and JS files. It is also responsible for the control of the layer system, part of which is the 'eyeApps' layer, in which all the applications and the desktop are drawn.</sdesc>
+		<sname>xenonx</sname>
+		<sdesc>The xenonx service is responsible for drawing the contents of the page and the manipulation of CSS and JS files. It is also responsible for the control of the layer system, part of which is the 'eyeApps' layer, in which all the applications and the desktop are drawn.</sdesc>
 		<func>
 			<fname>addEvent</fname>
 			<fdesc>Specifies which JavaScript code must be executed every time a widget triggers a JS event.</fdesc>
@@ -38,13 +38,13 @@
 		</func>
 		<func>
 			<fname>createDiv</fname>
-			<fdesc>Draws a new layer on the screen, without serializing it in the eyeX layer table.</fdesc>
+			<fdesc>Draws a new layer on the screen, without serializing it in the xenonx layer table.</fdesc>
 			<fparam>Layer Name</fparam>
 			<hazard />
 		</func>
 		<func>
 			<fname>createLayer</fname>
-			<fdesc>Draws a new layer and serializes it into the eyeX layer table.</fdesc>
+			<fdesc>Draws a new layer and serializes it into the xenonx layer table.</fdesc>
 			<fparam>Layer Name</fparam>
 			<hazard />
 		</func>

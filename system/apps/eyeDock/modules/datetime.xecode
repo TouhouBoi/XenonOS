@@ -22,22 +22,22 @@ if ($element[0]['hideImage'][0]) {
 	$displayText = 'none';
 }
 
-eyex('createDiv',array(
+xenonx('createDiv',array(
 	'class' => 'eyeDock_' . $type . '_' . $place . '_menu',
 	'father' => 'eyeDock_' . $type,
 	'name' => 'eyeDock_' . $type . '_' . $place . '_' . $id
 ));
-eyex('runjs',array(
+xenonx('runjs',array(
 	'js' => 'var e = document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '"); e.innerHTML = %s; e.onclick = function (e) { if (DockMenu.OnClickDateTime(e, "' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '")) { DockMenu.Shuffle(%s,%s,%s,%s); } }; e.onmouseover = function () { if (DockMenu.Selected.id && DockMenu.Selected.id != "' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '") { DockMenu.Show(%s,%s,%s,%s); } }; fixPNG("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '");',
 	'tokens' => array('<img alt="" class="eyeDock_' . $type . '_' . $place . '_icon_img" id="' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '_img" src="' . str_replace('theme=USERTHEME', 'theme=' . $_SESSION['usertheme'], $element[0]['image'][0]) . '" style="display: ' . $displayImage . '; height: 22px; width: 22px;" /><div class="eyeDock_' . $type . '_' . $place . '_menu_div" id="' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '_div" style="display: ' . $displayText . ';"></div>',$myPid,$type,$place,$id,$myPid,$type,$place,$id)
 ));
-eyex('createDiv',array(
+xenonx('createDiv',array(
 	'class' => 'eyeDock_' . $type . '_' . $place . '_datetime_calendar',
 	'father' => 'eyeDock_' . $type . '_' . $place . '_' . $id,
 	'name' => 'eyeDock_' . $type . '_' . $place . '_' . $id . '_entries'
 ));
 $i10n = eyeCalendar('geti10n');
-eyex('runjs',array(
+xenonx('runjs',array(
 	'js' => 'DockMenu.DateTime.Create("' . $checknum . '","' . $myPid . '","' . $type . '","' . $place . '","' . $id . '",%s,' . $i10n['startDay'] . ');',
 	'tokens' => array($element[0]['format'][0])
 ));

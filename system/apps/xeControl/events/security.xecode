@@ -18,6 +18,6 @@ function xeControl_on_security_save($params = '') {
 	$xml = xeControl_lib_getXMLconfig(array('sec','conf.xml'));
 	$xml['security'][0]['PROTECTED_IP_SESSIONS'][0] = $GLOBALS['xeControl_security_checkbox_fullname']->checked;
 	xeControl_lib_setXMLconfig(array('sec','conf.xml',$xml));
-	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 }
 ?>

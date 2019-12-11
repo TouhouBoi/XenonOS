@@ -564,7 +564,7 @@ function service_um_login($params = null) {
 	
 	if (isset($info['eyeUser'][0]['expirationDate'])) {
 		if (intval($info['eyeUser'][0]['expirationDate'][0]) < time() && intval($info['eyeUser'][0]['expirationDate'][0]) != 0) {
-			eyeX('rawjs', array('js'=>'alert("Your account has expired.");'));
+			xenonx('rawjs', array('js'=>'alert("Your account has expired.");'));
 			return false;
 		}
 	}

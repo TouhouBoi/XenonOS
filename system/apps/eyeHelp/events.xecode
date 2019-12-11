@@ -185,7 +185,7 @@ function eyeHelp_on_goto($params = null)
 			$title = basename($myDir2);
 		}
 
-		eyeX('runjs', array ('js'=>'document.getElementById("'.$myPid.'_label1").innerHTML="<h1>'.str_replace('"', '\\"', $title).'</h1><hr />";'));
+		xenonx('runjs', array ('js'=>'document.getElementById("'.$myPid.'_label1").innerHTML="<h1>'.str_replace('"', '\\"', $title).'</h1><hr />";'));
 
 		if (trim($info['HTML-only'][0]) !== '1')
 		{
@@ -196,7 +196,7 @@ function eyeHelp_on_goto($params = null)
 
 		foreach($IndexContent_array as $value)
 		{
-			eyeX('concatDiv', array('name' => $myPid.'_label1', 'value' => $value));
+			xenonx('concatDiv', array('name' => $myPid.'_label1', 'value' => $value));
 		}
 	}
 }
@@ -222,7 +222,7 @@ function eyeHelp_on_pref()
 	{
 		$xml = getConfig('eyeHelp', 'conf.xml');
 
-		eyex('messageBox',
+		xenonx('messageBox',
 			array (
 				'btn1_capt' => 'Submit',
 				'btn1_name' => 'submit',
@@ -241,7 +241,7 @@ function eyeHelp_on_pref()
 	}
 	else
 	{
-		eyex('messageBox', array ('content' => 'Access Denied.'));
+		xenonx('messageBox', array ('content' => 'Access Denied.'));
 	}
 }
 
@@ -257,18 +257,18 @@ function eyeHelp_on_submit()
 
 			eyeXML('setXMLfile', array (XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeHelp/conf.xml', $xml));
 
-			eyex('messageBox', array ('content' => 'Changes successfully applied.'));
+			xenonx('messageBox', array ('content' => 'Changes successfully applied.'));
 
 			$GLOBALS['eyeHelp_prefs']->close();
 		}
 		else
 		{
-			eyex('messageBox', array ('content' => 'The field must not be left empty.'));
+			xenonx('messageBox', array ('content' => 'The field must not be left empty.'));
 		}
 	}
 	else
 	{
-		eyex('messageBox', array ('content' => 'You are not allowed to do this.'));
+		xenonx('messageBox', array ('content' => 'You are not allowed to do this.'));
 
 		$GLOBALS['eyeHelp_prefs']->close();
 	}

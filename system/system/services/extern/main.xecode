@@ -132,12 +132,12 @@ function service_extern_getFile($params)
 		}
 		else
 		{
-			$path = eyex('getThemeImage', array(XENONOS_ROOT.'/'.EXTERN_DIR.'/'.THEMES_DIR.'/default/'.$params[0], 3));
+			$path = xenonx('getThemeImage', array(XENONOS_ROOT.'/'.EXTERN_DIR.'/'.THEMES_DIR.'/default/'.$params[0], 3));
 		}
 	}
 	else
 	{
-		$path = eyex('getThemeImage', array(XENONOS_ROOT.'/'.EXTERN_DIR.'/'.$params[0], 3));
+		$path = xenonx('getThemeImage', array(XENONOS_ROOT.'/'.EXTERN_DIR.'/'.$params[0], 3));
 	}
 	
 	if ($path === false)

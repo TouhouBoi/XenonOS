@@ -45,7 +45,7 @@ function eyeFTP_emptyLocalFilesTable() {
 		'dblsignal' => 'eyeFTP_localFilesDblClick'
 	));
 	$localFilesTable->show();
-	eyex('addEvent',array(
+	xenonx('addEvent',array(
 		'name' => $myPid.'_eyeFTP_localFiles_TAB_Container',
 		'action' => 'sendMsg('.$checknum.',"eyeFTP_localFilesClick","")',
 		'event' => 'onclick',
@@ -108,7 +108,7 @@ function eyeFTP_browseLocal($path = '/') {
 	//FIXME: unable to use setText(), otherwise causes an "undefined entity" error on special chars in browser
 	//$GLOBALS['eyeFTP_path_TXTBOX']->setText($dir);
 	global $myPid;
-	eyeX('rawjs',array('js' => 'document.getElementById("'.$myPid.'_eyeFTP_localPath_TXTBOX").value=Base64.decode("'.base64_encode($path).'");'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_eyeFTP_localPath_TXTBOX").value=Base64.decode("'.base64_encode($path).'");'));
 }
 
 /**

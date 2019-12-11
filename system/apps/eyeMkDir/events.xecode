@@ -26,12 +26,12 @@ function eyeMkDir_on_Do($params = '') {
 		foreach ($charBlackList as $char){
 			$folder = str_replace($char,'',$folder);
 		}
-		eyex('messageBox',array('content' => 'Some special chars have been removed.'));
+		xenonx('messageBox',array('content' => 'Some special chars have been removed.'));
 	}
 	if (!vfs('mkDir',array($path[0] . '/' . $folder))) {
-		eyex('messageBox',array('content' => 'Error creating directory!'));
+		xenonx('messageBox',array('content' => 'Error creating directory!'));
 	} elseif ($GLOBALS['eyeMkDir_Hidden_Callback']->text) {
-		eyex('rawjs',array('js' => $GLOBALS['eyeMkDir_Hidden_Callback']->text));
+		xenonx('rawjs',array('js' => $GLOBALS['eyeMkDir_Hidden_Callback']->text));
 	}
 	eyeFiles('update',array($path[1] . '://' . $path[2]));
 	proc('end');

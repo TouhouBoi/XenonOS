@@ -23,7 +23,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function eyeApps_on_Action($params = '') {
 	global $myPid;
 	foreach (eyeApps_lib_GetCategories() as $category => $action) {
-		eyex('rawjs', array('js' => '
+		xenonx('rawjs', array('js' => '
 			var e = document.getElementById("' . $myPid . '_' . $category . '_Container");
 			e.className = "";
 			e.style.backgroundColor = "transparent";
@@ -68,7 +68,7 @@ function eyeApps_on_Resize($params = '') {
 	$GLOBALS['eyeApps_Container']->setHeight($GLOBALS['eyeApps_MenuContainer']->height);
 	$GLOBALS['eyeApps_Container']->setWidth($GLOBALS['eyeApps_Window']->width - 4 - $GLOBALS['eyeApps_Line']->x);
 
-	eyex('rawjs',array('js' => 'var i = 0;
+	xenonx('rawjs',array('js' => 'var i = 0;
 	var x = 20;
 	var y = 20;
 	var e = document.getElementById("' . $myPid . '_eyeApps_Icon_0_Container");
@@ -145,7 +145,7 @@ function eyeApps_lib_ShowApps($category) {
 		$apps = eyeApps_lib_GetApps();
 		$apps = $apps[$category];
 	}
-	eyex('rawjs', array('js' => '
+	xenonx('rawjs', array('js' => '
 		var e = document.getElementById("' . $myPid . '_' . $category . '_Container");
 		e.className = "eyeHighlighted";
 		e.style.backgroundColor = "#ffffff";
@@ -192,7 +192,7 @@ function eyeApps_lib_ShowApps($category) {
 				'y' => $y
 			));
 			$myIcon->show();
-			eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $myIcon->name . '_Container").style.textAlign = "center"; document.getElementById("img_' . $myPid . '_' . $myIcon->name . '").style.marginLeft = "-1px";'));
+			xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $myIcon->name . '_Container").style.textAlign = "center"; document.getElementById("img_' . $myPid . '_' . $myIcon->name . '").style.marginLeft = "-1px";'));
 			$x += 88;
 			if ($myContainer->width - $x - 88 < 0) {
 				$x = 20;

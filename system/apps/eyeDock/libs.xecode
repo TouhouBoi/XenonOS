@@ -97,20 +97,20 @@ function eyeDock_lib_Load($types = array('bottom'/*,'left','right'*/,'top')) {
 		if ($xml['eyeDock'][0][$type][0]['show'][0]) {
 			if ($type == 'bottom') {
 				$_SESSION['SCREEN']['eyeApps']['height'] -= 32;
-				eyex('rawjs',array('js' => 'document.getElementById("eyeApps").style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px";'));
+				xenonx('rawjs',array('js' => 'document.getElementById("eyeApps").style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px";'));
 			/*} elseif ($type == 'left') {
 				$_SESSION['SCREEN']['eyeApps']['width'] -= 32;
 				$_SESSION['SCREEN']['eyeApps']['x'] = 32;
-				eyex('rawjs',array('js' => 'var e = document.getElementById("eyeApps"); e.style.width = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px"; e.style.left = "' . $_SESSION['SCREEN']['eyeApps']['x'] . 'px";'));
+				xenonx('rawjs',array('js' => 'var e = document.getElementById("eyeApps"); e.style.width = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px"; e.style.left = "' . $_SESSION['SCREEN']['eyeApps']['x'] . 'px";'));
 			} elseif ($type == 'right') {
 				$_SESSION['SCREEN']['eyeApps']['width'] -= 32;
-				eyex('rawjs',array('js' => 'document.getElementById("eyeApps").style.width = "' . $_SESSION['SCREEN']['eyeApps']['width'] . 'px";'));*/
+				xenonx('rawjs',array('js' => 'document.getElementById("eyeApps").style.width = "' . $_SESSION['SCREEN']['eyeApps']['width'] . 'px";'));*/
 			} elseif ($type == 'top') {
 				$_SESSION['SCREEN']['eyeApps']['height'] -= 32;
 				$_SESSION['SCREEN']['eyeApps']['y'] = 32;
-				eyex('rawjs',array('js' => 'var e = document.getElementById("eyeApps"); e.style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px"; e.style.top = "' . $_SESSION['SCREEN']['eyeApps']['y'] . 'px";'));
+				xenonx('rawjs',array('js' => 'var e = document.getElementById("eyeApps"); e.style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px"; e.style.top = "' . $_SESSION['SCREEN']['eyeApps']['y'] . 'px";'));
 			}
-			eyex('createDiv',array(
+			xenonx('createDiv',array(
 				'class' => 'eyeDock_' . $type,
 				'father' => 'eyeScreen',
 				'name' => 'eyeDock_' . $type,
@@ -138,7 +138,7 @@ function eyeDock_lib_Load($types = array('bottom'/*,'left','right'*/,'top')) {
 		}
 	}
 	eyeXML('setXMLconfig', array('eyeDock', 'conf.xml', $xml));
-	eyex('rawjs',array('js' => 'Taskbars.SetWidth();'));
+	xenonx('rawjs',array('js' => 'Taskbars.SetWidth();'));
 }
 
 function eyeDock_lib_Remove($types = array('bottom'/*,'left','right'*/,'top')) {
@@ -146,24 +146,24 @@ function eyeDock_lib_Remove($types = array('bottom'/*,'left','right'*/,'top')) {
 	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
 	if (in_array('bottom',$types) && $xml['eyeDock'][0]['bottom'][0]['show']) {
 		$_SESSION['SCREEN']['eyeApps']['height'] += 32;
-		eyex('rawjs',array('js' => 'document.getElementById("eyeApps").style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("eyeApps").style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px";'));
 	/*}
 	if (in_array('left',$types) && $xml['eyeDock'][0]['left'][0]['show']) {
 		$_SESSION['SCREEN']['eyeApps']['width'] += 32;
 		$_SESSION['SCREEN']['eyeApps']['x'] = 0;
-		eyex('rawjs',array('js' => 'var e = document.getElementById("eyeApps"); e.style.width = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px"; e.style.left = "' . $_SESSION['SCREEN']['eyeApps']['x'] . 'px";'));
+		xenonx('rawjs',array('js' => 'var e = document.getElementById("eyeApps"); e.style.width = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px"; e.style.left = "' . $_SESSION['SCREEN']['eyeApps']['x'] . 'px";'));
 	}
 	if (in_array('right',$types) && $xml['eyeDock'][0]['right'][0]['show']) {
 		$_SESSION['SCREEN']['eyeApps']['width'] += 32;
-		eyex('rawjs',array('js' => 'document.getElementById("eyeApps").style.width = "' . $_SESSION['SCREEN']['eyeApps']['width'] . 'px";'));*/
+		xenonx('rawjs',array('js' => 'document.getElementById("eyeApps").style.width = "' . $_SESSION['SCREEN']['eyeApps']['width'] . 'px";'));*/
 	}
 	if (in_array('top',$types) && $xml['eyeDock'][0]['top'][0]['show']) {
 		$_SESSION['SCREEN']['eyeApps']['height'] += 32;
 		$_SESSION['SCREEN']['eyeApps']['y'] = 0;
-		eyex('rawjs',array('js' => 'var e = document.getElementById("eyeApps"); e.style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px"; e.style.top = "' . $_SESSION['SCREEN']['eyeApps']['y'] . 'px";'));
+		xenonx('rawjs',array('js' => 'var e = document.getElementById("eyeApps"); e.style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px"; e.style.top = "' . $_SESSION['SCREEN']['eyeApps']['y'] . 'px";'));
 	}
 	foreach ($types as $type) {
-		eyex('rawjs',array('js' => 'var e = document.getElementById("' . $myPid . '_eyeDock_' . $type . '"); if (e) { e.parentNode.removeChild(e); } Taskbars.' . /* utf8 */ ucfirst($type) . ' = 0;'));
+		xenonx('rawjs',array('js' => 'var e = document.getElementById("' . $myPid . '_eyeDock_' . $type . '"); if (e) { e.parentNode.removeChild(e); } Taskbars.' . /* utf8 */ ucfirst($type) . ' = 0;'));
 	}
 }
 ?>

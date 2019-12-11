@@ -18,7 +18,7 @@ function restoreTrash_run($params = '') {
 	$file = basename($params[0]);
 	$xml = eyeXML('getXMLfile',array(um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/' . $file));
 	if ($params[0]) {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'buttons' => array(array('Do','Accept'),array('Close','Cancel')),
 			'content' => 'Do you really want to restore "%s"?',
 			'hiddens' => array(array('restoreTrash_Hidden_Path',$file),array('restoreTrash_Hidden_Callback',$params[1]),array('restoreTrash_Hidden_To',$params[2])),

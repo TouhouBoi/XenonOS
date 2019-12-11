@@ -55,9 +55,9 @@ function eyeRename_libs_Dialog($from,$file,$to,$callback) {
 	}
 	if (is_object($GLOBALS['eyeRename_Window'])) {
 		$GLOBALS['eyeRename_Window']->close();
-		eyex('messageBox',array('content' => 'That file already exists!'));
+		xenonx('messageBox',array('content' => 'That file already exists!'));
 	}
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'buttons' => $buttons,
 		'content' => $content,
 		'hiddens' => array(array('eyeRename_Hidden_FromPath',$from),array('eyeRename_Hidden_FromFilename',$file),array('eyeRename_Hidden_ToPath',$to),array('eyeRename_Hidden_Callback',$callback)),
@@ -84,9 +84,9 @@ function eyeRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 	} elseif ($to[1] == 'trash') {
 		proc('launch',array('eyeDelete',array($from[1] . '://' . $from[2] . '/' . $file)));
 	} else if (($to[1] !== 'home' || strtolower(trim($to[2], '/')) !== 'desktop') && strtolower(strrchr($file, '.')) === '.' . strtolower(XENONOS_LINK_EXT) && vfs('real_fileExists',array($from[0] . '/' . $file)) === true) { // utf8
-		eyex('messageBox',array('content' => 'Links cannot be moved!'));
+		xenonx('messageBox',array('content' => 'Links cannot be moved!'));
 	} else if (vfs('isdir',array($from[0] . '/' . $file)) === true && substr(realpath($to[0] . '/'), 0, strlen(realpath($from[0] . '/' . $file . '/'))) === realpath($from[0] . '/' . $file . '/')) { // utf8
-		eyex('messageBox',array('content' => 'Error moving folder!'));
+		xenonx('messageBox',array('content' => 'Error moving folder!'));
 	} else {
 		if ($from[1] . '://' . $from[2] . '/' . $file == $to[1] . '://' . $to[2] . '/' . $file2) {
 			return eyeRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
@@ -165,7 +165,7 @@ function eyeRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 			}
 		}
 		if ($callback) {
-			eyex('rawjs',array('js' => $callback));
+			xenonx('rawjs',array('js' => $callback));
 		}
 		eyeFiles('update',array($from[1] . '://' . $from[2],$to[1] . '://' . $to[2]));
 	}

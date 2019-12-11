@@ -72,7 +72,7 @@ Language.snippets = [
 	{ input : 'button', output: "\t$myButton = new Button(array(\n\t\t'name'=>'_BTN_1',\n\t\t'caption'=>'$0',\n\t\t'father'=>'_WND_1_Content',\n\t\t'x'=>20,\n\t\t'y'=>20\n\t));\n\t$myButton->show();\n"},
 	{ input : 'fudir', output: "\t$myUserDir = service('um','getCurrentUserDir').FILES_USER_DIR.'/';"},
 	{ input : 'cudir', output: "\t$myUserDir = service('um','getCurrentUserDir').CONF_USER_DIR.'/';"},
-	{ input : 'msgbox', output: "\tservice('eyex','messageBox',array('content' => '$0'));"},
+	{ input : 'msgbox', output: "\tservice('xenonx','messageBox',array('content' => '$0'));"},
 	{ input : 'sudo', output: "\tglobal $currentUser;\n\t$oldUser = $currentUser;\n\t$currentUser = ROOTUSER;\n\t$0\n\t$currentUser = $oldUser;"}
 ]
 		

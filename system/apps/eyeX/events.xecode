@@ -33,16 +33,16 @@ function eyeX_on_baseapp($params = '') {
 		$_SESSION['SCREEN']['refresh']++;
 	}
 
-	//eyeX should be the first tty, if not, get a new one, because we don't have one already.
+	//xenonx should be the first tty, if not, get a new one, because we don't have one already.
 	if($procInfo['tty'] < 1) {
 		$tty = proc('newTty');
 	} else {
 		$tty = $procInfo['tty'];
 	}
 
-	eyex('createDiv',array('class' => 'systemConsole','father' => 'eyeApps','name' => $tty.'_tty','nopid' => 1,'removepid' => 1));
-	eyeX('updateCss',array('name'=> $tty.'_tty','property'=>'display','value'=>'none'));
-	eyex('rawjs',array('js' => 'xGetElementById("eyex-info").style.display = "none"; xGetElementById("eyex-powered").style.display = "none";'));
+	xenonx('createDiv',array('class' => 'systemConsole','father' => 'eyeApps','name' => $tty.'_tty','nopid' => 1,'removepid' => 1));
+	xenonx('updateCss',array('name'=> $tty.'_tty','property'=>'display','value'=>'none'));
+	xenonx('rawjs',array('js' => 'xGetElementById("xenonx-info").style.display = "none"; xGetElementById("xenonx-powered").style.display = "none";'));
 	$pid = proc('findPidByName',array(BASE_APP));
 	if ($pid) {
 		proc('getTask',array($pid));
@@ -56,7 +56,7 @@ function eyeX_on_resizedBrowser($params = '') {
  		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
  		return false;
  	}
-	eyex('rawjs', array('js' => 'resizedBrowser.done("<width>' . strval(intval($params['width'][0])) . '</width><height>' . strval(intval($params['height'][0])) . '</height>");'));
+	xenonx('rawjs', array('js' => 'resizedBrowser.done("<width>' . strval(intval($params['width'][0])) . '</width><height>' . strval(intval($params['height'][0])) . '</height>");'));
 	// Set width
 	$width = intval($params['width'][0]);
 	if ($width < 500) {
@@ -71,8 +71,8 @@ function eyeX_on_resizedBrowser($params = '') {
 	$diffWidth = $_SESSION['SCREEN']['width'] - $width;
 	$appHeight = $_SESSION['SCREEN']['eyeApps']['height'] - $diffHeight;
 	$appWidth = $_SESSION['SCREEN']['eyeApps']['width'] - $diffWidth;
-	eyex('resizedBrowser',array('height' => $height,'width' => $width,'appWidth' => $appWidth,'appHeight' => $appHeight));
-	eyex('rawjs', array('js' => 'var e = document.getElementById("eyeApps"); e.style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px"; e.style.width = "' . $_SESSION['SCREEN']['eyeApps']['width'] . 'px";'));
+	xenonx('resizedBrowser',array('height' => $height,'width' => $width,'appWidth' => $appWidth,'appHeight' => $appHeight));
+	xenonx('rawjs', array('js' => 'var e = document.getElementById("eyeApps"); e.style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px"; e.style.width = "' . $_SESSION['SCREEN']['eyeApps']['width'] . 'px";'));
 }
 
 function eyeX_on_viewTempImg($params = '') {
@@ -108,12 +108,12 @@ function eyeX_on_saveWinPosition($params = '') {
 			$y = round($y, 2);	// gives a percentage
 		}
 		// Update XML file
-		$xml = eyeXML('getXMLconfig',array('eyex',$app . '.xml'));
+		$xml = eyeXML('getXMLconfig',array('xenonx',$app . '.xml'));
 		$xml[$name][0]['left'][0] = $x;
 		$xml[$name][0]['top'][0] = $y;
-		eyeXML('setXMLconfig',array('eyex',$app . '.xml',$xml));
+		eyeXML('setXMLconfig',array('xenonx',$app . '.xml',$xml));
 	} else {
-		eyex('messageBox',array('content' => 'Unable to save position!'));
+		xenonx('messageBox',array('content' => 'Unable to save position!'));
 	}
 }
 
@@ -139,12 +139,12 @@ function eyeX_on_saveWinSize($params = '') {
 			$h = round($h, 2);	// gives a percentage
 		}
 		// Update XML file
-		$xml = eyeXML('getXMLconfig',array('eyex',$app . '.xml'));
+		$xml = eyeXML('getXMLconfig',array('xenonx',$app . '.xml'));
 		$xml[$name][0]['height'][0] = $h;
 		$xml[$name][0]['width'][0] = $w;
-		eyeXML('setXMLconfig',array('eyex',$app . '.xml',$xml));
+		eyeXML('setXMLconfig',array('xenonx',$app . '.xml',$xml));
 	} else {
-		eyex('messageBox',array('content' => 'Unable to save size!'));
+		xenonx('messageBox',array('content' => 'Unable to save size!'));
 	}
 }
 
@@ -161,11 +161,11 @@ function eyeX_on_saveWinMax($params = '') {
 		// Update PHP object
 		$_SESSION[WTABLE][$pid][$name]->maximized = $m;
 		// Update XML file
-		$xml = eyeXML('getXMLconfig',array('eyex',$app . '.xml'));
+		$xml = eyeXML('getXMLconfig',array('xenonx',$app . '.xml'));
 		$xml[$name][0]['maximized'][0] = $m;
-		eyeXML('setXMLconfig',array('eyex',$app . '.xml',$xml));
+		eyeXML('setXMLconfig',array('xenonx',$app . '.xml',$xml));
 	} else {
-		eyex('messageBox',array('content' => 'Unable to save maximize state!'));
+		xenonx('messageBox',array('content' => 'Unable to save maximize state!'));
 	}
 }
 ?>

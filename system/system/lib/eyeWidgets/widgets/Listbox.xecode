@@ -84,7 +84,7 @@ class Listbox {
 		if($this->showed == 0) {
 			$this->show();
 		}
-		eyex('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
+		xenonx('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
 	}
 
 	function show($noserialize=1) {
@@ -109,7 +109,7 @@ class Listbox {
 			'center' => $this->cent
 		);
 		$this->showed=1;
-		eyex('createWidget',$myBox);
+		xenonx('createWidget',$myBox);
 		if($noserialize == 0) {
 			eyeWidgets('serialize',array($this));
 		}
@@ -119,7 +119,7 @@ class Listbox {
 		global $myPid;
 		if(is_array($params)) {
 			foreach($params as $key => $value) {
-				eyex('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
+				xenonx('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
 			}
 		}
 	}
@@ -127,27 +127,27 @@ class Listbox {
 	function setWidth($width) {
 		global $myPid;
 		$this->width = intval($width);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.width="'.$this->width.'px";'));
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.width="'.$this->width.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.width="'.$this->width.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.width="'.$this->width.'px";'));
 	}
 
 	function setHeight($height) {
 		global $myPid;
 		$this->height = intval($height);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.height="'.$this->height.'px";'));
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.height="'.$this->height.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.height="'.$this->height.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.height="'.$this->height.'px";'));
 	}
 
 	function setX($x) {
 		global $myPid;
 		$this->x = intval($x);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.left="'.$this->x.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.left="'.$this->x.'px";'));
 	}
 
 	function setY($y) {
 		global $myPid;
 		$this->y = intval($y);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.top="'.$this->y.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.top="'.$this->y.'px";'));
 	}
 
     function addItem($text,$id=null,$image=0) {
@@ -161,7 +161,7 @@ class Listbox {
         }
         $tokens = array($text,$id,$image);
         $js = 'Listbox_addItem('.$myPid.',"'.$this->name.'", '.$checknum.', "'.$this->signal.'", '.$this->rowSize.', '.$this->disableMsg.', %s , %s, %s);';
-        eyex('runjs',array('js'=>$js,'tokens'=>$tokens));
+        xenonx('runjs',array('js'=>$js,'tokens'=>$tokens));
         return $id;
     }
     
@@ -170,17 +170,17 @@ class Listbox {
             return false;
         }
         $js = 'document.getElementById("txt_'.$id.'").firstChild.nodeValue = "'.$text.'";';
-        eyex('rawjs',array('js' => $js));
+        xenonx('rawjs',array('js' => $js));
     }
     
     function selectItem($id) {
         global $myPid;
-        eyex('runjs',array('js' => 'Listbox_selectItem('.$myPid.', "'.$this->name.'", "'.$id.'");'));
+        xenonx('runjs',array('js' => 'Listbox_selectItem('.$myPid.', "'.$this->name.'", "'.$id.'");'));
     }
     
     function delItem($id) {
         global $myPid;
-        eyex('runjs',array('js' => 'var lbchild = document.getElementById("'.$myPid.'_'.$id.'"); var lbfather = lbchild.parentNode;
+        xenonx('runjs',array('js' => 'var lbchild = document.getElementById("'.$myPid.'_'.$id.'"); var lbfather = lbchild.parentNode;
             if (lbfather.getAttribute("lastfocus") == "'.$id.'") { lbfather.setAttribute("lastfocus",""); } lbfather.removeChild(lbchild);'));
     }
     
@@ -195,7 +195,7 @@ class Listbox {
     
     function sort($type) {
         global $myPid;
-        eyex('runjs',array('js' => 'Listbox_sort("'.$myPid.'","'.$this->name.'", %s)', 'tokens' => array($type)));
+        xenonx('runjs',array('js' => 'Listbox_sort("'.$myPid.'","'.$this->name.'", %s)', 'tokens' => array($type)));
 
         // TODO This function
     }
@@ -203,19 +203,19 @@ class Listbox {
 	function hide() {
 		global $myPid;
 		$this->visible = 0;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="none"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="none"'));
 	}
 
 	function unhide() {
 		global $myPid;
 		$this->visible = 1;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="block"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="block"'));
 	}
 
 	function remove() {
 		global $myPid;
 		$name = $this->name.'_Container';
-		eyex('removeWidget',array('name'=>$name));
+		xenonx('removeWidget',array('name'=>$name));
 		eyeWidgets('singleUnserialize',array($this->name));
 	}
 }

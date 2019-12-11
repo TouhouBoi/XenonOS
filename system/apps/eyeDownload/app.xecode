@@ -21,7 +21,7 @@ function eyeDownload_run($params = '') {
 		$file = basename($params[0]);
 		$path = eyeFiles('cleanPath', array(substr(trim($params[0], '/\\'), 0, -strlen($file)))); // utf8
 		if ($path[1] !== 'real' && strtolower(strrchr($file, '.')) === '.' . strtolower(XENONOS_LINK_EXT) && vfs('real_fileExists', array($path[0] . '/' . $file)) === true) { // utf8
-			eyex('messageBox',array('content' => 'Links cannot be downloaded!'));
+			xenonx('messageBox',array('content' => 'Links cannot be downloaded!'));
 			proc('end');
 		} elseif (vfs('isdir',array($path[0] . '/' . $file))) {
 			proc('launch',array('downZip',array($path[1] . '://' . $path[2] . '/' . $file)));

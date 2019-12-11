@@ -221,7 +221,7 @@ function eyeDialog_run($params=null) {
 		'height'=>$foldersBox->height -40
 	));
 	$foldersContainer->show();
-	eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_folders_CTN_Container").style.overflow="auto";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_folders_CTN_Container").style.overflow="auto";'));
 
 	//FILENAME TEXTBOX
 	$filenameTextbox = new Textbox(array(
@@ -342,7 +342,7 @@ function eyeDialog_run($params=null) {
 	eyeWidgets('serialize',array($currentGroup));
 
 	//INITIALIZATION
-	eyeX('rawjs',array('js' => 'sendMsg('.$checknum.',"initComplete","");'));
+	xenonx('rawjs',array('js' => 'sendMsg('.$checknum.',"initComplete","");'));
 }
 
 

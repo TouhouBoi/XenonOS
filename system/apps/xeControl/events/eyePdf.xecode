@@ -19,7 +19,7 @@ function xeControl_on_eyePdf_save($params = '') {
 	$PdfUserConf['eyePdf'][0]['renderer'][0] = $GLOBALS['xeControl_eyePdf_select_renderer']->selected;
 	$PdfUserConf['eyePdf'][0]['start_maximized'][0] = $GLOBALS['xeControl_eyePdf_checkbox_start_maximized']->checked;
 	xeControl_lib_setXMLconfig(array('eyePdf','conf.xml',$PdfUserConf));
-	eyex('messageBox',array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
 

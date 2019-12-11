@@ -121,12 +121,12 @@ function eyeCalc_run($params = '') {
 		$y += 35;
 	}
 
-	eyex('loadScript',array('url' => 'index.php?extern=apps/eyeCalc/eyeCalc' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid));
+	xenonx('loadScript',array('url' => 'index.php?extern=apps/eyeCalc/eyeCalc' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid));
 }
 
 function eyeCalc_end($params = '') {
 	global $myPid;
 	eyeWidgets('unserialize', $params);
-	eyex('rawjs', array('js' => 'eyeCalc_' . $myPid . ' = 0;'));
+	xenonx('rawjs', array('js' => 'eyeCalc_' . $myPid . ' = 0;'));
 }
 ?>

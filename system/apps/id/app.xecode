@@ -41,7 +41,7 @@ function id_run($params = null)
 		}
 	}
 
-	eyeX('print', array('user='.$currentUser.' groups='.$groupStr));
+	xenonx('print', array('user='.$currentUser.' groups='.$groupStr));
 	proc('end');
 }
 ?>

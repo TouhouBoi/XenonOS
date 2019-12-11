@@ -101,7 +101,7 @@ foreach($array as $category) {
 					'caption' => $content['display'][0],
 					'x' => 10 + ($z * 170),
 					'y' => $boxY,
-					'img' => eyex('getThemeImage',array($content['img'][0])),
+					'img' => xenonx('getThemeImage',array($content['img'][0])),
 					'signal' => 'index_button',
 					'width' => 140
 				));
@@ -161,7 +161,7 @@ if (is_array($openDir) && isset($openDir[0]) === true) {
 				'caption' => $content['display'][0],
 				'x' => 10 + ($z * 170),
 				'y' => $boxY,
-				'img' => eyex('getThemeImage',array($content['img'][0])),
+				'img' => xenonx('getThemeImage',array($content['img'][0])),
 				'signal' => 'index_button',
 					'width' => 140
 			));

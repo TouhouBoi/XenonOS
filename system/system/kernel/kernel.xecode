@@ -742,7 +742,7 @@ function msgACLreject($params = null)
 		$disObj = $params['func'];
 	}
 
-	eyeX('messageBox', array('content' => $disObj.' has been disabled by your Administrator'));
+	xenonx('messageBox', array('content' => $disObj.' has been disabled by your Administrator'));
 }
 /*
 	End

@@ -18,7 +18,7 @@ function eyeDesk_run($params = '') {
 	global $checknum;
 	global $currentUser;
 
-	eyex('runjs', array('js' => 'document.title = %s; window.onbeforeunload = function() { return ""; };','tokens' => array($currentUser . '@' . XENONOS_HOSTNAME)));
+	xenonx('runjs', array('js' => 'document.title = %s; window.onbeforeunload = function() { return ""; };','tokens' => array($currentUser . '@' . XENONOS_HOSTNAME)));
 
 	$userDir = um('getCurrentUserDir');
 	if (!vfs('real_fileExists',array($userDir . '/tmp/'))) {
@@ -135,9 +135,9 @@ function eyeDesk_run($params = '') {
 
 	$theme = basename($xml['eyeDesk'][0]['theme'][0]);
 	if ($theme != $_SESSION['usertheme']) {
-		$path = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeX/themes/';
+		$path = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonx/themes/';
 		foreach ($_SESSION['eyeLogin']['removeCss'] as $key => $value) {
-			eyex('removeCSS', array('id' => $value));
+			xenonx('removeCSS', array('id' => $value));
 			unset($_SESSION['eyeLogin']['removeCss'][$key]);
 		}
 
@@ -146,73 +146,73 @@ function eyeDesk_run($params = '') {
 		$themexml = eyeXML('getXMLfile', array($path . $theme . '/conf/theme.xml'));
 		$currentUser = $oldUser;
 		if ($themexml['theme'][0]['cssBase'][0]) {
-			eyex('loadCSS',array(
+			xenonx('loadCSS',array(
 				'id' => 'eyeOS2Css',
 				'url' => 'index.php?theme=' . $theme . '&extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS.css&type=css'
 			));
 			if (stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'chrome') !== false) { // utf8
-				eyex('loadCSS',array(
+				xenonx('loadCSS',array(
 					'id' => 'eyeOS2chromeCss',
 					'url' => 'index.php?theme=' . $theme . '&extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS_chrome.css&type=css'
 				));
 			} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false) {
-				eyex('loadCSS',array(
+				xenonx('loadCSS',array(
 					'id' => 'eyeOS2safariCss',
 					'url' => 'index.php?theme=' . $theme . '&extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS_safari.css&type=css'
 				));
 			} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'presto') !== false) {
-				eyex('loadCSS',array(
+				xenonx('loadCSS',array(
 					'id' => 'eyeOS2operaCss',
 					'url' => 'index.php?theme=' . $theme . '&extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS_opera.css&type=css'
 				));
 			} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'gecko') !== false) {
-				eyex('loadCSS',array(
+				xenonx('loadCSS',array(
 					'id' => 'eyeOS2firefoxCss',
 					'url' => 'index.php?theme=' . $theme . '&extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS_firefox.css&type=css'
 				));
 			} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'khtml') !== false) {
-				eyex('loadCSS',array(
+				xenonx('loadCSS',array(
 					'id' => 'eyeOS2khtmlCss',
 					'url' => 'index.php?theme=' . $theme . '&extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS_khtml.css&type=css'
 				));
 			}
 		}
-		eyex('loadCSS',array(
+		xenonx('loadCSS',array(
 			'id' => 'eyeOSCss',
 			'url' => 'index.php?theme=' . $theme . '&extern=css/eyeOS.css&type=css'
 		));
 		if (stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'chrome') !== false) { // utf8
-			eyex('loadCSS',array(
+			xenonx('loadCSS',array(
 				'id' => 'eyeOSchromeCss',
 				'url' => 'index.php?theme=' . $theme . '&extern=css/eyeOS_chrome.css&type=css'
 			));
 		} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false) {
-			eyex('loadCSS',array(
+			xenonx('loadCSS',array(
 				'id' => 'eyeOSsafariCss',
 				'url' => 'index.php?theme=' . $theme . '&extern=css/eyeOS_safari.css&type=css'
 			));
 		} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'presto') !== false) {
-			eyex('loadCSS',array(
+			xenonx('loadCSS',array(
 				'id' => 'eyeOSoperaCss',
 				'url' => 'index.php?theme=' . $theme . '&extern=css/eyeOS_opera.css&type=css'
 			));
 		} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'gecko') !== false) {
-			eyex('loadCSS',array(
+			xenonx('loadCSS',array(
 				'id' => 'eyeOSfirefoxCss',
 				'url' => 'index.php?theme=' . $theme . '&extern=css/eyeOS_firefox.css&type=css'
 			));
 		} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'khtml') !== false) {
-			eyex('loadCSS',array(
+			xenonx('loadCSS',array(
 				'id' => 'eyeOSkhtmlCss',
 				'url' => 'index.php?theme=' . $theme . '&extern=css/eyeOS_khtml.css&type=css'
 			));
 		}
-		eyex('rawjs',array('js' => 'xGetElementById("background").style.backgroundImage = "url(index.php?theme=' . $theme . '&extern=images/wallpapers/default.jpg)";'));
+		xenonx('rawjs',array('js' => 'xGetElementById("background").style.backgroundImage = "url(index.php?theme=' . $theme . '&extern=images/wallpapers/default.jpg)";'));
 	}
 	eyeSessions('setVar', array('usertheme', $theme));
-	eyex('runjs',array('js' => 'USERTHEME = %s;','tokens' => array($theme)));
+	xenonx('runjs',array('js' => 'USERTHEME = %s;','tokens' => array($theme)));
 
-	eyex('setWallpaper', array(
+	xenonx('setWallpaper', array(
 		'center' => $xml['eyeDesk'][0]['wallpaperCenter'][0],
 		'color' => $xml['eyeDesk'][0]['bgColor'][0],
 		'path' => 'index.php?checknum=' . $checknum . '&msg=getWallpaper&' . time(),
@@ -222,10 +222,10 @@ function eyeDesk_run($params = '') {
 	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeDesk/events' . XE_CODE_EXTENSION);
 	eyeDesk_on_OpenPath();
 
-	eyex('messageBox', array('content' => 'Welcome to %s, %s.', 'sound' => false, 'tokens' => array(XENONOS_HOSTNAME,'<strong>' . $currentUser . '</strong>')));
+	xenonx('messageBox', array('content' => 'Welcome to %s, %s.', 'sound' => false, 'tokens' => array(XENONOS_HOSTNAME,'<strong>' . $currentUser . '</strong>')));
 
 	addListenerLibraryCall('onEvent','eyeFiles','update');
-	addListenerServiceCall('onResized','eyex','resizedBrowser',1);
+	addListenerServiceCall('onResized','xenonx','resizedBrowser',1);
 
 	if ($params[0] == 'autorun') {
 		foreach ($xml['eyeDesk'][0]['autolaunch'] as $value) {
@@ -252,7 +252,7 @@ function eyeDesk_run($params = '') {
 		}
 	} else {
 		foreach (proc('getProcessTable') as $key => $value) {
-			if (in_array( /* utf8 */ strtolower($value['appName']), array('eyedesk', 'eyex')) === false) {
+			if (in_array( /* utf8 */ strtolower($value['appName']), array('eyedesk', 'xenonx')) === false) {
 				proc('getTask',array($key));
 			}
 		}

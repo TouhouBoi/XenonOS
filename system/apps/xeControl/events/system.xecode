@@ -71,7 +71,7 @@ function xeControl_on_system_system($params = '')
 	
 	setConfig('eyeFiles', 'conf.xml', $xml);
 
-	eyex('messageBox', array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox', array('content' => 'Changes successfully saved.'));
 }
 
 function xeControl_on_system_permissions($params = '')
@@ -86,7 +86,7 @@ function xeControl_on_system_permissions($params = '')
 	
 	eyeXML('setXMLFile', array($file, $xml));
 	
-	eyex('messageBox', array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox', array('content' => 'Changes successfully saved.'));
 }
 
 function xeControl_on_system_office($params = '')
@@ -99,7 +99,7 @@ function xeControl_on_system_office($params = '')
 	
 	eyeXML('setXMLFile', array($file, $xml));
 	
-	eyex('messageBox', array('content' => 'Changes successfully saved.'));
+	xenonx('messageBox', array('content' => 'Changes successfully saved.'));
 
 	xeControl_lib_loadContent('only_root', 'system', array('Office Support'));
 }
@@ -124,7 +124,7 @@ function xeControl_on_system_uninstall($params = '')
 	
 	if ($currentUser == REAL_ROOTUSER && hash_equals($userInfo['eyeUser'][0]['password'][0], md5($password . md5($password))))
 	{
-		eyex('messageBox',
+		xenonx('messageBox',
 			array(
 				'buttons' => array(array('system_uninstall_yes', 'Yes'), array('system_uninstall_no', 'No')),
 				'content' => 'Do you really want to delete the XenonOS system? This removes all data from the XenonOS directory!',
@@ -140,7 +140,7 @@ function xeControl_on_system_uninstall($params = '')
 	}
 	else
 	{
-		eyex('messageBox', array('content' => 'Please type the correct root password to uninstall XenonOS!'));
+		xenonx('messageBox', array('content' => 'Please type the correct root password to uninstall XenonOS!'));
 	}
 }
 
@@ -152,9 +152,9 @@ function xeControl_on_system_uninstall_yes($params = '')
 	{
 		eyeWidgets('unserialize');
 		
-		eyex('messageBox', array('content' => 'Your XenonOS System was successfully deleted.'));
+		xenonx('messageBox', array('content' => 'Your XenonOS System was successfully deleted.'));
 		
-		eyex('rawjs', array('js' => 'window.onbeforeunload = ""; setTimeout(window.home, 2000);'));
+		xenonx('rawjs', array('js' => 'window.onbeforeunload = ""; setTimeout(window.home, 2000);'));
 		
 		vfs('real_delete', array(XENONOS_ROOT . '/../.htaccess'));
 		vfs('real_delete', array(XENONOS_ROOT . '/../browser'));

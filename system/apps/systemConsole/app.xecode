@@ -47,15 +47,15 @@ function systemConsole_run($params=null) {
 
 	$js = 'var content = document.getElementById("1_tty").innerHTML;';
 	$js .= 'document.getElementById("'.$myPid.'_consoleContent").innerHTML = content;';
-	eyeX('rawjs',array('js'=>$js));
+	xenonx('rawjs',array('js'=>$js));
 
 	$myToolbar->addItem('clean','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/button_cancel.png','Clean');
 
-	addListenerServiceCall('onPrint','eyex','print',1);
+	addListenerServiceCall('onPrint','xenonx','print',1);
 }
 
 function systemConsole_end($params=null) {
-	removeListenerServiceCall('eyex','print',1);
+	removeListenerServiceCall('xenonx','print',1);
 	eyeWidgets('unserialize');
 }
 

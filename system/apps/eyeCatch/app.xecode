@@ -55,13 +55,13 @@ function eyeCatch_run($params = '') {
 	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeCatch/events' . XE_CODE_EXTENSION);
 	eyeCatch_on_ChooseMap(array('run' => 1));
 
-	eyex('rawjs',array('js' => 'if (typeof eyeCatch == "undefined") { dhtmlLoadScript("index.php?extern=apps/eyeCatch/eyeCatch.js"); }'));
-	eyex('rawjs',array('js' => 'if (!document.getElementById("eyeCatch_default")) { dhtmlLoadCSS("index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/eyeCatch/default.css","eyeCatch_default"); }'));
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
+	xenonx('rawjs',array('js' => 'if (typeof eyeCatch == "undefined") { dhtmlLoadScript("index.php?extern=apps/eyeCatch/eyeCatch.js"); }'));
+	xenonx('rawjs',array('js' => 'if (!document.getElementById("eyeCatch_default")) { dhtmlLoadCSS("index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/eyeCatch/default.css","eyeCatch_default"); }'));
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 }
 
 function eyeCatch_end($params = '') {
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize',$params);
 }
 ?>

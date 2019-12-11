@@ -58,7 +58,7 @@ function eyeFTP_run($params=null) {
 	global $checknum, $myPid;
 
 	if (!function_exists('ftp_connect')) {
-		eyex('messageBox', array(
+		xenonx('messageBox', array(
 			'content' => 'You cannot run eyeFTP. The server\'s administrator needs to activate the PHP extension for FTP first.',
 			'img' => 'x',
 			'title' => 'eyeFTP',
@@ -297,7 +297,7 @@ function eyeFTP_run($params=null) {
 		'dblsignal' => 'eyeFTP_localFilesDblClick'
 	));
 	$localFilesTable->show();
-	eyex('addEvent',array(
+	xenonx('addEvent',array(
 		'name' => $myPid.'_eyeFTP_localFiles_TAB_Container',
 		'action' => 'sendMsg('.$checknum.',"eyeFTP_localFilesClick","")',
 		'event' => 'onclick',
@@ -347,7 +347,7 @@ function eyeFTP_run($params=null) {
 		'dblsignal' => 'eyeFTP_remoteFilesDblClick'
 	));
 	$remoteFilesTable->show();
-	eyex('addEvent',array(
+	xenonx('addEvent',array(
 		'name' => $myPid.'_eyeFTP_remoteFiles_TAB_Container',
 		'action' => 'sendMsg('.$checknum.',"eyeFTP_remoteFilesClick","")',
 		'event' => 'onclick',
@@ -620,18 +620,18 @@ function eyeFTP_run($params=null) {
 	}
 
 	//listener service call to resize the app when the browser is resized
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 
-	eyeX('rawjs',array('js' => 'sendMsg('.$checknum.',"eyeFTP_initComplete","");'));
+	xenonx('rawjs',array('js' => 'sendMsg('.$checknum.',"eyeFTP_initComplete","");'));
 
 	//CSS
-	eyex('loadCss',array(
+	xenonx('loadCss',array(
 		'url' => 'index.php?extern=apps/eyeFTP/css/eyeFTP.css&type=css',
 		'id' => 'eyeFTP.css'
 	));
 
 	//JS
-	eyex('loadScript',array(
+	xenonx('loadScript',array(
 		'url' => 'index.php?extern=apps/eyeFTP/js/eyeFTP'.XE_CODE_EXTENSION.'&type=dynamic&params[]='.$myPid.'&params[]='.$checknum
 	));
 
@@ -653,7 +653,7 @@ function eyeFTP_run($params=null) {
 			if ($urlsParts['path']) $currentRemoteDir->setText($urlsParts['path']);
 		}
 		else {
-			eyeX('messageBox',array(
+			xenonx('messageBox',array(
 				'content'=>'Unable to connect to %s',
 				'tokens' => array($params[0])
 			));
@@ -663,7 +663,7 @@ function eyeFTP_run($params=null) {
 
 
 function eyeFTP_end($params=null) {
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }
 ?>

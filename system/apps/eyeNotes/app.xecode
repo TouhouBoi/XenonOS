@@ -92,12 +92,12 @@ function eyeNotes_run($params=null) {
 	$myToolbar->addItem('saveAs','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/filesaveas.png','Save As',array($myTextArea));
 	$myToolbar->addLine();
 	$myToolbar->addItem('fullscreen','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png','Full Screen','',1);
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 	if($params[0]) {
 		$file = $params[0];
 		$fp = vfs('open',array($file,'r'));
 		if(!$fp) {
-			eyex('messageBox',array('content'=>'File not found'));
+			xenonx('messageBox',array('content'=>'File not found'));
 			return;
 		}
 		$myHidden = new Hidden(array('name'=>'notePath','father'=>'eyeNotesWND','text'=>$file));
@@ -116,7 +116,7 @@ function eyeNotes_run($params=null) {
 }
 
 function eyeNotes_end($params=null) {
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }
 

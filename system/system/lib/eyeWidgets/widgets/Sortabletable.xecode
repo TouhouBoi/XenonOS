@@ -116,7 +116,7 @@ class Sortabletable {
 			'params' => $widgetsparams,
 			'center' => $this->cent
 		);
-		eyex('createWidget',$mySortable);
+		xenonx('createWidget',$mySortable);
 		$this->showed=1;
 		if($noserialize == 0) {
 			$mySelector = new SortabletableSelected(array('name'=>$this->name,
@@ -135,10 +135,10 @@ class Sortabletable {
 		global $myPid;
 		if(is_array($params)) {
 			foreach($params as $key => $value) {
-				eyex('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
+				xenonx('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
 			}
 		}
-		eyex('rawjs', array('js' => 'Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
+		xenonx('rawjs', array('js' => 'Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
 	}
 
 	//event handling
@@ -148,7 +148,7 @@ class Sortabletable {
 		if($this->showed == 0) {
 			$this->show();
 		}
-		eyex('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
+		xenonx('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
 	}
 
 	//comunication functions
@@ -170,7 +170,7 @@ class Sortabletable {
 		}
 		$row = mmap('array2jsArg',array($params,1));
 		$tokens[] = $row;
-		eyex('runjs',array('js' => "if($name){".$name.".addEntry( %s );}",'tokens'=>$tokens));
+		xenonx('runjs',array('js' => "if($name){".$name.".addEntry( %s );}",'tokens'=>$tokens));
 	}
 
 	function delRow($params) {
@@ -178,7 +178,7 @@ class Sortabletable {
 		$name = 'table_' . $myPid . '_'.$this->name;
 		$params = addslashes($params);
 		$tokens[] = $params;
-		eyex('rawjs',array('js' => "if($name){".$name.".delEntry( %s );}",'tokens'=>$tokens));
+		xenonx('rawjs',array('js' => "if($name){".$name.".delEntry( %s );}",'tokens'=>$tokens));
 	}
 
 	// friends handler
@@ -208,19 +208,19 @@ class Sortabletable {
 	function setX($x) {
 		global $myPid;
 		$this->x = intval($x);
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.left="'.$this->x.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.left="'.$this->x.'px";'));
 	}
 
 	function setY($y) {
 		global $myPid;
 		$this->y = intval($y);
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.top="'.$this->y.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.top="'.$this->y.'px";'));
 	}
 
 	function setWidth($width) {
 		global $myPid;
 		$this->width = intval($width);
-		eyex('rawjs', array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '").style.width="' . $this->width . 'px";
+		xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '").style.width="' . $this->width . 'px";
 		document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.width="' . $this->width . 'px";
 		document.getElementById("' . $myPid . '_' . $this->name . '_generalContainer").style.width="' . $this->width . 'px";
 		Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
@@ -229,7 +229,7 @@ class Sortabletable {
 	function setHeight($height) {
 		global $myPid;
 		$this->height = intval($height);
-		eyex('rawjs', array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.height="' . $this->height . 'px";
+		xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.height="' . $this->height . 'px";
 		document.getElementById("' . $myPid . '_' . $this->name . '_generalContainer").style.height="' . $this->height . 'px";
 		Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
 	}
@@ -237,19 +237,19 @@ class Sortabletable {
 	function hide() {
 		global $myPid;
 		$this->visible = 0;
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.display="none"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.display="none"'));
 	}
 
 	function unhide() {
 		global $myPid;
 		$this->visible = 1;
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.display="block"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.display="block"'));
 	}
 
 	function remove() {
 		global $myPid;
 		$name = $this->name.'_Container';
-		eyex('removeWidget',array('name'=>$name));
+		xenonx('removeWidget',array('name'=>$name));
 		eyeWidgets('singleUnserialize',array($this->name));
 	}
 
@@ -257,14 +257,14 @@ class Sortabletable {
 		global $myPid;
 		$name = 'table_' . $myPid . '_'.$this->name;
 		$tokens = array($column, $descending);
-		eyeX('runjs', array('js' => 'if('.$name.'){'.$name.'.sort( %s , %s );}', 'tokens' => $tokens));
+		xenonx('runjs', array('js' => 'if('.$name.'){'.$name.'.sort( %s , %s );}', 'tokens' => $tokens));
 	}
 
 	function delAllRows() {
 		global $myPid;
 		$name = $myPid.'_' . $this->name . '_Body';
-		eyeX('rawjs', array('js' => 'document.getElementById("'.$name.'").innerHTML = "";'));
-		eyex('rawjs', array('js' => 'Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
+		xenonx('rawjs', array('js' => 'document.getElementById("'.$name.'").innerHTML = "";'));
+		xenonx('rawjs', array('js' => 'Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
 	}
 }
 
@@ -300,7 +300,7 @@ class SortabletableSelected {
 			$this->setValue(null);
 		}
 		$tokens[] = $params;
-		eyex('runjs',array('js' => "if($name){".$name.".delEntry( %s );}",'tokens'=>$tokens));
+		xenonx('runjs',array('js' => "if($name){".$name.".delEntry( %s );}",'tokens'=>$tokens));
 	}
 
 	function addRow($params){
@@ -311,35 +311,35 @@ class SortabletableSelected {
 		}
 		$row = mmap('array2jsArg',array($params,1));
 		$tokens[] = $row;
-		eyex('runjs',array('js' => "if($name){".$name.".addEntry( %s );}",'tokens'=>$tokens));
+		xenonx('runjs',array('js' => "if($name){".$name.".addEntry( %s );}",'tokens'=>$tokens));
 	}
 
 	function setContainerCss($params) {
 		global $myPid;
 		if(is_array($params)) {
 			foreach($params as $key => $value) {
-				eyex('updateCss',array('name' => $myPid.'_' . $this->name . '_Container','property' => $key,'value' => $value));
+				xenonx('updateCss',array('name' => $myPid.'_' . $this->name . '_Container','property' => $key,'value' => $value));
 			}
 		}
-		eyex('rawjs', array('js' => 'Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
+		xenonx('rawjs', array('js' => 'Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
 	}
 
 	function setX($x) {
 		global $myPid;
 		$this->x = intval($x);
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.left="'.$this->x.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.left="'.$this->x.'px";'));
 	}
 
 	function setY($y) {
 		global $myPid;
 		$this->y = intval($y);
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.top="'.$this->y.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.top="'.$this->y.'px";'));
 	}
 
 	function setWidth($width) {
 		global $myPid;
 		$this->width = intval($width);
-		eyex('rawjs', array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '").style.width="' . $this->width . 'px";
+		xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '").style.width="' . $this->width . 'px";
 		document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.width="' . $this->width . 'px";
 		document.getElementById("' . $myPid . '_' . $this->name . '_generalContainer").style.width="' . $this->width . 'px";
 		Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
@@ -348,7 +348,7 @@ class SortabletableSelected {
 	function setHeight($height) {
 		global $myPid;
 		$this->height = intval($height);
-		eyex('rawjs', array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.height="' . $this->height . 'px";
+		xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.height="' . $this->height . 'px";
 		document.getElementById("' . $myPid . '_' . $this->name . '_generalContainer").style.height="' . $this->height . 'px";
 		Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
 	}
@@ -356,19 +356,19 @@ class SortabletableSelected {
 	function hide() {
 		global $myPid;
 		$this->visible = 0;
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.display="none"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.display="none"'));
 	}
 
 	function unhide() {
 		global $myPid;
 		$this->visible = 1;
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.display="block"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $this->name . '_Container").style.display="block"'));
 	}
 
 	function remove() {
 		global $myPid;
 		$name = $this->name.'_Container';
-		eyex('removeWidget',array('name'=>$name));
+		xenonx('removeWidget',array('name'=>$name));
 		eyeWidgets('singleUnserialize',array($this->name));
 	}
 
@@ -376,18 +376,18 @@ class SortabletableSelected {
 		global $myPid;
 		$name = 'table_' . $myPid . '_'.$this->name;
 		$tokens = array($column, $descending);
-		eyeX('runjs', array('js' => 'if('.$name.'){'.$name.'.sort( %s , %s );}', 'tokens' => $tokens));
+		xenonx('runjs', array('js' => 'if('.$name.'){'.$name.'.sort( %s , %s );}', 'tokens' => $tokens));
 	}
 
 	function delAllRows() {
 		global $myPid;
 		$name = $myPid.'_' . $this->name . '_Body';
 		//if(!IE) {
-			eyeX('rawjs', array('js' => 'document.getElementById("'.$name.'").innerHTML = "";'));
+			xenonx('rawjs', array('js' => 'document.getElementById("'.$name.'").innerHTML = "";'));
 		//} else {
-			//eyeX('rawjs', array('js' => 't = document.getElementById("'.$name.'");while(t.firstChild){t.removeChild(t.firstChild);}'));
+			//xenonx('rawjs', array('js' => 't = document.getElementById("'.$name.'");while(t.firstChild){t.removeChild(t.firstChild);}'));
 		//}
-		eyex('rawjs', array('js' => 'Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
+		xenonx('rawjs', array('js' => 'Sortabletable_updateHeight(document.getElementById("' . $myPid . '_' . $this->name . '"), document.getElementById("' . $myPid . '_' . $this->name . '_Body"));'));
 	}
 }
 ?>

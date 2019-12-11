@@ -43,7 +43,7 @@ function eyeFiles_run($params = '') {
 		'width' => 750
 	));
 	$myWindow->show();
-	eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Window_Content"); e.style.backgroundPosition = "right bottom"; e.style.backgroundRepeat = "no-repeat";'));
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Window_Content"); e.style.backgroundPosition = "right bottom"; e.style.backgroundRepeat = "no-repeat";'));
 
 	$myToolbar = new Toolbar(array(
 		'father' => 'eyeFiles_Window_Content',
@@ -143,7 +143,7 @@ function eyeFiles_run($params = '') {
 		'y' => 65
 	));
 	$myBoxTree->show(0);
-	eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_Tree_Container");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_Tree_Container");
 	e.style.height = "24px";
 	e.onclick = function() {
 		if (xGetElementById("' . $myPid . '_eyeFiles_Hidden_Box").value != "Tree") {
@@ -175,7 +175,7 @@ function eyeFiles_run($params = '') {
 		'y' => 35
 	));
 	$myBoxView->show(0);
-	eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_View_Container");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_View_Container");
 	e.style.cursor = "pointer";
 	e.style.height = "24px";
 	e.style.overflow = "hidden";
@@ -198,7 +198,7 @@ function eyeFiles_run($params = '') {
 		}
 	}'));
 	if ($xml['eyeFiles'][0]['Box'][0] == 'View') {
-		eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_Tree_Container");
+		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_Tree_Container");
 		e.style.cursor = "pointer";
 		e.style.overflow = "hidden";
 		e = xGetElementById("' . $myPid . '_eyeFiles_Box_View_Container");
@@ -226,7 +226,7 @@ function eyeFiles_run($params = '') {
 		'y' => 5
 	));
 	$myBoxActions->show(0);
-	eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_Actions_Container");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_Actions_Container");
 	e.style.cursor = "pointer";
 	e.style.height = "24px";
 	e.style.overflow = "hidden";
@@ -249,7 +249,7 @@ function eyeFiles_run($params = '') {
 		}
 	}'));
 	if ($xml['eyeFiles'][0]['Box'][0] == 'Actions') {
-		eyex('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_Tree_Container");
+		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_Tree_Container");
 		e.style.cursor = "pointer";
 		e.style.overflow = "hidden";
 		e = xGetElementById("' . $myPid . '_eyeFiles_Box_View_Container");
@@ -324,7 +324,7 @@ function eyeFiles_run($params = '') {
 	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/events' . XE_CODE_EXTENSION);
 	eyeFiles_on_OpenPath($params);
 	addListenerLibraryCall('onEvent','eyeFiles','update');
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 }
 
 function eyeFiles_end($params = '') {
@@ -332,7 +332,7 @@ function eyeFiles_end($params = '') {
 
 	unset($_SESSION['eyeFiles'][$myPid]);
 	removeListenerLibraryCall('eyeFiles','update');
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize',$params);
 }
 ?>

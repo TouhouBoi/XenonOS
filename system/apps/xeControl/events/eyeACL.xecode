@@ -28,7 +28,7 @@ function xeControl_on_acl_edit($params=''){
 	$id = $GLOBALS['xeControl_acl_sortabletable']->selected;
 
 	if(empty($id)){
-		eyeX('messageBox',array('content'=>"Please choose an ACL to edit from the list"));
+		xenonx('messageBox',array('content'=>"Please choose an ACL to edit from the list"));
 		return true;
 	} else {
 		$myHidden = new Hidden(array(
@@ -46,9 +46,9 @@ function xeControl_on_acl_delete($params=''){
 	$id = $GLOBALS['xeControl_acl_sortabletable']->selected;
 
 	if(empty($id)){
-		eyeX('messageBox',array('content'=>'Please choose an ACL to delete'));
+		xenonx('messageBox',array('content'=>'Please choose an ACL to delete'));
 	} else {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'content' => 'Are you sure you want to delete this ACL?',
 			'type' => 3,
 			'title' => 'Delete warning',

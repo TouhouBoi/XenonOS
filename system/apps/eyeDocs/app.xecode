@@ -64,7 +64,7 @@ function eyeDocs_run($params=null) {
 		//if the file doesn't exists, show a messagebox informing the user, else
 		//read the file etc.
 		if(!vfs('fileExists',array($file))) {
-			eyeX('messageBox',array('content' => 'The file does not exist.'));
+			xenonx('messageBox',array('content' => 'The file does not exist.'));
 		} else {
 			//open the file, get the contents, and save the path
 			$myTextArea->setText(eyeDocs_openFile($file));
@@ -74,12 +74,12 @@ function eyeDocs_run($params=null) {
 	eyeDocs_updateServerContent();
 
 	//add a listener service call to get the resize events
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 }
 
 function eyeDocs_end($params=null) {
 	eyeConverter('cleanTmp');
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }
 ?>

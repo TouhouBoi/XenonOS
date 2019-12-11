@@ -93,7 +93,7 @@ class Select {
 			'widgetname' => 'Select',
 			'params' => $widgetsparams
 		);
-		eyex('createWidget',$mySelect);
+		xenonx('createWidget',$mySelect);
 		$this->showed=1;
 		if($noserialize == 0) {
 			eyeWidgets('serialize',array($this));
@@ -107,14 +107,14 @@ class Select {
 		if($this->showed == 0) {
 			$this->show();
 		}
-		eyex('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
+		xenonx('addEvent',array('name' => $name, 'action' => $eventFunc, 'event' => $eventName,'args'=>$args));
 	}
 
 	function setCss($params) {
 		global $myPid;
 		if(is_array($params)) {
 			foreach($params as $key => $value) {
-				eyex('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
+				xenonx('updateCss',array('name' => $myPid.'_'.$this->name,'property' => $key,'value' => $value));
 			}
 		}
 	}
@@ -156,7 +156,7 @@ class Select {
 		if ($value === null) {
 			$value = $name;
 		}
-		eyeX('runjs', array('js' => 'var myOptGroup = document.createElement("optgroup");myOptGroup.setAttribute("label", %s);myOptGroup.setAttribute("id", %s);document.getElementById("'.$myPid.'_'.$this->name.'").appendChild(myOptGroup);', 'tokens' => array($text, $myPid.'_'.$value)));
+		xenonx('runjs', array('js' => 'var myOptGroup = document.createElement("optgroup");myOptGroup.setAttribute("label", %s);myOptGroup.setAttribute("id", %s);document.getElementById("'.$myPid.'_'.$this->name.'").appendChild(myOptGroup);', 'tokens' => array($text, $myPid.'_'.$value)));
 	}
 
 	function addOption($text,$value = null,$selected=0,$tokens=0,$group='') {
@@ -173,74 +173,74 @@ class Select {
 		}
 		$tokens = array($value,$text,$father);
 		if($selected == 0) {
-			eyeX('runjs',array('js'=>'var myOption = document.createElement("option");myOption.setAttribute("value", %s );myOption.appendChild(document.createTextNode( %s ));document.getElementById(%s).appendChild(myOption);','tokens'=>$tokens));
+			xenonx('runjs',array('js'=>'var myOption = document.createElement("option");myOption.setAttribute("value", %s );myOption.appendChild(document.createTextNode( %s ));document.getElementById(%s).appendChild(myOption);','tokens'=>$tokens));
 		} else {
 			$this->selected = $value;
-			eyeX('runjs',array('js'=>'var myOption = document.createElement("option");myOption.setAttribute("value", %s );myOption.appendChild(document.createTextNode( %s ));myOption.selected=true;document.getElementById(%s).appendChild(myOption);','tokens'=>$tokens));
+			xenonx('runjs',array('js'=>'var myOption = document.createElement("option");myOption.setAttribute("value", %s );myOption.appendChild(document.createTextNode( %s ));myOption.selected=true;document.getElementById(%s).appendChild(myOption);','tokens'=>$tokens));
 		}
 	}
 
 	function delAllOptions() {
 		global $myPid;
-		eyeX('rawjs',array('js'=>'document.getElementById("'.$myPid.'_'.$this->name.'").innerHTML = "";'));
+		xenonx('rawjs',array('js'=>'document.getElementById("'.$myPid.'_'.$this->name.'").innerHTML = "";'));
 	}
 
 	function setWidth($width) {
 		global $myPid;
 		$this->width = intval($width);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.width="'.$this->width.'px";'));
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.width="'.$this->width.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.width="'.$this->width.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").style.width="'.$this->width.'px";'));
 	}
 
 	function setX($x) {
 		global $myPid;
 		$this->x = intval($x);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.left="'.$this->x.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.left="'.$this->x.'px";'));
 	}
 
 	function setY($y) {
 		global $myPid;
 		$this->y = intval($y);
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.top="'.$this->y.'px";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.top="'.$this->y.'px";'));
 	}
 
 	function focus() {
 		global $myPid;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").focus();'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").focus();'));
 	}
 
 	function hide() {
 		global $myPid;
 		$this->visible = 0;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="none"'));
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.visibility="hidden"'));
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").name="hidden"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="none"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.visibility="hidden"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").name="hidden"'));
 	}
 
 	function unhide() {
 		global $myPid;
 		$this->visible = 1;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="block"'));
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.visibility="visible"'));
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").name="visible"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.display="block"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").style.visibility="visible"'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'_Container").name="visible"'));
 	}
 //set properties functions
 	function disable() {
 		global $myPid;
 		$this->enabled=0;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").disabled=true'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").disabled=true'));
 	}
 
 	function enable() {
 		global $myPid;
 		$this->enabled=1;
-		eyex('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").disabled=false'));
+		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_'.$this->name.'").disabled=false'));
 	}
 
 	function remove() {
 		global $myPid;
 		$name = $this->name.'_Container';
-		eyex('removeWidget',array('name'=>$name));
+		xenonx('removeWidget',array('name'=>$name));
 		eyeWidgets('singleUnserialize',array($this->name));
 	}
 
@@ -248,21 +248,21 @@ class Select {
 		global $myPid;
 		$name = $myPid.'_'.$this->name;
 		$this->selected = $value;
-		eyeX('rawjs', array('js' => 'var mySelect=document.getElementById("'.$name.'");var myOptions=mySelect.getElementsByTagName("option");for(i = 0; i < myOptions.length; i++) {if(myOptions[i].value == "'.$value.'"){mySelect.selectedIndex = myOptions[i].index;break;}}'));
+		xenonx('rawjs', array('js' => 'var mySelect=document.getElementById("'.$name.'");var myOptions=mySelect.getElementsByTagName("option");for(i = 0; i < myOptions.length; i++) {if(myOptions[i].value == "'.$value.'"){mySelect.selectedIndex = myOptions[i].index;break;}}'));
 	}
 
 	function selectValueInGroups($value) {
 		global $myPid;
 		$name = $myPid.'_'.$this->name;
 		$this->selected = $value;
-		eyeX('rawjs', array('js' => 'var mySelect=document.getElementById("'.$name.'");var groupList=mySelect.childNodes;for(i = 0; i < groupList.length; i++) {if(groupList[i].tagName == "OPTGROUP"){var myOptions = groupList[i].childNodes;var found = false; for(j = 0; j < myOptions.length && found == false; j++){if(myOptions[j].value == "'.$value.'"){mySelect.selectedIndex = myOptions[j].index;found = true;break;}}}}'));
+		xenonx('rawjs', array('js' => 'var mySelect=document.getElementById("'.$name.'");var groupList=mySelect.childNodes;for(i = 0; i < groupList.length; i++) {if(groupList[i].tagName == "OPTGROUP"){var myOptions = groupList[i].childNodes;var found = false; for(j = 0; j < myOptions.length && found == false; j++){if(myOptions[j].value == "'.$value.'"){mySelect.selectedIndex = myOptions[j].index;found = true;break;}}}}'));
 	}
 
 	function selectIndex($index) {
 		global $myPid;
 		$name = $myPid.'_'.$this->name;
 		$index = intval($index);
-		eyeX('rawjs', array('js' => 'document.getElementById("'.$name.'").selectedIndex = '.$index.';'));
+		xenonx('rawjs', array('js' => 'document.getElementById("'.$name.'").selectedIndex = '.$index.';'));
 	}
 }
 

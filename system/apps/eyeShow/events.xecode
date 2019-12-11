@@ -45,18 +45,18 @@ function eyeShow_on_Save($params=null) {
 	$myHidden = new Hidden(array('name'=>'showContent','father'=>'eyeShowWND','text'=>$arg));
 	eyeWidgets('serialize',array($myHidden));
 
-//	eyex('rawjs',array('js'=>'alert(\''.$GLOBALS['ShowPath']->text.'\')')) ;
+//	xenonx('rawjs',array('js'=>'alert(\''.$GLOBALS['ShowPath']->text.'\')')) ;
 
 	if(is_object($GLOBALS['ShowPath']) && $GLOBALS['ShowPath']->text) {
 		$info = pathinfo($GLOBALS['ShowPath']->text);
 			$fp = vfs('open',array($GLOBALS['ShowPath']->text,'w'));
 			if(!$fp) {
-				eyex('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
+				xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 				return;
 			}
 			fwrite($fp,$arg);
 			fclose($fp);
-		eyex('messageBox',array('content'=>'Document saved successfully.'));
+		xenonx('messageBox',array('content'=>'Document saved successfully.'));
 	} else {
 		proc('launch',array('eyeDialog',$options));
 	}
@@ -95,14 +95,14 @@ function eyeShow_on_SelectFileSave($params=null) {
 			vfs('create',array($file,'eyeShow'));
 			$fp = vfs('open',array($file,'w'));
 			if(!$fp) {
-				eyex('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
+				xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 				return;
 			}
 			fwrite($fp,$GLOBALS['showContent']->text);
 			fclose($fp);
 			$myHidden = new Hidden(array('name'=>'ShowPath','father'=>'eyeShowWND','text'=>$file));
 			eyeWidgets('serialize',array($myHidden));
-			eyex('messageBox',array('content'=>'Document saved successfully.'));
+			xenonx('messageBox',array('content'=>'Document saved successfully.'));
 
 	}
 }
@@ -129,7 +129,7 @@ function eyeShow_on_SelectFileOpen($params=null) {
 		$file = um('getCurrentUserDir').FILES_USER_DIR.'/'.$file;
 		$fp = vfs('open',array($file,'r'));
 		if(!$fp) {
-			eyeX('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
+			xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 			return;
 		}
 		fclose($fp);
@@ -171,7 +171,7 @@ $ratio = $info[0]/$info[1];
 $width = 40 ;
 $height = 40/$ratio ;
 
-eyex('rawjs',array('js'=>'callback.call(scope, \'index.php?checknum='.$checknum.'&msg=getImageShow&params='.$params.'\',\''.$width.'%\',\''.$height.'%\')')) ;
+xenonx('rawjs',array('js'=>'callback.call(scope, \'index.php?checknum='.$checknum.'&msg=getImageShow&params='.$params.'\',\''.$width.'%\',\''.$height.'%\')')) ;
 }
 
 // Display the image in the presentations

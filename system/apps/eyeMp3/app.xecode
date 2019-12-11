@@ -46,9 +46,9 @@ function eyeMp3_run($params=null) {
 		$myHidden->show();
 		addShortUrl('.mp3','getFile');
 		if ($proc) {
-			eyex('runjs',array('js' => 'eyeMp3_loadSound(' . $myPid . ',"index.php/.mp3",%s);','tokens' => array(basename($params[0]) . ' - eyeMp3')));
+			xenonx('runjs',array('js' => 'eyeMp3_loadSound(' . $myPid . ',"index.php/.mp3",%s);','tokens' => array(basename($params[0]) . ' - eyeMp3')));
 		} else {
-			eyex('loadScript',array('url' => 'index.php?extern=apps/eyeMp3/js/eyeMp3' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid . '&params[]=' . $checknum));
+			xenonx('loadScript',array('url' => 'index.php?extern=apps/eyeMp3/js/eyeMp3' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid . '&params[]=' . $checknum));
 
 			$myWindow = new Window(array(
 				'cent' => 1,

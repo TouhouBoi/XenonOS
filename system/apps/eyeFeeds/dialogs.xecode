@@ -217,7 +217,7 @@ function eyeFeeds_on_addFeed_add_BTN($params=null) {
 
 	$feed = eyeFeeds_fetchFeedFromUrl($feedUrl);
 	if ($feed === false){
-		eyeX('messageBox',array('content'=> 'Unable to fetch entered URL'));
+		xenonx('messageBox',array('content'=> 'Unable to fetch entered URL'));
 		return;
 	}
 
@@ -232,11 +232,11 @@ function eyeFeeds_on_addFeed_add_BTN($params=null) {
 	//print_r($newFeedsToSave); exit;
 
 	if (eyeFeeds_saveFeedsToFile($newFeedsToSave)) {
-		eyeX('messageBox',array('content'=> 'Feed successfully added'));
+		xenonx('messageBox',array('content'=> 'Feed successfully added'));
 		$GLOBALS['addFeed_DLG']->close();
 	}
 	else
-		eyeX('messageBox',array('content'=> 'Error adding feed'));
+		xenonx('messageBox',array('content'=> 'Error adding feed'));
 }
 function eyeFeeds_on_addFeed_cancel_BTN($params=null) {
 	if ($GLOBALS['addFeed_DLG'])
@@ -387,7 +387,7 @@ function eyeFeeds_on_addFolder_add_BTN($params=null) {
 	$folderName = $GLOBALS['addFolder_name_TXTBOX']->text;
 
 	if (!$folderName) {
-		eyeX('messageBox',array('content'=> 'You must enter a name'));
+		xenonx('messageBox',array('content'=> 'You must enter a name'));
 		return;
 	}
 
@@ -398,11 +398,11 @@ function eyeFeeds_on_addFolder_add_BTN($params=null) {
 	//print_r($newFeedsToSave); exit;
 
 	if (eyeFeeds_saveFeedsToFile($newFeedsToSave)) {
-		eyeX('messageBox',array('content'=> 'Folder successfully added'));
+		xenonx('messageBox',array('content'=> 'Folder successfully added'));
 		$GLOBALS['addFolder_DLG']->close();
 	}
 	else
-		eyeX('messageBox',array('content'=> 'Error adding folder'));
+		xenonx('messageBox',array('content'=> 'Error adding folder'));
 }
 function eyeFeeds_on_addFolder_cancel_BTN($params=null) {
 	if ($GLOBALS['addFolder_DLG'])
@@ -419,7 +419,7 @@ function eyeFeeds_createConfirmDeleteDialog($params=null) {
 
 	eyeFeeds_prepareForModalDialog();
 
-	eyeX('messageBox',array(
+	xenonx('messageBox',array(
 		'content' => 'Are you sure you want to delete this '.$type.'?',		//$type can be 'feed' or 'folder'
 		'type' => 3,
 		'title' => 'Delete feed/folder',
@@ -447,9 +447,9 @@ function eyeFeeds_on_delete_deleteYes_BTN($params=null) {
 
 	//print_r($newFeedsToSave); exit;
 	if (eyeFeeds_saveFeedsToFile($newFeedsToSave))
-		eyeX('messageBox',array('content'=> 'Element successfully deleted'));
+		xenonx('messageBox',array('content'=> 'Element successfully deleted'));
 	else
-		eyeX('messageBox',array('content'=> 'Error deleting the feed'));
+		xenonx('messageBox',array('content'=> 'Error deleting the feed'));
 
 	$GLOBALS['delete_DLG']->close();
 
@@ -640,11 +640,11 @@ function eyeFeeds_on_editFeed_apply_BTN($params=null) {
 	$feed = eyeFeeds_getFeedFromId($feeds['feed'], $feedId);
 	$fetchedFeed = eyeFeeds_fetchFeedFromUrl($feedUrl);
 	if ($feed === false){
-		eyeX('messageBox',array('content'=> 'Error applying changes'));
+		xenonx('messageBox',array('content'=> 'Error applying changes'));
 		return;
 	}
 	if ($fetchedFeed === false){
-		eyeX('messageBox',array('content'=> 'Unable to fetch entered URL'));
+		xenonx('messageBox',array('content'=> 'Unable to fetch entered URL'));
 		return;
 	}
 
@@ -662,11 +662,11 @@ function eyeFeeds_on_editFeed_apply_BTN($params=null) {
 	//print_r($newFeedsToSave); exit;
 
 	if (eyeFeeds_saveFeedsToFile($newFeedsToSave)) {
-		eyeX('messageBox',array('content'=> 'Feed successfully changed'));
+		xenonx('messageBox',array('content'=> 'Feed successfully changed'));
 		$GLOBALS['editFeed_DLG']->close();
 	}
 	else
-		eyeX('messageBox',array('content'=> 'Error saving feed'));
+		xenonx('messageBox',array('content'=> 'Error saving feed'));
 }
 function eyeFeeds_on_editFeed_cancel_BTN($params=null) {
 	if ($GLOBALS['editFeed_DLG'])
@@ -824,14 +824,14 @@ function eyeFeeds_on_editFolder_apply_BTN($params=null) {
 	$newFolderId = $GLOBALS['editFolder_selectedFolder_HID']->text;
 
 	if (!$feedName){
-		eyeX('messageBox',array('content'=> 'You must enter a name'));
+		xenonx('messageBox',array('content'=> 'You must enter a name'));
 		return;
 	}
 
 	$feeds = eyeFeeds_getSavedFeeds();
 	$feed = eyeFeeds_getFeedFromId($feeds['feed'], $feedId);
 	if ($feed === false){
-		eyeX('messageBox',array('content'=> 'Error applying changes'));
+		xenonx('messageBox',array('content'=> 'Error applying changes'));
 		return;
 	}
 
@@ -844,11 +844,11 @@ function eyeFeeds_on_editFolder_apply_BTN($params=null) {
 	//print_r($newFeedsToSave); exit;
 
 	if (eyeFeeds_saveFeedsToFile($newFeedsToSave)) {
-		eyeX('messageBox',array('content'=> 'Folder successfully changed'));
+		xenonx('messageBox',array('content'=> 'Folder successfully changed'));
 		$GLOBALS['editFolder_DLG']->close();
 	}
 	else
-		eyeX('messageBox',array('content'=> 'Error saving folder'));
+		xenonx('messageBox',array('content'=> 'Error saving folder'));
 }
 function eyeFeeds_on_editFolder_cancel_BTN($params=null) {
 	if ($GLOBALS['editFolder_DLG'])
@@ -1064,17 +1064,17 @@ function eyeFeeds_on_importFeeds_import_BTN($params=null) {
 
 	$newFeedsToSave = eyeFeeds_importFeeds($savedFeeds, $parentFolderId, $filePath);
 	if ($newFeedsToSave === false){
-		eyeX('messageBox',array('content'=> 'Unable to import feeds from specified file'));
+		xenonx('messageBox',array('content'=> 'Unable to import feeds from specified file'));
 		return;
 	}
 	//print_r($newFeedsToSave); exit;
 
 	if (eyeFeeds_saveFeedsToFile($newFeedsToSave)) {
-		eyeX('messageBox',array('content'=> 'Feeds successfully imported'));
+		xenonx('messageBox',array('content'=> 'Feeds successfully imported'));
 		$GLOBALS['importFeeds_DLG']->close();
 	}
 	else {
-		eyeX('messageBox',array('content'=> 'Error importing feeds'));
+		xenonx('messageBox',array('content'=> 'Error importing feeds'));
 	}
 }
 function eyeFeeds_on_importFeeds_cancel_BTN($params=null) {

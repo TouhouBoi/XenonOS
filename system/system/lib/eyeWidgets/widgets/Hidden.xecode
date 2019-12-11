@@ -75,7 +75,7 @@ class Hidden {
 			'widgetname' => 'Hidden',
 			'params' => $widgetsparams
 		);
-		eyex('createWidget',$myHidden);
+		xenonx('createWidget',$myHidden);
 		$this->showed=1;
 		if($noserialize == 0) {
 			eyeWidgets('serialize',array($this));
@@ -85,7 +85,7 @@ class Hidden {
 	function setText($content) {
 		global $myPid;
 		$this->text = $content;
-		eyex('runjs', array('js' => 'var e = document.getElementById("' . $myPid . '_' . $this->name . '"); if (e) { e.value = %s; }', 'tokens' => array($this->text)));
+		xenonx('runjs', array('js' => 'var e = document.getElementById("' . $myPid . '_' . $this->name . '"); if (e) { e.value = %s; }', 'tokens' => array($this->text)));
 	}
 
 	function setValue($content) {

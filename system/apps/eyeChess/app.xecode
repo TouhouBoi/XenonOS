@@ -40,7 +40,7 @@ function eyeChess_run($params = '')
 	
 	$myWindow->show();
 	
-	eyex('loadScript', array('url' => 'index.php?extern=apps/eyeChess/eyeChess'.XE_CODE_EXTENSION.'&type=dynamic&params[]='.$myPid.'&params[]='.$checknum));
+	xenonx('loadScript', array('url' => 'index.php?extern=apps/eyeChess/eyeChess'.XE_CODE_EXTENSION.'&type=dynamic&params[]='.$myPid.'&params[]='.$checknum));
 }
 
 function eyeChess_end($params = '')

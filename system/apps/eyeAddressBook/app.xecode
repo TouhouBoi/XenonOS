@@ -39,7 +39,7 @@ function eyeAddressBook_run($params=null) {
 		'savePosition' => 1
 	));
 	$mainWindow->show();
-	eyeX('rawjs',array('js' => 'xGetElementById("'.$myPid.'_eyeAddressBook_WND_Content").style.overflow = "hidden";'));
+	xenonx('rawjs',array('js' => 'xGetElementById("'.$myPid.'_eyeAddressBook_WND_Content").style.overflow = "hidden";'));
 	$myToolbar = new Toolbar(array(
 		'name'=>'eyeAddressBook_Toolbar',
 		'father'=>'eyeAddressBook_WND_Content'
@@ -56,7 +56,7 @@ function eyeAddressBook_run($params=null) {
 	$myToolbar->addLine();
 	$myToolbar->addItem('settings','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/settings.png','Settings');
 	$myToolbar->addItem('fullscreen','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png','Full Screen','',1);
-	addListenerServiceCall('fullResized','eyex','resizedbrowser');
+	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 	
 	// General Splitter
     
@@ -81,7 +81,7 @@ function eyeAddressBook_run($params=null) {
 	));
 	$txtSearch->show();
 
-	eyeX('rawjs',array('js' => '
+	xenonx('rawjs',array('js' => '
 		var searchDelay;
 	'));
 
@@ -154,7 +154,7 @@ function eyeAddressBook_drawListBox($contacts=null) {
     ));
     $listBox->show(0);
 	
-    eyeX('rawjs',array('js' => 'xGetElementById("'.$myPid.'_eyeAddressBook_listBox_Container").style.overflowY = "auto";
+    xenonx('rawjs',array('js' => 'xGetElementById("'.$myPid.'_eyeAddressBook_listBox_Container").style.overflowY = "auto";
         xGetElementById("'.$myPid.'_eyeAddressBook_listBox_Container").style.overflowX = "hidden";'));
 
     $contacts = $contacts['Contacts'][0];
@@ -222,7 +222,7 @@ function eyeAddressBook_showSelectGroup() {
 
 function eyeAddressBook_end($params=null) {
     eyeAddressBook('clean'); // This function delete all eyeAddressBook generated files in temp dir
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }
 

@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function xeControl_on_users_load($params = '') {
 	global $myPid;
 
-	eyex('messageBox',array(
+	xenonx('messageBox',array(
 		'buttons' => array(array('users_load_selected','Show users'),array('users_load_all','Show all'),array('users_load_cancel','Cancel')),
 		'content' => 'You can use /a (ending), /b (beginning) and /c (counts) to list users.',
 		'father' => 'xeControl_container_big',
@@ -54,14 +54,14 @@ function xeControl_on_users_edit($params = '') {
 	if ($user) {
 		xeControl_lib_loadContent('only_root','edituser',array($user));
 	} else {
-		eyex('messageBox',array('content' => 'Please choose a user to be edited.'));
+		xenonx('messageBox',array('content' => 'Please choose a user to be edited.'));
 	}
 }
 
 function xeControl_on_users_delete($params = '') {
 	$user = $GLOBALS['xeControl_users_sortabletable']->selected;
 	if ($user && $user != REAL_ROOTUSER) {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'buttons' => array(array('users_delete_yes','Yes'),array('users_delete_no','No')),
 			'content' => 'Do you really want to remove this user from the system?',
 			'father' => 'xeControl_container_big',
@@ -73,9 +73,9 @@ function xeControl_on_users_delete($params = '') {
 			'win_style' => TITLE + CLOSE
 		));
 	} elseif ($user == REAL_ROOTUSER) {
-		eyex('messageBox',array('content' => 'You cannot delete the root user!'));
+		xenonx('messageBox',array('content' => 'You cannot delete the root user!'));
 	} else {
-		eyex('messageBox',array('content' => 'Please choose a user to be deleted.'));
+		xenonx('messageBox',array('content' => 'Please choose a user to be deleted.'));
 	}
 }
 
@@ -90,7 +90,7 @@ function xeControl_on_users_delete_yes($params = '') {
 	$user = $GLOBALS['users_delete_hidden']->text;
 
 	if ($currentUser != ROOTUSER && !um('checkMaintainer',array(xeControl_lib_getConfigUser())) || um('checkMaintainer',array(xeControl_lib_getConfigUser())) && !in_array($user,$myUserXml['eyeUser'][0]['mngUser'])) {
-		eyex('messageBox',array('content' => 'You are not allowed to manage users!'));
+		xenonx('messageBox',array('content' => 'You are not allowed to manage users!'));
 		xeControl_lib_loadContent();
 		return;
 	}
@@ -109,7 +109,7 @@ function xeControl_on_users_delete_yes($params = '') {
 		}
 
 		um('deleteUser',array($user));
-		eyex('messageBox',array('content' => 'User successfully deleted.'));
+		xenonx('messageBox',array('content' => 'User successfully deleted.'));
 		$currentUser = $oldUser;
 		xeControl_lib_loadContent('only_root','users',array($_SESSION['xeControl'][$myPid]['content']['users']));
 	}

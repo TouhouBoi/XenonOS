@@ -24,7 +24,7 @@ global $checknum;
 global $currentUser;
 global $myPid;
 
-eyex('loadCss',
+xenonx('loadCss',
 	array (
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/eyeLogin/eyeLogin.css&type=css',
 		'id' => 'eyeLogin.css'
@@ -438,5 +438,5 @@ $myPowered->setCss(
 	)
 );
 
-eyex('loadScript', array('url' => 'index.php?extern=apps/eyeLogin/themes/default/eyeLogin' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid . '&params[]=' . $checknum . '&params[]=' . $_SESSION['sawasc']));
+xenonx('loadScript', array('url' => 'index.php?extern=apps/eyeLogin/themes/default/eyeLogin' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid . '&params[]=' . $checknum . '&params[]=' . $_SESSION['sawasc']));
 ?>

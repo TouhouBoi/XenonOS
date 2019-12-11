@@ -30,7 +30,7 @@ function eyeOpen_on_Resize($params = '') {
 	global $myPid;
 	$GLOBALS['eyeOpen_Container']->setHeight(intval($params['arg'][1]) - 25);
 	$GLOBALS['eyeOpen_Container']->setWidth(intval($params['arg'][0]) - 4);
-	eyex('rawjs',array('js' => 'i = 0;
+	xenonx('rawjs',array('js' => 'i = 0;
 	x = 20;
 	y = 20;
 	e = xGetElementById("' . $myPid . '_eyeOpen_Icon_0_Container");

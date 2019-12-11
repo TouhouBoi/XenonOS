@@ -25,7 +25,7 @@ function editLink_run($params = '') {
 	$file = basename($params[0]);
 	$xml = eyeXML('getXMLfile',array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . $file));
 	if ($xml['eyeLink'][0]) {
-		eyex('systemSound', array('message'));
+		xenonx('systemSound', array('message'));
 		
 		$inpWid = 200;
 		$elY = 24;

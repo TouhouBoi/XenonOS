@@ -21,12 +21,12 @@ function eyeDocs_on_Open($params=null) {
 	$crc = $params['md5'][0];
 	$filecrc = md5($content);
 	if($filecrc != $crc) {
-		eyeX('messageBox',array('content' => 'Error - Document not saved. Please try again.'));
+		xenonx('messageBox',array('content' => 'Error - Document not saved. Please try again.'));
 		return;
 	}*/
 	$md5 = md5($GLOBALS['fileContent']->text);
 	if ((isset($GLOBALS['fileMD5']) === false || $md5 != $GLOBALS['fileMD5']->text) && !empty($GLOBALS['fileContent']->text)) {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'content' => 'Do you want to save changes?',
 			'type' => 3,
 			'title' => 'Delete warning',
@@ -96,7 +96,7 @@ function eyeDocs_on_Save($params=null) {
 	$crc = $params['md5'][0];
 	$filecrc = md5($content);
 	if($filecrc != $crc) {
-		eyeX('messageBox',array('content' => 'Error - Document not saved. Please try again.'));
+		xenonx('messageBox',array('content' => 'Error - Document not saved. Please try again.'));
 		return;
 	}
 	if(is_object($GLOBALS['filePath']) && $GLOBALS['filePath']->text) {
@@ -142,7 +142,7 @@ function eyeDocs_on_SaveAs($params=null) {
 	$crc = $params['md5'][0];
 	$filecrc = md5($content);
 	if($filecrc != $crc) {
-		eyeX('messageBox',array('content' => 'Error - Document not saved. Please try again.'));
+		xenonx('messageBox',array('content' => 'Error - Document not saved. Please try again.'));
 		return;
 	}
 	$options = array(
@@ -190,12 +190,12 @@ function eyeDocs_on_Close($params=null) {
 	$crc = $params['md5'][0];
 	$filecrc = md5($content);
 	if($filecrc != $crc) {
-		eyeX('messageBox',array('content' => 'Error - Document not saved. Please try again.'));
+		xenonx('messageBox',array('content' => 'Error - Document not saved. Please try again.'));
 		return;
 	}
 	$md5 = md5($GLOBALS['fileContent']->text);
 	if ((isset($GLOBALS['fileMD5']) === false || $md5 != $GLOBALS['fileMD5']->text) && !empty($GLOBALS['fileContent']->text)) {
-		eyex('messageBox',array(
+		xenonx('messageBox',array(
 			'content' => 'Do you want to save changes?',
 			'type' => 3,
 			'title' => 'Delete warning',

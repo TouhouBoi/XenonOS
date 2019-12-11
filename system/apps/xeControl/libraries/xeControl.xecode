@@ -56,22 +56,22 @@ function xeControl_lib_loadContent($category = '',$content = '',$contentParams =
 	$currentUser = $oldUser;
 	$content = $contentXML['name'][0];
 	if (!file_exists($dir . $content . XE_CODE_EXTENSION) || !$contentXML['permissions'][0]) {
-		eyex('messageBox',array('content' => 'Sorry, this page is not installed.'));
+		xenonx('messageBox',array('content' => 'Sorry, this page is not installed.'));
 		xeControl_lib_loadContent();
 	} elseif ($contentXML['permissions'][0] == 'root' && xeControl_lib_getConfigUser() != ROOTUSER) {
-		eyex('messageBox',array('content' => 'Sorry, you do not have permissions to enter this page.'));
+		xenonx('messageBox',array('content' => 'Sorry, you do not have permissions to enter this page.'));
 		xeControl_lib_loadContent();
 	} elseif ($contentXML['permissions'][0] == 'maintainer' && xeControl_lib_getConfigUser() != ROOTUSER && !um('checkMaintainer',array(xeControl_lib_getConfigUser()))) {
-		eyex('messageBox',array('content' => 'Sorry, you do not have permissions to enter this page.'));
+		xenonx('messageBox',array('content' => 'Sorry, you do not have permissions to enter this page.'));
 		xeControl_lib_loadContent();
 	} elseif ($contentXML['permissions'][0] == 'user' && xeControl_lib_getConfigUser() == ROOTUSER) {
-		eyex('messageBox',array('content' => 'Sorry, you need to login as normal user to enter this page.'));
+		xenonx('messageBox',array('content' => 'Sorry, you need to login as normal user to enter this page.'));
 		xeControl_lib_loadContent();
 	} elseif ($contentXML['permissions'][0] == 'only_real' && xeControl_lib_getConfigUser() == '[skel]') {
-		eyex('messageBox',array('content' => 'Sorry, this page cannot be entered by the default user.'));
+		xenonx('messageBox',array('content' => 'Sorry, this page cannot be entered by the default user.'));
 		xeControl_lib_loadContent();
 	} elseif ($contentXML['permissions'][0] == 'only_this' && xeControl_lib_getConfigUser() != $currentUser) {
-		eyex('messageBox',array('content' => 'Sorry, you need to login as this user to enter this page.'));
+		xenonx('messageBox',array('content' => 'Sorry, you need to login as this user to enter this page.'));
 		xeControl_lib_loadContent();
 	} else {
 		if (isset($GLOBALS['xeControl_container_big']) === true && is_object($GLOBALS['xeControl_container_big'])) {
@@ -128,7 +128,7 @@ function xeControl_lib_loadContent($category = '',$content = '',$contentParams =
 		$myContainer->setCss(array(
 			'overflow' => 'auto'
 		));
-		eyex('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $eyeContainer . '_Content").style.top = "0";'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_' . $eyeContainer . '_Content").style.top = "0";'));
 		include ($dir . $content . XE_CODE_EXTENSION);
 	}
 }

@@ -45,7 +45,7 @@ function eyeInfo_run($params = '')
 			'father' => 'eyeInfo_Window_Content',
 			'name' => 'eyeInfo_Imagebox_Logo',
 			'signal' => 'Navigate',
-			'url' => 'index.php?extern=apps/eyeX/gfx/logo.png',
+			'url' => 'index.php?extern=apps/xenonx/gfx/logo.png',
 			'x' => 0,
 			'y' => 15
 		)

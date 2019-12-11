@@ -143,7 +143,7 @@ function eyeMedia_run($params=null) {
 	$tlbToolbar->addItem('tlbToolbar_Shuffle','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/edit-undo.png','Shuffle');
 	$tlbToolbar->addItem('tlbToolbar_Fullscreen','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png','Full Screen','',1);
 
-	eyex('loadScript', array('url' => 'index.php?extern=apps/eyeMedia/js/eyeMedia' . XE_CODE_EXTENSION . '&type=dynamic'));
+	xenonx('loadScript', array('url' => 'index.php?extern=apps/eyeMedia/js/eyeMedia' . XE_CODE_EXTENSION . '&type=dynamic'));
 
 	if (isset($params[0]) === true) {
 		include(XENONOS_ROOT.'/'.APP_DIR.'/eyeMedia/events'.XE_CODE_EXTENSION);
@@ -152,7 +152,7 @@ function eyeMedia_run($params=null) {
 		// If more needs to be done when opening a file later on...
 		//eyeMedia_on_Select_File(array('arg'=>array($Open_File)));
 		$GLOBALS['eyeMedia_tblPlaylist']->addRow(array($Open_File));
-		eyeX('rawjs',array('js'=>'setTimeout("eyeMedia_SelectFirst(' . $myPid . ', 1, ' . $checknum . ')",500);'));
+		xenonx('rawjs',array('js'=>'setTimeout("eyeMedia_SelectFirst(' . $myPid . ', 1, ' . $checknum . ')",500);'));
 	}
 
 }

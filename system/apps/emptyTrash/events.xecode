@@ -42,7 +42,7 @@ function emptyTrash_on_Do($params = '') {
 		}
 	}
 	if ($GLOBALS['emptyTrash_Hidden_Callback']->text) {
-		eyex('rawjs',array('js' => $GLOBALS['emptyTrash_Hidden_Callback']->text));
+		xenonx('rawjs',array('js' => $GLOBALS['emptyTrash_Hidden_Callback']->text));
 	}
 	eyeFiles('update',array('trash:///'));
 	proc('end');

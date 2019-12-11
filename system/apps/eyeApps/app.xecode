@@ -26,7 +26,7 @@ function eyeApps_run($params = '')
 	global $currentUser;
 	global $myPid;
 
-	addListenerServiceCall('fullResized', 'eyex', 'resizedbrowser');
+	addListenerServiceCall('fullResized', 'xenonx', 'resizedbrowser');
 
 	$myWindow = new Window(
 		array (
@@ -143,7 +143,7 @@ function eyeApps_run($params = '')
 
 		$myLabel->show();
 
-		eyex('rawjs', array('js' =>
+		xenonx('rawjs', array('js' =>
 			'var e = document.getElementById("' . $myPid . '_' . $myContainer->name . '");
 			e.style.cursor = "pointer";
 			e.style.zIndex = "1";
@@ -181,7 +181,7 @@ function eyeApps_run($params = '')
 
 function eyeApps_end($params = '')
 {
-	removeListenerServiceCall('eyex','resizedbrowser');
+	removeListenerServiceCall('xenonx','resizedbrowser');
 
 	eyeWidgets('unserialize',$params);
 }
