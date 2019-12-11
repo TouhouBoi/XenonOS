@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function xeControl_on_eyeboard_save($params = '') {
-	$xml = xeControl_lib_getXMLconfig(array('eyeBoard','conf.xml'));
-	$xml['eyeBoard'][0]['showFullname'][0] = $GLOBALS['xeControl_eyeboard_checkbox_fullname']->checked;
-	$xml['eyeBoard'][0]['reloadTime'][0] = $GLOBALS['xeControl_eyeboard_select_refresh']->selected;
-	xeControl_lib_setXMLconfig(array('eyeBoard','conf.xml',$xml));
+function xeControl_on_xenonChat_save($params = '') {
+	$xml = xeControl_lib_getXMLconfig(array('xenonChat','conf.xml'));
+	$xml['xenonChat'][0]['showFullname'][0] = $GLOBALS['xeControl_xenonChat_checkbox_fullname']->checked;
+	$xml['xenonChat'][0]['reloadTime'][0] = $GLOBALS['xeControl_xenonChat_select_refresh']->selected;
+	xeControl_lib_setXMLconfig(array('xenonChat','conf.xml',$xml));
 	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 }
 ?>

@@ -171,28 +171,28 @@
 	</services>
 	<libs>
 		<lib>
-			<name>eyeBoard</name>
+			<name>xenonChat</name>
 			<function>getMessages</function>
 			<return>array</return>
-			<doc>lib.eyeBoard.getMessages() - get an array with the messages of eyeBoard</doc>
+			<doc>lib.xenonChat.getMessages() - get an array with the messages of xenonChat</doc>
 		</lib>
 		<lib>
-			<name>eyeBoard</name>
+			<name>xenonChat</name>
 			<function>getMessagesHtml</function>
 			<return>string</return>
-			<doc>lib.eyeBoard.getMessagesHtml() - get a XHTML string with the messages of eyeBoard</doc>
+			<doc>lib.xenonChat.getMessagesHtml() - get a XHTML string with the messages of xenonChat</doc>
 		</lib>
 		<lib>
-			<name>eyeBoard</name>
+			<name>xenonChat</name>
 			<function>newMessage</function>
 			<return>boolean</return>
-			<doc>lib.eyeBoard.newMessage() - write a new message in eyeBoard</doc>
+			<doc>lib.xenonChat.newMessage() - write a new message in xenonChat</doc>
 		</lib>
 		<lib>
-			<name>eyeBoard</name>
+			<name>xenonChat</name>
 			<function>clear</function>
 			<return>boolean</return>
-			<doc>lib.eyeBoard.clear() - clear the messages of the board, requires root</doc>
+			<doc>lib.xenonChat.clear() - clear the messages of the board, requires root</doc>
 		</lib>
 	</libs>
 </api>

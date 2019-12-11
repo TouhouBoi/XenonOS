@@ -185,10 +185,10 @@
 				<type>menu</type>
 				<entries>
 					<entry-1>
-						<command>eyeBoard.app</command>
+						<command>xenonChat.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeBoard.png</image>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonChat.png</image>
 						<text>Public Board</text>
 						<type>icon</type>
 					</entry-1>

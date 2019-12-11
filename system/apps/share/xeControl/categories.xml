@@ -212,10 +212,10 @@
 			<title>yes</title>
 		</content>
 		<content>
-			<description>Change your eyeBoard settings</description>
+			<description>Change your xenonChat settings</description>
 			<display>Local Messages</display>
-			<img>index.php?theme=USERTHEME&amp;extern=icons/48x48/eyeBoard.png</img>
-			<name>eyeboard</name>
+			<img>index.php?theme=USERTHEME&amp;extern=icons/48x48/xenonChat.png</img>
+			<name>xenonChat</name>
 			<permissions>all</permissions>
 			<title>yes</title>
 		</content>

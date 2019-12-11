@@ -20,58 +20,58 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeBoard_on_Message($params="") {
+function xenonChat_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeBoard_on_getMessages($params=null) {
-	echo eyeBoard('getMessagesHtml');
+function xenonChat_on_getMessages($params=null) {
+	echo xenonChat('getMessagesHtml');
 	exit;
 }
 
-function eyeBoard_on_mainResize($params) {
+function xenonChat_on_mainResize($params) {
 	global $currentUser;
 	
 	$width = intval($params['arg'][0]);
 	$height = intval($params['arg'][1]);
 
-	$GLOBALS['eyeBoard']->width = $width;
-	$GLOBALS['eyeBoard']->height = $height;
+	$GLOBALS['xenonChat']->width = $width;
+	$GLOBALS['xenonChat']->height = $height;
 
-	$GLOBALS['eyeBoardFrame']->setWidth($GLOBALS['eyeBoard']->width - 2);
-	$GLOBALS['eyeBoardFrame']->setHeight($GLOBALS['eyeBoard']->height - 60);
+	$GLOBALS['xenonChatFrame']->setWidth($GLOBALS['xenonChat']->width - 2);
+	$GLOBALS['xenonChatFrame']->setHeight($GLOBALS['xenonChat']->height - 60);
 
 	if ($currentUser === ROOTUSER) {
-		$width = $GLOBALS['eyeBoard']->width - 120;
+		$width = $GLOBALS['xenonChat']->width - 120;
 	} else {
-		$width = $GLOBALS['eyeBoard']->width - 70;
+		$width = $GLOBALS['xenonChat']->width - 70;
 	}
 	$GLOBALS['MessageB']->setWidth($width);
 
 }
 
-function eyeBoard_on_addMsg($params=null) {
+function xenonChat_on_addMsg($params=null) {
 	global $checknum;
 	$content = $GLOBALS['MessageB']->text;
 	if(empty($content)) {
 		return;
 	}
 	$GLOBALS['MessageB']->setText("");
-	eyeBoard('newMessage',array($content));
-	$GLOBALS['eyeBoardFrame']->setUrl("index.php?checknum=$checknum&msg=getMessages");
+	xenonChat('newMessage',array($content));
+	$GLOBALS['xenonChatFrame']->setUrl("index.php?checknum=$checknum&msg=getMessages");
 }
 
-function eyeBoard_on_clear($params=null){
+function xenonChat_on_clear($params=null){
 	global $checknum;
-	eyeBoard('clear');
-	$GLOBALS['eyeBoardFrame']->setUrl("index.php?checknum=$checknum&msg=getMessages");
+	xenonChat('clear');
+	$GLOBALS['xenonChatFrame']->setUrl("index.php?checknum=$checknum&msg=getMessages");
 }
 
-function eyeBoard_on_newMessage($params = null) {
+function xenonChat_on_newMessage($params = null) {
 	proc('launch', array('newMessage', array('to' => $params['to'][0])));
 }
 
-function eyeBoard_on_Close(){
+function xenonChat_on_Close(){
 	proc('end');
 }
 

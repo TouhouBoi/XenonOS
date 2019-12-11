@@ -18,8 +18,8 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	Error code library for oneye
 */
 
-function lib_eyeBoard_getMessages($params=null) {
-	$msg = getConfig('eyeBoard','conf.xml');
+function lib_xenonChat_getMessages($params=null) {
+	$msg = getConfig('xenonChat','conf.xml');
 	$ret = array();
 	if(isset($msg['messages'][0]['message']) && is_array($msg['messages'][0]['message'])) {
 		foreach($msg['messages'][0]['message'] as $value) {
@@ -29,13 +29,13 @@ function lib_eyeBoard_getMessages($params=null) {
 	return $ret;
 }
 
-function lib_eyeBoard_getMessagesHtml($params=null) {
+function lib_xenonChat_getMessagesHtml($params=null) {
 	global $checknum;
 	global $currentUser;
-	$msg = getConfig('eyeBoard','conf.xml');
-	$conf = xenonXML('getXMLconfig',array('eyeBoard','conf.xml'));
-	if (is_numeric($conf['eyeBoard'][0]['reloadTime'][0])) {
-		$reloadTime = round($conf['eyeBoard'][0]['reloadTime'][0],3) * 1000;
+	$msg = getConfig('xenonChat','conf.xml');
+	$conf = xenonXML('getXMLconfig',array('xenonChat','conf.xml'));
+	if (is_numeric($conf['xenonChat'][0]['reloadTime'][0])) {
+		$reloadTime = round($conf['xenonChat'][0]['reloadTime'][0],3) * 1000;
 	} else {
 		$reloadTime = 5000;
 	}
@@ -43,7 +43,7 @@ function lib_eyeBoard_getMessagesHtml($params=null) {
 	if(isset($msg['messages'][0]['message']) && is_array($msg['messages'][0]['message'])) {
 		foreach($msg['messages'][0]['message'] as $value) {
 			$author = $value['author'][0];
-			if ($conf['eyeBoard'][0]['showFullname'][0] == '1') {
+			if ($conf['xenonChat'][0]['showFullname'][0] == '1') {
 				$oldUser = $currentUser;
 				$currentUser = ROOTUSER;
 				$authorXML = um('retrieveUser',array($author));
@@ -66,7 +66,7 @@ function lib_eyeBoard_getMessagesHtml($params=null) {
 	return $ret;
 }
 
-function lib_eyeBoard_newMessage($params=null) {
+function lib_xenonChat_newMessage($params=null) {
 	if(!isset($params[0])){
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
@@ -79,7 +79,7 @@ function lib_eyeBoard_newMessage($params=null) {
 	}
 	$time = time();
 	$myMessage = array('author'=>array($currentUser),'content'=>array($content),'time'=>array($time));
-	$msg = getConfig('eyeBoard','conf.xml');
+	$msg = getConfig('xenonChat','conf.xml');
 
 	if(isset($msg['messages'][0]['message']) && is_array($msg['messages'][0]['message'])) {
 		array_unshift($msg['messages'][0]['message'],$myMessage);
@@ -90,17 +90,17 @@ function lib_eyeBoard_newMessage($params=null) {
 	$xml = xenonXML('array2xml',array($msg));
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$fp = vfs('real_open',array(XENONOS_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/eyeBoard/conf.xml','w'));
+	$fp = vfs('real_open',array(XENONOS_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/xenonChat/conf.xml','w'));
 	$currentUser = $oldUser;
 	fwrite($fp,$xml);
 	fclose($fp);
 	return true;
 }
 
-function lib_eyeBoard_clear($params=null) {
+function lib_xenonChat_clear($params=null) {
 	global $currentUser;
 	if($currentUser == ROOTUSER) {
-		$fp = vfs('real_open',array(XENONOS_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/eyeBoard/conf.xml','w'));
+		$fp = vfs('real_open',array(XENONOS_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/xenonChat/conf.xml','w'));
 		fwrite($fp,"<messages />");
 		fclose($fp);
 		return true;

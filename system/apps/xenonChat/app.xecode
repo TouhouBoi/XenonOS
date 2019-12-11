@@ -20,12 +20,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeBoard_run($params=null) {
+function xenonChat_run($params=null) {
 	global $checknum;
 	global $currentUser;
 
 	$myWindow = new Window(array(
-		'name'=>'eyeBoard_Content',
+		'name'=>'xenonChat_Content',
 		'father'=>'xenonApps',
 		'type'=>NORMAL_WINDOW,
 		'cent'=>1,'width'=>450,
@@ -46,7 +46,7 @@ function eyeBoard_run($params=null) {
 	
 	$myTextBox = new Textbox(array(
 		'name'=>'MessageB',
-		'father'=>'eyeBoard_Content',
+		'father'=>'xenonChat_Content',
 		'x'=>5,
 		'y'=>10,
 		'width'=> $width,
@@ -59,7 +59,7 @@ function eyeBoard_run($params=null) {
 	
 	$myButton = new Button(array(
 		'name'=>'myButton',
-		'father'=>'eyeBoard_Content',
+		'father'=>'xenonChat_Content',
 		'caption'=>'Send',
 		'x'=>10,
 		'y'=>10,
@@ -73,7 +73,7 @@ function eyeBoard_run($params=null) {
 	if($currentUser == ROOTUSER) {
 		$myButton2 = new Button(array(
 			'name'=>'myButtonR',
-			'father'=>'eyeBoard_Content',
+			'father'=>'xenonChat_Content',
 			'caption'=>'Clear',
 			'x'=>60,
 			'y'=>10,
@@ -84,8 +84,8 @@ function eyeBoard_run($params=null) {
 		$myButton2->show();
 	}
 	$myFrame = new Iframe(array(
-		'name'=>'eyeBoardFrame',
-		'father'=>'eyeBoard_Content',
+		'name'=>'xenonChatFrame',
+		'father'=>'xenonChat_Content',
 		'x' => 0,
 		'y' => 0,
 		'height' => $myWindow->height - 60,
@@ -98,7 +98,7 @@ function eyeBoard_run($params=null) {
 	$myFrame->setCss($myCss);
 }
 
-function eyeBoard_end($params=null) {
+function xenonChat_end($params=null) {
 	eyeWidgets('unserialize');
 }
 

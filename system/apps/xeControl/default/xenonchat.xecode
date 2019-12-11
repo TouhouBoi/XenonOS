@@ -15,10 +15,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 $ContentY = 10;
-$conf = xeControl_lib_getXMLconfig(array('eyeBoard','conf.xml'));
+$conf = xeControl_lib_getXMLconfig(array('xenonChat','conf.xml'));
 // Show full names
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyeboard_label_fullname',
+	'name' => 'xeControl_xenonChat_label_fullname',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -26,18 +26,18 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myCheckbox = new Checkbox(array(
-	'name' => 'xeControl_eyeboard_checkbox_fullname',
+	'name' => 'xeControl_xenonChat_checkbox_fullname',
 	'father' => $eyeContainer,
 	'x' => 200,
 	'y' => $ContentY,
 	'text' => ' ',
-	'checked' => $conf['eyeBoard'][0]['showFullname'][0]
+	'checked' => $conf['xenonChat'][0]['showFullname'][0]
 ));
 $myCheckbox->show();
 $ContentY += 30;
 // Refresh interval (seconds)
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyeboard_label_refresh',
+	'name' => 'xeControl_xenonChat_label_refresh',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -45,7 +45,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $mySelect = new Select(array(
-	'name' => 'xeControl_eyeboard_select_refresh',
+	'name' => 'xeControl_xenonChat_select_refresh',
 	'father' => $eyeContainer,
 	'x' => 320,
 	'y' => $ContentY + 3
@@ -55,8 +55,8 @@ $mySelect->setCss(array(
 	'direction' => 'rtl',
 	'padding-left' => '0px'
 ));
-if (!$conf['eyeBoard'][0]['reloadTime'][0]) {
-	$conf['eyeBoard'][0]['reloadTime'][0] = 5;
+if (!$conf['xenonChat'][0]['reloadTime'][0]) {
+	$conf['xenonChat'][0]['reloadTime'][0] = 5;
 }
 $i = 0;
 while ($i < 30) {
@@ -65,7 +65,7 @@ while ($i < 30) {
 	} else {
 		$i += 5;
 	}
-	if ($i == $conf['eyeBoard'][0]['reloadTime'][0]) {
+	if ($i == $conf['xenonChat'][0]['reloadTime'][0]) {
 		$mySelect->addOption($i,$i,1);
 	} else {
 		$mySelect->addOption($i,$i);
@@ -74,12 +74,12 @@ while ($i < 30) {
 $ContentY += 40;
 // Save Changes
 $myButton = new Button(array(
-	'name' => 'xeControl_eyeboard_button_save',
+	'name' => 'xeControl_xenonChat_button_save',
 	'father' => $eyeContainer,
 	'x' => 50,
 	'y' => $ContentY,
 	'caption' => 'Save Changes',
-	'signal' => 'eyeboard_save'
+	'signal' => 'xenonChat_save'
 ));
 $myButton->addFriend($myCheckbox);
 $myButton->addFriend($mySelect);
