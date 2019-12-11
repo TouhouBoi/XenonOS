@@ -24,7 +24,7 @@ function restoreTrash_on_Do($params = '') {
 	}
 	$file = substr($GLOBALS['restoreTrash_Hidden_Path']->text, 0, -strlen('.' . XENONOS_TRASH_EXT)); // utf8
 	$path = um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/';
-	$xml = eyeXML('getXMLfile',array($path . '/' . $file . '.' . XENONOS_TRASH_EXT));
+	$xml = xenonXML('getXMLfile',array($path . '/' . $file . '.' . XENONOS_TRASH_EXT));
 	if ($xml['eyeTrash'][0]['type'][0] == 'dir') {
 		if ($to) {
 			if ($to[1] == 'real') {

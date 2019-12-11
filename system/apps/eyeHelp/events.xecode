@@ -95,7 +95,7 @@ function getTitleTopic($params = null)
 
 	$currentUser = $oldUser;
 
-	$info = eyeXML('xml2array',array($InfoContent));
+	$info = xenonXML('xml2array',array($InfoContent));
 	$info = $info['eyeHelp'][0];
 
 	$title = trim($info['title'][0]);
@@ -153,7 +153,7 @@ function eyeHelp_on_goto($params = null)
 			fclose($fp);
 		}
 
-		$info = eyeXML('xml2array', array($InfoContent));
+		$info = xenonXML('xml2array', array($InfoContent));
 		$info = $info['eyeHelp'][0];;
 
 		if (file_exists($myDir.$_SESSION['lang'].'.eyeHelp') && filesize($myDir.$_SESSION['lang'].'.eyeHelp') > 0)
@@ -255,7 +255,7 @@ function eyeHelp_on_submit()
 		{
 			$xml['eyeHelp'][0]['contact'][0] = $GLOBALS['eyeHelp_contact_box']->text;
 
-			eyeXML('setXMLfile', array (XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeHelp/conf.xml', $xml));
+			xenonXML('setXMLfile', array (XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeHelp/conf.xml', $xml));
 
 			xenonx('messageBox', array ('content' => 'Changes successfully applied.'));
 

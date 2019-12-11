@@ -101,7 +101,7 @@ function eyeTetravex_on_loadConfiguration($params=null) {
 	$return['configuration'][0]['i18n'][0] = $i18nValues;
 
 	header('Content-type: text/xml; charset="UTF-8"');
-	echo eyeXML('array2xml',array($return));
+	echo xenonXML('array2xml',array($return));
 	exit;
 }
 
@@ -123,12 +123,12 @@ function eyeTetravex_on_saveConfiguration($params=null) {
 	//		<parameter_j>value</parameter_j>
 	//			...
 	//	</configuration>)
-	$inputXml = eyeXML('xml2array',array($_POST['eyeTetravex_xmlData']));
+	$inputXml = xenonXML('xml2array',array($_POST['eyeTetravex_xmlData']));
 
 	//set the file's configuration node to the new one
 	$content['eyeTetravex'][0]['configuration'][0] = $inputXml['configuration'][0];
 
-	$myXml = eyeXML('array2xml',array($content));
+	$myXml = xenonXML('array2xml',array($content));
 	eyeTetravex_setXmlFileContent($file, $myXml);
 	exit;
 }
@@ -140,7 +140,7 @@ function eyeTetravex_on_loadHighscores($params=null) {
 	if (! isset($_POST['eyeTetravex_xmlData'])) {
 		exit;
 	}
-	$inputXml = eyeXML('xml2array',array($_POST['eyeTetravex_xmlData']));
+	$inputXml = xenonXML('xml2array',array($_POST['eyeTetravex_xmlData']));
 
 	//global highscores
 	if ($inputXml['eyeTetravex'][0]['useSharedHighscores'][0] == 'true')
@@ -170,7 +170,7 @@ function eyeTetravex_on_saveHighscore($params=null) {
 	//		<time>XX:XX</time>
 	//		<moves>XX</moves>
 	//	</highscore>
-	$inputXml = eyeXML('xml2array',array($_POST['eyeTetravex_xmlData']));
+	$inputXml = xenonXML('xml2array',array($_POST['eyeTetravex_xmlData']));
 
 	//global highscores
 	if ($inputXml['highscore'][0]['useSharedHighscores'][0] == 'true')
@@ -183,7 +183,7 @@ function eyeTetravex_on_saveHighscore($params=null) {
 
 	//print return XML with rank
 	$return['eyeTetravex'][0]['rank'][0] = $rank;
-	echo eyeXML('array2xml',array($return));
+	echo xenonXML('array2xml',array($return));
 
 	exit;
 }
@@ -250,7 +250,7 @@ function eyeTetravex_saveHighscore($storageMethod, $inputXml) {
 		$content = setConfig('eyeTetravex', 'server_highscores.xml', $content);
 	}
 	elseif ($storageMethod == EYETETRAVEX_HIGHSCORES_STORAGE_METHOD_PROFILE) {
-		$myXml = eyeXML('array2xml',array($content));
+		$myXml = xenonXML('array2xml',array($content));
 		eyeTetravex_setXmlFileContent(EYETETRAVEX_PROFILE_HIGHSCORES_FILE, $myXml);
 	}
 
@@ -264,7 +264,7 @@ function eyeTetravex_getHighscores($storageMethod, $simpleText = false) {
 	if ($storageMethod == EYETETRAVEX_HIGHSCORES_STORAGE_METHOD_SERVER) {
 		$content = getConfig('eyeTetravex', 'server_highscores.xml');
 		if ($simpleText)
-			$content = eyeXML('array2xml',array($content));
+			$content = xenonXML('array2xml',array($content));
 	}
 	elseif ($storageMethod == EYETETRAVEX_HIGHSCORES_STORAGE_METHOD_PROFILE) {
 		$content = eyeTetravex_getXmlFileContent(EYETETRAVEX_PROFILE_HIGHSCORES_FILE, $simpleText);
@@ -353,14 +353,14 @@ function eyeTetravex_getXmlFileContent($file, $simpleText = false) {
 	if(!vfs('real_fileExists',array($file))) {
 		vfs('real_create',array($file));
 		$myXml['eyeTetravex'] = array();
-		eyeXML('setXMLfile',array($file,$myXml));
+		xenonXML('setXMLfile',array($file,$myXml));
 	}
 	$return = '';
 
 	if ($simpleText)
 		$return = vfs('real_getFileContent',array($file));
 	else
-		$return = eyeXML('getXMLfile',array($file));
+		$return = xenonXML('getXMLfile',array($file));
 
 	return $return;
 }

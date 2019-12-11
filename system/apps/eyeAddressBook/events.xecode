@@ -295,7 +295,7 @@ function eyeAddressBook_on_saveSettings($params=null) {
 	$config = eyeAddressBook('loadConfig');
 	$config['config'][0]['database'][0] = $database;
 	$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook';
-	eyeXML('setXMLfile', array($path.'/config.xml', $config));
+	xenonXML('setXMLfile', array($path.'/config.xml', $config));
 }
 
 function eyeAddressBook_on_cancelSettings($params=null) {

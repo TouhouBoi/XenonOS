@@ -235,7 +235,7 @@ function loadServiceConfig()
 			{
 				if (substr($file, 0, 1) !== '.')
 				{
-					$myArray = eyeXML('xml2array', array(file_get_contents(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/' . $file)));
+					$myArray = xenonXML('xml2array', array(file_get_contents(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/' . $file)));
 
 					if (isset($myArray['CONFIG']) && is_array($myArray['CONFIG']))
 					{
@@ -265,7 +265,7 @@ function loadConfig($appName)
 		{
 			if (substr($file, 0, 1) !== '.')
 			{
-				$myArray = eyeXML('xml2array', array(file_get_contents(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/' . $appName . '/' . $file)));
+				$myArray = xenonXML('xml2array', array(file_get_contents(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/' . $appName . '/' . $file)));
 
 				if (is_array($myArray['CONFIG'][0]))
 				{
@@ -283,9 +283,9 @@ function loadConfig($appName)
 
 function getConfig($appName, $file = 'conf.xml')
 {
-	$eyeXML = eyeXML('xml2array', array(@file_get_contents(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/' . basename($appName) . '/' . basename($file))));
+	$xenonXML = xenonXML('xml2array', array(@file_get_contents(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/' . basename($appName) . '/' . basename($file))));
 
-	return($eyeXML);
+	return($xenonXML);
 }
 
 function setConfig($appName, $file = 'conf.xml', $arr)
@@ -296,7 +296,7 @@ function setConfig($appName, $file = 'conf.xml', $arr)
 	
 	$path = XENONOS_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/'.$appName.'/'.$file;
 	
-	$xml = eyeXML('array2xml', array($arr));
+	$xml = xenonXML('array2xml', array($arr));
 
 	file_put_contents($path, $xml);
 }
@@ -313,7 +313,7 @@ function getAppInfo($app)
 	
 	$currentUser = ROOTUSER;
 	
-	$xml = eyeXML('getXMLfile', array($myFile.'info.xml'));
+	$xml = xenonXML('getXMLfile', array($myFile.'info.xml'));
 	
 	$currentUser = $oldUser;
 
@@ -703,7 +703,7 @@ function loadACLTables()
 			{
 				if (substr($file, 0, 1) !== '.')
 				{
-					$myArray = eyeXML('xml2array', array(file_get_contents($aclpath . $file)));
+					$myArray = xenonXML('xml2array', array(file_get_contents($aclpath . $file)));
 
 					if (is_array($myArray) === true)
 					{

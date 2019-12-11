@@ -43,13 +43,13 @@ function xeControl_on_xeSoft_add($params = '') {
 	$selected = $GLOBALS['xeControl_xeSoft_add_textbox']->text;
 	if ($selected) {
 		$dir = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml';
-		$mirrorXML = eyeXML('getXMLfile',array($dir));
+		$mirrorXML = xenonXML('getXMLfile',array($dir));
 		$x = xeControl_lib_findIdByText(array($mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'],$selected));
 		if (isset($x[0])) {
 			xenonx('messageBox',array('content' => 'The mirror is installed, yet!'));
 		} else {
 			$mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'][] = $selected;
-			eyeXML('setXMLfile',array($dir,$mirrorXML));
+			xenonXML('setXMLfile',array($dir,$mirrorXML));
 			xenonx('messageBox',array('content' => 'Mirror successfully saved.'));
 			xeControl_lib_loadContent('only_root','xeSoft');
 		}
@@ -65,7 +65,7 @@ function xeControl_on_xeSoft_add_test($params = '') {
 		$httpClient->setURL($selected);
 		$httpClient->sendRequest();
 		$xml = $httpClient->getResponseBody();
-		$array = eyeXML('xml2array',array($xml));
+		$array = xenonXML('xml2array',array($xml));
 		if ($array['eyePorts'][0]['portServer'][0]['path'][0]) {
 			xenonx('messageBox',array('content' => 'File can be downloaded successfully.'));
 		} else {
@@ -110,12 +110,12 @@ function xeControl_on_xeSoft_edit_save($params = '') {
 	$mirror_new = $GLOBALS['xeControl_xeSoft_edit_textbox']->text;
 	if ($mirror_new && $mirror_new != EYECONTROL_DEFAULT_REPOSITORY) {
 		$dir = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml';
-		$mirrorXML = eyeXML('getXMLfile',array($dir));
+		$mirrorXML = xenonXML('getXMLfile',array($dir));
 		$x = xeControl_lib_findIdByText(array($mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'],$mirror_old));
 		$x = $x[0];
 		if (isset($x)) {
 			$mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'][$x] = $mirror_new;
-			eyeXML('setXMLFile',array($dir,$mirrorXML));
+			xenonXML('setXMLFile',array($dir,$mirrorXML));
 			xenonx('messageBox',array('content' => 'Mirror successfully saved.'));
 			xeControl_lib_loadContent('only_root','xeSoft');
 		} else {
@@ -135,7 +135,7 @@ function xeControl_on_xeSoft_edit_test($params = '') {
 		$httpClient->setURL($selected);
 		$httpClient->sendRequest();
 		$xml = $httpClient->getResponseBody();
-		$array = eyeXML('xml2array',array($xml));
+		$array = xenonXML('xml2array',array($xml));
 		if ($array['eyePorts'][0]['portServer'][0]['path'][0]) {
 			xenonx('messageBox',array('content' => 'File can be downloaded successfully.'));
 		} else {
@@ -176,11 +176,11 @@ function xeControl_on_xeSoft_delete_yes($params = '') {
 	$mirror = $GLOBALS['xeSoft_delete_hidden']->text;
 	if ($mirror && $mirror != EYECONTROL_DEFAULT_REPOSITORY) {
 		$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports.xml';
-		$mirrorXML = eyeXML('getXMLfile',array($file));
+		$mirrorXML = xenonXML('getXMLfile',array($file));
 		$x = xeControl_lib_findIdByText(array($mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'],$mirror));
 		$x = $x[0];
 		unset($mirrorXML['eyePorts'][0]['mirrors'][0]['mirror'][$x]);
-		eyeXML('setXMLFile',array($file,$mirrorXML));
+		xenonXML('setXMLFile',array($file,$mirrorXML));
 		xenonx('messageBox',array('content' => 'Mirror successfully deleted.'));
 		xeControl_lib_loadContent('only_root','xeSoft');
 	}
@@ -193,7 +193,7 @@ function xeControl_on_xeSoft_test($params = '') {
 		$httpClient->setURL($mirror);
 		$httpClient->sendRequest();
 		$xml = $httpClient->getResponseBody();
-		$array = eyeXML('xml2array',array($xml));
+		$array = xenonXML('xml2array',array($xml));
 		if (is_array($array) === true && $array['eyePorts'][0]['portServer'][0]['path'][0]) {
 			xenonx('messageBox',array('content' => 'File can be downloaded successfully.'));
 		} else {

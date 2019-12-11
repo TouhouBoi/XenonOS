@@ -210,7 +210,7 @@ if($GLOBALS['edit_target']->text == 'edit'){
 	$GLOBALS['xeControl_acl_typeTarget_done_button']->enable();
 
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
-	$config = eyeXML('getXMLfile', array($file));
+	$config = xenonXML('getXMLfile', array($file));
 
 	if($config){
 		foreach($config['GACL'][0]['ACL'] as $acl) {

@@ -357,7 +357,7 @@ function lib_eyeContacts_isReady(){
 			$fp = vfs('real_open',array($key,'r'));
 			$myContent = fread($fp,$size);
 			fclose($fp);
-			$myFileContent = eyeXML('xml2array',array($myContent));
+			$myFileContent = xenonXML('xml2array',array($myContent));
 
 			$contactInfo['normal']['name'] = $myFileContent['name'][0];
 			$contactInfo['normal']['surname'] = $myFileContent['surname'][0];

@@ -32,7 +32,7 @@ if (!$app) {
 	$currentUser = $oldUser;	
 	$key = substr($info['eyeUser'][0]['username'][0],0,8) ;
 	$key = "Doud.biz!".$key ;
-	$xePass = eyeXML('getXMLconfig',array('xePass','conf.xml'));
+	$xePass = xenonXML('getXMLconfig',array('xePass','conf.xml'));
 	$cryptedl = $xePass['xePass'][0][$app][0]['login'][0];
 	$cryptedp = $xePass['xePass'][0][$app][0]['pass'][0];
 	

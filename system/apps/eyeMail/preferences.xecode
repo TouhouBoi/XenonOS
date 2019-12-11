@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function eyeMail_preferencesWindow($params=null) {
-	$prefConfig = eyeXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeMail/settings.xml'));
+	$prefConfig = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeMail/settings.xml'));
 
 	if(is_object($GLOBALS['eyeMail_preferencesWND'])) {
 		$GLOBALS['eyeMail_preferencesWND']->close();
@@ -262,27 +262,27 @@ function eyeMail_preferencesWindow($params=null) {
 }
 
 function eyeMail_on_saveGeneral($params=null) {
-	$prefConfig = eyeXML('getXMLconfig', array ('eyeMail', 'settings.xml'));
+	$prefConfig = xenonXML('getXMLconfig', array ('eyeMail', 'settings.xml'));
 	$prefConfig['eyeMail'][0]['startupCheck'][0] = $GLOBALS['eyeMail_check1General']->checked;
 	$prefConfig['eyeMail'][0]['visualAlert'][0] = $GLOBALS['eyeMail_check3General']->checked;
 	$prefConfig['eyeMail'][0]['checkDelay'][0] = $GLOBALS['eyeMail_select1General']->selected;
-	eyeXML('setXMLconfig',array('eyeMail','settings.xml', $prefConfig));
+	xenonXML('setXMLconfig',array('eyeMail','settings.xml', $prefConfig));
 	xenonx('messageBox', array('content' => 'General settings has been updated.'));
 	$GLOBALS['eyeMail_preferencesWND']->close();
 
 }
 
 function eyeMail_on_saveSecurity($params=null) {
-	$prefConfig = eyeXML('getXMLconfig', array ('eyeMail', 'settings.xml'));
+	$prefConfig = xenonXML('getXMLconfig', array ('eyeMail', 'settings.xml'));
 	$prefConfig['eyeMail'][0]['sendRich'][0] = $GLOBALS['eyeMail_check1Security']->checked;
 	$prefConfig['eyeMail'][0]['recvRich'][0] = $GLOBALS['eyeMail_check2Security']->checked;
-	eyeXML('setXMLconfig',array('eyeMail','settings.xml', $prefConfig));
+	xenonXML('setXMLconfig',array('eyeMail','settings.xml', $prefConfig));
 	xenonx('messageBox', array('content' => 'Security settings has been updated.'));
 	$GLOBALS['eyeMail_preferencesWND']->close();
 }
 
 function eyeMail_on_delButton($params=null) {
-	$accountsFile = eyeXML('getXMLconfig',array('eyeMail','accounts.xml'));
+	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
 	$thekey = $GLOBALS['eyeMail_tabInfoHidden']->text;
 	xenonx('messageBox', array(
 		'title' => 'Remove Account',
@@ -304,10 +304,10 @@ function eyeMail_on_messageRemoveNo($params=null) {
 }
 
 function eyeMail_on_messageRemoveYes($params=null) {
-	$accountsFile = eyeXML('getXMLconfig',array('eyeMail','accounts.xml'));
+	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
 	$thekey = $GLOBALS['eyeMail_tabInfoHidden']->text;
 	unset($accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]);
-	eyeXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
+	xenonXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
 	if (is_object($GLOBALS['eyeMail_listAccContainer'])) {
 		$GLOBALS['eyeMail_listAccContainer']->remove();
 	}
@@ -359,7 +359,7 @@ function eyeMail_refreshListAcc($params=null) {
 		'y' => 4
 	));
 	$labelListAcc->show();
-	$accConfig = eyeXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeMail/accounts.xml'));
+	$accConfig = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeMail/accounts.xml'));
 	$accConfig = $accConfig['eyeMail'][0]['accounts'][0]['account'];
 	$accPosIndex=22;
 	global $checknum;
@@ -420,7 +420,7 @@ function eyeMail_refreshListAcc($params=null) {
 
 function eyeMail_on_accountFocus($params=null) {
 	global $myPid;
-	$accountsFile = eyeXML('getXMLconfig',array('eyeMail','accounts.xml'));
+	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
 	$accountsFile = $accountsFile['eyeMail'][0]['accounts'][0]['account'];
 	$thefocus = $params['focus'][0];
 	eyeMail_on_unlightAll();
@@ -843,7 +843,7 @@ function eyeMail_on_accountFocus($params=null) {
 
 function eyeMail_on_saveButton($params=null) {
 	$thekey = $GLOBALS['eyeMail_tabInfoHidden']->text;
-	$accountsFile = eyeXML('getXMLconfig',array('eyeMail','accounts.xml'));
+	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['name'][0] = $GLOBALS['eyeMail_tabInfoText_2']->text;
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['description'][0] = $GLOBALS['eyeMail_tabInfoText_1']->text;
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['email'][0] = $GLOBALS['eyeMail_tabInfoText_3']->text;
@@ -858,13 +858,13 @@ function eyeMail_on_saveButton($params=null) {
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['typepassword'][0] = $GLOBALS['eyeMail_tabAdvText_4']->text;
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['smtppassword'][0] = $GLOBALS['eyeMail_tabAdvText_8']->text;
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['smtpssl'][0] = $GLOBALS['eyeMail_tabAdvCheck_2']->checked;
-	eyeXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
+	xenonXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
 	xenonx('messageBox', array('content' => 'Email account has been updated.'));
 	$GLOBALS['eyeMail_preferencesWND']->close();
 }
 
 function eyeMail_on_unlightAll($params=null) {
-	$accConfig = eyeXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeMail/accounts.xml'));
+	$accConfig = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeMail/accounts.xml'));
 	$accConfig = $accConfig['eyeMail'][0]['accounts'][0]['account'];
 	foreach ($accConfig as $key=>$value) {
 		$GLOBALS['eyeMail_accUserBox'.$key]->setCSS(array(
@@ -1147,7 +1147,7 @@ function eyeMail_createAccount2($params=null) {
 }
 
 function eyeMail_finalize1($params=null) {
-	$accountsFile = eyeXML('getXMLconfig',array('eyeMail','accounts.xml'));
+	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
 	if (!is_array($accountsFile['eyeMail'][0]['accounts'][0]['account'])) {
 		$accountsFile['eyeMail'][0]['accounts'][0] = array('account' => array( 0 => array()));
 		$i = 0;
@@ -1169,7 +1169,7 @@ function eyeMail_finalize1($params=null) {
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['typepassword'][0] = $GLOBALS['eyeMail_textAcc3']->text;
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtppassword'][0] = $GLOBALS['eyeMail_textAcc3']->text;
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtpssl'][0] = $GLOBALS['eyeMail_infoHidden']->text['smtpssl'][0];
-	eyeXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
+	xenonXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
 	xenonx('messageBox', array('content' => 'Email account has been created.'));
 	if(is_object($GLOBALS['eyeMail_listAccContainer'])) {
 		$GLOBALS['eyeMail_listAccContainer']->remove();
@@ -1190,7 +1190,7 @@ function eyeMail_finalize1($params=null) {
 }
 
 function eyeMail_finalize2($params=null) {
-	$accountsFile = eyeXML('getXMLconfig',array('eyeMail','accounts.xml'));
+	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
 	if (!is_array($accountsFile['eyeMail'][0]['accounts'][0]['account'])) {
 		$accountsFile['eyeMail'][0]['accounts'][0] = array('account' => array( 0 => array()));
 		$i = 0;
@@ -1212,7 +1212,7 @@ function eyeMail_finalize2($params=null) {
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['typepassword'][0] = $GLOBALS['eyeMail_thetextbox7']->text;
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtppassword'][0] = $GLOBALS['eyeMail_thetextbox8']->text;
 	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtpssl'][0] = $GLOBALS['eyeMail_smtpsslcheck']->checked;
-	eyeXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
+	xenonXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
 	xenonx('messageBox', array('content' => 'Email account has been created.'));
 	eyeMail_refreshListAcc();
 	eyeMail_on_cancelAccButton();

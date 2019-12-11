@@ -24,7 +24,7 @@ function eyeFiles_run($params = '') {
 		$_SESSION['eyeFiles'][$myPid]['history']['position'] = -1;
 	}
 
-	$xml = eyeXML('getXMLconfig',array('eyeFiles','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeFiles','conf.xml'));
 	if (isset($xml['eyeFiles'][0]['Box']) === false || !$xml['eyeFiles'][0]['Box'][0]) {
 		$xml['eyeFiles'][0]['Box'][0] = 'Tree';
 	}

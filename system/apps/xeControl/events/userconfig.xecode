@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function xeControl_on_userconfig_methodSelect ($params = '') {
 	$switch = $params[arg0][0];
 	$xmlfile = XENONOS_ROOT .'/'. SYSTEM_DIR .'/' . SYSTEM_CONF_DIR . '/userconfig/'. $switch .'.xml';
-	$xml = eyeXML('getXMLfile', array($xmlfile));
+	$xml = xenonXML('getXMLfile', array($xmlfile));
 	$GLOBALS['xeControl_userconfig_hidden_xml']->setText($xmlfile);
 	
 	if ($switch == CONFIG_MODULE) {
@@ -45,7 +45,7 @@ function xeControl_on_userconfig_paramEdit ($params = '') {
 	}
 	
 	$xmlfile = $GLOBALS['xeControl_userconfig_hidden_xml']->text;
-	$xml = eyeXML('getXMLfile', array($xmlfile));
+	$xml = xenonXML('getXMLfile', array($xmlfile));
 	
 	foreach($xml['eyeConfig_module'][0]['constant'] as $setting) {
 		if ($setting['name'][0] == $sel) {
@@ -73,7 +73,7 @@ function xeControl_on_userconfig_paramEdit_save ($params = '') {
 	$sel = $GLOBALS['xeControl_userconfig_table_params']->selected;
 	$val = $params['xeControl_userconfig_textbox_param_newValue'][0];
 	$xmlfile = $GLOBALS['xeControl_userconfig_hidden_xml']->text;
-	$xml = eyeXML('getXMLfile', array($xmlfile));
+	$xml = xenonXML('getXMLfile', array($xmlfile));
 	
 	for ($s = 0; $s<count($xml['eyeConfig_module'][0]['constant']); $s++) {
 		if ($xml['eyeConfig_module'][0]['constant'][$s]['name'][0] == $sel) {
@@ -86,7 +86,7 @@ function xeControl_on_userconfig_paramEdit_save ($params = '') {
 	}
 	
 	$GLOBALS['xeControl_userconfig_dialog']->close();
-	eyeXML('setXMLfile', array($xmlfile, $xml));
+	xenonXML('setXMLfile', array($xmlfile, $xml));
 	
 	$val = $GLOBALS['xeControl_userconfig_select_method']->selected;
 	xenonx('messageBox', array('content' => "New Parameter Value Saved"));

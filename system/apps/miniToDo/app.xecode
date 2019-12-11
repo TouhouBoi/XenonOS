@@ -129,7 +129,7 @@ function miniToDo_run($params = '') {
 		vfs('real_mkDir', array($path));
 	}
 
-	$config = eyeXML('getXMLconfig',array('miniToDo','notes.xml'));
+	$config = xenonXML('getXMLconfig',array('miniToDo','notes.xml'));
 
 	if($config){
 		foreach($config['notes'][0]['note'] as $note) {

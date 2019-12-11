@@ -51,7 +51,7 @@ function lib_vGroups_createGroup($params=null) {
 				)
 			)
 		);
-		eyeXML('setXMLfile',array($path,$groupInfo));
+		xenonXML('setXMLfile',array($path,$groupInfo));
 		return true;
 }
 function lib_vGroups_updateGroup($params){
@@ -71,7 +71,7 @@ function lib_vGroups_updateGroup($params){
 		}
 	}
 	$path = vGroups('groupInfoPath',array($groupName));
-	if(eyeXML('setXMLfile',array($path,$newInfo))){
+	if(xenonXML('setXMLfile',array($path,$newInfo))){
 		return true;
 	}else{
 		return false;
@@ -84,7 +84,7 @@ function lib_vGroups_retriveGroup($params){
 	}
 	$groupName = $params['name'];
 	$path = vGroups('groupInfoPath',array($groupName));
-	return eyeXML('getXMLfile',array($path));
+	return xenonXML('getXMLfile',array($path));
 }
 function lib_vGroups_deleteGroup($params=null){
 	if($params == null || empty($params['name'])){
@@ -173,7 +173,7 @@ function lib_vGroups_addMember($params=null) {
 			)
 		)
 	);
-	eyeXML('setXMLfile',array($path,$memberInfo));
+	xenonXML('setXMLfile',array($path,$memberInfo));
 	return true;
 }
 //List all memebers of one group
@@ -216,7 +216,7 @@ function lib_vGroups_retriveMember($params=null) {
 
 	$path = vGroups('memberInfoPath',array($name,$group));
 
-	return eyeXML('getXMLfile',array($path));
+	return xenonXML('getXMLfile',array($path));
 }
 function lib_vGroups_updateMember($params=null) {
 	if($params == null || empty($params['name']) || empty($params['group'])){
@@ -228,7 +228,7 @@ function lib_vGroups_updateMember($params=null) {
 
 	$path = vGroups('memberInfoPath',array($name,$group));
 
-	if(eyeXML('setXMLfile',array($path,$info))){
+	if(xenonXML('setXMLfile',array($path,$info))){
 		return true;
 	}else{
 		return false;

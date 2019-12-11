@@ -151,9 +151,9 @@ function xeControl_on_groups_rename($params = '') {
 		vfs('real_move',array($dir_old,$dir_new));
 		if ($group_old == DEFAULT_GROUP) {
 			$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/' . 'system.xml';
-			$XML = eyeXML('getXMLfile',array($file));
+			$XML = xenonXML('getXMLfile',array($file));
 			$XML['CONFIG'][0]['DEFAULT_GROUP'][0] = $group_new;
-			eyeXML('setXMLFile',array($file,$XML));
+			xenonXML('setXMLFile',array($file,$XML));
 		}
 		if ($_SESSION['groups'][$group_old] && $oldUser == xeControl_lib_getConfigUser()) {
 			unset($_SESSION['groups'][$group_old]);
@@ -176,9 +176,9 @@ function xeControl_on_groups_default($params = '') {
 	$group = $GLOBALS['xeControl_groups_sortabletable']->selected;
 	if ($group && $group != DEFAULT_GROUP) {
 		$File = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/' . 'system.xml';
-		$XML = eyeXML('getXMLfile',array($File));
+		$XML = xenonXML('getXMLfile',array($File));
 		$XML['CONFIG'][0]['DEFAULT_GROUP'][0] = $group;
-		eyeXML('setXMLFile',array($File,$XML));
+		xenonXML('setXMLFile',array($File,$XML));
 		xenonx('messageBox',array('content' => 'Default group successfully saved. You need to restart your session now.'));
 	} elseif ($group == DEFAULT_GROUP) {
 		xenonx('messageBox',array('content' => 'The chosen group is already the default group!'));

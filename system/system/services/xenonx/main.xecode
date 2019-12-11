@@ -59,7 +59,7 @@ function service_xenonx_setDiv($params)
 		)
 	);
 
-	$myAction = xenonxML('array2xml', array($task));
+	$myAction = xenonXML('array2xml', array($task));
 
 	mmap('addToBuffer',array($myAction));
 
@@ -87,7 +87,7 @@ function service_xenonx_loadScript($params = null)
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 
 	mmap('addToBuffer', array($myAction));
 
@@ -118,7 +118,7 @@ function service_xenonx_loadCSS($params)
 		)
 	);
 
-	$myAction = xenonxML('array2xml', array($task));
+	$myAction = xenonXML('array2xml', array($task));
 
 	mmap('addToBuffer',array($myAction));
 
@@ -147,7 +147,7 @@ function service_xenonx_removeCSS($params)
 		)
 	);
 
-	$myAction = xenonxML('array2xml', array($task));
+	$myAction = xenonXML('array2xml', array($task));
 
 	mmap('addToBuffer', array($myAction));
 
@@ -192,7 +192,7 @@ function service_xenonx_setWallpaper($params)
 		)
 	);
 
-	$myAction = xenonxML('array2xml', array($task));
+	$myAction = xenonXML('array2xml', array($task));
 
 	mmap('addToBuffer', array($myAction));
 
@@ -430,7 +430,7 @@ function service_xenonx_createDiv($params)
 		)
 	);
 
-	$myAction = xenonxML('array2xml', array($task));
+	$myAction = xenonXML('array2xml', array($task));
 
 	mmap('addToBuffer', array($myAction));
 
@@ -493,7 +493,7 @@ function service_xenonx_createWidget($params)
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -526,7 +526,7 @@ function service_xenonx_removeWidget($params) {
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -807,7 +807,7 @@ function service_xenonx_messageBox($params = '') {
 		$action['action'][0]['task'][0] = 'messageBox';
 		$action['action'][0]['content'][0] = utf8_htmlspecialchars(i18n('translate', array($params['content'], $params['tokens'])), ENT_QUOTES);
 		$action['action'][0]['type'][0] = $params['type'];
-		mmap('addToBuffer',array(xenonxML('array2xml',array($action))));
+		mmap('addToBuffer',array(xenonXML('array2xml',array($action))));
 	}
 	return true;
 }
@@ -849,7 +849,7 @@ function service_xenonx_setValue($params) {
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -891,7 +891,7 @@ function service_xenonx_setValueB64($params) {
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -934,7 +934,7 @@ function service_xenonx_concatValueB64($params) {
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -977,7 +977,7 @@ function service_xenonx_concatValue($params) {
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1020,7 +1020,7 @@ function service_xenonx_concatDiv($params) {
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1052,7 +1052,7 @@ function service_xenonx_rawjs($params) { //useful for widgets
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1109,7 +1109,7 @@ function service_xenonx_runjs($params) { //util for widgets
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1151,7 +1151,7 @@ function service_xenonx_moveWidget($params) {
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1193,7 +1193,7 @@ function service_xenonx_resizeWidget($params) {
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1230,7 +1230,7 @@ function service_xenonx_makeDrag($params) {
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1272,7 +1272,7 @@ function service_xenonx_updateCss($params)
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1319,7 +1319,7 @@ function service_xenonx_addEvent($params)
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1367,7 +1367,7 @@ function service_xenonx_sendMessage($params) {
 		)
 	);
 
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1415,7 +1415,7 @@ function service_xenonx_createLayer($params=''){
 	);
 	eyeSessions('addArrayValueByKey',array(LTABLE,'  ',$name));
 	//Adding this layer in layer table with empty content.
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
  }
@@ -1448,7 +1448,7 @@ function service_xenonx_removeLayer($params){
 			$atribs
 		)
 	);
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1481,7 +1481,7 @@ function service_xenonx_showLayer($params){
 			$atribs
 		)
 	);
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
  }
@@ -1513,7 +1513,7 @@ function service_xenonx_hideLayer($params){
 			$atribs
 		)
 	);
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
  }
@@ -1558,7 +1558,7 @@ function service_xenonx_fadeOutLayer($params){
 			$atribs
 		)
 	);
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1603,7 +1603,7 @@ function service_xenonx_fadeInLayer($params){
 			$atribs
 		)
 	);
-	$myAction = xenonxML('array2xml',array($task));
+	$myAction = xenonXML('array2xml',array($task));
 	mmap('addToBuffer',array($myAction));
 	return true;
 }
@@ -1691,7 +1691,7 @@ function service_xenonx_systemSound($params = '') {
 		return false;
 	}
 
-	$xml = xenonxML('getXMLconfig', array('eyeDesk', 'conf.xml'));
+	$xml = xenonXML('getXMLconfig', array('eyeDesk', 'conf.xml'));
 	if (isset($xml['eyeDesk'][0]['systemSounds'][0]) && !$xml['eyeDesk'][0]['systemSounds'][0]) {
 		return false;
 	} else {
@@ -1709,7 +1709,7 @@ function service_xenonx_jscolor($params = '') {
 	global $currentUser;
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$xml = xenonxML('getXMLfile', array($url));
+	$xml = xenonXML('getXMLfile', array($url));
 	$currentUser = $oldUser;
 
 	$prop = 'adjust: false, caps: false, hash: true, required: false';

@@ -53,7 +53,7 @@ function lib_eyeCalendar_getDayNotes($params){
 		$notes = vfs('real_getDirContent',array($dir,'*.'.EYENOTE_EXT));
 		if(!empty($notes)){
 			foreach($notes as $note){
-				$xml = eyeXML('getXMLfile',array($note));
+				$xml = xenonXML('getXMLfile',array($note));
 				$xml['note'][0]['calendar'][0] = $calendarNum;
 				$returnNotes[] = $xml;
 			}
@@ -142,7 +142,7 @@ function lib_eyeCalendar_saveNote($params)
 	vfs('real_create',array($noteDir));
 	$fp = vfs('real_open',array($noteDir,'r+'));
 	//converting array to xml.
-	$xml = eyeXML('array2xml',array($data));
+	$xml = xenonXML('array2xml',array($data));
 	fwrite($fp,$xml);
 	fclose($fp);
 }
@@ -174,7 +174,7 @@ function lib_eyeCalendar_retriveNote($params){
 	$noteDir .= '/'.$myDay;
 	$noteDir .= '/'.$dateInt.'.'.EYENOTE_EXT;
 
-	$xml = eyeXML('getXMLfile',array($noteDir));
+	$xml = xenonXML('getXMLfile',array($noteDir));
 	$xml['note'][0]['title'][0] = base64_decode($xml['note'][0]['title'][0]);
 	$xml['note'][0]['calendar'][0] = $calendar;
 	return $xml;
@@ -190,7 +190,7 @@ function lib_eyeCalendar_updateNote($params){
 	$dir = getDirTime($oldId,$calendar,$remoteType);
 	$file = $dir.'/'.$oldId.'.'.EYENOTE_EXT;
 
-	eyeXml('setXMLfile',array($file,$info));
+	xenonXML('setXMLfile',array($file,$info));
 
 	if($id != $oldId){
 		$dir = getDirTime($id,$calendar,$remoteType);
@@ -217,7 +217,7 @@ function lib_eyeCalendar_getCalendarsInfo(){
 	if(!vfs('real_fileExists',array($calendarsInfo))){
 		return false;
 	}
-	$calendarsInfo = eyeXml('getXMLfile',array($calendarsInfo));
+	$calendarsInfo = xenonXML('getXMLfile',array($calendarsInfo));
 	return $calendarsInfo;
 }
 function lib_eyeCalendar_setCalendarsInfo($params){
@@ -238,7 +238,7 @@ function lib_eyeCalendar_setCalendarsInfo($params){
 		}
 	}
 	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.CALENDARSINFO;
-	if(!eyeXml('setXMLfile',array($calendarsInfo,$myCalendars))){
+	if(!xenonXML('setXMLfile',array($calendarsInfo,$myCalendars))){
 		return false;
 	}
 	return true;
@@ -273,7 +273,7 @@ function lib_eyeCalendar_updateCalendarsInfo($params){
 	}
 
 	$calendarsInfo = $calendarsPath.CALENDARSINFO;
-	if(!eyeXml('setXMLfile',array($calendarsInfo,$myCalendars))){
+	if(!xenonXML('setXMLfile',array($calendarsInfo,$myCalendars))){
 		return false;
 	}
 	//Moving old calendars to new calendar
@@ -367,7 +367,7 @@ function lib_eyeCalendar_createCalendar($params){
 
 	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.CALENDARSINFO;
 
-	if(!eyeXml('setXMLfile',array($calendarsInfo,$myCalendars))){
+	if(!xenonXML('setXMLfile',array($calendarsInfo,$myCalendars))){
 		return false;
 	}
 
@@ -386,7 +386,7 @@ function lib_eyeCalendar_deleteCalendar($params){
 	}
 
 	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.CALENDARSINFO;
-	if(!eyeXml('setXMLfile',array($calendarsInfo,$myCalendars))){
+	if(!xenonXML('setXMLfile',array($calendarsInfo,$myCalendars))){
 		return false;
 	}
 
@@ -444,7 +444,7 @@ function lib_eyeCalendar_indexCalendarInfo($params){
 		$myCalendars['calendars'][0]['calendarInfo'][$key]['selected'][0] = $selected;
 	}
 	$calendarsInfo = $calendarsPath.CALENDARSINFO;
-	if(!eyeXml('setXMLfile',array($calendarsInfo,$myCalendars))){
+	if(!xenonXML('setXMLfile',array($calendarsInfo,$myCalendars))){
 		return false;
 	}
 }
@@ -480,7 +480,7 @@ function lib_eyeCalendar_setCurrentCalendar($params){
 		}
 	}
 	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.CALENDARSINFO;
-	if(!eyeXml('setXMLfile',array($calendarsInfo,$myCalendars))){
+	if(!xenonXML('setXMLfile',array($calendarsInfo,$myCalendars))){
 		return false;
 	}
 	return true;
@@ -492,23 +492,23 @@ function lib_eyeCalendar_setDefaultView($params){
 	$view = $params[0];
 	$info = eyeCalendar('getConfig');
 	$info['eyeCalendar'][0]['defaultView'][0] = $view;
-	eyeXML('setXMLconfig',array('eyeCalendar','conf.xml',$info));
+	xenonXML('setXMLconfig',array('eyeCalendar','conf.xml',$info));
 }
 function lib_eyeCalendar_getDefaultView(){
 	$info = eyeCalendar('getConfig');
 	return $info['eyeCalendar'][0]['defaultView'][0];
 }
 function lib_eyeCalendar_getConfig(){
-	$info = eyeXML('getXMLconfig',array('eyeCalendar','conf.xml'));
+	$info = xenonXML('getXMLconfig',array('eyeCalendar','conf.xml'));
 	return $info;
 }
 function lib_eyeCalendar_setConfig($params=''){
 	$info = $params[0];
-	eyeXML('setXMLconfig',array('eyeCalendar','conf.xml',$info));
+	xenonXML('setXMLconfig',array('eyeCalendar','conf.xml',$info));
 }
 
 function lib_eyeCalendar_geti10n(){
-	$info = eyeXML('getXMLconfig',array('eyeCalendar','conf.xml'));
+	$info = xenonXML('getXMLconfig',array('eyeCalendar','conf.xml'));
 //TODO: extens it if we need
 	if(isset($info['eyeCalendar'][0]['startMonday'][0])){
 		return array('startDay'=>$info['eyeCalendar'][0]['startMonday'][0]);

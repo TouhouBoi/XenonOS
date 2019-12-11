@@ -23,13 +23,13 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 /**
 * Opens an XML file and returns it as an array.
 */
-function lib_eyeXML_getXMLfile($params) {
+function lib_xenonXML_getXMLfile($params) {
 	if (!isset($params[0])) {
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
 	}
 
-	return lib_eyeXML_xml2array(array(vfs('real_getFileContent', array($params[0]))));
+	return lib_xenonXML_xml2array(array(vfs('real_getFileContent', array($params[0]))));
 }
 
 /**
@@ -43,7 +43,7 @@ function lib_eyeXML_getXMLfile($params) {
 *	false.
 * @date 2009/12/05
 */
-function lib_eyeXML_setXMLfile($params) {
+function lib_xenonXML_setXMLfile($params) {
 	if (!isset($params[0]) || !isset($params[1])) {
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
@@ -51,7 +51,7 @@ function lib_eyeXML_setXMLfile($params) {
 	if (isset($params[2]) === false) {
 		$params[2] = false;
 	}
-	if (vfs('real_putFileContent', array($params[0], lib_eyeXML_array2xml(array($params[1], $params[2])))) === false) {
+	if (vfs('real_putFileContent', array($params[0], lib_xenonXML_array2xml(array($params[1], $params[2])))) === false) {
 		return false;
 	}
 	return true;
@@ -68,7 +68,7 @@ function lib_eyeXML_setXMLfile($params) {
 *	of the read file. Otherwise, returns false.
 * @date 2009/12/05
 */
-function lib_eyeXML_getXMLconfig($params) {
+function lib_xenonXML_getXMLconfig($params) {
 	if (!isset($params[0]) || !isset($params[1])) {
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
@@ -91,7 +91,7 @@ function lib_eyeXML_getXMLconfig($params) {
 		}
 	}
 
-	return lib_eyeXML_getXMLfile(array($path));
+	return lib_xenonXML_getXMLfile(array($path));
 }
 
 /**
@@ -106,7 +106,7 @@ function lib_eyeXML_getXMLconfig($params) {
 *	true. Otherwise returns false.
 * @date 2009/12/05
 */
-function lib_eyeXML_setXMLconfig($params) {
+function lib_xenonXML_setXMLconfig($params) {
 	if (!isset($params[0]) || !isset($params[1]) || !isset($params[2])) {
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
@@ -119,6 +119,6 @@ function lib_eyeXML_setXMLconfig($params) {
 	if (!vfs('real_fileExists', array($path))) {
 		vfs('real_mkdir', array($path));
 	}
-	return lib_eyeXML_setXMLfile(array($path . $params[1], $params[2]));
+	return lib_xenonXML_setXMLfile(array($path . $params[1], $params[2]));
 }
 ?>

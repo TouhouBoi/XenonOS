@@ -344,7 +344,7 @@ function eyePictures_setPicStatusBarInfo($params) {
 		else {
 			$realFile = vfs('getRealName',array($file));
 			$eyeInfo = str_replace(array(eyeFile),'eyeInfo',$realFile);
-			$xml = eyeXML('getXMLfile', array($eyeInfo));
+			$xml = xenonXML('getXMLfile', array($eyeInfo));
 			
 			$timestamp = $xml['eyeFile'][0]['created'][0];
 			$author = $xml['eyeFile'][0]['author'][0];
@@ -576,7 +576,7 @@ function eyePictures_slideShow($params=null) {
 	$path .= CONF_USER_DIR .'/'. eyePictures.'/conf.xml';
 	
 	if (file_exists($path)) {
-		$config=eyeXML('getXMLconfig', array('eyePictures', 'conf.xml'));
+		$config=xenonXML('getXMLconfig', array('eyePictures', 'conf.xml'));
 		$delay = $config['eyePictures'][0]['slideShowDelay'][0] * 1000;
 	} else {
 		$delay = 5000;
@@ -1319,7 +1319,7 @@ function eyePictures_on_fullScreenCheck($params=null) {
 	$path .= CONF_USER_DIR .'/'. eyePictures.'/conf.xml';
 	
 	if (file_exists($path)) {
-		$config=eyeXML('getXMLconfig', array('eyePictures', 'conf.xml'));
+		$config=xenonXML('getXMLconfig', array('eyePictures', 'conf.xml'));
 		$gtfs = $config['eyePictures'][0]['goToFullScreen'][0];
 		if ($gtfs == 1 && !$GLOBALS['eyePictures_MainWnd']->fullScreen) {
 			eyePictures_on_fullScreenSignal($params=null);

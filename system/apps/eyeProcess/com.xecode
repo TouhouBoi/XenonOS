@@ -44,7 +44,7 @@ function eyeProcess_com_onLaunch($params = '') {
 		
 		// Applications
 		$application = basename($process['appName']);
-		$infoXml = eyeXML('getXMLfile', array(XENONOS_ROOT . '/' . APP_DIR . '/' . $application . '/info.xml'));
+		$infoXml = xenonXML('getXMLfile', array(XENONOS_ROOT . '/' . APP_DIR . '/' . $application . '/info.xml'));
 		
 		if (is_array($infoXml) && $infoXml['package'][0]['type'][0] !== 'System' && eyeWidgets('hasWidgets', array($pid))) {
 			if (vfs('real_fileExists', array($iconsThemePath . $application . '.png')) || vfs('real_fileExists', array($iconsDefaultPath . $application . '.png'))) {

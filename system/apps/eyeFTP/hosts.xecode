@@ -211,9 +211,9 @@ function eyeFTP_getSavedHosts() {
 	if(!vfs('real_fileExists',array($file))) {
 		vfs('real_create',array($file));
 		$myF['eyeFTP'] = array();
-		eyeXML('setXMLfile',array($file,$myF));
+		xenonXML('setXMLfile',array($file,$myF));
 	}
-	$content = eyeXML('getXMLfile',array($file));
+	$content = xenonXML('getXMLfile',array($file));
 
 	$i = 1;
 	$hosts = array();
@@ -258,9 +258,9 @@ function eyeFTP_saveHosts($hosts) {
 	if(!vfs('real_fileExists',array($file))) {
 		vfs('real_create',array($file));
 		$myF['eyeFTP'] = array();
-		eyeXML('setXMLfile',array($file,$myF));
+		xenonXML('setXMLfile',array($file,$myF));
 	}
-	$content = eyeXML('getXMLfile',array($file));
+	$content = xenonXML('getXMLfile',array($file));
 
 	//delete all saved hosts
 	if (is_array($content['eyeFTP'][0]['host']))
@@ -275,7 +275,7 @@ function eyeFTP_saveHosts($hosts) {
 		$content['eyeFTP'][0]['host'][$i]['listA'][0] = $currentHost['listA'];
 		$i++;
 	}
-	$myXml = eyeXML('array2xml',array($content));
+	$myXml = xenonXML('array2xml',array($content));
 	$fp = vfs('real_open',array($file,'w'));
 	fwrite($fp,$myXml);
 	fclose($fp);

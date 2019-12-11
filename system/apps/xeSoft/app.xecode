@@ -32,7 +32,7 @@ function xeSoft_run($params = null)
 		return;
 	}
 	
-	$config = eyeXML('getXMLfile',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports.xml'));
+	$config = xenonXML('getXMLfile',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports.xml'));
 
 	$myWindow = new Window(array('name' => 'xeSoft', 'father' => 'eyeApps', 'cent' => 1, 'width' => 650, 'height' => 570, 'title' => 'Packages Manager', 'style' => TITLE + LISTED + MIN + CLOSE, 'savePosition' => 1));
 	

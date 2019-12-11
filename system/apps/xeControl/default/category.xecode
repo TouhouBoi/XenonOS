@@ -53,7 +53,7 @@ if ($selCategory == 'others') {
 		foreach ($openDir as $file) {
 			$oldUser = $currentUser;
 			$currentUser = ROOTUSER;
-			$content = eyeXML('getXMLfile',array($file));
+			$content = xenonXML('getXMLfile',array($file));
 			$currentUser = $oldUser;
 			$content = $content['content'][0];
 			if ($content['show'][0] != 'no' && ($content['permissions'][0] == 'all'

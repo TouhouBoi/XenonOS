@@ -30,7 +30,7 @@ function eyeDesk_run($params = '') {
 		copy(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . $config,$userDir . $config);
 	}
 
-	$xml = eyeXML('getXMLconfig',array('eyeDesk', 'conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDesk', 'conf.xml'));
 	$share = getConfig('eyeDesk','conf.xml');
 	if (check_versions($xml['eyeDesk'][0]['confVersion'][0], XENONOS_VERSION) === 2) {
 		// miniActions
@@ -55,7 +55,7 @@ function eyeDesk_run($params = '') {
 			}
 			copy(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . CONF_USER_DIR . '/skel/' . CONF_USER_DIR . '/eyeDock/conf.xml', $userDir . '/' . CONF_USER_DIR . '/eyeDock/conf.xml');
 
-			$navXml = eyeXML('getXMLconfig', array('eyeNav', 'conf.xml'));
+			$navXml = xenonXML('getXMLconfig', array('eyeNav', 'conf.xml'));
 			$bookmarks = array();
 			$id = 0;
 			foreach ($navXml['eyeNav'][0]['bookmarks'][0]['category'] as $category) {
@@ -77,7 +77,7 @@ function eyeDesk_run($params = '') {
 			}
 			unset($navXml['eyeNav'][0]['bookmarks'][0]['category']);
 			$navXml['eyeNav'][0]['bookmarks'][0]['bookmark'] = $bookmarks;
-			eyeXML('setXMLconfig', array('eyeNav', 'conf.xml', $navXml));
+			xenonXML('setXMLconfig', array('eyeNav', 'conf.xml', $navXml));
 		}
 
 		// oneye 0.8.0
@@ -85,7 +85,7 @@ function eyeDesk_run($params = '') {
 			if ($xml['eyeDesk'][0]['theme'][0] === 'default') {
 				$xml['eyeDesk'][0]['theme'][0] = 'defaultPlus';
 			}
-			$dockXml = eyeXML('getXMLconfig', array('eyeDock', 'conf.xml'));
+			$dockXml = xenonXML('getXMLconfig', array('eyeDock', 'conf.xml'));
 			foreach ($dockXml['eyeDock'][0] as $k1 => $v1) {
 				foreach ($v1[0] as $k2 => $v2) {
 					foreach ($v2[0] as $k3 => $v3) {
@@ -100,12 +100,12 @@ function eyeDesk_run($params = '') {
 					}
 				}
 			}
-			eyeXML('setXMLconfig', array('eyeDock', 'conf.xml', $dockXml));
+			xenonXML('setXMLconfig', array('eyeDock', 'conf.xml', $dockXml));
 		}
 
 		// oneye 0.8.1
 		if (check_versions($xml['eyeDesk'][0]['confVersion'][0], '1.10.1.0') === 2) {
-			$dockXml = eyeXML('getXMLconfig', array('eyeDock', 'conf.xml'));
+			$dockXml = xenonXML('getXMLconfig', array('eyeDock', 'conf.xml'));
 			foreach ($dockXml['eyeDock'][0] as $k1 => $v1) {
 				foreach ($v1[0] as $k2 => $v2) {
 					foreach ($v2[0] as $k3 => $v3) {
@@ -117,20 +117,20 @@ function eyeDesk_run($params = '') {
 					}
 				}
 			}
-			eyeXML('setXMLconfig', array('eyeDock', 'conf.xml', $dockXml));
+			xenonXML('setXMLconfig', array('eyeDock', 'conf.xml', $dockXml));
 		}
 
 		// oneye 0.9.6 Preview
 		if (check_versions($xml['eyeDesk'][0]['confVersion'][0], '1.11.6.0') === 2) {
-			$data = eyeXML('getXMLconfig', array('eyePdf', 'conf.xml'));
+			$data = xenonXML('getXMLconfig', array('eyePdf', 'conf.xml'));
 			if ($data['eyePdf'][0]['renderer'][0] === 'plugin') {
 				$data['eyePdf'][0]['renderer'][0] = 'pdf.js';
-				eyeXML('setXMLconfig', array('eyePdf', 'conf.xml', $xml));
+				xenonXML('setXMLconfig', array('eyePdf', 'conf.xml', $xml));
 			}
 		}
 
 		$xml['eyeDesk'][0]['confVersion'][0] = XENONOS_VERSION;
-		eyeXML('setXMLconfig',array('eyeDesk', 'conf.xml', $xml));
+		xenonXML('setXMLconfig',array('eyeDesk', 'conf.xml', $xml));
 	}
 
 	$theme = basename($xml['eyeDesk'][0]['theme'][0]);
@@ -143,7 +143,7 @@ function eyeDesk_run($params = '') {
 
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
-		$themexml = eyeXML('getXMLfile', array($path . $theme . '/conf/theme.xml'));
+		$themexml = xenonXML('getXMLfile', array($path . $theme . '/conf/theme.xml'));
 		$currentUser = $oldUser;
 		if ($themexml['theme'][0]['cssBase'][0]) {
 			xenonx('loadCSS',array(
@@ -248,7 +248,7 @@ function eyeDesk_run($params = '') {
 				unset($xml['eyeDesk'][0]['nextlaunch'][$x]);
 				$x++;
 			}
-			eyeXML('setXMLfile',array($userDir . $config,$xml));
+			xenonXML('setXMLfile',array($userDir . $config,$xml));
 		}
 	} else {
 		foreach (proc('getProcessTable') as $key => $value) {

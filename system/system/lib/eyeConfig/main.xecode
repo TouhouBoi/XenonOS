@@ -34,7 +34,7 @@ function lib_eyeConfig_init () {
 		if (file_exists($module)) {
 			// Load constants
 			$xmlfile = XENONOS_ROOT .'/'. SYSTEM_DIR .'/' . SYSTEM_CONF_DIR . '/userconfig/'. CONFIG_MODULE .'.xml';
-			$xml = eyeXML('getXMLfile', array($xmlfile));
+			$xml = xenonXML('getXMLfile', array($xmlfile));
 			if (isset($xml['eyeConfig_module'][0]['constant'])) {
 				foreach($xml['eyeConfig_module'][0]['constant'] as $constant) {
 					define($constant['name'][0], $constant['value'][0]);
@@ -93,7 +93,7 @@ function lib_eyeConfig_swap ($params) {
 
 	// Load the system conf file
 	$xmlfile = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
-	$xml = eyeXML('getXMLfile', array($xmlfile));
+	$xml = xenonXML('getXMLfile', array($xmlfile));
 
 	// Phase 1 : Conversion of Data to XML
 	if ($from == CONFIG_MODULE) {
@@ -117,7 +117,7 @@ function lib_eyeConfig_swap ($params) {
 
 		// Set new method
 		$xml['CONFIG'][0]['CONFIG_MODULE'][0] = $to;
-		eyeXML('setXMLFile',array($xmlfile, $xml));
+		xenonXML('setXMLFile',array($xmlfile, $xml));
 
 		// If we don't want to finish off in XML, restart server process to reload new module functions (bounces off xeControl)
 		if ($to !== "xml") {
@@ -152,7 +152,7 @@ function lib_eyeConfig_swap ($params) {
 		// If something goes wrong, we default to XML (so we have a workable system)
 		if ($ret === false) {
 			$xml['CONFIG'][0]['CONFIG_MODULE'][0] = "xml";
-			eyeXML('setXMLFile',array($xmlfile, $xml));
+			xenonXML('setXMLFile',array($xmlfile, $xml));
 			xenonx('messageBox', array('content' => 'Something went wrong! Defaulting to XML.'));
 			return false;
 		} else {

@@ -23,13 +23,13 @@ function eyeManageApps_on_Bottom_Refresh($params = '') {
 }
 
 function eyeManageApps_on_Bottom_ShowHide($params = '') {
-	$xml = eyeXML('getXMLconfig',array('eyeDock', 'conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock', 'conf.xml'));
 	if ($xml['eyeDock'][0]['bottom'][0]['show'][0]) {
 		$xml['eyeDock'][0]['bottom'][0]['show'][0] = '0';
 	} else {
 		$xml['eyeDock'][0]['bottom'][0]['show'][0] = '1';
 	}
-	eyeXML('setXMLconfig',array('eyeDock', 'conf.xml', $xml));
+	xenonXML('setXMLconfig',array('eyeDock', 'conf.xml', $xml));
 	eyeManageApps_on_Bottom_Refresh();
 }
 
@@ -50,13 +50,13 @@ function eyeManageApps_on_Top_Refresh($params = '') {
 }
 
 function eyeManageApps_on_Top_ShowHide($params = '') {
-	$xml = eyeXML('getXMLconfig',array('eyeDock', 'conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock', 'conf.xml'));
 	if ($xml['eyeDock'][0]['top'][0]['show'][0]) {
 		$xml['eyeDock'][0]['top'][0]['show'][0] = '0';
 	} else {
 		$xml['eyeDock'][0]['top'][0]['show'][0] = '1';
 	}
-	eyeXML('setXMLconfig',array('eyeDock', 'conf.xml', $xml));
+	xenonXML('setXMLconfig',array('eyeDock', 'conf.xml', $xml));
 	eyeManageApps_on_Top_Refresh();
 }
 ?>

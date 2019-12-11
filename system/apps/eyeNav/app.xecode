@@ -28,7 +28,7 @@ function eyeNav_run($params = '')
 {
 	global $myPid;
 
-	$xml = eyeXML('getXMLconfig', array('eyeNav','conf.xml'));
+	$xml = xenonXML('getXMLconfig', array('eyeNav','conf.xml'));
 
 	$myWindow = new Window(
 		array (

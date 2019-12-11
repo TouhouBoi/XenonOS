@@ -42,7 +42,7 @@ function eyeMail_run($params=null) {
 
 	global $myPid, $checknum;
 	// error_reporting(E_ALL);
-	$config = eyeXML('getXMLconfig',array('eyeMail','settings.xml'));
+	$config = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
 	
 	$myWindow = new Window(array(
 		'title'=>'eyeMail',

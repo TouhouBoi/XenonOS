@@ -27,11 +27,11 @@ if(!file_exists($path)){
 
 $file = $path .'/conf.xml';
 if (file_exists($file)) {
-	$config=eyeXML('getXMLconfig', array('eyePictures', 'conf.xml'));
+	$config=xenonXML('getXMLconfig', array('eyePictures', 'conf.xml'));
 } else {
 	$config['eyePictures'][0]['slideShowDelay'][0] = 5;
 	$config['eyePictures'][0]['goToFullScreen'][0] = 0;
-	eyeXML('setXMLconfig',array('eyePictures','conf.xml',$config));
+	xenonXML('setXMLconfig',array('eyePictures','conf.xml',$config));
 }
 $currentUser = $oldUser;
 

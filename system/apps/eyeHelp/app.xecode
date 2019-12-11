@@ -187,7 +187,7 @@ function eyeHelp_run($params = null)
 
 	$currentUser = $oldUser;
 
-	$info = eyeXML('xml2array', array($InfoContent));
+	$info = xenonXML('xml2array', array($InfoContent));
 	$info = $info['eyeHelp'][0];
 
 	$title = trim($info['title'][0]);
@@ -312,7 +312,7 @@ function drawTree($object, $tree, $dir)
 
 				$currentUser = $oldUser;
 
-				$info = eyeXML('xml2array', array($InfoContent));
+				$info = xenonXML('xml2array', array($InfoContent));
 				$info = $info['eyeHelp'][0];
 				$title = trim($info['title'][0]);
 				$myDir2 = substr($myDir, 0, -1);

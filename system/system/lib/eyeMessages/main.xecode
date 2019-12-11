@@ -103,7 +103,7 @@ function lib_eyeMessages_sendMessage($params) {
 		$hash = md5(uniqid(time()));
 	}
 
-	eyeXML('setXMLfile', array($sentDir.$hash.'.msgSwap', $xml));
+	xenonXML('setXMLfile', array($sentDir.$hash.'.msgSwap', $xml));
 	return true;
 }
 
@@ -140,10 +140,10 @@ function lib_eyeMessages_openMessage($params) {
 		}
 
 		vfs('real_create', array($readDir.$hash.'.msgSwap'));
-		eyeXML('setXMLfile', array($readDir.$hash.'.msgSwap', $xml));
+		xenonXML('setXMLfile', array($readDir.$hash.'.msgSwap', $xml));
 	} else {
 		$msg = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/'.$folder.'/'.$hash.'.msgSwap';
-		$msg = eyeXML('getXMLfile', array($msg));
+		$msg = xenonXML('getXMLfile', array($msg));
 		$msg = $msg['swapMessage'][0];
 	}
 	return $msg;
@@ -157,7 +157,7 @@ function lib_eyeMessages_getAttach($params) {
 
 	$fileHash = $params[0];
 	$swapDir = um('getCurrentUserDir').'swap/eyeMessages/';
-	$info = eyeXML('getXMLfile', array($swapDir.$fileHash.'.infoSwap'));
+	$info = xenonXML('getXMLfile', array($swapDir.$fileHash.'.infoSwap'));
 	return $info;
 }
 
@@ -190,7 +190,7 @@ function lib_eyeMessages_deleteMessage($params) {
 		}
 
 		vfs('real_create', array($trashDir.$hash.'.msgSwap'));
-		eyeXML('setXMLfile', array($trashDir.$hash.'.msgSwap', $xml));
+		xenonXML('setXMLfile', array($trashDir.$hash.'.msgSwap', $xml));
 	} else {
 		$dir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/'.$folder.'/'.$hash;
 		$trashDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/trash/';
@@ -228,7 +228,7 @@ function lib_eyeMessages_empty($params=null) {
 
 		if(is_array($list)) {
 			foreach($list as $msg) {
-				$xml = eyeXML('getXMLfile', array($msg));
+				$xml = xenonXML('getXMLfile', array($msg));
 				if(is_array($xml['swapMessage'][0]['header'][0]['attach'])) {
 					eyeSwap('deleteFile', array($xml['swapMessage'][0]['header'][0]['attach'][0], 'eyeMessages'));
 				}
@@ -266,7 +266,7 @@ function lib_eyeMessages_getRead($params=null) {
 
 	$myArray = array();
 	foreach($list as $msg) {
-		$xml = eyeXML('getXMLfile', array($msg));
+		$xml = xenonXML('getXMLfile', array($msg));
 		$myArray[] = array(
 			'author' => $xml['swapMessage'][0]['header'][0]['from'][0],
 			'date' => $xml['swapMessage'][0]['header'][0]['date'][0],
@@ -289,7 +289,7 @@ function lib_eyeMessages_getTrash($params=null) {
 
 	$myArray = array();
 	foreach($list as $msg) {
-		$xml = eyeXML('getXMLfile', array($msg));
+		$xml = xenonXML('getXMLfile', array($msg));
 		$myArray[] = array(
 			'author' => $xml['swapMessage'][0]['header'][0]['from'][0],
 			'date' => $xml['swapMessage'][0]['header'][0]['date'][0],
@@ -307,7 +307,7 @@ function lib_eyeMessages_getSent($params=null) {
 
 	$myArray = array();
 	foreach($list as $msg) {
-		$xml = eyeXML('getXMLfile', array($msg));
+		$xml = xenonXML('getXMLfile', array($msg));
 
 		$myArray[] = array(
 			'to' => $xml['swapMessage'][0]['header'][0]['to'][0],

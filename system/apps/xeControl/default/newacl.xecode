@@ -127,7 +127,7 @@ $mySelect = new Select(array(
 $mySelect->show();
 $mySelect->addOption('---',1,1);
 $sf_file = XENONOS_ROOT .'/'. APP_DIR .'/xeControl/others/acl-servfunc.xml';
-$servfunc = eyeXML('getXMLfile', array($sf_file));
+$servfunc = xenonXML('getXMLfile', array($sf_file));
 $sCnt = 2;
 if ($servfunc) {
 	foreach($servfunc['servfunc'][0]['serv'] as $serv) {
@@ -247,7 +247,7 @@ if($text == 'add'){
 	$id0 = $GLOBALS['xeControl_acl_sortabletable']->selected;
 
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
-	$config = eyeXML('getXMLfile', array($file));
+	$config = xenonXML('getXMLfile', array($file));
 	if ($config) {
 		foreach ($config['GACL'][0]['ACL'] as $acl) {
 			$id = $acl['id'][0];

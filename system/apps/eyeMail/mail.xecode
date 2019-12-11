@@ -18,7 +18,7 @@ include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeMail/compat' . XE_CODE_EXTENSIO
 
 function eyeMail_starter() {
 	global $checknum;
-	$settings = eyeXML('getXMLconfig',array('eyeMail','settings.xml'));
+	$settings = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
 	if ($settings['eyeMail'][0]['startupCheck'][0] == 1) {
 		eyeMail_checkNew();
 	}
@@ -35,7 +35,7 @@ function eyeMail_starter() {
 
 	//check if accounts list is empty
 
-	$accountsFile = eyeXML('getXMLconfig',array('eyeMail','accounts.xml'));
+	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
 	if (empty($accountsFile)) {
 		include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeMail/preferences'.XE_CODE_EXTENSION);
 		eyeMail_createAccount();
@@ -271,7 +271,7 @@ function eyeMail_checkNew($params=null) {
 			sqlite_exec($dbHandle, $sqlInsert);
 		}
 		eyeMail_on_printMails();
-		$settings = eyeXML('getXMLconfig',array('eyeMail','settings.xml'));
+		$settings = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
 		if($settings['eyeMail'][0]['visualAlert'][0] == 1) {
 			if($dif == 1) {
 				xenonx('messageBox',array('content'=>'You have %s new mail','tokens' => array($dif)));
@@ -287,7 +287,7 @@ function eyeMail_checkNew($params=null) {
 function eyeMail_on_fetch($params) {
 	global $checknum;
 	eyeMail_checkNew();
-	$settings = eyeXML('getXMLconfig',array('eyeMail','settings.xml'));
+	$settings = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
 	if($settings['eyeMail'][0]['checkDelay'][0] == 5) {
 		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*5*60);'));
 	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 15) {
@@ -301,7 +301,7 @@ function eyeMail_on_fetch($params) {
 
 function eyeMail_sendMail($to,$cc,$cco,$sbj,$body) {
 	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeMail/class.phpmailer.php');
-	$config = eyeXML('getXMLconfig',array('eyeMail','settings.xml'));
+	$config = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
 	$mail = new PHPMailer();
 	$mail->PluginDir = XENONOS_ROOT.'/'.APP_DIR.'/eyeMail/';
 
@@ -390,7 +390,7 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 	global $myPid;
 	global $checknum;
 
-	$config = eyeXML('getXMLconfig',array('eyeMail','settings.xml'));
+	$config = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
 
 	if(is_object($GLOBALS['eyeMail_Compose'])) {
 		$GLOBALS['eyeMail_Compose']->close();
@@ -639,7 +639,7 @@ function eyeMail_drawBoxes() {
 		xGetElementById("'.$myPid.'_eyeMail_menuContainer_Container").style.overflowY = "auto";
 	'));
 
-	$config = eyeXML('getXMLConfig',array('eyeMail','accounts.xml'));
+	$config = xenonXML('getXMLConfig',array('eyeMail','accounts.xml'));
 	$y = 0;
 	if(!is_array($config['eyeMail'][0]['accounts'][0]['account'])) {
 		return;

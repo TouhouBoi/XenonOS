@@ -63,8 +63,8 @@ function service_mmap_releaseBuffer() {
 	ob_clean();
 
 	//Making the xml response.
-	$temp = eyeXML('append',array('eyeMessage',$outputBuffer));
-	$temp = eyeXML('getXmlHeader').$temp;
+	$temp = xenonXML('append',array('eyeMessage',$outputBuffer));
+	$temp = xenonXML('getXmlHeader').$temp;
 	return $temp;
 }
 
@@ -94,7 +94,7 @@ function service_mmap_routemsg($params) {
 	$args = $params[2];
 
 	if($args) {
-		$args = eyeXML('xml2array',array($args));
+		$args = xenonXML('xml2array',array($args));
 	}
 	global $procInfo;
 	$procInfo = proc('getProcByChecknum',array($checknum));

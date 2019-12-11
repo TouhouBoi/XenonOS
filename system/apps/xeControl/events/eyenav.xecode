@@ -42,7 +42,7 @@ function xeControl_on_eyenav_export_now($params = '') {
 	$xml['eyeNav'][0]['searches'][0] = $old['eyeNav'][0]['searches'][0];
 	$url = xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
 	vfs('create',array($url));
-	eyeXML('setXMLfile',array(vfs('getRealName',array($url)),$xml));
+	xenonXML('setXMLfile',array(vfs('getRealName',array($url)),$xml));
 	xenonx('messageBox',array('content' => 'Bookmarks and search engines successfully exported.'));
 }
 
@@ -53,7 +53,7 @@ function xeControl_on_eyenav_bookmarks_import($params = '') {
 
 function xeControl_on_eyenav_bookmarks_import_now($params = '') {
 	$url = xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
-	$xml = eyeXML('getXMLfile',array(vfs('getRealName',array($url))));
+	$xml = xenonXML('getXMLfile',array(vfs('getRealName',array($url))));
 	if (!$xml['eyeNav'][0]['bookmarks'][0] || !is_array($xml['eyeNav'][0]['bookmarks'][0])) {
 		xenonx('messageBox',array('content' => 'The selected file is not an eyeNav bookmarks file.'));
 	} else {
@@ -82,7 +82,7 @@ function xeControl_on_eyenav_bookmarks_default_yes($params = '') {
 	global $currentUser;
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$xmlDef = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeNav/conf.xml'));
+	$xmlDef = xenonXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeNav/conf.xml'));
 	$currentUser = $oldUser;
 	$xmlNew = xeControl_lib_getXMLconfig(array('eyeNav','conf.xml'));
 	$xmlNew['eyeNav'][0]['bookmarks'][0] = $xmlDef['eyeNav'][0]['bookmarks'][0];
@@ -102,7 +102,7 @@ function xeControl_on_eyenav_search_import($params = '') {
 
 function xeControl_on_eyenav_search_import_now($params = '') {
 	$url = xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
-	$xml = eyeXML('getXMLfile',array(vfs('getRealName',array($url))));
+	$xml = xenonXML('getXMLfile',array(vfs('getRealName',array($url))));
 	if (!$xml['eyeNav'][0]['searches'][0] || !is_array($xml['eyeNav'][0]['searches'][0])) {
 		xenonx('messageBox',array('content' => 'The selected file is not an eyeNav search engine file.'));
 	} else {
@@ -134,7 +134,7 @@ function xeControl_on_eyenav_search_default_yes($params = '') {
 	global $currentUser;
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$xmlDef = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeNav/conf.xml'));
+	$xmlDef = xenonXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeNav/conf.xml'));
 	$currentUser = $oldUser;
 	$xmlNew = xeControl_lib_getXMLconfig(array('eyeNav','conf.xml'));
 	$xmlNew['eyeNav'][0]['searches'][0] = $xmlDef['eyeNav'][0]['searches'][0];

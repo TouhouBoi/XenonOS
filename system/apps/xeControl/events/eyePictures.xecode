@@ -15,10 +15,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function xeControl_on_save($params=null) {
-	$config=eyeXML('getXMLconfig', array('eyePictures', 'conf.xml'));
+	$config=xenonXML('getXMLconfig', array('eyePictures', 'conf.xml'));
 	$config['eyePictures'][0]['slideShowDelay'][0] = $GLOBALS['xeControl_eyePictures_slideShowTime_txtBox']->text;
 	$config['eyePictures'][0]['goToFullScreen'][0] = $GLOBALS['xeControl_eyePictures_YfullScreen_radio']->checked;
-	eyeXML('setXMLconfig',array('eyePictures','conf.xml',$config));
+	xenonXML('setXMLconfig',array('eyePictures','conf.xml',$config));
 	xenonx('messageBox',array('content'=>"eyePictures settings savedsuccessfully"));
 	
 	return true;

@@ -45,9 +45,9 @@ function eyeLogin_on_Create($params = '') {
 				$GLOBALS['eyeLogin_Textbox_2_User']->setText('');
 			} elseif (um('createUser',array('username' => $user,'password' => $password1))) {
 				$currentUser = $user;
-				$xml = eyeXML('getXMLconfig',array('i18n','lang.xml'));
+				$xml = xenonXML('getXMLconfig',array('i18n','lang.xml'));
 				$xml['lang'][0] = $language;
-				eyeXML('setXMLconfig',array('i18n','lang.xml',$xml));
+				xenonXML('setXMLconfig',array('i18n','lang.xml',$xml));
 				xenonx('rawjs',array('js' => 'eyeLogin_2_Clean(' . $myPid . ');'));
 				if (um('login',array($user,$password1))) {
 					i18n('setLang',array($language));
@@ -96,16 +96,16 @@ function eyeLogin_on_Login($params = '') {
 	if ($loginCorrect == true) {
 		unset($_SESSION['sawasc']);
 		$currentUser = $user;
-		$xml = eyeXML('getXMLconfig',array('xenonx','xenonx.xml'));
+		$xml = xenonXML('getXMLconfig',array('xenonx','xenonx.xml'));
 		if ($xml['changes'][0]['increase'][0]) {
 			$xml['changes'][0]['times'][0] += $xml['changes'][0]['increase'][0];
 			$xml['changes'][0]['increase'][0] = 0;
-			eyeXML('setXMLconfig',array('xenonx','xenonx.xml',$xml));
+			xenonXML('setXMLconfig',array('xenonx','xenonx.xml',$xml));
 		}
 		if ($language && $language != '[auto]' && ($language == 'en' || vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/' . $language . '.xml')))) {
 			i18n('setLang',array($language));
 		} else {
-			$xml = eyeXML('getXMLconfig',array('i18n','lang.xml'));
+			$xml = xenonXML('getXMLconfig',array('i18n','lang.xml'));
 			if ($xml['lang'][0]) {
 				i18n('setLang',array($xml['lang'][0]));
 			} else {

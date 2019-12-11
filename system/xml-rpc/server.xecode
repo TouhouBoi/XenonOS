@@ -98,7 +98,7 @@ function xmlrpc_process($m)
 		
 		$data = file_get_contents(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/xml-rpc/config.xml');
 		
-		$xml = eyeXML('xml2array', array($data));
+		$xml = xenonXML('xml2array', array($data));
 		
 		if ($parts[0] == 'service')
 		{
@@ -128,7 +128,7 @@ function xmlrpc_parseRequest()
 {
 	$data = file_get_contents(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/xml-rpc/config.xml');
 	
-	$xml = eyeXML('xml2array', array($data));
+	$xml = xenonXML('xml2array', array($data));
 	
 	require_once(XENONOS_ROOT.'/xml-rpc/xmlrpc.inc');
 	require_once(XENONOS_ROOT.'/xml-rpc/xmlrpcs.inc');

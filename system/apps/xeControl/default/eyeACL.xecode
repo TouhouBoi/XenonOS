@@ -76,7 +76,7 @@ if(!file_exists($path)){
 }
 
 $file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
-$config = eyeXML('getXMLfile', array($file));
+$config = xenonXML('getXMLfile', array($file));
 
 if ($config) {
 	foreach($config['GACL'][0] as $acl => $value) {

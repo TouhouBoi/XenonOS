@@ -62,7 +62,7 @@ function eyeOpen_run($params = '') {
 		));
 		eyeWidgets('serialize',array($myContainer));
 
-		$conf = eyeXML('getXMLconfig',array('eyeFiles','conf.xml'));
+		$conf = xenonXML('getXMLconfig',array('eyeFiles','conf.xml'));
 		if (!isset($conf['eyeFiles'][0]['clickMethod'][0])) {
 			$conf['eyeFiles'][0]['clickMethod'][0] = 1;
 		}

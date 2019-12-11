@@ -49,7 +49,7 @@ function eyeDesk_on_Preferences($params = '') {
 function eyeDesk_on_Action($params = '') {
 	global $myPid;
 	if ($params['Action'][0] == 'launch') {
-		$xml = eyeXML('getXMLfile',array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . $params['File'][0]));
+		$xml = xenonXML('getXMLfile',array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . $params['File'][0]));
 		eyeFiles('launchCommand',array($xml['eyeLink'][0]['content'][0], $xml['eyeLink'][0]['xArgs'][0]));
 	} else {
 		proc('launch',array($params['Action'][0],array('home://Desktop/' . $params['File'][0])));
@@ -85,7 +85,7 @@ function eyeDesk_on_Icon_Moved($params = '') {
 	$x = $params['eyeArg'][0]['newX'][0];
 	$y = $params['eyeArg'][0]['newY'][0];
 	$content = basename($params['eyeArg'][0]['content'][0]);
-	$conf = eyeXML('getXMLconfig',array('eyeDesk','conf.xml'));
+	$conf = xenonXML('getXMLconfig',array('eyeDesk','conf.xml'));
 	if ($conf['eyeDesk'][0]['loadIconPositions'][0] == 2) {
 		$x = 30 + round(($x - 30) / 88) * 88;
 		if ($_SESSION['SCREEN']['eyeApps']['width'] - $x - 88 < 0) {
@@ -107,7 +107,7 @@ function eyeDesk_on_Icon_Moved($params = '') {
 			}
 		}'));
 	}
-	$xml = eyeXML('getXMLconfig',array('eyeDesk','icons.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDesk','icons.xml'));
 	if (is_array($xml['icon'])) {
 		foreach ($xml['icon'] as $key => $value) {
 			if ($value['name'][0] == $content) {
@@ -123,7 +123,7 @@ function eyeDesk_on_Icon_Moved($params = '') {
 		$xml2['y'][0] = $y;
 		$xml['icon'][] = $xml2;
 	}
-	eyeXML('setXMLconfig',array('eyeDesk','icons.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeDesk','icons.xml',$xml));
 }
 
 function eyeDesk_on_Icon_Dropped($params = '') {
@@ -142,7 +142,7 @@ function eyeDesk_on_Icon_Dropped($params = '') {
 		} else {
 			$xml['eyeLink'][0]['icon'][0] = 'file';
 		}
-		eyeXML('setXMLfile',array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . $file . '.' . XENONOS_LINK_EXT,$xml));
+		xenonXML('setXMLfile',array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . $file . '.' . XENONOS_LINK_EXT,$xml));
 		eyeFiles('update',array('home://Desktop/'));
 	} else if (in_array( /* utf8 */ strtolower($params['arg0'][0]), array('file', 'folder', 'link'))) {
 		proc('launch',array('moveDrag',array($params['arg1'][0],$params['arg2'][0])));
@@ -153,15 +153,15 @@ function eyeDesk_on_OpenPath($params = '') {
 	global $checknum;
 	global $myPid;
 	
-	$confFiles = eyeXML('getXMLconfig',array('eyeFiles','conf.xml'));
+	$confFiles = xenonXML('getXMLconfig',array('eyeFiles','conf.xml'));
 	if (!isset($confFiles['eyeFiles'][0]['clickMethod'][0])) {
 		$confFiles['eyeFiles'][0]['clickMethod'][0] = 1;
 	}
-	$confDesk = eyeXML('getXMLconfig',array('eyeDesk','conf.xml'));
+	$confDesk = xenonXML('getXMLconfig',array('eyeDesk','conf.xml'));
 	if (!isset($confDesk['eyeDesk'][0]['loadIconPositions'][0])) {
 		$confDesk['eyeDesk'][0]['loadIconPositions'][0] = 1;
 	}
-	$icons = eyeXML('getXMLconfig',array('eyeDesk','icons.xml'));
+	$icons = xenonXML('getXMLconfig',array('eyeDesk','icons.xml'));
 	$shareConf = getConfig('eyeFiles','conf.xml');
 	$mime = getConfig('mime','mime.xml');
 	$menu_files = getConfig('eyeFiles','menu_files.xml');
@@ -245,7 +245,7 @@ function eyeDesk_on_OpenPath($params = '') {
 			}
 		} elseif ($file[1] == 'link') {
 			$file[2] = i18n('translate',array(basename($file[2],'.' . XENONOS_LINK_EXT)));
-			$xml = eyeXML('getXMLfile',array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . $file[0]));
+			$xml = xenonXML('getXMLfile',array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . $file[0]));
 			if ($xml['eyeLink'][0]['content'][0] === 'eyeTrash.app' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'trash://') { // utf8
 				$menu = getConfig('eyeDesk','menu_trash.xml');
 				if ($xml['eyeLink'][0]['icon'][0] == 'trash') {
@@ -379,12 +379,12 @@ function eyeDesk_on_OpenPath($params = '') {
 		$i++;
 	}
 	if ($confDesk['eyeDesk'][0]['loadIconPositions'][0]) {
-		eyeXML('setXMLconfig',array('eyeDesk','icons.xml',$icons));
+		xenonXML('setXMLconfig',array('eyeDesk','icons.xml',$icons));
 	}
 }
 
 function eyeDesk_on_getWallpaper($params = '') {
-	$config = eyeXML('getXMLconfig',array('eyeDesk','conf.xml'));
+	$config = xenonXML('getXMLconfig',array('eyeDesk','conf.xml'));
 	$url = $config['eyeDesk'][0]['wallpaper'][0];
 	
 	if (vfs('fileExists', array($url))) {

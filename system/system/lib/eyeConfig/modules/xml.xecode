@@ -34,7 +34,7 @@ function lib_eyeConfig_XMLgetUserConfig ($params = '')
 	}
 
 	$configfile = um('getUserFilePath', array($params[0]));
-	$xmlfile = eyeXML('getXMLfile', array($configfile));
+	$xmlfile = xenonXML('getXMLfile', array($configfile));
 
 	return($xmlfile);
 }
@@ -53,7 +53,7 @@ function lib_eyeConfig_XMLsetUserConfig($params = '')
 	}
 
 	$configfile = um('getUserFilePath', array($params[0]));
-	$xmlfile = eyeXML('setXMLfile', array($configfile, $params[1]));
+	$xmlfile = xenonXML('setXMLfile', array($configfile, $params[1]));
 
 	return($xmlfile);
 }

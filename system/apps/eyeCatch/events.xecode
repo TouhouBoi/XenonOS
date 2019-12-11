@@ -46,7 +46,7 @@ function eyeCatch_on_ChooseMap($params = '') {
 	$files = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeCatch/maps/'));
 	if (is_array($files)) {
 		foreach ($files as $file) {
-			$xml = eyeXML('getXMLfile',array($file));
+			$xml = xenonXML('getXMLfile',array($file));
 			$mySortabletable->addRow(array(basename($file,'.xml'),$xml['map'][0]['infos'][0]['name'][0] . ' ' . $xml['map'][0]['infos'][0]['version'][0],$xml['map'][0]['infos'][0]['author'][0]));
 		}
 	}
@@ -79,7 +79,7 @@ function eyeCatch_on_PlayMap($params = '') {
 		xenonx('rawjs',array('js' => 'if (!document.getElementById("eyeCatch_' . $map . '")) { dhtmlLoadCSS("index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/eyeCatch/' . $map . '.css","eyeCatch_' . $map . '"); }'));
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
-		$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeCatch/maps/' . $map . '.xml'));
+		$xml = xenonXML('getXMLfile',array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/eyeCatch/maps/' . $map . '.xml'));
 		$currentUser = $oldUser;
 
 		$GLOBALS['eyeCatch_Label']->setText($xml['map'][0]['infos'][0]['description'][0]);

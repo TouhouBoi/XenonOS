@@ -373,17 +373,17 @@ function eyeFeeds_deleteFeedFolder($feeds, $feedId) {
 }
 
 function eyeFeeds_saveFeedsToFile($feeds, $redrawFeedsTree=true, $sortFeeds=true) {
-	$conf = eyeXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+	$conf = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
 	if ($sortFeeds)
 		$feeds['feed'] = eyeFeeds_sortFeeds($feeds['feed']);
 
 	$conf['eyeFeeds'][0]['base'][0] = $feeds;
-	if (!eyeXML('setXMLconfig', array('eyeFeeds', 'conf.xml', $conf))) {
+	if (!xenonXML('setXMLconfig', array('eyeFeeds', 'conf.xml', $conf))) {
 		return false;
 	}
 
 	//redraw tree with saved configuration
-	$conf2 = eyeXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+	$conf2 = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
 	if ($redrawFeedsTree) {
 		$tree = eyeFeeds_drawFeedsTree($conf2['eyeFeeds'][0]['base'][0]);
 		$tree->expandTree();
@@ -420,7 +420,7 @@ function eyeFeeds_sortFeeds_compare($a,$b) {
  * @return array The saved feeds
  */
 function eyeFeeds_getSavedFeeds() {
-	$conf = eyeXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+	$conf = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
 
 	if (!is_array($conf))
 		$conf = array('eyeFeeds' => array());
@@ -458,7 +458,7 @@ function eyeFeeds_getEyeNavLinkFromUrl($url, $linkText=null) {
 //		READING HISTORY FUNCTIONS
 /*********************************************************************************************/
 function eyeFeeds_loadReadingHistory() {
-	$conf = eyeXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+	$conf = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
 
 	if (!is_array($conf))
 		$conf = array('eyeFeeds' => array());
@@ -489,10 +489,10 @@ function eyeFeeds_loadReadingHistory() {
 }
 
 function eyeFeeds_saveReadingHistory($newReadingHistory) {
-	$conf = eyeXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+	$conf = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
 
 	$conf['eyeFeeds'][0]['readingHistory'][0]['title'] = $newReadingHistory;
-	return eyeXML('setXMLconfig', array('eyeFeeds', 'conf.xml', $conf));
+	return xenonXML('setXMLconfig', array('eyeFeeds', 'conf.xml', $conf));
 }
 
 function eyeFeeds_isTitleRead($url) {
@@ -527,7 +527,7 @@ function eyeFeeds_setTitleAsRead($url) {
 //		SETTINGS FUNCTIONS
 /*********************************************************************************************/
 function eyeFeeds_loadSettings() {
-	$conf = eyeXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+	$conf = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
 
 	if (!is_array($conf))
 		$conf = array('eyeFeeds' => array());
@@ -545,10 +545,10 @@ function eyeFeeds_loadSettings() {
 }
 
 function eyeFeeds_saveSettings($newSettings) {
-	$conf = eyeXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+	$conf = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
 
 	$conf['eyeFeeds'][0]['settings'][0] = $newSettings;
-	eyeXML('setXMLconfig', array('eyeFeeds', 'conf.xml', $conf));
+	xenonXML('setXMLconfig', array('eyeFeeds', 'conf.xml', $conf));
 }
 
 /*********************************************************************************************/

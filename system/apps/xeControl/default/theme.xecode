@@ -33,7 +33,7 @@ $openDir = vfs('real_getDirContent',array($dir));
 $UserThemeXML = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
 foreach ($openDir as $theme) {
 	if (is_dir($theme) && file_exists($theme . '/info.xml')) {
-		$ThemeXML = eyeXML('getXMLfile',array($theme . '/info.xml'));
+		$ThemeXML = xenonXML('getXMLfile',array($theme . '/info.xml'));
 		$theme = basename($theme);
 		if ($theme == $UserThemeXML['eyeDesk'][0]['theme'][0]) {
 			$select = 1;

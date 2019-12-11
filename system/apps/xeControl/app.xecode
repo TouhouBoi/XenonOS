@@ -241,7 +241,7 @@ function xeControl_run($params = '') {
 			foreach ($openDir as $file) {
 				$oldUser = $currentUser;
 				$currentUser = ROOTUSER;
-				$content = eyeXML('getXMLfile',array($file));
+				$content = xenonXML('getXMLfile',array($file));
 				$currentUser = $oldUser;
 				$content = $content['content'][0];
 				if ($content['show'][0] != 'no' && $content['show'][0] != 'nolist' && ($content['permissions'][0] == 'all'

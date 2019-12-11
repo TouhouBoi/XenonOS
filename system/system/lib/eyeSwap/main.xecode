@@ -88,7 +88,7 @@ function lib_eyeSwap_send($params) {
 		$xml['swapMessage'][0]['header'][0]['attach'] = $attach;
 	}
 
-	eyeXML('setXMLfile',array($swapDir.$hash.'.msgSwap',$xml));
+	xenonXML('setXMLfile',array($swapDir.$hash.'.msgSwap',$xml));
 	$currentUser = $oldUser;
 	return true;
 }
@@ -152,7 +152,7 @@ function lib_eyeSwap_copyFile($params) {
 		)
 	);
 	vfs('real_create',array($swapDir.$hash.'.infoSwap'));
-	eyeXML('setXMLfile',array($swapDir.$hash.'.infoSwap',$xml));
+	xenonXML('setXMLfile',array($swapDir.$hash.'.infoSwap',$xml));
 	$currentUser = $oldUser;
 	return $hash;
 }
@@ -236,7 +236,7 @@ function lib_eyeSwap_list($params) {
 
 	$myArray = array();
 	foreach($content as $msg) {
-		$xml = eyeXML('getXMLfile', array($msg));
+		$xml = xenonXML('getXMLfile', array($msg));
 		$myArray[] = array(
 						'author' => $xml['swapMessage'][0]['header'][0]['from'][0],
 						'date' => $xml['swapMessage'][0]['header'][0]['date'][0],
@@ -261,7 +261,7 @@ function lib_eyeSwap_read($params) {
 
 	$swapDir = um('getCurrentUserDir').'/swap/'.$directory.'/';
 
-	$xml = eyeXML('getXMLfile', array($swapDir.$hash.'.msgSwap'));
+	$xml = xenonXML('getXMLfile', array($swapDir.$hash.'.msgSwap'));
 	$xmlfinal = $xml['swapMessage'][0];
 	return $xmlfinal;
 }

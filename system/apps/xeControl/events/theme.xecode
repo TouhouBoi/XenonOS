@@ -33,9 +33,9 @@ function xeControl_on_theme_change($params = '') {
 	if (xeControl_lib_getConfigUser() == '[skel]') {
 		// DEFAULT_THEME
 		$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/xenonx.xml';
-		$xenonx = eyeXML('getXMLfile',array($file));
+		$xenonx = xenonXML('getXMLfile',array($file));
 		$xenonx['CONFIG'][0]['DEFAULT_THEME'][0] = $params['xeControl_theme_select'][0];
-		eyeXML('setXMLFile',array($file,$xenonx));
+		xenonXML('setXMLFile',array($file,$xenonx));
 		// LOGIN_THEME
 		$eyelogin = getConfig('eyeLogin');
 		$eyelogin['CONFIG'][0]['LOGIN_THEME'][0] = $params['xeControl_theme_select'][0];
@@ -55,7 +55,7 @@ function xeControl_on_theme_select($params = '') {
 	$theme = basename($params['selected'][0]);
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$ThemeXML = eyeXML('getXMLfile',array($dir . $theme . '/info.xml'));
+	$ThemeXML = xenonXML('getXMLfile',array($dir . $theme . '/info.xml'));
 	$currentUser = $oldUser;
 	$ThemeXML = $ThemeXML['eyeXtheme'][0];
 	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xeControl_theme_label_display_2").innerHTML = "";'));

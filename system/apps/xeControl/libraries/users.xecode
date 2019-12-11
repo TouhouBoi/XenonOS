@@ -62,7 +62,7 @@ function xeControl_lib_getConfigUserPath() {
 }
 
 function xeControl_lib_getXMLconfig($params) {
-	return eyeXML('getXMLfile',array(xeControl_lib_getConfigUserPath() . '/' . CONF_USER_DIR . '/' . $params[0] . '/' . $params[1]));
+	return xenonXML('getXMLfile',array(xeControl_lib_getConfigUserPath() . '/' . CONF_USER_DIR . '/' . $params[0] . '/' . $params[1]));
 }
 
 function xeControl_lib_setXMLconfig($params) {
@@ -70,6 +70,6 @@ function xeControl_lib_setXMLconfig($params) {
 	if (vfs('real_fileExists', array($path)) === false) {
 		vfs('real_mkdir', array($path));
 	}
-	return eyeXML('setXMLfile', array($path . '/' . $params[1], $params[2]));
+	return xenonXML('setXMLfile', array($path . '/' . $params[1], $params[2]));
 }
 ?>

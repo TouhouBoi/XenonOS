@@ -121,7 +121,7 @@ function eyeAddressBook_initFunction() {
 		eyeAddressBook('importFromEyeContacts');
 		$config['config'][0]['used'][0] = 1;
 		$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook';
-		eyeXML('setXMLfile', array($path.'/config.xml', $config));
+		xenonXML('setXMLfile', array($path.'/config.xml', $config));
 	}
 	eyeAddressBook_showSelectGroup();
     $contacts = eyeAddressBook('getContacts');

@@ -132,7 +132,7 @@ function eyeDock_on_AddElement($params = '') {
 function eyeDock_on_AddElement_Do($params = '') {
 	global $currentUser;
 
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	$type = $GLOBALS['eyeDock_AddElement_type']->text;
 	if (get_class($GLOBALS['eyeDock_AddElement_Radio']) == 'Hidden') {
 		$place = $GLOBALS['eyeDock_AddElement_Radio']->text;
@@ -146,7 +146,7 @@ function eyeDock_on_AddElement_Do($params = '') {
 	if ($id) {
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
-		$module = eyeXML('getXMLfile',array(XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeDock/modules/menu/' . $element . '.xml'));
+		$module = xenonXML('getXMLfile',array(XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeDock/modules/menu/' . $element . '.xml'));
 		$currentUser = $oldUser;
 		$xml['eyeDock'][0][$type][0][$place][0][$id][0]['entries'][0]['entry-' . $xml['eyeDock'][0][$type][0][$place][0][$id][0]['entries-id'][0]++][0] = $module['module'][0];
 	} else {
@@ -157,11 +157,11 @@ function eyeDock_on_AddElement_Do($params = '') {
 		
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
-		$module = eyeXML('getXMLfile',array(XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeDock/modules/' . $element . '.xml'));
+		$module = xenonXML('getXMLfile',array(XENONOS_ROOT. '/' . APP_DIR .'/' . APP_CONF_SHARE . '/eyeDock/modules/' . $element . '.xml'));
 		$currentUser = $oldUser;
 		$xml['eyeDock'][0][$type][0][$place][0]['element-' . $xml['eyeDock'][0][$type][0][$place . '-id'][0]++][0] = $module['module'][0];
 	}
-	eyeXML('setXMLconfig', array('eyeDock', 'conf.xml', $xml));
+	xenonXML('setXMLconfig', array('eyeDock', 'conf.xml', $xml));
 
 	$GLOBALS['eyeDock_AddElement_Window']->close();
 
@@ -170,7 +170,7 @@ function eyeDock_on_AddElement_Do($params = '') {
 }
 
 function eyeDock_on_ChangeCommand($params = '') {
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	if ($params['entry'][0]) {
 		$text = $xml['eyeDock'][0][$params['type'][0]][0][$params['place'][0]][0][$params['id'][0]][0]['entries'][0][$params['entry'][0]][0]['command'][0];
 	} else {
@@ -198,7 +198,7 @@ function eyeDock_on_ChangeCommand_cancel($params = '') {
 }
 
 function eyeDock_on_ChangeCommand_do($params = '') {
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	$type = $GLOBALS['ChangeCommand_type']->text;
 	$place = $GLOBALS['ChangeCommand_place']->text;
 	$id = $GLOBALS['ChangeCommand_id']->text;
@@ -209,12 +209,12 @@ function eyeDock_on_ChangeCommand_do($params = '') {
 	} else {
 		$xml['eyeDock'][0][$type][0][$place][0][$id][0]['command'][0] = $text;
 	}
-	eyeXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
 	$GLOBALS['ChangeCommand_window']->close();
 }
 
 function eyeDock_on_ChangeFormat($params = '') {
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	xenonx('messageBox',array(
 		'buttons' => array(array('ChangeFormat_do','Change'),array('ChangeFormat_cancel','Cancel')),
 		'content' => 'Please specifiy the new format for this element.',
@@ -238,14 +238,14 @@ function eyeDock_on_ChangeFormat_cancel($params = '') {
 
 function eyeDock_on_ChangeFormat_do($params = '') {
 	global $myPid;
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	$type = $GLOBALS['ChangeFormat_type']->text;
 	$place = $GLOBALS['ChangeFormat_place']->text;
 	$id = $GLOBALS['ChangeFormat_id']->text;
 	$entry = $GLOBALS['ChangeFormat_entry']->text;
 	$text = str_replace('  ', ' &nbsp;', $GLOBALS['ChangeFormat_text']->text);
 	$xml['eyeDock'][0][$type][0][$place][0][$id][0]['format'][0] = $text;
-	eyeXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
 	xenonx('runjs', array(
 		'js' => 'DockMenu.DateTime.Formats["' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '"] = %s; Taskbars.SetWidth("' . $type . '");',
 		'tokens' => array($text)
@@ -254,7 +254,7 @@ function eyeDock_on_ChangeFormat_do($params = '') {
 }
 
 function eyeDock_on_ChangeHeight($params = '') {
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	xenonx('messageBox',array(
 		'buttons' => array(array('ChangeHeight_do','Change'),array('ChangeHeight_cancel','Cancel')),
 		'content' => 'Please specifiy the new height for this element.',
@@ -278,7 +278,7 @@ function eyeDock_on_ChangeHeight_cancel($params = '') {
 
 function eyeDock_on_ChangeHeight_do($params = '') {
 	global $myPid;
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	$type = $GLOBALS['ChangeHeight_type']->text;
 	$place = $GLOBALS['ChangeHeight_place']->text;
 	$id = $GLOBALS['ChangeHeight_id']->text;
@@ -289,13 +289,13 @@ function eyeDock_on_ChangeHeight_do($params = '') {
 	}
 	$xml['eyeDock'][0][$type][0][$place][0][$id][0]['entries'][0][$entry][0]['height'][0] = $text;
 	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '_entry' . '_' . $entry . '").style.height = "' . $text . 'px";'));
-	eyeXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
 	$GLOBALS['ChangeHeight_window']->close();
 }
 
 function eyeDock_on_ChangeImage($params = '') {
 	global $myPid;
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	if ($params['entry'][0]) {
 		$text = $xml['eyeDock'][0][$params['type'][0]][0][$params['place'][0]][0][$params['id'][0]][0]['entries'][0][$params['entry'][0]][0]['image'][0];
 	} else {
@@ -336,7 +336,7 @@ function eyeDock_on_ChangeImage_cancel($params = '') {
 
 function eyeDock_on_ChangeImage_do($params = '') {
 	global $myPid;
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	$type = $GLOBALS['ChangeImage_type']->text;
 	$place = $GLOBALS['ChangeImage_place']->text;
 	$id = $GLOBALS['ChangeImage_id']->text;
@@ -355,12 +355,12 @@ function eyeDock_on_ChangeImage_do($params = '') {
 			'tokens' => array($text)
 		));
 	}
-	eyeXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
 	$GLOBALS['ChangeImage_window']->close();
 }
 
 function eyeDock_on_ChangeText($params = '') {
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	if ($params['entry'][0]) {
 		$text = $xml['eyeDock'][0][$params['type'][0]][0][$params['place'][0]][0][$params['id'][0]][0]['entries'][0][$params['entry'][0]][0]['text'][0];
 	} else {
@@ -389,7 +389,7 @@ function eyeDock_on_ChangeText_cancel($params = '') {
 
 function eyeDock_on_ChangeText_do($params = '') {
 	global $myPid;
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	$type = $GLOBALS['ChangeText_type']->text;
 	$place = $GLOBALS['ChangeText_place']->text;
 	$id = $GLOBALS['ChangeText_id']->text;
@@ -414,12 +414,12 @@ function eyeDock_on_ChangeText_do($params = '') {
 			'tokens' => array($text)
 		));
 	}
-	eyeXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
 	$GLOBALS['ChangeText_window']->close();
 }
 
 function eyeDock_on_ChangeWidth($params = '') {
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	xenonx('messageBox',array(
 		'buttons' => array(array('ChangeWidth_do','Change'),array('ChangeWidth_cancel','Cancel')),
 		'content' => 'Please specifiy the new width for this element.',
@@ -443,7 +443,7 @@ function eyeDock_on_ChangeWidth_cancel($params = '') {
 
 function eyeDock_on_ChangeWidth_do($params = '') {
 	global $myPid;
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	$type = $GLOBALS['ChangeWidth_type']->text;
 	$place = $GLOBALS['ChangeWidth_place']->text;
 	$id = $GLOBALS['ChangeWidth_id']->text;
@@ -453,7 +453,7 @@ function eyeDock_on_ChangeWidth_do($params = '') {
 	}
 	$xml['eyeDock'][0][$type][0][$place][0][$id][0]['width'][0] = $text;
 	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '").style.width = "' . $text . 'px"; Taskbars.SetWidth("' . $type . '");'));
-	eyeXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
 	$GLOBALS['ChangeWidth_window']->close();
 }
 
@@ -462,7 +462,7 @@ function eyeDock_on_Close($params = '') {
 }
 
 function eyeDock_on_Command($params = '') {
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	$element = $xml['eyeDock'][0][$params['type'][0]][0][$params['place'][0]][0][$params['id'][0]][0];
 	if ($element['type'][0] == 'menu') {
 		$command = $element['entries'][0][$params['entry'][0]][0]['command'][0];
@@ -474,13 +474,13 @@ function eyeDock_on_Command($params = '') {
 
 function eyeDock_on_CreateFavorite($params = '') {
 	global $myPid;
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	$element = $xml['eyeDock'][0][$params['type'][0]][0][$params['place'][0]][0][$params['id'][0]][0]['entries'][0][$params['id2'][0]][0];
 	if ($element['type'][0] == 'icon' || $element['type'][0] == 'showdesktop') {
 		$element['hideImage'][0] = '0';
 		$element['hideText'][0] = '1';
 		$xml['eyeDock'][0]['top'][0]['left'][0]['element-' . $xml['eyeDock'][0]['top'][0]['left-id'][0]++][0] = $element;
-		eyeXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
+		xenonXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
 		xenonx('rawjs', array('js' => 'var e = document.getElementById("' . $myPid . '_eyeDock_' . $params['type'][0] . '_' . $params['place'][0] . '_' . $params['id'][0] . '_entry' . '_' . $params['id2'][0] . '_arrow"); if (e.className.substr(e.className.length - 7) != "_exists") { e.className += "_exists"; }')); // utf8
 		eyeDock_lib_Remove();
 		eyeDock_lib_Load();
@@ -496,7 +496,7 @@ function eyeDock_on_Message($params = '') {
 }
 
 function eyeDock_on_MoveDown($params = '') {
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	if ($params['entry'][0]) {
 		$xml['eyeDock'][0][$params['type'][0]][0][$params['place'][0]][0][$params['id'][0]][0]['entries'][0] = eyeDock_lib_array_movedown($params['entry'][0],$xml['eyeDock'][0][$params['type'][0]][0][$params['place'][0]][0][$params['id'][0]][0]['entries'][0]);
 	} else {
@@ -513,13 +513,13 @@ function eyeDock_on_MoveDown($params = '') {
 		}
 		$xml['eyeDock'][0][$params['type'][0]][0][$params['place'][0]][0] = $array;
 	}
-	eyeXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
 	eyeDock_lib_Remove($params['type']);
 	eyeDock_lib_Load($params['type']);
 }
 
 function eyeDock_on_MoveUp($params = '') {
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	if ($params['entry'][0]) {
 		$xml['eyeDock'][0][$params['type'][0]][0][$params['place'][0]][0][$params['id'][0]][0]['entries'][0] = eyeDock_lib_array_moveup($params['entry'][0], $xml['eyeDock'][0][$params['type'][0]][0][$params['place'][0]][0][$params['id'][0]][0]['entries'][0]);
 	} else {
@@ -536,7 +536,7 @@ function eyeDock_on_MoveUp($params = '') {
 		}
 		$xml['eyeDock'][0][$params['type'][0]][0][$params['place'][0]][0] = $array;
 	}
-	eyeXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
 	eyeDock_lib_Remove($params['type']);
 	eyeDock_lib_Load($params['type']);
 }
@@ -567,7 +567,7 @@ function eyeDock_on_Remove_cancel($params = '') {
 
 function eyeDock_on_Remove_do($params = '') {
 	global $myPid;
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	$type = $GLOBALS['Remove_type']->text;
 	$place = $GLOBALS['Remove_place']->text;
 	$id = $GLOBALS['Remove_id']->text;
@@ -577,7 +577,7 @@ function eyeDock_on_Remove_do($params = '') {
 	} else {
 		unset($xml['eyeDock'][0][$type][0][$place][0][$id]);
 	}
-	eyeXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
 	xenonx('rawjs', array('js' => 'var e = document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '"); if (e) { e.parentNode.removeChild(e); } Taskbars.SetWidth("' . $type . '");'));
 	$GLOBALS['Remove_window']->close();
 	eyeDock_lib_Remove();
@@ -586,7 +586,7 @@ function eyeDock_on_Remove_do($params = '') {
 
 function eyeDock_on_ShowHideImage($params = '') {
 	global $myPid;
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	$type = $params['type'][0];
 	$place = $params['place'][0];
 	$id = $params['id'][0];
@@ -610,12 +610,12 @@ function eyeDock_on_ShowHideImage($params = '') {
 			xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '_img").style.display = "none"; document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '_div").style.display = ""; Taskbars.SetWidth("' . $type . '");'));
 		}
 	}
-	eyeXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
 }
 
 function eyeDock_on_ShowHideText($params = '') {
 	global $myPid;
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	$type = $params['type'][0];
 	$place = $params['place'][0];
 	$id = $params['id'][0];
@@ -639,6 +639,6 @@ function eyeDock_on_ShowHideText($params = '') {
 			xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '_img").style.display = ""; document.getElementById("' . $myPid . '_eyeDock_' . $type . '_' . $place . '_' . $id . '_div").style.display = "none"; Taskbars.SetWidth("' . $type . '");'));
 		}
 	}
-	eyeXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeDock','conf.xml',$xml));
 }
 ?>

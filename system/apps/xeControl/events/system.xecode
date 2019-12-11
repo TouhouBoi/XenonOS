@@ -56,14 +56,14 @@ function xeControl_on_system_system($params = '')
 
 	$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
 	
-	$xml = eyeXML('getXMLfile', array($file));
+	$xml = xenonXML('getXMLfile', array($file));
 	
 	$xml['CONFIG'][0]['XENONOS_HOSTNAME'][0] = $GLOBALS['xeControl_system_system_textbox_hostname']->text;
 	$xml['CONFIG'][0]['DEFAULT_LANGUAGE'][0] = $GLOBALS['xeControl_system_system_select_language']->selected;
 	
 	$xml['CONFIG'][0]['DEFAULT_QUOTA'][0] = strval($quota);
 	
-	eyeXML('setXMLFile', array($file, $xml));
+	xenonXML('setXMLFile', array($file, $xml));
 
 	$xml = getConfig('eyeFiles', 'conf.xml');
 	
@@ -78,13 +78,13 @@ function xeControl_on_system_permissions($params = '')
 {
 	$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
 	
-	$xml = eyeXML('getXMLfile',array($file));
+	$xml = xenonXML('getXMLfile',array($file));
 	
 	$xml['CONFIG'][0]['ALLOW_USER_REGISTER'][0] = $GLOBALS['xeControl_system_permissions_checkbox_registration']->checked;
 	$xml['CONFIG'][0]['ALLOW_PUBLIC_DIRS'][0] = $GLOBALS['xeControl_system_permissions_checkbox_publicdirs']->checked;
 	$xml['CONFIG'][0]['WEB_UPLOAD'][0] = $GLOBALS['xeControl_system_permissions_checkbox_webupload']->checked;
 	
-	eyeXML('setXMLFile', array($file, $xml));
+	xenonXML('setXMLFile', array($file, $xml));
 	
 	xenonx('messageBox', array('content' => 'Changes successfully saved.'));
 }
@@ -93,11 +93,11 @@ function xeControl_on_system_office($params = '')
 {
 	$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml';
 	
-	$xml = eyeXML('getXMLfile', array($file));
+	$xml = xenonXML('getXMLfile', array($file));
 	
 	$xml['CONFIG'][0]['OFFICE_PYTHON_PATH'][0] = $GLOBALS['xeControl_system_office_textbox_folder']->text;
 	
-	eyeXML('setXMLFile', array($file, $xml));
+	xenonXML('setXMLFile', array($file, $xml));
 	
 	xenonx('messageBox', array('content' => 'Changes successfully saved.'));
 

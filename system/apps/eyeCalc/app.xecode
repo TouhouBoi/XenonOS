@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function eyeCalc_run($params = '') {
 	global $checknum;
 	global $myPid;
-	$xml = eyeXML('getXMLconfig', array('eyeCalc', 'conf.xml'));
+	$xml = xenonXML('getXMLconfig', array('eyeCalc', 'conf.xml'));
 	if ($params['advanced'] || !isset($params['advanced']) && intval($xml['eyeCalc'][0]['advanced'][0])) {
 		$rows = array(
 			array(false, 'delete' => 'Delete', 'ce' => 'CE', 'c' => 'C'),
@@ -43,7 +43,7 @@ function eyeCalc_run($params = '') {
 		$width = 172;
 		$xml['eyeCalc'][0]['advanced'][0] = 0;
 	}
-	eyeXML('setXMLconfig', array('eyeCalc', 'conf.xml', $xml));
+	xenonXML('setXMLconfig', array('eyeCalc', 'conf.xml', $xml));
 
 	$myWindow = new Window(array(
 		'cent' => 1,

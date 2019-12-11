@@ -33,7 +33,7 @@ function lib_eyeBoard_getMessagesHtml($params=null) {
 	global $checknum;
 	global $currentUser;
 	$msg = getConfig('eyeBoard','conf.xml');
-	$conf = eyeXML('getXMLconfig',array('eyeBoard','conf.xml'));
+	$conf = xenonXML('getXMLconfig',array('eyeBoard','conf.xml'));
 	if (is_numeric($conf['eyeBoard'][0]['reloadTime'][0])) {
 		$reloadTime = round($conf['eyeBoard'][0]['reloadTime'][0],3) * 1000;
 	} else {
@@ -87,7 +87,7 @@ function lib_eyeBoard_newMessage($params=null) {
 		$msg['messages'][0] = array('message'=>array($myMessage));
 	}
 
-	$xml = eyeXML('array2xml',array($msg));
+	$xml = xenonXML('array2xml',array($msg));
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
 	$fp = vfs('real_open',array(XENONOS_ROOT.'/'.APP_DIR.'/'.APP_CONF_SHARE.'/eyeBoard/conf.xml','w'));

@@ -23,7 +23,7 @@ function eyeProperties_run($params = '') {
 		$path[0] = um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/';
 		$path[1] = 'trash';
 		$path[2] = '/';
-		$xml = eyeXML('getXMLfile',array($path[0] . '/' . $file));
+		$xml = xenonXML('getXMLfile',array($path[0] . '/' . $file));
 		$deletiondate = $xml['eyeTrash'][0]['deleteDate'][0];
 		$title = $xml['eyeTrash'][0]['lastname'][0];
 		if ($xml['eyeTrash'][0]['type'][0] == 'dir') {
@@ -47,7 +47,7 @@ function eyeProperties_run($params = '') {
 				$type = 'File';
 			}
 			$size = vfs('real_filesize',array($path[0] . '/' . basename($file,XENONOS_TRASH_EXT) . XENONOS_FILE_EXT));
-			$info = eyeXML('getXMLfile',array($path[0] . '/' . basename($file,XENONOS_TRASH_EXT) . XENONOS_INFO_EXT));
+			$info = xenonXML('getXMLfile',array($path[0] . '/' . basename($file,XENONOS_TRASH_EXT) . XENONOS_INFO_EXT));
 			$author = $info['eyeFile'][0]['author'][0];
 			$creationdate = $info['eyeFile'][0]['created'][0];
 			$createdwith = $info['eyeFile'][0]['creationapp'][0];
@@ -60,7 +60,7 @@ function eyeProperties_run($params = '') {
 // Links
 	} elseif ($path[1] !== 'real' && strtolower(strrchr($file, '.')) === strtolower('.' . XENONOS_LINK_EXT) && vfs('real_fileExists', array($path[0] . '/' . $file)) === true) { // utf8
 		$title = $file;
-		$info = eyeXML('getXMLfile',array($path[0] . '/' . $file));
+		$info = xenonXML('getXMLfile',array($path[0] . '/' . $file));
 		$icon = $info['eyeLink'][0]['icon'][0];
 		$type = 'Launcher';
 		$filetime = vfs('filemtime',array($path[0] . '/' . $file));

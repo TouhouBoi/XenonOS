@@ -25,14 +25,14 @@ function xeControl_on_smtp_save($params = '') {
 			xenonx('messageBox',array('content' => 'Please fill out all fields.'));
 		} else {
 			$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/smtp.xml';
-			$xml = eyeXML('getXMLfile',array($file));
+			$xml = xenonXML('getXMLfile',array($file));
 			$xml['CONFIG'][0]['SMTP_FROM'][0] = $from;
 			$xml['CONFIG'][0]['SMTP_USERNAME'][0] = $username;
 			$xml['CONFIG'][0]['SMTP_PASSWORD'][0] = $password;
 			$xml['CONFIG'][0]['SMTP_HOST'][0] = $hostname;
 			$xml['CONFIG'][0]['SMTP_PORT'][0] = $port;
 			$xml['CONFIG'][0]['SMTP_SSL'][0] = $GLOBALS['xeControl_smtp_Checkbox_UseSSL']->checked;
-			eyeXML('setXMLFile',array($file,$xml));
+			xenonXML('setXMLFile',array($file,$xml));
 			xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 		}
 	}

@@ -304,7 +304,7 @@ function eyeFTP_getVersionFromInfoXML() {
 	$file = XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/info.xml';
 	if(vfs('real_fileExists',array($file))) {
 		$content = file_get_contents($file);
-		$content = eyeXML('xml2array',array($content));
+		$content = xenonXML('xml2array',array($content));
 
 		if (is_array($content['package'])
 			&& is_array($content['package'][0])

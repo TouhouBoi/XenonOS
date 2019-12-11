@@ -64,7 +64,7 @@ function eyeUpload_on_advanced_Do($params = '') {
 			'message' => array(i18n('translate',array('Error occured during upload process!')))
 		);
 	}
-	echo eyeXML('array2xml',array(array('eyeUploadX' => array($response))));
+	echo xenonXML('array2xml',array(array('eyeUploadX' => array($response))));
 	exit;
 }
 

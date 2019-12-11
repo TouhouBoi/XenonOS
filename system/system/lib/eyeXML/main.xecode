@@ -23,7 +23,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 /*
 	XenonOS XML Library
 */
-function lib_eyeXML_init(){
+function lib_xenonXML_init(){
 	//Before do anything, we've to be sure that we are radically retrocompatibles if XML_COMPAT is set to 1
 	if(XML_COMPAT == 1){
 		include_once 'parsers/pure.xecode';
@@ -41,8 +41,8 @@ function lib_eyeXML_init(){
 * @return Returns a XML header.
 * @date 2008/03/11
 */
-if(!function_exists('lib_eyeXML_getXmlHeader')){
-	function lib_eyeXML_getXmlHeader($params=null) {
+if(!function_exists('lib_xenonXML_getXmlHeader')){
+	function lib_xenonXML_getXmlHeader($params=null) {
 		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 	}
 }
@@ -56,8 +56,8 @@ if(!function_exists('lib_eyeXML_getXmlHeader')){
 *	to their entities.
 * @date 2008/03/11
 */
-if(!function_exists('lib_eyeXML_entityEncode')){
-	function lib_eyeXML_entityEncode($params){
+if(!function_exists('lib_xenonXML_entityEncode')){
+	function lib_xenonXML_entityEncode($params){
 		if(!isset($params[0])){
 			errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 			return false;

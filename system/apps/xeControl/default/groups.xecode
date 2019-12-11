@@ -111,7 +111,7 @@ if (xeControl_lib_getConfigUser() == ROOTUSER) {
 	));
 	$myButton->addFriend($myTable);
 	$myButton->show();
-	$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml'));
+	$xml = xenonXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml'));
 	// Default group: x | x group(s)
 	$myLabel = new Label(array(
 		'name' => 'xeControl_account_label_groups',

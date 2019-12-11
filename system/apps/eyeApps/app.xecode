@@ -173,7 +173,7 @@ function eyeApps_run($params = '')
 	}
 	else
 	{
-		$xml = eyeXML('getXMLconfig', array('eyeApps', 'conf.xml'));
+		$xml = xenonXML('getXMLconfig', array('eyeApps', 'conf.xml'));
 
 		eyeApps_lib_ShowApps($xml['eyeApps'][0]['category'][0]);
 	}

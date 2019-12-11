@@ -83,7 +83,7 @@ function service_vfs_create($params) {
 
 			//Create the 2 files, info and file.
 			file_put_contents($fileToCreate . '.' . XENONOS_FILE_EXT, '');
-			file_put_contents($fileToCreate . '.' . XENONOS_INFO_EXT, eyeXML('array2xml',array($data)));
+			file_put_contents($fileToCreate . '.' . XENONOS_INFO_EXT, xenonXML('array2xml',array($data)));
 		} else {
 			file_put_contents($file, '');
 		}
@@ -214,7 +214,7 @@ function service_vfs_delete($params) {
 							)
 						)
 					);
-					file_put_contents($myUserDir . '/' . TRASH_USER_DIR . '/' . $name . '.' . XENONOS_TRASH_EXT, eyeXML('array2xml',array($data)));
+					file_put_contents($myUserDir . '/' . TRASH_USER_DIR . '/' . $name . '.' . XENONOS_TRASH_EXT, xenonXML('array2xml',array($data)));
 					return true;
 				} else {
 					errorCodes('setErrorCode',array(PHP_ERROR_ON_UNLINK));
@@ -232,7 +232,7 @@ function service_vfs_delete($params) {
 							)
 						)
 					);
-					file_put_contents($myUserDir . '/' . TRASH_USER_DIR . '/' . $name . '.' . XENONOS_TRASH_EXT, eyeXML('array2xml',array($data)));
+					file_put_contents($myUserDir . '/' . TRASH_USER_DIR . '/' . $name . '.' . XENONOS_TRASH_EXT, xenonXML('array2xml',array($data)));
 					return true;
 				} else {
 					errorCodes('setErrorCode',array(PHP_ERROR_ON_UNLINK));
@@ -409,9 +409,9 @@ function service_vfs_copy($params) {
 			$subdest = $dest;
 			$dest .= '_' . substr($orig, strrpos($orig, '_') + 1); // utf8
 			if (copy($orig.'.'.XENONOS_FILE_EXT,$dest.'.'.XENONOS_FILE_EXT)){
-				$xml = eyeXML('xml2array',array(file_get_contents($orig . '.' . XENONOS_INFO_EXT)));
+				$xml = xenonXML('xml2array',array(file_get_contents($orig . '.' . XENONOS_INFO_EXT)));
 				$xml['eyeFile'][0]['filename'][0] = basename($subdest);
-				file_put_contents($dest . '.' . XENONOS_INFO_EXT, eyeXML('array2xml',array($xml)));
+				file_put_contents($dest . '.' . XENONOS_INFO_EXT, xenonXML('array2xml',array($xml)));
 				return true;
 			} else {
 				errorCodes('setErrorCode',array(PHP_ERROR_ON_COPY));
@@ -547,9 +547,9 @@ function service_vfs_move($params) {
 			$dest .= '_' . substr($orig, strrpos($orig, '_') + 1); // utf8
 
 			if (@rename($orig.'.'.XENONOS_FILE_EXT,$dest.'.'.XENONOS_FILE_EXT)){
-				$xml = eyeXML('xml2array',array(file_get_contents($orig . '.' . XENONOS_INFO_EXT)));
+				$xml = xenonXML('xml2array',array(file_get_contents($orig . '.' . XENONOS_INFO_EXT)));
 				$xml['eyeFile'][0]['filename'][0] = basename($subdest);
-				file_put_contents($dest . '.' . XENONOS_INFO_EXT, eyeXML('array2xml',array($xml)));
+				file_put_contents($dest . '.' . XENONOS_INFO_EXT, xenonXML('array2xml',array($xml)));
 				if(@unlink($orig.'.'.XENONOS_INFO_EXT)) {
 					return true;
 				} else {
@@ -790,7 +790,7 @@ function service_vfs_fileExists($params) {
 * @param $params array(file)
 * @param $file Path to the virtual file to read.
 * @return If the function succeeds, returns an array (using the output
-*	returned by the eyeXML's xml2array() function) with the
+*	returned by the xenonXML's xml2array() function) with the
 *	contents of the file. Otherwise, it returns false and sets
 *	the error code according to the error occurred.
 * @exception INCORRECT_PARAMS No file has been specified.
@@ -807,7 +807,7 @@ function service_vfs_readInfo($params)
 	$file = getRealFileName($file);
 	if(vfs('isGroupDir',array($file))) {
 		if (vfs('real_fileExists',array($file . '.' . XENONOS_INFO_EXT))) {
-			return eyeXML('xml2array',array(file_get_contents($file . '.' . XENONOS_INFO_EXT)));
+			return xenonXML('xml2array',array(file_get_contents($file . '.' . XENONOS_INFO_EXT)));
 		} else {
 			return false;
 		}
@@ -954,7 +954,7 @@ function service_vfs_rmdir($params) {
 				)
 			)
 		);
-		eyeXML('setXMLfile',array($trashDir.$name.'.'.XENONOS_TRASH_EXT,$data));
+		xenonXML('setXMLfile',array($trashDir.$name.'.'.XENONOS_TRASH_EXT,$data));
 	} else {
 		deleteDirContent($dir);
 	}
@@ -1025,7 +1025,7 @@ function service_vfs_checkPermissions($params) {
 						if($mode == 'r' || $mode == 'R') {
 							return true;
 						}
-						$xml = eyeXML('xml2array',array(file_get_contents($eyeInfo)));
+						$xml = xenonXML('xml2array',array(file_get_contents($eyeInfo)));
 						if($xml['eyeFile'][0]['author'][0] == $currentUser) {
 							return true;
 						}
@@ -1131,7 +1131,7 @@ function service_vfs_getDirContent($params) {
 			foreach ($files as $fileName) {
 				$info = pathinfo($fileName);
 				if (isset($info['extension']) === true && $info['extension'] === XENONOS_INFO_EXT) {
-					$xml = eyeXML('xml2array',array(file_get_contents($fileName)));
+					$xml = xenonXML('xml2array',array(file_get_contents($fileName)));
 					if($xml['eyeFile'][0]['filename'][0]) {
 						$dirFiles[] = $info['dirname'].'/'.$xml['eyeFile'][0]['filename'][0];
 					}
@@ -1992,7 +1992,7 @@ function service_vfs_realToVirtual($params=null){
 		)
 	);
 
-	file_put_contents($fileToCreate . '.' . XENONOS_INFO_EXT, eyeXML('array2xml',array($data)));
+	file_put_contents($fileToCreate . '.' . XENONOS_INFO_EXT, xenonXML('array2xml',array($data)));
 
 //eyeFile creation.
 	//move real name to new name
@@ -2066,7 +2066,7 @@ function service_vfs_virtualToReal($params = '') {
 	}
 	$virtual = basename(getRealFileName($params[0]) . '.' . XENONOS_INFO_EXT);
 	$path = substr($params[0], 0, -strlen(basename($params[0]))); // utf8
-	$info = eyeXML('getXMLfile',array($path . '/' . $virtual));
+	$info = xenonXML('getXMLfile',array($path . '/' . $virtual));
 	$real = $info['eyeFile'][0]['filename'][0];
 	if (rename($path . '/' . substr($virtual, 0, -strlen(XENONOS_INFO_EXT)) . XENONOS_FILE_EXT, $path . '/' . $real) && unlink($path . '/' . $virtual)) { // utf8
 		return true;

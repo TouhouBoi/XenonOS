@@ -35,7 +35,7 @@ function service_sec_init($params = null) {
 * @date 2009/02/24
 */
 function service_sec_protectedIpSessions($params = null) {
-	$config = eyeXML('getXMLconfig',array('sec','conf.xml'));
+	$config = xenonXML('getXMLconfig',array('sec','conf.xml'));
 	return $config['security'][0]['PROTECTED_IP_SESSIONS'][0];
 }
 

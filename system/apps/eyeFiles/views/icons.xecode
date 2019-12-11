@@ -48,7 +48,7 @@ if ($eyeFiles_noactions) {
 }
 $myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/refresh.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Refresh')), ENT_QUOTES),'eyeFiles_View_Icons_ContextMenu_refresh','OpenPath','',$myPid . '_eyeFiles_View_Icons_ContextMenu_refresh_img');
 
-$conf = eyeXML('getXMLconfig',array('eyeFiles','conf.xml'));
+$conf = xenonXML('getXMLconfig',array('eyeFiles','conf.xml'));
 if (isset($conf['eyeFiles'][0]['clickMethod']) === false || !$conf['eyeFiles'][0]['clickMethod'][0]) {
 	$conf['eyeFiles'][0]['clickMethod'][0] = 1;
 }

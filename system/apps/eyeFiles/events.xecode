@@ -163,7 +163,7 @@ function eyeFiles_on_Action($params = '') {
 	$path = eyeFiles('cleanPath',array($GLOBALS['eyeFiles_Hidden_Path']->text));
 	if (isset($params['File']) === true && $params['File'][0]) {
 		if ($params['Action'][0] == 'launch') {
-			$xml = eyeXML('getXMLfile',array($path[0] . '/' . $params['File'][0]));
+			$xml = xenonXML('getXMLfile',array($path[0] . '/' . $params['File'][0]));
 			eyeFiles('launchCommand',array($xml['eyeLink'][0]['content'][0], $xml['eyeLink'][0]['xArgs'][0]));
 		} else {
 			proc('launch',array($params['Action'][0],array($path[1] . '://' . $path[2] . '/' . $params['File'][0])));
@@ -213,7 +213,7 @@ function eyeFiles_on_Icon_Clicked($params = '') {
 		if (vfs('isdir',array($path[0]))) {
 			eyeFiles_on_OpenPath(array($path[2] . '/' . $file,$path[1]));
 		} elseif (strtolower(substr($path[0], -strlen('.' . XENONOS_LINK_EXT))) === '.' . strtolower(XENONOS_LINK_EXT) && vfs('real_fileExists', array($path[0])) === true) { // utf8
-			$xml = eyeXML('getXMLfile', array($path[0]));
+			$xml = xenonXML('getXMLfile', array($path[0]));
 			eyeFiles('launchCommand', array($xml['eyeLink'][0]['content'][0], $xml['eyeLink'][0]['xArgs'][0]));
 		} elseif ($path[1] === 'real') {
 			xenonx('messageBox', array('content' => 'Opening files in real mode is not allowed.'));
@@ -235,7 +235,7 @@ function eyeFiles_on_Icon_Dropped($params = '') {
 }
 
 function eyeFiles_on_UpdateView($params = '') {
-	$xml = eyeXML('getXMLconfig',array('eyeFiles','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeFiles','conf.xml'));
 	if ($GLOBALS['eyeFiles_Box_View_Radio_Details']->checked) {
 		$xml['eyeFiles'][0]['View'][0] = 3;
 	} elseif ($GLOBALS['eyeFiles_Box_View_Radio_List']->checked) {
@@ -243,7 +243,7 @@ function eyeFiles_on_UpdateView($params = '') {
 	} else {
 		$xml['eyeFiles'][0]['View'][0] = 1;
 	}
-	eyeXML('setXMLconfig',array('eyeFiles','conf.xml',$xml));
+	xenonXML('setXMLconfig',array('eyeFiles','conf.xml',$xml));
 	eyeFiles_on_OpenPath();
 }
 
@@ -375,9 +375,9 @@ function eyeFiles_on_ChangeBox($params = array()) {
 			$GLOBALS['eyeFiles_Hidden_Action']->setText('');
 		}
 		$GLOBALS['eyeFiles_Hidden_Box']->setText($params['Box'][0]);
-		$xml = eyeXML('getXMLconfig',array('eyeFiles','conf.xml'));
+		$xml = xenonXML('getXMLconfig',array('eyeFiles','conf.xml'));
 		$xml['eyeFiles'][0]['Box'][0] = $params['Box'][0];
-		eyeXML('setXMLconfig',array('eyeFiles','conf.xml',$xml));
+		xenonXML('setXMLconfig',array('eyeFiles','conf.xml',$xml));
 	}
 	if ($GLOBALS['eyeFiles_Hidden_Box']->text == 'Tree') {
 		$path = eyeFiles('cleanPath',array($GLOBALS['eyeFiles_Hidden_Path']->text));

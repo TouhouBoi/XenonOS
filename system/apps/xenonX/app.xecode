@@ -59,7 +59,7 @@ function xenonX_run($params = '') {
 
 	$oldUser = $currentUser;
 	$currentUser = REAL_ROOTUSER;
-	$themexml = eyeXML('getXMLfile', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonx/themes/' . $_SESSION['usertheme'] . '/conf/theme.xml'));
+	$themexml = xenonXML('getXMLfile', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonx/themes/' . $_SESSION['usertheme'] . '/conf/theme.xml'));
 	$currentUser = $oldUser;
 	if ($themexml['theme'][0]['cssBase'][0]) {
 		echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS.css&amp;type=css" id="eyeOSCss" rel="stylesheet" type="text/css" />' . "\n";

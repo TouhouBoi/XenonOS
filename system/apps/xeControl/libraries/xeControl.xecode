@@ -45,7 +45,7 @@ function xeControl_lib_loadContent($category = '',$content = '',$contentParams =
 	} elseif ($category == 'others') {
 		$dir = XENONOS_ROOT . '/' . APP_DIR . '/xeControl/others/';
 		$dir2 = XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/xeControl/others/';
-		$contentXML = eyeXML('getXMLfile',array($dir2 . $content . '.xml'));
+		$contentXML = xenonXML('getXMLfile',array($dir2 . $content . '.xml'));
 		$contentXML = $contentXML['content'][0];
 	} else {
 		$contentXML = getConfig('xeControl','categories.xml');

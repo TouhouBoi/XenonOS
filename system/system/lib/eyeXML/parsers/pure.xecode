@@ -23,7 +23,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 /**
 * Transforms the content of a XML string to a PHP array.
 */
-function lib_eyeXML_xml2array($params) {
+function lib_xenonXML_xml2array($params) {
 	if(!isset($params[0])){
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
@@ -48,7 +48,7 @@ function lib_eyeXML_xml2array($params) {
 *	Otherwise, returns false.
 * @date 2008/03/11
 */
-function lib_eyeXML_array2xml($params){
+function lib_xenonXML_array2xml($params){
 	if(!isset($params[0])){
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
@@ -58,7 +58,7 @@ function lib_eyeXML_array2xml($params){
 		return false;
 	}
 	if(isset($params[1]) && $params[1] == 1) {
-		return lib_eyeXML_getXmlHeader().getArrayText($myArray);
+		return lib_xenonXML_getXmlHeader().getArrayText($myArray);
 	}
 	return getArrayText($myArray);
 }
@@ -73,7 +73,7 @@ function lib_eyeXML_array2xml($params){
 *	the tag 'master'.
 * @date 2008/03/11
 */
-function lib_eyeXML_append($params) {
+function lib_xenonXML_append($params) {
 	if(!isset($params[0]) || !isset($params[1])){
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
@@ -89,7 +89,7 @@ function getArrayText($content, $tabs = 0) {
 		foreach ($content as $key => $value) {
 			if (is_array($value) === true) {
 				$key = utf8_htmlspecialchars($key, ENT_NOQUOTES);
-				$key = preg_replace_callback('/\\s{1}/u', 'private_lib_eyeXML_Entity', $key); // utf8
+				$key = preg_replace_callback('/\\s{1}/u', 'private_lib_xenonXML_Entity', $key); // utf8
 				$key = strtr($key, array('!' => '&#33;', '/' => '&#47;', '?' => '&#63;'));
 				foreach ($value as $current) {
 					$return .= /* utf8 */ str_pad('', $tabs, "\t");
@@ -111,7 +111,7 @@ function getArrayText($content, $tabs = 0) {
 	return /* utf8 */ substr($return, 0, -1);
 }
 
-function private_lib_eyeXML_Entity($matches) {
+function private_lib_xenonXML_Entity($matches) {
 	return '&#' . strval(utf8_ord($matches[0])) . ';';
 }
 

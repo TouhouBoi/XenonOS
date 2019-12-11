@@ -20,7 +20,7 @@ function xeControl_on_newfiletype_save($params = '') {
 		$xml['fileType'][0]['app'][0] = $GLOBALS['xeControl_newfiletype_select_application']->selected;
 		$xml['fileType'][0]['description'][0] = $GLOBALS['xeControl_newfiletype_textbox_description']->text;
 		$xml['fileType'][0]['name'][0] = $GLOBALS['xeControl_newfiletype_textbox_title']->text;
-		eyeXML('setXMLfile', array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/' . $filetype . '.xml', $xml));
+		xenonXML('setXMLfile', array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/' . $filetype . '.xml', $xml));
 		xenonx('messageBox', array('content' => 'Filetype successfully created.'));
 		xeControl_lib_loadContent('only_root', 'filetypes');
 	} else {

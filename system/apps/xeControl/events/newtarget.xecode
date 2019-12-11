@@ -166,7 +166,7 @@ function xeControl_on_typeTarget_add($params = ""){
 		);
 		$i=0;
 		$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
-		$config = eyeXML('getXMLfile', array($file));
+		$config = xenonXML('getXMLfile', array($file));
 		if($config){
 			foreach($config['GACL'][0]['ACL'] as $value) {
 				$id = $value['id'][0];
@@ -180,7 +180,7 @@ function xeControl_on_typeTarget_add($params = ""){
 				$i++;
 			}
 		}
-		eyeXML('setXMLfile', array($file,$config));
+		xenonXML('setXMLfile', array($file,$config));
 	}
 }
 
@@ -202,7 +202,7 @@ function xeControl_on_newparam_add($params = ""){
 		$GLOBALS['xeControl_acl_params2_sortabletable']->addRow($row);
 		$GLOBALS['xeControl_newparam_popup']->close();
 		$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
-		$config = eyeXML('getXMLfile', array($file));
+		$config = xenonXML('getXMLfile', array($file));
 
 		$params = array(
 			'param' => array($param)
@@ -229,7 +229,7 @@ function xeControl_on_newparam_add($params = ""){
 				$i++;
 			}
 		}
-		eyeXML('setXMLfile', array($file,$config));
+		xenonXML('setXMLfile', array($file,$config));
 	}
 }
 
@@ -238,7 +238,7 @@ function xeControl_on_show_rights($params = "") {
 	$id1 = $GLOBALS['xeControl_acl_params_sortabletable']->selected;
 	$id0 = $GLOBALS['uniqid']->text;
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
-	$config = eyeXML('getXMLfile', array($file));
+	$config = xenonXML('getXMLfile', array($file));
 	$i=0;
 
 	if($config){
@@ -285,7 +285,7 @@ function xeControl_on_yDelete(){
 	$id1 = $GLOBALS['xeControl_acl_params_sortabletable']->selected;
 	$GLOBALS['xeControl_acl_params_sortabletable']->delRow($id1);
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
-	$config = eyeXML('getXMLfile', array($file));
+	$config = xenonXML('getXMLfile', array($file));
 	
 	$targetN = array('target' => array(''));
 	
@@ -301,11 +301,11 @@ function xeControl_on_yDelete(){
 				$id = $target['id'][0];
 				if($id == $id1){
 					unset($config['GACL'][0]['ACL'][$i]['target'][$x]);
-					eyeXML('setXMLfile', array($file,$config));
-					$config = eyeXML('getXMLfile', array($file));
+					xenonXML('setXMLfile', array($file,$config));
+					$config = xenonXML('getXMLfile', array($file));
 					if(!array_key_exists('target',$config['GACL'][0]['ACL'][$i])){
 						$config['GACL'][0]['ACL'][$i] = array_merge($config['GACL'][0]['ACL'][$i],$targetN);
-						eyeXML('setXMLfile', array($file,$config));
+						xenonXML('setXMLfile', array($file,$config));
 						$GLOBALS['xeControl_acl_typeTarget_done_button']->disable();
 					}
 					$GLOBALS['xeControl_acl_params2_sortabletable']->delAllRows();
@@ -361,7 +361,7 @@ function xeControl_on_yDelete1($params=""){
 	$id0 = $GLOBALS['uniqid']->text;
 	$Params = array('params' => array(''));
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
-	$config = eyeXML('getXMLfile', array($file));
+	$config = xenonXML('getXMLfile', array($file));
 	$i=0;
 	$x=0;
 	$y=0;
@@ -375,13 +375,13 @@ function xeControl_on_yDelete1($params=""){
 						$parami = $target['params'][0]['param'][$i];
 						if ($params == $parami){
 							unset($config['GACL'][0]['ACL'][$x]['target'][$y]['params'][0]['param'][$i]);
-							eyeXML('setXMLfile', array($file,$config));
-							$config = eyeXML('getXMLfile', array($file));
+							xenonXML('setXMLfile', array($file,$config));
+							$config = xenonXML('getXMLfile', array($file));
 							$trimd = /* utf8 */ trim($config['GACL'][0]['ACL'][$x]['target'][$y]['params'][0]);
 							if (empty($trimd)){
 								unset($config['GACL'][0]['ACL'][$x]['target'][$y]['params']);
 								$config['GACL'][0]['ACL'][$x]['target'][$y] = $Params;
-								eyeXML('setXMLfile', array($file,$config));
+								xenonXML('setXMLfile', array($file,$config));
 							}
 							$GLOBALS['xeControl_acl_params2_sortabletable']->delRow($parami);
 						}

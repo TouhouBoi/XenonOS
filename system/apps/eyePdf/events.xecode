@@ -27,7 +27,7 @@ function eyePdf_on_Init($params = '') {
 		vfs('real_copy',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/conf/skel/' . CONF_USER_DIR . '/eyePdf/conf.xml',$userDir . 'conf/eyePdf/conf.xml'));
 		$currentUser = $oldUser;
 	}
-	$xml = eyeXML('getXMLconfig',array('eyePdf','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyePdf','conf.xml'));
 	if ($xml['eyePdf'][0]['renderer'][0] == 'pdf.js') {
 		xenonx('rawjs', array('js' => 'sendMsg(' . $checknum . ',"Load",eyeParam("path","'.$params[0].'") + eyeParam("renderer","pdf.js") + eyeParam("start_maximized","' . $xml['eyePdf'][0]['start_maximized'][0] . '"));'));
 	} elseif ($xml['eyePdf'][0]['renderer'][0] == 'download') {

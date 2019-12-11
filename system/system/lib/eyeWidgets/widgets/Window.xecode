@@ -164,7 +164,7 @@ class Window {
 		} elseif (isset($params['forcePosition']) === true && $params['forcePosition']) {
 			$this->savePosition = NO_SAVE;
 		} else {
-			$xml = eyeXML('getXMLconfig',array('xenonx','xenonx.xml'));
+			$xml = xenonXML('getXMLconfig',array('xenonx','xenonx.xml'));
 			if ($xml['xenonx'][0]['saveWindowPositions'][0] == '0') {
 				$this->savePosition = NO_SAVE;
 			}
@@ -393,7 +393,7 @@ class Window {
 	/*	Gets stored positions and size from relevant file, returns as array	*/
 	function getSavedPositions() {
 		global $myPid;
-		$xml = eyeXML('getXMLconfig',array('xenonx',proc('findNameByPid',array($myPid)) . '.xml'));
+		$xml = xenonXML('getXMLconfig',array('xenonx',proc('findNameByPid',array($myPid)) . '.xml'));
 		if (!$xml || !is_array($xml)) {
 			return false;
 		}

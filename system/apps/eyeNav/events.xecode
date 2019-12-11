@@ -24,7 +24,7 @@ global $currentUser;
 
 include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/libs.xecode');
 
-$conf = eyeXML('getXMLconfig', array('eyeNav','conf.xml'));
+$conf = xenonXML('getXMLconfig', array('eyeNav','conf.xml'));
 $url = XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/plugins/';
 $url2 = $url . $conf['eyeNav'][0]['plugin'][0] . XE_CODE_EXTENSION;
 
@@ -136,10 +136,10 @@ function eyeNav_on_Bookmarks($params = '')
 		$GLOBALS['eyeNav_frame']->setX(10);
 		$GLOBALS['eyeNav_line']->hide();
 
-		$xml = eyeXML('getXMLconfig',array('eyeNav','conf.xml'));
+		$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
 		$xml['eyeNav'][0]['sidebar'][0] = 0;
 
-		eyeXML('setXMLconfig',array('eyeNav','conf.xml',$xml));
+		xenonXML('setXMLconfig',array('eyeNav','conf.xml',$xml));
 	}
 	else
 	{
@@ -167,7 +167,7 @@ function eyeNav_on_nav_TREE($params = null)
 
 	$GLOBALS['selectedBookmarkId_HID']->setText($id);
 
-	$xml = eyeXML('getXMLconfig',array('eyeNav','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
 	$bookmark = eyeNav_getBookmarkFromId($xml['eyeNav'][0]['bookmarks'][0]['bookmark'],$id);
 
 	if ($bookmark['type'][0] == 'url')
@@ -238,12 +238,12 @@ function eyeNav_on_delBookmark_yes($params = '')
 
 	if ($GLOBALS['eyeNav_hidden_bookmarks_url']->text == '<none>')
 	{
-		$xml = eyeXML('getXMLconfig',array('eyeNav','conf.xml'));
+		$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
 	}
 	else
 	{
 		$path = $GLOBALS['eyeNav_hidden_bookmarks_url']->text;
-		$xml = eyeXML('getXMLfile',array(vfs('getRealName',array($path))));
+		$xml = xenonXML('getXMLfile',array(vfs('getRealName',array($path))));
 	}
 
 	$x = eyeNav_lib_array_findIdByText(array($xml['eyeNav'][0]['bookmarks'][0]['category'], 'Uncategorized', array('name', 0)));
@@ -258,11 +258,11 @@ function eyeNav_on_delBookmark_yes($params = '')
 
 			if ($GLOBALS['eyeNav_hidden_bookmarks_url']->text == '<none>')
 			{
-				eyeXML('setXMLconfig', array('eyeNav', 'conf.xml', $xml));
+				xenonXML('setXMLconfig', array('eyeNav', 'conf.xml', $xml));
 			}
 			else
 			{
-				eyeXML('setXMLfile', array(vfs('getRealName', array($path)), $xml));
+				xenonXML('setXMLfile', array(vfs('getRealName', array($path)), $xml));
 			}
 
 			xenonx('messageBox', array('content' => 'Link successfully deleted.'));
@@ -358,10 +358,10 @@ function eyeNav_on_Search($params = '')
 		$GLOBALS['eyeNav_frame']->setX(10);
 		$GLOBALS['eyeNav_line']->hide();
 
-		$xml = eyeXML('getXMLconfig',array('eyeNav','conf.xml'));
+		$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
 		$xml['eyeNav'][0]['sidebar'][0] = 0;
 
-		eyeXML('setXMLconfig',array('eyeNav','conf.xml',$xml));
+		xenonXML('setXMLconfig',array('eyeNav','conf.xml',$xml));
 	}
 	else
 	{
@@ -396,7 +396,7 @@ function eyeNav_on_search_label($params = '')
 
 function eyeNav_on_search_default($params = '')
 {
-	$xml = eyeXML('getXMLconfig',array('eyeNav','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
 	$page = str_replace('%s', $GLOBALS['eyeNav_url_search']->text, $xml['eyeNav'][0]['searches'][0]['default'][0]);
 
 	eyeNav_lib_doUrl(array('page' => array($page)));
@@ -467,11 +467,11 @@ function eyeNav_on_addFolder_add_BTN($params = null)
 		$parentId = null;
 	}
 
-	$xml = eyeXML('getXMLconfig', array ('eyeNav', 'conf.xml'));
+	$xml = xenonXML('getXMLconfig', array ('eyeNav', 'conf.xml'));
 	$new = eyeNav_addFolder($xml['eyeNav'][0]['bookmarks'][0], $text, $folderId, $parentId);
 	$xml['eyeNav'][0]['bookmarks'][0] = $new;
 
-	if (eyeXML('setXMLconfig',array('eyeNav', 'conf.xml', $xml)))
+	if (xenonXML('setXMLconfig',array('eyeNav', 'conf.xml', $xml)))
 	{
 		xenonx('messageBox', array ('content'=> 'Folder successfully added'));
 		eyeNav_lib_refreshTree();
@@ -529,7 +529,7 @@ function eyeNav_on_addBookmark_add_BTN($params = null)
 		$parentId = null;
 	}
 
-	$xml = eyeXML('getXMLconfig', array('eyeNav', 'conf.xml'));
+	$xml = xenonXML('getXMLconfig', array('eyeNav', 'conf.xml'));
 
 	$bookmark = array();
 	$bookmark['name'] = array();
@@ -544,7 +544,7 @@ function eyeNav_on_addBookmark_add_BTN($params = null)
 	$new = eyeNav_addBookmark($xml['eyeNav'][0]['bookmarks'][0],$bookmark,$parentId);
 	$xml['eyeNav'][0]['bookmarks'][0] = $new;
 
-	if (eyeXML('setXMLconfig', array ('eyeNav', 'conf.xml', $xml)))
+	if (xenonXML('setXMLconfig', array ('eyeNav', 'conf.xml', $xml)))
 	{
 		xenonx('messageBox', array ('content'=> 'Bookmark successfully added'));
 		eyeNav_lib_refreshTree();
@@ -568,7 +568,7 @@ function eyeNav_on_editBookmark_apply_BTN($params = null)
 		$newFolderId = null;
 	}
 
-	$xml = eyeXML('getXMLconfig', array ('eyeNav', 'conf.xml'));
+	$xml = xenonXML('getXMLconfig', array ('eyeNav', 'conf.xml'));
 	$Bookmark = eyeNav_getBookmarkFromId($xml['eyeNav'][0]['bookmarks'][0]['bookmark'], $BookmarkId);
 
 	if ($BookmarkName)
@@ -587,7 +587,7 @@ function eyeNav_on_editBookmark_apply_BTN($params = null)
 	$newBookmarksToSave = eyeNav_addBookmark($xml['eyeNav'][0]['bookmarks'][0],$Bookmark,$newFolderId);
 	$xml['eyeNav'][0]['bookmarks'][0] = $newBookmarksToSave;
 
-	if (eyeXML('setXMLconfig', array ('eyeNav', 'conf.xml', $xml)))
+	if (xenonXML('setXMLconfig', array ('eyeNav', 'conf.xml', $xml)))
 	{
 		xenonx('messageBox', array ('content'=> 'Bookmark successfully edited'));
 		eyeNav_lib_refreshTree();
@@ -610,7 +610,7 @@ function eyeNav_on_editFolder_apply_BTN($params = null)
 		$newFolderId = null;
 	}
 
-	$xml = eyeXML('getXMLconfig', array('eyeNav', 'conf.xml'));
+	$xml = xenonXML('getXMLconfig', array('eyeNav', 'conf.xml'));
 	$Bookmark = eyeNav_getBookmarkFromId($xml['eyeNav'][0]['bookmarks'][0]['bookmark'], $BookmarkId);
 
 	if ($BookmarkName)
@@ -623,7 +623,7 @@ function eyeNav_on_editFolder_apply_BTN($params = null)
 
 	$xml['eyeNav'][0]['bookmarks'][0] = $newBookmarksToSave;
 
-	if (eyeXML('setXMLconfig', array ('eyeNav', 'conf.xml', $xml)))
+	if (xenonXML('setXMLconfig', array ('eyeNav', 'conf.xml', $xml)))
 	{
 		xenonx('messageBox', array ('content'=> 'Bookmark successfully edited'));
 		eyeNav_lib_refreshTree();
@@ -699,7 +699,7 @@ function eyeNav_addFolder($bookmark, $folderName, $folderId, $parentFolderId)
 // Search Url next to url box top right
 function eyeNav_on_searchFor($params = '')
 {
-	$xml = eyeXML('getXMLconfig', array ('eyeNav', 'conf.xml'));
+	$xml = xenonXML('getXMLconfig', array ('eyeNav', 'conf.xml'));
 	$page = str_replace('%s', $GLOBALS['eyeNav_url_search']->text, $xml['eyeNav'][0]['searches'][0]['default'][0]);
 
 	eyeNav_lib_doUrl(array ('page' => array ($page)));

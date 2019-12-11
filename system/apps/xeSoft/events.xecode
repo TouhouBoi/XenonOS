@@ -36,10 +36,10 @@ function xeSoft_on_Update($params=""){
 	}
 	vfs('real_mkdir', array($dir));
 	// start with downloading script
-	$config = eyeXML('getXMLfile',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports.xml'));
+	$config = xenonXML('getXMLfile',array(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SYSTEM_CONF_DIR.'/ports.xml'));
 	foreach($config['eyePorts'][0]['mirrors'][0]['mirror'] as $value) {
 		$content = eyeURL('getRawFile', array('url' => $value));
-		$myServer = eyeXML('xml2array',array($content));
+		$myServer = xenonXML('xml2array',array($content));
 		if (is_array($myServer) === true) {
 			foreach($myServer['eyePorts'][0]['portServer'] as $pValue) {
 				$myPname = basename($pValue['name'][0]);
@@ -58,7 +58,7 @@ function xeSoft_on_Update($params=""){
 }
  
 function getInstalled($app) {
-	$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml'));
+	$xml = xenonXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml'));
 	if (is_array($xml) === true) {
 		foreach($xml['xeSoft'][0]['package'] as $package) {
 			if ($package['name'][0] == $app['name'][0]) {
@@ -88,7 +88,7 @@ function xeSoft_loadList($category=null,$search=null) {
 				$fp = vfs('real_open',array($current,'r'));
 				$xml = fread($fp,filesize($current));
 				fclose($fp);
-				$myArray = eyeXML('xml2array',array($xml));
+				$myArray = xenonXML('xml2array',array($xml));
 				foreach($myArray['packages'][0]['package'] as $value) {
 					if(!$category) {
 						if(!$search) {
@@ -122,7 +122,7 @@ function xeSoft_on_ClickTable($params=null) {
 				$fp = vfs('real_open',array($current,'r'));
 				$xml = fread($fp,filesize($current));
 				fclose($fp);
-				$myArray = eyeXML('xml2array',array($xml));
+				$myArray = xenonXML('xml2array',array($xml));
 				foreach($myArray['packages'][0]['package'] as $value) {
 					if($value['name'][0] == $myApp) {
 						$text = "\n";
@@ -257,7 +257,7 @@ function xeSoft_on_stepInstall($params=null) {
 	$tar_path = str_replace(".xepackage", "", $fpath);
 	lib_xeCompress_extractFile(array(XENONOS_ROOT, $tar_path, ".xepackage"));
 	unlink($fpath);
-	$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml'));
+	$xml = xenonXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml'));
 	if (is_array($xml) === true) {
 		foreach ($xml['xeSoft'][0]['package'] as $key => $value) {
 			if ($value['name'][0] == $info['name']) {
@@ -268,7 +268,7 @@ function xeSoft_on_stepInstall($params=null) {
 	$array['name'][0] = $info['name'];
 	$array['version'][0] = $info['version'];
 	$xml['xeSoft'][0]['package'][] = $array;
-	eyeXML('setXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml',$xml));
+	xenonXML('setXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml',$xml));
 	$GLOBALS['Installing']->clear();
 	$myLabel1 = new Label(array('name'=>'Label1','father'=>'Installing_Content',
 		'text'=>"%s installed succesfully!",'tokens' => array($myApp),'y'=>15,'x'=>20));
@@ -288,7 +288,7 @@ function getAppInformation($myApp) {
 				$fp = vfs('real_open',array($current,'r'));
 				$xml = fread($fp,filesize($current));
 				fclose($fp);
-				$myArray = eyeXML('xml2array',array($xml));
+				$myArray = xenonXML('xml2array',array($xml));
 				foreach($myArray['packages'][0]['package'] as $value) {
 					if($value['name'][0] == $myApp) {
 						$address = $myArray['address'][0];
@@ -352,7 +352,7 @@ function xeSoft_on_Uninstall_yes($params = '') {
 				if (vfs('real_fileExists',array($externDir))) {
 					vfs('real_rmdir',array($externDir));
 				}
-				$xml = eyeXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml'));
+				$xml = xenonXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml'));
 				$x = 0;
 				foreach($xml['xeSoft'][0]['package'] as $package) {
 					if ($package['name'][0] == $app) {
@@ -360,7 +360,7 @@ function xeSoft_on_Uninstall_yes($params = '') {
 					}
 					$x++;
 				}
-				eyeXML('setXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml',$xml));
+				xenonXML('setXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/ports/status.xml',$xml));
 		} else {
 			xenonx('messageBox',array('content' => 'The application cannot be uninstalled.'));
 			return;

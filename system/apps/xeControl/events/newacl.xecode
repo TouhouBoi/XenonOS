@@ -22,7 +22,7 @@ function xeControl_on_aclServChange($params=""){
 	
 	if ($switch > 1) {
 		$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/xeControl/others/acl-servfunc.xml';
-		$servfunc = eyeXML('getXMLfile', array($sf_file));
+		$servfunc = xenonXML('getXMLfile', array($sf_file));
 		$sCnt = 2;
 		$fCnt = 2;
 		if ($servfunc) {
@@ -52,7 +52,7 @@ function xeControl_on_aclFuncChange($params=""){
 	$switch=$params[arg0][0];
 	if ($switch > 1) {
 		$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/xeControl/others/acl-servfunc.xml';
-		$servfunc = eyeXML('getXMLfile', array($sf_file));
+		$servfunc = xenonXML('getXMLfile', array($sf_file));
 		$sCnt = 2;
 		$fCnt = 2;
 		if ($servfunc) {
@@ -83,7 +83,7 @@ function xeControl_on_acl_hideHazard($params) {
 function xeControl_on_add_settings($params=""){
 
 	$sf_file = XENONOS_ROOT .'/'. APP_DIR .'/xeControl/others/acl-servfunc.xml';
-	$servfunc = eyeXML('getXMLfile', array($sf_file));
+	$servfunc = xenonXML('getXMLfile', array($sf_file));
 	$sCnt = 2;
 	$fCnt = 2;
 	if ($servfunc) {
@@ -137,7 +137,7 @@ function xeControl_on_add_settings($params=""){
 		);
 
 		$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
-		$config = eyeXML('getXMLfile', array($file));
+		$config = xenonXML('getXMLfile', array($file));
 
 		if(!$config){
 			$config = array('GACL' => array(array(
@@ -153,7 +153,7 @@ function xeControl_on_add_settings($params=""){
 			$config['GACL'][0]['ACL'][] = $acl;
 		}
 		//xenonx('messageBox', array('content' => print_r($config, true), 'type' => 2));
-		eyeXML('setXMLfile', array($file,$config));
+		xenonXML('setXMLfile', array($file,$config));
 		xeControl_lib_loadContent('only_root','newtarget');
 	}
 }
@@ -164,7 +164,7 @@ function xeControl_on_update_settings($params=""){
 	$aclName = $GLOBALS['xeControl_acl_textbox']->text;
 
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
-	$config = eyeXML('getXMLfile', array($file));
+	$config = xenonXML('getXMLfile', array($file));
 
 	$x=0;
 	if(empty($aclName)){
@@ -205,11 +205,11 @@ function xeControl_on_update_settings($params=""){
 					//unset($config['GACL'][0]['ACL'][$x]);
 					unset($config['GACL'][0]['ACL'][$x]['description'][0]);
 					unset($config['GACL'][0]['ACL'][$x]['action'][0]);
-					eyeXML('setXMLfile', array($file,$config));
+					xenonXML('setXMLfile', array($file,$config));
 					$config['GACL'][0]['ACL'][$x]['description'][0] = $aclName;
 					$config['GACL'][0]['ACL'][$x]['action'][0] = $action;
 					//$config['GACL'][0]['ACL'][$x] = $acl;
-					eyeXML('setXMLfile', array($file,$config));
+					xenonXML('setXMLfile', array($file,$config));
 				}
 				$x++;
 			}

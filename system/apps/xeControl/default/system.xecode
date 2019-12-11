@@ -97,7 +97,7 @@ if (is_array($openDir)) {
 			} else {
 				$select = 0;
 			}
-			$LangXML = eyeXML('getXMLfile',array($file));
+			$LangXML = xenonXML('getXMLfile',array($file));
 			$display = $LangXML['lang'][0]['name'][0];
 			if ($LangXML['lang'][0]['name2'][0]) {
 				$display .= ' (' . $LangXML['lang'][0]['name2'][0] . ')';
@@ -336,7 +336,7 @@ $myLabel = new Label(array(
 $myLabel->show();
 $ContentY += 20;
 
-$officeXml = eyeXML('getXMLfile', array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml'));
+$officeXml = xenonXML('getXMLfile', array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/system.xml'));
 $myTextbox = new Textbox(array(
 	'name' => 'xeControl_system_office_textbox_folder',
 	'father' => $officeTab,

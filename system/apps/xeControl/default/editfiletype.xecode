@@ -21,7 +21,7 @@ if (!$filetype) {
 	return;
 }
 
-$xml = eyeXML('getXMLfile', array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/' . $filetype . '.xml'));
+$xml = xenonXML('getXMLfile', array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/' . $filetype . '.xml'));
 
 $ContentY = 10;
 // $myHidden

@@ -42,7 +42,7 @@ $myTable->show();
 	$y = 70;
 	global $myPid;
 	global $currentUser ;
-	$xePass = eyeXML('getXMLconfig',array('xePass','conf.xml'));
+	$xePass = xenonXML('getXMLconfig',array('xePass','conf.xml'));
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
 	$info = um('retriveUser',array($currentUser));
@@ -70,7 +70,7 @@ $myTable->show();
 							$appi = $xml['name'][0] ;
 							$oldUser = $currentUser;
 							$currentUser = ROOTUSER;
-							$xmlapp = eyeXML('getXMLconfig',array('xePass','conf.xml'));
+							$xmlapp = xenonXML('getXMLconfig',array('xePass','conf.xml'));
 
 							if(!empty($xmlapp['xePass'][0][$appi][0])) {
 							$crypt = array('data' => base64_decode($xePass['xePass'][0][$appi][0]['login'][0]) , 'key' => $key, 'cipher' => 'xxtea') ;

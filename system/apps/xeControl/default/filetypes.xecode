@@ -34,7 +34,7 @@ $nFiletypes = 0;
 foreach (vfs('real_getDirContent', array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/')) as $filetype) {
 	if (is_file($filetype)) {
 		$nFiletypes++;
-		$xml = eyeXML('getXMLfile', array($filetype));
+		$xml = xenonXML('getXMLfile', array($filetype));
 		$myTable->addRow(array(basename($filetype,'.xml'), $xml['fileType'][0]['name'][0], $xml['fileType'][0]['app'][0], $xml['fileType'][0]['description'][0]));
 	}
 }

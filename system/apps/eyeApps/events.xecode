@@ -34,9 +34,9 @@ function eyeApps_on_Action($params = '') {
 
 	eyeApps_lib_ShowApps($params['category'][0]);
 
-	$xml = eyeXML('getXMLconfig', array('eyeApps', 'conf.xml'));
+	$xml = xenonXML('getXMLconfig', array('eyeApps', 'conf.xml'));
 	$xml['eyeApps'][0]['category'][0] = $params['category'][0];
-	eyeXML('setXMLconfig', array('eyeApps', 'conf.xml', $xml));
+	xenonXML('setXMLconfig', array('eyeApps', 'conf.xml', $xml));
 }
 
 function eyeApps_on_Close($params = '') {
@@ -167,7 +167,7 @@ function eyeApps_lib_ShowApps($category) {
 		'position' => 'absolute'
 	));
 
-	$conf = eyeXML('getXMLconfig',array('eyeFiles','conf.xml'));
+	$conf = xenonXML('getXMLconfig',array('eyeFiles','conf.xml'));
 	if (!isset($conf['eyeFiles'][0]['clickMethod'][0])) {
 		$conf['eyeFiles'][0]['clickMethod'][0] = 1;
 	}

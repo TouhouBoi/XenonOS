@@ -27,7 +27,7 @@ function eyeDelete_run($params = '') {
 			}
 		} else {
 			if ($path[1] !== 'real' && strtolower(strrchr($file, '.')) === '.' . strtolower(XENONOS_LINK_EXT)) { // utf8
-				$xmlLink = eyeXML('getXMLfile',array($path[0] . '/' . $file));
+				$xmlLink = xenonXML('getXMLfile',array($path[0] . '/' . $file));
 			}
 			if (vfs('real_delete',array($path[0] . '/' . $file))) {
 				eyeFiles('update',array('trash://',$path[1] . '://' . $path[2]));
@@ -43,14 +43,14 @@ function eyeDelete_run($params = '') {
 				$file = $xmlLink['eyeLink'][0]['content'][0];
 			}
 			if ($path[1] === 'home' && /* utf8 */ strtolower(basename($path[2])) === 'desktop') {
-				$xml = eyeXML('getXMLconfig',array('eyeDesk','icons.xml'));
+				$xml = xenonXML('getXMLconfig',array('eyeDesk','icons.xml'));
 				if (is_array($xml['icon'])) {
 					foreach ($xml['icon'] as $key => $value) {
 						if ($value['name'][0] == $file) {
 							unset($xml['icon'][$key]);
 						}
 					}
-					eyeXML('setXMLconfig',array('eyeDesk','icons.xml',$xml));
+					xenonXML('setXMLconfig',array('eyeDesk','icons.xml',$xml));
 				}
 			}
 			if ($params[1]) {

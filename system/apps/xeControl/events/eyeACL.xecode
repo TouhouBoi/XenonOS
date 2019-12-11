@@ -69,7 +69,7 @@ function xeControl_on_yDelete0($params=''){
 	$id0 = $GLOBALS['xeControl_acl_sortabletable']->selected;
 
 	$file = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. SYSTEM_CONF_DIR .'/ACL/'. 'acl.xml';
-	$config = eyeXML('getXMLfile', array($file));
+	$config = xenonXML('getXMLfile', array($file));
 	$i=0;
 	if($config){
 		foreach($config['GACL'][0]['ACL'] as $value) {
@@ -80,7 +80,7 @@ function xeControl_on_yDelete0($params=''){
 			$i++;
 		}
 	}
-	eyeXML('setXMLfile', array($file,$config));
+	xenonXML('setXMLfile', array($file,$config));
 	$GLOBALS['xeControl_acl_sortabletable']->delRow($id0);
 	$GLOBALS['delete_warning0']->close();
 }

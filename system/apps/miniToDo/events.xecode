@@ -48,7 +48,7 @@ function miniToDo_on_viewNoteSignal(){
 	));
 	eyeWidgets('serialize',array($myHidden));
 
-	$viewNote_CNT = eyeXML('getXMLconfig',array('miniToDo','notes.xml'));
+	$viewNote_CNT = xenonXML('getXMLconfig',array('miniToDo','notes.xml'));
 	if(!$viewNote_CNT){
 		xenonx('messageBox',array('content'=>"Please choose a note title"));
 		return false;
@@ -174,14 +174,14 @@ function miniToDo_on_yDelete(){
 
 	$noteId = $GLOBALS['miniToDo_Sortabletable']->selected;
 
-	$config = eyeXML('getXMLconfig',array('miniToDo','notes.xml'));
+	$config = xenonXML('getXMLconfig',array('miniToDo','notes.xml'));
 	$i=0;
 	foreach($config['notes'][0]['note'] as $note){
 		if($note['id'][0] == $noteId){
 			unset($config['notes'][0]['note'][$i]);
-			eyeXML('setXMLconfig',array('miniToDo','notes.xml',$config));
+			xenonXML('setXMLconfig',array('miniToDo','notes.xml',$config));
 			//Leemos el archivo con lso cambios ya realizados
-			$config = eyeXML('getXMLconfig',array('miniToDo','notes.xml'));
+			$config = xenonXML('getXMLconfig',array('miniToDo','notes.xml'));
 			$trimd = /* utf8 */ trim($config['notes'][0]);
 			$file = um('getCurrentUserDir') .'/'. CONF_USER_DIR .'/miniToDo/notes.xml';
 			// Si es la ultima nota borramos el archivo
@@ -236,7 +236,7 @@ function miniToDo_on_Add($params) {
 		'content' => array($NoteArea),
 	);
 
-	$config = eyeXML('getXMLconfig',array('miniToDo','notes.xml'));
+	$config = xenonXML('getXMLconfig',array('miniToDo','notes.xml'));
 
 	if(!$config){
 		$config = array('notes' => array(array(
@@ -248,7 +248,7 @@ function miniToDo_on_Add($params) {
 	}
 
 	//Guardamos el valor de $config a notes.xml
-	eyeXML('setXMLconfig',array('miniToDo','notes.xml',$config));
+	xenonXML('setXMLconfig',array('miniToDo','notes.xml',$config));
 
 	//Creamos un array con el valor de $id y de $NoteTitle
 	$arr = array($id,$NoteTitle,$NotePriority);
@@ -288,14 +288,14 @@ function miniToDo_on_updateNote_SGNL($params){
 		return;
 	}
 
-	$config = eyeXML('getXMLconfig',array('miniToDo','notes.xml'));
+	$config = xenonXML('getXMLconfig',array('miniToDo','notes.xml'));
 	$i=0;
 	foreach($config['notes'][0]['note'] as $note){
 		if($note['id'][0] == $GLOBALS['id']->text){
 			$config['notes'][0]['note'][$i]['title'][0] = $NoteTitle;
 			$config['notes'][0]['note'][$i]['priority'][0] = $NotePriority;
 			$config['notes'][0]['note'][$i]['content'][0] = $NoteArea;
-			eyeXML('setXMLconfig',array('miniToDo','notes.xml',$config));
+			xenonXML('setXMLconfig',array('miniToDo','notes.xml',$config));
 			$GLOBALS['miniToDo_Sortabletable']->delRow($id);
 			$GLOBALS['miniToDo_Sortabletable']->addRow(array($id,$NoteTitle,$NotePriority));
 			$GLOBALS['viewNote_WND']->close();

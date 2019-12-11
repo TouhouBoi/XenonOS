@@ -230,9 +230,9 @@ function eyeMail_on_contactsMail($params=null) {
 function eyeMail_on_Close($params=null) {
 	if(is_object($GLOBALS['splitSize'])) {
 		$spSize = $GLOBALS['splitSize']->text;
-		$config = eyeXML('getXMLconfig',array('eyeMail','settings.xml'));
+		$config = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
 		$config['eyeMail'][0]['splitPos'][0] = $spSize;
-		eyeXML('setXMLconfig',array('eyeMail','settings.xml',$config));
+		xenonXML('setXMLconfig',array('eyeMail','settings.xml',$config));
 	}
 	proc('end');
 }
@@ -328,7 +328,7 @@ function eyeMail_on_openMailBig($params) {
 
 function eyeMail_on_openMailBox($params) {
 	$id = $params['mailbox'][0];
-	$config = eyeXML('getXMLConfig',array('eyeMail','accounts.xml'));
+	$config = xenonXML('getXMLConfig',array('eyeMail','accounts.xml'));
 	foreach($config['eyeMail'][0]['accounts'][0]['account'] as $value) {
 		if(intval($value['id'][0]) == $id) {
 			$myHidden = new Hidden(array(
@@ -346,7 +346,7 @@ function eyeMail_on_openMailBox($params) {
 
 function eyeMail_on_openMailSent($params) {
 	$id = $params['mailbox'][0];
-	$config = eyeXML('getXMLConfig',array('eyeMail','accounts.xml'));
+	$config = xenonXML('getXMLConfig',array('eyeMail','accounts.xml'));
 	foreach($config['eyeMail'][0]['accounts'][0]['account'] as $value) {
 		if(intval($value['id'][0]) == $id) {
 			$myHidden = new Hidden(array(

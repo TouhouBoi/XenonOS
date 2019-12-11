@@ -92,7 +92,7 @@ function eyeDock_lib_Load($types = array('bottom'/*,'left','right'*/,'top')) {
 	global $checknum;
 	global $myPid;
 
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	foreach ($types as $type) {
 		if ($xml['eyeDock'][0][$type][0]['show'][0]) {
 			if ($type == 'bottom') {
@@ -137,13 +137,13 @@ function eyeDock_lib_Load($types = array('bottom'/*,'left','right'*/,'top')) {
 			}
 		}
 	}
-	eyeXML('setXMLconfig', array('eyeDock', 'conf.xml', $xml));
+	xenonXML('setXMLconfig', array('eyeDock', 'conf.xml', $xml));
 	xenonx('rawjs',array('js' => 'Taskbars.SetWidth();'));
 }
 
 function eyeDock_lib_Remove($types = array('bottom'/*,'left','right'*/,'top')) {
 	global $myPid;
-	$xml = eyeXML('getXMLconfig',array('eyeDock','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('eyeDock','conf.xml'));
 	if (in_array('bottom',$types) && $xml['eyeDock'][0]['bottom'][0]['show']) {
 		$_SESSION['SCREEN']['eyeApps']['height'] += 32;
 		xenonx('rawjs',array('js' => 'document.getElementById("eyeApps").style.height = "' . $_SESSION['SCREEN']['eyeApps']['height'] . 'px";'));

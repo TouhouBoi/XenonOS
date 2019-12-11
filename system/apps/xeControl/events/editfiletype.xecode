@@ -18,11 +18,11 @@ function xeControl_on_editfiletype_save($params = '') {
 	$filetype = basename($GLOBALS['xeControl_editfiletype_hidden']->text);
 	if (!empty($filetype) && !empty($GLOBALS['xeControl_editfiletype_textbox_title']->text)) {
 		$file = XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/filetypes/' . $filetype . '.xml';
-		$xml = eyeXML('getXMLfile', array($file));
+		$xml = xenonXML('getXMLfile', array($file));
 		$xml['fileType'][0]['app'][0] = $GLOBALS['xeControl_editfiletype_select_application']->selected;
 		$xml['fileType'][0]['description'][0] = $GLOBALS['xeControl_editfiletype_textbox_description']->text;
 		$xml['fileType'][0]['name'][0] = $GLOBALS['xeControl_editfiletype_textbox_title']->text;
-		eyeXML('setXMLfile', array($file, $xml));
+		xenonXML('setXMLfile', array($file, $xml));
 		xenonx('messageBox', array('content' => 'Changes successfully saved.'));
 		xeControl_lib_loadContent('only_root', 'filetypes');
 	} else {

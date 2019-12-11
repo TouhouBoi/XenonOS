@@ -40,7 +40,7 @@ if (is_array($openDir)) {
 			} else {
 				$select = 0;
 			}
-			$LangXML = eyeXML('getXMLfile',array($file));
+			$LangXML = xenonXML('getXMLfile',array($file));
 			$display = $LangXML['lang'][0]['name'][0];
 			if ($LangXML['lang'][0]['name2'][0]) {
 				$display .= ' (' . $LangXML['lang'][0]['name2'][0] . ')';

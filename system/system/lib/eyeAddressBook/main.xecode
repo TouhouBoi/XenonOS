@@ -33,10 +33,10 @@ function lib_eyeAddressBook_imageExists($params=null) {
 function lib_eyeAddressBook_getGroups() {
 	$groups = null;
 	if (eyeAddressBook('getDatabaseType') == 'xml') {
-		$groups = eyeXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/groups.xml'));
+		$groups = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/groups.xml'));
 		if (!$groups) {
 			eyeAddressBook('newConfig',array('groups'));
-			$groups = eyeXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/groups.xml'));
+			$groups = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/groups.xml'));
 		}
 	} else {
 		// SQLite Code
@@ -107,7 +107,7 @@ function lib_eyeAddressBook_deleteContactsXML($params=null) {
 	}
 	$contacts=$params[0];
 	$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/contacts.xml';
-	if (eyeXML('setXMLfile', array($path, $contacts))) {
+	if (xenonXML('setXMLfile', array($path, $contacts))) {
 		return true;
 	} else {
 		return false;
@@ -183,7 +183,7 @@ function lib_eyeAddressBook_saveContactXML($params=null) {
 	$index = $index[0];
 	$contacts['Contacts'][0][$index] = $params[0][$index];
 	$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/contacts.xml';
-	if (eyeXML('setXMLfile', array($path, $contacts))) {
+	if (xenonXML('setXMLfile', array($path, $contacts))) {
 		return /* utf8 */ substr($index, 3);
 	} else {
 		return false;
@@ -617,21 +617,21 @@ function lib_eyeAddressBook_searchXML($params=null) {
 }
 
 function lib_eyeAddressBook_loadConfig($params=null) {
-	$config = eyeXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/config.xml'));
+	$config = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/config.xml'));
 	if (!$config) {
 		eyeAddressBook('newConfig',array('config'));
 		eyeAddressBook('newConfig',array('contacts'));
 		eyeAddressBook('newConfig',array('groups'));
-		$config = eyeXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/config.xml'));
+		$config = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/config.xml'));
 	}
 	return $config;
 }
 
 function lib_eyeAddressBook_loadXML($params=null) {
-	$contacts = eyeXML('getXMLfile', array(um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/contacts.xml'));
+	$contacts = xenonXML('getXMLfile', array(um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/contacts.xml'));
 	if (!$contacts) {
 		eyeAddressBook('newConfig', array('contacts'));
-//         $contacts = eyeXML('getXMLfile', array(um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/contacts.xml'));
+//         $contacts = xenonXML('getXMLfile', array(um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/contacts.xml'));
 		return false;
 	}
 	if (isset($params[0]) && !empty($params[0])) {
@@ -662,19 +662,19 @@ function lib_eyeAddressBook_newConfig($params=null) {
 			$file = '/contacts.db';
 		}
 		$contacts['Contacts'][0] = array();
-		if (eyeXML('setXMLfile', array($path.$file, $contacts))) {
+		if (xenonXML('setXMLfile', array($path.$file, $contacts))) {
 			return true;
 		}
 	} elseif ($params[0]=='config') {
 		$config['config'][0]['database'][0]='xml';
 		$config['config'][0]['used'][0]=0;
-		if (eyeXML('setXMLfile', array($path.'/config.xml', $config))) {
+		if (xenonXML('setXMLfile', array($path.'/config.xml', $config))) {
 			return true;
 		}
 	} elseif ($params[0]=='groups') {
 		$groups['groups'][0] = array();
 		if (eyeAddressBook('getDatabaseType')=='xml') {
-			eyeXML('setXMLfile', array($path.'/groups.xml', $groups));
+			xenonXML('setXMLfile', array($path.'/groups.xml', $groups));
 		} else {
 			// SQLite code
 		}
@@ -718,7 +718,7 @@ function lib_eyeAddressBook_delGroup($params=null) {
 			$fileGroups['groups'][0]['group'] = $groups;
 			$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook';
 			if (eyeAddressBook('getDatabaseType')=='xml') {
-				if (eyeXML('setXMLfile', array($path.'/groups.xml', $fileGroups))) {
+				if (xenonXML('setXMLfile', array($path.'/groups.xml', $fileGroups))) {
 					return true;
 				} else {
 					// SQLite Code
@@ -744,7 +744,7 @@ function lib_eyeAddressBook_addGroup($params=null) {
 	$groups['groups'][0]['group'][$index]['id'][0] = md5(uniqid(rand()));
 	$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook';
 	if (eyeAddressBook('getDatabaseType')=='xml') {
-		if (eyeXML('setXMLfile', array($path.'/groups.xml', $groups))) {
+		if (xenonXML('setXMLfile', array($path.'/groups.xml', $groups))) {
 			return true;
 		}
 	} else {
@@ -768,7 +768,7 @@ function lib_eyeAddressBook_retrive_2($params=null) {
 
 	$path = $path.'/'.$fileToCreate;
 
-	$info = eyeXML('getXMLfile',array($path));
+	$info = xenonXML('getXMLfile',array($path));
 	return $info;
 }
 

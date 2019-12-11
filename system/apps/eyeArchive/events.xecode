@@ -37,7 +37,7 @@ function _eyeArchive_getProject(){
 
 	//Getting the project object.
 	$myProject = new project;
-	$projectInfo = eyeXML('getXMLConfig',array('eyeArchive','myProject.xml'));
+	$projectInfo = xenonXML('getXMLConfig',array('eyeArchive','myProject.xml'));
 	$myProject = unserialize($projectInfo[$myPid][0]);
 
 	return $myProject;
@@ -56,13 +56,13 @@ function _eyeArchive_setProject(&$project){
 		}
 	}
 
-	$projectInfo = eyeXML('getXMLConfig',array('eyeArchive','myProject.xml'));
+	$projectInfo = xenonXML('getXMLConfig',array('eyeArchive','myProject.xml'));
 
 	//Serialize it for save
 	$s = serialize($project);
 	//Saving on app conf file
 	$projectInfo[$myPid] = array($s);
-	eyeXML('setXMLconfig',array('eyeArchive','myProject.xml',$projectInfo));
+	xenonXML('setXMLconfig',array('eyeArchive','myProject.xml',$projectInfo));
 }
 
 function eyeArchive_on_Close() {

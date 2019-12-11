@@ -29,7 +29,7 @@ function xeControl_on_editxePass_save($params = '') {
 	$password = $GLOBALS['xeControl_editpass_textbox_password']->text;
 	$password = str_replace(".","|dot|",$password);
 
-	$xePassXML = eyeXML('getXMLconfig',array('xePass','conf.xml'));
+	$xePassXML = xenonXML('getXMLconfig',array('xePass','conf.xml'));
 
 // DEBUT DE L'AJOUT
 
@@ -69,7 +69,7 @@ function xeControl_on_editxePass_save($params = '') {
 	$xePassXML['xePass'][0][$app][0]['login'][0] = base64_encode($cryptl) ;
 	$xePassXML['xePass'][0][$app][0]['pass'][0] = base64_encode($cryptp) ;
 
-	eyeXML('setXMLconfig',array('xePass','conf.xml',$xePassXML));
+	xenonXML('setXMLconfig',array('xePass','conf.xml',$xePassXML));
 	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 	xeControl_lib_loadContent('others','xePass');
 }

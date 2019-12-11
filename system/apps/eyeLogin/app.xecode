@@ -35,7 +35,7 @@ function eyeLogin_run($params = '') {
 			$currentUser = ROOTUSER;
 			$files = vfs('real_getDirContent',array($path,'*.xml'));
 			foreach ($files as $file){
-				$xml = eyeXML('getXMLfile',array($file));
+				$xml = xenonXML('getXMLfile',array($file));
 				if ($xml['lang'][0]['name2'][0]) {
 					$xml['lang'][0]['name'][0] .= ' (' . $xml['lang'][0]['name2'][0] . ')';
 				}

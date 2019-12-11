@@ -32,7 +32,7 @@ function lib_eyePublic_getConfig($params=null) {
 	global $currentUser;
 	$oldUser = $currentUser;
 	$currentUser = $user;
-	$file = eyeXML('getXMLfile',array($userPath));
+	$file = xenonXML('getXMLfile',array($userPath));
 	$currentUser = $oldUser;
 
 	if(!$file){
@@ -60,7 +60,7 @@ function lib_eyePublic_setConfig($params=null) {
 
 	$oldUser = $currentUser;
 	$currentUser = $user;
-	eyeXML('setXMLfile',array($userPath,$newFile));
+	xenonXML('setXMLfile',array($userPath,$newFile));
 	$currentUser = $oldUser;
 
 	return true;
@@ -153,7 +153,7 @@ function lib_eyePublic_getXMLfile($params) {
 	$oldUser = $currentUser;
 	$currentUser = $user;
 
-	$file = eyeXML('getXMLfile',array($userPath));
+	$file = xenonXML('getXMLfile',array($userPath));
 	$currentUser = $oldUser;
 
 	if(!$file){
@@ -179,7 +179,7 @@ function lib_eyePublic_setXMLfile($params) {
 
 	$oldUser = $currentUser;
 	$currentUser = $user;
-	eyeXML('setXMLfile',array($userPath,$newFile));
+	xenonXML('setXMLfile',array($userPath,$newFile));
 	$currentUser = $oldUser;
 	return true;
 }
