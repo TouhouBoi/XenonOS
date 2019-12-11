@@ -6,5 +6,5 @@
 	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>Application</type>
-	<icon>index.php?theme=USERTHEME&amp;extern=icons/48x48/eyeConsole.png</icon>
+	<icon>index.php?theme=USERTHEME&amp;extern=icons/48x48/xenonConsole.png</icon>
 </package>

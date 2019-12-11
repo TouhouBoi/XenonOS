@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeConsole_on_Close($params=null) {
+function xenonConsole_on_Close($params=null) {
 	proc('end');
 }
 
-function eyeConsole_on_Resize($params=null) {
+function xenonConsole_on_Resize($params=null) {
 	$width = $params['arg'][0];
 	$height = $params['arg'][1];
 	$GLOBALS['cmd']->setWidth($width-80);
@@ -26,7 +26,7 @@ function eyeConsole_on_Resize($params=null) {
 	$GLOBALS['consoleOutput']->setHeight($height-44);
 }
 
-function eyeConsole_on_sendCmd($params=null) {
+function xenonConsole_on_sendCmd($params=null) {
 	$cmd = $GLOBALS['cmd']->text;
 	$GLOBALS['cmd']->setText("");
 	$arguments = parseArguments($cmd);

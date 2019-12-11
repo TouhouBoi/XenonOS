@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeConsole_run($params=null) {
+function xenonConsole_run($params=null) {
 	global $currentUser;
 	global $myPid;
 
@@ -46,7 +46,7 @@ function eyeConsole_run($params=null) {
 
 	$tty = proc('newTty');
 
-	xenonx('createDiv',array('class' => 'eyeConsole','father' => $myPid.'_consoleOutput','name' => $tty.'_tty','nopid' => 1,'removepid' => 1));
+	xenonx('createDiv',array('class' => 'xenonConsole','father' => $myPid.'_consoleOutput','name' => $tty.'_tty','nopid' => 1,'removepid' => 1));
 	xenonx('updateCss',array('name'=> $tty.'_tty','property'=>'position','value'=>'absolute'));
 	xenonx('updateCss',array('name'=> $tty.'_tty','property'=>'bottom','value'=>'0px'));
 	xenonx('updateCss',array('name'=> $tty.'_tty','property'=>'left','value'=>'4px'));
@@ -79,7 +79,7 @@ function eyeConsole_run($params=null) {
 	$myTextBox->focus();
 }
 
-function eyeConsole_end($params=null) {
+function xenonConsole_end($params=null) {
 
 }
 
