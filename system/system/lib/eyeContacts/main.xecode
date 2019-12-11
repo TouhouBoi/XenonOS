@@ -28,7 +28,7 @@ function lib_eyeContacts_create($params=null){
 
 	$myInfo = $params[0];
 
-	return eyeAddressBook('create',array($myInfo));
+	return xenonAddressBook('create',array($myInfo));
 }
 
 function lib_eyeContacts_update($params=null){
@@ -41,7 +41,7 @@ function lib_eyeContacts_update($params=null){
 	$md5 = $params[2];
 	$myInfo = $params[3];
 
-	return eyeAddressBook('update',array($name,$surname,$md5,$myInfo));
+	return xenonAddressBook('update',array($name,$surname,$md5,$myInfo));
 }
 
 function lib_eyeContacts_delete($params=null){
@@ -52,7 +52,7 @@ function lib_eyeContacts_delete($params=null){
 	$surname = $params[1];
 	$md5 = $params[2];
 
-	return eyeAddressBook('delete',array($name,$surname,$md5));
+	return xenonAddressBook('delete',array($name,$surname,$md5));
 }
 function lib_eyeContacts_retrive($params=null){
 	if(empty($params) || count($params) < 1){
@@ -61,11 +61,11 @@ function lib_eyeContacts_retrive($params=null){
 	$name = $params[0];
 	$surname = $params[1];
 	$md5 = $params[2];
-	return eyeAddressBook('retrive',array($name,$surname,$md5));
+	return xenonAddressBook('retrive',array($name,$surname,$md5));
 }
 
 function lib_eyeContacts_userList($params=null){
-	 return eyeAddressBook('userList');
+	 return xenonAddressBook('userList');
 }
 
 function lib_eyeContacts_pathToInfo($params=null){

@@ -20,14 +20,14 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeAddressBook/events'.XE_CODE_EXTENSION);
+require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonAddressBook/events'.XE_CODE_EXTENSION);
 
-function eyeAddressBook_run($params=null) {
+function xenonAddressBook_run($params=null) {
 	global $myPid;
 	global $checknum;
 	
 	$mainWindow = new Window(array(
-		'name' => 'eyeAddressBook_WND',
+		'name' => 'xenonAddressBook_WND',
 		'title' => 'AddressBook',
 		'father' => 'xenonApps',
 		'width' => 690,
@@ -39,10 +39,10 @@ function eyeAddressBook_run($params=null) {
 		'savePosition' => 1
 	));
 	$mainWindow->show();
-	xenonx('rawjs',array('js' => 'xGetElementById("'.$myPid.'_eyeAddressBook_WND_Content").style.overflow = "hidden";'));
+	xenonx('rawjs',array('js' => 'xGetElementById("'.$myPid.'_xenonAddressBook_WND_Content").style.overflow = "hidden";'));
 	$myToolbar = new Toolbar(array(
-		'name'=>'eyeAddressBook_Toolbar',
-		'father'=>'eyeAddressBook_WND_Content'
+		'name'=>'xenonAddressBook_Toolbar',
+		'father'=>'xenonAddressBook_WND_Content'
 	));
 	$myToolbar->show();
 	$myToolbar->addItem('newContact','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/addcontact.png','New Contact');
@@ -62,8 +62,8 @@ function eyeAddressBook_run($params=null) {
     
 	// Box Contacts List
 	$boxContacts = new Box(array(
-		'name' => 'eyeAddressBook_boxContacts',
-		'father' => 'eyeAddressBook_WND_Content',
+		'name' => 'xenonAddressBook_boxContacts',
+		'father' => 'xenonAddressBook_WND_Content',
 		'x' => 6,
 		'y' => 64,
 		'height' => $mainWindow->height - 93,
@@ -73,8 +73,8 @@ function eyeAddressBook_run($params=null) {
 	$boxContacts->show(0);
 	
 	$txtSearch = new Textbox(array(
-		'name' => 'eyeAddressBook_txtSearch',
-		'father' => 'eyeAddressBook_boxContacts',
+		'name' => 'xenonAddressBook_txtSearch',
+		'father' => 'xenonAddressBook_boxContacts',
 		'x' => 10,
 		'y' => 64,
 		'width' => 255
@@ -87,12 +87,12 @@ function eyeAddressBook_run($params=null) {
 
 	$txtSearch->addEvent('onkeyup',
 		'clearTimeout(searchDelay);
-		searchDelay=setTimeout(\'sendMsg('.$checknum.',"search",eyeParam("value",xGetElementById("'.$myPid.'_eyeAddressBook_txtSearch").value)+eyeParam("group",xGetElementById("'.$myPid.'_eyeAddressBook_selectGroup").value))\',1000);'
+		searchDelay=setTimeout(\'sendMsg('.$checknum.',"search",eyeParam("value",xGetElementById("'.$myPid.'_xenonAddressBook_txtSearch").value)+eyeParam("group",xGetElementById("'.$myPid.'_xenonAddressBook_selectGroup").value))\',1000);'
 	);
 
 	$imgSearch = new Imagebox(array(
-		'name' => 'eyeAddressBook_imgSearch',
-		'father' => 'eyeAddressBook_boxContacts',
+		'name' => 'xenonAddressBook_imgSearch',
+		'father' => 'xenonAddressBook_boxContacts',
 		'x' => 10,
 		'horiz' => 1,
 		'y' => 64,
@@ -102,8 +102,8 @@ function eyeAddressBook_run($params=null) {
 	
 	// Box Details Information
 	$boxInfo = new Box(array(
-		'name' => 'eyeAddressBook_boxInfo',
-		'father' => 'eyeAddressBook_WND_Content',
+		'name' => 'xenonAddressBook_boxInfo',
+		'father' => 'xenonAddressBook_WND_Content',
 		'x' => $boxContacts->width + 12,
 		'y' => 64,
 		'height' => $mainWindow->height - 93,
@@ -112,29 +112,29 @@ function eyeAddressBook_run($params=null) {
 	));
 	$boxInfo->show(0);
 
-	eyeAddressBook_initFunction();
+	xenonAddressBook_initFunction();
 }
 
-function eyeAddressBook_initFunction() {
-	$config = eyeAddressBook('loadConfig');
+function xenonAddressBook_initFunction() {
+	$config = xenonAddressBook('loadConfig');
 	if ($config['config'][0]['used'][0] == 0) {
-		eyeAddressBook('importFromEyeContacts');
+		xenonAddressBook('importFromEyeContacts');
 		$config['config'][0]['used'][0] = 1;
-		$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook';
+		$path = um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook';
 		xenonXML('setXMLfile', array($path.'/config.xml', $config));
 	}
-	eyeAddressBook_showSelectGroup();
-    $contacts = eyeAddressBook('getContacts');
+	xenonAddressBook_showSelectGroup();
+    $contacts = xenonAddressBook('getContacts');
 
-    eyeAddressBook_drawListBox($contacts);
+    xenonAddressBook_drawListBox($contacts);
 	
 	// Show the new contact form
-	eyeAddressBook_on_newContact();
+	xenonAddressBook_on_newContact();
 }
 
-function eyeAddressBook_drawListBox($contacts=null) {
-    if (is_object($GLOBALS['eyeAddressBook_listBox'])) {
-        $GLOBALS['eyeAddressBook_listBox']->remove();
+function xenonAddressBook_drawListBox($contacts=null) {
+    if (is_object($GLOBALS['xenonAddressBook_listBox'])) {
+        $GLOBALS['xenonAddressBook_listBox']->remove();
     }
 	
 	if ($contacts == null) {
@@ -144,8 +144,8 @@ function eyeAddressBook_drawListBox($contacts=null) {
     global $myPid;
 	
     $listBox = new Simplebox(array(
-        'name' => 'eyeAddressBook_listBox',
-        'father' => 'eyeAddressBook_boxContacts',
+        'name' => 'xenonAddressBook_listBox',
+        'father' => 'xenonAddressBook_boxContacts',
         'x' => 10,
         'y' => 95,
         'height' => 306,
@@ -154,8 +154,8 @@ function eyeAddressBook_drawListBox($contacts=null) {
     ));
     $listBox->show(0);
 	
-    xenonx('rawjs',array('js' => 'xGetElementById("'.$myPid.'_eyeAddressBook_listBox_Container").style.overflowY = "auto";
-        xGetElementById("'.$myPid.'_eyeAddressBook_listBox_Container").style.overflowX = "hidden";'));
+    xenonx('rawjs',array('js' => 'xGetElementById("'.$myPid.'_xenonAddressBook_listBox_Container").style.overflowY = "auto";
+        xGetElementById("'.$myPid.'_xenonAddressBook_listBox_Container").style.overflowX = "hidden";'));
 
     $contacts = $contacts['Contacts'][0];
     $y = 2;
@@ -163,20 +163,20 @@ function eyeAddressBook_drawListBox($contacts=null) {
 	if (!is_array($contacts)) {
 		$contacts = array();
 	}
-	uksort($contacts, 'eyeAddressBook_sortContacts');
+	uksort($contacts, 'xenonAddressBook_sortContacts');
     foreach ($contacts as $key=>$contact) {
 		$key = /* utf8 */ substr($key, 3);
         $chkContact = new Checkbox(array(
-            'name' => 'eyeAddressBook_chkContact_'.$key,
-            'father' => 'eyeAddressBook_listBox',
+            'name' => 'xenonAddressBook_chkContact_'.$key,
+            'father' => 'xenonAddressBook_listBox',
             'text' => '',
             'x' => 4,
             'y' => $y
         ));
         $chkContact->show();
         $lblContact = new Label(array(
-            'name' => 'eyeAddressBook_lblContact_'.$count,
-            'father' => 'eyeAddressBook_listBox',
+            'name' => 'xenonAddressBook_lblContact_'.$count,
+            'father' => 'xenonAddressBook_listBox',
             'text' => $contact[0]['home'][0]['name'][0].' '.$contact[0]['home'][0]['surname'][0],
             'x' => 28,
             'y' => $y+3
@@ -191,37 +191,37 @@ function eyeAddressBook_drawListBox($contacts=null) {
     }
 }
 
-function eyeAddressBook_sortContacts($a, $b) {
+function xenonAddressBook_sortContacts($a, $b) {
 	return utf8_strcasecmp($a[0]['home'][0]['surname'][0] . ', ' . $a[0]['home'][0]['name'][0], $b[0]['home'][0]['surname'][0] . ', ' . $b[0]['home'][0]['name'][0]);
 }
 
-function eyeAddressBook_showSelectGroup() {
+function xenonAddressBook_showSelectGroup() {
 	global $checknum;
 	global $myPid;
-	if (is_object($GLOBALS['eyeAddressBook_selectGroup'])) {
-		$GLOBALS['eyeAddressBook_selectGroup']->remove();
+	if (is_object($GLOBALS['xenonAddressBook_selectGroup'])) {
+		$GLOBALS['xenonAddressBook_selectGroup']->remove();
 	}
 	$selectGroup = new Select(array(
-		'name' => 'eyeAddressBook_selectGroup',
-		'father' => 'eyeAddressBook_boxContacts',
+		'name' => 'xenonAddressBook_selectGroup',
+		'father' => 'xenonAddressBook_boxContacts',
 		'x' => 10,
         'width' => 170,
 		'y' => 34
 	));
 	$selectGroup->show(0);
 	$selectGroup->addOption('All Groups', 0, 1);
-	$groups = eyeAddressBook('getGroups');
+	$groups = xenonAddressBook('getGroups');
     if (is_array($groups['groups'][0]['group'])) {
         $groups = $groups['groups'][0]['group'];
         foreach($groups as $igroup) {
             $selectGroup->addOption($igroup['name'][0], $igroup['id'][0]);
         }
     }
-    $selectGroup->addEvent('onchange','sendMsg('.$checknum.',"search",eyeParam("value",xGetElementById("'.$myPid.'_eyeAddressBook_txtSearch").value)+eyeParam("group",xGetElementById("'.$myPid.'_eyeAddressBook_selectGroup").value));');
+    $selectGroup->addEvent('onchange','sendMsg('.$checknum.',"search",eyeParam("value",xGetElementById("'.$myPid.'_xenonAddressBook_txtSearch").value)+eyeParam("group",xGetElementById("'.$myPid.'_xenonAddressBook_selectGroup").value));');
 }
 
-function eyeAddressBook_end($params=null) {
-    eyeAddressBook('clean'); // This function delete all eyeAddressBook generated files in temp dir
+function xenonAddressBook_end($params=null) {
+    xenonAddressBook('clean'); // This function delete all xenonAddressBook generated files in temp dir
 	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }

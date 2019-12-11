@@ -20,10 +20,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeAddressBook_com_fullResized($params = '') {
+function xenonAddressBook_com_fullResized($params = '') {
 	eyeWidgets('updateContent',$params);
-	if ($GLOBALS['eyeAddressBook_WND']->fullScreen) {
-		$GLOBALS['eyeAddressBook_WND']->listenerResizeFullScreen($params);
+	if ($GLOBALS['xenonAddressBook_WND']->fullScreen) {
+		$GLOBALS['xenonAddressBook_WND']->listenerResizeFullScreen($params);
 	}
 }
 ?>

@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function lib_eyeAddressBook_imageExists($params=null) {
+function lib_xenonAddressBook_imageExists($params=null) {
 	if (!$params[0]) {
 		return false;
 	}
-	$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/images/';
+	$path = um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/images/';
 	if(!vfs('isdir',array($path))) {
 		vfs('real_mkdir',array($path));
 		return false;
@@ -30,13 +30,13 @@ function lib_eyeAddressBook_imageExists($params=null) {
 	}
 }
 
-function lib_eyeAddressBook_getGroups() {
+function lib_xenonAddressBook_getGroups() {
 	$groups = null;
-	if (eyeAddressBook('getDatabaseType') == 'xml') {
-		$groups = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/groups.xml'));
+	if (xenonAddressBook('getDatabaseType') == 'xml') {
+		$groups = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/groups.xml'));
 		if (!$groups) {
-			eyeAddressBook('newConfig',array('groups'));
-			$groups = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/groups.xml'));
+			xenonAddressBook('newConfig',array('groups'));
+			$groups = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/groups.xml'));
 		}
 	} else {
 		// SQLite Code
@@ -45,14 +45,14 @@ function lib_eyeAddressBook_getGroups() {
 	return $groups;
 }
 
-function lib_eyeAddressBook_getImage($params=null) {
+function lib_xenonAddressBook_getImage($params=null) {
 	if (!$params[0]) {
 		return false;
 	}
-	if (!eyeAddressBook('imageExists',array($params[0]))) {
+	if (!xenonAddressBook('imageExists',array($params[0]))) {
 		return false;
 	}
-	$imagePath = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/images/'.$params[0].'.png';
+	$imagePath = um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/images/'.$params[0].'.png';
 	$imageInfo = @getimagesize($imagePath);
 	if ($imageInfo !== false) {
 		extern('getContent', array(vfs('real_getFileContent', array($imagePath)), 'png'));
@@ -60,7 +60,7 @@ function lib_eyeAddressBook_getImage($params=null) {
 	return true;
 }
 
-function lib_eyeAddressBook_saveImage($params=null) {
+function lib_xenonAddressBook_saveImage($params=null) {
 	if (!isset($params) || count($params)<2) {
 		return false;
 	}
@@ -89,24 +89,24 @@ function lib_eyeAddressBook_saveImage($params=null) {
 	return true;
 }
 
-function lib_eyeAddressBook_deleteContacts($params=null) {
+function lib_xenonAddressBook_deleteContacts($params=null) {
 	if (!isset($params[0]) || empty($params[0])) {
 		return false;
 	}
 	$toDel = $params[0];
-	$contacts = eyeAddressBook('getContacts');
+	$contacts = xenonAddressBook('getContacts');
 	foreach ($toDel as $value) {
 		unset($contacts['Contacts'][0]['id_'.$value]);
 	}
-	return eyeAddressBook('deleteContactsXML', array($contacts));
+	return xenonAddressBook('deleteContactsXML', array($contacts));
 }
 
-function lib_eyeAddressBook_deleteContactsXML($params=null) {
+function lib_xenonAddressBook_deleteContactsXML($params=null) {
 	if (!isset($params[0]) || empty($params[0])) {
 		return false;
 	}
 	$contacts=$params[0];
-	$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/contacts.xml';
+	$path = um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/contacts.xml';
 	if (xenonXML('setXMLfile', array($path, $contacts))) {
 		return true;
 	} else {
@@ -114,7 +114,7 @@ function lib_eyeAddressBook_deleteContactsXML($params=null) {
 	}
 }
 
-function lib_eyeAddressBook_newContact($params=null) {
+function lib_xenonAddressBook_newContact($params=null) {
 	if (!isset($params[0]) || empty($params[0])) {
 		return false;
 	}
@@ -123,20 +123,20 @@ function lib_eyeAddressBook_newContact($params=null) {
 	$contact = array('id_'.$md5 => $newContact);
 	if (isset($params[1]) && !empty($params[1])) {
 		$pathImage = $params[1];
-		vfs('real_copy',array($pathImage,um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/images/'.$md5.'.png'));
+		vfs('real_copy',array($pathImage,um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/images/'.$md5.'.png'));
 	}
-	return eyeAddressBook('saveContact', array($contact));
+	return xenonAddressBook('saveContact', array($contact));
 }
 
-function lib_eyeAddressBook_deleteImage($params=null) {
+function lib_xenonAddressBook_deleteImage($params=null) {
 	if (!$params[0]) {
 		return false;
 	}
 	$id = $params[0];
-	if (!eyeAddressBook('imageExists',array($id))) {
+	if (!xenonAddressBook('imageExists',array($id))) {
 		return false;
 	}
-	$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/images/'.$id.'.png';
+	$path = um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/images/'.$id.'.png';
 	if(!vfs('real_delete',array($path))) {
 		return false;
 	} else {
@@ -144,14 +144,14 @@ function lib_eyeAddressBook_deleteImage($params=null) {
 	}
 }
 
-function lib_eyeAddressBook_editContact($params=null) {
+function lib_xenonAddressBook_editContact($params=null) {
 	if ((!isset($params[0]) || empty($params[0])) && (!isset($params[1]) || empty($params[1]))) {
 		return false;
 	}
 	$id = $params[0];
 	if (isset($params[2]) && !empty($params[2])) {
 		$pathImage = $params[2];
-		$newPath = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/images/'.$id.'.png';
+		$newPath = um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/images/'.$id.'.png';
 		if (vfs('real_fileExists',array($newPath))) {
 			vfs('real_delete',array($newPath));
 		}
@@ -159,30 +159,30 @@ function lib_eyeAddressBook_editContact($params=null) {
 	}
 	$content = $params[1];
 	$contact = array('id_'.$id => $content);
-	return eyeAddressBook('saveContact',array($contact));
+	return xenonAddressBook('saveContact',array($contact));
 }
 
-function lib_eyeAddressBook_saveContact($params=null) {
+function lib_xenonAddressBook_saveContact($params=null) {
 	if (!isset($params[0]) || empty($params[0])) {
 		return false;
 	}
 	$contacts = $params[0];
-	if (eyeAddressBook('getDatabaseType')=='xml') {
-		return eyeAddressBook('saveContactXML',array($contacts));
+	if (xenonAddressBook('getDatabaseType')=='xml') {
+		return xenonAddressBook('saveContactXML',array($contacts));
 	} else {
-		return eyeAddressBook('saveContactSQLite',array($contacts));
+		return xenonAddressBook('saveContactSQLite',array($contacts));
 	}
 }
 
-function lib_eyeAddressBook_saveContactXML($params=null) {
+function lib_xenonAddressBook_saveContactXML($params=null) {
 	if (!isset($params[0]) || empty($params[0])) {
 		return false;
 	}
-	$contacts = eyeAddressBook('getContacts');
+	$contacts = xenonAddressBook('getContacts');
 	$index = array_keys($params[0]);
 	$index = $index[0];
 	$contacts['Contacts'][0][$index] = $params[0][$index];
-	$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/contacts.xml';
+	$path = um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/contacts.xml';
 	if (xenonXML('setXMLfile', array($path, $contacts))) {
 		return /* utf8 */ substr($index, 3);
 	} else {
@@ -190,8 +190,8 @@ function lib_eyeAddressBook_saveContactXML($params=null) {
 	}
 }
 
-function lib_eyeAddressBook_getDatabaseType() {
-	$config = eyeAddressBook('loadConfig');
+function lib_xenonAddressBook_getDatabaseType() {
+	$config = xenonAddressBook('loadConfig');
 	if ($config['config'][0]['database'][0]=='xml') {
 		return 'xml';
 	} else {
@@ -199,20 +199,20 @@ function lib_eyeAddressBook_getDatabaseType() {
 	}
 }
 
-function lib_eyeAddressBook_getContacts($params=null) {
+function lib_xenonAddressBook_getContacts($params=null) {
 	$contact = null;
 	if (isset($params[0]) && !empty($params[0])) {
 		$contact = $params[0];
 	}
 
-	if (eyeAddressBook('getDatabaseType')=='xml') {
-		return eyeAddressBook('loadXML',array($contact));
+	if (xenonAddressBook('getDatabaseType')=='xml') {
+		return xenonAddressBook('loadXML',array($contact));
 	} else {
-		return eyeAddressBook('loadSQLite',array($contact));
+		return xenonAddressBook('loadSQLite',array($contact));
 	}
 }
 
-function lib_eyeAddressBook_importFromEyeContacts() {
+function lib_xenonAddressBook_importFromEyeContacts() {
 	// first load list
 	$path = um('getCurrentUserDir').'/'.CONF_USER_DIR.'/ey'.'eContacts/';
 	$content = vfs('real_getDirContent',array($path));
@@ -223,7 +223,7 @@ function lib_eyeAddressBook_importFromEyeContacts() {
 				$subContent = vfs('real_getDirContent',array($path.'/'.basename($dir)));
 				foreach($subContent as $contact){
 					$contactInfo = eyeContacts('pathToInfo',array($contact));
-					$info  = eyeAddressBook('retrive_2',array($contactInfo[0],$contactInfo[1],$contactInfo[2]));
+					$info  = xenonAddressBook('retrive_2',array($contactInfo[0],$contactInfo[1],$contactInfo[2]));
 					$myContacts[$contactInfo[2]] = $info;
 				}
 			}
@@ -253,12 +253,12 @@ function lib_eyeAddressBook_importFromEyeContacts() {
 		$newContact[0]['other'][0]['notes'][0] = $contact['notes'][0];
 		// Default Group (All)
 		$newContact[0]['group'][0] = 0;
-		eyeAddressBook('newContact',array($newContact));
+		xenonAddressBook('newContact',array($newContact));
 	}
 	return true;
 }
 
-function lib_eyeAddressBook_importFromVcard($params){
+function lib_xenonAddressBook_importFromVcard($params){
 	if (!isset($params[0]) || empty($params[0])) {
 		return false;
 	}
@@ -419,22 +419,22 @@ function lib_eyeAddressBook_importFromVcard($params){
 		if (!$fnames) {
 			$eyeCard = null;
 		}
-		eyeAddressBook('newContact',array($eyeCard));
+		xenonAddressBook('newContact',array($eyeCard));
 	 }
 	 return true;
 }
 
-function lib_eyeAddressBook_exportToVcard($params){
+function lib_xenonAddressBook_exportToVcard($params){
 	if (!isset($params[0]) || empty($params[0])) {
 		return false;
 	}
 	if (!isset($params[1]) || empty($params[1])) {
-		$vCards = eyeAddressBook('getContacts');
+		$vCards = xenonAddressBook('getContacts');
 		$vCards = $vCards['Contacts'][0];
 	} elseif (is_array($params[1])) {
 		$vCards['Contacts'][0] = array();
 		foreach ($params[1] as $id) {
-			$getContact = eyeAddressBook('getContacts',array($id));
+			$getContact = xenonAddressBook('getContacts',array($id));
 			$vCards['Contacts'][0]['id_'.$id] = $getContact['Contacts'][0]['id_'.$id];
 		}
 		$vCards = $vCards['Contacts'][0];
@@ -534,7 +534,7 @@ function lib_eyeAddressBook_exportToVcard($params){
 	return true;
 }
 
-function lib_eyeAddressBook_search($params=null) {
+function lib_xenonAddressBook_search($params=null) {
 	if (!isset($params[0])) {
 		return false;
 	}
@@ -545,16 +545,16 @@ function lib_eyeAddressBook_search($params=null) {
 		$group = null;
 	}
 	if (empty($params[0]) && $group=='0') {
-		return eyeAddressBook('getContacts');
+		return xenonAddressBook('getContacts');
 	}
-	if (eyeAddressBook('getDatabaseType')=='xml') {
-		return eyeAddressBook('searchXML',array($key,$group));
+	if (xenonAddressBook('getDatabaseType')=='xml') {
+		return xenonAddressBook('searchXML',array($key,$group));
 	} else {
-		return eyeAddressBook('searchSQLite',array($key,$group));
+		return xenonAddressBook('searchSQLite',array($key,$group));
 	}
 }
 
-function lib_eyeAddressBook_searchXML($params=null) {
+function lib_xenonAddressBook_searchXML($params=null) {
 	if (!isset($params[0])) {
 		return false;
 	}
@@ -564,7 +564,7 @@ function lib_eyeAddressBook_searchXML($params=null) {
 	} else {
 		$group = null;
 	}
-	$contacts = eyeAddressBook('getContacts');
+	$contacts = xenonAddressBook('getContacts');
 	$value['Contacts'][0] = array();
 
 	foreach($contacts['Contacts'][0] as $index=>$id) {
@@ -616,22 +616,22 @@ function lib_eyeAddressBook_searchXML($params=null) {
 	return $value;
 }
 
-function lib_eyeAddressBook_loadConfig($params=null) {
-	$config = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/config.xml'));
+function lib_xenonAddressBook_loadConfig($params=null) {
+	$config = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/config.xml'));
 	if (!$config) {
-		eyeAddressBook('newConfig',array('config'));
-		eyeAddressBook('newConfig',array('contacts'));
-		eyeAddressBook('newConfig',array('groups'));
-		$config = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/config.xml'));
+		xenonAddressBook('newConfig',array('config'));
+		xenonAddressBook('newConfig',array('contacts'));
+		xenonAddressBook('newConfig',array('groups'));
+		$config = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/config.xml'));
 	}
 	return $config;
 }
 
-function lib_eyeAddressBook_loadXML($params=null) {
-	$contacts = xenonXML('getXMLfile', array(um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/contacts.xml'));
+function lib_xenonAddressBook_loadXML($params=null) {
+	$contacts = xenonXML('getXMLfile', array(um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/contacts.xml'));
 	if (!$contacts) {
-		eyeAddressBook('newConfig', array('contacts'));
-//         $contacts = xenonXML('getXMLfile', array(um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook/contacts.xml'));
+		xenonAddressBook('newConfig', array('contacts'));
+//         $contacts = xenonXML('getXMLfile', array(um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook/contacts.xml'));
 		return false;
 	}
 	if (isset($params[0]) && !empty($params[0])) {
@@ -645,8 +645,8 @@ function lib_eyeAddressBook_loadXML($params=null) {
 	}
 }
 
-function lib_eyeAddressBook_newConfig($params=null) {
-	$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook';
+function lib_xenonAddressBook_newConfig($params=null) {
+	$path = um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook';
 	if (!vfs('isdir',array($path))) {
 		vfs('real_mkdir',array($path));
 		vfs('real_mkdir',array($path.'/images'));
@@ -655,7 +655,7 @@ function lib_eyeAddressBook_newConfig($params=null) {
 		return false;
 	}
 	if ($params[0]=='contacts') {
-		$config = eyeAddressBook('loadConfig');
+		$config = xenonAddressBook('loadConfig');
 		if ($config['config'][0]['database'][0]=='xml') {
 			$file = '/contacts.xml';
 		} else {
@@ -673,7 +673,7 @@ function lib_eyeAddressBook_newConfig($params=null) {
 		}
 	} elseif ($params[0]=='groups') {
 		$groups['groups'][0] = array();
-		if (eyeAddressBook('getDatabaseType')=='xml') {
+		if (xenonAddressBook('getDatabaseType')=='xml') {
 			xenonXML('setXMLfile', array($path.'/groups.xml', $groups));
 		} else {
 			// SQLite code
@@ -681,26 +681,26 @@ function lib_eyeAddressBook_newConfig($params=null) {
 
 		// Add default groups?
 
-		eyeAddressBook('addGroup',array('Family'));
-		eyeAddressBook('addGroup',array('Personal'));
-		eyeAddressBook('addGroup',array('Work'));
+		xenonAddressBook('addGroup',array('Family'));
+		xenonAddressBook('addGroup',array('Personal'));
+		xenonAddressBook('addGroup',array('Work'));
 		return true;
 	}
 }
 
-function lib_eyeAddressBook_loadSQLite($params=null) {
+function lib_xenonAddressBook_loadSQLite($params=null) {
 }
 
-function lib_eyeAddressBook_clean($params=null) {
+function lib_xenonAddressBook_clean($params=null) {
 	$path = um('getCurrentUserDir').'tmp/';
-	$files = vfs('real_getDirContent',array($path,'eyeAddressBook*'));
+	$files = vfs('real_getDirContent',array($path,'xenonAddressBook*'));
 	foreach ($files as $file) {
 		vfs('real_delete',array($file));
 	}
 	return true;
 }
 
-function lib_eyeAddressBook_delGroup($params=null) {
+function lib_xenonAddressBook_delGroup($params=null) {
 	if(empty($params) || empty($params[0])){
 		return false;
 	}
@@ -708,16 +708,16 @@ function lib_eyeAddressBook_delGroup($params=null) {
 	if (is_numeric($id) && $id==0) {
 		return false;
 	}
-	$groups = eyeAddressBook('getGroups');
+	$groups = xenonAddressBook('getGroups');
 	$groups = $groups['groups'][0]['group'];
 
 	foreach ($groups as $key=>$value) {
 		if ($value['id'][0] == $id) {
 			unset($groups[$key]);
-			$fileGroups = eyeAddressBook('getGroups');
+			$fileGroups = xenonAddressBook('getGroups');
 			$fileGroups['groups'][0]['group'] = $groups;
-			$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook';
-			if (eyeAddressBook('getDatabaseType')=='xml') {
+			$path = um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook';
+			if (xenonAddressBook('getDatabaseType')=='xml') {
 				if (xenonXML('setXMLfile', array($path.'/groups.xml', $fileGroups))) {
 					return true;
 				} else {
@@ -728,11 +728,11 @@ function lib_eyeAddressBook_delGroup($params=null) {
 	}
 }
 
-function lib_eyeAddressBook_addGroup($params=null) {
+function lib_xenonAddressBook_addGroup($params=null) {
 	if(empty($params) || empty($params[0])){
 		return false;
 	}
-	$groups = eyeAddressBook('getGroups');
+	$groups = xenonAddressBook('getGroups');
 	if (!is_array($groups['groups'][0])) {
 		$groups['groups'][0] = array();
 		$index = 0;
@@ -742,8 +742,8 @@ function lib_eyeAddressBook_addGroup($params=null) {
 	$index = intval($index);
 	$groups['groups'][0]['group'][$index]['name'][0] = $params[0];
 	$groups['groups'][0]['group'][$index]['id'][0] = md5(uniqid(rand()));
-	$path = um('getCurrentUserDir').CONF_USER_DIR.'/eyeAddressBook';
-	if (eyeAddressBook('getDatabaseType')=='xml') {
+	$path = um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook';
+	if (xenonAddressBook('getDatabaseType')=='xml') {
 		if (xenonXML('setXMLfile', array($path.'/groups.xml', $groups))) {
 			return true;
 		}
@@ -755,7 +755,7 @@ function lib_eyeAddressBook_addGroup($params=null) {
 // Retrocompatibility with eyeContacts
 
  // retrive_2 auxiliar function only to importfromeyecontacts
-function lib_eyeAddressBook_retrive_2($params=null) {
+function lib_xenonAddressBook_retrive_2($params=null) {
 	if(empty($params) || count($params) < 1){
 		return false;
 	}
@@ -772,7 +772,7 @@ function lib_eyeAddressBook_retrive_2($params=null) {
 	return $info;
 }
 
-function lib_eyeAddressBook_pathToInfo($params=null){
+function lib_xenonAddressBook_pathToInfo($params=null){
 	if(empty($params) || empty($params[0])){
 		return false;
 	}
@@ -790,7 +790,7 @@ function lib_eyeAddressBook_pathToInfo($params=null){
 	return  array($name,$sName,$md5);
 }
 
-function lib_eyeAddressBook_delete($params=null){
+function lib_xenonAddressBook_delete($params=null){
 	if(empty($params) || count($params) < 3){
 		return false;
 	}
@@ -799,10 +799,10 @@ function lib_eyeAddressBook_delete($params=null){
 	$md5 = $params[2];
 	$toDelete = array($md5);
 
-	return eyeAddressBook('deleteContacts',array($toDelete));
+	return xenonAddressBook('deleteContacts',array($toDelete));
 }
 
-function lib_eyeAddressBook_update($params=null){
+function lib_xenonAddressBook_update($params=null){
 	if(empty($params) || count($params) < 4){
 		return false;
 	}
@@ -830,10 +830,10 @@ function lib_eyeAddressBook_update($params=null){
 	$newContact[0]['company'][0]['phone'][0]['fax'][0] = $contact['company']['fax'];
 	$newContact[0]['company'][0]['address'][0] = $contact['company']['address'];
 	$newContact[0]['other'][0]['notes'][0] = $contact['normal']['notes'];
-	return eyeAddressBook('editContact',array($md5,$newContact));
+	return xenonAddressBook('editContact',array($md5,$newContact));
 }
 
-function lib_eyeAddressBook_retrive($params=null){
+function lib_xenonAddressBook_retrive($params=null){
 	if(empty($params) || count($params) < 3){
 		return false;
 	}
@@ -841,7 +841,7 @@ function lib_eyeAddressBook_retrive($params=null){
 	$surname = $params[1];
 	$md5 = $params[2];
 
-	$newContact = eyeAddressBook('getContacts',array($md5));
+	$newContact = xenonAddressBook('getContacts',array($md5));
 	$newContact = $newContact['Contacts'][0]['id_'.$md5];
 	$contact = array();
 	$contact['name'][0] = $newContact[0]['home'][0]['name'][0];
@@ -864,8 +864,8 @@ function lib_eyeAddressBook_retrive($params=null){
 	return $contact;
 }
 
-function lib_eyeAddressBook_userList($params=null){
-	$contacts = eyeAddressBook('getContacts');
+function lib_xenonAddressBook_userList($params=null){
+	$contacts = xenonAddressBook('getContacts');
 	if (!is_array($contacts)) {
 		$contacts['Contacts'][0] = array();
 	}
@@ -894,7 +894,7 @@ function lib_eyeAddressBook_userList($params=null){
 	return $contact;
 }
 
-function lib_eyeAddressBook_create($params=null) {
+function lib_xenonAddressBook_create($params=null) {
 	if(!isset($params[0]) || empty($params[0])){
 		return false;
 	}
@@ -920,6 +920,6 @@ function lib_eyeAddressBook_create($params=null) {
 	$newContact[0]['other'][0]['notes'][0] = $contact['normal']['notes'];
 	// Default Group (All)
 	$newContact[0]['group'][0] = 0;
-	return eyeAddressBook('newContact',array($newContact));
+	return xenonAddressBook('newContact',array($newContact));
 }
 ?>

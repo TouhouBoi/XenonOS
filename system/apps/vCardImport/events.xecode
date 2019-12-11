@@ -19,7 +19,7 @@ function vCardImport_on_Close($params = '') {
 }
 
 function vCardImport_on_Do($params = '') {
-	if (eyeAddressBook('importFromVcard',array($GLOBALS['vCardImport_Hidden']->text))) {
+	if (xenonAddressBook('importFromVcard',array($GLOBALS['vCardImport_Hidden']->text))) {
 		xenonx('messageBox',array('content'=>'File Imported!'));
 		proc('end');
 	} else {
