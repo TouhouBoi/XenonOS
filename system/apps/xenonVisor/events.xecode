@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeVisor_on_Message($params="") {
+function xenonVisor_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeVisor_on_Edit($params=null) {
+function xenonVisor_on_Edit($params=null) {
 	$file = $GLOBALS['vPath']->text;
 	$info = pathinfo($file);
 	$ext = /* utf8 */ strtolower($info['extension']);
@@ -31,7 +31,7 @@ function eyeVisor_on_Edit($params=null) {
 	proc('end');
 }
 
-function eyeVisor_on_Resize($params=null) {
+function xenonVisor_on_Resize($params=null) {
 	global $myPid;
 	$width = $params['arg'][0];
 	$height = $params['arg'][1];
@@ -39,11 +39,11 @@ function eyeVisor_on_Resize($params=null) {
 	$height = intval($height);
 	$width = $width - 10;
 	$height = $height - 88;
-	$GLOBALS['eyeVisorFrame']->setWidth($width);
-	$GLOBALS['eyeVisorFrame']->setHeight($height);
+	$GLOBALS['xenonVisorFrame']->setWidth($width);
+	$GLOBALS['xenonVisorFrame']->setHeight($height);
 }
 
-function eyeVisor_on_getFile($params = null) {
+function xenonVisor_on_getFile($params = null) {
 	global $myPid;
 	
 	$file = $GLOBALS['vPath']->text;
@@ -77,7 +77,7 @@ function eyeVisor_on_getFile($params = null) {
 	extern('getContent', array($content, 'html'));
 }
 
-function eyeVisor_on_Close($params=null){
+function xenonVisor_on_Close($params=null){
 	eyeConverter('cleanTmp');
 	proc('end');
 }

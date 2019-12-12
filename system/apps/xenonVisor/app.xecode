@@ -14,19 +14,19 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeVisor_run($params=null) {
+function xenonVisor_run($params=null) {
 	global $checknum;
 	$file = $params[0];
 	
 	
 
 	$myWindow = new Window(array(
-		'name' => 'eyeVisorWND',
+		'name' => 'xenonVisorWND',
 		'father' => 'xenonApps',
 		'cent' => 1,
 		'width' => 600,
 		'height' => 600,
-		'title' => basename($file).' - eyeVisor',
+		'title' => basename($file).' - xenonVisor',
 		'sendResizeMsg' => 1,
 		'sigResize' => 'Resize',
 		'removeWin' => 0,
@@ -50,7 +50,7 @@ function eyeVisor_run($params=null) {
 	
 	$myLabel = new Label(array(
 		'father' => $myWindow->name .'_Content',
-		'name' => 'eyeVisor_loadingMessage',
+		'name' => 'xenonVisor_loadingMessage',
 		'x' => 0,
 		'y' => 80,
 		'cent' => 2,
@@ -59,7 +59,7 @@ function eyeVisor_run($params=null) {
 	$myLabel->show(0);
 	
 	$myFrame = new Iframe(array(
-		'name' => 'eyeVisorFrame',
+		'name' => 'xenonVisorFrame',
 		'father' => $myWindow->name .'_Content',
 		'x' => 4,
 		'y' => 60,
@@ -69,11 +69,11 @@ function eyeVisor_run($params=null) {
 	));
 	$myFrame->show();
 	$myFrame->focus();
-	$myFrame->addEvent('onload', 'document.getElementById("' . $GLOBALS['myPid'] . '_eyeVisor_loadingMessage_Container").style.display="none"');
+	$myFrame->addEvent('onload', 'document.getElementById("' . $GLOBALS['myPid'] . '_xenonVisor_loadingMessage_Container").style.display="none"');
 	
 }
 
-function eyeVisor_end($params=null) {
+function xenonVisor_end($params=null) {
 	eyeConverter('cleanTmp');
 	eyeWidgets('unserialize');
 }
