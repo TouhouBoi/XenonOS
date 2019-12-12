@@ -154,7 +154,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	border-radius-top-right: 5px;
 }
 
-.blockbarItem:hover,.blockbarItem_right:hover, .blockbarItemPress, .blockbarItemPress_right, .eyeContextMenu, .eyeWindowMain, .eyeWidgets_icon:hover {
+.blockbarItem:hover,.blockbarItem_right:hover, .blockbarItemPress, .blockbarItemPress_right, .eyeContextMenu, .eyeWindowMain, .xenonWidgets_icon:hover {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
@@ -175,7 +175,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	border-radius: 3px;
 }
 
-.eyeContextMenu, .eyeWidgets_icon:hover, .eyeTab {
+.eyeContextMenu, .xenonWidgets_icon:hover, .eyeTab {
 	-moz-border-radius: 7px;
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
@@ -1351,11 +1351,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	border-style: none;
 }
 
-.eyeWidgets {
+.xenonWidgets {
 	width: 156px;
 }
 
-.eyeWidgets_icon, .eyeWidgets_icon:hover, .eyeWidgets_icon .eyeIcon_Image {
+.xenonWidgets_icon, .xenonWidgets_icon:hover, .xenonWidgets_icon .eyeIcon_Image {
 	background-color: transparent;
 	color: #000000;
 	padding-right: 168px;
@@ -1367,21 +1367,21 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	position: relative;
 }
 
-.eyeWidgets_descript {
+.xenonWidgets_descript {
 	color: #666666;
 }
 
-.eyeWidgets_icon:hover {
+.xenonWidgets_icon:hover {
 	background: transparent url('index.php?theme=USERTHEME&extern=images/windows/toolbar.png') repeat-x scroll center bottom;
 	padding-bottom: 5px;
 }
 
-.eyeWidgets_title {
+.xenonWidgets_title {
 	color: #333333;
 	font-weight: bold;
 	width: 68px;
 }
-.eyeWidgets_version {
+.xenonWidgets_version {
 	color: #666666;
 	float: right;
 }

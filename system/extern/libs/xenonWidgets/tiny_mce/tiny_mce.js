@@ -43,7 +43,7 @@ function enableShadow(id) { // oneye
 	var ifr = document.getElementById(id);
 
 	obj.style.width='8px';
-	obj.style.backgroundImage = 'url(index.php?extern=libs/eyeWidgets/tiny_mce/themes/advanced/img/left_sh.png)';
+	obj.style.backgroundImage = 'url(index.php?extern=libs/xenonWidgets/tiny_mce/themes/advanced/img/left_sh.png)';
 	obj.style.height = xHeight(ifr)-6+'px'; // 13 = size of the corner
 	obj.style.top = '109px';
 	obj.style.position = 'absolute';
@@ -59,7 +59,7 @@ function enableShadow(id) { // oneye
 	lcobj.style.width = '14px';
 	lcobj.style.height = '14px';
 	lcobj.setAttribute('id',id+'_shadowleftcorner');
-	lcobj.style.backgroundImage = 'url(index.php?extern=libs/eyeWidgets/tiny_mce/themes/advanced/img/cornerleft_sh.png)';
+	lcobj.style.backgroundImage = 'url(index.php?extern=libs/xenonWidgets/tiny_mce/themes/advanced/img/cornerleft_sh.png)';
 	lcobj.style.position = 'absolute';
 	lcobj.style.top = '95px'; // first 14 = obj.bottom, second 14 = cornerleft_sh.png height
 	lcobj.style.left = fsize - 8 + 'px';
@@ -69,7 +69,7 @@ function enableShadow(id) { // oneye
 	//right side
 	var obj = document.createElement('div');
 	obj.style.width='8px';
-	obj.style.backgroundImage = 'url(index.php?extern=libs/eyeWidgets/tiny_mce/themes/advanced/img/right_sh.png)';
+	obj.style.backgroundImage = 'url(index.php?extern=libs/xenonWidgets/tiny_mce/themes/advanced/img/right_sh.png)';
 	obj.style.height = xHeight(ifr)-6+'px'; // 13 = size of the corner
 	obj.style.top = '109px';
 	obj.style.position = 'absolute';
@@ -84,7 +84,7 @@ function enableShadow(id) { // oneye
 	var lcobj = document.createElement('div');
 	lcobj.style.width = '14px';
 	lcobj.style.height = '14px';
-	lcobj.style.backgroundImage = 'url(index.php?extern=libs/eyeWidgets/tiny_mce/themes/advanced/img/cornerright_sh.png)';
+	lcobj.style.backgroundImage = 'url(index.php?extern=libs/xenonWidgets/tiny_mce/themes/advanced/img/cornerright_sh.png)';
 	lcobj.style.position = 'absolute';
 	lcobj.setAttribute('id',id+'_shadowrightcorner');
 	lcobj.style.top = '95px'; // first 14 = obj.bottom, second 14 = cornerleft_sh.png height
@@ -100,7 +100,7 @@ function enableShadow(id) { // oneye
 	tobj.style.height = '8px';
 	tobj.style.position = 'absolute';
 	tobj.setAttribute('id',id+'_shadowtop');
-	tobj.style.backgroundImage = 'url(index.php?extern=libs/eyeWidgets/tiny_mce/themes/advanced/img/top_sh.png)';
+	tobj.style.backgroundImage = 'url(index.php?extern=libs/xenonWidgets/tiny_mce/themes/advanced/img/top_sh.png)';
 
 	ifr_father.appendChild(tobj);
 }

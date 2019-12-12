@@ -110,9 +110,9 @@ function File_show(params, name, father, x, y, horiz, vert, checknum, cent) {
 	myIframe.style.border = 'none';
 	myIframe.frameBorder = 'no';
 	if (multiple) {
-		myIframe.setAttribute('src', 'index.php?extern=libs/eyeWidgets/getMultipleFile.xecode&type=dynamic&params[]=' + checknum + '&params[]=' + callback + '&params[]=' + filename + '&params[]=' + pid);
+		myIframe.setAttribute('src', 'index.php?extern=libs/xenonWidgets/getMultipleFile.xecode&type=dynamic&params[]=' + checknum + '&params[]=' + callback + '&params[]=' + filename + '&params[]=' + pid);
 	} else {
-		myIframe.setAttribute('src', 'index.php?extern=libs/eyeWidgets/getFile.xecode&type=dynamic&params[]=' + checknum + '&params[]=' + callback + '&params[]=' + filename + '&params[]=' + pid);
+		myIframe.setAttribute('src', 'index.php?extern=libs/xenonWidgets/getFile.xecode&type=dynamic&params[]=' + checknum + '&params[]=' + callback + '&params[]=' + filename + '&params[]=' + pid);
 	}
 	createWidget(name + '_Container', father, myIframe, horiz, vert, x, y, -1, -1, 'eyeLineContainer', cent, 'px', visible, 'File');
 }
@@ -2469,14 +2469,14 @@ function Textarea_show(params, name, father, x, y, horiz, vert, checknum, cent) 
 		});
 		txtAreas[name + '_objTxt'].addButton('open', {
 			title: params.i18nOpenFile || 'Open File',
-			image: 'index.php?extern=libs/eyeWidgets/tiny_mce/themes/advanced/img/open.png',
+			image: 'index.php?extern=libs/xenonWidgets/tiny_mce/themes/advanced/img/open.png',
 			onclick: function () {
 				sendMsg(checknum, 'Open', eyeParam(name.substring(6), Base64.encode(txtAreas[name + '_objTxt'].getContent())) + eyeParam('md5', md5(txtAreas[name + '_objTxt'].getContent())));
 			}
 		});
 		txtAreas[name + '_objTxt'].addButton('saveAs', {
 			title: params.i18nSaveAs || 'Save as',
-			image: 'index.php?extern=libs/eyeWidgets/tiny_mce/themes/advanced/img/saveAs.png',
+			image: 'index.php?extern=libs/xenonWidgets/tiny_mce/themes/advanced/img/saveAs.png',
 			onclick: function () {
 				sendMsg(checknum, 'saveAs', eyeParam(name.substring(6), Base64.encode(txtAreas[name + '_objTxt'].getContent())) + eyeParam('md5', md5(txtAreas[name + '_objTxt'].getContent())));
 			}
@@ -2501,7 +2501,7 @@ function Textarea_show(params, name, father, x, y, horiz, vert, checknum, cent) 
 	} else if (code) {
 		myTextarea.className = 'codepress ' + lang;
 		evilEval("cp_" + name + " = new CodePress('" + myTextarea.id + "');");
-		CodePress.path = 'index.php?extern=libs/eyeWidgets/codepress/';
+		CodePress.path = 'index.php?extern=libs/xenonWidgets/codepress/';
 		myTextarea.parentNode.insertBefore(evilEval("cp_" + name), myTextarea);
 	}
 }

@@ -6,7 +6,7 @@ body {
 	font-family:monospace;
 	font-size:13px;
 	white-space:pre;
-	background-image:url("index.php?extern=libs/eyeWidgets/codepress/images/line-numbers.png");
+	background-image:url("index.php?extern=libs/xenonWidgets/codepress/images/line-numbers.png");
 	background-repeat:repeat-y;
 	background-position:0 3px;
 	line-height:16px;
@@ -19,4 +19,4 @@ P {margin:0;padding:0;border:0;outline:0;display:block;white-space:pre;}
 b, i, s, u, a, em, tt, ins, big, cite, strong, var, dfn {text-decoration:none;font-weight:normal;font-style:normal;font-size:13px;}
 
 body.hide-line-numbers {background:white;margin-left:16px;}
-body.show-line-numbers {background-image:url("index.php?extern=libs/eyeWidgets/codepress/images/line-numbers.png");margin-left:32px;}
+body.show-line-numbers {background-image:url("index.php?extern=libs/xenonWidgets/codepress/images/line-numbers.png");margin-left:32px;}

@@ -88,7 +88,7 @@
 
 /* Progress,Resize */
 .highcontrastSkin .mceBlocker {position:absolute; left:0; top:0; z-index:1000; opacity:0.5; -ms-filter:'alpha(opacity=30)'; filter:alpha(opacity=50); background:#FFF}
-.highcontrastSkin .mceProgress {position:absolute; left:0; top:0; z-index:1001; background:url(index.php?extern=libs/eyeWidgets/tiny_mce/themes/advanced/skins/highcontrast/../default/img/progress.gif) no-repeat; width:32px; height:32px; margin:-16px 0 0 -16px}
+.highcontrastSkin .mceProgress {position:absolute; left:0; top:0; z-index:1001; background:url(index.php?extern=libs/xenonWidgets/tiny_mce/themes/advanced/skins/highcontrast/../default/img/progress.gif) no-repeat; width:32px; height:32px; margin:-16px 0 0 -16px}
 
 /* Formats */
 .highcontrastSkin .mce_p span.mceText {}
