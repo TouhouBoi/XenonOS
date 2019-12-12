@@ -20,7 +20,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-define('INDEX_TYPE', 'browser');
+define('INDEX_TYPE', 'browser'); // Maybe Remove
 
 // Start Output Buffering
 ob_start();
