@@ -1492,10 +1492,6 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	background: transparent url('index.php?theme=USERTHEME&extern=images/windows/min.png') no-repeat;
 }
 
-.eyeWindowMinimizeButton:hover {
-	background: transparent url('index.php?theme=USERTHEME&extern=images/windows/min_x.png') no-repeat;
-}
-
 .eyeWindowResizeButton {
 	background-image: url('index.php?theme=USERTHEME&extern=images/windows/resizebutton.png');
 	bottom: 2px;
