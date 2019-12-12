@@ -199,7 +199,7 @@ function eyeNav_on_nav_asApp($params=null,$theurl = null) {
 	$xml = $xml['eyeNav'][0]['bookmarks'][0]['bookmark'];
 	$bookmark = eyeNav_getBookmarkFromId($xml,$params);
 
-	proc('launch',array('eyeIframize',$bookmark['url'][0]));
+	proc('launch',array('xenonIFramize',$bookmark['url'][0]));
 }
 
 function eyeNav_on_nav_addBookmark($params=null,$theurl = null) {

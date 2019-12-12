@@ -220,8 +220,8 @@ function xenonEmbedder_on_Test($params = null) {
 		return;
 	}
 	
-	// Launch eyeIframize
-	proc('launch', array('eyeIframize', array(
+	// Launch xenonIFramize
+	proc('launch', array('xenonIFramize', array(
 		$address,
 		$title,
 		$defaultWidth,

@@ -1,19 +1,19 @@
 <?php
 function %:ApplicationName%_on_Close($params = null) {
-	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeIframize/events' . XE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . APP_DIR . '/xenonIFramize/events' . XE_CODE_EXTENSION;
 	
-	eyeIframize_on_Close($params);
+	xenonIFramize_on_Close($params);
 }
 
 function %:ApplicationName%_on_Message($params = null) {
-	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeIframize/events' . XE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . APP_DIR . '/xenonIFramize/events' . XE_CODE_EXTENSION;
 	
-	eyeIframize_on_Message($params);
+	xenonIFramize_on_Message($params);
 }
 
 function %:ApplicationName%_on_Resize($params = null) {
-	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeIframize/events' . XE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . APP_DIR . '/xenonIFramize/events' . XE_CODE_EXTENSION;
 	
-	eyeIframize_on_Resize($params);
+	xenonIFramize_on_Resize($params);
 }
 ?>

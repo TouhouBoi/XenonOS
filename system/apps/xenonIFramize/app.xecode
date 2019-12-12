@@ -28,13 +28,13 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 - [4] => START MAXIMIZED
 */
 
-function eyeIframize_run($params = '')
+function xenonIFramize_run($params = '')
 {
 	if ($params[0])
 	{
-		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeIframize/events' . XE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonIFramize/events' . XE_CODE_EXTENSION);
 
-		eyeIframize_on_Do($params);
+		xenonIFramize_on_Do($params);
 	}
 	else
 	{
@@ -44,17 +44,17 @@ function eyeIframize_run($params = '')
 				'content' => 'What URL do you want to open in an IFrame?',
 				'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/file.png',
 				'textbox_event' => 'Do',
-				'textbox_name' => 'eyeIframize_Textbox',
-				'title' => 'eyeIframize',
+				'textbox_name' => 'xenonIFramize_Textbox',
+				'title' => 'xenonIFramize',
 				'type' => 3,
-				'win_name' => 'eyeIframize_Window',
+				'win_name' => 'xenonIFramize_Window',
 				'win_style' => TITLE + CLOSE + MIN + LISTED
 			)
 		);
 	}
 }
 
-function eyeIframize_end($params = '')
+function xenonIFramize_end($params = '')
 {
 	eyeWidgets('unserialize', $params);
 }

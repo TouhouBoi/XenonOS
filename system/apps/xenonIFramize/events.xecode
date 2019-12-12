@@ -20,25 +20,25 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeIframize_on_Close($params = '')
+function xenonIFramize_on_Close($params = '')
 {
 	proc('end');
 }
 
-function eyeIframize_on_Do($params = '')
+function xenonIFramize_on_Do($params = '')
 {
 	global $checknum, $myPid;
 
-	if (is_object($GLOBALS['eyeIframize_Textbox']))
+	if (is_object($GLOBALS['xenonIFramize_Textbox']))
 	{
-		$url = $GLOBALS['eyeIframize_Textbox']->text;
+		$url = $GLOBALS['xenonIFramize_Textbox']->text;
 
-		$GLOBALS['eyeIframize_Window']->close();
+		$GLOBALS['xenonIFramize_Window']->close();
 	}
 	else
 	{
 		$url = $params[0];
-		$title = 'eyeIframize';
+		$title = 'xenonIFramize';
 	}
 
 	if (strtolower(substr($url, 0, 6)) !== 'ftp://' && strtolower(substr($url, 0, 7)) !== 'http://' && strtolower(substr($url, 0, 8)) !== 'https://')
@@ -50,15 +50,15 @@ function eyeIframize_on_Do($params = '')
 		{
 			$myHidden = new Hidden(
 				array(
-					'father' => 'eyeIframize_Window_Content',
-					'name' => 'eyeIframize_Hidden',
+					'father' => 'xenonIFramize_Window_Content',
+					'name' => 'xenonIFramize_Hidden',
 					'text' => $path[1] . '://' . $path[2] . '/' . $file
 				)
 			);
 
 			$myHidden->show();
 
-			$title = $file . ' - eyeIframize';
+			$title = $file . ' - xenonIFramize';
 			$url = 'index.php?checknum=' . $checknum . '&msg=getFile';
 		}
 	}
@@ -104,7 +104,7 @@ function eyeIframize_on_Do($params = '')
 			'cent' => 1,
 			'father' => 'xenonApps',
 			'height' => $window_height,
-			'name' => 'eyeIframize_Window',
+			'name' => 'xenonIFramize_Window',
 			'savePosition' => RELATIVE,
 			'sendResizeMsg' => 1,
 			'sigResize' => 'Resize',
@@ -132,8 +132,8 @@ function eyeIframize_on_Do($params = '')
 
 	$myIframe = new Iframe(
 		array(
-			'father' => 'eyeIframize_Window_Content',
-			'name' => 'eyeIframize_Iframe',
+			'father' => 'xenonIFramize_Window_Content',
+			'name' => 'xenonIFramize_Iframe',
 			'height' => $myWindow->height - 24,
 			'url' => $url,
 			'width' => $myWindow->width - 3,
@@ -146,9 +146,9 @@ function eyeIframize_on_Do($params = '')
 	$myIframe->focus();
 }
 
-function eyeIframize_on_getFile($params = '')
+function xenonIFramize_on_getFile($params = '')
 {
-	$url = $GLOBALS['eyeIframize_Hidden']->text;
+	$url = $GLOBALS['xenonIFramize_Hidden']->text;
 	$file = basename($url);
 	$path = xenonFiles('cleanPath', array(substr(trim($url, '/\\'), 0, -strlen($file))));
 
@@ -180,17 +180,17 @@ function eyeIframize_on_getFile($params = '')
 	exit;
 }
 
-function eyeIframize_on_Message($params = '')
+function xenonIFramize_on_Message($params = '')
 {
 	eyeWidgets('updateContent', $params);
 }
 
-function eyeIframize_on_Resize($params = '')
+function xenonIFramize_on_Resize($params = '')
 {
-	$GLOBALS['eyeIframize_Window']->width = intval($params['arg'][0]);
-	$GLOBALS['eyeIframize_Window']->height = intval($params['arg'][1]);
+	$GLOBALS['xenonIFramize_Window']->width = intval($params['arg'][0]);
+	$GLOBALS['xenonIFramize_Window']->height = intval($params['arg'][1]);
 
-	$GLOBALS['eyeIframize_Iframe']->setHeight($GLOBALS['eyeIframize_Window']->height - 24);
-	$GLOBALS['eyeIframize_Iframe']->setWidth($GLOBALS['eyeIframize_Window']->width - 3);
+	$GLOBALS['xenonIFramize_Iframe']->setHeight($GLOBALS['xenonIFramize_Window']->height - 24);
+	$GLOBALS['xenonIFramize_Iframe']->setWidth($GLOBALS['xenonIFramize_Window']->width - 3);
 }
 ?>

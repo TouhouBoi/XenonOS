@@ -1,13 +1,13 @@
 <?php
 function %:ApplicationName%_run($params = null) {
-	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeIframize/events' . XE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . APP_DIR . '/xenonIFramize/events' . XE_CODE_EXTENSION;
 	
-	eyeIframize_on_Do(array(%s:Address%, %s:Title%, %i:DefaultWidth%, %i:DefaultHeight%, %i:StartMaximized%));
+	xenonIFramize_on_Do(array(%s:Address%, %s:Title%, %i:DefaultWidth%, %i:DefaultHeight%, %i:StartMaximized%));
 }
 
 function %:ApplicationName%_end($params = null) {
-	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeIframize/app' . XE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . APP_DIR . '/xenonIFramize/app' . XE_CODE_EXTENSION;
 	
-	eyeIframize_end($params);
+	xenonIFramize_end($params);
 }
 ?>
