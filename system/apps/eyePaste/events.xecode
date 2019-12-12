@@ -77,7 +77,7 @@ function eyePaste_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 		if ($from[1] . '://' . $from[2] . '/' . $file == $to[1] . '://' . $to[2] . '/' . $file2) {
 			return eyePaste_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
 		} elseif ($replace) {
-			proc('launch',array('eyeDelete',array($to[1] . '://' . $to[2] . '/' . $file2)));
+			proc('launch',array('xenonDelete',array($to[1] . '://' . $to[2] . '/' . $file2)));
 			if ($from[1] === 'home' && /* utf8 */ strtolower(basename($from[2])) === 'desktop') {
 				$xml = xenonXML('getXMLconfig',array('xenonDesk','icons.xml'));
 				if (is_array($xml['icon'])) {

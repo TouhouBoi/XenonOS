@@ -69,7 +69,7 @@ function xenonFTP_on_xenonFTP_deleteLocal() {
 	global $checknum;
 	$conf = xenonFTP_getConf();
 	if ($conf['selectedLocalFile']['name'] != '..')  {
-		proc('launch',array('eyeDelete',array(
+		proc('launch',array('xenonDelete',array(
 											$conf['selectedLocalFile']['path'],
 											'sendMsg('.$checknum.',"xenonFTP_refreshLocal","")'
 		)));

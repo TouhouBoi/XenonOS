@@ -13,7 +13,7 @@
 	<entry>
 		<icon>delete</icon>
 		<text>Delete</text>
-		<action>eyeDelete</action>
+		<action>xenonDelete</action>
 	</entry>
 	<entry>
 		<icon>rename</icon>

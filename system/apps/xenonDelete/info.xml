@@ -1,5 +1,5 @@
 <package>
-	<name>eyeDelete</name>
+	<name>xenonDelete</name>
 	<category>Core File Management</category>
 	<version>1.9</version>
 	<description>Utility to move files to trash</description>
