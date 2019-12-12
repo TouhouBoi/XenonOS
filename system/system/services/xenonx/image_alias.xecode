@@ -172,7 +172,7 @@ $pic22 = array(
 	'eyeNav',
 	'eyeNotes',
 	'eyePresentation',
-	'eyeProcess',
+	'xenonProcess',
 	'eyeSheets',
 	'eyeString',
 	'eyeTetravex',
@@ -210,7 +210,7 @@ foreach ($pic22 as $pic22Home)
 $alias[0]['icons/20x20/home.png'] = 'icons/22x22/homeFolder.png';
 $alias[0]['icons/16x16/desktop.png'] = 'images/apps/eyeLightDesk/16x16/desktop.png';
 $alias[0]['icons/16x16/xenonChat.png'] = 'images/apps/eyeLightDesk/16x16/xenonChat.png';
-$alias[0]['icons/16x16/eyeProcess.png'] = 'images/apps/eyeLightDesk/16x16/eyeProcess.png';
+$alias[0]['icons/16x16/xenonProcess.png'] = 'images/apps/eyeLightDesk/16x16/xenonProcess.png';
 $alias[0]['icons/16x16/pre.png'] = 'images/apps/eyeLightDesk/16x16/pre.png';
 $alias[0]['icons/16x16/trash.png'] = 'images/apps/eyeLightDesk/16x16/trash.png';
 $alias[0]['icons/16x16/places/Public.png'] = 'images/apps/eyeLightDesk/16x16/places/Public.png';
@@ -229,7 +229,7 @@ $alias[0]['icons/16x16/apps/eyeMessages.png'] = 'images/apps/eyeLightDesk/16x16/
 $alias[0]['icons/16x16/apps/eyeNav.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeNav.png';
 $alias[0]['icons/16x16/apps/eyeNotes.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeNotes.png';
 $alias[0]['icons/16x16/apps/eyePresentation.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyePresentation.png';
-$alias[0]['icons/16x16/apps/eyeProcess.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeProcess.png';
+$alias[0]['icons/16x16/apps/xenonProcess.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonProcess.png';
 $alias[0]['icons/16x16/apps/eyeSheets.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeSheets.png';
 $alias[0]['icons/16x16/apps/eyeTetravex.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeTetravex.png';
 $alias[0]['icons/16x16/apps/groups.png'] = 'images/apps/eyeLightDesk/16x16/apps/groups.png';

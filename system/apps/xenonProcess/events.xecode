@@ -1,0 +1,71 @@
+<?php
+/*
+  ___  _ __   ___ _   _  ___
+ / _ \| '_ \ / _ \ | | |/ _ \
+| (_) | | | |  __/ |_| |  __/
+ \___/|_| |_|\___|\__, |\___|
+                  |___/
+
+oneye is released under the GNU Affero General Public License Version 3 (AGPL3)
+ -> provided with this release in license.txt
+ -> or via web at www.gnu.org/licenses/agpl-3.0.txt
+
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+*/
+
+function xenonProcess_on_BringToFront($params = '') {
+	global $myPid;
+	$process = $GLOBALS['xenonProcess_appSortabletable']->selected;
+	foreach ($_SESSION[WTABLE][$process] as $widget) {
+		if (get_class($widget) === 'Window' && $widget->father === 'xenonApps') {
+			$oldPid = $myPid;
+			$myPid = $process;
+			$widget->focus();
+			$myPid = $oldPid;
+			return;
+		}
+	}
+	xenonx('messageBox', array('content' => 'Could not find a related window.'));
+}
+
+function xenonProcess_on_Close($params = '') {
+	proc('end');
+}
+
+function xenonProcess_on_help($params=null) {
+	proc('launch',array('eyeHelp','xenonProcess'));
+}
+
+function xenonProcess_on_Kill($params = '') {
+	proc('close',array($GLOBALS['xenonProcess_Sortabletable']->selected));
+	xenonx('messageBox',array('content' => 'Process killed successfully.'));
+}
+
+function xenonProcess_on_New($params = '') {
+	proc('launch',array('eyeLaunch'));
+}
+
+function xenonProcess_on_Killapp($params = ''){
+	proc('close',array($GLOBALS['xenonProcess_appSortabletable']->selected));
+	xenonx('messageBox',array('content' => 'Application killed successfully.'));
+}
+
+function xenonProcess_on_Message($params = '') {
+	eyeWidgets('updateContent',$params);
+}
+
+function xenonProcess_on_Resize($params = '') {
+	$GLOBALS['xenonProcess_Window']->setHeight(intval($params['arg'][1]));
+	$GLOBALS['xenonProcess_Sortabletable']->setHeight(intval($params['arg'][1]) - 104);
+	$GLOBALS['xenonProcess_Sortabletable']->setWidth(intval($params['arg'][0]) - 20);
+	$GLOBALS['xenonProcess_appSortabletable']->setHeight(intval($params['arg'][1]) - 104);
+	$GLOBALS['xenonProcess_appSortabletable']->setWidth(intval($params['arg'][0]) - 20);
+	$GLOBALS['xenonProcess_tab']->setWidth(intval($params['arg'][0]) - 0);
+	$GLOBALS['xenonProcess_tab']->setHeight(intval($params['arg'][1]) - 35);
+	$GLOBALS['xenonProcess_Button_New']->setY(intval($params['arg'][1]) - 86);
+	$GLOBALS['xenonProcess_Button_Kill']->setY(intval($params['arg'][1]) - 86);
+	$GLOBALS['xenonProcess_Button_appKill']->setY(intval($params['arg'][1]) - 86);
+
+}
+?>
