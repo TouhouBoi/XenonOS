@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function xenonDesk_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonDesk_on_Refresh($params = '') {

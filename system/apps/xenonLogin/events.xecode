@@ -124,7 +124,7 @@ function xenonLogin_on_Login($params = '') {
 }
 
 function xenonLogin_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonLogin_on_successLogin($params = '') {

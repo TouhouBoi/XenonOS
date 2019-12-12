@@ -43,6 +43,6 @@ function downZip_run($params = '') {
 }
 
 function xenonDownload_end($params = '') {
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

@@ -87,7 +87,7 @@ function xeControl_lib_loadContent($category = '',$content = '',$contentParams =
 			'height' => 455
 		));
 		$myContainer_big->show();
-		eyeWidgets('serialize',array($myContainer_big));
+		xenonWidgets('serialize',array($myContainer_big));
 // $myLabel
 		$containerY = 0;
 		if (isset($contentXML['title']) === true && $contentXML['title'][0] == 'yes') {

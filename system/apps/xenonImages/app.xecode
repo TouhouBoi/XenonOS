@@ -35,6 +35,6 @@ function xenonImages_run($params = '') {
 
 function xenonImages_end($params = '') {
 	removeListenerServiceCall('xenonx','resizedbrowser');
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

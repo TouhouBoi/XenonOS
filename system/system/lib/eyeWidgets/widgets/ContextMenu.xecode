@@ -82,7 +82,7 @@ class ContextMenu {
 		);
 		$this->showed=1;
 		if($noserialize == 0) {
-			eyeWidgets('serialize',array($this));
+			xenonWidgets('serialize',array($this));
 		}
 		xenonx('createWidget',$myContextMenu);
 	}

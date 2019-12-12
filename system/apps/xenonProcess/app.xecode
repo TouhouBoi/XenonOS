@@ -134,6 +134,6 @@ function xenonProcess_run($params = '') {
 function xenonProcess_end($params = '') {
 	removeListenerServiceCall('proc','close',1);
 	removeListenerServiceCall('proc','launch',1);
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

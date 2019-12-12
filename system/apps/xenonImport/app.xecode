@@ -39,7 +39,7 @@ function xenonImport_run($params=null) {
 }
 
 function xenonImport_end($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 

@@ -21,7 +21,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function miniMessages_on_Message($params) {
-	eyeWidgets('updateContent', $params);
+	xenonWidgets('updateContent', $params);
 }
 
 function miniMessages_on_Close($params=null) {
@@ -29,7 +29,7 @@ function miniMessages_on_Close($params=null) {
 }
 
 function miniMessages_on_Refresh($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 	global $myPid;
 	proc('getTask', array($myPid));
 }

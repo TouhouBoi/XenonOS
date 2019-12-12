@@ -32,7 +32,7 @@ function miniMessages_run($params=null) {
 
 	$myWindow = new Window(array(
 		'name' => 'miniMessagesWND',
-		'father' => 'eyeWidgets',
+		'father' => 'xenonWidgets',
 		'removeFatherPid' => 1,
 		'width' => 382,
 		'height' => 180,
@@ -189,7 +189,7 @@ function date_sort($list) {
 }
 
 function miniMessages_end() {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

@@ -158,7 +158,7 @@ function xenonMedia_run($params=null) {
 }
 
 function xenonMedia_end($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

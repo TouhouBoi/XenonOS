@@ -21,7 +21,7 @@ function xenonCalendar_on_Help($params = '') {
 }
 
 function xenonCalendar_on_Message($params="") {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonCalendar_on_Launch($params="") {
@@ -702,7 +702,7 @@ function xenonCalendar_on_hideLeftPanel(){
 	$hidden = true;
 	if(!$GLOBALS['hiddenPanel']){
 		$myHidden = new Hidden(array('name'=>'hiddenPanel','father'=>'xenonApps','text'=>true));
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 	}else{
 		if($GLOBALS['hiddenPanel']->text == true){
 			$GLOBALS['hiddenPanel']->setText(false);
@@ -717,7 +717,7 @@ function xenonCalendar_on_hideLeftPanel(){
 	if($hidden == true){
 		if(!$GLOBALS['verticalX']){
 			$myHidden = new Hidden(array('name'=>'verticalX','father'=>'xenonApps','text'=>$GLOBALS['verticalPanel']->x));
-			eyeWidgets('serialize',array($myHidden));
+			xenonWidgets('serialize',array($myHidden));
 		}else{
 			$GLOBALS['verticalX']->setText($GLOBALS['verticalPanel']->x);
 		}

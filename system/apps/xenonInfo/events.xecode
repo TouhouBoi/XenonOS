@@ -27,7 +27,7 @@ function xenonInfo_on_Close($prams = '')
 
 function xenonInfo_on_Message($params = '')
 {
-	eyeWidgets('updateContent', $params);
+	xenonWidgets('updateContent', $params);
 }
 
 function xenonInfo_on_Navigate($params = '')

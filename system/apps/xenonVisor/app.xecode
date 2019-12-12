@@ -75,7 +75,7 @@ function xenonVisor_run($params=null) {
 
 function xenonVisor_end($params=null) {
 	eyeConverter('cleanTmp');
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

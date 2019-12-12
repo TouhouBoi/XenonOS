@@ -37,7 +37,7 @@ DockMenu.DateTime.WeekDaysShort = \'' . mmap('array2jsArg',array(array(i18n('tra
 }
 
 function xenonDock_end($params = '') {
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 	xenonDock_lib_Remove();
 }
 ?>

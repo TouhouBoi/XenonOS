@@ -20,6 +20,6 @@ function xKill_run($params = '') {
 }
 
 function xKill_end($params = '') {
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

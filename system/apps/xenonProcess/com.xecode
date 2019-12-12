@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function xenonProcess_com_onClose($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 	$GLOBALS['xenonProcess_Sortabletable']->delRow($params[0]);
 	$GLOBALS['xenonProcess_appSortabletable']->delRow($params[0]);
 }
@@ -23,7 +23,7 @@ function xenonProcess_com_onClose($params = '') {
 function xenonProcess_com_onLaunch($params = '') {
 	global $currentUser;
 	
-	eyeWidgets('updateContent', $params);
+	xenonWidgets('updateContent', $params);
 	
 	// Sudo
 	$oldUser = $currentUser;
@@ -46,7 +46,7 @@ function xenonProcess_com_onLaunch($params = '') {
 		$application = basename($process['appName']);
 		$infoXml = xenonXML('getXMLfile', array(XENONOS_ROOT . '/' . APP_DIR . '/' . $application . '/info.xml'));
 		
-		if (is_array($infoXml) && $infoXml['package'][0]['type'][0] !== 'System' && eyeWidgets('hasWidgets', array($pid))) {
+		if (is_array($infoXml) && $infoXml['package'][0]['type'][0] !== 'System' && xenonWidgets('hasWidgets', array($pid))) {
 			if (vfs('real_fileExists', array($iconsThemePath . $application . '.png')) || vfs('real_fileExists', array($iconsDefaultPath . $application . '.png'))) {
 				$icon = $application;
 			} else {

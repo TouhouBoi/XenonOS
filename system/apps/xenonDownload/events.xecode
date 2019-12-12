@@ -19,7 +19,7 @@ function xenonDownload_on_Close($params = '') {
 }
 
 function xenonDownload_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonDownload_on_iframe($params = '') {
@@ -60,7 +60,7 @@ function xenonDownload_on_download($params = '') {
 	} else {
 		vfs('readfile',array($path[0] . '/' . $file));
 	}
-	eyeWidgets('rawunserialize');
+	xenonWidgets('rawunserialize');
 	proc('end');
 	unset($_SESSION['xenonDownload'][$myPid]);
 	exit;

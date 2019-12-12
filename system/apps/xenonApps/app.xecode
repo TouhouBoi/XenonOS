@@ -183,6 +183,6 @@ function xenonApps_end($params = '')
 {
 	removeListenerServiceCall('xenonx','resizedbrowser');
 
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

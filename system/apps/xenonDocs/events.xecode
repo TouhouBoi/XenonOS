@@ -252,7 +252,7 @@ function xenonDocs_on_updateContent($params=null) {
 		'father'=>'xenonApps',
 		'text'=>md5($content)
 	));
-	eyeWidgets('serialize',array($myHiddenMD5));
+	xenonWidgets('serialize',array($myHiddenMD5));
 }
 
 function xenonDocs_on_SelectFileSaveClose($params=null) {

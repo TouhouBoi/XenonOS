@@ -52,7 +52,7 @@ function xenonNav_lib_ShowBookmarks($params = array()) {
 		'y' => 0
 	));
 	$myContainer->show();
-	eyeWidgets('serialize',array($myContainer));
+	xenonWidgets('serialize',array($myContainer));
 	$myContainer->setCss(array(
 		'direction' => 'ltr'
 	));
@@ -66,7 +66,7 @@ function xenonNav_lib_ShowBookmarks($params = array()) {
 			'text' => $url
 		));
 		$myHidden->show();
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 	} else {
 		$GLOBALS['xenonNav_hidden_bookmarks_url']->setText($url);
 	}
@@ -80,7 +80,7 @@ function xenonNav_lib_ShowBookmarks($params = array()) {
 			'father' => 'xenonNav_box',
 			'text' => ''
 		));
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 	}
 	// add for new bookmarks
 	xenonNav_lib_refreshTree();
@@ -355,7 +355,7 @@ function xenonNav_on_nav_addBookmark($params=null,$theurl = null) {
 		'father' => 'addBookmark_DLG_Content',
 		'text' => $parent
 	));
-	eyeWidgets('serialize',array($selectedBookmark));
+	xenonWidgets('serialize',array($selectedBookmark));
 
 }
 
@@ -482,7 +482,7 @@ function xenonNav_on_nav_addFolder($params=null) {
 		'father' => 'addFolder_DLG_Content',
 		'text' => $parent
 	));
-	eyeWidgets('serialize',array($selectedFolder));
+	xenonWidgets('serialize',array($selectedFolder));
 }
 
 function xenonNav_on_addFolder_folders_TREE($params=null) {
@@ -668,14 +668,14 @@ function xenonNav_on_nav_edit_folder($params=null) {
 		'father' => 'editFolder_DLG_Content',
 		'text' => $params
 	));
-	eyeWidgets('serialize',array($bookmarkId));
+	xenonWidgets('serialize',array($bookmarkId));
 
 	$selectedFolder = new Hidden(array(
 		'name' =>'editFolder_selectedFolder_HID',
 		'father' => 'editFolder_DLG_Content',
 		'text' => $parent		//default is current parent folder
 	));
-	eyeWidgets('serialize',array($selectedFolder));
+	xenonWidgets('serialize',array($selectedFolder));
 }
 
 function xenonNav_on_nav_edit_bookmark($params=null) {
@@ -828,14 +828,14 @@ function xenonNav_on_nav_edit_bookmark($params=null) {
 		'father' => 'editBookmark_DLG_Content',
 		'text' => $params
 	));
-	eyeWidgets('serialize',array($bookmarkId));
+	xenonWidgets('serialize',array($bookmarkId));
 
 	$selectedFolder = new Hidden(array(
 		'name' =>'editBookmark_selectedFolder_HID',
 		'father' => 'editBookmark_DLG_Content',
 		'text' => $parent		//default is current parent folder
 	));
-	eyeWidgets('serialize',array($selectedFolder));
+	xenonWidgets('serialize',array($selectedFolder));
 }
 
 function xenonNav_on_nav_del($params=null) {
@@ -972,7 +972,7 @@ function xenonNav_lib_ShowSearch($params = array()) {
 		'y' => 0
 	));
 	$myContainer->show();
-	eyeWidgets('serialize',array($myContainer));
+	xenonWidgets('serialize',array($myContainer));
 	$myContainer->setCss(array(
 		'direction' => 'ltr'
 	));
@@ -986,7 +986,7 @@ function xenonNav_lib_ShowSearch($params = array()) {
 			'text' => $url
 		));
 		$myHidden->show();
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 	} else {
 		$GLOBALS['xenonNav_hidden_search_url']->setText($url);
 	}

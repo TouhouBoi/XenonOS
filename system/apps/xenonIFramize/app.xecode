@@ -56,6 +56,6 @@ function xenonIFramize_run($params = '')
 
 function xenonIFramize_end($params = '')
 {
-	eyeWidgets('unserialize', $params);
+	xenonWidgets('unserialize', $params);
 }
 ?>

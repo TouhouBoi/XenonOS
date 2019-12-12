@@ -45,6 +45,6 @@ function xeChess_run($params = '')
 
 function xeChess_end($params = '')
 {
-	eyeWidgets('unserialize', $params);
+	xenonWidgets('unserialize', $params);
 }
 ?>

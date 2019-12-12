@@ -40,6 +40,6 @@ function vCardImport_run($params = '') {
 }
 
 function vCardImport_end($params = '') {
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

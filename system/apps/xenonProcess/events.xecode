@@ -52,7 +52,7 @@ function xenonProcess_on_Killapp($params = ''){
 }
 
 function xenonProcess_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonProcess_on_Resize($params = '') {

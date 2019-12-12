@@ -48,6 +48,6 @@ function newFile_on_Do($params = '') {
 }
 
 function newFile_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 ?>

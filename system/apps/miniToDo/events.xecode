@@ -52,7 +52,7 @@ function miniToDo_on_viewNoteSignal(){
 		'father' => 'viewNote_WND',
 		'text' => $id
 	));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 
 	$viewNote_CNT = xenonXML('getXMLconfig',array('miniToDo','notes.xml'));
 	if(!$viewNote_CNT){

@@ -100,7 +100,7 @@ function xenonFTP_run($params=null) {
 		'overflow' => 'auto',
 		'padding-left' => '1px'
 	));
-	eyeWidgets('serialize',array($logConsole));
+	xenonWidgets('serialize',array($logConsole));
 
 	/**********************************************************/
 	//		CONNECTION WIDGETS
@@ -116,7 +116,7 @@ function xenonFTP_run($params=null) {
 	));
 	$connectionDataContainer->show();
 	$connectionDataContainer->setCss(array('position' => 'absolute','diplay' => 'block','overflow' => 'auto'));
-	eyeWidgets('serialize',array($connectionDataContainer));
+	xenonWidgets('serialize',array($connectionDataContainer));
 
 	/* HOST LABEL/TEXTBOX */
 	$hostLabel = new Label(array(
@@ -575,43 +575,43 @@ function xenonFTP_run($params=null) {
 		'father' => 'xenonFTP_WND_Content',
 		'text' => serialize(array())
 	));
-	eyeWidgets('serialize',array($arraySerializedLocalFilesData));
+	xenonWidgets('serialize',array($arraySerializedLocalFilesData));
 	$arraySerializedRemoteFilesData = new Hidden(array(
 		'name' =>'xenonFTP_serializedRemoteFilesData_HID',
 		'father' => 'xenonFTP_WND_Content',
 		'text' => serialize(array())
 	));
-	eyeWidgets('serialize',array($arraySerializedRemoteFilesData));
+	xenonWidgets('serialize',array($arraySerializedRemoteFilesData));
 	$isConnectionActive = new Hidden(array(
 		'name' => 'xenonFTP_isFTPConnectionActive_HID',
 		'father' => 'xenonFTP_WND_Content',
 		'text' => '0'
 	));
-	eyeWidgets('serialize',array($isConnectionActive));
+	xenonWidgets('serialize',array($isConnectionActive));
 	$listA = new Hidden(array(
 		'name' => 'xenonFTP_listA_HID',
 		'father' => 'xenonFTP_WND_Content',
 		'text' => '1'
 	));
-	eyeWidgets('serialize',array($listA));
+	xenonWidgets('serialize',array($listA));
 	$currentLocalDir = new Hidden(array(
 		'name' => 'xenonFTP_currentLocalDir_HID',
 		'father' => 'xenonFTP_WND_Content',
 		'text' => ''
 	));
-	eyeWidgets('serialize',array($currentLocalDir));
+	xenonWidgets('serialize',array($currentLocalDir));
 	$currentRemoteDir = new Hidden(array(
 		'name' => 'xenonFTP_currentRemoteDir_HID',
 		'father' => 'xenonFTP_WND_Content',
 		'text' => ''
 	));
-	eyeWidgets('serialize',array($currentRemoteDir));
+	xenonWidgets('serialize',array($currentRemoteDir));
 	$selectedView = new Hidden(array(
 		'name' => 'xenonFTP_selectedView_HID',
 		'father' => 'xenonFTP_WND_Content',
 		'text' => ''
 	));
-	eyeWidgets('serialize',array($selectedView));
+	xenonWidgets('serialize',array($selectedView));
 
 	//check the user's configuration directory and create it if needed
 	$confDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonFTP';
@@ -664,6 +664,6 @@ function xenonFTP_run($params=null) {
 
 function xenonFTP_end($params=null) {
 	removeListenerServiceCall('xenonx','resizedbrowser');
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

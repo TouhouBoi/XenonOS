@@ -41,6 +41,6 @@ function newFile_run($params = '') {
 }
 
 function newFile_end($params = '') {
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

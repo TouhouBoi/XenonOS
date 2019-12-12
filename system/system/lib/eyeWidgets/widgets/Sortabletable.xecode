@@ -127,7 +127,7 @@ class Sortabletable {
 															'sync'=> $this->friends,
 															'x'=>$this->x,
 															'y'=>$this->y));
-			eyeWidgets('serialize',array($mySelector));
+			xenonWidgets('serialize',array($mySelector));
 		}
 	}
 
@@ -250,7 +250,7 @@ class Sortabletable {
 		global $myPid;
 		$name = $this->name.'_Container';
 		xenonx('removeWidget',array('name'=>$name));
-		eyeWidgets('singleUnserialize',array($this->name));
+		xenonWidgets('singleUnserialize',array($this->name));
 	}
 
 	function sort($column, $descending = true) {
@@ -369,7 +369,7 @@ class SortabletableSelected {
 		global $myPid;
 		$name = $this->name.'_Container';
 		xenonx('removeWidget',array('name'=>$name));
-		eyeWidgets('singleUnserialize',array($this->name));
+		xenonWidgets('singleUnserialize',array($this->name));
 	}
 
 	function sort($column, $descending = true) {

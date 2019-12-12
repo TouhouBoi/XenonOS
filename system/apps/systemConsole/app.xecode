@@ -62,7 +62,7 @@ function systemConsole_run($params=null) {
 
 function systemConsole_end($params=null) {
 	removeListenerServiceCall('xenonx','print',1);
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

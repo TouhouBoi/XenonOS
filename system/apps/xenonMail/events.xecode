@@ -18,7 +18,7 @@ include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonMail/preferences'.XE_CODE_EXTENSION
 include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonMail/mail'.XE_CODE_EXTENSION);
 
 function xenonMail_on_Message($params=null) {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonMail_on_fullScreen() {
@@ -112,13 +112,13 @@ function xenonMail_on_new($params=null) {
 		'father'=>'xenonApps',
 		'text'=>array()
 	));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 	$myHidden2 = new Hidden(array(
 		'name'=>'focused',
 		'father'=>'xenonApps',
 		'text'=>'body'
 	));
-	eyeWidgets('serialize',array($myHidden2));
+	xenonWidgets('serialize',array($myHidden2));
 	xenonMail_compose();
 }
 
@@ -140,7 +140,7 @@ function xenonMail_on_resizeSplit($params=null) {
 			'father'=>'xenonApps',
 			'text'=>intval($first)
 		));
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 	}
 
 	$first = intval($first);
@@ -210,7 +210,7 @@ function xenonMail_on_changeFocus($params=null) {
 		'father'=>'xenonApps',
 		'text'=>$params['field'][0]
 	));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 }
 
 function xenonMail_on_contactsMail($params=null) {
@@ -336,11 +336,11 @@ function xenonMail_on_openMailBox($params) {
 				'father'=>'xenonApps',
 				'text'=>$value
 			));
-			eyeWidgets('serialize',array($myHidden));
+			xenonWidgets('serialize',array($myHidden));
 		}
 	}
 	$myHidden4 = new Hidden(array('name'=>'location','father'=>'xenonApps','text'=>'inbox'));
-	eyeWidgets('serialize',array($myHidden4));
+	xenonWidgets('serialize',array($myHidden4));
 	xenonMail_on_printMails();
 }
 
@@ -354,11 +354,11 @@ function xenonMail_on_openMailSent($params) {
 				'father'=>'xenonApps',
 				'text'=>$value
 			));
-			eyeWidgets('serialize',array($myHidden));
+			xenonWidgets('serialize',array($myHidden));
 		}
 	}
 	$myHidden4 = new Hidden(array('name'=>'location','father'=>'xenonApps','text'=>'sent'));
-	eyeWidgets('serialize',array($myHidden4));
+	xenonWidgets('serialize',array($myHidden4));
 	xenonMail_on_printSent();
 }
 

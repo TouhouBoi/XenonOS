@@ -72,6 +72,6 @@ function restoreTrash_on_Do($params = '') {
 }
 
 function restoreTrash_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 ?>

@@ -20,6 +20,6 @@ function xenonTrash_run($params = '') {
 }
 
 function xenonTrash_end($params = '') {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

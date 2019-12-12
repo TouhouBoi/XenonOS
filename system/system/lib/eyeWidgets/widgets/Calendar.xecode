@@ -177,7 +177,7 @@ class Calendar{
 		);
 		$this->showed=1;
 		xenonx('createWidget',$myBox);
-		eyeWidgets('serialize',array($this));
+		xenonWidgets('serialize',array($this));
 	}
 
 	function setCss($params) {
@@ -219,7 +219,7 @@ class Calendar{
 		global $myPid;
 		$name = $this->name.'_Container';
 		xenonx('removeWidget',array('name'=>$name));
-		eyeWidgets('singleUnserialize',array($this->name));
+		xenonWidgets('singleUnserialize',array($this->name));
 	}
 
 	function hide() {

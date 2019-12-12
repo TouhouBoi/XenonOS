@@ -43,6 +43,6 @@ function restoreTrash_run($params = '') {
 }
 
 function restoreTrash_end($params = '') {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

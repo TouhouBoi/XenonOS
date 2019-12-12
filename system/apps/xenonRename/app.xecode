@@ -28,6 +28,6 @@ function xenonRename_run($params = '') {
 }
   
 function xenonRename_end($params = '') {
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

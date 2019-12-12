@@ -20,7 +20,7 @@ include(XENONOS_ROOT.'/'.APP_DIR.'/xenonMedia/lib'.XE_CODE_EXTENSION);
 // xenonx('messageBox',array('content'=>'This is a message', 'sound' => ''));
 
 function xenonMedia_on_Message($params="") {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonMedia_on_tlbToolbar_Fullscreen(){
@@ -152,7 +152,7 @@ function xenonMedia_on_tblPlaylist_DblClick($params=null) {
 }
 
 function xenonMedia_on_getFile($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 	$Selected_Row = $GLOBALS['xenonMedia_tblPlaylist']->selected;
 	header('Content-Type: audio/mpeg');
 	header('Content-Length: ' . vfs('filesize',array(um('getCurrentUserDir').FILES_USER_DIR.$Selected_Row,1)));

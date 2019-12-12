@@ -38,6 +38,6 @@ function xenonVideo_on_getFile($params = '') {
 }
 
 function xenonVideo_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 ?>

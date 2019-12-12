@@ -138,7 +138,7 @@ function xenonDialog_on_filetype_SEL_change($params=null) {
 		'father' => 'xenonDialog_WND_Content',
 		'text' => $params['filetype'][0]
 	));
-	eyeWidgets('serialize',array($myHiddenFileType));
+	xenonWidgets('serialize',array($myHiddenFileType));
 	$GLOBALS['currentFiletypeFilter_HID']->setText($params['filetype'][0]);
 	if ($GLOBALS['filename_TXTBOX']->text) {
 		$GLOBALS['filename_TXTBOX']->setText(xenonDialog_autoSetExtensionToFilename($GLOBALS['filename_TXTBOX']->text, true));
@@ -235,7 +235,7 @@ function xenonDialog_on_confirmFileReplace_DLG_no_BTN($params=null) {
 
 //SYSTEM EVENTS
 function xenonDialog_on_Message($params="") {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonDialog_on_Close(){

@@ -88,7 +88,7 @@ function xenonDocs_saveFile($content) {
 		'father'=>'xenonApps',
 		'text'=>md5($content)
 	));
-	eyeWidgets('serialize',array($myHiddenMD5));
+	xenonWidgets('serialize',array($myHiddenMD5));
 
 	xenonx('messageBox',array('content' => 'Document saved successfully.'));
 	return true;
@@ -134,7 +134,7 @@ function xenonDocs_openFile($file) {
 			'father'=>'xenonApps',
 			'text'=>$header
 		));
-		eyeWidgets('serialize',array($myHiddenHeader));
+		xenonWidgets('serialize',array($myHiddenHeader));
 	} else {
 		$fp = vfs('open',array($file,'r'));
 		if(!$fp) {
@@ -158,7 +158,7 @@ function xenonDocs_openFile($file) {
 		'father'=>'xenonApps',
 		'text'=>md5($content)
 	));
-	eyeWidgets('serialize',array($myHiddenMD5));
+	xenonWidgets('serialize',array($myHiddenMD5));
 
 	return $content;
 }
@@ -182,7 +182,7 @@ function xenonDocs_setCurrentFile($file) {
 		'father'=>'xenonApps',
 		'text'=>$file
 	));
-	eyeWidgets('serialize',array($myHiddenPath));
+	xenonWidgets('serialize',array($myHiddenPath));
 }
 
 function xenonDocs_getHeader() {

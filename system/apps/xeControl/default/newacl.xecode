@@ -19,7 +19,7 @@ $edit = new Hidden(array(
 			'father' => 'xeControl_container_big',
 			'text' => 'NOedit'
 		));
-eyeWidgets('serialize',array($edit));
+xenonWidgets('serialize',array($edit));
 
 global $myPid;
 global $checknum;
@@ -197,7 +197,7 @@ if($text == 'add'){
 			'father' => $eyeContainer,
 			'text' => $id
 		));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 
 } else {
 
@@ -217,7 +217,7 @@ if($text == 'add'){
 			'father' => $eyeContainer,
 			'text' => $id
 	));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 
 	$myButton99 = new Button(array(
 		'name' => 'xeControl_acl_settings_update_button',
@@ -277,7 +277,7 @@ if($text == 'add'){
 										'father' => 'xeControl_container_big',
 										'text' => $fParam
 									));
-									eyeWidgets('serialize',array($paramType));
+									xenonWidgets('serialize',array($paramType));
 								}
 							}
 						}

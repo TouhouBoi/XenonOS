@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 /*
-	part of eyeWidgets library for oneye gui apps.
+	part of xenonWidgets library for oneye gui apps.
 */
 /*
 	TODO: WE HAVE TO PUT A MEMORY LIMIT IN THE SESSION
@@ -31,10 +31,10 @@ define('WTABLE','wtable');
 * @return None.
 * @date 2008/03/11
 */
-function lib_eyeWidgets_loadWidgets() {
-	foreach (scandir(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeWidgets/widgets') as $file) {
+function lib_xenonWidgets_loadWidgets() {
+	foreach (scandir(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/xenonWidgets/widgets') as $file) {
 		if ( /* utf8 */ substr($file, 0, 1) !== '.' && substr($file, -strlen(XE_CODE_EXTENSION)) === XE_CODE_EXTENSION) { // utf8
-			include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeWidgets/widgets/' . $file;
+			include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/xenonWidgets/widgets/' . $file;
 		}
 	}
 }
@@ -45,7 +45,7 @@ function lib_eyeWidgets_loadWidgets() {
 * @return None.
 * @date 2008/03/11
 */
-function lib_eyeWidgets_checkTable($params=null){
+function lib_xenonWidgets_checkTable($params=null){
 	if(!eyeSessions('checkVar',array(WTABLE))) {
 		eyeSessions('makeArrayVar',array(WTABLE));
 	}
@@ -58,7 +58,7 @@ function lib_eyeWidgets_checkTable($params=null){
  * @param $pid Process ID to check
  * @return true if given PID has any widget, else false
  */
-function lib_eyeWidgets_hasWidgets($params = null) {
+function lib_xenonWidgets_hasWidgets($params = null) {
 	if (!is_array($params) || !isset($params[0])) {
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
@@ -77,7 +77,7 @@ function lib_eyeWidgets_hasWidgets($params = null) {
 * @return None.
 * @date 2008/03/11
 */
-function lib_eyeWidgets_updateContent($params=null) {
+function lib_xenonWidgets_updateContent($params=null) {
 	/*
 			<WIDGET_NAME>content</WIDGET_NAME>
 	*/
@@ -112,7 +112,7 @@ function lib_eyeWidgets_updateContent($params=null) {
 * @return None.
 * @date 2008/03/11
 */
-function lib_eyeWidgets_serialize($params) {
+function lib_xenonWidgets_serialize($params) {
 	if(!isset($params[0])){
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
@@ -131,7 +131,7 @@ function lib_eyeWidgets_serialize($params) {
 * @return None.
 * @date 2008/03/11
 */
-function lib_eyeWidgets_unserialize() {
+function lib_xenonWidgets_unserialize() {
 	global $myPid;
 	if(isset($_SESSION[WTABLE][$myPid]) && is_array($_SESSION[WTABLE][$myPid])) {
 		foreach ($_SESSION[WTABLE][$myPid] as $name=>$value) {
@@ -155,7 +155,7 @@ function lib_eyeWidgets_unserialize() {
 * @return None.
 * @date 2008/03/11
 */
-function lib_eyeWidgets_singleUnserialize($params) {
+function lib_xenonWidgets_singleUnserialize($params) {
 	if(!isset($params[0])){
 		errorCodes('setErrorCode',array(INCORRECT_PARAMS));
 		return false;
@@ -173,7 +173,7 @@ function lib_eyeWidgets_singleUnserialize($params) {
 * @return None.
 * @date 2008/03/11
 */
-function lib_eyeWidgets_rawunserialize() {
+function lib_xenonWidgets_rawunserialize() {
 	global $myPid;
 	foreach ($_SESSION[WTABLE][$myPid] as $name => $value) {
 		unset($GLOBALS[$name]);
@@ -191,7 +191,7 @@ function globalize() {
 }
 
 /**
-* Returns a list of the available Widgets in the eyeWidgets lib
+* Returns a list of the available Widgets in the xenonWidgets lib
 * directory.
 *
 * @return If the Widgets list is retrieved successfully, returns an
@@ -199,9 +199,9 @@ function globalize() {
 *	system. Otherwise, returns false.
 * @date 2008/03/11
 */
-function lib_eyeWidgets_getWidgetList() {
+function lib_xenonWidgets_getWidgetList() {
 	$name = array();
-	foreach (scandir(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeWidgets/widgets') as $file) {
+	foreach (scandir(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/xenonWidgets/widgets') as $file) {
 		if ( /* utf8 */ substr($file, 0, 1) !== '.' && substr($file, -strlen(XE_CODE_EXTENSION)) === XE_CODE_EXTENSION) { // utf8
 			$name[] = basename($file, XE_CODE_EXTENSION);
 		}

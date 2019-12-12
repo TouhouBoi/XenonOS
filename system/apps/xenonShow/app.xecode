@@ -47,7 +47,7 @@ function xenonShow_run($params=null) {
 			'father'=>'xenonApps',
 			'text'=>$file));
 
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 		fclose($fp);
 	} else {
 		$useCode=0;
@@ -84,7 +84,7 @@ function xenonShow_end($params=null) {
 	    }
 	    closedir($handle);
 	}
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

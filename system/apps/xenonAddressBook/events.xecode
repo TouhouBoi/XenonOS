@@ -23,7 +23,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonAddressBook/app'.XE_CODE_EXTENSION);
 
 function xenonAddressBook_on_Message($params=null) {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonAddressBook_on_resize($params=null) {
@@ -358,7 +358,7 @@ function xenonAddressBook_on_deleteContactsWindow($params=null) {
         'father' => 'xenonAddressBook_listBox',
         'text' => $ids
     ));
-    eyeWidgets('serialize',array($deleteIds));
+    xenonWidgets('serialize',array($deleteIds));
 }
 
 function xenonAddressBook_on_deleteContactYes() {
@@ -379,12 +379,12 @@ function xenonAddressBook_on_deleteContactYes() {
 			}
 		}
 	}
-    eyeWidgets('singleUnserialize',array('xenonAddressBook_deleteIds'));
+    xenonWidgets('singleUnserialize',array('xenonAddressBook_deleteIds'));
     xenonAddressBook_drawListBox(xenonAddressBook('getContacts'));
 }
 
 function xenonAddressBook_on_deleteContactNo($params=null) {
-    eyeWidgets('singleUnserialize',array('xenonAddressBook_deleteIds'));
+    xenonWidgets('singleUnserialize',array('xenonAddressBook_deleteIds'));
     $GLOBALS['xenonAddressBook_delwnd']->close();
 }
 
@@ -884,7 +884,7 @@ function xenonAddressBook_on_saveNewContact($params=null) {
 
     if (is_object($GLOBALS['xenonAddressBook_photoPath'])) {
         $path=$GLOBALS['xenonAddressBook_photoPath']->text;
-        eyeWidgets('singleUnserialize',array('xenonAddressBook_photoPath'));
+        xenonWidgets('singleUnserialize',array('xenonAddressBook_photoPath'));
     } else {
         $path = null;
     }
@@ -942,7 +942,7 @@ function xenonAddressBook_on_exportWindow($params=null) {
         'father' => 'xenonAddressBook_boxNewContact',
         'text' => $ids
     ));
-    eyeWidgets('serialize',array($hiddenExport));
+    xenonWidgets('serialize',array($hiddenExport));
     global $checknum;
     $options = array(
         XENONDIALOG_TYPE_SAVEFILE,
@@ -1097,7 +1097,7 @@ function xenonAddressBook_on_loadImage($params=null) {
             'father' => 'xenonAddressBook_boxInfo',
             'text' => $newPath
         ));
-        eyeWidgets('serialize',array($hiddenPhoto));
+        xenonWidgets('serialize',array($hiddenPhoto));
     }
 
 	$GLOBALS['xenonAddressBook_photoPath']->setText($newPath);
@@ -1145,7 +1145,7 @@ function xenonAddressBook_on_viewContact($params=null) {
 		'father' => 'xenonAddressBook_boxInfoDetails',
 		'text' => $id
 	));
-	eyeWidgets('serialize',array($hiddenPhoto));
+	xenonWidgets('serialize',array($hiddenPhoto));
 
     if (xenonAddressBook('imageExists',array($id))) {
 		$tempId = md5(uniqid(rand()));
@@ -1653,7 +1653,7 @@ function xenonAddressBook_on_deleteImage() {
 		$GLOBALS['xenonAddressBook_fakePhoto']->setUrl('index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonAddressBook/nophoto.png');
 	}
 	if (is_object($GLOBALS['xenonAddressBook_photoPath'])) {
-		eyeWidgets('singleUnserialize',array('xenonAddressBook_photoPath'));
+		xenonWidgets('singleUnserialize',array('xenonAddressBook_photoPath'));
 	}
 }
 
@@ -1705,7 +1705,7 @@ function xenonAddressBook_on_editContact($params=null) {
 		'father' => 'xenonAddressBook_boxEditContact',
 		'text' => $id
 	));
-	eyeWidgets('serialize',array($hiddenPhoto));
+	xenonWidgets('serialize',array($hiddenPhoto));
 
 	if (xenonAddressBook('imageExists',array($id))) {
 		$photo = new Imagebox(array(
@@ -2296,7 +2296,7 @@ function xenonAddressBook_on_saveEditContact() {
 
     if (is_object($GLOBALS['xenonAddressBook_photoPath'])) {
         $path=$GLOBALS['xenonAddressBook_photoPath']->text;
-        eyeWidgets('singleUnserialize',array('xenonAddressBook_photoPath'));
+        xenonWidgets('singleUnserialize',array('xenonAddressBook_photoPath'));
     } else {
         $path = null;
     }
@@ -2338,16 +2338,16 @@ function xenonAddressBook_cleanApp() {
         $GLOBALS['xenonAddressBook_boxEditContact']->remove();
     }
 	if (is_object($GLOBALS['xenonAddressBook_photoPath'])) {
-        eyeWidgets('singleUnserialize',array('xenonAddressBook_photoPath'));
+        xenonWidgets('singleUnserialize',array('xenonAddressBook_photoPath'));
     }
 	if (is_object($GLOBALS['xenonAddressBook_hiddenPhoto'])) {
-        eyeWidgets('singleUnserialize',array('xenonAddressBook_hiddenPhoto'));
+        xenonWidgets('singleUnserialize',array('xenonAddressBook_hiddenPhoto'));
     }
 	if (is_object($GLOBALS['xenonAddressBook_deleteIds'])) {
-        eyeWidgets('singleUnserialize',array('xenonAddressBook_deleteIds'));
+        xenonWidgets('singleUnserialize',array('xenonAddressBook_deleteIds'));
     }
 	if (is_object($GLOBALS['xenonAddressBook_hiddenExport'])) {
-        eyeWidgets('singleUnserialize',array('xenonAddressBook_hiddenExport'));
+        xenonWidgets('singleUnserialize',array('xenonAddressBook_hiddenExport'));
     }
 }
 

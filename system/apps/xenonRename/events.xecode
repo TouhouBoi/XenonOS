@@ -173,7 +173,7 @@ function xenonRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 }
 
 function xenonRename_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonRename_on_Rename($params = '') {

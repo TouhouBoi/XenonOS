@@ -137,6 +137,6 @@ function xenonManageApps_run($params = '') {
 }
 
 function xenonManageApps_end($params = '') {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

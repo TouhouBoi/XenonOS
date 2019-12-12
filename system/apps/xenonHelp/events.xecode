@@ -27,7 +27,7 @@ function xenonHelp_on_cancel($paramse = null)
 
 function xenonHelp_on_Message($params = null)
 {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonHelp_on_Resize($params = '')

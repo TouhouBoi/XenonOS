@@ -49,6 +49,6 @@ function killall_run($params = '')
 
 function killall_end($params = '')
 {
-	eyeWidgets('unserialize', $params);
+	xenonWidgets('unserialize', $params);
 }
 ?>

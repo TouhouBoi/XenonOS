@@ -138,7 +138,7 @@ function accountInfo_run($params=null) {
 }
 
 function accountInfo_end() {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

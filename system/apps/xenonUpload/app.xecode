@@ -84,6 +84,6 @@ function xenonUpload_run($params = '') {
 }
 
 function xenonUpload_end($params = '') {
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

@@ -97,7 +97,7 @@ function xenonEmbedder_on_GetApplicationIcon($params = null) {
 }
 
 function xenonEmbedder_on_Message($params = null) {
-	eyeWidgets('updateContent', $params);
+	xenonWidgets('updateContent', $params);
 }
 
 function xenonEmbedder_on_Package($params = null) {

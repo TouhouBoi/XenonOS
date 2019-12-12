@@ -41,7 +41,7 @@ function xeControl_on_help($params=null) {
 }
 
 function xeControl_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xeControl_on_Close($params = '') {

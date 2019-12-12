@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function xenonPresentation_on_Message($params="") {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonPresentation_on_Open($params=null) {
@@ -49,7 +49,7 @@ function xenonPresentation_on_SelectFileOpen($params=null) {
 		eyeConverter('convert', array(vfs('getRealName', array($file)), $dest, 'html', true, '--doctype=presentation'));
 
 		$myHidden = new Hidden(array('name'=>'filepath','father'=>'presentationWND','text'=>$file));
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 		$GLOBALS['filepath'] = $myHidden;
 		gotoSlide(0);
 		global $checknum;
@@ -125,7 +125,7 @@ function gotoSlide($num) {
 			'father' => 'presentationWND',
 			'text' => $num
 		));
-		eyeWidgets('serialize', array($myHidden));
+		xenonWidgets('serialize', array($myHidden));
 		$GLOBALS['currentSlide'] = $myHidden;
 	} else {
 		xenonx('messageBox', array('content' => 'You are already on the last slide and cannot go further anymore!'));

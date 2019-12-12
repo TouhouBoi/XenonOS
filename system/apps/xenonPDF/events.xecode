@@ -71,7 +71,7 @@ function xenonPDF_on_Close($params = '') {
 }
 
 function xenonPDF_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 /* THE TOOLBAR HAS BEEN DELETED

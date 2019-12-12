@@ -35,6 +35,6 @@ function xenonMKDir_run($params = '') {
 }
 
 function xenonMKDir_end($params = '') {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

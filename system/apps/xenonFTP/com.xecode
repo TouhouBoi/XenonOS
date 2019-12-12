@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function xenonFTP_com_fullResized($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 	if ($GLOBALS['xenonFTP_WND']->fullScreen) {
 		$GLOBALS['xenonFTP_WND']->listenerResizeFullScreen($params);
 	}

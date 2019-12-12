@@ -23,6 +23,6 @@ function xenonGroups_run($params = '') {
 }
 
 function xenonGroups_end($params = '') {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

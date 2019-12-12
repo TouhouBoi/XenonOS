@@ -99,7 +99,7 @@ function xenonChat_run($params=null) {
 }
 
 function xenonChat_end($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

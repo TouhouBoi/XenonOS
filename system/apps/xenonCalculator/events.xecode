@@ -24,7 +24,7 @@ function xenonCalculator_on_Close($params = '') {
 }
 
 function xenonCalculator_on_Message($params = '') {
-	eyeWidgets('updateContent', $params);
+	xenonWidgets('updateContent', $params);
 }
 
 function xenonCalculator_on_Simple($params = '') {

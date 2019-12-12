@@ -40,7 +40,7 @@ function xenonImport_on_SelectDestDialog($params="") {
 }
 
 function xenonImport_on_Message($params="") {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonImport_on_Close(){

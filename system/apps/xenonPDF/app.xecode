@@ -29,6 +29,6 @@ function xenonPDF_run($params = '') {
 
 function xenonPDF_end($params = '') {
 	removeListenerServiceCall('xenonx', 'resizedbrowser');
-	eyeWidgets('unserialize', $params);
+	xenonWidgets('unserialize', $params);
 }
 ?>

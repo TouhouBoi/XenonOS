@@ -278,7 +278,7 @@ function xenonFeeds_on_leftRightSplitResize($params=null) {
 	$newRightWidth = intval($params['arg'][1]);
 
 	$GLOBALS['leftRight_SPLT']->position = $newLeftWidth;
-	eyeWidgets('serialize',array($GLOBALS['leftRight_SPLT']));
+	xenonWidgets('serialize',array($GLOBALS['leftRight_SPLT']));
 
 	$GLOBALS['itemsContent_SPLT']->setWidth($newRightWidth - 5);
 
@@ -287,7 +287,7 @@ function xenonFeeds_on_leftRightSplitResize($params=null) {
 function xenonFeeds_on_itemsContentSplitResize($params=null) {
 	$newItemsHeight = intval($params['arg'][0]);
 	$GLOBALS['itemsContent_SPLT']->position = $newItemsHeight;
-	eyeWidgets('serialize',array($GLOBALS['itemsContent_SPLT']));
+	xenonWidgets('serialize',array($GLOBALS['itemsContent_SPLT']));
 
 	xenonFeeds_doResize();
 }
@@ -322,7 +322,7 @@ function xenonFeeds_on_fullScreen(){
 	$GLOBALS['xenonFeeds_WND']->setFullScreen();
 }
 function xenonFeeds_on_Message($params="") {
-	eyeWidgets('updateContent', $params);
+	xenonWidgets('updateContent', $params);
 }
 
 function xenonFeeds_on_Close(){

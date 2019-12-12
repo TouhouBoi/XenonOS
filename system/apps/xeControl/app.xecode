@@ -60,7 +60,7 @@ function xeControl_run($params = '') {
 			'height' => 455
 		));
 		$myContainer->show();
-		eyeWidgets('serialize',array($myContainer));
+		xenonWidgets('serialize',array($myContainer));
 	} else {
 // $myWindow
 		$myWindow = new Window(array(
@@ -324,7 +324,7 @@ function xeControl_run($params = '') {
 			'height' => 455
 		));
 		$myContainer->show();
-		eyeWidgets('serialize',array($myContainer));
+		xenonWidgets('serialize',array($myContainer));
 // Select user:
 		if ($currentUser == ROOTUSER) {
 			$myLabel = new Label(array(
@@ -409,6 +409,6 @@ function xeControl_run($params = '') {
 }
 
 function xeControl_end($params = '') {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

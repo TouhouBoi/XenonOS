@@ -76,6 +76,6 @@ function xenonInfo_run($params = '')
 
 function xenonInfo_end($params = '')
 {
-	eyeWidgets('unserialize', $params);
+	xenonWidgets('unserialize', $params);
 }
 ?>

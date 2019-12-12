@@ -48,6 +48,6 @@ function xenonVideo_run($params = '') {
 function xenonVideo_end($params = '') {
 	global $myPid;
 	delShortUrl($myPid . '_xenonVideo');
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

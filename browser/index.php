@@ -69,14 +69,14 @@ elseif (isset($_GET['api']))
 }
 else
 {
-	// Loading eyeWidgets definitions
-	eyeWidgets('loadWidgets');
+	// Loading xenonWidgets definitions
+	xenonWidgets('loadWidgets');
 
 	// Starting a simple session
 	eyeSessions('startSession');
 
 	// If widget table does not exist, create it
-	eyeWidgets('checkTable');
+	xenonWidgets('checkTable');
 
 	// if a shorturl is present
 	if (!empty($myInfo))

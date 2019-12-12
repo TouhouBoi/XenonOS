@@ -60,7 +60,7 @@ function xenonOpen_run($params = '') {
 			'overflow' => 'auto',
 			'position' => 'absolute'
 		));
-		eyeWidgets('serialize',array($myContainer));
+		xenonWidgets('serialize',array($myContainer));
 
 		$conf = xenonXML('getXMLconfig',array('xenonFiles','conf.xml'));
 		if (!isset($conf['xenonFiles'][0]['clickMethod'][0])) {
@@ -103,6 +103,6 @@ function xenonOpen_run($params = '') {
 }
 
 function xenonOpen_end($params = '') {
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

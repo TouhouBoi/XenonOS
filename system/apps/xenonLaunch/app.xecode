@@ -103,7 +103,7 @@ function xenonLaunch_run($params=null) {
 }
 
 function xenonLaunch_end($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

@@ -107,7 +107,7 @@ function Notepad_run($params=null) {
 			return;
 		}
 		$myHidden = new Hidden(array('name'=>'notePath','father'=>'NotepadWND','text'=>$file));
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 		$size = vfs('filesize',array($file));
 		$content = fread($fp,$size);
 		fclose($fp);
@@ -118,12 +118,12 @@ function Notepad_run($params=null) {
 		'father' => 'NotepadWND_Content',
 		'text' => $content
 	));
-	eyeWidgets('serialize',array($myHiddenContent));
+	xenonWidgets('serialize',array($myHiddenContent));
 }
 
 function Notepad_end($params=null) {
 	removeListenerServiceCall('xenonx','resizedbrowser');
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 

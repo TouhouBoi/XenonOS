@@ -21,7 +21,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function miniActions_on_Message($params) {
-	eyeWidgets('updateContent', $params);
+	xenonWidgets('updateContent', $params);
 }
 
 function miniActions_on_Close($params=null) {
@@ -49,7 +49,7 @@ function miniActions_on_closeApp($params=null) {
 			'img' => '?'
 		));
 	} else {
-		eyeWidgets('unserialize');
+		xenonWidgets('unserialize');
 		proc('end');
 	}
 }
@@ -64,12 +64,12 @@ function miniActions_on_auto_no($params=null) {
 		}
 	}
 	xenonXML('setXMLfile',array($config,$xml));
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 	proc('end');
 }
 
 function miniActions_on_auto_yes($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 	proc('end');
 }
 

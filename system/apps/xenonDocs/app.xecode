@@ -80,6 +80,6 @@ function xenonDocs_run($params=null) {
 function xenonDocs_end($params=null) {
 	eyeConverter('cleanTmp');
 	removeListenerServiceCall('xenonx','resizedbrowser');
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

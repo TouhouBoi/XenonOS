@@ -54,7 +54,7 @@ function newMessage_run($params=null) {
 			'father' => 'newMessageWND',
 			'text' => $params['callback']
 		));
-		eyeWidgets('serialize', array($myHidden));
+		xenonWidgets('serialize', array($myHidden));
 	}
 
 	$lblToUsers = new Label(array(
@@ -195,7 +195,7 @@ function newMessage_run($params=null) {
 }
 
 function newMessage_end($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

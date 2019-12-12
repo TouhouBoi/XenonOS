@@ -540,7 +540,7 @@ if (xeControl_lib_getConfigUser() == ROOTUSER) {
 		'text' => $mngUsers
 	));
 	$myLabel->show();
-	eyeWidgets('serialize',array($myLabel));
+	xenonWidgets('serialize',array($myLabel));
 // $myTextbox
 	$myTextbox = new Textbox(array(
 		'name' => 'xeControl_edituser_textbox_maintained_users',

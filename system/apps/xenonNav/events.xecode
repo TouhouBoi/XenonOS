@@ -39,7 +39,7 @@ else
 
 function xenonNav_on_Message($params = '')
 {
-	eyeWidgets('updateContent', $params);
+	xenonWidgets('updateContent', $params);
 }
 
 function xenonNav_on_Resize($params = '')

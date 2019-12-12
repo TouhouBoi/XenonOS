@@ -151,7 +151,7 @@ function xeControl_on_typeTarget_add($params = ""){
 			'father' => 'xeControl_container_big',
 			'text' => $type
 		));
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 		$id0 = $GLOBALS['uniqid']->text;
 		$id1 = uniqid();
 		$row = array($id0,$id1,$type,$targetName);

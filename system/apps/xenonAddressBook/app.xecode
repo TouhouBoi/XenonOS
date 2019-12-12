@@ -223,7 +223,7 @@ function xenonAddressBook_showSelectGroup() {
 function xenonAddressBook_end($params=null) {
     xenonAddressBook('clean'); // This function delete all xenonAddressBook generated files in temp dir
 	removeListenerServiceCall('xenonx','resizedbrowser');
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 

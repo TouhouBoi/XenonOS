@@ -340,6 +340,6 @@ function xenonNav_end($params = '')
 {
 	removeListenerServiceCall('xenonx','resizedbrowser');
 
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

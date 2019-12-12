@@ -201,7 +201,7 @@ function xenonFeeds_createAddFeedDialog($params=null) {
 		'father' => 'addFeed_DLG_Content',
 		'text' => substr($parentFolderId, strpos($parentFolderId, '_') + 1) // utf8
 	));
-	eyeWidgets('serialize',array($selectedFolder));
+	xenonWidgets('serialize',array($selectedFolder));
 }
 /*********************************************************************************************/
 //		'ADD FEED' DIALOG EVENTS
@@ -373,7 +373,7 @@ function xenonFeeds_createAddFolderDialog($params=null) {
 		'father' => 'addFolder_DLG_Content',
 		'text' => substr($parentFolderId, strpos($parentFolderId, '_') + 1) // utf8
 	));
-	eyeWidgets('serialize',array($selectedFolder));
+	xenonWidgets('serialize',array($selectedFolder));
 }
 /*********************************************************************************************/
 //		'ADD FOLDER' DIALOG EVENTS
@@ -614,14 +614,14 @@ function xenonFeeds_createEditFeedDialog($params=null) {
 		'father' => 'editFeed_DLG_Content',
 		'text' => $feedId
 	));
-	eyeWidgets('serialize',array($feedId));
+	xenonWidgets('serialize',array($feedId));
 
 	$selectedFolder = new Hidden(array(
 		'name' =>'editFeed_selectedFolder_HID',
 		'father' => 'editFeed_DLG_Content',
 		'text' => substr($parentFolderId, strpos($parentFolderId, '_') + 1)			//default is current parent folder // utf8
 	));
-	eyeWidgets('serialize',array($selectedFolder));
+	xenonWidgets('serialize',array($selectedFolder));
 }
 /*********************************************************************************************/
 //		'EDIT FEED' DIALOG EVENTS
@@ -802,14 +802,14 @@ function xenonFeeds_createEditFolderDialog($params=null) {
 		'father' => 'editFolder_DLG_Content',
 		'text' => $feedId
 	));
-	eyeWidgets('serialize',array($feedId));
+	xenonWidgets('serialize',array($feedId));
 
 	$selectedFolder = new Hidden(array(
 		'name' =>'editFolder_selectedFolder_HID',
 		'father' => 'editFolder_DLG_Content',
 		'text' => substr($parentFolderId, strpos($parentFolderId, '_') + 1)			//default is current parent folder // utf8
 	));
-	eyeWidgets('serialize',array($selectedFolder));
+	xenonWidgets('serialize',array($selectedFolder));
 }
 /*********************************************************************************************/
 //		'EDIT FOLDER' DIALOG EVENTS
@@ -1015,7 +1015,7 @@ function xenonFeeds_createImportFeedsDialog($params=null) {
 		'father' => 'importFeeds_DLG_Content',
 		'text' => substr($parentFolderId, strpos($parentFolderId, '_') + 1) // utf8
 	));
-	eyeWidgets('serialize',array($selectedFolder));
+	xenonWidgets('serialize',array($selectedFolder));
 }
 /*********************************************************************************************/
 //		'IMPORT FEEDS' DIALOG EVENTS

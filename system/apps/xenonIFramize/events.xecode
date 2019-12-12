@@ -182,7 +182,7 @@ function xenonIFramize_on_getFile($params = '')
 
 function xenonIFramize_on_Message($params = '')
 {
-	eyeWidgets('updateContent', $params);
+	xenonWidgets('updateContent', $params);
 }
 
 function xenonIFramize_on_Resize($params = '')

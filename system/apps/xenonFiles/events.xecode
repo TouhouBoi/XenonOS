@@ -19,7 +19,7 @@ function xenonFiles_on_Close($params = '') {
 }
 
 function xenonFiles_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonFiles_on_Resize($params = '') {
@@ -340,7 +340,7 @@ function xenonFiles_on_OpenPath($params = '') {
 	));
 	$myContainer->show();
 	$myContainer->setCss(array('display' => 'block','overflow' => 'auto','position' => 'absolute'));
-	eyeWidgets('serialize',array($myContainer));
+	xenonWidgets('serialize',array($myContainer));
 
 	if ($GLOBALS['xenonFiles_Box_View_Radio_Details']->checked) {
 		include(XENONOS_ROOT . '/' . APP_DIR . '/xenonFiles/views/details' . XE_CODE_EXTENSION);

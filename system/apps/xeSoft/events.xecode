@@ -25,7 +25,7 @@ function xeSoft_on_Help($params = '') {
 }
 
 function xeSoft_on_Message($params="") {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
  
 function xeSoft_on_Update($params=""){
@@ -222,7 +222,7 @@ function xeSoft_on_Install($params=null){
 		$myButton2->show();
  
 		$myHidden = new Hidden(array('name'=>'myApp','father'=>'xenonApps','text'=>$myApp));
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 	} else {
 		xenonx('messageBox',array('content' => 'Please choose an applictaion to be installed.'));
 	}

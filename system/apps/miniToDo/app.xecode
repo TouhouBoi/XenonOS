@@ -31,7 +31,7 @@ function miniToDo_run($params = '') {
 	}
 
 	$myWindow = new Window(array(
-		'father' => 'eyeWidgets',
+		'father' => 'xenonWidgets',
 		'name' => 'miniToDo_WND',
 		'width' => 420,
 		'height' => 225,
@@ -157,6 +157,6 @@ function miniToDo_run($params = '') {
 }
 
 function miniToDo_end($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

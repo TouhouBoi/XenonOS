@@ -139,7 +139,7 @@ class Button {
 		xenonx('createWidget',$myButton);
 		$this->showed=1;
 		if($noserialize == 0) {
-			eyeWidgets('serialize',array($this));
+			xenonWidgets('serialize',array($this));
 		}
 	}
 
@@ -244,7 +244,7 @@ class Button {
 		global $myPid;
 		$name = $this->name.'_Container';
 		xenonx('removeWidget',array('name'=>$name));
-		eyeWidgets('singleUnserialize',array($this->name));
+		xenonWidgets('singleUnserialize',array($this->name));
 	}
 
 	function highlight() {

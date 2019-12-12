@@ -97,11 +97,11 @@ function xeInstaller_run($params=null) {
 		'father'=>'xenonApps',
 		'text'=>$rfile
 	));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 }
 
 function xeInstaller_end($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

@@ -524,7 +524,7 @@ function xenonMail_on_accountFocus($params=null) {
 		'father' => 'xenonMail_xenonMail_tabInfoBox',
 		'text' => $thefocus
 	));
-	eyeWidgets('serialize',array($tabInfoHidden));
+	xenonWidgets('serialize',array($tabInfoHidden));
 
 	$tabInfoLabel = new Label(array(
 		'name' => 'xenonMail_tabInfoLabel1',
@@ -1137,7 +1137,7 @@ function xenonMail_createAccount2($params=null) {
 				'father' => 'xenonMail_createAccountBox2',
 				'text' => $serversConfig[$key]
 			));
-			eyeWidgets('serialize',array($infoHidden));
+			xenonWidgets('serialize',array($infoHidden));
 			xenonMail_createAccountAuto();
 		}
 	}
@@ -1185,7 +1185,7 @@ function xenonMail_finalize1($params=null) {
 		'father'=>'xenonApps',
 		'text'=>$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]
 	));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 	xenonMail_createXMLmail();
 }
 
@@ -1225,7 +1225,7 @@ function xenonMail_finalize2($params=null) {
 		'father'=>'xenonApps',
 		'text'=>$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]
 	));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 	xenonMail_createXMLmail();
 }
 

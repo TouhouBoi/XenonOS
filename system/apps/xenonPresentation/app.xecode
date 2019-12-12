@@ -45,7 +45,7 @@ function xenonPresentation_run($params=null) {
 		eyeConverter('convert', array(vfs('getRealName', array($file)), $dest, 'html', true, '--doctype=presentation'));
 
 		$myHidden = new Hidden(array('name'=>'filepath','father'=>'presentationWND','text'=>$file));
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 		$GLOBALS['filepath'] = $myHidden;
 		include(XENONOS_ROOT.'/'.APP_DIR.'/xenonPresentation/events.xecode');
 		gotoSlide(0);
@@ -53,13 +53,13 @@ function xenonPresentation_run($params=null) {
 		$myFrame->setUrl("index.php?checknum=".$checknum."&msg=getSlide&anticache=".md5(uniqid(time())));
 	}
 	$myHidden = new Hidden(array('name'=>'fullscreen','father'=>'presentationWND','text'=>1));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 }
 
 function xenonPresentation_end($params=null) {
 	global $myPid;
 	eyeConverter('cleanTmp');
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

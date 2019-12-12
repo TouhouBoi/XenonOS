@@ -480,7 +480,7 @@ function showManageHostsDialog($params=null) {
 	));
 	$addHostContainer->show();
 	$addHostContainer->hide();
-	eyeWidgets('serialize', array($addHostContainer));
+	xenonWidgets('serialize', array($addHostContainer));
 
 	$actionIcon = new Imagebox(array(
 		'name' => 'xenonFTP_manageHosts_actionIcon_IMG',
@@ -655,13 +655,13 @@ function showManageHostsDialog($params=null) {
 		'father' => 'xenonFTP_manageHosts_DLG_Content',
 		'text' => ''
 	));
-	eyeWidgets('serialize',array($arraySerializedHostsData));
+	xenonWidgets('serialize',array($arraySerializedHostsData));
 	$idEdition = new Hidden(array(
 		'name' =>'xenonFTP_manageHosts_idEdition_HID',
 		'father' => 'xenonFTP_manageHosts_DLG_Content',
 		'text' => 'new'
 	));
-	eyeWidgets('serialize',array($idEdition));
+	xenonWidgets('serialize',array($idEdition));
 
 	xenonx('rawjs',array('js' => 'sendMsg('.$checknum.',"xenonFTP_manageHosts_initComplete","");'));
 }

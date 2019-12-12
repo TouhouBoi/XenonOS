@@ -108,10 +108,10 @@ function xenonMail_createXMLmail($params=null) {
 	imap_close($connection);
 
 	$myHidden = new Hidden(array('name'=>'savednm','father'=>'xenonApps','text'=>$nm->uidnext));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 
 	$myHidden2 = new Hidden(array('name'=>'steps','father'=>'xenonApps','text'=>1));
-	eyeWidgets('serialize',array($myHidden2));
+	xenonWidgets('serialize',array($myHidden2));
 	xenonx('sendMessage',array('msg'=>'getMails'));
 }
 
@@ -171,7 +171,7 @@ function xenonMail_on_getMails($params=null) {
 	$x+=300;
 
 	$myHidden2 = new Hidden(array('name'=>'steps','father'=>'xenonApps','text'=>$x));
-	eyeWidgets('serialize',array($myHidden2));
+	xenonWidgets('serialize',array($myHidden2));
 
 	xenonx('sendMessage',array('msg'=>'getMails'));
 }
@@ -651,7 +651,7 @@ function xenonMail_drawBoxes() {
 				'father'=>'xenonApps',
 				'text'=>$value
 			));
-			eyeWidgets('serialize',array($myHidden));
+			xenonWidgets('serialize',array($myHidden));
 		}
 		$firstLabel = new Label(array(
 			'name'=>'xenonMail_firstLabel_'.$y,

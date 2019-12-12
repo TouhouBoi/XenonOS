@@ -29,7 +29,7 @@ foreach ($menus as $menu) {
 	));
 	$myContainer->show();
 	$myContainer->setCss(array('display' => 'block','overflow' => 'auto','overflow-x' => 'hidden','position' => 'absolute'));
-	eyeWidgets('serialize',array($myContainer));
+	xenonWidgets('serialize',array($myContainer));
 	$xml = getConfig('xenonFiles',$menu);
 	$counter = 0;
 	foreach($xml['menu'][0]['entry'] as $entry) {

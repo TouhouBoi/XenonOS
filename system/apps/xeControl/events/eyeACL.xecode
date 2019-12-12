@@ -20,7 +20,7 @@ function xeControl_on_acl_add($params=''){
 			'father' => 'xeControl_container_big',
 			'text' => 'add'
 		));
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 		xeControl_lib_loadContent('only_root','newacl');
 }
 
@@ -36,7 +36,7 @@ function xeControl_on_acl_edit($params=''){
 			'father' => 'xeControl_container_big',
 			'text' => 'edit'
 		));
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 		xeControl_lib_loadContent('only_root','newacl');
 	}
 }

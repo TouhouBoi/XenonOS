@@ -34,7 +34,7 @@ function miniActions_run($params=null) {
 	// Window
 	$myWindow = new Window(array(
 		'name'=>'miniActionsWND',
-		'father' => 'eyeWidgets',
+		'father' => 'xenonWidgets',
 		'removeFatherPid' => 1,
 		'type'=>WIN_IMAGE_DRAGGABLE_NOTLISTED,
 		'title'=>'Actions widget',
@@ -228,7 +228,7 @@ function miniActions_run($params=null) {
 }
 
 function miniActions_end() {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

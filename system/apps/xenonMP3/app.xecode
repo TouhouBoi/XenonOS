@@ -90,6 +90,6 @@ function xenonMP3_run($params=null) {
 }
 
 function xenonMP3_end($params = '') {
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

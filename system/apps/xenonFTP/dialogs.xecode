@@ -119,7 +119,7 @@ function showUploadDialog($params=null) {
 		'removepid' => 0
 	));
 	$uploadWindow->show();
-	eyeWidgets('serialize',array($uploadWindow));
+	xenonWidgets('serialize',array($uploadWindow));
 
 	$myFrame = new Iframe(array(
 		'name' => 'xenonFTP_upload_FRM',
@@ -139,7 +139,7 @@ function showUploadDialog($params=null) {
 		'father' => 'xenonFTP_upload_DLG_Content',
 		'text' => $params['path']
 	));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 
 	$myImage = new Imagebox(array(
 		'name' => 'xenonFTP_upload_IMG',

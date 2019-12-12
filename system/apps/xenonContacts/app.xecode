@@ -20,7 +20,7 @@ function xenonContacts_run($params=null) {
 }
 
 function xenonContacts_end($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 

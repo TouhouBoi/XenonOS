@@ -37,6 +37,6 @@ function addLink_run($params = '') {
 }
 
 function addLink_end($params = '') {
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function xenonFiles_com_onEvent($params = '') {
 	global $checknum;
 	global $myPid;
-	eyeWidgets('updateContent');
+	xenonWidgets('updateContent');
 	$path = xenonFiles('cleanPath',array($GLOBALS['xenonFiles_Hidden_Path']->text));
 	$load = false;
 	$trash = false;
@@ -48,7 +48,7 @@ for (var i = 0; i < e.childNodes.length; i++) {
 }
 
 function xenonFiles_com_fullResized($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 	if ($GLOBALS['xenonFiles_Window']->fullScreen) {
 		$GLOBALS['xenonFiles_Window']->listenerResizeFullScreen($params);
 	}

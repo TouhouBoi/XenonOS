@@ -126,7 +126,7 @@ function xenonCalculator_run($params = '') {
 
 function xenonCalculator_end($params = '') {
 	global $myPid;
-	eyeWidgets('unserialize', $params);
+	xenonWidgets('unserialize', $params);
 	xenonx('rawjs', array('js' => 'xenonCalculator_' . $myPid . ' = 0;'));
 }
 ?>

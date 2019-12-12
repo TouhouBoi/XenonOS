@@ -130,7 +130,7 @@ function xenonPaste_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 }
 
 function xenonPaste_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonPaste_on_Rename($params = '') {

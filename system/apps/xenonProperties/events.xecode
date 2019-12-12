@@ -19,6 +19,6 @@ function xenonProperties_on_Close($params = '') {
 }
 
 function xenonProperties_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 ?>

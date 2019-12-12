@@ -124,14 +124,14 @@ function xenonFiles_run($params = '') {
 		'name' => 'xenonFiles_Hidden_Stack',
 		'text' => array()
 	));
-	eyeWidgets('serialize',array($myHiddenStack));
+	xenonWidgets('serialize',array($myHiddenStack));
 
 	$myHiddenStackPosition = new Hidden(array(
 		'father' => 'xenonFiles_Window_Content',
 		'name' => 'xenonFiles_Hidden_StackPosition',
 		'text' => 0
 	));
-	eyeWidgets('serialize',array($myHiddenStackPosition));
+	xenonWidgets('serialize',array($myHiddenStackPosition));
 
 	$myBoxTree = new Box(array(
 		'father' => 'xenonFiles_Window_Content',
@@ -333,6 +333,6 @@ function xenonFiles_end($params = '') {
 	unset($_SESSION['xenonFiles'][$myPid]);
 	removeListenerLibraryCall('xenonFiles','update');
 	removeListenerServiceCall('xenonx','resizedbrowser');
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

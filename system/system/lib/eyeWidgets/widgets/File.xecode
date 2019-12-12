@@ -84,7 +84,7 @@ class File {
 		xenonx('createWidget',$myFile);
 		$this->showed=1;
 		if($noserialize == 0) {
-			eyeWidgets('serialize',array($this));
+			xenonWidgets('serialize',array($this));
 		}
 	}
 
@@ -150,7 +150,7 @@ class File {
 		global $myPid;
 		$name = $this->name.'_Container';
 		xenonx('removeWidget',array('name'=>$name));
-		eyeWidgets('singleUnserialize',array($this->name));
+		xenonWidgets('singleUnserialize',array($this->name));
 	}
 
 	function notify($callback) {

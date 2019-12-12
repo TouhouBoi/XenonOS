@@ -215,7 +215,7 @@ class Icon {
 	function remove() {
 		$name = $this->name.'_Container';
 		xenonx('removeWidget',array('name'=>$name));
-		eyeWidgets('singleUnserialize',array($this->name));
+		xenonWidgets('singleUnserialize',array($this->name));
 	}
 
 	function hide() {

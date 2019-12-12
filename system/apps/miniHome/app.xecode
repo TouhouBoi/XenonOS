@@ -32,7 +32,7 @@ function miniHome_run($params=null) {
 
 	$myWindow = new Window(array(
 		'name' => 'miniHomeWND',
-		'father' => 'eyeWidgets',
+		'father' => 'xenonWidgets',
 		'removeFatherPid' => 1,
 		'width' => 202,
 		'height' => 105,
@@ -100,7 +100,7 @@ function miniHome_run($params=null) {
 		'progress' => $size
 	));
 	$quotaBar->show();
-	eyeWidgets('serialize', array($quotaBar));
+	xenonWidgets('serialize', array($quotaBar));
 
 	xenonx('rawjs',array('js' =>
 		'document.getElementById("' . $myPid . '_' . $myLabel0->name . '").className = "miniAppTitle";
@@ -115,7 +115,7 @@ function miniHome_run($params=null) {
 }
 
 function miniHome_end() {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

@@ -455,6 +455,6 @@ if ($size != '0 ') {
 }
 
 function xenonProperties_end($params = '') {
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

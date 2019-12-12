@@ -47,18 +47,18 @@ function xenonArchive_run($params=null) {
 	$myTable->show();
 
 	$myHidden = new Hidden(array('name'=>'projectStarted','father'=>'xenonApps','text'=>'false'));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 
 	if(isset($params[0])){
 		$myHidden->setText('true');
 		$myHidden2 = new Hidden(array('name'=>'argSrc','father'=>'xenonApps','text'=>$params[0]));
-		eyeWidgets('serialize',array($myHidden2));
+		xenonWidgets('serialize',array($myHidden2));
 		xenonx('rawjs',array('js'=>"sendMsg($checknum,'SelectOpenFile');"));
 	}
 }
 
 function xenonArchive_end($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

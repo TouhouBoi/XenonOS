@@ -80,9 +80,9 @@ class Textarea {
 		$langCode = 'en';
 		if ($this->rich) {
 			$language = i18n('getLang');
-			if (vfs('real_fileExists', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/libs/eyeWidgets/tiny_mce/langs/' . $language . '.js'))) {
+			if (vfs('real_fileExists', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/libs/xenonWidgets/tiny_mce/langs/' . $language . '.js'))) {
 				$langCode = $language;
-			} else if (vfs('real_fileExists', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/libs/eyeWidgets/tiny_mce/langs/' . /* utf8 */ substr($language, 0, 2) . '.js'))) {
+			} else if (vfs('real_fileExists', array(XENONOS_ROOT . '/' . EXTERN_DIR . '/libs/xenonWidgets/tiny_mce/langs/' . /* utf8 */ substr($language, 0, 2) . '.js'))) {
 				$langCode = /* utf8 */ substr($language, 0, 2);
 			}
 		}
@@ -118,7 +118,7 @@ class Textarea {
 		xenonx('createWidget',$myTextarea);
 		$this->showed=1;
 		if($noserialize == 0) {
-			eyeWidgets('serialize',array($this));
+			xenonWidgets('serialize',array($this));
 		}
 		if(!empty($this->text)) {
 			$this->setText($this->text);
@@ -334,7 +334,7 @@ class Textarea {
 			$name = $this->name.'_Container';
 		}
 		xenonx('removeWidget',array('name'=>$name));
-		eyeWidgets('singleUnserialize',array($this->name));
+		xenonWidgets('singleUnserialize',array($this->name));
 	}
 }
 ?>

@@ -128,7 +128,7 @@ function xeSoft_run($params = null)
 
 function xeSoft_end($params = null)
 {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 

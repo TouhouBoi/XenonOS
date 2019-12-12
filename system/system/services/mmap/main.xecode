@@ -142,7 +142,7 @@ function service_mmap_routemsg($params) {
 	if(function_exists($procInfo['appName'].'_on_Message')) {
 		call_user_func($procInfo['appName'].'_on_Message',$args);
 	} else {
-		eyeWidgets('updateContent',$args);
+		xenonWidgets('updateContent',$args);
 	}
 
 	if(isset($messageTable[$action])) {

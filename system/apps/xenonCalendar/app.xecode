@@ -42,7 +42,7 @@ function xenonCalendar_run($params = '') {
 	if($params['fullScreen'] == 1){
 		$fullScreen = true;
 		$hiddenWidget = new Hidden(array('name'=>'fullScreen','text'=>1));
-		eyeWidgets('serialize',array($hiddenWidget));
+		xenonWidgets('serialize',array($hiddenWidget));
 
 	}else{
 		$fullScreen = false;
@@ -161,7 +161,7 @@ function xenonCalendar_run($params = '') {
 // 	xenonCalendar('indexGroups');
 
 	$calendarView = new Hidden(array('name'=>'calendarView','text'=>''));
-	eyeWidgets('serialize',array($calendarView));
+	xenonWidgets('serialize',array($calendarView));
 	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 	//The weekPlanner is loaded in launch event
 	if(!isset($_SESSION['xenonCalendarJs']) || $_SESSION['xenonCalendarJs'] < $_SESSION['SCREEN']['refresh']){
@@ -174,7 +174,7 @@ function xenonCalendar_run($params = '') {
 
 function xenonCalendar_end($params=null) {
 	removeListenerServiceCall('xenonx','resizedbrowser');
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

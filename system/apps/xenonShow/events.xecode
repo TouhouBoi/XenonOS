@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function xenonShow_on_Message($params="") {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonShow_on_Resize($params=null) {
@@ -43,7 +43,7 @@ function xenonShow_on_Save($params=null) {
 	$arg = str_replace($checknum,"##checknum##",$arg) ;
 
 	$myHidden = new Hidden(array('name'=>'showContent','father'=>'xenonShowWND','text'=>$arg));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 
 //	xenonx('rawjs',array('js'=>'alert(\''.$GLOBALS['ShowPath']->text.'\')')) ;
 
@@ -72,7 +72,7 @@ function xenonShow_on_SaveAs($params=null) {
 	$arg = str_replace($checknum,"##checknum##",$arg) ;
 
 	$myHidden = new Hidden(array('name'=>'showContent','father'=>'xenonShowWND','text'=>$arg));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 
 	$options = array(
 		1,
@@ -101,7 +101,7 @@ function xenonShow_on_SelectFileSave($params=null) {
 			fwrite($fp,$GLOBALS['showContent']->text);
 			fclose($fp);
 			$myHidden = new Hidden(array('name'=>'ShowPath','father'=>'xenonShowWND','text'=>$file));
-			eyeWidgets('serialize',array($myHidden));
+			xenonWidgets('serialize',array($myHidden));
 			xenonx('messageBox',array('content'=>'Document saved successfully.'));
 
 	}

@@ -252,13 +252,13 @@ function xenonMail_run($params=null) {
 	xenonx('rawjs',array('js'=>'document.getElementById("'.$myPid.'_xenonMail_mailBody").setAttribute("READONLY","READONLY");'));
 
 	$myHidden3 = new Hidden(array('name'=>'page','father'=>'xenonApps','text'=>0));
-	eyeWidgets('serialize',array($myHidden3));
+	xenonWidgets('serialize',array($myHidden3));
 	$myHidden4 = new Hidden(array('name'=>'location','father'=>'xenonApps','text'=>'inbox'));
-	eyeWidgets('serialize',array($myHidden4));
+	xenonWidgets('serialize',array($myHidden4));
 	xenonMail_starter();
 }
 
 function xenonMail_end($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

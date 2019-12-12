@@ -603,7 +603,7 @@ function xenonPictures_on_Icon_Clicked($params) {
 		xenonPictures_on_listContent($params['arg0'][0]);
 		if(isset($GLOBALS['goFwd']->text)){
 			//$GLOBALS['goFwd']->setText('');
-			eyeWidgets('singleUnserialize', array(goFwd));
+			xenonWidgets('singleUnserialize', array(goFwd));
 		}
 		return;
 	} else {

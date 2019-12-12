@@ -103,7 +103,7 @@ function xeControl_on_add_settings($params=""){
 							'father' => 'xeControl_container_big',
 							'text' => $fParam
 						));
-						eyeWidgets('serialize',array($paramType));
+						xenonWidgets('serialize',array($paramType));
 					}
 					$fCnt++;
 				}
@@ -224,7 +224,7 @@ function xeControl_on_target_edit($params=""){
 			'father' => 'xeControl_container_big',
 			'text' => 'edit'
 		));
-	eyeWidgets('serialize',array($edit));
+	xenonWidgets('serialize',array($edit));
 	xeControl_lib_loadContent('only_root','newtarget');
 }
 ?>

@@ -388,7 +388,7 @@ function xenonMessages_run($params = null)
 		'father' => 'xenonMessagesWND',
 		'text' => 'inbox'
 	));
-	eyeWidgets('serialize', array($myHidden));
+	xenonWidgets('serialize', array($myHidden));
 
 	$sortypes = array("String","String","Date","Hidden");
 	$myHeader = array('From','Subject','Date','hash');
@@ -425,7 +425,7 @@ function xenonMessages_run($params = null)
 
 function xenonMessages_end($params=null) {
 	removeListenerServiceCall('xenonx','resizedbrowser');
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

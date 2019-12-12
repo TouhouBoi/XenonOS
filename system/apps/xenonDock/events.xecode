@@ -37,14 +37,14 @@ function xenonDock_on_AddElement($params = '') {
 		'name' => 'xenonDock_AddElement_type',
 		'text' => $params['type'][0]
 	));
-	eyeWidgets('serialize',array($myHidden_type));
+	xenonWidgets('serialize',array($myHidden_type));
 
 	$myHidden_id = new Hidden(array(
 		'father' => 'xenonDock_AddElement_Window_Content',
 		'name' => 'xenonDock_AddElement_id',
 		'text' => $params['id'][0]
 	));
-	eyeWidgets('serialize',array($myHidden_id));
+	xenonWidgets('serialize',array($myHidden_id));
 
 	$myLabel = new Label(array(
 		'father' => 'xenonDock_AddElement_Window_Content',
@@ -492,7 +492,7 @@ function xenonDock_on_ManageDock($params = '') {
 }
 
 function xenonDock_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonDock_on_MoveDown($params = '') {

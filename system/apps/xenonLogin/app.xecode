@@ -71,6 +71,6 @@ function xenonLogin_run($params = '') {
 }
 
 function xenonLogin_end($params = '') {
-	eyeWidgets('unserialize',$params);
+	xenonWidgets('unserialize',$params);
 }
 ?>

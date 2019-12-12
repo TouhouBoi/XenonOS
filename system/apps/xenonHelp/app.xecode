@@ -266,7 +266,7 @@ function xenonHelp_run($params = null)
 
 function xenonHelp_end($params = null)
 {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 function drawTree($object, $tree, $dir)

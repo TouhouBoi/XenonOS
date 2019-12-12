@@ -16,7 +16,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 function xenonDesk_com_onEvent($params = '') {
 	global $myPid;
-	eyeWidgets('updateContent');
+	xenonWidgets('updateContent');
 	$desktop = false;
 	$trash = false;
 	foreach ($params as $value) {
@@ -43,7 +43,7 @@ function xenonDesk_com_onEvent($params = '') {
 }
 
 function xenonDesk_com_onResized($params = '') {
-	eyeWidgets('updateContent');
+	xenonWidgets('updateContent');
 	include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonDesk/events' . XE_CODE_EXTENSION);
 	xenonDesk_on_OpenPath();
 }

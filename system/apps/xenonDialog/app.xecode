@@ -311,35 +311,35 @@ function xenonDialog_run($params=null) {
 		'father' => 'xenonDialog_WND_Content',
 		'text' => serialize($params)
 	));
-	eyeWidgets('serialize',array($dialogParams));
+	xenonWidgets('serialize',array($dialogParams));
 
 	$currentFiletypeFilter = new Hidden(array(
 		'name' =>'currentFiletypeFilter_HID',
 		'father' => 'xenonDialog_WND_Content',
 		'text' => current($params[4])
 	));
-	eyeWidgets('serialize',array($currentFiletypeFilter));
+	xenonWidgets('serialize',array($currentFiletypeFilter));
 
 	$currentPath = new Hidden(array(
 		'name' =>'currentPath_HID',
 		'father' => 'xenonDialog_WND_Content',
 		'text' => ''
 	));
-	eyeWidgets('serialize',array($currentPath));
+	xenonWidgets('serialize',array($currentPath));
 
 	$currentPlace = new Hidden(array(
 		'name' =>'currentPlace_HID',
 		'father' => 'xenonDialog_WND_Content',
 		'text' => $currentPlaceId
 	));
-	eyeWidgets('serialize',array($currentPlace));
+	xenonWidgets('serialize',array($currentPlace));
 
 	$currentGroup = new Hidden(array(
 		'name' =>'currentGroup_HID',
 		'father' => 'xenonDialog_WND_Content',
 		'text' => ''
 	));
-	eyeWidgets('serialize',array($currentGroup));
+	xenonWidgets('serialize',array($currentGroup));
 
 	//INITIALIZATION
 	xenonx('rawjs',array('js' => 'sendMsg('.$checknum.',"initComplete","");'));
@@ -347,7 +347,7 @@ function xenonDialog_run($params=null) {
 
 
 function xenonDialog_end($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

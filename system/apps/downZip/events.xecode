@@ -25,7 +25,7 @@ function downZip_on_Close($params = '') {
 }
 
 function downZip_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function downZip_on_iframe($params = '') {
@@ -74,7 +74,7 @@ function downZip_on_download($params = '') {
 	header('Content-Type: application/zip');
 	header('Accept-Ranges: bytes');
 	echo $content;
-	eyeWidgets('rawunserialize');
+	xenonWidgets('rawunserialize');
 	proc('end');
 	unset($_SESSION['downZip'][$myPid]);
 	exit;

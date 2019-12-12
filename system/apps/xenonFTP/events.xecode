@@ -362,7 +362,7 @@ function xenonFTP_on_windowResize($params=null) {
 	$newPosition = round($newWidth * $splitterPositionRatio);
 	$GLOBALS['xenonFTP_leftRight_SPLT']->setPosition($newPosition);
 	$GLOBALS['xenonFTP_leftRight_SPLT']->position = $newPosition;
-	eyeWidgets('serialize',array($GLOBALS['xenonFTP_leftRight_SPLT']));
+	xenonWidgets('serialize',array($GLOBALS['xenonFTP_leftRight_SPLT']));
 
 	//update window properties
 	$GLOBALS['xenonFTP_WND']->setWidth($newWidth);
@@ -374,7 +374,7 @@ function xenonFTP_on_leftRightSplitResize($params=null) {
 	$newLeftWidth = intval($params['arg'][0]);
 
 	$GLOBALS['xenonFTP_leftRight_SPLT']->position = $newLeftWidth;
-	eyeWidgets('serialize',array($GLOBALS['xenonFTP_leftRight_SPLT']));
+	xenonWidgets('serialize',array($GLOBALS['xenonFTP_leftRight_SPLT']));
 
 	xenonFTP_doResize();
 }
@@ -403,7 +403,7 @@ function xenonFTP_on_fullScreen(){
 }
 
 function xenonFTP_on_Message($params=null) {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonFTP_on_Close(){

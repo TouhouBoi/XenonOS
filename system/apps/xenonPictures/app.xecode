@@ -246,6 +246,6 @@ function xenonPictures_run($params="") {
 }
 
 function xenonPictures_end($params=null) {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

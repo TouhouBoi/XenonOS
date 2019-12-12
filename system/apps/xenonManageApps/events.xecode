@@ -38,7 +38,7 @@ function xenonManageApps_on_Close($params = '') {
 }
 
 function xenonManageApps_on_Message($params = '') {
-	eyeWidgets('updateContent', $params);
+	xenonWidgets('updateContent', $params);
 }
 
 function xenonManageApps_on_Top_AddElement($params = '') {

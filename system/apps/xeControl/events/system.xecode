@@ -150,7 +150,7 @@ function xeControl_on_system_uninstall_yes($params = '')
 	
 	if ($currentUser === REAL_ROOTUSER)
 	{
-		eyeWidgets('unserialize');
+		xenonWidgets('unserialize');
 		
 		xenonx('messageBox', array('content' => 'Your XenonOS System was successfully deleted.'));
 		

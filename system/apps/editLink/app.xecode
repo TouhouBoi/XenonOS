@@ -170,6 +170,6 @@ function editLink_run($params = '') {
 }
 
 function editLink_end($params = '') {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

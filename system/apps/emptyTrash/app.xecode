@@ -50,6 +50,6 @@ function emptyTrash_run($params = '') {
 }
 
 function emptyTrash_end($params = '') {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

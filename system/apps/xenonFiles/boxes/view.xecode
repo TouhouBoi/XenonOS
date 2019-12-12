@@ -25,7 +25,7 @@ $myContainer = new Container(array(
 ));
 $myContainer->show();
 $myContainer->setCss(array('display' => 'block','overflow' => 'auto','overflow-x' => 'hidden','position' => 'absolute'));
-eyeWidgets('serialize',array($myContainer));
+xenonWidgets('serialize',array($myContainer));
 
 $myRadioIcons = new Radio(array(
 	'checked' => $xml['xenonFiles'][0]['View'][0] != 2 && $xml['xenonFiles'][0]['View'][0] != 3,

@@ -34,7 +34,7 @@ function xenonShare_run($params = '') {
 		'name' => 'xenonShare_Hidden',
 		'text' => $params[0]
 	));
-	eyeWidgets('serialize',array($myHidden));
+	xenonWidgets('serialize',array($myHidden));
 
 	$myLabel = new Label(array(
 		'father' => 'xenonShare_Window_Content',
@@ -89,6 +89,6 @@ function xenonShare_run($params = '') {
 }
 
 function xenonShare_end($params = '') {
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 ?>

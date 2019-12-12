@@ -51,7 +51,7 @@ function xenonExcel_run($params=null) {
 			'name'=>'sheetPath',
 			'father'=>'xenonApps',
 			'text'=>$file));
-		eyeWidgets('serialize',array($myHidden));
+		xenonWidgets('serialize',array($myHidden));
 	} else {
 		$useCode=0;
 	}
@@ -87,7 +87,7 @@ function xenonExcel_end($params=null) {
 	    closedir($handle);
 	}
 	removeListenerServiceCall('xenonx','resizedbrowser');
-	eyeWidgets('unserialize');
+	xenonWidgets('unserialize');
 }
 
 ?>

@@ -33,7 +33,7 @@ function miniCalendar_run($params=null) {
 	// Window
 	$myWindow = new Window(array(
 		'name'=>'miniCalendarOuter',
-		'father' => 'eyeWidgets',
+		'father' => 'xenonWidgets',
 		'removeFatherPid' => 1,
 		'type'=>WIN_IMAGE_DRAGGABLE_NOTLISTED,
 		'title'=>'miniCalendar',

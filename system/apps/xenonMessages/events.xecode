@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function xenonMessages_on_Message($params="") {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonMessages_on_Close(){
@@ -128,14 +128,14 @@ function xenonMessages_on_open($params) {
 				'father' => 'openMessage_WND',
 				'text' => $msg['header'][0]['attach'][0]
 			));
-			eyeWidgets('serialize', array($myHidden));
+			xenonWidgets('serialize', array($myHidden));
 
 			$myHidden2 = new Hidden(array(
 				'name' => 'filename',
 				'father' => 'openMessage_WND',
 				'text' => $info['swapFile'][0]['header'][0]['name'][0]
 			));
-			eyeWidgets('serialize', array($myHidden2));
+			xenonWidgets('serialize', array($myHidden2));
 
 			$lblAttachment = new Label(array(
 				'name' => 'lblAttachment',

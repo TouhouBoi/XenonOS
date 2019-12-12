@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function xenonMedia_PlayPause($params=null) {
 	global $myPid;
 	global $checknum;
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 	$Current_Value = $GLOBALS['xenonMedia_txtStatus']->text;
 	if ($Current_Value == 'Playing.')
 	{
@@ -48,7 +48,7 @@ function xenonMedia_PlayPause($params=null) {
 
 function xenonMedia_Stop($params=null) {
 	global $myPid;
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 	$Current_Value = $GLOBALS['xenonMedia_txtStatus']->text;
 	if (!($Current_Value == 'Nothing Playing.'))
 	{

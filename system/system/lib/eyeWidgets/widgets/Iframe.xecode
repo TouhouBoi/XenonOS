@@ -98,7 +98,7 @@ class Iframe {
 		$this->showed=1;
 		xenonx('createWidget',$myFrame);
 		if($noserialize == 0) {
-			eyeWidgets('serialize',array($this));
+			xenonWidgets('serialize',array($this));
 		}
 	}
 
@@ -160,7 +160,7 @@ class Iframe {
 		global $myPid;
 		$name = $this->name.'_Container';
 		xenonx('removeWidget',array('name'=>$name));
-		eyeWidgets('singleUnserialize',array($this->name));
+		xenonWidgets('singleUnserialize',array($this->name));
 	}
 	
 	function focus() {

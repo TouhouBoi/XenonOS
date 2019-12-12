@@ -370,7 +370,7 @@ class Window {
 		} else {
 			xenonx('rawjs',array('js' => 'Windows.Close("' . $myPid . '_' . $this->name . '",0,1);'));
 		}
-		eyeWidgets('singleUnserialize',array($this->name));
+		xenonWidgets('singleUnserialize',array($this->name));
 	}
 
 	function closeButton($close = 2) {
@@ -749,7 +749,7 @@ class Window {
 		if ($this->fullScreen > 0) {
 			$this->setFullScreen(1,1);
 		}
-		eyeWidgets('serialize',array($this));
+		xenonWidgets('serialize',array($this));
 	}
 
 	function unhide() {

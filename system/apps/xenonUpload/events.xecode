@@ -117,7 +117,7 @@ function xenonUpload_on_initFlash($params = '') {
 }
 
 function xenonUpload_on_Message($params = '') {
-	eyeWidgets('updateContent',$params);
+	xenonWidgets('updateContent',$params);
 }
 
 function xenonUpload_on_simple_Do($params = '') {
