@@ -222,7 +222,7 @@ function xenonFiles_on_Icon_Clicked($params = '') {
 			if ($xml['fileType'][0]['app'][0]) {
 				proc('launch',array($xml['fileType'][0]['app'][0],$path[0]));
 			} else {
-				proc('launch',array('eyeOpen',$path[0]));
+				proc('launch',array('xenonOpen',$path[0]));
 			}
 		}
 	}

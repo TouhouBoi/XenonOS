@@ -14,35 +14,35 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeOpen_on_Close($params = '') {
+function xenonOpen_on_Close($params = '') {
 	proc('end');
 }
 
-function eyeOpen_on_Icon_Clicked($params = '') {
-	$path = $GLOBALS['eyeOpen_Hidden_Path']->text;
+function xenonOpen_on_Icon_Clicked($params = '') {
+	$path = $GLOBALS['xenonOpen_Hidden_Path']->text;
 	$file = basename($path);
 	$path = xenonFiles('cleanPath', array(substr(trim($path, '/\\'), 0, -strlen($file)))); // utf8
-	proc('launch',array($params['arg0'][0],array($path[0] . '/' . $file,$GLOBALS['eyeOpen_Hidden_Callback']->text)));
+	proc('launch',array($params['arg0'][0],array($path[0] . '/' . $file,$GLOBALS['xenonOpen_Hidden_Callback']->text)));
 	proc('end');
 }
 
-function eyeOpen_on_Resize($params = '') {
+function xenonOpen_on_Resize($params = '') {
 	global $myPid;
-	$GLOBALS['eyeOpen_Container']->setHeight(intval($params['arg'][1]) - 25);
-	$GLOBALS['eyeOpen_Container']->setWidth(intval($params['arg'][0]) - 4);
+	$GLOBALS['xenonOpen_Container']->setHeight(intval($params['arg'][1]) - 25);
+	$GLOBALS['xenonOpen_Container']->setWidth(intval($params['arg'][0]) - 4);
 	xenonx('rawjs',array('js' => 'i = 0;
 	x = 20;
 	y = 20;
-	e = xGetElementById("' . $myPid . '_eyeOpen_Icon_0_Container");
+	e = xGetElementById("' . $myPid . '_xenonOpen_Icon_0_Container");
 	while (e) {
-		xSlideTo("' . $myPid . '_eyeOpen_Icon_" + i + "_Container",x,y,500);
+		xSlideTo("' . $myPid . '_xenonOpen_Icon_" + i + "_Container",x,y,500);
 		x += 88;
-		if (xWidth("' . $myPid . '_eyeOpen_Container") - x - 88 < 0) {
+		if (xWidth("' . $myPid . '_xenonOpen_Container") - x - 88 < 0) {
 			x = 20;
 			y += 88;
 		}
 		i++;
-		e = xGetElementById("' . $myPid . '_eyeOpen_Icon_" + i + "_Container");
+		e = xGetElementById("' . $myPid . '_xenonOpen_Icon_" + i + "_Container");
 	}'));
 }
 ?>

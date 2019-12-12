@@ -14,14 +14,14 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeOpen_run($params = '') {
+function xenonOpen_run($params = '') {
 	global $myPid;
 	if ($params[0]) {
 		$myWindow = new Window(array(
 			'cent' => 1,
 			'father' => 'xenonApps',
 			'height' => 340,
-			'name' => 'eyeOpen_Window',
+			'name' => 'xenonOpen_Window',
 			'title' => i18n('translate',array('Open "%s" with...',array(basename($params[0])))),
 			'savePosition' => 1,
 			'sendResizeMsg' => 1,
@@ -33,23 +33,23 @@ function eyeOpen_run($params = '') {
 		$myWindow->show();
 
 		$myHidden = new Hidden(array(
-			'father' => 'eyeOpen_Window_Content',
-			'name' => 'eyeOpen_Hidden_Path',
+			'father' => 'xenonOpen_Window_Content',
+			'name' => 'xenonOpen_Hidden_Path',
 			'text' => $params[0]
 		));
 		$myHidden->show();
 
 		$myHidden = new Hidden(array(
-			'father' => 'eyeOpen_Window_Content',
-			'name' => 'eyeOpen_Hidden_Callback',
+			'father' => 'xenonOpen_Window_Content',
+			'name' => 'xenonOpen_Hidden_Callback',
 			'text' => $params[1]
 		));
 		$myHidden->show();
 
 		$myContainer = new Container(array(
-			'father' => 'eyeOpen_Window_Content',
+			'father' => 'xenonOpen_Window_Content',
 			'height' => $myWindow->height - 25,
-			'name' => 'eyeOpen_Container',
+			'name' => 'xenonOpen_Container',
 			'width' => $myWindow->width - 4,
 			'x' => 0,
 			'y' => 0
@@ -77,9 +77,9 @@ function eyeOpen_run($params = '') {
 				$myIcon = new Icon(array(
 					'content' => array($folder),
 					'draggable' => 0,
-					'father' => 'eyeOpen_Container',
+					'father' => 'xenonOpen_Container',
 					'image' => str_replace('theme=USERTHEME', 'theme=' . $_SESSION['usertheme'], $xml['package'][0]['icon'][0]),
-					'name' => 'eyeOpen_Icon_' . $i,
+					'name' => 'xenonOpen_Icon_' . $i,
 					'onclick' => $conf['xenonFiles'][0]['clickMethod'][0],
 					'overClass' => 'xenonFiles_icons',
 					'text' => $xml['package'][0]['name'][0],
@@ -102,7 +102,7 @@ function eyeOpen_run($params = '') {
 	}
 }
 
-function eyeOpen_end($params = '') {
+function xenonOpen_end($params = '') {
 	eyeWidgets('unserialize',$params);
 }
 ?>

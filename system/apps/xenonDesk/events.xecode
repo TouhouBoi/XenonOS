@@ -75,7 +75,7 @@ function xenonDesk_on_Icon_Clicked($params = '') {
 		if ($xml['fileType'][0]['app'][0]) {
 			proc('launch',array($xml['fileType'][0]['app'][0],$path));
 		} else {
-			proc('launch',array('eyeOpen',$path));
+			proc('launch',array('xenonOpen',$path));
 		}
 	}
 }
