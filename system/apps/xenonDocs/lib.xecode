@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeDocs_saveFile($content) {
+function xenonDocs_saveFile($content) {
 	global $myPid;
 	$file = $GLOBALS['filePath']->text;
 	//split the path into different parts
@@ -33,7 +33,7 @@ function eyeDocs_saveFile($content) {
 		if(is_object($GLOBALS['fileHeader'])) {
 			$realContent = $GLOBALS['fileHeader']->text . '<BODY>' . /* utf8 */ substr($content, $pos + 10) . '</BODY></HTML>';
 		} else {
-			$realContent = eyeDocs_getHeader() . /* utf8 */ substr($content,$pos + 10) . '</BODY></HTML>';
+			$realContent = xenonDocs_getHeader() . /* utf8 */ substr($content,$pos + 10) . '</BODY></HTML>';
 		}
 		vfs('real_putFileContent',array($tempFile,$realContent));
 		if($extension == 'odt') {
@@ -52,7 +52,7 @@ function eyeDocs_saveFile($content) {
 		}
 		
 		if(!vfs('fileExists',array($file))) {
-			vfs('create',array($file,'eyeDocs'));
+			vfs('create',array($file,'xenonDocs'));
 		}
 		$dest = vfs('getRealName',array($file));
 		vfs('real_delete', array($dest));
@@ -65,7 +65,7 @@ function eyeDocs_saveFile($content) {
 		}
 		$realContent = /* utf8 */ substr($content, $pos + 10);
 		if(!vfs('fileExists',array($file))) {
-			if(!vfs('create',array($file,'eyeDocs'))) {
+			if(!vfs('create',array($file,'xenonDocs'))) {
 				xenonx('messageBox',array('content' => 'Error creating file.'));
 				return false;
 			}
@@ -94,7 +94,7 @@ function eyeDocs_saveFile($content) {
 	return true;
 }
 
-function eyeDocs_openFile($file) {
+function xenonDocs_openFile($file) {
 	global $myPid;
 	//split the path into different parts
 	$info = pathinfo($file);
@@ -147,7 +147,7 @@ function eyeDocs_openFile($file) {
 		fclose($fp);
 	}
 
-	eyeDocs_setCurrentFile($file);
+	xenonDocs_setCurrentFile($file);
 	//we will use the extension for office formats and eyeConverter
 
 	//saving the md5 of the opened file
@@ -163,19 +163,19 @@ function eyeDocs_openFile($file) {
 	return $content;
 }
 
-function eyeDocs_updateServerContent() {
+function xenonDocs_updateServerContent() {
 	global $checknum;
 	$sync = $GLOBALS['fileContent']->getSyncString();
 	$js = 'sendMsg('.$checknum.',"updateContent",'.$sync.');';
 	xenonx('rawjs',array('js'=>$js));
 }
 
-function eyeDocs_setCurrentFile($file) {
+function xenonDocs_setCurrentFile($file) {
 	$title = i18n('translate', array('Word Processor'));
 	if (!empty($file)) {
 		$title .= ' - ' . basename($file);
 	}
-	$GLOBALS['eyeDocsWND']->setTitle($title);
+	$GLOBALS['xenonDocsWND']->setTitle($title);
 	
 	$myHiddenPath = new Hidden(array(
 		'name'=>'filePath',
@@ -185,7 +185,7 @@ function eyeDocs_setCurrentFile($file) {
 	eyeWidgets('serialize',array($myHiddenPath));
 }
 
-function eyeDocs_getHeader() {
+function xenonDocs_getHeader() {
 	return '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>

@@ -14,12 +14,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeDocs/lib'.XE_CODE_EXTENSION);
+require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonDocs/lib'.XE_CODE_EXTENSION);
 
-function eyeDocs_run($params=null) {
+function xenonDocs_run($params=null) {
 	//create the main window
 	$myWindow = new Window(array(
-		'name'=>'eyeDocsWND',
+		'name'=>'xenonDocsWND',
 		'father'=>'xenonApps',
 		'cent'=>1,
 		'width'=>780,
@@ -36,7 +36,7 @@ function eyeDocs_run($params=null) {
 	//the main textarea, using tinymce (rich = 2)
 	$myTextArea = new Textarea(array(
 		'name'=>'fileContent',
-		'father'=>'eyeDocsWND_Content',
+		'father'=>'xenonDocsWND_Content',
 		'width'=>$myWindow->width-2,
 		'height'=>$myWindow->height-34,
 		'x'=>0,
@@ -53,7 +53,7 @@ function eyeDocs_run($params=null) {
 	$myWindow->show();
 	$myTextArea->show();
 
-	$GLOBALS['eyeDocsWND'] = $myWindow;
+	$GLOBALS['xenonDocsWND'] = $myWindow;
 
 	//check if a file has been passed as an argument
 	$content = '';
@@ -67,17 +67,17 @@ function eyeDocs_run($params=null) {
 			xenonx('messageBox',array('content' => 'The file does not exist.'));
 		} else {
 			//open the file, get the contents, and save the path
-			$myTextArea->setText(eyeDocs_openFile($file));
+			$myTextArea->setText(xenonDocs_openFile($file));
 		}
 	}
 
-	eyeDocs_updateServerContent();
+	xenonDocs_updateServerContent();
 
 	//add a listener service call to get the resize events
 	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 }
 
-function eyeDocs_end($params=null) {
+function xenonDocs_end($params=null) {
 	eyeConverter('cleanTmp');
 	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');

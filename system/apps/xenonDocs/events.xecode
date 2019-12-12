@@ -14,9 +14,9 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeDocs/lib'.XE_CODE_EXTENSION);
+require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonDocs/lib'.XE_CODE_EXTENSION);
 
-function eyeDocs_on_Open($params=null) {
+function xenonDocs_on_Open($params=null) {
 	/*$content = $GLOBALS['fileContent']->text;
 	$crc = $params['md5'][0];
 	$filecrc = md5($content);
@@ -42,20 +42,20 @@ function eyeDocs_on_Open($params=null) {
 			'win_removepid' => 0
 		));
 	} else {
-		eyeDocs_on_Open_DoNotSave();
+		xenonDocs_on_Open_DoNotSave();
 	}
 }
 
-function eyeDocs_on_Open_Cancel() {
+function xenonDocs_on_Open_Cancel() {
 	if (is_object($GLOBALS['delete_warning'])) {
 		$GLOBALS['delete_warning']->close();
 	}
 }
 
-function eyeDocs_on_Open_DoNotSave() {
+function xenonDocs_on_Open_DoNotSave() {
 	global $checknum;
 	
-	eyeDocs_on_Open_Cancel();
+	xenonDocs_on_Open_Cancel();
 	
 	proc('launch', array('xenonDialog', array(
 		XENONDIALOG_TYPE_OPENFILE,
@@ -71,27 +71,27 @@ function eyeDocs_on_Open_DoNotSave() {
 	)));
 }
 
-function eyeDocs_on_Open_Save() {
-	eyeDocs_on_Open_Cancel();
+function xenonDocs_on_Open_Save() {
+	xenonDocs_on_Open_Cancel();
 	
 	if (is_object($GLOBALS['filePath']) && $GLOBALS['filePath']->text) {
-		eyeDocs_saveFile($GLOBALS['fileContent']->text);
+		xenonDocs_saveFile($GLOBALS['fileContent']->text);
 	}
 	
-	eyeDocs_on_Open_DoNotSave();
+	xenonDocs_on_Open_DoNotSave();
 }
 
-function eyeDocs_on_SelectFileOpen($params=null) {
+function xenonDocs_on_SelectFileOpen($params=null) {
 	$file = $params['arg'][0];
 	if($file) {
 		$file = um('getCurrentUserDir') . FILES_USER_DIR . '/' . $file;
-		$content = eyeDocs_openFile($file);
+		$content = xenonDocs_openFile($file);
 		$GLOBALS['fileContent']->setText($content);
-		eyeDocs_updateServerContent();
+		xenonDocs_updateServerContent();
 	}
 }
 
-function eyeDocs_on_Save($params=null) {
+function xenonDocs_on_Save($params=null) {
 	$content = $GLOBALS['fileContent']->text;
 	$crc = $params['md5'][0];
 	$filecrc = md5($content);
@@ -100,7 +100,7 @@ function eyeDocs_on_Save($params=null) {
 		return;
 	}
 	if(is_object($GLOBALS['filePath']) && $GLOBALS['filePath']->text) {
-		eyeDocs_saveFile($content);
+		xenonDocs_saveFile($content);
 	} else {
 		global $checknum;
 		$options = array(
@@ -119,7 +119,7 @@ function eyeDocs_on_Save($params=null) {
 	}
 }
 
-function eyeDocs_on_SelectFileSave($params=null) {
+function xenonDocs_on_SelectFileSave($params=null) {
 	$file = $params['arg'][0];
 	if($file) {
 		if(empty($params['fileType'][0])){
@@ -130,13 +130,13 @@ function eyeDocs_on_SelectFileSave($params=null) {
 		if (strtolower(substr($file, -strlen($params['fileType'][0]) + 1)) !== strtolower(substr($params['fileType'][0], 1))) { // utf8
 			$file .= /* utf8 */ substr($params['fileType'][0], 1);
 		}
-		eyeDocs_setCurrentFile($file);
+		xenonDocs_setCurrentFile($file);
 		$content = $GLOBALS['fileContent']->text;
-		eyeDocs_saveFile($content);
+		xenonDocs_saveFile($content);
 	}
 }
 
-function eyeDocs_on_SaveAs($params=null) {
+function xenonDocs_on_SaveAs($params=null) {
 	global $checknum;
 	$content = $GLOBALS['fileContent']->text;
 	$crc = $params['md5'][0];
@@ -161,14 +161,14 @@ function eyeDocs_on_SaveAs($params=null) {
 	proc('launch',array('xenonDialog',$options));
 }
 
-function eyeDocs_on_Resize($params=null) {
+function xenonDocs_on_Resize($params=null) {
 	//get the width and height from the params
 	$width = intval($params['arg'][0]);
 	$height = intval($params['arg'][1]);
 
 	//save the new size into the window object
-	$GLOBALS['eyeDocsWND']->width = $width;
-	$GLOBALS['eyeDocsWND']->height = $height;
+	$GLOBALS['xenonDocsWND']->width = $width;
+	$GLOBALS['xenonDocsWND']->height = $height;
 
 	//calculate the new size for the textarea
 	$width = $width - 19;
@@ -180,12 +180,12 @@ function eyeDocs_on_Resize($params=null) {
 	$GLOBALS['fileContent']->setWidth($width);
 }
 
-function eyeDocs_on_fullScreen(){
+function xenonDocs_on_fullScreen(){
 	global $myPid;
-	$GLOBALS['eyeDocsWND']->setFullScreen();
+	$GLOBALS['xenonDocsWND']->setFullScreen();
 }
 
-function eyeDocs_on_Close($params=null) {
+function xenonDocs_on_Close($params=null) {
 	$content = $GLOBALS['fileContent']->text;
 	$crc = $params['md5'][0];
 	$filecrc = md5($content);
@@ -215,16 +215,16 @@ function eyeDocs_on_Close($params=null) {
 	}
 }
 
-function eyeDocs_on_cancel(){
+function xenonDocs_on_cancel(){
 	$GLOBALS['delete_warning']->close();
 }
 
 //yes, I want to save, and after delete
-function eyeDocs_on_yDelete(){
+function xenonDocs_on_yDelete(){
 	$GLOBALS['delete_warning']->close();
 	if(is_object($GLOBALS['filePath']) && $GLOBALS['filePath']->text) {
 		$content = $GLOBALS['fileContent']->text;
-		eyeDocs_saveFile($content);
+		xenonDocs_saveFile($content);
 		proc('end');
 	} else {
 		global $checknum;
@@ -244,7 +244,7 @@ function eyeDocs_on_yDelete(){
 	}
 }
 
-function eyeDocs_on_updateContent($params=null) {
+function xenonDocs_on_updateContent($params=null) {
 	$content = $GLOBALS['fileContent']->text;
 
 	$myHiddenMD5 = new Hidden(array(
@@ -255,7 +255,7 @@ function eyeDocs_on_updateContent($params=null) {
 	eyeWidgets('serialize',array($myHiddenMD5));
 }
 
-function eyeDocs_on_SelectFileSaveClose($params=null) {
+function xenonDocs_on_SelectFileSaveClose($params=null) {
 	$file = $params['arg'][0];
 	if($file) {
 		if(empty($params['fileType'][0])){
@@ -266,22 +266,22 @@ function eyeDocs_on_SelectFileSaveClose($params=null) {
 		if (strtolower(substr($file, -strlen($params['fileType'][0]) + 1)) !== strtolower(substr($params['fileType'][0], 1))) { // utf8
 			$file .= /* utf8 */ substr($params['fileType'][0], 1);
 		}
-		eyeDocs_setCurrentFile($file);
+		xenonDocs_setCurrentFile($file);
 		$content = $GLOBALS['fileContent']->text;
-		eyeDocs_saveFile($content);
+		xenonDocs_saveFile($content);
 		proc('end');
 	}
 }
 
 //no, I don't to save, so delete
-function eyeDocs_on_nDelete(){
+function xenonDocs_on_nDelete(){
 	$GLOBALS['delete_warning']->close();
 	proc('end');
 }
 
-function eyeDocs_on_New($params=null) {
-	$GLOBALS['eyeDocsWND']->setTitle('Word Processor');
-	eyeDocs_setCurrentFile("");
+function xenonDocs_on_New($params=null) {
+	$GLOBALS['xenonDocsWND']->setTitle('Word Processor');
+	xenonDocs_setCurrentFile("");
 }
 
 ?>

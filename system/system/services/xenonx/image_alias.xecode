@@ -159,7 +159,7 @@ $pic22 = array(
 	'xenonCalendar',
 	'eyeChess',
 	'xenonContacts',
-	'eyeDocs',
+	'xenonDocs',
 	'xenonFTP',
 	'eyeFeeds',
 	'xenonFiles',
@@ -221,7 +221,7 @@ $alias[0]['icons/16x16/apps/xenonCalculator.png'] = 'images/apps/eyeLightDesk/16
 $alias[0]['icons/16x16/apps/xenonCalendar.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonCalendar.png';
 $alias[0]['icons/16x16/apps/eyeChess.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeChess.png';
 $alias[0]['icons/16x16/apps/xenonContacts.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonContacts.png';
-$alias[0]['icons/16x16/apps/eyeDocs.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeDocs.png';
+$alias[0]['icons/16x16/apps/xenonDocs.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonDocs.png';
 $alias[0]['icons/16x16/apps/xenonFiles.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonFiles.png';
 $alias[0]['icons/16x16/apps/xenonFTP.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonFTP.png';
 $alias[0]['icons/16x16/apps/xenonMail.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonMail.png';

@@ -125,7 +125,7 @@ function xenonApps_lib_GetCategoryIcon($category) {
 		'Games' => 'eyeChess',
 		'Multimedia' => 'eyeMedia',
 		'Networking' => 'eyeNav',
-		'Office' => 'eyeDocs',
+		'Office' => 'xenonDocs',
 		'Utilities' => 'mail-attach',
 		'Widgets' => 'desktop_widgets'
 	);

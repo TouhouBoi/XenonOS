@@ -79,7 +79,7 @@ function miniActions_on_Launch2($params=null) {
 }
 
 function miniActions_on_Launch3($params=null) {
-	proc('launch', array('eyeDocs'));
+	proc('launch', array('xenonDocs'));
 }
 
 function miniActions_on_Launch4($params=null) {

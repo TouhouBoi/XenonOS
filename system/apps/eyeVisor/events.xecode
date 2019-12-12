@@ -26,7 +26,7 @@ function eyeVisor_on_Edit($params=null) {
 	if ($ext == 'xls' || $ext == 'ods') {
 		proc('launch',array('eyeSheets',$file));
 	} else {
-		proc('launch',array('eyeDocs',$file));
+		proc('launch',array('xenonDocs',$file));
 	}
 	proc('end');
 }

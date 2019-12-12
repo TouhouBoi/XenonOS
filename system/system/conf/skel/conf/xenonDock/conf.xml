@@ -123,10 +123,10 @@
 						<type>icon</type>
 					</entry-1>
 					<entry-2>
-						<command>eyeDocs.app</command>
+						<command>xenonDocs.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeDocs.png</image>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonDocs.png</image>
 						<text>Word Processor</text>
 						<type>icon</type>
 					</entry-2>
@@ -334,10 +334,10 @@
 				<type>icon</type>
 			</element-11>
 			<element-12>
-				<command>eyeDocs.app</command>
+				<command>xenonDocs.app</command>
 				<hideImage>0</hideImage>
 				<hideText>1</hideText>
-				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeDocs.png</image>
+				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonDocs.png</image>
 				<text>Word Processor</text>
 				<type>icon</type>
 			</element-12>
