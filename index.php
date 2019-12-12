@@ -84,9 +84,15 @@ define('XENONOS_INDEX', 1);
 
 /*
 * Includes are required before Doing anything else,
-* only "xe_config.php" should be here.
+* only "xe_config.xeconfig" should be here.
 */
 require_once('system/system/xe_build.xeconfig');
+
+/*
+* Includes are required before Doing anything else,
+* only "user_config.xeconfig" should be here.
+*/
+require_once('user_config.xeconfig');
 
 /*
 *Chaning the current work directory to XENONOS_ROOT
