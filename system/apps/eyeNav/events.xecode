@@ -334,7 +334,7 @@ function eyeNav_on_DownloadNow($params = '')
 
 	if (isset($params['arg'][0]))
 	{
-		proc('launch', array('eyeRename', array(um('getCurrentUserDir') . '/' . TMP_USER_DIR . '/' . $checknum . '.tmp', null, um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0])));
+		proc('launch', array('xenonRename', array(um('getCurrentUserDir') . '/' . TMP_USER_DIR . '/' . $checknum . '.tmp', null, um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0])));
 	}
 	else
 	{

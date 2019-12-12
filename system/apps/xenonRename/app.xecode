@@ -14,8 +14,8 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeRename_run($params = '') {
-	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeRename/events' . XE_CODE_EXTENSION);
+function xenonRename_run($params = '') {
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonRename/events' . XE_CODE_EXTENSION);
 	$file = basename($params[0]);
 	if (!is_string($params[1])) {
 		$params[1] = '';
@@ -24,10 +24,10 @@ function eyeRename_run($params = '') {
 		$params[2] = $params[0];
 	}
 	$file2 = basename($params[2]);
-	eyeRename_libs_Do(substr(rtrim($params[0], '/'), 0, -strlen($file)), $file, substr(rtrim($params[2], '/'), 0, -strlen($file2)), $file2, $params[1]); // utf8
+	xenonRename_libs_Do(substr(rtrim($params[0], '/'), 0, -strlen($file)), $file, substr(rtrim($params[2], '/'), 0, -strlen($file2)), $file2, $params[1]); // utf8
 }
   
-function eyeRename_end($params = '') {
+function xenonRename_end($params = '') {
 	eyeWidgets('unserialize',$params);
 }
 ?>

@@ -58,7 +58,7 @@ function xenonFTP_on_xenonFTP_renameLocal() {
 	global $checknum;
 	$conf = xenonFTP_getConf();
 	if ($conf['selectedLocalFile']['name'] != '..')  {
-		proc('launch',array('eyeRename',array(
+		proc('launch',array('xenonRename',array(
 											$conf['selectedLocalFile']['path'],
 											'sendMsg('.$checknum.',"xenonFTP_refreshLocal","")'
 		)));

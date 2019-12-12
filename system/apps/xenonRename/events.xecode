@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeRename_on_Close($params = '') {
+function xenonRename_on_Close($params = '') {
 	proc('end');
 }
 
-function eyeRename_libs_Dialog($from,$file,$to,$callback) {
+function xenonRename_libs_Dialog($from,$file,$to,$callback) {
 	$from2 = xenonFiles('cleanPath',array($from));
 	$to2 = xenonFiles('cleanPath',array($to));
 	$rename = $file;
@@ -53,28 +53,28 @@ function eyeRename_libs_Dialog($from,$file,$to,$callback) {
 			$rename = $temp . '_' . $count . $extension;
 		}
 	}
-	if (is_object($GLOBALS['eyeRename_Window'])) {
-		$GLOBALS['eyeRename_Window']->close();
+	if (is_object($GLOBALS['xenonRename_Window'])) {
+		$GLOBALS['xenonRename_Window']->close();
 		xenonx('messageBox',array('content' => 'That file already exists!'));
 	}
 	xenonx('messageBox',array(
 		'buttons' => $buttons,
 		'content' => $content,
-		'hiddens' => array(array('eyeRename_Hidden_FromPath',$from),array('eyeRename_Hidden_FromFilename',$file),array('eyeRename_Hidden_ToPath',$to),array('eyeRename_Hidden_Callback',$callback)),
+		'hiddens' => array(array('xenonRename_Hidden_FromPath',$from),array('xenonRename_Hidden_FromFilename',$file),array('xenonRename_Hidden_ToPath',$to),array('xenonRename_Hidden_Callback',$callback)),
 		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/rename.png',
 		'savePosition' => 1,
 		'textbox_event' => 'Rename',
-		'textbox_name' => 'eyeRename_Textbox',
+		'textbox_name' => 'xenonRename_Textbox',
 		'textbox_text' => $rename,
 		'title' => i18n('translate',array($title,array($file))),
 		'tokens' => $tokens,
 		'type' => 3,
-		'win_name' => 'eyeRename_Window',
+		'win_name' => 'xenonRename_Window',
 		'win_style' => TITLE + LISTED + MIN + CLOSE
 	));
 }
 
-function eyeRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
+function xenonRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 	$file = basename($file);
 	$file2 = basename($file2);
 	$from = xenonFiles('cleanPath',array($from));
@@ -89,21 +89,21 @@ function eyeRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 		xenonx('messageBox',array('content' => 'Error moving folder!'));
 	} else {
 		if ($from[1] . '://' . $from[2] . '/' . $file == $to[1] . '://' . $to[2] . '/' . $file2) {
-			return eyeRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
+			return xenonRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
 		} elseif ($replace) {
 			proc('launch',array('xenonDelete',array($to[1] . '://' . $to[2] . '/' . $file2)));
 		}
 		if ($from[1] == 'real') {
 			if (vfs('isdir',array($from[0] . '/' . $file))) {
 				if (!vfs('real_move',array($from[0] . '/' . $file,$to[0] . '/' . $file2))) {
-					return eyeRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
+					return xenonRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
 				}
 				if ($to[1] != 'real') {
 					vfs('realToVirtualDir',array($to[0] . '/' . $file2));
 				}
 			} elseif (vfs('real_fileExists',array($from[0] . '/' . $file))) {
 				if (!vfs('real_move',array($from[0] . '/' . $file,$to[0] . '/' . $file2))) {
-					return eyeRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
+					return xenonRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
 				}
 				if ($to[1] != 'real') {
 					vfs('realToVirtual',array($to[0] . '/' . $file2));
@@ -111,7 +111,7 @@ function eyeRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 			}
 		} elseif (vfs('isdir',array($from[0] . '/' . $file))) {
 			if (!vfs('rename',array($from[0] . '/' . $file,$to[0] . '/' . $file2))) {
-				return eyeRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
+				return xenonRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
 			} elseif ($from[1] === 'home' && strtolower(trim($from[2], '/')) === 'desktop') { // utf8
 				$xml = xenonXML('getXMLconfig',array('xenonDesk','icons.xml'));
 				if (is_array($xml['icon'])) {
@@ -139,10 +139,10 @@ function eyeRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 					$file2 .= '.' . XENONOS_LINK_EXT;
 					
 					if (!vfs('real_move',array($from[0] . '/' . $file,$to[0] . '/' . $file2))) {
-						return eyeRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
+						return xenonRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
 					}
 				} else if (!vfs('move',array($from[0] . '/' . $file,$to[0] . '/' . $file2))) {
-					return eyeRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
+					return xenonRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
 				}
 				$xml = xenonXML('getXMLconfig',array('xenonDesk','icons.xml'));
 				if (is_array($xml['icon'])) {
@@ -158,7 +158,7 @@ function eyeRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 					xenonXML('setXMLconfig',array('xenonDesk','icons.xml',$xml));
 				}
 			} else if (!vfs('move',array($from[0] . '/' . $file,$to[0] . '/' . $file2))) {
-				return eyeRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
+				return xenonRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
 			}
 			if ($to[1] == 'real') {
 				vfs('virtualToReal',array($to[0] . '/' . $file2));
@@ -172,15 +172,15 @@ function eyeRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 	proc('end');
 }
 
-function eyeRename_on_Message($params = '') {
+function xenonRename_on_Message($params = '') {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeRename_on_Rename($params = '') {
-	eyeRename_libs_Do($GLOBALS['eyeRename_Hidden_FromPath']->text,$GLOBALS['eyeRename_Hidden_FromFilename']->text,$GLOBALS['eyeRename_Hidden_ToPath']->text,$GLOBALS['eyeRename_Textbox']->text,$GLOBALS['eyeRename_Hidden_Callback']->text);
+function xenonRename_on_Rename($params = '') {
+	xenonRename_libs_Do($GLOBALS['xenonRename_Hidden_FromPath']->text,$GLOBALS['xenonRename_Hidden_FromFilename']->text,$GLOBALS['xenonRename_Hidden_ToPath']->text,$GLOBALS['xenonRename_Textbox']->text,$GLOBALS['xenonRename_Hidden_Callback']->text);
 }
 
-function eyeRename_on_Replace($params = '') {
-	eyeRename_libs_Do($GLOBALS['eyeRename_Hidden_FromPath']->text,$GLOBALS['eyeRename_Hidden_FromFilename']->text,$GLOBALS['eyeRename_Hidden_ToPath']->text,$GLOBALS['eyeRename_Hidden_FromFilename']->text,$GLOBALS['eyeRename_Hidden_Callback']->text,1);
+function xenonRename_on_Replace($params = '') {
+	xenonRename_libs_Do($GLOBALS['xenonRename_Hidden_FromPath']->text,$GLOBALS['xenonRename_Hidden_FromFilename']->text,$GLOBALS['xenonRename_Hidden_ToPath']->text,$GLOBALS['xenonRename_Hidden_FromFilename']->text,$GLOBALS['xenonRename_Hidden_Callback']->text,1);
 }
 ?>

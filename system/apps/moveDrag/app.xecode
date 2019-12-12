@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function moveDrag_run($params = '') {
-	proc('launch',array('eyeRename',array($params[0],$params[2],$params[1] . '/' . utf8_basename($params[0]))));
+	proc('launch',array('xenonRename',array($params[0],$params[2],$params[1] . '/' . utf8_basename($params[0]))));
 	proc('end');
 }
 ?>

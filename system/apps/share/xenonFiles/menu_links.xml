@@ -18,7 +18,7 @@
 	<entry>
 		<icon>rename</icon>
 		<text>Rename</text>
-		<action>eyeRename</action>
+		<action>xenonRename</action>
 	</entry>
 	<entry>
 		<icon>properties</icon>
