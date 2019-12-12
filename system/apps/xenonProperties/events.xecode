@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeProperties_on_Close($params = '') {
+function xenonProperties_on_Close($params = '') {
 	proc('end');
 }
 
-function eyeProperties_on_Message($params = '') {
+function xenonProperties_on_Message($params = '') {
 	eyeWidgets('updateContent',$params);
 }
 ?>

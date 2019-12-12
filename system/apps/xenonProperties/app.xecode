@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeProperties_run($params = '') {
+function xenonProperties_run($params = '') {
 	global $myPid;
 	$file = basename($params[0]);
 	$path = xenonFiles('cleanPath',array(substr(trim($params[0], '/\\'), 0, -strlen($file)))); // utf8
@@ -159,7 +159,7 @@ function eyeProperties_run($params = '') {
 		'cent' => 1,
 		'father' => 'xenonApps',
 		'height' => 400,
-		'name' => 'eyeProperties_Window',
+		'name' => 'xenonProperties_Window',
 		'savePosition' => 1,
 		'style' => TITLE + LISTED + MIN + CLOSE,
 		'title' => $title . ' - ' . i18n('translate',array('Properties')),
@@ -170,8 +170,8 @@ function eyeProperties_run($params = '') {
 	$contentY = 20;
 // Icon
 	$myImagebox = new Imagebox(array(
-		'name' => 'eyeProperties_Imagebox',
-		'father' => 'eyeProperties_Window_Content',
+		'name' => 'xenonProperties_Imagebox',
+		'father' => 'xenonProperties_Window_Content',
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/' . $icon . '.png',
 		'x' => 20,
 		'y' => $contentY
@@ -180,8 +180,8 @@ function eyeProperties_run($params = '') {
 	$contentY += 10;
 // Title
 	$myTextbox = new Textbox(array(
-		'father' => 'eyeProperties_Window_Content',
-		'name' => 'eyeProperties_Textbox_Title',
+		'father' => 'xenonProperties_Window_Content',
+		'name' => 'xenonProperties_Textbox_Title',
 		'text' => $title,
 		'width' => 240,
 		'x' => 100,
@@ -189,12 +189,12 @@ function eyeProperties_run($params = '') {
 	));
 	$myTextbox->show();
 	$myTextbox->setCss(array('border' => '0px','font-weight' => 'bold'));
-	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Title").readOnly = true;'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonProperties_Textbox_Title").readOnly = true;'));
 	$contentY += 20;
 // Type
 	$myTextbox = new Textbox(array(
-		'father' => 'eyeProperties_Window_Content',
-		'name' => 'eyeProperties_Textbox_Type',
+		'father' => 'xenonProperties_Window_Content',
+		'name' => 'xenonProperties_Textbox_Type',
 		'text' => $type,
 		'width' => 240,
 		'x' => 100,
@@ -202,13 +202,13 @@ function eyeProperties_run($params = '') {
 	));
 	$myTextbox->show();
 	$myTextbox->setCss(array('border' => '0px'));
-	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Type").readOnly = true;'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonProperties_Textbox_Type").readOnly = true;'));
 	$contentY += 28;
 // File information
 	$contentY += 20;
 	$myLabel = new Label(array(
-		'father' => 'eyeProperties_Window_Content',
-		'name' => 'eyeProperties_Label_FileInformation',
+		'father' => 'xenonProperties_Window_Content',
+		'name' => 'xenonProperties_Label_FileInformation',
 		'text' => 'File information',
 		'x' => 10,
 		'y' => $contentY
@@ -217,8 +217,8 @@ function eyeProperties_run($params = '') {
 	$myLabel->setCss(array('font-size' => '90%'));
 	$contentY += 15;
 	$myLine = new Line(array(
-		'father' => 'eyeProperties_Window_Content',
-		'name' => 'eyeProperties_Line_FileInformation',
+		'father' => 'xenonProperties_Window_Content',
+		'name' => 'xenonProperties_Line_FileInformation',
 		'width' => 346,
 		'x' => 0,
 		'y' => $contentY
@@ -227,16 +227,16 @@ function eyeProperties_run($params = '') {
 	$contentY += 20;
 // Path
 	$myLabel = new Label(array(
-		'father' => 'eyeProperties_Window_Content',
-		'name' => 'eyeProperties_Label_Path',
+		'father' => 'xenonProperties_Window_Content',
+		'name' => 'xenonProperties_Label_Path',
 		'text' => 'Path',
 		'x' => 20,
 		'y' => $contentY
 	));
 	$myLabel->show();
 	$myTextbox = new Textbox(array(
-		'father' => 'eyeProperties_Window_Content',
-		'name' => 'eyeProperties_Textbox_Path',
+		'father' => 'xenonProperties_Window_Content',
+		'name' => 'xenonProperties_Textbox_Path',
 		'text' => $path[1] . '://' . $path[2],
 		'width' => 240,
 		'x' => 105,
@@ -244,21 +244,21 @@ function eyeProperties_run($params = '') {
 	));
 	$myTextbox->show();
 	$myTextbox->setCss(array('border' => '0px'));
-	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Path").readOnly = true;'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonProperties_Textbox_Path").readOnly = true;'));
 	$contentY += 20;
 // Filetime
 	if ($filetime) {
 		$myLabel = new Label(array(
-			'father' => 'eyeProperties_Window_Content',
-			'name' => 'eyeProperties_Label_Filetime',
+			'father' => 'xenonProperties_Window_Content',
+			'name' => 'xenonProperties_Label_Filetime',
 			'text' => 'Filetime',
 			'x' => 20,
 			'y' => $contentY
 		));
 		$myLabel->show();
 		$myTextbox = new Textbox(array(
-			'father' => 'eyeProperties_Window_Content',
-			'name' => 'eyeProperties_Textbox_Filetime',
+			'father' => 'xenonProperties_Window_Content',
+			'name' => 'xenonProperties_Textbox_Filetime',
 			'text' => date('Y-m-d G:i:s',$filetime),
 			'width' => 220,
 			'x' => 105,
@@ -266,22 +266,22 @@ function eyeProperties_run($params = '') {
 		));
 		$myTextbox->show();
 		$myTextbox->setCss(array('border' => '0px'));
-		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Filetime").readOnly = true;'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonProperties_Textbox_Filetime").readOnly = true;'));
 		$contentY += 20;
 	}
 // Size
 if ($size != '0 ') {
 	$myLabel = new Label(array(
-		'name' => 'eyeProperties_Label_Size',
-		'father' => 'eyeProperties_Window_Content',
+		'name' => 'xenonProperties_Label_Size',
+		'father' => 'xenonProperties_Window_Content',
 		'text' => 'Size',
 		'x' => 20,
 		'y' => $contentY
 	));
 	$myLabel->show();
 	$myTextbox = new Textbox(array(
-		'father' => 'eyeProperties_Window_Content',
-		'name' => 'eyeProperties_Textbox_Size',
+		'father' => 'xenonProperties_Window_Content',
+		'name' => 'xenonProperties_Textbox_Size',
 		'text' => i18n('translate',array('%sBytes',array($size))),
 		'width' => 240,
 		'x' => 105,
@@ -289,22 +289,22 @@ if ($size != '0 ') {
 	));
 	$myTextbox->show();
 	$myTextbox->setCss(array('border' => '0px'));
-	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Size").readOnly = true;'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonProperties_Textbox_Size").readOnly = true;'));
 	$contentY += 20;
 }
 // Author
 	if ($author) {
 		$myLabel = new Label(array(
-			'father' => 'eyeProperties_Window_Content',
-			'name' => 'eyeProperties_Label_Author',
+			'father' => 'xenonProperties_Window_Content',
+			'name' => 'xenonProperties_Label_Author',
 			'text' => 'Author',
 			'x' => 20,
 			'y' => $contentY
 		));
 		$myLabel->show();
 		$myTextbox = new Textbox(array(
-			'father' => 'eyeProperties_Window_Content',
-			'name' => 'eyeProperties_Textbox_Author',
+			'father' => 'xenonProperties_Window_Content',
+			'name' => 'xenonProperties_Textbox_Author',
 			'text' => $author,
 			'width' => 240,
 			'x' => 105,
@@ -312,22 +312,22 @@ if ($size != '0 ') {
 		));
 		$myTextbox->show();
 		$myTextbox->setCss(array('border' => '0px'));
-		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Author").readOnly = true;'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonProperties_Textbox_Author").readOnly = true;'));
 		$contentY += 20;
 	}
 // Command
 	if ($command) {
 		$myLabel = new Label(array(
-			'name' => 'eyeProperties_Label_Command',
-			'father' => 'eyeProperties_Window_Content',
+			'name' => 'xenonProperties_Label_Command',
+			'father' => 'xenonProperties_Window_Content',
 			'text' => 'Command',
 			'x' => 20,
 			'y' => $contentY
 		));
 		$myLabel->show();
 		$myTextbox = new Textbox(array(
-			'father' => 'eyeProperties_Window_Content',
-			'name' => 'eyeProperties_Textbox_Command',
+			'father' => 'xenonProperties_Window_Content',
+			'name' => 'xenonProperties_Textbox_Command',
 			'text' => $command,
 			'width' => 240,
 			'x' => 105,
@@ -335,15 +335,15 @@ if ($size != '0 ') {
 		));
 		$myTextbox->show();
 		$myTextbox->setCss(array('border' => '0px'));
-		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_Command").readOnly = true;'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonProperties_Textbox_Command").readOnly = true;'));
 		$contentY += 20;
 	}
 // Creation information
 	if ($creationdate || $createdwith) {
 		$contentY += 20;
 		$myLabel = new Label(array(
-			'father' => 'eyeProperties_Window_Content',
-			'name' => 'eyeProperties_Label_CreationInformation',
+			'father' => 'xenonProperties_Window_Content',
+			'name' => 'xenonProperties_Label_CreationInformation',
 			'text' => 'Creation information',
 			'x' => 10,
 			'y' => $contentY
@@ -352,8 +352,8 @@ if ($size != '0 ') {
 		$myLabel->setCss(array('font-size' => '90%'));
 		$contentY += 15;
 		$myLine = new Line(array(
-			'father' => 'eyeProperties_Window_Content',
-			'name' => 'eyeProperties_Line_CreationInformation',
+			'father' => 'xenonProperties_Window_Content',
+			'name' => 'xenonProperties_Line_CreationInformation',
 			'width' => 346,
 			'x' => 0,
 			'y' => $contentY
@@ -363,16 +363,16 @@ if ($size != '0 ') {
 // Creation date
 		if ($creationdate) {
 			$myLabel = new Label(array(
-				'father' => 'eyeProperties_Window_Content',
-				'name' => 'eyeProperties_Label_CreationDate',
+				'father' => 'xenonProperties_Window_Content',
+				'name' => 'xenonProperties_Label_CreationDate',
 				'text' => 'Creation date',
 				'x' => 20,
 				'y' => $contentY
 			));
 			$myLabel->show();
 			$myTextbox = new Textbox(array(
-				'father' => 'eyeProperties_Window_Content',
-				'name' => 'eyeProperties_Textbox_CreationDate',
+				'father' => 'xenonProperties_Window_Content',
+				'name' => 'xenonProperties_Textbox_CreationDate',
 				'text' => date('Y-m-d G:i:s',$creationdate),
 				'width' => 220,
 				'x' => 110,
@@ -380,22 +380,22 @@ if ($size != '0 ') {
 			));
 			$myTextbox->show();
 			$myTextbox->setCss(array('border' => '0px'));
-			xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_CreationDate").readOnly = true;'));
+			xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonProperties_Textbox_CreationDate").readOnly = true;'));
 			$contentY += 20;
 		}
 // Created with
 		if ($createdwith) {
 			$myLabel = new Label(array(
-				'father' => 'eyeProperties_Window_Content',
-				'name' => 'eyeProperties_Label_CreatedWith',
+				'father' => 'xenonProperties_Window_Content',
+				'name' => 'xenonProperties_Label_CreatedWith',
 				'text' => 'Created with',
 				'x' => 20,
 				'y' => $contentY
 			));
 			$myLabel->show();
 			$myTextbox = new Textbox(array(
-				'father' => 'eyeProperties_Window_Content',
-				'name' => 'eyeProperties_Textbox_CreatedWith',
+				'father' => 'xenonProperties_Window_Content',
+				'name' => 'xenonProperties_Textbox_CreatedWith',
 				'text' => $createdwith,
 				'width' => 220,
 				'x' => 110,
@@ -403,7 +403,7 @@ if ($size != '0 ') {
 			));
 			$myTextbox->show();
 			$myTextbox->setCss(array('border' => '0px'));
-			xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_CreatedWith").readOnly = true;'));
+			xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonProperties_Textbox_CreatedWith").readOnly = true;'));
 			$contentY += 20;
 		}
 	}
@@ -411,8 +411,8 @@ if ($size != '0 ') {
 	if ($deletiondate) {
 		$contentY += 20;
 		$myLabel = new Label(array(
-			'father' => 'eyeProperties_Window_Content',
-			'name' => 'eyeProperties_Label_DeletionInformation',
+			'father' => 'xenonProperties_Window_Content',
+			'name' => 'xenonProperties_Label_DeletionInformation',
 			'text' => 'Deletion information',
 			'x' => 10,
 			'y' => $contentY
@@ -423,8 +423,8 @@ if ($size != '0 ') {
 		));
 		$contentY += 15;
 		$myLine = new Line(array(
-			'father' => 'eyeProperties_Window_Content',
-			'name' => 'eyeProperties_Line_DeletionInformation',
+			'father' => 'xenonProperties_Window_Content',
+			'name' => 'xenonProperties_Line_DeletionInformation',
 			'width' => 346,
 			'x' => 0,
 			'y' => $contentY
@@ -433,16 +433,16 @@ if ($size != '0 ') {
 		$contentY += 20;
 // Deletion date
 		$myLabel = new Label(array(
-			'father' => 'eyeProperties_Window_Content',
-			'name' => 'eyeProperties_Label_DeletionDate',
+			'father' => 'xenonProperties_Window_Content',
+			'name' => 'xenonProperties_Label_DeletionDate',
 			'text' => 'Deletion date',
 			'x' => 20,
 			'y' => $contentY
 		));
 		$myLabel->show();
 		$myTextbox = new Textbox(array(
-			'father' => 'eyeProperties_Window_Content',
-			'name' => 'eyeProperties_Textbox_DeletionDate',
+			'father' => 'xenonProperties_Window_Content',
+			'name' => 'xenonProperties_Textbox_DeletionDate',
 			'text' => date('Y-m-d G:i:s',$deletiondate),
 			'width' => 220,
 			'x' => 150,
@@ -450,11 +450,11 @@ if ($size != '0 ') {
 		));
 		$myTextbox->show();
 		$myTextbox->setCss(array('border' => '0px'));
-		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeProperties_Textbox_DeletionDate").readOnly = true;'));
+		xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonProperties_Textbox_DeletionDate").readOnly = true;'));
 	}
 }
 
-function eyeProperties_end($params = '') {
+function xenonProperties_end($params = '') {
 	eyeWidgets('unserialize',$params);
 }
 ?>
