@@ -15,13 +15,13 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 define('EYEFEEDS_FEEDITEMS_FETCHNUMBER', 16);
-define('EYEFEEDS_FEEDITEMS_CACHELOCATION', XENONOS_ROOT.'/'.APP_DIR.'/share/eyeFeeds/cache/');
+define('EYEFEEDS_FEEDITEMS_CACHELOCATION', XENONOS_ROOT.'/'.APP_DIR.'/share/xenonFeeds/cache/');
 define('EYEFEEDS_FEEDITEMS_CACHEDURATION', 3600);
 define('EYEFEEDS_FEEDITEMS_CONTENT_DISPLAYEDSIZE', 1800);
 define('EYEFEEDS_FEEDITEMS_READINGHISTORYDURATION', 60);
 
-define('EYEFEEDS_FEEDITEM_ICONURL_READ', 'index.php?extern=apps/eyeFeeds/gfx/item_read.png');
-define('EYEFEEDS_FEEDITEM_ICONURL_UNREAD', 'index.php?extern=apps/eyeFeeds/gfx/item_unread.png');
+define('EYEFEEDS_FEEDITEM_ICONURL_READ', 'index.php?extern=apps/xenonFeeds/gfx/item_read.png');
+define('EYEFEEDS_FEEDITEM_ICONURL_UNREAD', 'index.php?extern=apps/xenonFeeds/gfx/item_unread.png');
 
 /*********************************************************************************************/
 //		EYEFEEDS GRAPHICAL FUNCTIONS
@@ -32,7 +32,7 @@ define('EYEFEEDS_FEEDITEM_ICONURL_UNREAD', 'index.php?extern=apps/eyeFeeds/gfx/i
  * @param array $folderNode
  * @return Tree
  */
-function eyeFeeds_drawFeedsTree($folderNode) {
+function xenonFeeds_drawFeedsTree($folderNode) {
 	if ($GLOBALS['feeds_TREE']) {
 		$GLOBALS['feeds_TREE']->remove();
 		$GLOBALS['selectedFeedId_HID']->setText('');
@@ -52,7 +52,7 @@ function eyeFeeds_drawFeedsTree($folderNode) {
 	//root node
 	$myTree->addItem('feeds_TREE', 'feeds_TREE_root', i18n('translate',array('Bookmarks')));
 	$myTree->addSubList('feeds_TREE_root', 'feeds#folder_root');
-	eyeFeeds_drawFeedsTree_addContextMenu('feeds#menu_feeds_TREE_root','feeds_TREE_root', true);
+	xenonFeeds_drawFeedsTree_addContextMenu('feeds#menu_feeds_TREE_root','feeds_TREE_root', true);
 
 	if(is_array($folderNode['feed'])) {
 		foreach($folderNode['feed'] as $node) {
@@ -60,18 +60,18 @@ function eyeFeeds_drawFeedsTree($folderNode) {
 			if($node['type'][0] == 'folder') {
 				$myTree->addItem('feeds#folder_root', 'feeds#item_'.$node['id'][0], $displayedNodeName);
 				$myTree->addSubList('feeds#item_'.$node['id'][0], 'feeds#folder_'.$node['id'][0]);
-				eyeFeeds_drawFeedsTreeNode($myTree, 'feeds#folder_'.$node['id'][0], $node, false, 'feeds#');
-				eyeFeeds_drawFeedsTree_addContextMenu('feeds#menu_'.$node['id'][0],'feeds#item_'.$node['id'][0]);
+				xenonFeeds_drawFeedsTreeNode($myTree, 'feeds#folder_'.$node['id'][0], $node, false, 'feeds#');
+				xenonFeeds_drawFeedsTree_addContextMenu('feeds#menu_'.$node['id'][0],'feeds#item_'.$node['id'][0]);
 			} else {
 				$myTree->addItem('feeds#folder_root', 'feeds#item_'.$node['id'][0], $displayedNodeName);
-				eyeFeeds_drawFeedsTree_addContextMenu('feeds#menu_'.$node['id'][0],'feeds#item_'.$node['id'][0]);
+				xenonFeeds_drawFeedsTree_addContextMenu('feeds#menu_'.$node['id'][0],'feeds#item_'.$node['id'][0]);
 			}
 		}
 	}
 	$myTree->processList();
 	return $myTree;
 }
-function eyeFeeds_drawFeedsTreeNode($treeObject, $parentNode, $folderNode, $foldersOnly=false, $itemsNamesPrefix='') {
+function xenonFeeds_drawFeedsTreeNode($treeObject, $parentNode, $folderNode, $foldersOnly=false, $itemsNamesPrefix='') {
 	if(is_array($folderNode['feed'])) {
 		foreach($folderNode['feed'] as $node) {
 			$displayedNodeName = utf8_strlen($node['name'][0]) > 20 ? utf8_substr($node['name'][0], 0, 19) . '…' : $node['name'][0];
@@ -81,20 +81,20 @@ function eyeFeeds_drawFeedsTreeNode($treeObject, $parentNode, $folderNode, $fold
 									$displayedNodeName);
 				$treeObject->addSubList($itemsNamesPrefix.'item_'.$node['id'][0],
 										$itemsNamesPrefix.'folder_'.$node['id'][0]);
-				eyeFeeds_drawFeedsTreeNode($treeObject,
+				xenonFeeds_drawFeedsTreeNode($treeObject,
 											$itemsNamesPrefix.'folder_'.$node['id'][0],
 											$node);
-				eyeFeeds_drawFeedsTree_addContextMenu($itemsNamesPrefix.'menu_'.$node['id'][0], $itemsNamesPrefix.'item_'.$node['id'][0]);
+				xenonFeeds_drawFeedsTree_addContextMenu($itemsNamesPrefix.'menu_'.$node['id'][0], $itemsNamesPrefix.'item_'.$node['id'][0]);
 			} elseif (!$foldersOnly) {
 				$treeObject->addItem($parentNode,
 									$itemsNamesPrefix.'item_'.$node['id'][0],
 									$displayedNodeName);
-				eyeFeeds_drawFeedsTree_addContextMenu($itemsNamesPrefix.'menu_'.$node['id'][0], $itemsNamesPrefix.'item_'.$node['id'][0]);
+				xenonFeeds_drawFeedsTree_addContextMenu($itemsNamesPrefix.'menu_'.$node['id'][0], $itemsNamesPrefix.'item_'.$node['id'][0]);
 			}
 		}
 	}
 }
-function eyeFeeds_drawFeedsTree_addContextMenu($menuName, $nodeName, $addOnly=false) {
+function xenonFeeds_drawFeedsTree_addContextMenu($menuName, $nodeName, $addOnly=false) {
 	$feedId = substr($nodeName, stripos($nodeName, '_') + 1); // utf8
 
 	//add context menu
@@ -107,7 +107,7 @@ function eyeFeeds_drawFeedsTree_addContextMenu($menuName, $nodeName, $addOnly=fa
 
 	//ADD FEED
 	$myMenu->addEntry(
-		'<img id="' . $menuName . 'addfeed_menu" style="height: 16px; width: 16px;" src="index.php?extern=apps/eyeFeeds/gfx/addfeed_menu.png" /> &nbsp; '.utf8_htmlspecialchars(i18n('translate',array('Add feed')), ENT_QUOTES),
+		'<img id="' . $menuName . 'addfeed_menu" style="height: 16px; width: 16px;" src="index.php?extern=apps/xenonFeeds/gfx/addfeed_menu.png" /> &nbsp; '.utf8_htmlspecialchars(i18n('translate',array('Add feed')), ENT_QUOTES),
 		'feeds_CMN_addFeed_ENT',
 		'feeds_CMN_addFeed_ENT',
 		$feedId,
@@ -115,7 +115,7 @@ function eyeFeeds_drawFeedsTree_addContextMenu($menuName, $nodeName, $addOnly=fa
 	);
 	//ADD FOLDER
 	$myMenu->addEntry(
-		'<img id="' . $menuName . 'addfolder_menu" style="height: 16px; width: 16px;" src="index.php?extern=apps/eyeFeeds/gfx/addfolder_menu.png" /> &nbsp; '.utf8_htmlspecialchars(i18n('translate',array('Add folder')), ENT_QUOTES),
+		'<img id="' . $menuName . 'addfolder_menu" style="height: 16px; width: 16px;" src="index.php?extern=apps/xenonFeeds/gfx/addfolder_menu.png" /> &nbsp; '.utf8_htmlspecialchars(i18n('translate',array('Add folder')), ENT_QUOTES),
 		'feeds_CMN_addFolder_ENT',
 		'feeds_CMN_addFolder_ENT',
 		$feedId,
@@ -124,7 +124,7 @@ function eyeFeeds_drawFeedsTree_addContextMenu($menuName, $nodeName, $addOnly=fa
 	if (!$addOnly) {
 		//EDIT
 		$myMenu->addEntry(
-			'<img id="' . $menuName . 'editfeedfolder_menu" style="height: 16px; width: 16px;" src="index.php?extern=apps/eyeFeeds/gfx/editfeedfolder_menu.png" /> &nbsp; '.utf8_htmlspecialchars(i18n('translate',array('Edit')), ENT_QUOTES),
+			'<img id="' . $menuName . 'editfeedfolder_menu" style="height: 16px; width: 16px;" src="index.php?extern=apps/xenonFeeds/gfx/editfeedfolder_menu.png" /> &nbsp; '.utf8_htmlspecialchars(i18n('translate',array('Edit')), ENT_QUOTES),
 			'feeds_CMN_edit_ENT',
 			'feeds_CMN_edit_ENT',
 			$feedId,
@@ -132,7 +132,7 @@ function eyeFeeds_drawFeedsTree_addContextMenu($menuName, $nodeName, $addOnly=fa
 		);
 		//DELETE
 		$myMenu->addEntry(
-			'<img id="' . $menuName . 'delfeedfolder_menu" style="height: 16px; width: 16px;" src="index.php?extern=apps/eyeFeeds/gfx/delfeedfolder_menu.png" /> &nbsp; '.utf8_htmlspecialchars(i18n('translate',array('Delete')), ENT_QUOTES),
+			'<img id="' . $menuName . 'delfeedfolder_menu" style="height: 16px; width: 16px;" src="index.php?extern=apps/xenonFeeds/gfx/delfeedfolder_menu.png" /> &nbsp; '.utf8_htmlspecialchars(i18n('translate',array('Delete')), ENT_QUOTES),
 			'feeds_CMN_del_ENT',
 			'feeds_CMN_del_ENT',
 			$feedId,
@@ -141,11 +141,11 @@ function eyeFeeds_drawFeedsTree_addContextMenu($menuName, $nodeName, $addOnly=fa
 	}
 }
 
-function eyeFeeds_clearFeedItems() {
+function xenonFeeds_clearFeedItems() {
 	global $myPid;
 
 	$GLOBALS['itemsList_BOX']->setTitle('Select a feed to browse...');
-	$GLOBALS['eyeFeeds_WND']->setTitle(i18n('translate',array('RSS Feed Reader')));
+	$GLOBALS['xenonFeeds_WND']->setTitle(i18n('translate',array('RSS Feed Reader')));
 
 	//remove previous table
 	if ($GLOBALS['feedItems_TAB'])
@@ -170,20 +170,20 @@ function eyeFeeds_clearFeedItems() {
 	xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_feedItems_TAB_Container").firstChild.style.border="none";'));
 }
 
-function eyeFeeds_clearItemContent() {
+function xenonFeeds_clearItemContent() {
 	$GLOBALS['itemContent_BOX']->setTitle('Select an item to read...');
 	$GLOBALS['content_LBL']->setText('');
 }
 
-function eyeFeeds_displayFeedItems($feed, $forceRefresh=false) {
+function xenonFeeds_displayFeedItems($feed, $forceRefresh=false) {
 	if (! is_array($feed))
 		return;
 
 	global $myPid;
 
-	$items = eyeFeeds_fetchFeedItemsFromUrl($feed['url'][0], $forceRefresh);
+	$items = xenonFeeds_fetchFeedItemsFromUrl($feed['url'][0], $forceRefresh);
 	foreach($items as $itemId => $itemData) {
-		if (eyeFeeds_isTitleRead($itemData['permalink'])) {
+		if (xenonFeeds_isTitleRead($itemData['permalink'])) {
 			$iconUrl = '<img src="'.EYEFEEDS_FEEDITEM_ICONURL_READ.'" ';
 		}
 		else {
@@ -209,14 +209,14 @@ function eyeFeeds_displayFeedItems($feed, $forceRefresh=false) {
  *
  * @param array $item
  */
-function eyeFeeds_displayItemContent($item) {
+function xenonFeeds_displayItemContent($item) {
 	if (! is_array($item))
 		return;
 
 	global $checknum, $myPid;
-	$settings = eyeFeeds_loadSettings();
+	$settings = xenonFeeds_loadSettings();
 
-	eyeFeeds_setTitleAsRead($item['permalink']);
+	xenonFeeds_setTitleAsRead($item['permalink']);
 
 	//prepare enclosures links
 	$enclosuresLinks = '<br /><br />';
@@ -238,7 +238,7 @@ function eyeFeeds_displayItemContent($item) {
 		if (utf8_strlen($content) > $settings['contentSize'][0]) {
 			$content = utf8_substr($content, 0, $settings['contentSize'][0]) . ' (…)';
 		}
-		$content = cleanString(eyeFeeds_replaceUrlMarksByEyeNavCalls($content));
+		$content = cleanString(xenonFeeds_replaceUrlMarksByEyeNavCalls($content));
 		$content .= $enclosuresLinks;
 		$encodedTextToDisplay = base64_encode($content);
 	}
@@ -254,26 +254,26 @@ function eyeFeeds_displayItemContent($item) {
  *
  * @return mixed array or FALSE
  */
-function eyeFeeds_getSelectedFeedItem() {
+function xenonFeeds_getSelectedFeedItem() {
 	$itemId = $GLOBALS['feedItems_TAB']->selected;
 	if (!$itemId)
 		return false;
 
-	$item = eyeFeeds_getFeedItem($itemId);
+	$item = xenonFeeds_getFeedItem($itemId);
 	if (!$item)
 		return false;
 
 	return $item;
 }
 
-function eyeFeeds_getFeedFromId($feeds, $id) {
+function xenonFeeds_getFeedFromId($feeds, $id) {
 	$return = false;
 	if ($id == null) {
 		return $feeds;
 	}
 	foreach($feeds as $key => $value) {
 		if ($value['type'][0] == 'folder')
-			$return = eyeFeeds_getFeedFromId($value['feed'], $id);
+			$return = xenonFeeds_getFeedFromId($value['feed'], $id);
 		if ($value['id'][0] == $id)
 			$return = $feeds[$key];
 
@@ -289,14 +289,14 @@ function eyeFeeds_getFeedFromId($feeds, $id) {
  * @param string $id
  * @return mixed array if the parent feed has been found, FALSE otherwise
  */
-function eyeFeeds_getParentFeedFromId($feeds, $id) {
+function xenonFeeds_getParentFeedFromId($feeds, $id) {
 	$return = false;
 	//the root node in the XML conf has no ID so we add a fake one
 	if (!is_array($feeds['id']))
 		$feeds['id'] = array('root');
 	foreach($feeds['feed'] as $key => $value) {
 		if ($value['type'][0] == 'folder')
-			$return = eyeFeeds_getParentFeedFromId($value, $id);
+			$return = xenonFeeds_getParentFeedFromId($value, $id);
 		if ($value['id'][0] == $id)
 			$return = $feeds;
 
@@ -311,9 +311,9 @@ function eyeFeeds_getParentFeedFromId($feeds, $id) {
  * @param string $id
  * @return array
  */
-function eyeFeeds_getFeedItem($id) {
+function xenonFeeds_getFeedItem($id) {
 	$return = false;
-	$items = eyeFeeds_fetchFeedItemsFromUrl(unserialize($GLOBALS['currentFeedUrl_HID']->text));
+	$items = xenonFeeds_fetchFeedItemsFromUrl(unserialize($GLOBALS['currentFeedUrl_HID']->text));
 	foreach($items as $key => $itemData) {
 		if ($key == $id)
 			$return = $itemData;
@@ -321,7 +321,7 @@ function eyeFeeds_getFeedItem($id) {
 	return $return;
 }
 
-function eyeFeeds_addFeed($feeds, $feed, $parentFolderId) {
+function xenonFeeds_addFeed($feeds, $feed, $parentFolderId) {
 	if (!is_array($feeds))
 		return array();
 
@@ -330,13 +330,13 @@ function eyeFeeds_addFeed($feeds, $feed, $parentFolderId) {
 	else {
 		foreach($feeds['feed'] as $key => $value) {
 			if ($value['type'][0] == 'folder')
-				$feeds['feed'][$key] = eyeFeeds_addFeed($value, $feed, $parentFolderId);
+				$feeds['feed'][$key] = xenonFeeds_addFeed($value, $feed, $parentFolderId);
 		}
 	}
 	return $feeds;
 }
 
-function eyeFeeds_addFolder($feeds, $folderName, $folderId, $parentFolderId) {
+function xenonFeeds_addFolder($feeds, $folderName, $folderId, $parentFolderId) {
 	if (!is_array($feeds))
 		return array();
 
@@ -350,13 +350,13 @@ function eyeFeeds_addFolder($feeds, $folderName, $folderId, $parentFolderId) {
 	else {
 		foreach($feeds['feed'] as $key => $value) {
 			if ($value['type'][0] == 'folder')
-				$feeds['feed'][$key] = eyeFeeds_addFolder($value, $folderName, $folderId, $parentFolderId);
+				$feeds['feed'][$key] = xenonFeeds_addFolder($value, $folderName, $folderId, $parentFolderId);
 		}
 	}
 	return $feeds;
 }
 
-function eyeFeeds_deleteFeedFolder($feeds, $feedId) {
+function xenonFeeds_deleteFeedFolder($feeds, $feedId) {
 	if (!is_array($feeds))
 		return false;
 
@@ -366,43 +366,43 @@ function eyeFeeds_deleteFeedFolder($feeds, $feedId) {
 			break;
 		}
 		elseif ($value['type'][0] == 'folder') {
-			$feeds['feed'][$key] = eyeFeeds_deleteFeedFolder($value, $feedId);
+			$feeds['feed'][$key] = xenonFeeds_deleteFeedFolder($value, $feedId);
 		}
 	}
 	return $feeds;
 }
 
-function eyeFeeds_saveFeedsToFile($feeds, $redrawFeedsTree=true, $sortFeeds=true) {
-	$conf = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+function xenonFeeds_saveFeedsToFile($feeds, $redrawFeedsTree=true, $sortFeeds=true) {
+	$conf = xenonXML('getXMLconfig', array('xenonFeeds', 'conf.xml'));
 	if ($sortFeeds)
-		$feeds['feed'] = eyeFeeds_sortFeeds($feeds['feed']);
+		$feeds['feed'] = xenonFeeds_sortFeeds($feeds['feed']);
 
-	$conf['eyeFeeds'][0]['base'][0] = $feeds;
-	if (!xenonXML('setXMLconfig', array('eyeFeeds', 'conf.xml', $conf))) {
+	$conf['xenonFeeds'][0]['base'][0] = $feeds;
+	if (!xenonXML('setXMLconfig', array('xenonFeeds', 'conf.xml', $conf))) {
 		return false;
 	}
 
 	//redraw tree with saved configuration
-	$conf2 = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+	$conf2 = xenonXML('getXMLconfig', array('xenonFeeds', 'conf.xml'));
 	if ($redrawFeedsTree) {
-		$tree = eyeFeeds_drawFeedsTree($conf2['eyeFeeds'][0]['base'][0]);
+		$tree = xenonFeeds_drawFeedsTree($conf2['xenonFeeds'][0]['base'][0]);
 		$tree->expandTree();
 	}
 	return true;
 }
 
-function eyeFeeds_sortFeeds($feeds) {
+function xenonFeeds_sortFeeds($feeds) {
 	foreach ($feeds as $key => $value) {
 		if ($value['type'][0] == 'folder') {
-			$value['feed'] = eyeFeeds_sortFeeds($value['feed']);
+			$value['feed'] = xenonFeeds_sortFeeds($value['feed']);
 			$feeds[$key] = $value;
 		}
 	}
-	usort($feeds, eyeFeeds_sortFeeds_compare);
+	usort($feeds, xenonFeeds_sortFeeds_compare);
 	return $feeds;
 }
 
-function eyeFeeds_sortFeeds_compare($a,$b) {
+function xenonFeeds_sortFeeds_compare($a,$b) {
 	$return = 0;
 	if ($a['type'][0] == $b['type'][0]) {
 		$return = utf8_strcasecmp($a['name'][0], $b['name'][0]);
@@ -419,32 +419,32 @@ function eyeFeeds_sortFeeds_compare($a,$b) {
  *
  * @return array The saved feeds
  */
-function eyeFeeds_getSavedFeeds() {
-	$conf = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+function xenonFeeds_getSavedFeeds() {
+	$conf = xenonXML('getXMLconfig', array('xenonFeeds', 'conf.xml'));
 
 	if (!is_array($conf))
-		$conf = array('eyeFeeds' => array());
+		$conf = array('xenonFeeds' => array());
 
-	if (!is_array($conf['eyeFeeds'][0]))
-		$conf['eyeFeeds'][0] = array('base' => array());
+	if (!is_array($conf['xenonFeeds'][0]))
+		$conf['xenonFeeds'][0] = array('base' => array());
 
-	if (!is_array($conf['eyeFeeds'][0]['base'][0]))
-		$conf['eyeFeeds'][0]['base'][0] = array('feed' => array());
+	if (!is_array($conf['xenonFeeds'][0]['base'][0]))
+		$conf['xenonFeeds'][0]['base'][0] = array('feed' => array());
 
-	return $conf['eyeFeeds'][0]['base'][0];
+	return $conf['xenonFeeds'][0]['base'][0];
 }
 
-function eyeFeeds_replaceUrlMarksByEyeNavCalls($htmlText) {
+function xenonFeeds_replaceUrlMarksByEyeNavCalls($htmlText) {
 	$return = /* utf8 */ preg_replace_callback('/<a (.*?)href="(.*?)"(.*?)>/i',
-									eyeFeeds_replaceUrlMarksByEyeNavCalls_callback,
+									xenonFeeds_replaceUrlMarksByEyeNavCalls_callback,
 									$htmlText);
 	return $return;
 }
-function eyeFeeds_replaceUrlMarksByEyeNavCalls_callback($matches) {
+function xenonFeeds_replaceUrlMarksByEyeNavCalls_callback($matches) {
 	global $checknum;
-	return eyeFeeds_getEyeNavLinkFromUrl($matches[2]);
+	return xenonFeeds_getEyeNavLinkFromUrl($matches[2]);
 }
-function eyeFeeds_getEyeNavLinkFromUrl($url, $linkText=null) {
+function xenonFeeds_getEyeNavLinkFromUrl($url, $linkText=null) {
 	global $checknum;
 	$return = '<a href="#" onclick=\'sendMsg('.$checknum.',"contentLinkClick",eyeParam("url","'.urlencode($url).'"));return false;\'>';
 
@@ -457,21 +457,21 @@ function eyeFeeds_getEyeNavLinkFromUrl($url, $linkText=null) {
 /*********************************************************************************************/
 //		READING HISTORY FUNCTIONS
 /*********************************************************************************************/
-function eyeFeeds_loadReadingHistory() {
-	$conf = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+function xenonFeeds_loadReadingHistory() {
+	$conf = xenonXML('getXMLconfig', array('xenonFeeds', 'conf.xml'));
 
 	if (!is_array($conf))
-		$conf = array('eyeFeeds' => array());
+		$conf = array('xenonFeeds' => array());
 
-	if (!is_array($conf['eyeFeeds'][0]))
-		$conf['eyeFeeds'][0] = array('readingHistory' => array());
+	if (!is_array($conf['xenonFeeds'][0]))
+		$conf['xenonFeeds'][0] = array('readingHistory' => array());
 
-	if (!is_array($conf['eyeFeeds'][0]['readingHistory'][0]))
-		$conf['eyeFeeds'][0]['readingHistory'][0] = array('title' => array());
+	if (!is_array($conf['xenonFeeds'][0]['readingHistory'][0]))
+		$conf['xenonFeeds'][0]['readingHistory'][0] = array('title' => array());
 
-	$readingHistory = $conf['eyeFeeds'][0]['readingHistory'][0]['title'];
+	$readingHistory = $conf['xenonFeeds'][0]['readingHistory'][0]['title'];
 
-	$settings = eyeFeeds_loadSettings();
+	$settings = xenonFeeds_loadSettings();
 	$limitDate = time() - ($settings['readingHistoryDuration'][0] * 86400);
 	$change = false;
 	if (is_array($readingHistory)) {
@@ -483,20 +483,20 @@ function eyeFeeds_loadReadingHistory() {
 		}
 	}
 	if ($change) {
-		eyeFeeds_saveReadingHistory($readingHistory);
+		xenonFeeds_saveReadingHistory($readingHistory);
 	}
 	return $readingHistory;
 }
 
-function eyeFeeds_saveReadingHistory($newReadingHistory) {
-	$conf = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+function xenonFeeds_saveReadingHistory($newReadingHistory) {
+	$conf = xenonXML('getXMLconfig', array('xenonFeeds', 'conf.xml'));
 
-	$conf['eyeFeeds'][0]['readingHistory'][0]['title'] = $newReadingHistory;
-	return xenonXML('setXMLconfig', array('eyeFeeds', 'conf.xml', $conf));
+	$conf['xenonFeeds'][0]['readingHistory'][0]['title'] = $newReadingHistory;
+	return xenonXML('setXMLconfig', array('xenonFeeds', 'conf.xml', $conf));
 }
 
-function eyeFeeds_isTitleRead($url) {
-	$readingHistory = eyeFeeds_loadReadingHistory();
+function xenonFeeds_isTitleRead($url) {
+	$readingHistory = xenonFeeds_loadReadingHistory();
 
 	if (is_array($readingHistory)) {
 		foreach($readingHistory as $key => $title) {
@@ -508,8 +508,8 @@ function eyeFeeds_isTitleRead($url) {
 	return false;
 }
 
-function eyeFeeds_setTitleAsRead($url) {
-	$readingHistory = eyeFeeds_loadReadingHistory();
+function xenonFeeds_setTitleAsRead($url) {
+	$readingHistory = xenonFeeds_loadReadingHistory();
 	foreach($readingHistory as $title) {
 		if ($title['url'][0] == $url) {
 			return;
@@ -520,22 +520,22 @@ function eyeFeeds_setTitleAsRead($url) {
 		'url' => array($url)
 	);
 
-	eyeFeeds_saveReadingHistory($readingHistory);
+	xenonFeeds_saveReadingHistory($readingHistory);
 }
 
 /*********************************************************************************************/
 //		SETTINGS FUNCTIONS
 /*********************************************************************************************/
-function eyeFeeds_loadSettings() {
-	$conf = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+function xenonFeeds_loadSettings() {
+	$conf = xenonXML('getXMLconfig', array('xenonFeeds', 'conf.xml'));
 
 	if (!is_array($conf))
-		$conf = array('eyeFeeds' => array());
+		$conf = array('xenonFeeds' => array());
 
-	if (!is_array($conf['eyeFeeds'][0]))
-		$conf['eyeFeeds'][0] = array('settings' => array());
+	if (!is_array($conf['xenonFeeds'][0]))
+		$conf['xenonFeeds'][0] = array('settings' => array());
 
-	$settings = $conf['eyeFeeds'][0]['settings'][0];
+	$settings = $conf['xenonFeeds'][0]['settings'][0];
 	$settings['titlesNumber'][0] = $settings['titlesNumber'][0]? $settings['titlesNumber'][0] : EYEFEEDS_FEEDITEMS_FETCHNUMBER;
 	$settings['contentSize'][0] = $settings['contentSize'][0]? $settings['contentSize'][0] : EYEFEEDS_FEEDITEMS_CONTENT_DISPLAYEDSIZE;
 	$settings['cacheDuration'][0] = $settings['cacheDuration'][0]? $settings['cacheDuration'][0] : EYEFEEDS_FEEDITEMS_CACHEDURATION;
@@ -544,11 +544,11 @@ function eyeFeeds_loadSettings() {
 	return $settings;
 }
 
-function eyeFeeds_saveSettings($newSettings) {
-	$conf = xenonXML('getXMLconfig', array('eyeFeeds', 'conf.xml'));
+function xenonFeeds_saveSettings($newSettings) {
+	$conf = xenonXML('getXMLconfig', array('xenonFeeds', 'conf.xml'));
 
-	$conf['eyeFeeds'][0]['settings'][0] = $newSettings;
-	xenonXML('setXMLconfig', array('eyeFeeds', 'conf.xml', $conf));
+	$conf['xenonFeeds'][0]['settings'][0] = $newSettings;
+	xenonXML('setXMLconfig', array('xenonFeeds', 'conf.xml', $conf));
 }
 
 /*********************************************************************************************/
@@ -560,9 +560,9 @@ function eyeFeeds_saveSettings($newSettings) {
  * @param string $url
  * @return array The feed
  */
-function eyeFeeds_fetchFeedFromUrl($url, $forceRefresh=false) {
-	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/simplepie'.XE_CODE_EXTENSION);
-	$settings = eyeFeeds_loadSettings();
+function xenonFeeds_fetchFeedFromUrl($url, $forceRefresh=false) {
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFeeds/simplepie'.XE_CODE_EXTENSION);
+	$settings = xenonFeeds_loadSettings();
 
 	//fetch RSS feed's items
 	$simplePie = new SimplePie();
@@ -593,9 +593,9 @@ function eyeFeeds_fetchFeedFromUrl($url, $forceRefresh=false) {
  * @param string $url
  * @return array The feed's items
  */
-function eyeFeeds_fetchFeedItemsFromUrl($url, $forceRefresh=false) {
-	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/simplepie'.XE_CODE_EXTENSION);
-	$settings = eyeFeeds_loadSettings();
+function xenonFeeds_fetchFeedItemsFromUrl($url, $forceRefresh=false) {
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFeeds/simplepie'.XE_CODE_EXTENSION);
+	$settings = xenonFeeds_loadSettings();
 
 	//fetch RSS feed's items
 	$simplePie = new SimplePie();
@@ -651,7 +651,7 @@ function eyeFeeds_fetchFeedItemsFromUrl($url, $forceRefresh=false) {
 //		IMPORT/EXPORT FUNCTIONS
 /*********************************************************************************************/
 
-function eyeFeeds_importFeeds($rootFeed, $parentFolderId, $inputFilePath) {
+function xenonFeeds_importFeeds($rootFeed, $parentFolderId, $inputFilePath) {
 	//the given rootnode is the specified container of the imported feeds
 	if ($rootFeed['id'][0] == $parentFolderId) {
 		$fp = vfs('open',array($inputFilePath, 'r'));
@@ -672,7 +672,7 @@ function eyeFeeds_importFeeds($rootFeed, $parentFolderId, $inputFilePath) {
 		}
 
 		foreach($opml->body->outline as $outline) {
-			$newNode = eyeFeeds_createFeedNodeFromOpml($outline);
+			$newNode = xenonFeeds_createFeedNodeFromOpml($outline);
 			if ($newNode) {
 				$rootFeed['feed'][] = $newNode;
 			}
@@ -683,7 +683,7 @@ function eyeFeeds_importFeeds($rootFeed, $parentFolderId, $inputFilePath) {
 	else {
 		foreach($rootFeed['feed'] as $key => $value) {
 			if ($value['type'][0] == 'folder') {
-				$value = eyeFeeds_importFeeds($value, $parentFolderId, $inputFilePath);
+				$value = xenonFeeds_importFeeds($value, $parentFolderId, $inputFilePath);
 				if ($value !== false) {
 					$rootFeed['feed'][$key] = $value;
 					return $rootFeed;
@@ -695,7 +695,7 @@ function eyeFeeds_importFeeds($rootFeed, $parentFolderId, $inputFilePath) {
 	return false;
 }
 
-function eyeFeeds_createFeedNodeFromOpml($xmlObject) {
+function xenonFeeds_createFeedNodeFromOpml($xmlObject) {
 	if (! is_object($xmlObject)) {
 		return false;
 	}
@@ -720,7 +720,7 @@ function eyeFeeds_createFeedNodeFromOpml($xmlObject) {
 	if (isset($xmlObject->outline)) {
 		$subfeeds = array();
 		foreach($xmlObject->outline as $outline) {
-			$subfeeds[] = eyeFeeds_createFeedNodeFromOpml($outline);
+			$subfeeds[] = xenonFeeds_createFeedNodeFromOpml($outline);
 		}
 
 		$feed = array(
@@ -759,9 +759,9 @@ function eyeFeeds_createFeedNodeFromOpml($xmlObject) {
 	return $feed;
 }
 
-function eyeFeeds_exportFeeds($outputFilePath) {
+function xenonFeeds_exportFeeds($outputFilePath) {
 	global $currentUser;
-	$savedFeeds = eyeFeeds_getSavedFeeds();
+	$savedFeeds = xenonFeeds_getSavedFeeds();
 	$outputFilePath = um('getCurrentUserDir').FILES_USER_DIR.$outputFilePath;
 
 	$outputXml = new SimpleXMLElement('<opml version="2.0"></opml>');
@@ -769,12 +769,12 @@ function eyeFeeds_exportFeeds($outputFilePath) {
 	//head
 	$outputXml->addChild('head');
 	$outputXml->head->addChild('title');
-	$outputXml->head->title = $currentUser.' RSS Feeds (exported from eyeFeeds)';
+	$outputXml->head->title = $currentUser.' RSS Feeds (exported from xenonFeeds)';
 
 	//body
 	$outputXml->addChild('body');
 	foreach($savedFeeds['feed'] as $feed) {
-		eyeFeeds_attachFeedNodeToOpml($outputXml->body, $feed);
+		xenonFeeds_attachFeedNodeToOpml($outputXml->body, $feed);
 	}
 
 	if (!vfs('create',array($outputFilePath))) {
@@ -789,7 +789,7 @@ function eyeFeeds_exportFeeds($outputFilePath) {
 	xenonx('messageBox',array('content'=> 'Feeds list successfully exported'));
 }
 
-function eyeFeeds_attachFeedNodeToOpml($xmlObject, $feed) {
+function xenonFeeds_attachFeedNodeToOpml($xmlObject, $feed) {
 	if (!isset($xmlObject->outline)) {
 		$xmlObject->addChild('outline');
 		$outputXml = $xmlObject->outline;
@@ -803,7 +803,7 @@ function eyeFeeds_attachFeedNodeToOpml($xmlObject, $feed) {
 
 	if ($feed['type'][0] == 'folder') {
 		foreach($feed['feed'] as $subfeed) {
-			eyeFeeds_attachFeedNodeToOpml($outputXml, $subfeed);
+			xenonFeeds_attachFeedNodeToOpml($outputXml, $subfeed);
 		}
 	}
 	else {

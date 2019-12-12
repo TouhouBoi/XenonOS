@@ -154,7 +154,7 @@ function eyeNav_lib_addContextMenu($menuName, $nodeName, $addOnly=false) {
 	);
 
 	$myMenu->addEntry(
-		'<img id="' . $menuName . 'addfolder_menu" style="height: 16px; width: 16px;" src="index.php?extern=apps/eyeFeeds/gfx/addfolder_menu.png" /> &nbsp; '.utf8_htmlspecialchars(i18n('translate',array('Add folder')), ENT_QUOTES),
+		'<img id="' . $menuName . 'addfolder_menu" style="height: 16px; width: 16px;" src="index.php?extern=apps/xenonFeeds/gfx/addfolder_menu.png" /> &nbsp; '.utf8_htmlspecialchars(i18n('translate',array('Add folder')), ENT_QUOTES),
 		'nav_addFolder',
 		'nav_addFolder',
 		$BookmarkId,
@@ -645,7 +645,7 @@ function eyeNav_on_nav_edit_folder($params=null) {
 		'y' => 184,
 		'width' => 60,
 		'enabled' => 1,
-		'img' => 'index.php?extern=apps/eyeFeeds/gfx/editfolder.png'
+		'img' => 'index.php?extern=apps/xenonFeeds/gfx/editfolder.png'
 	));
 	$applyButton->addFriend($nameTextbox);
 	$applyButton->show(0);

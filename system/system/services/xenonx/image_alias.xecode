@@ -161,7 +161,7 @@ $pic22 = array(
 	'xenonContacts',
 	'xenonDocs',
 	'xenonFTP',
-	'eyeFeeds',
+	'xenonFeeds',
 	'xenonFiles',
 	'eyeGroups',
 	'xenonHelp',
@@ -307,25 +307,25 @@ $alias[1][APP_DIR . '/xeControl/gfx/exec.png'] = 'icons/16x16/exec.png';
 $alias[1][APP_DIR . '/xeControl/gfx/norepeat.png'] = 'images/' . APP_DIR . '/xeControl/norepeat.png';
 $alias[1][APP_DIR . '/xeControl/gfx/repeat.png'] = 'images/' . APP_DIR . '/xeControl/repeat.png';
 
-// eyeFeeds
-$alias[1][APP_DIR . '/eyeFeeds/gfx/addfeed.png'] = 'images/' . APP_DIR . '/eyeFeeds/toolbar/addfeed.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/addfeed_menu.png'] = 'images/' . APP_DIR . '/eyeFeeds/16x16/addfeed_menu.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/addfolder_menu.png'] = 'icons/16x16/newfolder.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/delfeed.png'] = 'images/' . APP_DIR . '/eyeFeeds/toolbar/delfeed.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/delfeedfolder.png'] = 'images/' . APP_DIR . '/eyeFeeds/toolbar/delfeedfolder.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/delfeedfolder_menu.png'] = 'images/' . APP_DIR . '/eyeFeeds/16x16/delfeedfolder_menu.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/editfeed.png'] = 'images/' . APP_DIR . '/eyeFeeds/20x20/editfeed.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/editfeedfolder.png'] = 'images/' . APP_DIR . '/eyeFeeds/toolbar/editfeedfolder.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/editfeedfolder_menu.png'] = 'images/' . APP_DIR . '/eyeFeeds/16x16/editfeedfolder_menu.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/editfolder.png'] = 'images/' . APP_DIR . '/eyeFeeds/20x20/editfolder.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/export.png'] = 'images/' . APP_DIR . '/eyeFeeds/20x20/export.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/import.png'] = 'images/' . APP_DIR . '/eyeFeeds/20x20/import.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/item_read.png'] = 'images/' . APP_DIR . '/eyeFeeds/16x16/item_read.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/item_unread.png'] = 'images/' . APP_DIR . '/eyeFeeds/16x16/item_unread.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/newfolder.png'] = 'images/toolbar/newfolder.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/search.png'] = 'images/' . APP_DIR . '/eyeFeeds/16x16/search.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/settings.png'] = 'images/' . APP_DIR . '/eyeFeeds/20x20/settings.png';
-$alias[1][APP_DIR . '/eyeFeeds/gfx/settings_logo.png'] = 'images/' . APP_DIR . '/eyeFeeds/settings.png';
+// xenonFeeds
+$alias[1][APP_DIR . '/xenonFeeds/gfx/addfeed.png'] = 'images/' . APP_DIR . '/xenonFeeds/toolbar/addfeed.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/addfeed_menu.png'] = 'images/' . APP_DIR . '/xenonFeeds/16x16/addfeed_menu.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/addfolder_menu.png'] = 'icons/16x16/newfolder.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/delfeed.png'] = 'images/' . APP_DIR . '/xenonFeeds/toolbar/delfeed.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/delfeedfolder.png'] = 'images/' . APP_DIR . '/xenonFeeds/toolbar/delfeedfolder.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/delfeedfolder_menu.png'] = 'images/' . APP_DIR . '/xenonFeeds/16x16/delfeedfolder_menu.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/editfeed.png'] = 'images/' . APP_DIR . '/xenonFeeds/20x20/editfeed.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/editfeedfolder.png'] = 'images/' . APP_DIR . '/xenonFeeds/toolbar/editfeedfolder.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/editfeedfolder_menu.png'] = 'images/' . APP_DIR . '/xenonFeeds/16x16/editfeedfolder_menu.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/editfolder.png'] = 'images/' . APP_DIR . '/xenonFeeds/20x20/editfolder.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/export.png'] = 'images/' . APP_DIR . '/xenonFeeds/20x20/export.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/import.png'] = 'images/' . APP_DIR . '/xenonFeeds/20x20/import.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/item_read.png'] = 'images/' . APP_DIR . '/xenonFeeds/16x16/item_read.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/item_unread.png'] = 'images/' . APP_DIR . '/xenonFeeds/16x16/item_unread.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/newfolder.png'] = 'images/toolbar/newfolder.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/search.png'] = 'images/' . APP_DIR . '/xenonFeeds/16x16/search.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/settings.png'] = 'images/' . APP_DIR . '/xenonFeeds/20x20/settings.png';
+$alias[1][APP_DIR . '/xenonFeeds/gfx/settings_logo.png'] = 'images/' . APP_DIR . '/xenonFeeds/settings.png';
 
 // xenonFiles
 $alias[1][APP_DIR . '/xenonFiles/gfx/Back.png'] = 'images/' . APP_DIR . '/xenonFiles/back.png';

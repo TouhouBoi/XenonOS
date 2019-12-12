@@ -14,16 +14,16 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/app'.XE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/func'.XE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/dialogs'.XE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/settings'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFeeds/app'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFeeds/func'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFeeds/dialogs'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFeeds/settings'.XE_CODE_EXTENSION);
 
 //==============================================
 //== General XML structure of a RSS save file ==
 //==============================================
 //
-//<eyeFeeds>
+//<xenonFeeds>
 //	<base>
 //		<feed>
 //			<id>myFolderMD5Id</id>
@@ -43,7 +43,7 @@ include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/settings'.XE_CODE_EXTENSION);
 //			<url>...</url>
 //		</feed>
 //	</base>
-//</eyeFeeds>
+//</xenonFeeds>
 
 /*********************************************************************************************/
 /*********************************************************************************************/
@@ -55,42 +55,42 @@ include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFeeds/settings'.XE_CODE_EXTENSION);
 //		EVENTS RAISED DIRECTLY BY WIDGETS
 /*********************************************************************************************/
 
-function eyeFeeds_on_initComplete($params=null) {
-	eyeFeeds_clearFeedItems();
-	eyeFeeds_clearItemContent();
-	$tree = eyeFeeds_drawFeedsTree(eyeFeeds_getSavedFeeds());
+function xenonFeeds_on_initComplete($params=null) {
+	xenonFeeds_clearFeedItems();
+	xenonFeeds_clearItemContent();
+	$tree = xenonFeeds_drawFeedsTree(xenonFeeds_getSavedFeeds());
 	$tree->expandTree();
 }
 
 //TOOLBAR
-function eyeFeeds_on_addFeed_ITM($params=null) {
-	eyeFeeds_createAddFeedDialog();
+function xenonFeeds_on_addFeed_ITM($params=null) {
+	xenonFeeds_createAddFeedDialog();
 }
-function eyeFeeds_on_addFolder_ITM($params=null) {
-	eyeFeeds_createAddFolderDialog();
+function xenonFeeds_on_addFolder_ITM($params=null) {
+	xenonFeeds_createAddFolderDialog();
 }
-function eyeFeeds_on_editFeedFolder_ITM($params=null) {
-	$feeds = eyeFeeds_getSavedFeeds();
-	$selectedFeed = eyeFeeds_getFeedFromId($feeds['feed'], $GLOBALS['selectedFeedId_HID']->text);
+function xenonFeeds_on_editFeedFolder_ITM($params=null) {
+	$feeds = xenonFeeds_getSavedFeeds();
+	$selectedFeed = xenonFeeds_getFeedFromId($feeds['feed'], $GLOBALS['selectedFeedId_HID']->text);
 	if ($selectedFeed) {
 		if ($selectedFeed['type'][0] == 'folder') {
-			eyeFeeds_createEditFolderDialog($selectedFeed);
+			xenonFeeds_createEditFolderDialog($selectedFeed);
 		}
 		else {
-			eyeFeeds_createEditFeedDialog($selectedFeed);
+			xenonFeeds_createEditFeedDialog($selectedFeed);
 		}
 	}
 }
-function eyeFeeds_on_delFeedFolder_ITM($params=null) {
-	$feeds = eyeFeeds_getSavedFeeds();
-	$selectedFeed = eyeFeeds_getFeedFromId($feeds['feed'], $GLOBALS['selectedFeedId_HID']->text);
+function xenonFeeds_on_delFeedFolder_ITM($params=null) {
+	$feeds = xenonFeeds_getSavedFeeds();
+	$selectedFeed = xenonFeeds_getFeedFromId($feeds['feed'], $GLOBALS['selectedFeedId_HID']->text);
 	if ($selectedFeed)
-		eyeFeeds_createConfirmDeleteDialog($selectedFeed);
+		xenonFeeds_createConfirmDeleteDialog($selectedFeed);
 }
-function eyeFeeds_on_import_ITM($params=null) {
-	eyeFeeds_createImportFeedsDialog();
+function xenonFeeds_on_import_ITM($params=null) {
+	xenonFeeds_createImportFeedsDialog();
 }
-function eyeFeeds_on_export_ITM($params=null) {
+function xenonFeeds_on_export_ITM($params=null) {
 	global $checknum;
 	$options = array(
 		XENONDIALOG_TYPE_SAVEFILE,
@@ -106,25 +106,25 @@ function eyeFeeds_on_export_ITM($params=null) {
 	);
 	proc('launch',array('xenonDialog',$options));
 }
-function eyeFeeds_on_doExport($params=null) {
+function xenonFeeds_on_doExport($params=null) {
 	if (! is_array($params['arg']) || !$params['arg'][0]) {
 		return;
 	}
-	eyeFeeds_exportFeeds($params['arg'][0]);
+	xenonFeeds_exportFeeds($params['arg'][0]);
 }
-function eyeFeeds_on_refreshFeed_ITM($params=null) {
+function xenonFeeds_on_refreshFeed_ITM($params=null) {
 	if (isFromBouncedRequest($params)) {
-		$feeds = eyeFeeds_getSavedFeeds();
-		$selectedFeed = eyeFeeds_getFeedFromId($feeds['feed'], $GLOBALS['selectedFeedId_HID']->text);
+		$feeds = xenonFeeds_getSavedFeeds();
+		$selectedFeed = xenonFeeds_getFeedFromId($feeds['feed'], $GLOBALS['selectedFeedId_HID']->text);
 		if (!$selectedFeed)
 			return;
 
-		eyeFeeds_displayFeedItems($selectedFeed, true);
+		xenonFeeds_displayFeedItems($selectedFeed, true);
 		return;
 	}
 
-	eyeFeeds_clearFeedItems();
-	eyeFeeds_clearItemContent();
+	xenonFeeds_clearFeedItems();
+	xenonFeeds_clearItemContent();
 	$GLOBALS['loading_CTN']->unhide();
 
 	$bouncedRequestParams = array(
@@ -132,31 +132,31 @@ function eyeFeeds_on_refreshFeed_ITM($params=null) {
 	);
 	bounceRequest($bouncedRequestParams);
 }
-function eyeFeeds_on_settings_ITM($params="") {
+function xenonFeeds_on_settings_ITM($params="") {
 	//xenonx('messageBox',array('content'=> 'Not Implemented Yet'));
-	eyeFeeds_createSettingsDialog();
+	xenonFeeds_createSettingsDialog();
 }
 
-function eyeFeeds_on_help_ITM($params="") {
-	proc('launch',array('xenonHelp','eyeFeeds'));
+function xenonFeeds_on_help_ITM($params="") {
+	proc('launch',array('xenonHelp','xenonFeeds'));
 }
 
-function eyeFeeds_on_feeds_TREE($params=null) {
+function xenonFeeds_on_feeds_TREE($params=null) {
 	if (isFromBouncedRequest($params)) {
-		$feeds = eyeFeeds_getSavedFeeds();
-		$feed = eyeFeeds_getFeedFromId($feeds['feed'], $params['feedId'][0]);
-		eyeFeeds_displayFeedItems($feed);
+		$feeds = xenonFeeds_getSavedFeeds();
+		$feed = xenonFeeds_getFeedFromId($feeds['feed'], $params['feedId'][0]);
+		xenonFeeds_displayFeedItems($feed);
 		$GLOBALS['itemsList_BOX']->setTitle($feed['name'][0]);
 		$GLOBALS['itemContent_BOX']->setTitle('Select an item to read...');
-		$GLOBALS['eyeFeeds_WND']->setTitle($feed['name'][0].' - '.i18n('translate',array('RSS Feed Reader')));
+		$GLOBALS['xenonFeeds_WND']->setTitle($feed['name'][0].' - '.i18n('translate',array('RSS Feed Reader')));
 		return;
 	}
 
 	//the name of an item of the tree is 'typeOfNode_feedId'
 	//(the first underscore separates the type of the node from the feed's id)
 	$feedId = substr($params['itemName'][0], strpos($params['itemName'][0], '_') + 1); // utf8
-	$feeds = eyeFeeds_getSavedFeeds();
-	$feed = eyeFeeds_getFeedFromId($feeds['feed'], $feedId);
+	$feeds = xenonFeeds_getSavedFeeds();
+	$feed = xenonFeeds_getFeedFromId($feeds['feed'], $feedId);
 
 	$GLOBALS['selectedFeedId_HID']->setText($feedId);
 
@@ -164,8 +164,8 @@ function eyeFeeds_on_feeds_TREE($params=null) {
 		$GLOBALS['loading_CTN']->unhide();
 		$GLOBALS['currentFeedUrl_HID']->setText(serialize($feed['url'][0]));
 
-		eyeFeeds_clearFeedItems();
-		eyeFeeds_clearItemContent();
+		xenonFeeds_clearFeedItems();
+		xenonFeeds_clearItemContent();
 		$bouncedRequestParams = array(
 			'__signal' => 'feeds_TREE',
 			'feedId' => $feedId
@@ -174,54 +174,54 @@ function eyeFeeds_on_feeds_TREE($params=null) {
 	}
 }
 
-function eyeFeeds_on_feeds_CMN_addFeed_ENT($params=null) {
-	$feeds = eyeFeeds_getSavedFeeds();
-	$feed = eyeFeeds_getFeedFromId($feeds['feed'], $params);
+function xenonFeeds_on_feeds_CMN_addFeed_ENT($params=null) {
+	$feeds = xenonFeeds_getSavedFeeds();
+	$feed = xenonFeeds_getFeedFromId($feeds['feed'], $params);
 	$GLOBALS['selectedFeedId_HID']->setText($params);
 	$GLOBALS['feeds_TREE']->selectItem('feeds#item_'.$params);
-	eyeFeeds_on_addFeed_ITM();
+	xenonFeeds_on_addFeed_ITM();
 }
-function eyeFeeds_on_feeds_CMN_addFolder_ENT($params=null) {
-	$feeds = eyeFeeds_getSavedFeeds();
-	$feed = eyeFeeds_getFeedFromId($feeds['feed'], $params);
+function xenonFeeds_on_feeds_CMN_addFolder_ENT($params=null) {
+	$feeds = xenonFeeds_getSavedFeeds();
+	$feed = xenonFeeds_getFeedFromId($feeds['feed'], $params);
 	$GLOBALS['selectedFeedId_HID']->setText($params);
 	$GLOBALS['feeds_TREE']->selectItem('feeds#item_'.$params);
-	eyeFeeds_on_addFolder_ITM();
+	xenonFeeds_on_addFolder_ITM();
 }
-function eyeFeeds_on_feeds_CMN_edit_ENT($params=null) {
-	$feeds = eyeFeeds_getSavedFeeds();
-	$feed = eyeFeeds_getFeedFromId($feeds['feed'], $params);
+function xenonFeeds_on_feeds_CMN_edit_ENT($params=null) {
+	$feeds = xenonFeeds_getSavedFeeds();
+	$feed = xenonFeeds_getFeedFromId($feeds['feed'], $params);
 	$GLOBALS['selectedFeedId_HID']->setText($params);
 	$GLOBALS['feeds_TREE']->selectItem('feeds#item_'.$params);
-	eyeFeeds_on_editFeedFolder_ITM();
+	xenonFeeds_on_editFeedFolder_ITM();
 }
-function eyeFeeds_on_feeds_CMN_del_ENT($params=null) {
-	$feeds = eyeFeeds_getSavedFeeds();
-	$feed = eyeFeeds_getFeedFromId($feeds['feed'], $params);
+function xenonFeeds_on_feeds_CMN_del_ENT($params=null) {
+	$feeds = xenonFeeds_getSavedFeeds();
+	$feed = xenonFeeds_getFeedFromId($feeds['feed'], $params);
 	$GLOBALS['selectedFeedId_HID']->setText($params);
 	$GLOBALS['feeds_TREE']->selectItem('feeds#item_'.$params);
-	eyeFeeds_on_delFeedFolder_ITM();
+	xenonFeeds_on_delFeedFolder_ITM();
 }
 
-function eyeFeeds_on_feedItemClick($params=null) {
-	$item = eyeFeeds_getSelectedFeedItem();
-	eyeFeeds_displayItemContent($item);
+function xenonFeeds_on_feedItemClick($params=null) {
+	$item = xenonFeeds_getSelectedFeedItem();
+	xenonFeeds_displayItemContent($item);
 
 	global $myPid;
 	$itemId = md5($item['id']);
 	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_titleIcon_'.$itemId.'").src="'.EYEFEEDS_FEEDITEM_ICONURL_READ.'";'));
 }
 
-function eyeFeeds_on_feedItemDblClick($params=null) {
-	$item = eyeFeeds_getSelectedFeedItem();
+function xenonFeeds_on_feedItemDblClick($params=null) {
+	$item = xenonFeeds_getSelectedFeedItem();
 	proc('launch', array('eyeNav', $item['permalink']));
 }
 
-function eyeFeeds_on_openEnclosure($params=null) {
+function xenonFeeds_on_openEnclosure($params=null) {
 	global $myPid;
 	$itemId = $params['itemId'][0];
 	$enc = $params['enc'][0];
-	$item = eyeFeeds_getFeedItem($itemId);
+	$item = xenonFeeds_getFeedItem($itemId);
 
 	//prevent opening several times the same window
 	if ($GLOBALS['enclosure_WND_'.$itemId]) {
@@ -236,14 +236,14 @@ function eyeFeeds_on_openEnclosure($params=null) {
 		'cent' => 1,
 		'width' => 500,
 		'height' => 410,
-		'title' => 'eyeFeeds - Enclosure',
+		'title' => 'xenonFeeds - Enclosure',
 		'removepid' => 0
 	));
 	$enclosureWindow->show();
 	$enclosureWindow->setRawContent($item['enclosures'][$enc]['embed']);
 }
 
-function eyeFeeds_on_contentLinkClick($params=null) {
+function xenonFeeds_on_contentLinkClick($params=null) {
 	if (! is_array($params) || !$params['url'])
 		return;
 	$url = urldecode($params['url'][0]);
@@ -255,13 +255,13 @@ function eyeFeeds_on_contentLinkClick($params=null) {
 //		OTHER EVENTS
 /*********************************************************************************************/
 
-function eyeFeeds_on_windowResize($params=null) {
+function xenonFeeds_on_windowResize($params=null) {
 	$newWidth = intval($params['arg'][0]);
 	$newHeight = intval($params['arg'][1]);
 
 	//update window properties
-	$GLOBALS['eyeFeeds_WND']->setWidth($newWidth);
-	$GLOBALS['eyeFeeds_WND']->setHeight($newHeight);
+	$GLOBALS['xenonFeeds_WND']->setWidth($newWidth);
+	$GLOBALS['xenonFeeds_WND']->setHeight($newHeight);
 
 	//LEFT/RIGHT SPLITTER
 	$GLOBALS['leftRight_SPLT']->setWidth($newWidth - 8);
@@ -271,9 +271,9 @@ function eyeFeeds_on_windowResize($params=null) {
 	$GLOBALS['itemsContent_SPLT']->setWidth($GLOBALS['leftRight_SPLT']->width - $GLOBALS['leftRight_SPLT']->position - 8);
 	$GLOBALS['itemsContent_SPLT']->setHeight($newHeight - 96);
 
-	eyeFeeds_doResize();
+	xenonFeeds_doResize();
 }
-function eyeFeeds_on_leftRightSplitResize($params=null) {
+function xenonFeeds_on_leftRightSplitResize($params=null) {
 	$newLeftWidth = intval($params['arg'][0]);
 	$newRightWidth = intval($params['arg'][1]);
 
@@ -282,16 +282,16 @@ function eyeFeeds_on_leftRightSplitResize($params=null) {
 
 	$GLOBALS['itemsContent_SPLT']->setWidth($newRightWidth - 5);
 
-	eyeFeeds_doResize();
+	xenonFeeds_doResize();
 }
-function eyeFeeds_on_itemsContentSplitResize($params=null) {
+function xenonFeeds_on_itemsContentSplitResize($params=null) {
 	$newItemsHeight = intval($params['arg'][0]);
 	$GLOBALS['itemsContent_SPLT']->position = $newItemsHeight;
 	eyeWidgets('serialize',array($GLOBALS['itemsContent_SPLT']));
 
-	eyeFeeds_doResize();
+	xenonFeeds_doResize();
 }
-function eyeFeeds_doResize() {
+function xenonFeeds_doResize() {
 	global $myPid;
 
 	//LEFT PANEL - BOX
@@ -317,15 +317,15 @@ function eyeFeeds_doResize() {
 	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_content_LBL_Container").style.height="'.($GLOBALS['itemContent_BOX']->height - 36).'px";'));
 }
 
-function eyeFeeds_on_fullScreen(){
+function xenonFeeds_on_fullScreen(){
 	global $myPid;
-	$GLOBALS['eyeFeeds_WND']->setFullScreen();
+	$GLOBALS['xenonFeeds_WND']->setFullScreen();
 }
-function eyeFeeds_on_Message($params="") {
+function xenonFeeds_on_Message($params="") {
 	eyeWidgets('updateContent', $params);
 }
 
-function eyeFeeds_on_Close(){
+function xenonFeeds_on_Close(){
 	proc('end');
 }
 

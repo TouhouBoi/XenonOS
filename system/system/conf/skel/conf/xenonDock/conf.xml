@@ -217,10 +217,10 @@
 						<type>icon</type>
 					</entry-4>
 					<entry-5>
-						<command>eyeFeeds.app</command>
+						<command>xenonFeeds.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeFeeds.png</image>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonFeeds.png</image>
 						<text>RSS Feed Reader</text>
 						<type>icon</type>
 					</entry-5>

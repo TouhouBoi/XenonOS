@@ -17,19 +17,19 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 define('EYEFEEDS_WIN_CONFDLG_HEIGHT',260);
 define('EYEFEEDS_WIN_CONFDLG_WIDTH',400);
 
-function eyeFeeds_createSettingsDialog($params=null) {
+function xenonFeeds_createSettingsDialog($params=null) {
 	global $checknum, $myPid;
 
-	$savedSettings = eyeFeeds_loadSettings();
+	$savedSettings = xenonFeeds_loadSettings();
 
 	$mainWindow = new Window(array(
 		'name' => 'settings_DLG',
-		'father' => 'eyeFeeds_WND',
+		'father' => 'xenonFeeds_WND',
 		'cent' => 1,
 		'type' => NOLIST_CLOSE_WINDOW,
 		'width' => EYEFEEDS_WIN_CONFDLG_WIDTH,
 		'height' => EYEFEEDS_WIN_CONFDLG_HEIGHT,
-		'title' => 'eyeFeeds',
+		'title' => 'xenonFeeds',
 		'removepid' => 0
 	));
 	$mainWindow->show();
@@ -39,7 +39,7 @@ function eyeFeeds_createSettingsDialog($params=null) {
 		'father' => 'settings_DLG_Content',
 		'x' => 10,
 		'y' => 10,
-		'url' => 'index.php?extern=apps/eyeFeeds/gfx/settings_logo.png'
+		'url' => 'index.php?extern=apps/xenonFeeds/gfx/settings_logo.png'
 	));
 	$logo->show();
 
@@ -207,13 +207,13 @@ function eyeFeeds_createSettingsDialog($params=null) {
 	$saveButton->show(0);
 }
 
-function eyeFeeds_on_settings_cancel_BTN($params=null) {
+function xenonFeeds_on_settings_cancel_BTN($params=null) {
 	if (is_object($GLOBALS['settings_DLG'])) {
 		$GLOBALS['settings_DLG']->close();
 	}
 }
 
-function eyeFeeds_on_settings_save_BTN($params=null) {
+function xenonFeeds_on_settings_save_BTN($params=null) {
 	$titlesNumber = intval($GLOBALS['settings_titlesNumber_TXTBOX']->text);
 	$contentSize = intval($GLOBALS['settings_contentSize_TXTBOX']->text);
 	$cacheDuration = intval($GLOBALS['settings_cacheDuration_TXTBOX']->text);
@@ -231,7 +231,7 @@ function eyeFeeds_on_settings_save_BTN($params=null) {
 		'readingHistoryDuration' => array($readingHistoryDuration)
 	);
 
-	if (eyeFeeds_saveSettings($newSettings)) {
+	if (xenonFeeds_saveSettings($newSettings)) {
 		xenonx('messageBox',array('content'=> 'Settings saved successfully'));
 	}
 	else {

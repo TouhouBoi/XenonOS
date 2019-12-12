@@ -23,11 +23,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 define('EYEFEEDS_WIN_HEIGHT',600);
 define('EYEFEEDS_WIN_WIDTH',800);
 
-function eyeFeeds_run($params=null) {
+function xenonFeeds_run($params=null) {
 	global $checknum, $myPid;
 
 	$mainWindow = new Window(array(
-		'name' => 'eyeFeeds_WND',
+		'name' => 'xenonFeeds_WND',
 		'father' => 'xenonApps',
 		'cent' => 1,
 		'width' => EYEFEEDS_WIN_WIDTH,
@@ -45,30 +45,30 @@ function eyeFeeds_run($params=null) {
 	/**********************************************************/
 	$toolbar = new Toolbar(array(
 		'name' => 'toolbar_TLB',
-		'father' => 'eyeFeeds_WND_Content',
+		'father' => 'xenonFeeds_WND_Content',
 		'x' => 5,
 		'y' => 5
 	));
 	$toolbar->show();
 	$toolbar->addItem(
 		'addFeed_ITM',
-		'index.php?extern=apps/eyeFeeds/gfx/addfeed.png',
+		'index.php?extern=apps/xenonFeeds/gfx/addfeed.png',
 		'Add feed'
 	);
 	$toolbar->addItem(
 		'addFolder_ITM',
-		'index.php?extern=apps/eyeFeeds/gfx/newfolder.png',
+		'index.php?extern=apps/xenonFeeds/gfx/newfolder.png',
 		'Add folder'
 	);
 	$toolbar->addLine();
 	$toolbar->addItem(
 		'editFeedFolder_ITM',
-		'index.php?extern=apps/eyeFeeds/gfx/editfeedfolder.png',
+		'index.php?extern=apps/xenonFeeds/gfx/editfeedfolder.png',
 		'Edit'
 	);
 	$toolbar->addItem(
 		'delFeedFolder_ITM',
-		'index.php?extern=apps/eyeFeeds/gfx/delfeedfolder.png',
+		'index.php?extern=apps/xenonFeeds/gfx/delfeedfolder.png',
 		'Delete'
 	);
 	$toolbar->addLine();
@@ -79,18 +79,18 @@ function eyeFeeds_run($params=null) {
 	);
 	$toolbar->addItem(
 		'import_ITM',
-		'index.php?extern=apps/eyeFeeds/gfx/import.png',
+		'index.php?extern=apps/xenonFeeds/gfx/import.png',
 		'Import'
 	);
 	$toolbar->addItem(
 		'export_ITM',
-		'index.php?extern=apps/eyeFeeds/gfx/export.png',
+		'index.php?extern=apps/xenonFeeds/gfx/export.png',
 		'Export'
 	);
 	$toolbar->addLine();
 	$toolbar->addItem(
 		'settings_ITM',
-		'index.php?extern=apps/eyeFeeds/gfx/settings.png',
+		'index.php?extern=apps/xenonFeeds/gfx/settings.png',
 		'Settings'
 	);
 	$toolbar->addItem(
@@ -111,7 +111,7 @@ function eyeFeeds_run($params=null) {
 	//LEFT/RIGHT SPLITTER
 	$leftRightSplitter = new Split(array(
 		'name' => 'leftRight_SPLT',
-		'father' => 'eyeFeeds_WND_Content',
+		'father' => 'xenonFeeds_WND_Content',
 		'x' => 4,
 		'y' => 64,
 		'orientation' => SPLIT_VERTICAL,
@@ -152,7 +152,7 @@ function eyeFeeds_run($params=null) {
 	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_tree_CTN_Container").style.overflow="auto";'));
 
 	//FEEDS TREE
-	//@see func.xecode#eyeFeeds_drawFeedsTree()
+	//@see func.xecode#xenonFeeds_drawFeedsTree()
 
 	/**********************************************************/
 	//		RIGHT PANEL (ITEMS LIST + OUTLINE)
@@ -184,7 +184,7 @@ function eyeFeeds_run($params=null) {
 	$titlesBox->show(0);
 
 	//ITEMS LIST
-	//@see [func.xecode] eyeFeeds_clearFeedItems()
+	//@see [func.xecode] xenonFeeds_clearFeedItems()
 
 	//ITEM'S CONTENT BOX
 	$titlesBox = new Box(array(
@@ -248,14 +248,14 @@ function eyeFeeds_run($params=null) {
 
 	$currentFeedUrl = new Hidden(array(
 		'name' =>'currentFeedUrl_HID',
-		'father' => 'eyeFeeds_WND_Content',
+		'father' => 'xenonFeeds_WND_Content',
 		'text' => serialize('')
 	));
 	eyeWidgets('serialize',array($currentFeedUrl));
 
 	$selectedFeedId = new Hidden(array(
 		'name' =>'selectedFeedId_HID',
-		'father' => 'eyeFeeds_WND_Content',
+		'father' => 'xenonFeeds_WND_Content',
 		'text' => ''
 	));
 	eyeWidgets('serialize',array($selectedFeedId));
@@ -266,7 +266,7 @@ function eyeFeeds_run($params=null) {
 }
 
 
-function eyeFeeds_end($params=null) {
+function xenonFeeds_end($params=null) {
 	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }
