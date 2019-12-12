@@ -14,12 +14,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeSheets_run($params=null) {
+function xenonExcel_run($params=null) {
 	global $myPid;
 	global $checknum;
 
 	$myWindow = new Window(array(
-		'name'=>'eyeSheetsWND',
+		'name'=>'xenonExcelWND',
 		'father'=>'xenonApps',
 		'cent'=>1,
 		'width'=>950,
@@ -56,19 +56,19 @@ function eyeSheets_run($params=null) {
 		$useCode=0;
 	}
 	$myFrame = new Iframe(array(
-		'name'=>'eyeSheetsFrame',
-		'father'=>'eyeSheetsWND_Content',
+		'name'=>'xenonExcelFrame',
+		'father'=>'xenonExcelWND_Content',
 		'x'=>0,
 		'y'=>0,
 		'height' => $myWindow->height - 24,
 		'width' => $myWindow->width - 2,
 		'scroll'=>0,
-		'url'=>"index.php?extern=apps/eyeSheets/spread.xecode&type=dynamic&type=dynamic&params[]=".$myPid."&params[]=".$checknum."&params[]=".$useCode));
+		'url'=>"index.php?extern=apps/xenonExcel/spread.xecode&type=dynamic&type=dynamic&params[]=".$myPid."&params[]=".$checknum."&params[]=".$useCode));
 	$myFrame->show();
 	$myFrame->focus();
 }
 
-function eyeSheets_end($params=null) {
+function xenonExcel_end($params=null) {
 	global $myPid;
 	$dir = um('getCurrentUserDir').'/tmp/';
 	if ($handle = opendir($dir)) {

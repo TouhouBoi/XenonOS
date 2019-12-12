@@ -32,10 +32,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 $alias[1][APP_DIR . '/xenonCalendar/css/xenonCalendar.css'] = 'css/'.APP_DIR.'/xenonCalendar/xenonCalendar.css';
 $alias[1][APP_DIR . '/xenonFTP/css/xenonFTP.css'] = 'css/'.APP_DIR.'/xenonFTP/xenonFTP.css';
 $alias[1][APP_DIR . '/xenonManageApps/css/xenonManageApps.css'] = 'css/'.APP_DIR.'/xenonManageApps/xenonManageApps.css';
-$alias[1][APP_DIR . '/eyeSheets/print.css'] = 'css/'.APP_DIR.'/eyeSheets/print.css';
-$alias[1][APP_DIR . '/eyeSheets/print_noline.css'] = 'css/'.APP_DIR.'/eyeSheets/print_noline.css';
-$alias[1][APP_DIR . '/eyeSheets/styles.css'] = 'css/'.APP_DIR.'/eyeSheets/styles.css';
-$alias[1][APP_DIR . '/eyeSheets/styles_noline.css'] = 'css/'.APP_DIR.'/eyeSheets/styles_noline.css';
+$alias[1][APP_DIR . '/xenonExcel/print.css'] = 'css/'.APP_DIR.'/xenonExcel/print.css';
+$alias[1][APP_DIR . '/xenonExcel/print_noline.css'] = 'css/'.APP_DIR.'/xenonExcel/print_noline.css';
+$alias[1][APP_DIR . '/xenonExcel/styles.css'] = 'css/'.APP_DIR.'/xenonExcel/styles.css';
+$alias[1][APP_DIR . '/xenonExcel/styles_noline.css'] = 'css/'.APP_DIR.'/xenonExcel/styles_noline.css';
 $alias[1][APP_DIR . '/miniCalendar/css/miniCalendar.css'] = 'css/'.APP_DIR.'/miniCalendar/miniCalendar.css';
 $alias[1][APP_DIR . '/miniHome/css/miniHome.css'] = 'css/'.APP_DIR.'/miniHome/miniHome.css';
 $alias[1][APP_DIR . '/miniMessages/css/miniMessages.css'] = 'css/'.APP_DIR.'/miniMessages/miniMessages.css';
@@ -173,7 +173,7 @@ $pic22 = array(
 	'Notepad',
 	'xenonPresentation',
 	'xenonProcess',
-	'eyeSheets',
+	'xenonExcel',
 	'xenonString',
 	'eyeTetravex',
 	'favorites',
@@ -230,7 +230,7 @@ $alias[0]['icons/16x16/apps/xenonNav.png'] = 'images/apps/eyeLightDesk/16x16/app
 $alias[0]['icons/16x16/apps/Notepad.png'] = 'images/apps/eyeLightDesk/16x16/apps/Notepad.png';
 $alias[0]['icons/16x16/apps/xenonPresentation.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonPresentation.png';
 $alias[0]['icons/16x16/apps/xenonProcess.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonProcess.png';
-$alias[0]['icons/16x16/apps/eyeSheets.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeSheets.png';
+$alias[0]['icons/16x16/apps/xenonExcel.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonExcel.png';
 $alias[0]['icons/16x16/apps/eyeTetravex.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeTetravex.png';
 $alias[0]['icons/16x16/apps/groups.png'] = 'images/apps/eyeLightDesk/16x16/apps/groups.png';
 $alias[0]['icons/16x16/apps/home.png'] = 'images/apps/eyeLightDesk/16x16/apps/home.png';

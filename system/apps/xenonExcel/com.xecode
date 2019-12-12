@@ -14,10 +14,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeSheets_com_fullResized($params = '') {
+function xenonExcel_com_fullResized($params = '') {
 	eyeWidgets('updateContent',$params);
-	if ($GLOBALS['eyeSheetsWND']->fullScreen) {
-		$GLOBALS['eyeSheetsWND']->listenerResizeFullScreen($params);
+	if ($GLOBALS['xenonExcelWND']->fullScreen) {
+		$GLOBALS['xenonExcelWND']->listenerResizeFullScreen($params);
 	}
 }
 ?>

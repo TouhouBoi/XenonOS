@@ -14,26 +14,26 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeSheets_on_Message($params="") {
+function xenonExcel_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeSheets_on_Resize($params=null) {
+function xenonExcel_on_Resize($params=null) {
 	$width = $params['arg'][0];
 	$height = $params['arg'][1];
 	$width = intval($width);
 	$height = intval($height);
-	$GLOBALS['eyeSheetsWND']->width = $width;
-	$GLOBALS['eyeSheetsWND']->height = $height;
-	$GLOBALS['eyeSheetsFrame']->setWidth($width - 2);
-	$GLOBALS['eyeSheetsFrame']->setHeight($height - 24);
+	$GLOBALS['xenonExcelWND']->width = $width;
+	$GLOBALS['xenonExcelWND']->height = $height;
+	$GLOBALS['xenonExcelFrame']->setWidth($width - 2);
+	$GLOBALS['xenonExcelFrame']->setHeight($height - 24);
 }
 
-function eyeSheets_on_fullScreen() {
-	$GLOBALS['eyeSheetsWND']->setFullScreen();
+function xenonExcel_on_fullScreen() {
+	$GLOBALS['xenonExcelWND']->setFullScreen();
 }
 
-function eyeSheets_on_getSheet($params=null) {
+function xenonExcel_on_getSheet($params=null) {
 	global $myPid;
 	if (isset($GLOBALS['sheetPath']) === false) {
 		echo "
@@ -56,7 +56,7 @@ function eyeSheets_on_getSheet($params=null) {
 	exit;
 }
 
-function eyeSheets_on_getFile($params=null) {
+function xenonExcel_on_getFile($params=null) {
 	$file = $GLOBALS['sheetPath']->text;
 	if(!$file) {
 			echo "
@@ -91,7 +91,7 @@ function openFile($file) {
 }
 
 function parseMyODS($content) {
-	require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeSheets/lib/ods'.XE_CODE_EXTENSION);
+	require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonExcel/lib/ods'.XE_CODE_EXTENSION);
 	$myOds = parseOds($content);
 	$ret = "
 		cols = 10;
@@ -117,11 +117,11 @@ function parseMyODS($content) {
 	return $ret;
 }
 
-function eyeSheets_on_help($params = '') {
-	proc('launch',array('xenonHelp','eyeSheets'));
+function xenonExcel_on_help($params = '') {
+	proc('launch',array('xenonHelp','xenonExcel'));
 }
 
-function eyeSheets_on_openFile($params=null) {
+function xenonExcel_on_openFile($params=null) {
 	global $checknum;
 	$options = array(
 		0,
@@ -131,10 +131,10 @@ function eyeSheets_on_openFile($params=null) {
 	proc('launch',array('xenonDialog',$options));
 }
 
-function eyeSheets_on_saveFile($params=null) {
+function xenonExcel_on_saveFile($params=null) {
 	$sheetPath = $GLOBALS['sheetPath']->text;
 	if(empty($sheetPath)) {
-		eyeSheets_on_SaveAs();
+		xenonExcel_on_SaveAs();
 		return;
 	}
 
@@ -148,7 +148,7 @@ function eyeSheets_on_saveFile($params=null) {
 	$myArgs = /* utf8 */ explode("\n", $arg);
 	$pattern = '/\[(\d+)\,(\d+)\,\"([^"]+)\"/';
 
-	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeSheets/lib/ods'.XE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonExcel/lib/ods'.XE_CODE_EXTENSION);
 	$ods = newOds();
 
 	for($i=0;$i<$maxX;$i++) {
@@ -197,7 +197,7 @@ function eyeSheets_on_saveFile($params=null) {
 	xenonx('messageBox',array('content'=>'Spreadsheet saved successfully.'));
 }
 
-function eyeSheets_on_SelectFileOpen($params=null) {
+function xenonExcel_on_SelectFileOpen($params=null) {
 	global $myPid;
 	global $checknum;
 	$file = $params['arg'][0];
@@ -209,12 +209,12 @@ function eyeSheets_on_SelectFileOpen($params=null) {
 			return;
 		}
 		fclose($fp);
-		proc('launch',array('eyeSheets',$file));
+		proc('launch',array('xenonExcel',$file));
 		proc('end');
 	}
 }
 
-function eyeSheets_on_SaveAs($params=null) {
+function xenonExcel_on_SaveAs($params=null) {
 	global $checknum;
 	$options = array(
 		1,
@@ -224,7 +224,7 @@ function eyeSheets_on_SaveAs($params=null) {
 	proc('launch', array('xenonDialog',$options));
 }
 
-function eyeSheets_on_SelectFileSave($params=null) {
+function xenonExcel_on_SelectFileSave($params=null) {
 	global $myPid;
 
 	$file = $params['arg'][0];
@@ -245,12 +245,12 @@ function eyeSheets_on_SelectFileSave($params=null) {
 					'text'=>$file));
 				eyeWidgets('serialize',array($myHidden));
 			}
-			xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_eyeSheetsFrame").contentWindow.saveCode();'));
+			xenonx('rawjs', array('js' => 'document.getElementById("'.$myPid.'_xenonExcelFrame").contentWindow.saveCode();'));
 		}
 	}
 }
 
-function eyeSheets_on_resetPath($params=null) {
+function xenonExcel_on_resetPath($params=null) {
 	if(is_object($GLOBALS['sheetPath'])) {
 		$GLOBALS['sheetPath']->text = '';
 	} else {
@@ -262,7 +262,7 @@ function eyeSheets_on_resetPath($params=null) {
 	}
 }
 
-function eyeSheets_on_Close() {
+function xenonExcel_on_Close() {
 	proc('end');
 }
 ?>

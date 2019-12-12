@@ -83,7 +83,7 @@ function miniActions_on_Launch3($params=null) {
 }
 
 function miniActions_on_Launch4($params=null) {
-	proc('launch', array('eyeSheets'));
+	proc('launch', array('xenonExcel'));
 }
 
 function miniActions_on_Launch($params=null) {
