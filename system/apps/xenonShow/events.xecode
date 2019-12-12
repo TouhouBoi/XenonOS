@@ -14,23 +14,23 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeShow_on_Message($params="") {
+function xenonShow_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeShow_on_Resize($params=null) {
+function xenonShow_on_Resize($params=null) {
 	$width = $params['arg'][0];
 	$height = $params['arg'][1];
 	$width = intval($width);
 	$height = intval($height);
 
-	$GLOBALS['eyeShowFrame']->setWidth($width - 2);
-	$GLOBALS['eyeShowFrame']->setHeight($height - 24);
+	$GLOBALS['xenonShowFrame']->setWidth($width - 2);
+	$GLOBALS['xenonShowFrame']->setHeight($height - 24);
 }
 
 // Saving Event
 
-function eyeShow_on_Save($params=null) {
+function xenonShow_on_Save($params=null) {
 	global $checknum;
 	$options = array(
 		1,
@@ -42,7 +42,7 @@ function eyeShow_on_Save($params=null) {
 	$arg = str_replace("\n","",base64_decode($arg));
 	$arg = str_replace($checknum,"##checknum##",$arg) ;
 
-	$myHidden = new Hidden(array('name'=>'showContent','father'=>'eyeShowWND','text'=>$arg));
+	$myHidden = new Hidden(array('name'=>'showContent','father'=>'xenonShowWND','text'=>$arg));
 	eyeWidgets('serialize',array($myHidden));
 
 //	xenonx('rawjs',array('js'=>'alert(\''.$GLOBALS['ShowPath']->text.'\')')) ;
@@ -64,14 +64,14 @@ function eyeShow_on_Save($params=null) {
 
 // Saving As Event - Open xenonDialog
 
-function eyeShow_on_SaveAs($params=null) {
+function xenonShow_on_SaveAs($params=null) {
 	global $checknum;
 
 	$arg = $params['arg1'][0];
 	$arg = str_replace("\n","",base64_decode($arg));
 	$arg = str_replace($checknum,"##checknum##",$arg) ;
 
-	$myHidden = new Hidden(array('name'=>'showContent','father'=>'eyeShowWND','text'=>$arg));
+	$myHidden = new Hidden(array('name'=>'showContent','father'=>'xenonShowWND','text'=>$arg));
 	eyeWidgets('serialize',array($myHidden));
 
 	$options = array(
@@ -84,15 +84,15 @@ function eyeShow_on_SaveAs($params=null) {
 
 // Saving Event - Response to xenonDialog
 
-function eyeShow_on_SelectFileSave($params=null) {
+function xenonShow_on_SelectFileSave($params=null) {
 	global $checknum;
 	$file = $params['arg'][0];
 	if($file) {
 		$file = um('getCurrentUserDir') . FILES_USER_DIR . '/' . $file;
-			if (strtolower(substr($file, -8)) !== '.eyeshow') { // utf8
-				$file = $file.'.eyeshow';
+			if (strtolower(substr($file, -8)) !== '.xenonshow') { // utf8
+				$file = $file.'.xenonshow';
 			}
-			vfs('create',array($file,'eyeShow'));
+			vfs('create',array($file,'xenonShow'));
 			$fp = vfs('open',array($file,'w'));
 			if(!$fp) {
 				xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
@@ -100,7 +100,7 @@ function eyeShow_on_SelectFileSave($params=null) {
 			}
 			fwrite($fp,$GLOBALS['showContent']->text);
 			fclose($fp);
-			$myHidden = new Hidden(array('name'=>'ShowPath','father'=>'eyeShowWND','text'=>$file));
+			$myHidden = new Hidden(array('name'=>'ShowPath','father'=>'xenonShowWND','text'=>$file));
 			eyeWidgets('serialize',array($myHidden));
 			xenonx('messageBox',array('content'=>'Document saved successfully.'));
 
@@ -109,7 +109,7 @@ function eyeShow_on_SelectFileSave($params=null) {
 
 // Open a file , open xenonDialog
 
-function eyeShow_on_openFile($params=null) {
+function xenonShow_on_openFile($params=null) {
 	global $checknum;
 	$options = array(
 		0,
@@ -121,7 +121,7 @@ function eyeShow_on_openFile($params=null) {
 
 // Response to xenonDialog
 
-function eyeShow_on_SelectFileOpen($params=null) {
+function xenonShow_on_SelectFileOpen($params=null) {
 	global $myPid;
 	global $checknum;
 	$file = $params['arg'][0];
@@ -133,21 +133,21 @@ function eyeShow_on_SelectFileOpen($params=null) {
 			return;
 		}
 		fclose($fp);
-		proc('launch',array('eyeShow',$file));
+		proc('launch',array('xenonShow',$file));
 		proc('end');
 	}
 }
 
 // Create a new file
 
-function eyeShow_on_NewFile($params=null) {
-		proc('launch',array('eyeShow'));
+function xenonShow_on_NewFile($params=null) {
+		proc('launch',array('xenonShow'));
 		proc('end');
 }
 
 // Open xenonDialog, to insert an image from oneye
 
-function eyeshow_on_Insert_eyeos_Image($params=null) {
+function xenonshow_on_Insert_eyeos_Image($params=null) {
 	global $checknum;
 	$options = array(
 		0,
@@ -159,7 +159,7 @@ function eyeshow_on_Insert_eyeos_Image($params=null) {
 
 // Response to xenonDialog
 
-function eyeShow_on_SelectInsertImage($params=null) {
+function xenonShow_on_SelectInsertImage($params=null) {
 global $checknum ;
 global $currentUser;
 $params = $params['arg'][0];
@@ -176,7 +176,7 @@ xenonx('rawjs',array('js'=>'callback.call(scope, \'index.php?checknum='.$checknu
 
 // Display the image in the presentations
 
-function eyeShow_on_getImageShow($params=null) {
+function xenonShow_on_getImageShow($params=null) {
 
 	global $currentUser;
 	$myUdir = um('getCurrentUserDir').'/'.FILES_USER_DIR.'/';
@@ -202,7 +202,7 @@ function eyeShow_on_getImageShow($params=null) {
 
 // Open a file or create a new file
 
-function eyeShow_on_open($params=null) {
+function xenonShow_on_open($params=null) {
 	global $checknum;
 	
 	if (isset($GLOBALS['ShowPath']) === false) {
@@ -222,13 +222,13 @@ global $checknum;
 extern('getContent', array('<html><head>
 	<title>Slimey</title>
 	<script type="text/javascript">var USERTHEME = "' . $_SESSION['usertheme'] . '";</script>
-	<script src="index.php?extern=apps/eyeShow/lang.xecode&amp;type=dynamic" type="text/javascript"></script>
-	<script src="index.php?extern=apps/eyeShow/getjs.xecode&amp;type=dynamic&amp;params[]='.$myPid.'&amp;params[]='.$checknum.'&amp;params[]=slimey" type="text/javascript"></script>
+	<script src="index.php?extern=apps/xenonShow/lang.xecode&amp;type=dynamic" type="text/javascript"></script>
+	<script src="index.php?extern=apps/xenonShow/getjs.xecode&amp;type=dynamic&amp;params[]='.$myPid.'&amp;params[]='.$checknum.'&amp;params[]=slimey" type="text/javascript"></script>
 	<script type="text/javascript">
 		Slimey.includeScripts();
 		Slimey.preloadImages();
 	</script>
-	<link rel="stylesheet" href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=css/apps/eyeShow/eyeShow.css" />
+	<link rel="stylesheet" href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=css/apps/xenonShow/xenonShow.css" />
 </head>
 
 <body style="margin: 0px; padding-top: 0px;" onbeforeunload="return \'Unsaved changes will be lost.\'">
@@ -239,8 +239,8 @@ extern('getContent', array('<html><head>
 <script type="text/javascript">
 	new Slimey({
 		container: \'slimey\',
-		rootDir: \'index.php?extern=apps/eyeShow/\',
-		imagesDir: \'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/eyeShow/\',
+		rootDir: \'index.php?extern=apps/xenonShow/\',
+		imagesDir: \'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/xenonShow/\',
 		filename: \'\',
 		slimContent: escapeSLIM(\'' . $content . '\'),
 		saveUrl: \'save.php\'
@@ -253,7 +253,7 @@ extern('getContent', array('<html><head>
 </html>', 'html'));
 }
 
-function eyeShow_on_Close() {
+function xenonShow_on_Close() {
 	proc('end');
 }
 

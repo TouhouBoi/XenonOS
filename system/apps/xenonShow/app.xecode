@@ -14,17 +14,17 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeShow_run($params=null) {
+function xenonShow_run($params=null) {
 	global $myPid;
 	global $checknum;
 	
 	$myWindow = new Window(array(
-		'name'=>'eyeShowWND',
+		'name'=>'xenonShowWND',
 		'father'=>'xenonApps',
 		'cent'=>1,
 		'width' => 930,
 		'height'=>590,
-		'title'=>'eyeShow',
+		'title'=>'xenonShow',
 		'sendResizeMsg'=>1,
 		'sigResize'=>'Resize'));
 	$myWindow->show();
@@ -32,7 +32,7 @@ function eyeShow_run($params=null) {
 	if($params[0]) {
 		$file = $params[0];
 		$info = pathinfo($file);
-		if ( /* utf8 */ strtolower($info['extension']) === 'eyeshow') {
+		if ( /* utf8 */ strtolower($info['extension']) === 'xenonshow') {
 			$useCode=1;
 		} else {
 			$useCode=0;
@@ -54,8 +54,8 @@ function eyeShow_run($params=null) {
 	}
 
 	$myFrame = new Iframe(array(
-		'name'=>'eyeShowFrame',
-		'father'=>'eyeShowWND_Content',
+		'name'=>'xenonShowFrame',
+		'father'=>'xenonShowWND_Content',
 		'x'=>0,
 		'y'=>0,
 		'height' => $myWindow->height - 24,
@@ -66,7 +66,7 @@ function eyeShow_run($params=null) {
 	$myFrame->focus();
 }
 
-function eyeShow_end($params=null) {
+function xenonShow_end($params=null) {
 	global $myPid;
 	$dir = um('getCurrentUserDir').'/tmp/';
 	if ($handle = opendir($dir)) {

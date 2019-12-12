@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-i18n('loadLang', array('eyeShow'));
+i18n('loadLang', array('xenonShow'));
 ?>
 var slang = {
 	'Click to insert a new slide' : '<?php echo /* utf8 */ addcslashes(i18n('translate', array('Click to insert a new slide')), '\'\\'); ?>',

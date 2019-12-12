@@ -139,10 +139,10 @@
 						<type>icon</type>
 					</entry-3>
 					<entry-4>
-						<command>eyeShow.app</command>
+						<command>xenonShow.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeShow.png</image>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonShow.png</image>
 						<text>Presentation</text>
 						<type>icon</type>
 					</entry-4>
@@ -342,10 +342,10 @@
 				<type>icon</type>
 			</element-12>
 			<element-13>
-				<command>eyeShow.app</command>
+				<command>xenonShow.app</command>
 				<hideImage>0</hideImage>
 				<hideText>1</hideText>
-				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeShow.png</image>
+				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonShow.png</image>
 				<text>Presentation</text>
 				<type>icon</type>
 			</element-13>

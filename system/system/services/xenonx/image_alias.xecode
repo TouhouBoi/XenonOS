@@ -89,7 +89,7 @@ $toolbar = array(
 	'editcontact',
 	'emptyTrash',
 	'exportcontact',
-	'eyeShow fileexport',
+	'xenonShow fileexport',
 	'fileimport',
 	'filenew',
 	'fileopen',

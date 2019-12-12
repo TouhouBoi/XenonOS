@@ -244,13 +244,13 @@ Slimey.prototype.submitFile = function() {
 	window.parent.sendMsg($checknum,'saveFile',sc.value);
 }
 
-Slimey.imagesDir = 'index.php?theme=' + USERTHEME + '&extern=icons/22x22/eyeShow/';
+Slimey.imagesDir = 'index.php?theme=' + USERTHEME + '&extern=icons/22x22/xenonShow/';
 
 Slimey.preloadedImages = new Array();
 
 Slimey.includeScripts = function() {
 
-	Slimey.rootDir = 'index.php?extern=apps/eyeShow/getjs.xecode&type=dynamic&type=dynamic&params[]=$myPid&params[]=$checknum&params[]=' ;
+	Slimey.rootDir = 'index.php?extern=apps/xenonShow/getjs.xecode&type=dynamic&type=dynamic&params[]=$myPid&params[]=$checknum&params[]=' ;
 	document.write('<script language="javascript" src="' + Slimey.rootDir + 'functions"></script>');
 	document.write('<script language="javascript" src="' + Slimey.rootDir + 'stack"></script>');
 	document.write('<script language="javascript" src="' + Slimey.rootDir + 'editor"></script>');
