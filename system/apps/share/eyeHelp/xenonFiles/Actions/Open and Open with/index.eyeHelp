@@ -3,7 +3,7 @@
 Some file types that will be recognized by oneye by default are:
 [list][*]Images (.bmp, .png, .jpg, .jpeg, .gif, .tiff) will be opened with the oneye Image Viewer.
 [*]MP3 Music files (.mp3) will be opened with the oneye Music Player.
-[*]Videos and movies (.flv, .avi, .divx...) will be opened with eyeVideo or eyeMovies, depending if the DivX plugin is needed or not.
+[*]Videos and movies (.flv, .avi, .divx...) will be opened with xenonVideo or eyeMovies, depending if the DivX plugin is needed or not.
 [*]Microsoft Word Documents (.doc) and oneye Documents (.eyedoc) will be opened with eyeDocs, the oneye Word Processor.
 [*]Compressed files (.zip, .tar, .tbz, .tbz2, .tgz, .tar.gz, .tar.bz2) will be opened with xenonArchive, the oneye compressing and uncompressing tool.
 [*]Text files (.xecode, .txt, .py, .pl, .c, .cc) will be opened with eyeNotes.

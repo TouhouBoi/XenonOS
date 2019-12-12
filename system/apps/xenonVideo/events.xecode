@@ -14,12 +14,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeVideo_on_Close($params = '') {
+function xenonVideo_on_Close($params = '') {
 	proc('end');
 }
 
-function eyeVideo_on_getFile($params = '') {
-	$url = $GLOBALS['eyeVideo_Hidden']->text;
+function xenonVideo_on_getFile($params = '') {
+	$url = $GLOBALS['xenonVideo_Hidden']->text;
 	$file = basename($url);
 	$path = xenonFiles('cleanPath', array(substr(trim($url, '/\\'), 0, -strlen($file)))); // utf8
 	header('Content-type: video/x-flv');
@@ -37,7 +37,7 @@ function eyeVideo_on_getFile($params = '') {
 	exit;
 }
 
-function eyeVideo_on_Message($params = '') {
+function xenonVideo_on_Message($params = '') {
 	eyeWidgets('updateContent',$params);
 }
 ?>
