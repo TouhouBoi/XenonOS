@@ -39,7 +39,7 @@ function xenonDesk_on_NewLauncher($params = '') {
 }
 
 function xenonDesk_on_Paste($params = '') {
-	proc('launch',array('eyePaste',array('home://Desktop/')));
+	proc('launch',array('xenonPaste',array('home://Desktop/')));
 }
 
 function xenonDesk_on_Preferences($params = '') {

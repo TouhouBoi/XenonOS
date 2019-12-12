@@ -14,17 +14,17 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyePaste_run($params = '') {
+function xenonPaste_run($params = '') {
 	if (isset($params['path']) === false) {
 		$params['path'] = eyeSessions('getVar', array('eyeClipBoard'));
 	}
 	$file = basename($params['path']);
 	
-	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyePaste/events' . XE_CODE_EXTENSION);
-	eyePaste_libs_Do(substr($params['path'], 0, -strlen($file)), $file, $params[0], $file, $params[1]); // utf8
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonPaste/events' . XE_CODE_EXTENSION);
+	xenonPaste_libs_Do(substr($params['path'], 0, -strlen($file)), $file, $params[0], $file, $params[1]); // utf8
 }
   
-function eyePaste_end($params = '') {
+function xenonPaste_end($params = '') {
 	eyeWidgets('unserialize',$params);
 }
 ?>

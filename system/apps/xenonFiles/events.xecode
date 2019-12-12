@@ -147,7 +147,7 @@ function xenonFiles_on_NewFile($params = '') {
 }
 
 function xenonFiles_on_Paste($params = '') {
-	proc('launch',array('eyePaste',array($GLOBALS['xenonFiles_Hidden_Path']->text)));
+	proc('launch',array('xenonPaste',array($GLOBALS['xenonFiles_Hidden_Path']->text)));
 }
 
 function xenonFiles_on_EmptyTrash($params = '') {

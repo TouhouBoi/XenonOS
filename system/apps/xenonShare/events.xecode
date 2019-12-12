@@ -22,7 +22,7 @@ function xenonShare_on_Share($params = '') {
 	if ($GLOBALS['xenonShare_Hidden']->text) {
 		foreach (um('getCurrentGroups') as $group => $value) {
 			if ($GLOBALS['xenonShare_Checkbox_' . $group]->checked) {
-				proc('launch', array('eyePaste', array('groups://' . $group, 'path' => $GLOBALS['xenonShare_Hidden']->text)));
+				proc('launch', array('xenonPaste', array('groups://' . $group, 'path' => $GLOBALS['xenonShare_Hidden']->text)));
 			}
 		}
 	}
