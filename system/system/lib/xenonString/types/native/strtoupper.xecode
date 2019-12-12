@@ -1,6 +1,6 @@
 <?php
-global $lib_eyeString;
-$lib_eyeString['strtoupper'] = array(
+global $lib_xenonString;
+$lib_xenonString['strtoupper'] = array(
 	'a' => 'A',
 	'b' => 'B',
 	'c' => 'C',
@@ -1053,12 +1053,12 @@ $lib_eyeString['strtoupper'] = array(
  * FUNCTIONS
  */
 function utf8_strtoupper($str) {
-	global $lib_eyeString;
+	global $lib_xenonString;
 	
 	$str = utf8_str_split($str);
 	foreach ($str as $key => $value) {
-		if (isset($lib_eyeString['strtoupper'][$value]) === true) {
-			$str[$key] = $lib_eyeString['strtoupper'][$value];
+		if (isset($lib_xenonString['strtoupper'][$value]) === true) {
+			$str[$key] = $lib_xenonString['strtoupper'][$value];
 		}
 	}
 	return implode('', $str);

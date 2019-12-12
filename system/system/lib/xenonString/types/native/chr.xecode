@@ -1,19 +1,19 @@
 <?php
-global $lib_eyeString;
-if (isset($lib_eyeString['chr']) === false || is_array($lib_eyeString['chr']) === false) {
-	$lib_eyeString['chr'] = array();
+global $lib_xenonString;
+if (isset($lib_xenonString['chr']) === false || is_array($lib_xenonString['chr']) === false) {
+	$lib_xenonString['chr'] = array();
 }
 
 /*
  * FUNCTIONS
  */
 function utf8_chr($unicode) {
-	global $lib_eyeString;
+	global $lib_xenonString;
 	
 	if (is_string($unicode) === true) {
 		$unicode = hexdec($unicode);
 	}
-	if (isset($lib_eyeString['chr'][$unicode]) === false) {
+	if (isset($lib_xenonString['chr'][$unicode]) === false) {
 		$chr = false;
 		if ($unicode < 128) {
 			$chr = chr($unicode);
@@ -30,8 +30,8 @@ function utf8_chr($unicode) {
 				$chr = chr(bindec('11110' . substr($bin, 0, 3))) . chr(bindec('10' . substr($bin, 3, 6))) . chr(bindec('10' . substr($bin, 9, 6))) . chr(bindec('10' . substr($bin, 15, 6)));
 			}
 		}
-		$lib_eyeString['chr'][$unicode] = $chr;
+		$lib_xenonString['chr'][$unicode] = $chr;
 	}
-	return $lib_eyeString['chr'][$unicode];
+	return $lib_xenonString['chr'][$unicode];
 }
 ?>

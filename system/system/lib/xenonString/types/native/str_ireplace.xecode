@@ -3,7 +3,7 @@
  * FUNCTIONS
  */
 function utf8_str_ireplace($search, $replace, $subject, &$count = null) {
-	global $lib_eyeString;
+	global $lib_xenonString;
 	
 	$count = 0;
 	if (is_array($search) === true) {
@@ -21,16 +21,16 @@ function utf8_str_ireplace($search, $replace, $subject, &$count = null) {
 		}
 		return $subject;
 	}
-	$lib_eyeString['str_ireplace'] = $replace;
-	return preg_replace_callback('/' . preg_quote($search, '/') . '/iu', 'private_lib_eyeString_str_ireplace', $subject, -1, $count);
+	$lib_xenonString['str_ireplace'] = $replace;
+	return preg_replace_callback('/' . preg_quote($search, '/') . '/iu', 'private_lib_xenonString_str_ireplace', $subject, -1, $count);
 }
 
 /*
  * PRIVATE
  */
-function private_lib_eyeString_str_ireplace() {
-	global $lib_eyeString;
+function private_lib_xenonString_str_ireplace() {
+	global $lib_xenonString;
 	
-	return $lib_eyeString['str_ireplace'];
+	return $lib_xenonString['str_ireplace'];
 }
 ?>

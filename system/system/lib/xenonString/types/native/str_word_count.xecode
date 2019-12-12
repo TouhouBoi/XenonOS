@@ -3,7 +3,7 @@
  * FUNCTIONS
  */
 function utf8_str_word_count($string, $format = 0, $charlist = '') {
-	$count = preg_match_all('/[\\w\'' . private_lib_eyeString_PrepareCharlist($charlist) . ']+/u', $string, $matches);
+	$count = preg_match_all('/[\\w\'' . private_lib_xenonString_PrepareCharlist($charlist) . ']+/u', $string, $matches);
 	if ($format === 2) {
 		$offset = 0;
 		$return = array();

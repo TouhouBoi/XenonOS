@@ -21,9 +21,9 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	if(!$db){
 		$error = errorCodes('getErrorCode');
 		if($error == DB_NO_DRIVER){
-			$GLOBALS['eyeString_TxtA2']->setText('No Driver disponible en oneye');
+			$GLOBALS['xenonString_TxtA2']->setText('No Driver disponible en oneye');
 		}elseif($error == DB_NO_SUPPORT){
-			$GLOBALS['eyeString_TxtA2']->setText('No Driver disponible en php');
+			$GLOBALS['xenonString_TxtA2']->setText('No Driver disponible en php');
 		}
 	}
 	$query = 'SELECT * FROM news where title = ?';

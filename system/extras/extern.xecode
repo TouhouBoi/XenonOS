@@ -34,9 +34,9 @@ function XenonOS_init()
 		
 		error_reporting($error_reporting);
 
-		include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeString/main'.XE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/xenonString/main'.XE_CODE_EXTENSION);
 		
-		call_user_func('lib_eyeString_start');
+		call_user_func('lib_xenonString_start');
 		
 		define('LIB_EYESTRING_LOADED', 1);
 

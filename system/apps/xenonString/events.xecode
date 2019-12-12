@@ -14,19 +14,19 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeString_on_Message($params=null){
+function xenonString_on_Message($params=null){
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeString_on_Close($params=null){
+function xenonString_on_Close($params=null){
 	proc('end');
 }
 
-function eyeString_on_eyeString_Btn1($params=null){
+function xenonString_on_xenonString_Btn1($params=null){
 	$starttimer = time()+microtime();
-	$SAlgot = $GLOBALS['eyeString_slc']->selected;
-	$original = $GLOBALS['eyeString_TxtA1']->text;
-	$TextUncripted = $GLOBALS['eyeString_TxtA1']->text;
+	$SAlgot = $GLOBALS['xenonString_slc']->selected;
+	$original = $GLOBALS['xenonString_TxtA1']->text;
+	$TextUncripted = $GLOBALS['xenonString_TxtA1']->text;
 	if($SAlgot == 'base64encode')
 	{
 		$TextUncripted = base64_encode($TextUncripted);
@@ -99,22 +99,22 @@ function eyeString_on_eyeString_Btn1($params=null){
 		$TextUncripted = $TextUncripted."\n";
 	}
 	if($GLOBALS['chk2']->checked) {
-		$GLOBALS['eyeString_TxtA2']->setText($GLOBALS['eyeString_TxtA2']->text.$TextUncripted);
+		$GLOBALS['xenonString_TxtA2']->setText($GLOBALS['xenonString_TxtA2']->text.$TextUncripted);
 	} else {
-		$GLOBALS['eyeString_TxtA2']->setText($TextUncripted);
+		$GLOBALS['xenonString_TxtA2']->setText($TextUncripted);
 	}
 
 	if($GLOBALS['chk1']->checked) {
-		$GLOBALS['eyeString_TxtA1']->setText('');
+		$GLOBALS['xenonString_TxtA1']->setText('');
 	}
 	$stoptimer = time()+microtime();
 	$timer = round($stoptimer-$starttimer,4);
 	$GLOBALS['timerlbl']->setText('Last execution time: %s',array($timer));
 }
 
-function eyeString_on_Clear($params=null){
-	$GLOBALS['eyeString_TxtA2']->setText('');
-	$GLOBALS['eyeString_TxtA1']->setText('');
+function xenonString_on_Clear($params=null){
+	$GLOBALS['xenonString_TxtA2']->setText('');
+	$GLOBALS['xenonString_TxtA1']->setText('');
 }
 
 ?>

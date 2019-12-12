@@ -14,22 +14,22 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeString_run($params=null){
+function xenonString_run($params=null){
 	
 	$myWindow1 = new Window(array(
-		'name' => 'eyeString_wnd',
+		'name' => 'xenonString_wnd',
 		'father' => 'xenonApps',
 		'cent' => 1,
 		'width' => 655,
 		'height' => 560,
-		'title' => 'eyeString',
+		'title' => 'xenonString',
 		'type' => 3,
 		'savePosition' => 1));
 	$myWindow1->show();
 
 	$myBox = new Box(array(
-		'name' => 'eyeString_box',
-		'father' => 'eyeString_wnd_Content',
+		'name' => 'xenonString_box',
+		'father' => 'xenonString_wnd_Content',
 		'x' => 459,
 		'y' => 70,
 		'width' => 183,
@@ -38,8 +38,8 @@ function eyeString_run($params=null){
 	$myBox->show();
 
 	$mySelect = new Select(array(
-		'name' => 'eyeString_slc',
-		'father' => 'eyeString_box',
+		'name' => 'xenonString_slc',
+		'father' => 'xenonString_box',
 		'x' => 10,
 		'y' => 35));
 
@@ -65,8 +65,8 @@ function eyeString_run($params=null){
  
 
 	$myText1 = new Textarea(array(
-									'name' => 'eyeString_TxtA1',
-									'father' => 'eyeString_wnd_Content',
+									'name' => 'xenonString_TxtA1',
+									'father' => 'xenonString_wnd_Content',
 									'x' => 10,
 									'y' => 95,
 									'width' => 433,
@@ -76,16 +76,16 @@ function eyeString_run($params=null){
 	$myText1->focus();
 
 	$myLabel1 = new Label(array(
-									'name'=> 'eyeString_Lbl1',
-									'father' => 'eyeString_wnd_Content',
+									'name'=> 'xenonString_Lbl1',
+									'father' => 'xenonString_wnd_Content',
 									'x' => 10,
 									'y' => 78,
 									'text' => 'Input Text'));
 	$myLabel1->show();
 
 	$myLabel2 = new Label(array(
-									'name' => 'eyeString_Lbl2',
-									'father' => 'eyeString_wnd_Content',
+									'name' => 'xenonString_Lbl2',
+									'father' => 'xenonString_wnd_Content',
 									'x' => 10,
 									'y' => 288,
 									'text' => 'Output Text'));
@@ -95,8 +95,8 @@ function eyeString_run($params=null){
 
 
 	$myText2 =new Textarea(array(
-									'name'=>'eyeString_TxtA2',
-									'father' => 'eyeString_wnd_Content',
+									'name'=>'xenonString_TxtA2',
+									'father' => 'xenonString_wnd_Content',
 									'x'=> 10,
 									'y' => 305,
 									'width' => 630,
@@ -106,8 +106,8 @@ function eyeString_run($params=null){
 	$myText2->show();
 
 	$myButton1 = new Button(array(
-									'name' => 'eyeString_Btn1',
-									'father' => 'eyeString_box',
+									'name' => 'xenonString_Btn1',
+									'father' => 'xenonString_box',
 									'x' => 6,
 									'y' => 170,
 									'horiz' => '1',
@@ -118,7 +118,7 @@ function eyeString_run($params=null){
 
 	$myCheck1 = new Checkbox(array(
 									'name' => 'chk1',
-									'father' => 'eyeString_box',
+									'father' => 'xenonString_box',
 									'x' => 6,
 									'y' => 64,
 									'text' => 'Auto clear input'));
@@ -127,7 +127,7 @@ function eyeString_run($params=null){
 
 	$myCheck2 = new Checkbox(array(
 									'name' => 'chk2',
-									'father' => 'eyeString_box',
+									'father' => 'xenonString_box',
 									'x' => 6,
 									'y' => 86,
 									'text' => 'Concatenate Output'));
@@ -136,7 +136,7 @@ function eyeString_run($params=null){
 
 	$myCheck3 = new Checkbox(array(
 									'name' => 'chk3',
-									'father' => 'eyeString_box',
+									'father' => 'xenonString_box',
 									'x' => 6,
 									'y' => 108,
 									'text' => 'Add new line to end'));
@@ -145,7 +145,7 @@ function eyeString_run($params=null){
 
 	$myCheck4 = new Checkbox(array(
 									'name' => 'chk4',
-									'father' => 'eyeString_box',
+									'father' => 'xenonString_box',
 									'x' => 6,
 									'y' => 130,
 									'text' => 'Add input to output'));
@@ -160,7 +160,7 @@ function eyeString_run($params=null){
 
 	$myToolbar = new Toolbar(array(
 		'name'=>'myBar',
-		'father'=>'eyeString_wnd_Content'
+		'father'=>'xenonString_wnd_Content'
 	));
 	$myToolbar->show();
 
@@ -168,7 +168,7 @@ function eyeString_run($params=null){
 
 	$myLabel3 = new Label(array(
 									'name' => 'timerlbl',
-									'father' => 'eyeString_wnd_Content',
+									'father' => 'xenonString_wnd_Content',
 									'x' => 459,
 									'y' => 280,
 									'text' => ''));

@@ -1,10 +1,10 @@
 <package>
-	<name>eyeString</name>
+	<name>xenonString</name>
 	<category>Utilities</category>
 	<version>1.9</version>
 	<description>Application to convert strings</description>
 	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>Utility</type>
-	<icon>index.php?theme=USERTHEME&amp;extern=icons/48x48/eyeString.png</icon>
+	<icon>index.php?theme=USERTHEME&amp;extern=icons/48x48/xenonString.png</icon>
 </package>

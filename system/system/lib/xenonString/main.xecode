@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-@define('PATH_SYSTEM_SERVICES_UTF8_TYPES', XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/eyeString/types');
+@define('PATH_SYSTEM_SERVICES_UTF8_TYPES', XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . LIB_DIR . '/xenonString/types');
 if (defined('UTF8_TYPE') === false) {
 	if (extension_loaded('mbstring') === true) {
 		define('UTF8_TYPE', 'mbstring');
@@ -23,8 +23,8 @@ if (defined('UTF8_TYPE') === false) {
 	}
 }
 
-global $lib_eyeString;
-$lib_eyeString = array();
+global $lib_xenonString;
+$lib_xenonString = array();
 
 /*
  * FUNCTIONS
@@ -79,7 +79,7 @@ $functions = array(
 	'ucwords',
 	'wordwrap'
 );
-private_lib_eyeString_Create($functions);
+private_lib_xenonString_Create($functions);
 
 $functions = array(
 	// TODO
@@ -141,12 +141,12 @@ $functions = array(
 	'ireplace' => 'str_ireplace',
 	'pathinfo'
 );
-private_lib_eyeString_Create($functions, true);
+private_lib_xenonString_Create($functions, true);
 
 /*
  * PRIVATE
  */
-function private_lib_eyeString_Create($functions, $native = false) {
+function private_lib_xenonString_Create($functions, $native = false) {
 	foreach ($functions as $key => $value) {
 		if ($native === false) {
 			foreach (array(UTF8_TYPE, 'native', 'compat') as $type) {
@@ -173,7 +173,7 @@ function utf8_' . $key . '() {
 	}
 }
 
-function private_lib_eyeString_PrepareCharlist($charlist) {
+function private_lib_xenonString_PrepareCharlist($charlist) {
 	return str_replace('\\.\\.', '-', preg_quote($charlist, '/'));
 }
 

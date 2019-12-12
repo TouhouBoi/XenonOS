@@ -1,17 +1,17 @@
 <?php
-global $lib_eyeString;
-if (isset($lib_eyeString['ord']) === false || is_array($lib_eyeString['ord']) === false) {
-	$lib_eyeString['ord'] = array();
+global $lib_xenonString;
+if (isset($lib_xenonString['ord']) === false || is_array($lib_xenonString['ord']) === false) {
+	$lib_xenonString['ord'] = array();
 }
 
 /*
  * FUNCTIONS
  */
 function utf8_ord($string) {
-	global $lib_eyeString;
+	global $lib_xenonString;
 	
 	$string = utf8_substr($string, 0, 1);
-	if (isset($lib_eyeString['ord'][$string]) === false) {
+	if (isset($lib_xenonString['ord'][$string]) === false) {
 		$ord = ord($string);
 		$bin = '11111110';
 		while ($ord < bindec($bin)) {
@@ -23,8 +23,8 @@ function utf8_ord($string) {
 		for ($i = 1; $i < $length; $i++) {
 			$ord = $ord * 64 + ord($string[$i]) - 128;
 		}
-		$lib_eyeString['ord'][$string] = $ord;
+		$lib_xenonString['ord'][$string] = $ord;
 	}
-	return $lib_eyeString['ord'][$string];
+	return $lib_xenonString['ord'][$string];
 }
 ?>

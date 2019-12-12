@@ -18,7 +18,7 @@ function utf8_substr($string, $start, $length = null) {
 		return false;
 	}
 	if ($start > 0) {
-		$pattern .= '(?:' . private_lib_eyeString_substr($start) . ')';
+		$pattern .= '(?:' . private_lib_xenonString_substr($start) . ')';
 	}
 	
 	// Length
@@ -34,9 +34,9 @@ function utf8_substr($string, $start, $length = null) {
 	if ($length === 0) {
 		return '';
 	} else if ($length < 0) {
-		$pattern .= '(.*)(?:' . private_lib_eyeString_substr(-$length) . ')$';
+		$pattern .= '(.*)(?:' . private_lib_xenonString_substr(-$length) . ')$';
 	} else if ($length > 0) {
-		$pattern .= '(' . private_lib_eyeString_substr($length) . ')';
+		$pattern .= '(' . private_lib_xenonString_substr($length) . ')';
 	} else {
 		$pattern .= '(.*)$';
 	}
@@ -51,7 +51,7 @@ function utf8_substr($string, $start, $length = null) {
 /*
  * PRIVATE
  */
-function private_lib_eyeString_substr($int) {
+function private_lib_xenonString_substr($int) {
 	$pattern = '';
 	$div = intval($int / 65535);
 	if ($div !== 0) {

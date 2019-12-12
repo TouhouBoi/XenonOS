@@ -170,12 +170,12 @@ function indexRequested()
 }
 
 /*
-*Load the utf8 support loading eyeString and making a fake
+*Load the utf8 support loading xenonString and making a fake
 *load because kernel needs it (utf8 support).
 */
 function loadStringLibrary()
 {
-	include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/eyeString/main'.XE_CODE_EXTENSION);
+	include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/xenonString/main'.XE_CODE_EXTENSION);
 	//setting library loaded
 	define('LIB_EYESTRING_LOADED',1);
 }
