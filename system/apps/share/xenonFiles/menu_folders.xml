@@ -27,7 +27,7 @@
 	<entry>
 		<icon>copy</icon>
 		<text>Copy</text>
-		<action>eyeCopy</action>
+		<action>xenonCopy</action>
 	</entry>
 	<entry>
 		<icon>properties</icon>
