@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeDesk_run($params = '') {
+function xenonDesk_run($params = '') {
 	global $checknum;
 	global $currentUser;
 
@@ -25,33 +25,33 @@ function eyeDesk_run($params = '') {
 		vfs('real_mkdir',array($userDir . '/tmp/'));
 	}
 
-	$config = '/' . CONF_USER_DIR . '/eyeDesk/conf.xml';
+	$config = '/' . CONF_USER_DIR . '/xenonDesk/conf.xml';
 	if (!vfs('real_fileExists',array($userDir . $config))) {
 		copy(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . $config,$userDir . $config);
 	}
 
-	$xml = xenonXML('getXMLconfig',array('eyeDesk', 'conf.xml'));
-	$share = getConfig('eyeDesk','conf.xml');
-	if (check_versions($xml['eyeDesk'][0]['confVersion'][0], XENONOS_VERSION) === 2) {
+	$xml = xenonXML('getXMLconfig',array('xenonDesk', 'conf.xml'));
+	$share = getConfig('xenonDesk','conf.xml');
+	if (check_versions($xml['xenonDesk'][0]['confVersion'][0], XENONOS_VERSION) === 2) {
 		// miniActions
-		if ($xml['eyeDesk'][0]['restoreDock'][0]) {
-			if ($xml['eyeDesk'][0]['restoreDock'][0] < 3) {
-				if (array_search('miniActions', $xml['eyeDesk'][0]['autolaunch']) === false) {
-					$xml['eyeDesk'][0]['autolaunch'][] = 'miniActions';
+		if ($xml['xenonDesk'][0]['restoreDock'][0]) {
+			if ($xml['xenonDesk'][0]['restoreDock'][0] < 3) {
+				if (array_search('miniActions', $xml['xenonDesk'][0]['autolaunch']) === false) {
+					$xml['xenonDesk'][0]['autolaunch'][] = 'miniActions';
 				}
 			}
-			unset($xml['eyeDesk'][0]['restoreDock'][0]);
+			unset($xml['xenonDesk'][0]['restoreDock'][0]);
 		}
 
 		// eyeos 1.9.0.0preview1
-		if (check_versions($xml['eyeDesk'][0]['confVersion'][0], '1.9.0.0preview1') === 2) {
-			foreach ($xml['eyeDesk'][0]['autolaunch'] as $key => $value) {
-				if (in_array($value, array('eyeBar', 'eyeDesk_extras', 'xenonDockText'))) {
-					unset($xml['eyeDesk'][0]['autolaunch'][$key]);
+		if (check_versions($xml['xenonDesk'][0]['confVersion'][0], '1.9.0.0preview1') === 2) {
+			foreach ($xml['xenonDesk'][0]['autolaunch'] as $key => $value) {
+				if (in_array($value, array('eyeBar', 'xenonDesk_extras', 'xenonDockText'))) {
+					unset($xml['xenonDesk'][0]['autolaunch'][$key]);
 				}
 			}
-			if (array_search('xenonDock', $xml['eyeDesk'][0]['autolaunch']) === false) {
-				$xml['eyeDesk'][0]['autolaunch'][] = 'xenonDock';
+			if (array_search('xenonDock', $xml['xenonDesk'][0]['autolaunch']) === false) {
+				$xml['xenonDesk'][0]['autolaunch'][] = 'xenonDock';
 			}
 			copy(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . CONF_USER_DIR . '/skel/' . CONF_USER_DIR . '/xenonDock/conf.xml', $userDir . '/' . CONF_USER_DIR . '/xenonDock/conf.xml');
 
@@ -81,9 +81,9 @@ function eyeDesk_run($params = '') {
 		}
 
 		// oneye 0.8.0
-		if (check_versions($xml['eyeDesk'][0]['confVersion'][0], '1.10.0.0') === 2) {
-			if ($xml['eyeDesk'][0]['theme'][0] === 'default') {
-				$xml['eyeDesk'][0]['theme'][0] = 'defaultPlus';
+		if (check_versions($xml['xenonDesk'][0]['confVersion'][0], '1.10.0.0') === 2) {
+			if ($xml['xenonDesk'][0]['theme'][0] === 'default') {
+				$xml['xenonDesk'][0]['theme'][0] = 'defaultPlus';
 			}
 			$dockXml = xenonXML('getXMLconfig', array('xenonDock', 'conf.xml'));
 			foreach ($dockXml['xenonDock'][0] as $k1 => $v1) {
@@ -104,7 +104,7 @@ function eyeDesk_run($params = '') {
 		}
 
 		// oneye 0.8.1
-		if (check_versions($xml['eyeDesk'][0]['confVersion'][0], '1.10.1.0') === 2) {
+		if (check_versions($xml['xenonDesk'][0]['confVersion'][0], '1.10.1.0') === 2) {
 			$dockXml = xenonXML('getXMLconfig', array('xenonDock', 'conf.xml'));
 			foreach ($dockXml['xenonDock'][0] as $k1 => $v1) {
 				foreach ($v1[0] as $k2 => $v2) {
@@ -121,7 +121,7 @@ function eyeDesk_run($params = '') {
 		}
 
 		// oneye 0.9.6 Preview
-		if (check_versions($xml['eyeDesk'][0]['confVersion'][0], '1.11.6.0') === 2) {
+		if (check_versions($xml['xenonDesk'][0]['confVersion'][0], '1.11.6.0') === 2) {
 			$data = xenonXML('getXMLconfig', array('eyePdf', 'conf.xml'));
 			if ($data['eyePdf'][0]['renderer'][0] === 'plugin') {
 				$data['eyePdf'][0]['renderer'][0] = 'pdf.js';
@@ -129,11 +129,11 @@ function eyeDesk_run($params = '') {
 			}
 		}
 
-		$xml['eyeDesk'][0]['confVersion'][0] = XENONOS_VERSION;
-		xenonXML('setXMLconfig',array('eyeDesk', 'conf.xml', $xml));
+		$xml['xenonDesk'][0]['confVersion'][0] = XENONOS_VERSION;
+		xenonXML('setXMLconfig',array('xenonDesk', 'conf.xml', $xml));
 	}
 
-	$theme = basename($xml['eyeDesk'][0]['theme'][0]);
+	$theme = basename($xml['xenonDesk'][0]['theme'][0]);
 	if ($theme != $_SESSION['usertheme']) {
 		$path = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonx/themes/';
 		foreach ($_SESSION['xenonLogin']['removeCss'] as $key => $value) {
@@ -213,14 +213,14 @@ function eyeDesk_run($params = '') {
 	xenonx('runjs',array('js' => 'USERTHEME = %s;','tokens' => array($theme)));
 
 	xenonx('setWallpaper', array(
-		'center' => $xml['eyeDesk'][0]['wallpaperCenter'][0],
-		'color' => $xml['eyeDesk'][0]['bgColor'][0],
+		'center' => $xml['xenonDesk'][0]['wallpaperCenter'][0],
+		'color' => $xml['xenonDesk'][0]['bgColor'][0],
 		'path' => 'index.php?checknum=' . $checknum . '&msg=getWallpaper&' . time(),
-		'repeat' => isset($xml['eyeDesk'][0]['wallpaperRepeat'][0]) ? $xml['eyeDesk'][0]['wallpaperRepeat'][0] : '2'
+		'repeat' => isset($xml['xenonDesk'][0]['wallpaperRepeat'][0]) ? $xml['xenonDesk'][0]['wallpaperRepeat'][0] : '2'
 	));
 
-	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeDesk/events' . XE_CODE_EXTENSION);
-	eyeDesk_on_OpenPath();
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonDesk/events' . XE_CODE_EXTENSION);
+	xenonDesk_on_OpenPath();
 
 	xenonx('messageBox', array('content' => 'Welcome to %s, %s.', 'sound' => false, 'tokens' => array(XENONOS_HOSTNAME,'<strong>' . $currentUser . '</strong>')));
 
@@ -228,7 +228,7 @@ function eyeDesk_run($params = '') {
 	addListenerServiceCall('onResized','xenonx','resizedBrowser',1);
 
 	if ($params[0] == 'autorun') {
-		foreach ($xml['eyeDesk'][0]['autolaunch'] as $value) {
+		foreach ($xml['xenonDesk'][0]['autolaunch'] as $value) {
 			$pid = proc('findPidByName',array($value));
 			if ($pid) {
 				proc('getTask',array($pid));
@@ -237,22 +237,22 @@ function eyeDesk_run($params = '') {
 			}
 		}
 		$x = 0;
-		if (isset($xml['eyeDesk'][0]['nextlaunch']) === true && is_array($xml['eyeDesk'][0]['nextlaunch'])) {
-			foreach ($xml['eyeDesk'][0]['nextlaunch'] as $value) {
+		if (isset($xml['xenonDesk'][0]['nextlaunch']) === true && is_array($xml['xenonDesk'][0]['nextlaunch'])) {
+			foreach ($xml['xenonDesk'][0]['nextlaunch'] as $value) {
 				$pid = proc('findPidByName',array($value));
 				if ($pid) {
 					proc('getTask',array($pid));
 				} else {
 					proc('launch',array($value));
 				}
-				unset($xml['eyeDesk'][0]['nextlaunch'][$x]);
+				unset($xml['xenonDesk'][0]['nextlaunch'][$x]);
 				$x++;
 			}
 			xenonXML('setXMLfile',array($userDir . $config,$xml));
 		}
 	} else {
 		foreach (proc('getProcessTable') as $key => $value) {
-			if (in_array( /* utf8 */ strtolower($value['appName']), array('eyedesk', 'xenonx')) === false) {
+			if (in_array( /* utf8 */ strtolower($value['appName']), array('xenondesk', 'xenonx')) === false) {
 				proc('getTask',array($key));
 			}
 		}

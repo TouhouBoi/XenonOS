@@ -95,7 +95,7 @@ else
 
 	if (isset($_REQUEST['username']) === true && isset($_REQUEST['password']) === true)
 	{
-		if (!proc('findPidByName', array('eyeDesk')))
+		if (!proc('findPidByName', array('xenonDesk')))
 		{
 			$_SESSION['username'] = $_REQUEST['username'];
 			$_SESSION['password'] = $_REQUEST['password'];

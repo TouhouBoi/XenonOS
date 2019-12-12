@@ -30,12 +30,12 @@ $dir = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/';
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
 $openDir = vfs('real_getDirContent',array($dir));
-$UserThemeXML = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
+$UserThemeXML = xeControl_lib_getXMLconfig(array('xenonDesk','conf.xml'));
 foreach ($openDir as $theme) {
 	if (is_dir($theme) && file_exists($theme . '/info.xml')) {
 		$ThemeXML = xenonXML('getXMLfile',array($theme . '/info.xml'));
 		$theme = basename($theme);
-		if ($theme == $UserThemeXML['eyeDesk'][0]['theme'][0]) {
+		if ($theme == $UserThemeXML['xenonDesk'][0]['theme'][0]) {
 			$select = 1;
 			$selectedXML = $ThemeXML['eyeXtheme'][0];
 		} else {
@@ -122,7 +122,7 @@ $myImagebox = new Imagebox(array(
 	'height' => 120,
 	'x' => 160,
 	'y' => $ContentY,
-	'url' => 'index.php?theme=0&extern=' . THEMES_DIR . '/' . $UserThemeXML['eyeDesk'][0]['theme'][0] . '/screenshot.png'
+	'url' => 'index.php?theme=0&extern=' . THEMES_DIR . '/' . $UserThemeXML['xenonDesk'][0]['theme'][0] . '/screenshot.png'
 ));
 $myImagebox->show();
 ?>

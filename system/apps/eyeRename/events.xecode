@@ -113,7 +113,7 @@ function eyeRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 			if (!vfs('rename',array($from[0] . '/' . $file,$to[0] . '/' . $file2))) {
 				return eyeRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
 			} elseif ($from[1] === 'home' && strtolower(trim($from[2], '/')) === 'desktop') { // utf8
-				$xml = xenonXML('getXMLconfig',array('eyeDesk','icons.xml'));
+				$xml = xenonXML('getXMLconfig',array('xenonDesk','icons.xml'));
 				if (is_array($xml['icon'])) {
 					foreach ($xml['icon'] as $key => $value) {
 						if ($value['name'][0] == $file) {
@@ -124,7 +124,7 @@ function eyeRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 							}
 						}
 					}
-					xenonXML('setXMLconfig',array('eyeDesk','icons.xml',$xml));
+					xenonXML('setXMLconfig',array('xenonDesk','icons.xml',$xml));
 				}
 			}
 			if ($to[1] == 'real') {
@@ -144,7 +144,7 @@ function eyeRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 				} else if (!vfs('move',array($from[0] . '/' . $file,$to[0] . '/' . $file2))) {
 					return eyeRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);
 				}
-				$xml = xenonXML('getXMLconfig',array('eyeDesk','icons.xml'));
+				$xml = xenonXML('getXMLconfig',array('xenonDesk','icons.xml'));
 				if (is_array($xml['icon'])) {
 					foreach ($xml['icon'] as $key => $value) {
 						if ($value['name'][0] == $name) {
@@ -155,7 +155,7 @@ function eyeRename_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 							}
 						}
 					}
-					xenonXML('setXMLconfig',array('eyeDesk','icons.xml',$xml));
+					xenonXML('setXMLconfig',array('xenonDesk','icons.xml',$xml));
 				}
 			} else if (!vfs('move',array($from[0] . '/' . $file,$to[0] . '/' . $file2))) {
 				return eyeRename_libs_Dialog($from[1] . '://' . $from[2],$file,$to[1] . '://' . $to[2],$callback);

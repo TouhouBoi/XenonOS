@@ -24,9 +24,9 @@ function miniActions_on_Close($params=null) {
 
 
 function miniActions_on_closeApp($params=null) {
-	$config = um('getCurrentUserDir').'/'.CONF_USER_DIR.'/eyeDesk/conf.xml';
+	$config = um('getCurrentUserDir').'/'.CONF_USER_DIR.'/xenonDesk/conf.xml';
 	$xml = xenonXML('getXMLfile',array($config));
-	$autorun = $xml['eyeDesk'][0]['autolaunch'];
+	$autorun = $xml['xenonDesk'][0]['autolaunch'];
 	if (in_array("miniActions",$autorun)) {
 		xenonx('messageBox',array(
 			'content' => 'Do you want this widget to open automatically on the next session?',
@@ -49,12 +49,12 @@ function miniActions_on_closeApp($params=null) {
 }
 
 function miniActions_on_auto_no($params=null) {
-	$config = um('getCurrentUserDir').'/'.CONF_USER_DIR.'/eyeDesk/conf.xml';
+	$config = um('getCurrentUserDir').'/'.CONF_USER_DIR.'/xenonDesk/conf.xml';
 	$xml = xenonXML('getXMLfile',array($config));
-	$autorun = $xml['eyeDesk'][0]['autolaunch'];
+	$autorun = $xml['xenonDesk'][0]['autolaunch'];
 	for($i=0;$i < count($autorun);$i++) {
 		if($autorun[$i] == 'miniActions'){
-			unset($xml['eyeDesk'][0]['autolaunch'][$i]);
+			unset($xml['xenonDesk'][0]['autolaunch'][$i]);
 		}
 	}
 	xenonXML('setXMLfile',array($config,$xml));
@@ -68,7 +68,7 @@ function miniActions_on_auto_yes($params=null) {
 }
 
 function miniActions_on_Launch1($params=null) {
-	$checknum = proc('findChecknumByName',array('eyeDesk'));
+	$checknum = proc('findChecknumByName',array('xenonDesk'));
 	$path = um('getCurrentUserDir').'/'.FILES_USER_DIR.'/Desktop/';
 	$callback = 'sendMsg('.$checknum.',"OpenPath","");';
 	proc('launch', array('xenonUpload',array($path,$callback)));

@@ -18,7 +18,7 @@ global $checknum;
 global $currentUser;
 global $myPid;
 
-$config = xeControl_lib_getXMLconfig(array('eyeDesk', 'conf.xml'));
+$config = xeControl_lib_getXMLconfig(array('xenonDesk', 'conf.xml'));
 
 $myTab = new Tab(array(
 	'name' => 'xeControl_desktop_tab',
@@ -43,40 +43,40 @@ if (xeControl_lib_getConfigUser() == $currentUser) {
 	$iconsTab = $myTab->addTab('Settings',1);
 }
 
-if (isset($config['eyeDesk'][0]['bgColor']) === false) {
-	$config['eyeDesk'][0]['bgColor'] = null;
+if (isset($config['xenonDesk'][0]['bgColor']) === false) {
+	$config['xenonDesk'][0]['bgColor'] = null;
 }
 if (xeControl_lib_getConfigUser() == $currentUser) {
 	$ContentY = 20;
-	if (isset($config['eyeDesk'][0]['wallpaper']) === false) {
-		$config['eyeDesk'][0]['wallpaper'] = null;
+	if (isset($config['xenonDesk'][0]['wallpaper']) === false) {
+		$config['xenonDesk'][0]['wallpaper'] = null;
 	}
-	$path = str_replace(xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/','',$config['eyeDesk'][0]['wallpaper'][0]);
+	$path = str_replace(xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/','',$config['xenonDesk'][0]['wallpaper'][0]);
 	if (is_array($path)) {
 		$path = '';
 	}
 
-	if ($config['eyeDesk'][0]['wallpaper'][0] && is_string($config['eyeDesk'][0]['wallpaper'][0])) {
+	if ($config['xenonDesk'][0]['wallpaper'][0] && is_string($config['xenonDesk'][0]['wallpaper'][0])) {
 		$cw = 1;
 	} else {
 		$cw = 0;
 	}
-	if ($config['eyeDesk'][0]['bgColor'][0] && is_string($config['eyeDesk'][0]['bgColor'][0])) {
+	if ($config['xenonDesk'][0]['bgColor'][0] && is_string($config['xenonDesk'][0]['bgColor'][0])) {
 		$cc = 1;
 	} else {
 		$cc = 0;
 	}
-	if (isset($config['eyeDesk'][0]['wallpaperRepeat']) === true && $config['eyeDesk'][0]['wallpaperRepeat'][0] == '0') {
+	if (isset($config['xenonDesk'][0]['wallpaperRepeat']) === true && $config['xenonDesk'][0]['wallpaperRepeat'][0] == '0') {
 		$repeat = 0;
 		$repeatUrl = 'index.php?extern=apps/xeControl/gfx/norepeat.png';
-	} else if (isset($config['eyeDesk'][0]['wallpaperRepeat']) === true && $config['eyeDesk'][0]['wallpaperRepeat'][0] === '1') {
+	} else if (isset($config['xenonDesk'][0]['wallpaperRepeat']) === true && $config['xenonDesk'][0]['wallpaperRepeat'][0] === '1') {
 		$repeat = 1;
 		$repeatUrl = 'index.php?extern=apps/xeControl/gfx/repeat.png';
 	} else {
 		$repeat = 2;
 		$repeatUrl = 'index.php?extern=apps/xeControl/gfx/norepeat.png';
 	}
-	if (isset($config['eyeDesk'][0]['wallpaperCenter']) === true && $config['eyeDesk'][0]['wallpaperCenter'][0] == '0') {
+	if (isset($config['xenonDesk'][0]['wallpaperCenter']) === true && $config['xenonDesk'][0]['wallpaperCenter'][0] == '0') {
 		$center = 0;
 		$centerHeight = 0;
 		$centerWidth = 60;
@@ -199,7 +199,7 @@ if (xeControl_lib_getConfigUser() == $currentUser) {
 		'width' => 220,
 		'x' => 180,
 		'y' => $ContentY + 2,
-		'text' => $config['eyeDesk'][0]['bgColor'][0]
+		'text' => $config['xenonDesk'][0]['bgColor'][0]
 	));
 	$myTextbox_color->show();
 	$myTextbox_color->setCss(array('text-shadow' => 'none'));
@@ -319,7 +319,7 @@ $myLabel->setCss(array(
 // Fixed
 $ContentY += 25;
 $myRadio = new Radio(array(
-	'checked' => isset($config['eyeDesk'][0]['loadIconPositions'][0]) === true && $config['eyeDesk'][0]['loadIconPositions'][0] === '0',
+	'checked' => isset($config['xenonDesk'][0]['loadIconPositions'][0]) === true && $config['xenonDesk'][0]['loadIconPositions'][0] === '0',
 	'father' => $iconsTab,
 	'group' => 'Icons',
 	'name' => 'xeControl_desktop_Radio_Fixed',
@@ -333,7 +333,7 @@ $myRadio->addEvent('onclick', 'sendMsg(' . $checknum . ', "desktop_save_icons", 
 // Smooth
 $ContentY += 25;
 $myRadio = new Radio(array(
-	'checked' => isset($config['eyeDesk'][0]['loadIconPositions'][0]) === false || ($config['eyeDesk'][0]['loadIconPositions'][0] !== '0' && $config['eyeDesk'][0]['loadIconPositions'][0] !== '2'),
+	'checked' => isset($config['xenonDesk'][0]['loadIconPositions'][0]) === false || ($config['xenonDesk'][0]['loadIconPositions'][0] !== '0' && $config['xenonDesk'][0]['loadIconPositions'][0] !== '2'),
 	'father' => $iconsTab,
 	'group' => 'Icons',
 	'name' => 'xeControl_desktop_Radio_Smooth',
@@ -347,7 +347,7 @@ $myRadio->addEvent('onclick', 'sendMsg(' . $checknum . ', "desktop_save_icons", 
 // Fielded
 $ContentY += 25;
 $myRadio = new Radio(array(
-	'checked' => isset($config['eyeDesk'][0]['loadIconPositions'][0]) === true && $config['eyeDesk'][0]['loadIconPositions'][0] === '2',
+	'checked' => isset($config['xenonDesk'][0]['loadIconPositions'][0]) === true && $config['xenonDesk'][0]['loadIconPositions'][0] === '2',
 	'father' => $iconsTab,
 	'group' => 'Icons',
 	'name' => 'xeControl_desktop_Radio_Fielded',
@@ -414,14 +414,14 @@ $myLabel->setCss(array(
 ));
 $ContentY += 25;
 // on/off
-$xml = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
+$xml = xeControl_lib_getXMLconfig(array('xenonDesk','conf.xml'));
 $myCheckbox = new Checkbox(array(
 	'name' => 'xeControl_desktop_checkbox_Soundclicks',
 	'father' => $iconsTab,
 	'x' => 50,
 	'y' => $ContentY,
 	'text' => 'Turn system sound off',
-	'checked' => (isset($xml['eyeDesk'][0]['systemSounds'][0]) && !$xml['eyeDesk'][0]['systemSounds'][0])
+	'checked' => (isset($xml['xenonDesk'][0]['systemSounds'][0]) && !$xml['xenonDesk'][0]['systemSounds'][0])
 ));
 $myCheckbox->show();
 $myCheckbox->addEvent('onclick','sendMsg(' . $checknum . ',"desktop_Soundclicks",eyeParam("selected",this.checked));');

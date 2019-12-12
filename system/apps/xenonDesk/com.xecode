@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeDesk_com_onEvent($params = '') {
+function xenonDesk_com_onEvent($params = '') {
 	global $myPid;
 	eyeWidgets('updateContent');
 	$desktop = false;
@@ -28,23 +28,23 @@ function eyeDesk_com_onEvent($params = '') {
 		}
 	}
 	if ($desktop === true) {
-		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeDesk/events' . XE_CODE_EXTENSION);
-		eyeDesk_on_OpenPath();
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonDesk/events' . XE_CODE_EXTENSION);
+		xenonDesk_on_OpenPath();
 	}
 	if ($trash === true) {
-		foreach ($_SESSION['eyeDesk'][$myPid]['trashes'] as $trash) {
+		foreach ($_SESSION['xenonDesk'][$myPid]['trashes'] as $trash) {
 			if (!count(vfs('getDirContent',array(um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/')))) {
-				xenonx('rawjs',array('js' => 'xGetElementById("img_' . $myPid . '_eyeDesk_View_Icons_Icon_' . $trash . '").src = "index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/trash.png";'));
+				xenonx('rawjs',array('js' => 'xGetElementById("img_' . $myPid . '_xenonDesk_View_Icons_Icon_' . $trash . '").src = "index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/trash.png";'));
 			} else {
-				xenonx('rawjs',array('js' => 'xGetElementById("img_' . $myPid . '_eyeDesk_View_Icons_Icon_' . $trash . '").src = "index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/trash_full.png";'));
+				xenonx('rawjs',array('js' => 'xGetElementById("img_' . $myPid . '_xenonDesk_View_Icons_Icon_' . $trash . '").src = "index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/trash_full.png";'));
 			}
 		}
 	}
 }
 
-function eyeDesk_com_onResized($params = '') {
+function xenonDesk_com_onResized($params = '') {
 	eyeWidgets('updateContent');
-	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeDesk/events' . XE_CODE_EXTENSION);
-	eyeDesk_on_OpenPath();
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonDesk/events' . XE_CODE_EXTENSION);
+	xenonDesk_on_OpenPath();
 }
 ?>

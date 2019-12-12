@@ -15,8 +15,8 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function xeControl_on_theme_change($params = '') {
-	$ThemeXML = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
-	$oldTheme = basename($ThemeXML['eyeDesk'][0]['theme'][0]);
+	$ThemeXML = xeControl_lib_getXMLconfig(array('xenonDesk','conf.xml'));
+	$oldTheme = basename($ThemeXML['xenonDesk'][0]['theme'][0]);
 	$newTheme = basename($params['xeControl_theme_select'][0]);
 	if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $oldTheme . '/unload.xecode'))) {
 		include_once(XENONOS_ROOT . '/' . EXTERN_DIR . '/' . THEMES_DIR . '/' . $oldTheme . '/unload.xecode');
@@ -27,9 +27,9 @@ function xeControl_on_theme_change($params = '') {
 		call_user_func('theme_' . $newTheme . '_load');
 	}
 	// Reload $ThemeXML, because its content could change
-	$ThemeXML = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
-	$ThemeXML['eyeDesk'][0]['theme'][0] = $newTheme;
-	xeControl_lib_setXMLconfig(array('eyeDesk','conf.xml',$ThemeXML));
+	$ThemeXML = xeControl_lib_getXMLconfig(array('xenonDesk','conf.xml'));
+	$ThemeXML['xenonDesk'][0]['theme'][0] = $newTheme;
+	xeControl_lib_setXMLconfig(array('xenonDesk','conf.xml',$ThemeXML));
 	if (xeControl_lib_getConfigUser() == '[skel]') {
 		// DEFAULT_THEME
 		$file = XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/xenonx.xml';

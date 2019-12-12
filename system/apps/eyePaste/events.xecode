@@ -79,14 +79,14 @@ function eyePaste_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 		} elseif ($replace) {
 			proc('launch',array('eyeDelete',array($to[1] . '://' . $to[2] . '/' . $file2)));
 			if ($from[1] === 'home' && /* utf8 */ strtolower(basename($from[2])) === 'desktop') {
-				$xml = xenonXML('getXMLconfig',array('eyeDesk','icons.xml'));
+				$xml = xenonXML('getXMLconfig',array('xenonDesk','icons.xml'));
 				if (is_array($xml['icon'])) {
 					foreach ($xml['icon'] as $key => $value) {
 						if ($value['name'][0] == $file) {
 							unset($xml['icon'][$key]);
 						}
 					}
-					xenonXML('setXMLconfig',array('eyeDesk','icons.xml',$xml));
+					xenonXML('setXMLconfig',array('xenonDesk','icons.xml',$xml));
 				}
 			}
 		}

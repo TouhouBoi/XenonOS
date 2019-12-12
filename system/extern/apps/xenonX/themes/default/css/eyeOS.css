@@ -181,7 +181,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	border-radius: 7px;
 }
 
-.eyeMessageBoxText, .eyeDesk_iconsOver:hover, .eyeIcon:hover, .xenonFiles_icons:hover {
+.eyeMessageBoxText, .xenonDesk_iconsOver:hover, .eyeIcon:hover, .xenonFiles_icons:hover {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
@@ -438,7 +438,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	z-index: 50000;
 }
 
-.eyeDesk_iconsOver, .xenonFiles_icons {
+.xenonDesk_iconsOver, .xenonFiles_icons {
 	color: white;
 	cursor: pointer;
 	margin-top: -4px;
@@ -1116,7 +1116,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	color: #000000;
 }
 
-.xenonFiles_icons:hover {/*look in .eyeDesk_iconsOver:hover*/}
+.xenonFiles_icons:hover {/*look in .xenonDesk_iconsOver:hover*/}
 
 .eyeIcon {
 	border: 1px solid transparent;
@@ -1533,11 +1533,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 /*opacity*/
 
-.eyeProgressBar, .xenonDock_bottom_left_menu, .xenonDock_top_left_icon, .eyeDesk_iconsOver {
+.eyeProgressBar, .xenonDock_bottom_left_menu, .xenonDock_top_left_icon, .xenonDesk_iconsOver {
 	opacity: 0.8;
 }
 
-.eyeDesk_iconsOver:hover, .xenonDock_bottom_left_menu:hover, .xenonDock_top_left_icon:hover, .xenonDock_bottom_right_menu_selected, .eyeIcon:hover, .xenonFiles_icons:hover {
+.xenonDesk_iconsOver:hover, .xenonDock_bottom_left_menu:hover, .xenonDock_top_left_icon:hover, .xenonDock_bottom_right_menu_selected, .eyeIcon:hover, .xenonFiles_icons:hover {
 	opacity: 1.0;
 }
 

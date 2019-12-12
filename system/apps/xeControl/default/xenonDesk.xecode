@@ -19,7 +19,7 @@ $sortypes = array('String');
 $theader = array('Commands');
 
 $myTable = new Sortabletable(array(
-	'name' => 'xeControl_eyedesk_sortabletable',
+	'name' => 'xeControl_xenondesk_sortabletable',
 	'father' => $eyeContainer,
 	'sortypes' => $sortypes,
 	'theader' => $theader,
@@ -27,20 +27,20 @@ $myTable = new Sortabletable(array(
 	'y' => 30,
 	'width' => 560,
 	'height' => 375,
-	'dblsignal' => 'eyedesk_edit'
+	'dblsignal' => 'xenondesk_edit'
 ));
 $myTable->show();
 $nCommands = 0;
-$commandXML = xeControl_lib_getXMLconfig(array('eyeDesk','conf.xml'));
-foreach($commandXML['eyeDesk'][0]['autolaunch'] as $command) {
+$commandXML = xeControl_lib_getXMLconfig(array('xenonDesk','conf.xml'));
+foreach($commandXML['xenonDesk'][0]['autolaunch'] as $command) {
 	$nCommands++;
 	$myTable->addRow(array($command));
 }
 // New
 $myButton = new Button(array(
-	'name' => 'xeControl_eyedesk_button_new',
+	'name' => 'xeControl_xenondesk_button_new',
 	'father' => $eyeContainer,
-	'signal' => 'eyedesk_new',
+	'signal' => 'xenondesk_new',
 	'caption' => 'New',
 	'width' => 90,
 	'x' => 10,
@@ -50,9 +50,9 @@ $myButton = new Button(array(
 $myButton->show();
 // Edit
 $myButton = new Button(array(
-	'name' => 'xeControl_eyedesk_button_edit',
+	'name' => 'xeControl_xenondesk_button_edit',
 	'father' => $eyeContainer,
-	'signal' => 'eyedesk_edit',
+	'signal' => 'xenondesk_edit',
 	'caption' => 'Edit',
 	'width' => 90,
 	'x' => 100,
@@ -63,9 +63,9 @@ $myButton->addFriend($myTable);
 $myButton->show();
 // Delete
 $myButton = new Button(array(
-	'name' => 'xeControl_eyedesk_button_delete',
+	'name' => 'xeControl_xenondesk_button_delete',
 	'father' => $eyeContainer,
-	'signal' => 'eyedesk_delete',
+	'signal' => 'xenondesk_delete',
 	'caption' => 'Delete',
 	'width' => 90,
 	'x' => 190,
@@ -77,9 +77,9 @@ $myButton->show();
 if (xeControl_lib_getConfigUser() != '[skel]') {
 	// Use defaults
 	$myButton = new Button(array(
-		'name' => 'xeControl_eyedesk_button_default',
+		'name' => 'xeControl_xenondesk_button_default',
 		'father' => $eyeContainer,
-		'signal' => 'eyedesk_default',
+		'signal' => 'xenondesk_default',
 		'caption' => 'Use Defaults',
 		'width' => 120,
 		'x' => 280,
@@ -90,7 +90,7 @@ if (xeControl_lib_getConfigUser() != '[skel]') {
 }
 // x command(s)
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyedesk_label_commands',
+	'name' => 'xeControl_xenondesk_label_commands',
 	'father' => $eyeContainer,
 	'horiz' => 1,
 	'y' => 2,

@@ -214,9 +214,9 @@ function lib_xenonFiles_getDeskContent($params = '') {
 	}
 	$return = array();
 	$files = xenonFiles('getDirContent',array($path));
-	$config = xenonXML('getXMLconfig',array('eyeDesk','conf.xml'));
-	if (isset($config['eyeDesk'][0]['loadIconPositions']) === false || $config['eyeDesk'][0]['loadIconPositions'][0] != 3) {
-		$icons = xenonXML('getXMLconfig',array('eyeDesk','icons.xml'));
+	$config = xenonXML('getXMLconfig',array('xenonDesk','conf.xml'));
+	if (isset($config['xenonDesk'][0]['loadIconPositions']) === false || $config['xenonDesk'][0]['loadIconPositions'][0] != 3) {
+		$icons = xenonXML('getXMLconfig',array('xenonDesk','icons.xml'));
 		if (is_array($icons['icon'])) {
 			foreach ($icons['icon'] as $value) {
 				$list[] = $value['name'][0];

@@ -19,7 +19,7 @@ function xenonLogin_run($params = '') {
 	global $currentUser;
 	global $myPid;
 	
-	$pid = proc('findPidByName',array('eyeDesk'));
+	$pid = proc('findPidByName',array('xenonDesk'));
 	if ($pid) {
 		proc('end');
 		proc('getTask',array($pid));

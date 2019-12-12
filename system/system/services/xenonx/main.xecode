@@ -1691,8 +1691,8 @@ function service_xenonx_systemSound($params = '') {
 		return false;
 	}
 
-	$xml = xenonXML('getXMLconfig', array('eyeDesk', 'conf.xml'));
-	if (isset($xml['eyeDesk'][0]['systemSounds'][0]) && !$xml['eyeDesk'][0]['systemSounds'][0]) {
+	$xml = xenonXML('getXMLconfig', array('xenonDesk', 'conf.xml'));
+	if (isset($xml['xenonDesk'][0]['systemSounds'][0]) && !$xml['xenonDesk'][0]['systemSounds'][0]) {
 		return false;
 	} else {
 		return eyeSound('simplePlay', array('systemSound_' . $params[0], $list[$params[0]]));
