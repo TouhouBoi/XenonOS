@@ -163,7 +163,7 @@ $pic22 = array(
 	'xenonFTP',
 	'xenonFeeds',
 	'xenonFiles',
-	'eyeGroups',
+	'xenonGroups',
 	'xenonHelp',
 	'xenonImages',
 	'xenonMail',
@@ -249,7 +249,7 @@ $alias[0]['icons/48x48/apps/RSS.png'] = 'icons/48x48/RSS.png';
 $alias[0]['icons/48x48/autorun.png'] = 'icons/48x48/exec.png';
 $alias[0]['icons/48x48/filemanager.png'] = 'icons/48x48/xenonFiles.png';
 $alias[0]['icons/48x48/home.png'] = 'icons/48x48/xenonFiles.png';
-$alias[0]['icons/48x48/managegroups.png'] = 'icons/48x48/eyeGroups.png';
+$alias[0]['icons/48x48/managegroups.png'] = 'icons/48x48/xenonGroups.png';
 $alias[0]['icons/48x48/manageusers.png'] = 'icons/48x48/public.png';
 $alias[0]['icons/48x48/webbrowser.png'] = 'icons/48x48/eyeNav.png';
 $alias[0]['images/widgets/folder.png'] = 'icons/16x16/folder.png';
@@ -335,7 +335,7 @@ $alias[1][APP_DIR . '/xenonFiles/gfx/down.png'] = 'icons/16x16/download.png';
 $alias[1][APP_DIR . '/xenonFiles/gfx/download.png'] = 'icons/16x16/save.png';
 $alias[1][APP_DIR . '/xenonFiles/gfx/downzip.png'] = 'icons/16x16/downzip.png';
 $alias[1][APP_DIR . '/xenonFiles/gfx/xenonFilesbg.png'] = 'images/' . APP_DIR . '/xenonFiles/xenonFilesbg.png';
-$alias[1][APP_DIR . '/xenonFiles/gfx/eyegroupsbg.png'] = 'images/' . APP_DIR . '/xenonFiles/eyegroupsbg.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/xenongroupsbg.png'] = 'images/' . APP_DIR . '/xenonFiles/xenongroupsbg.png';
 $alias[1][APP_DIR . '/xenonFiles/gfx/newfolder.png'] = 'icons/16x16/newfolder.png';
 $alias[1][APP_DIR . '/xenonFiles/gfx/Next.png'] = 'images/' . APP_DIR . '/xenonFiles/next.png';
 $alias[1][APP_DIR . '/xenonFiles/gfx/paste.png'] = 'icons/16x16/paste.png';

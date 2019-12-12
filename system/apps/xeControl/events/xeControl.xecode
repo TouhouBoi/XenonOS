@@ -43,7 +43,7 @@ function xeControl_on_selectUser($params = '') {
 				'buttons' => array(array('selectUser_select','Select'),array('selectUser_cancel','Cancel')),
 				'content' => 'Please type the username here:',
 				'father' => 'xeControl_window',
-				'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/eyeGroups.png',
+				'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/xenonGroups.png',
 				'textbox_event' => 'selectUser_select',
 				'textbox_name' => 'xeControl_searchuser_textbox',
 				'title' => 'Search user...',

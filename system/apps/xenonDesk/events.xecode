@@ -331,7 +331,7 @@ function xenonDesk_on_OpenPath($params = '') {
 		));
 		$myWidgetDrag->show();
 
-		if ($file[1] === 'folder' || $file[1] === 'link' && (strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 7)) === 'home://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 9)) === 'groups://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'trash://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'users://' || strtolower(substr($xml['eyeLink'][0]['content'][0],0,7)) == 'real://' || in_array($xml['eyeLink'][0]['content'][0], array('xenonFiles.app', 'eyeGroups.app', 'xenonTrash.app')) === true)) { // utf8
+		if ($file[1] === 'folder' || $file[1] === 'link' && (strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 7)) === 'home://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 9)) === 'groups://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'trash://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'users://' || strtolower(substr($xml['eyeLink'][0]['content'][0],0,7)) == 'real://' || in_array($xml['eyeLink'][0]['content'][0], array('xenonFiles.app', 'xenonGroups.app', 'xenonTrash.app')) === true)) { // utf8
 			$myWidgetDrop = new widgetDrop(array(
 				'father' => $myIcon->name . '_Container',
 				'name' => $myIcon->name . '_WidgetDrop'
@@ -341,7 +341,7 @@ function xenonDesk_on_OpenPath($params = '') {
 				$content = 'home://Desktop/' . $file[0] . '/';
 			} elseif ($xml['eyeLink'][0]['content'][0] == 'xenonFiles.app') {
 				$content = 'home:///';
-			} elseif ($xml['eyeLink'][0]['content'][0] == 'eyeGroups.app') {
+			} elseif ($xml['eyeLink'][0]['content'][0] == 'xenonGroups.app') {
 				$content = 'groups:///';
 			} elseif ($xml['eyeLink'][0]['content'][0] == 'xenonTrash.app') {
 				$content = 'trash:///';
