@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeImport_on_Import($params="") {
+function xenonImport_on_Import($params="") {
 	global $checknum;
 	$options = array(
 		2,
@@ -24,7 +24,7 @@ function eyeImport_on_Import($params="") {
 	proc('launch',array('xenonDialog',$options));
 }
 
-function eyeImport_on_doImport($params="") {
+function xenonImport_on_doImport($params="") {
 	if(empty($GLOBALS['mtextbox']->text)) {
 		xenonx('messageBox',array('content'=>'You have to select a directory to import files'));
 		return;
@@ -35,15 +35,15 @@ function eyeImport_on_doImport($params="") {
 	$GLOBALS['lbl']->setText('%s files imported!',array($num));
 }
 
-function eyeImport_on_SelectDestDialog($params="") {
+function xenonImport_on_SelectDestDialog($params="") {
 	$GLOBALS['mtextbox']->setText($params['arg'][0]);
 }
 
-function eyeImport_on_Message($params="") {
+function xenonImport_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeImport_on_Close(){
+function xenonImport_on_Close(){
 	proc('end');
 }
 
