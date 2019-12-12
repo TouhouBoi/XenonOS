@@ -166,7 +166,7 @@ $pic22 = array(
 	'eyeGroups',
 	'eyeHelp',
 	'eyeImages',
-	'eyeMail',
+	'xenonMail',
 	'eyeMedia',
 	'eyeMessages',
 	'eyeNav',
@@ -224,7 +224,7 @@ $alias[0]['icons/16x16/apps/xenonContacts.png'] = 'images/apps/eyeLightDesk/16x1
 $alias[0]['icons/16x16/apps/eyeDocs.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeDocs.png';
 $alias[0]['icons/16x16/apps/xenonFiles.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonFiles.png';
 $alias[0]['icons/16x16/apps/xenonFTP.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonFTP.png';
-$alias[0]['icons/16x16/apps/eyeMail.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeMail.png';
+$alias[0]['icons/16x16/apps/xenonMail.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonMail.png';
 $alias[0]['icons/16x16/apps/eyeMessages.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeMessages.png';
 $alias[0]['icons/16x16/apps/eyeNav.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeNav.png';
 $alias[0]['icons/16x16/apps/eyeNotes.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeNotes.png';
@@ -406,19 +406,19 @@ $alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/line_x.png'] = 'images/'.APP_D
 $alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/new.png'] = 'images/'.APP_DIR.'/xenonLogin/new.png';
 $alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/new_x.png'] = 'images/'.APP_DIR.'/xenonLogin/new_x.png';
 
-// eyeMail
-$alias[1][APP_DIR.'/eyeMail/gfx/delete.png'] = 'icons/16x16/message_trash.png';
-$alias[1][APP_DIR.'/eyeMail/gfx/email.png'] = 'images/'.APP_DIR.'/eyeMail/email.png';
-$alias[1][APP_DIR.'/eyeMail/gfx/identify.png'] = 'icons/16x16/unread.png';
-$alias[1][APP_DIR.'/eyeMail/gfx/inbox.png'] = 'icons/16x16/inbox.png';
-$alias[1][APP_DIR.'/eyeMail/gfx/open.png'] = 'icons/16x16/read.png';
-$alias[1][APP_DIR.'/eyeMail/gfx/send.png'] = 'icons/16x16/sent.png';
-$alias[0]['images/apps/eyeMail/mail-receive.png'] = 'icons/22x22/mail-receive.png';
-$alias[0]['images/apps/eyeMail/mail-message-new.png'] = 'icons/22x22/message_new.png';
-$alias[0]['images/apps/eyeMail/user-trash.png'] = 'icons/22x22/message_delete.png';
-$alias[0]['images/apps/eyeMail/mail-reply-sender.png'] = 'icons/22x22/mail-reply-sender.png';
-$alias[0]['images/apps/eyeMail/mail-forward.png'] = 'icons/22x22/mail-forward.png';
-$alias[0]['images/apps/eyeMail/preferences-system.png'] = 'icons/22x22/settings.png';
+// xenonMail
+$alias[1][APP_DIR.'/xenonMail/gfx/delete.png'] = 'icons/16x16/message_trash.png';
+$alias[1][APP_DIR.'/xenonMail/gfx/email.png'] = 'images/'.APP_DIR.'/xenonMail/email.png';
+$alias[1][APP_DIR.'/xenonMail/gfx/identify.png'] = 'icons/16x16/unread.png';
+$alias[1][APP_DIR.'/xenonMail/gfx/inbox.png'] = 'icons/16x16/inbox.png';
+$alias[1][APP_DIR.'/xenonMail/gfx/open.png'] = 'icons/16x16/read.png';
+$alias[1][APP_DIR.'/xenonMail/gfx/send.png'] = 'icons/16x16/sent.png';
+$alias[0]['images/apps/xenonMail/mail-receive.png'] = 'icons/22x22/mail-receive.png';
+$alias[0]['images/apps/xenonMail/mail-message-new.png'] = 'icons/22x22/message_new.png';
+$alias[0]['images/apps/xenonMail/user-trash.png'] = 'icons/22x22/message_delete.png';
+$alias[0]['images/apps/xenonMail/mail-reply-sender.png'] = 'icons/22x22/mail-reply-sender.png';
+$alias[0]['images/apps/xenonMail/mail-forward.png'] = 'icons/22x22/mail-forward.png';
+$alias[0]['images/apps/xenonMail/preferences-system.png'] = 'icons/22x22/settings.png';
 
 // eyeNav
 $alias[1][APP_DIR . '/eyeNav/gfx/delete.png'] = 'images/'.APP_DIR.'/eyeNav/delete.png';

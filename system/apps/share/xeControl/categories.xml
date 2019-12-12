@@ -161,7 +161,7 @@
 		<content>
 			<description>Manage your system's SMTP settings</description>
 			<display>SMTP</display>
-			<img>index.php?theme=USERTHEME&amp;extern=icons/48x48/eyeMail.png</img>
+			<img>index.php?theme=USERTHEME&amp;extern=icons/48x48/xenonMail.png</img>
 			<name>smtp</name>
 			<permissions>root</permissions>
 			<title>yes</title>

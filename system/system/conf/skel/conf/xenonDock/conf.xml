@@ -147,10 +147,10 @@
 						<type>icon</type>
 					</entry-4>
 					<entry-5>
-						<command>eyeMail.app</command>
+						<command>xenonMail.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeMail.png</image>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonMail.png</image>
 						<text>Email Client</text>
 						<type>icon</type>
 					</entry-5>

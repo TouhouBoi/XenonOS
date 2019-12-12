@@ -14,16 +14,16 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeMail_preferencesWindow($params=null) {
-	$prefConfig = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeMail/settings.xml'));
+function xenonMail_preferencesWindow($params=null) {
+	$prefConfig = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/xenonMail/settings.xml'));
 
-	if(is_object($GLOBALS['eyeMail_preferencesWND'])) {
-		$GLOBALS['eyeMail_preferencesWND']->close();
+	if(is_object($GLOBALS['xenonMail_preferencesWND'])) {
+		$GLOBALS['xenonMail_preferencesWND']->close();
 	}
 	$prefWindow = new Window(array(
-		'name' => 'eyeMail_preferencesWND',
+		'name' => 'xenonMail_preferencesWND',
 		'title' => 'Preferences',
-		'father' => 'eyeMail_WND_1_Content',
+		'father' => 'xenonMail_WND_1_Content',
 		'width' => 500,
 		'height' => 400,
 		'x' => 77,
@@ -33,19 +33,19 @@ function eyeMail_preferencesWindow($params=null) {
 		'sigClose' => 'closePreferences'
 	));
 	$prefWindow->show();
-	$prefToolbar = new Toolbar(array('name'=>'preferencesToolbar','father'=>'eyeMail_preferencesWND_Content'));
+	$prefToolbar = new Toolbar(array('name'=>'preferencesToolbar','father'=>'xenonMail_preferencesWND_Content'));
 	$prefToolbar->show();
 	$prefToolbar->addItem('prefGeneral','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/eyeNav.png','General');
 	$prefToolbar->addItem('prefAccounts','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/groups.png','Accounts');
-	//$prefToolbar->addItem('prefSecurity','index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyeMail/security.png','Security');
+	//$prefToolbar->addItem('prefSecurity','index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonMail/security.png','Security');
 
 
 	// General Window in Preferences
 
 
 	$generalContainer = new Simplebox(array(
-		'name' => 'eyeMail_generalContainer',
-		'father' => 'eyeMail_preferencesWND_Content',
+		'name' => 'xenonMail_generalContainer',
+		'father' => 'xenonMail_preferencesWND_Content',
 		'x' => 0,
 		'y' => 59,
 		'width' => $prefWindow->width-2,
@@ -57,8 +57,8 @@ function eyeMail_preferencesWindow($params=null) {
 		// 'background-color'=>'orange'
 	// ));
 	$label1General = new Label(array(
-		'name' => 'eyeMail_label1General',
-		'father' => 'eyeMail_generalContainer',
+		'name' => 'xenonMail_label1General',
+		'father' => 'xenonMail_generalContainer',
 		'x' => 125,
 		'y' => 32,
 		'text' => 'Check for new mail:'
@@ -66,32 +66,32 @@ function eyeMail_preferencesWindow($params=null) {
 	$label1General->show();
 
 	$select1General = new Select(array(
-		'name' => 'eyeMail_select1General',
-		'father' => 'eyeMail_generalContainer',
+		'name' => 'xenonMail_select1General',
+		'father' => 'xenonMail_generalContainer',
 		'x' => 250,
 		'y' => 30
 	));
 	$select1General->show();
 
-	if ($prefConfig['eyeMail'][0]['checkDelay'][0] == 5) {
+	if ($prefConfig['xenonMail'][0]['checkDelay'][0] == 5) {
 		$select1General->addOption('Manually',1);
 		$select1General->addOption('Every 5 minutes',5,1);
 		$select1General->addOption('Every 15 minutes',15);
 		$select1General->addOption('Every 30 minutes',30);
 		$select1General->addOption('Every hour',60);
-	} else if ($prefConfig['eyeMail'][0]['checkDelay'][0] == 15) {
+	} else if ($prefConfig['xenonMail'][0]['checkDelay'][0] == 15) {
 		$select1General->addOption('Manually',1);
 		$select1General->addOption('Every 5 minutes',5);
 		$select1General->addOption('Every 15 minutes',15,1);
 		$select1General->addOption('Every 30 minutes',30);
 		$select1General->addOption('Every hour',60);
-	} else if ($prefConfig['eyeMail'][0]['checkDelay'][0] == 30) {
+	} else if ($prefConfig['xenonMail'][0]['checkDelay'][0] == 30) {
 		$select1General->addOption('Manually',1);
 		$select1General->addOption('Every 5 minutes',5);
 		$select1General->addOption('Every 15 minutes',15);
 		$select1General->addOption('Every 30 minutes',30,1);
 		$select1General->addOption('Every hour',60);
-	} else if ($prefConfig['eyeMail'][0]['checkDelay'][0] == 60) {
+	} else if ($prefConfig['xenonMail'][0]['checkDelay'][0] == 60) {
 		$select1General->addOption('Manually',1);
 		$select1General->addOption('Every 5 minutes',5);
 		$select1General->addOption('Every 15 minutes',15);
@@ -106,34 +106,34 @@ function eyeMail_preferencesWindow($params=null) {
 	}
 
 	$check1General = new Checkbox(array(
-		'name' => 'eyeMail_check1General',
-		'father' => 'eyeMail_generalContainer',
+		'name' => 'xenonMail_check1General',
+		'father' => 'xenonMail_generalContainer',
 		'x' => 245,
 		'y' => 70,
 		'text' => 'Check mail at startup'
 	));
 	$check1General->show();
 
-	if ($prefConfig['eyeMail'][0]['startupCheck'][0] == 1) {
+	if ($prefConfig['xenonMail'][0]['startupCheck'][0] == 1) {
 		$check1General->check();
 	}
 
 	$check3General = new Checkbox(array(
-		'name' => 'eyeMail_check3General',
-		'father' => 'eyeMail_generalContainer',
+		'name' => 'xenonMail_check3General',
+		'father' => 'xenonMail_generalContainer',
 		'x' => 245,
 		'y' => 110,
 		'text' => 'Visual alert'
 	));
 	$check3General->show();
 
-	if ($prefConfig['eyeMail'][0]['visualAlert'][0] == 1) {
+	if ($prefConfig['xenonMail'][0]['visualAlert'][0] == 1) {
 		$check3General->check();
 	}
 
 	$saveGeneral = new Button(array(
-		'name' => 'eyeMail_saveGeneral',
-		'father' => 'eyeMail_generalContainer',
+		'name' => 'xenonMail_saveGeneral',
+		'father' => 'xenonMail_generalContainer',
 		'horiz' => 1,
 		'vert' => 1,
 		'x' => 200,
@@ -151,8 +151,8 @@ function eyeMail_preferencesWindow($params=null) {
 	// Accounts Window Preferences //
 
 	$accountsContainer = new Simplebox(array(
-		'name' => 'eyeMail_accountsContainer',
-		'father' => 'eyeMail_preferencesWND_Content',
+		'name' => 'xenonMail_accountsContainer',
+		'father' => 'xenonMail_preferencesWND_Content',
 		'x' => 0,
 		'y' => 59,
 		'width' => $prefWindow->width-2,
@@ -166,8 +166,8 @@ function eyeMail_preferencesWindow($params=null) {
 	// ));
 
 	$addButton = new Button(array(
-		'name' => 'eyeMail_addButton',
-		'father' => 'eyeMail_accountsContainer',
+		'name' => 'xenonMail_addButton',
+		'father' => 'xenonMail_accountsContainer',
 		'x' => 20,
 		'y' => 286,
 		'caption' => '+'
@@ -179,8 +179,8 @@ function eyeMail_preferencesWindow($params=null) {
 	));
 
 	$delButton = new Button(array(
-		'name' => 'eyeMail_delButton',
-		'father' => 'eyeMail_accountsContainer',
+		'name' => 'xenonMail_delButton',
+		'father' => 'xenonMail_accountsContainer',
 		'x' => 49,
 		'y' => 286,
 		'caption' => '-',
@@ -196,13 +196,13 @@ function eyeMail_preferencesWindow($params=null) {
 	));
 
 			// subList Accounts Preferences
-	eyeMail_refreshListAcc(true);
+	xenonMail_refreshListAcc(true);
 
 	// Security Window Preferences
 
 	$securityContainer = new Simplebox(array(
-		'name' => 'eyeMail_securityContainer',
-		'father' => 'eyeMail_preferencesWND_Content',
+		'name' => 'xenonMail_securityContainer',
+		'father' => 'xenonMail_preferencesWND_Content',
 		'x' => 0,
 		'y' => 59,
 		'width' => $prefWindow->width-2,
@@ -216,34 +216,34 @@ function eyeMail_preferencesWindow($params=null) {
 	// ));
 
 	$check1Security = new Checkbox(array(
-		'name' => 'eyeMail_check1Security',
-		'father' => 'eyeMail_securityContainer',
+		'name' => 'xenonMail_check1Security',
+		'father' => 'xenonMail_securityContainer',
 		'x' => 245,
 		'y' => 60,
 		'text' => 'Send Rich Text'
 	));
 	$check1Security->show();
 
-	if ($prefConfig['eyeMail'][0]['sendRich'][0] == 1) {
+	if ($prefConfig['xenonMail'][0]['sendRich'][0] == 1) {
 		$check1Security->check();
 	}
 
 	$check2Security = new Checkbox(array(
-		'name' => 'eyeMail_check2Security',
-		'father' => 'eyeMail_securityContainer',
+		'name' => 'xenonMail_check2Security',
+		'father' => 'xenonMail_securityContainer',
 		'x' => 245,
 		'y' => 80,
 		'text' => 'Recive Rich Text'
 	));
 	$check2Security->show();
 
-	if ($prefConfig['eyeMail'][0]['recvRich'][0] == 1) {
+	if ($prefConfig['xenonMail'][0]['recvRich'][0] == 1) {
 		$check2Security->check();
 	}
 
 	$saveSecurity = new Button(array(
-		'name' => 'eyeMail_saveSecurity',
-		'father' => 'eyeMail_securityContainer',
+		'name' => 'xenonMail_saveSecurity',
+		'father' => 'xenonMail_securityContainer',
 		'horiz' => 1,
 		'vert' => 1,
 		'x' => 200,
@@ -257,75 +257,75 @@ function eyeMail_preferencesWindow($params=null) {
 	$saveSecurity->addFriend($check1Security);
 	$saveSecurity->addFriend($check2Security);
 	$saveSecurity->show();
-	eyeMail_generalClick();
+	xenonMail_generalClick();
 
 }
 
-function eyeMail_on_saveGeneral($params=null) {
-	$prefConfig = xenonXML('getXMLconfig', array ('eyeMail', 'settings.xml'));
-	$prefConfig['eyeMail'][0]['startupCheck'][0] = $GLOBALS['eyeMail_check1General']->checked;
-	$prefConfig['eyeMail'][0]['visualAlert'][0] = $GLOBALS['eyeMail_check3General']->checked;
-	$prefConfig['eyeMail'][0]['checkDelay'][0] = $GLOBALS['eyeMail_select1General']->selected;
-	xenonXML('setXMLconfig',array('eyeMail','settings.xml', $prefConfig));
+function xenonMail_on_saveGeneral($params=null) {
+	$prefConfig = xenonXML('getXMLconfig', array ('xenonMail', 'settings.xml'));
+	$prefConfig['xenonMail'][0]['startupCheck'][0] = $GLOBALS['xenonMail_check1General']->checked;
+	$prefConfig['xenonMail'][0]['visualAlert'][0] = $GLOBALS['xenonMail_check3General']->checked;
+	$prefConfig['xenonMail'][0]['checkDelay'][0] = $GLOBALS['xenonMail_select1General']->selected;
+	xenonXML('setXMLconfig',array('xenonMail','settings.xml', $prefConfig));
 	xenonx('messageBox', array('content' => 'General settings has been updated.'));
-	$GLOBALS['eyeMail_preferencesWND']->close();
+	$GLOBALS['xenonMail_preferencesWND']->close();
 
 }
 
-function eyeMail_on_saveSecurity($params=null) {
-	$prefConfig = xenonXML('getXMLconfig', array ('eyeMail', 'settings.xml'));
-	$prefConfig['eyeMail'][0]['sendRich'][0] = $GLOBALS['eyeMail_check1Security']->checked;
-	$prefConfig['eyeMail'][0]['recvRich'][0] = $GLOBALS['eyeMail_check2Security']->checked;
-	xenonXML('setXMLconfig',array('eyeMail','settings.xml', $prefConfig));
+function xenonMail_on_saveSecurity($params=null) {
+	$prefConfig = xenonXML('getXMLconfig', array ('xenonMail', 'settings.xml'));
+	$prefConfig['xenonMail'][0]['sendRich'][0] = $GLOBALS['xenonMail_check1Security']->checked;
+	$prefConfig['xenonMail'][0]['recvRich'][0] = $GLOBALS['xenonMail_check2Security']->checked;
+	xenonXML('setXMLconfig',array('xenonMail','settings.xml', $prefConfig));
 	xenonx('messageBox', array('content' => 'Security settings has been updated.'));
-	$GLOBALS['eyeMail_preferencesWND']->close();
+	$GLOBALS['xenonMail_preferencesWND']->close();
 }
 
-function eyeMail_on_delButton($params=null) {
-	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
-	$thekey = $GLOBALS['eyeMail_tabInfoHidden']->text;
+function xenonMail_on_delButton($params=null) {
+	$accountsFile = xenonXML('getXMLconfig',array('xenonMail','accounts.xml'));
+	$thekey = $GLOBALS['xenonMail_tabInfoHidden']->text;
 	xenonx('messageBox', array(
 		'title' => 'Remove Account',
-		'win_name' => 'eyeMail_messageRemoveAccount',
-		'father' => 'eyeMail_WND_1',
+		'win_name' => 'xenonMail_messageRemoveAccount',
+		'father' => 'xenonMail_WND_1',
 		'btn1_capt' => 'Yes',
 		'btn1_name' => 'messageRemoveYes',
 		'btn2_capt' => 'No',
 		'btn2_name' => 'messageRemoveNo',
 		'content' => 'Are you sure you want to remove the account "%s"?',
-		'tokens' => array($accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['description'][0]),
+		'tokens' => array($accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['description'][0]),
 		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/editClean.png',
 		'type' => 3
 	));
 }
 
-function eyeMail_on_messageRemoveNo($params=null) {
-	$GLOBALS['eyeMail_messageRemoveAccount']->close();
+function xenonMail_on_messageRemoveNo($params=null) {
+	$GLOBALS['xenonMail_messageRemoveAccount']->close();
 }
 
-function eyeMail_on_messageRemoveYes($params=null) {
-	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
-	$thekey = $GLOBALS['eyeMail_tabInfoHidden']->text;
-	unset($accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]);
-	xenonXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
-	if (is_object($GLOBALS['eyeMail_listAccContainer'])) {
-		$GLOBALS['eyeMail_listAccContainer']->remove();
+function xenonMail_on_messageRemoveYes($params=null) {
+	$accountsFile = xenonXML('getXMLconfig',array('xenonMail','accounts.xml'));
+	$thekey = $GLOBALS['xenonMail_tabInfoHidden']->text;
+	unset($accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]);
+	xenonXML('setXMLconfig',array('xenonMail','accounts.xml', $accountsFile));
+	if (is_object($GLOBALS['xenonMail_listAccContainer'])) {
+		$GLOBALS['xenonMail_listAccContainer']->remove();
 	}
-	eyeMail_refreshListAcc();
-	if (is_object($GLOBALS['eyeMail_boxTabContainer'])) {
-		$GLOBALS['eyeMail_boxTabContainer']->remove();
+	xenonMail_refreshListAcc();
+	if (is_object($GLOBALS['xenonMail_boxTabContainer'])) {
+		$GLOBALS['xenonMail_boxTabContainer']->remove();
 	}
-	$GLOBALS['eyeMail_messageRemoveAccount']->close();
+	$GLOBALS['xenonMail_messageRemoveAccount']->close();
 }
 
-function eyeMail_refreshListAcc($params=null) {
+function xenonMail_refreshListAcc($params=null) {
 	$listAccContainer = new Simplebox(array(
-		'name' => 'eyeMail_listAccContainer',
-		'father' => 'eyeMail_accountsContainer',
+		'name' => 'xenonMail_listAccContainer',
+		'father' => 'xenonMail_accountsContainer',
 		'x' => 20,
 		'y' => 20,
 		'width' => 180,
-		'height' => $GLOBALS['eyeMail_preferencesWND']->height-143,
+		'height' => $GLOBALS['xenonMail_preferencesWND']->height-143,
 		'border' => 0
 	));
 	$listAccContainer->show(0);
@@ -335,8 +335,8 @@ function eyeMail_refreshListAcc($params=null) {
 	));
 
 	$listAccHeader = new Simplebox(array(
-		'name' => 'eyeMail_listAccHeader',
-		'father' => 'eyeMail_listAccContainer',
+		'name' => 'xenonMail_listAccHeader',
+		'father' => 'xenonMail_listAccContainer',
 		'x' => 0,
 		'y' => 0,
 		'width' => 180,
@@ -350,8 +350,8 @@ function eyeMail_refreshListAcc($params=null) {
 	));
 
 	$labelListAcc = new Label(array(
-		'name' => 'eyeMail_labelListAcc',
-		'father' => 'eyeMail_listAccHeader',
+		'name' => 'xenonMail_labelListAcc',
+		'father' => 'xenonMail_listAccHeader',
 		'height' => 20,
 		'width' => 120,
 		'text' => 'Accounts',
@@ -359,8 +359,8 @@ function eyeMail_refreshListAcc($params=null) {
 		'y' => 4
 	));
 	$labelListAcc->show();
-	$accConfig = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeMail/accounts.xml'));
-	$accConfig = $accConfig['eyeMail'][0]['accounts'][0]['account'];
+	$accConfig = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/xenonMail/accounts.xml'));
+	$accConfig = $accConfig['xenonMail'][0]['accounts'][0]['account'];
 	$accPosIndex=22;
 	global $checknum;
 	if(!is_array($accConfig)) {
@@ -368,8 +368,8 @@ function eyeMail_refreshListAcc($params=null) {
 	}
 	foreach ($accConfig as $key=>$value) {
 		$accUserBox = new Simplebox(array(
-			'name' => 'eyeMail_accUserBox'.$key,
-			'father' => 'eyeMail_listAccContainer',
+			'name' => 'xenonMail_accUserBox'.$key,
+			'father' => 'xenonMail_listAccContainer',
 			'x' => 1,
 			'y' => $accPosIndex,
 			'height' => 20,
@@ -388,8 +388,8 @@ function eyeMail_refreshListAcc($params=null) {
 			xenonx('rawjs', array('js' => $js));
 		}
 		$imageAccUser = new Imagebox(array(
-			'name' => 'eyeMail_imageAccUser'.$key,
-			'father' => 'eyeMail_accUserBox'.$key,
+			'name' => 'xenonMail_imageAccUser'.$key,
+			'father' => 'xenonMail_accUserBox'.$key,
 			'x'=>10,
 			'y'=>4,
 			'alt' => $accConfig[$key]['name'][0],
@@ -405,8 +405,8 @@ function eyeMail_refreshListAcc($params=null) {
 		}
 
 		$accUserLabel = new Label(array(
-			'name' => 'eyeMail_accUserLabel'.$key,
-			'father' => 'eyeMail_accUserBox'.$key,
+			'name' => 'xenonMail_accUserLabel'.$key,
+			'father' => 'xenonMail_accUserBox'.$key,
 			'x' => 35,
 			'y' => 4,
 			'height' =>20,
@@ -418,20 +418,20 @@ function eyeMail_refreshListAcc($params=null) {
 	}
 }
 
-function eyeMail_on_accountFocus($params=null) {
+function xenonMail_on_accountFocus($params=null) {
 	global $myPid;
-	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
-	$accountsFile = $accountsFile['eyeMail'][0]['accounts'][0]['account'];
+	$accountsFile = xenonXML('getXMLconfig',array('xenonMail','accounts.xml'));
+	$accountsFile = $accountsFile['xenonMail'][0]['accounts'][0]['account'];
 	$thefocus = $params['focus'][0];
-	eyeMail_on_unlightAll();
-	$GLOBALS['eyeMail_accUserBox'.$thefocus]->setCSS(array(
+	xenonMail_on_unlightAll();
+	$GLOBALS['xenonMail_accUserBox'.$thefocus]->setCSS(array(
 		'background-color' => '#D5DDE6'
 		// 'border' => '1px solid black'
 	));
 
 	$boxTabContainer = new Simplebox (array(
-		'name' => 'eyeMail_boxTabContainer',
-		'father' => 'eyeMail_accountsContainer',
+		'name' => 'xenonMail_boxTabContainer',
+		'father' => 'xenonMail_accountsContainer',
 		'width' => 258,
 		'height' => 295,
 		'border' => 1,
@@ -441,23 +441,23 @@ function eyeMail_on_accountFocus($params=null) {
 	));
 	$boxTabContainer->show(0);
 
-	$GLOBALS['eyeMail_accountsContainer']->unhide();
+	$GLOBALS['xenonMail_accountsContainer']->unhide();
 	$tabAcc = new Tab(array(
-		'name' => 'eyeMail_prefTabAcc',
-		'father' => 'eyeMail_boxTabContainer',
+		'name' => 'xenonMail_prefTabAcc',
+		'father' => 'xenonMail_boxTabContainer',
 		'x' => 0,
 		'y' => 0,
 		'width' => 247,
 		'height' => 250
 	));
 	$tabAcc->show();
-	xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_eyeMail_prefTabAcc_header").style.backgroundColor = "#ffffff";'));
+	xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_xenonMail_prefTabAcc_header").style.backgroundColor = "#ffffff";'));
 	$tabInfo = $tabAcc->addTab('Information',1);
 	// $tabMailbox = $tabAcc->addTab('Mailbox',1);
 	$tabAdvanced = $tabAcc->addTab('Advanced',1);
 	$tabAcc->selectByName('Information');
 	$tabInfoBox = new Simplebox (array(
-		'name' => 'eyeMail_tabInfoBox',
+		'name' => 'xenonMail_tabInfoBox',
 		'father' => $tabInfo,
 		'width' => 258,
 		'height' => 234,
@@ -472,7 +472,7 @@ function eyeMail_on_accountFocus($params=null) {
 	));
 
 	// $tabMailBox = new Simplebox (array(
-		// 'name' => 'eyeMail_tabMailBox',
+		// 'name' => 'xenonMail_tabMailBox',
 		// 'father' => $tabMailbox,
 		// 'width' => 258,
 		// 'height' => 234,
@@ -487,7 +487,7 @@ function eyeMail_on_accountFocus($params=null) {
 	// ));
 
 	$tabAdvancedBox = new Simplebox (array(
-		'name' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvancedBox',
 		'father' => $tabAdvanced,
 		'width' => 258,
 		'height' => 234,
@@ -504,8 +504,8 @@ function eyeMail_on_accountFocus($params=null) {
 	//Tab Info
 
 	$tabInfoSelect = new Select(array(
-		'name' => 'eyeMail_tabInfoSelect',
-		'father' => 'eyeMail_tabInfoBox',
+		'name' => 'xenonMail_tabInfoSelect',
+		'father' => 'xenonMail_tabInfoBox',
 		'x' => 115,
 		'y' => 31
 	));
@@ -520,15 +520,15 @@ function eyeMail_on_accountFocus($params=null) {
 
 
 	$tabInfoHidden = new Hidden(array(
-		'name' => 'eyeMail_tabInfoHidden',
-		'father' => 'eyeMail_eyeMail_tabInfoBox',
+		'name' => 'xenonMail_tabInfoHidden',
+		'father' => 'xenonMail_xenonMail_tabInfoBox',
 		'text' => $thefocus
 	));
 	eyeWidgets('serialize',array($tabInfoHidden));
 
 	$tabInfoLabel = new Label(array(
-		'name' => 'eyeMail_tabInfoLabel1',
-		'father' => 'eyeMail_tabInfoBox',
+		'name' => 'xenonMail_tabInfoLabel1',
+		'father' => 'xenonMail_tabInfoBox',
 		'text' => 'Account Type:',
 		'y' => 31,
 		'x' => 21,
@@ -536,8 +536,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$tabInfoLabel->show();
 
 	$tabInfoLabel = new Label(array(
-		'name' => 'eyeMail_tabInfoLabel2',
-		'father' => 'eyeMail_tabInfoBox',
+		'name' => 'xenonMail_tabInfoLabel2',
+		'father' => 'xenonMail_tabInfoBox',
 		'text' => 'Account Name:',
 		'y' => 71,
 		'x' => 16,
@@ -545,8 +545,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$tabInfoLabel->show();
 
 	$tabInfoLabel = new Label(array(
-		'name' => 'eyeMail_tabInfoLabel3',
-		'father' => 'eyeMail_tabInfoBox',
+		'name' => 'xenonMail_tabInfoLabel3',
+		'father' => 'xenonMail_tabInfoBox',
 		'text' => 'Full Name:',
 		'y' => 101,
 		'x' => 42,
@@ -554,8 +554,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$tabInfoLabel->show();
 
 	$tabInfoLabel = new Label(array(
-		'name' => 'eyeMail_tabInfoLabel4',
-		'father' => 'eyeMail_tabInfoBox',
+		'name' => 'xenonMail_tabInfoLabel4',
+		'father' => 'xenonMail_tabInfoBox',
 		'text' => 'Email:',
 		'y' => 131,
 		'x' => 67,
@@ -563,8 +563,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$tabInfoLabel->show();
 
 	$tabInfoText1 = new Textbox(array(
-		'name' => 'eyeMail_tabInfoText_1',
-		'father' => 'eyeMail_tabInfoBox',
+		'name' => 'xenonMail_tabInfoText_1',
+		'father' => 'xenonMail_tabInfoBox',
 		'width' => 120,
 		'y' => 69,
 		'x' => 115,
@@ -573,8 +573,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$tabInfoText1->show();
 
 	$tabInfoText2 = new Textbox(array(
-		'name' => 'eyeMail_tabInfoText_2',
-		'father' => 'eyeMail_tabInfoBox',
+		'name' => 'xenonMail_tabInfoText_2',
+		'father' => 'xenonMail_tabInfoBox',
 		'width' => 120,
 		'y' => 99,
 		'x' => 115,
@@ -583,8 +583,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$tabInfoText2->show();
 
 	$tabInfoText3 = new Textbox(array(
-		'name' => 'eyeMail_tabInfoText_3',
-		'father' => 'eyeMail_tabInfoBox',
+		'name' => 'xenonMail_tabInfoText_3',
+		'father' => 'xenonMail_tabInfoBox',
 		'width' => 120,
 		'y' => 129,
 		'x' => 115,
@@ -595,8 +595,8 @@ function eyeMail_on_accountFocus($params=null) {
 	//Tab Advanced
 
 	$tabAdvLabel = new Label(array(
-		'name' => 'eyeMail_tabAdvLabel_Incoming',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvLabel_Incoming',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'text' => 'Incoming',
 		'y' => 10,
 		'x' => 16,
@@ -606,8 +606,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y = 30;
 
 	$tabAdvLabel = new Label(array(
-		'name' => 'eyeMail_tabAdvLabel1',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvLabel1',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'text' => 'Server Host:',
 		'y' => $y,
 		'x' => 16,
@@ -616,8 +616,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvLabel = new Label(array(
-		'name' => 'eyeMail_tabAdvLabel2',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvLabel2',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'text' => 'Server Port:',
 		'y' => $y,
 		'x' => 18,
@@ -625,8 +625,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$tabAdvLabel->show();
 
 	$tabAdvCheck1 = new Checkbox (array(
-		'name' => 'eyeMail_tabAdvCheck_1',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvCheck_1',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'y' => $y - 2,
 		'horiz' => 1,
 		'x' => 40,
@@ -636,8 +636,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvLabel = new Label(array(
-		'name' => 'eyeMail_tabAdvLabel3',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvLabel3',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'text' => 'User:',
 		'y' => $y,
 		'x' => 58,
@@ -646,8 +646,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvLabel = new Label(array(
-		'name' => 'eyeMail_tabAdvLabel4',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvLabel4',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'text' => 'Password:',
 		'y' => $y,
 		'x' => 30,
@@ -656,8 +656,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 30;
 
 	$tabAdvLabel = new Label(array(
-		'name' => 'eyeMail_tabAdvLabel_Outgoing',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvLabel_Outgoing',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'text' => 'Outgoing',
 		'y' => $y,
 		'x' => 16,
@@ -667,8 +667,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvLabel = new Label(array(
-		'name' => 'eyeMail_tabAdvLabel5',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvLabel5',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'text' => 'Server Host:',
 		'y' => $y,
 		'x' => 16,
@@ -677,8 +677,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvLabel = new Label(array(
-		'name' => 'eyeMail_tabAdvLabel6',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvLabel6',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'text' => 'Server Port:',
 		'y' => $y,
 		'x' => 18,
@@ -686,8 +686,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$tabAdvLabel->show();
 
 	$tabAdvCheck2 = new Checkbox (array(
-		'name' => 'eyeMail_tabAdvCheck_2',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvCheck_2',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'y' => $y - 2,
 		'horiz' => 1,
 		'x' => 40,
@@ -697,8 +697,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvLabel = new Label(array(
-		'name' => 'eyeMail_tabAdvLabel7',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvLabel7',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'text' => 'User:',
 		'y' => $y,
 		'x' => 58,
@@ -707,8 +707,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvLabel = new Label(array(
-		'name' => 'eyeMail_tabAdvLabel8',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvLabel8',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'text' => 'Password:',
 		'y' => $y,
 		'x' => 30,
@@ -717,8 +717,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y = 28;
 
 	$tabAdvText1 = new Textbox(array(
-		'name' => 'eyeMail_tabAdvText_1',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvText_1',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'width' => 140,
 		'y' => $y,
 		'x' => 100,
@@ -728,8 +728,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvText2 = new Textbox(array(
-		'name' => 'eyeMail_tabAdvText_2',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvText_2',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'width' => 40,
 		'y' => $y,
 		'x' => 100,
@@ -739,8 +739,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvText3 = new Textbox(array(
-		'name' => 'eyeMail_tabAdvText_3',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvText_3',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'width' => 140,
 		'y' => $y,
 		'x' => 100,
@@ -750,8 +750,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvText4 = new Textbox(array(
-		'name' => 'eyeMail_tabAdvText_4',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvText_4',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'width' => 140,
 		'y' => $y,
 		'x' => 100,
@@ -762,8 +762,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 50;
 
 	$tabAdvText5 = new Textbox(array(
-		'name' => 'eyeMail_tabAdvText_5',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvText_5',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'width' => 140,
 		'y' => $y,
 		'x' => 100,
@@ -773,8 +773,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvText6 = new Textbox(array(
-		'name' => 'eyeMail_tabAdvText_6',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvText_6',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'width' => 40,
 		'y' => $y,
 		'x' => 100,
@@ -784,8 +784,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvText7 = new Textbox(array(
-		'name' => 'eyeMail_tabAdvText_7',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvText_7',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'width' => 140,
 		'y' => $y,
 		'x' => 100,
@@ -795,8 +795,8 @@ function eyeMail_on_accountFocus($params=null) {
 	$y += 20;
 
 	$tabAdvText8 = new Textbox(array(
-		'name' => 'eyeMail_tabAdvText_8',
-		'father' => 'eyeMail_tabAdvancedBox',
+		'name' => 'xenonMail_tabAdvText_8',
+		'father' => 'xenonMail_tabAdvancedBox',
 		'width' => 140,
 		'y' => $y,
 		'x' => 100,
@@ -813,8 +813,8 @@ function eyeMail_on_accountFocus($params=null) {
 	}
 
 	$saveButton = new Button(array(
-		'name' => 'eyeMail_saveButton',
-		'father' => 'eyeMail_boxTabContainer',
+		'name' => 'xenonMail_saveButton',
+		'father' => 'xenonMail_boxTabContainer',
 		'horiz' => 1,
 		'vert' => 1,
 		'x' => 100,
@@ -841,47 +841,47 @@ function eyeMail_on_accountFocus($params=null) {
 	$saveButton->show();
 }
 
-function eyeMail_on_saveButton($params=null) {
-	$thekey = $GLOBALS['eyeMail_tabInfoHidden']->text;
-	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['name'][0] = $GLOBALS['eyeMail_tabInfoText_2']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['description'][0] = $GLOBALS['eyeMail_tabInfoText_1']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['email'][0] = $GLOBALS['eyeMail_tabInfoText_3']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['type'][0] = $GLOBALS['eyeMail_tabInfoSelect']->selected;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['typehost'][0] = $GLOBALS['eyeMail_tabAdvText_1']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['typeport'][0] = $GLOBALS['eyeMail_tabAdvText_2']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['typeuser'][0] = $GLOBALS['eyeMail_tabAdvText_3']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['typessl'][0] = $GLOBALS['eyeMail_tabAdvCheck_1']->checked;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['smtphost'][0] = $GLOBALS['eyeMail_tabAdvText_5']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['smtpport'][0] = $GLOBALS['eyeMail_tabAdvText_6']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['smtpuser'][0] = $GLOBALS['eyeMail_tabAdvText_7']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['typepassword'][0] = $GLOBALS['eyeMail_tabAdvText_4']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['smtppassword'][0] = $GLOBALS['eyeMail_tabAdvText_8']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$thekey]['smtpssl'][0] = $GLOBALS['eyeMail_tabAdvCheck_2']->checked;
-	xenonXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
+function xenonMail_on_saveButton($params=null) {
+	$thekey = $GLOBALS['xenonMail_tabInfoHidden']->text;
+	$accountsFile = xenonXML('getXMLconfig',array('xenonMail','accounts.xml'));
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['name'][0] = $GLOBALS['xenonMail_tabInfoText_2']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['description'][0] = $GLOBALS['xenonMail_tabInfoText_1']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['email'][0] = $GLOBALS['xenonMail_tabInfoText_3']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['type'][0] = $GLOBALS['xenonMail_tabInfoSelect']->selected;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['typehost'][0] = $GLOBALS['xenonMail_tabAdvText_1']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['typeport'][0] = $GLOBALS['xenonMail_tabAdvText_2']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['typeuser'][0] = $GLOBALS['xenonMail_tabAdvText_3']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['typessl'][0] = $GLOBALS['xenonMail_tabAdvCheck_1']->checked;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['smtphost'][0] = $GLOBALS['xenonMail_tabAdvText_5']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['smtpport'][0] = $GLOBALS['xenonMail_tabAdvText_6']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['smtpuser'][0] = $GLOBALS['xenonMail_tabAdvText_7']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['typepassword'][0] = $GLOBALS['xenonMail_tabAdvText_4']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['smtppassword'][0] = $GLOBALS['xenonMail_tabAdvText_8']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$thekey]['smtpssl'][0] = $GLOBALS['xenonMail_tabAdvCheck_2']->checked;
+	xenonXML('setXMLconfig',array('xenonMail','accounts.xml', $accountsFile));
 	xenonx('messageBox', array('content' => 'Email account has been updated.'));
-	$GLOBALS['eyeMail_preferencesWND']->close();
+	$GLOBALS['xenonMail_preferencesWND']->close();
 }
 
-function eyeMail_on_unlightAll($params=null) {
-	$accConfig = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/eyeMail/accounts.xml'));
-	$accConfig = $accConfig['eyeMail'][0]['accounts'][0]['account'];
+function xenonMail_on_unlightAll($params=null) {
+	$accConfig = xenonXML('getXMLfile', array (um('getCurrentUserDir').CONF_USER_DIR.'/xenonMail/accounts.xml'));
+	$accConfig = $accConfig['xenonMail'][0]['accounts'][0]['account'];
 	foreach ($accConfig as $key=>$value) {
-		$GLOBALS['eyeMail_accUserBox'.$key]->setCSS(array(
+		$GLOBALS['xenonMail_accUserBox'.$key]->setCSS(array(
 			'background-color' => 'transparent',
 			'border' => 'none'
 		));
 	}
-	if (is_object($GLOBALS['eyeMail_boxTabContainer'])) {
-		$GLOBALS['eyeMail_boxTabContainer']->remove();
+	if (is_object($GLOBALS['xenonMail_boxTabContainer'])) {
+		$GLOBALS['xenonMail_boxTabContainer']->remove();
 	}
 }
 
-function eyeMail_generalClick($params=null) {
+function xenonMail_generalClick($params=null) {
 	global $myPid;
-	$GLOBALS['eyeMail_accountsContainer']->hide();
-	$GLOBALS['eyeMail_securityContainer']->hide();
-	$GLOBALS['eyeMail_generalContainer']->unhide();
+	$GLOBALS['xenonMail_accountsContainer']->hide();
+	$GLOBALS['xenonMail_securityContainer']->hide();
+	$GLOBALS['xenonMail_generalContainer']->unhide();
 	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_preferencesToolbar");
 	for (var i = 0; i < e.childNodes.length; i++) {
 		if (e.childNodes[i].id == "' . $myPid . '_prefGeneral_Container") {
@@ -893,11 +893,11 @@ function eyeMail_generalClick($params=null) {
 
 }
 
-function eyeMail_accountsClick($params=null) {
+function xenonMail_accountsClick($params=null) {
 	global $myPid;
-	$GLOBALS['eyeMail_generalContainer']->hide();
-	$GLOBALS['eyeMail_securityContainer']->hide();
-	$GLOBALS['eyeMail_accountsContainer']->unhide();
+	$GLOBALS['xenonMail_generalContainer']->hide();
+	$GLOBALS['xenonMail_securityContainer']->hide();
+	$GLOBALS['xenonMail_accountsContainer']->unhide();
 	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_preferencesToolbar");
 	for (var i = 0; i < e.childNodes.length; i++) {
 		if (e.childNodes[i].id == "' . $myPid . '_prefAccounts_Container") {
@@ -908,11 +908,11 @@ function eyeMail_accountsClick($params=null) {
 	}'));
 }
 
-function eyeMail_securityClick($params=null) {
+function xenonMail_securityClick($params=null) {
 	global $myPid;
-	$GLOBALS['eyeMail_accountsContainer']->hide();
-	$GLOBALS['eyeMail_generalContainer']->hide();
-	$GLOBALS['eyeMail_securityContainer']->unhide();
+	$GLOBALS['xenonMail_accountsContainer']->hide();
+	$GLOBALS['xenonMail_generalContainer']->hide();
+	$GLOBALS['xenonMail_securityContainer']->unhide();
 	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_preferencesToolbar");
 	for (var i = 0; i < e.childNodes.length; i++) {
 		if (e.childNodes[i].id == "' . $myPid . '_prefSecurity_Container") {
@@ -923,11 +923,11 @@ function eyeMail_securityClick($params=null) {
 	}'));
 }
 
-function eyeMail_createAccount($params=null) {
+function xenonMail_createAccount($params=null) {
 	$addAccWindow = new Window(array(
-		'name' => 'eyeMail_createAccountWND',
+		'name' => 'xenonMail_createAccountWND',
 		'title' => 'Create a new account',
-		'father' => 'eyeMail_WND_1_Content',
+		'father' => 'xenonMail_WND_1_Content',
 		'cent' => 1,
 		'height' => 350,
 		'width' => 350,
@@ -935,12 +935,12 @@ function eyeMail_createAccount($params=null) {
 		'sigClose' => 'cancelAccButton'
 	));
 	$addAccWindow->show();
-	if (is_object($GLOBALS['eyeMail_preferencesWND'])) {
-		$GLOBALS['eyeMail_preferencesWND']->hide();
+	if (is_object($GLOBALS['xenonMail_preferencesWND'])) {
+		$GLOBALS['xenonMail_preferencesWND']->hide();
 	}
 	$createAccBox = new Simplebox(array(
-		'name' => 'eyeMail_createAccountBox',
-		'father' => 'eyeMail_createAccountWND_Content',
+		'name' => 'xenonMail_createAccountBox',
+		'father' => 'xenonMail_createAccountWND_Content',
 		'x' => 0,
 		'y' => 0,
 		'height' => 326,
@@ -953,8 +953,8 @@ function eyeMail_createAccount($params=null) {
 	));
 
 	$textAcc1 = new Textbox(array(
-		'name' => 'eyeMail_textAcc1',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_textAcc1',
+		'father' => 'xenonMail_createAccountBox',
 		'width' => 130,
 		'y' => 70,
 		'x' => 150
@@ -962,8 +962,8 @@ function eyeMail_createAccount($params=null) {
 	$textAcc1->show();
 
 	$textAcc4 = new Textbox(array(
-		'name' => 'eyeMail_textAcc4',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_textAcc4',
+		'father' => 'xenonMail_createAccountBox',
 		'width' => 130,
 		'y' => 130,
 		'x' => 150
@@ -971,8 +971,8 @@ function eyeMail_createAccount($params=null) {
 	$textAcc4->show();
 
 	$textAcc2 = new Textbox(array(
-		'name' => 'eyeMail_textAcc2',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_textAcc2',
+		'father' => 'xenonMail_createAccountBox',
 		'width' => 130,
 		'y' => 220,
 		'x' => 150
@@ -980,8 +980,8 @@ function eyeMail_createAccount($params=null) {
 	$textAcc2->show();
 
 	$textAcc3 = new Textbox(array(
-		'name' => 'eyeMail_textAcc3',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_textAcc3',
+		'father' => 'xenonMail_createAccountBox',
 		'width' => 130,
 		'y' => 240,
 		'x' => 150,
@@ -991,7 +991,7 @@ function eyeMail_createAccount($params=null) {
 
 	$cancelAccButton = new Button(array(
 		'name' => 'cancelAccButton',
-		'father' => 'eyeMail_createAccountBox',
+		'father' => 'xenonMail_createAccountBox',
 		'caption' => 'Cancel',
 		'x' => 20,
 		'y' => 293
@@ -999,8 +999,8 @@ function eyeMail_createAccount($params=null) {
 	$cancelAccButton->show();
 
 	$nextAccButton = new Button(array(
-		'name' => 'eyeMail_nextAccButton',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_nextAccButton',
+		'father' => 'xenonMail_createAccountBox',
 		'caption' => 'Next',
 		'x' => 285,
 		'y' => 293,
@@ -1014,8 +1014,8 @@ function eyeMail_createAccount($params=null) {
 
 
 	$subLineCreate = new Line(array(
-		'name' => 'eyeMail_subLineCreate',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_subLineCreate',
+		'father' => 'xenonMail_createAccountBox',
 		'vert' => 1,
 		'y' => 45,
 		'x' => 0,
@@ -1029,8 +1029,8 @@ function eyeMail_createAccount($params=null) {
 
 	$textName1 = 'Enter the name you would like to appear in the "From" field of your outgoing messages (for example, "John Doe").';
 	$labelAccName = new Label(array(
-		'name' => 'eyeMail_labelAccName',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_labelAccName',
+		'father' => 'xenonMail_createAccountBox',
 		'text' => $textName1,
 		'y' => 16,
 		'x' => 13,
@@ -1039,8 +1039,8 @@ function eyeMail_createAccount($params=null) {
 
 	$textName1 = 'Enter your email address and password. This is the address others will use to send email to you (for example, "user@server.net").';
 	$labelAccMail = new Label(array(
-		'name' => 'eyeMail_labelAccMail',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_labelAccMail',
+		'father' => 'xenonMail_createAccountBox',
 		'text' => $textName1,
 		'y' => 163,
 		'x' => 13
@@ -1049,8 +1049,8 @@ function eyeMail_createAccount($params=null) {
 
 
 	$labelAccInfo = new Label(array(
-		'name' => 'eyeMail_labelAccInfo',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_labelAccInfo',
+		'father' => 'xenonMail_createAccountBox',
 		'text' => 'Enter an account name to be identified later.',
 		'y' => 100,
 		'x' => 13
@@ -1058,8 +1058,8 @@ function eyeMail_createAccount($params=null) {
 	$labelAccInfo->show();
 
 	$labelAcc1 = new Label(array(
-		'name' => 'eyeMail_labelAcc1',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_labelAcc1',
+		'father' => 'xenonMail_createAccountBox',
 		'text' => 'Full Name:',
 		'y' => 70,
 		'x' => 83
@@ -1067,8 +1067,8 @@ function eyeMail_createAccount($params=null) {
 	$labelAcc1->show();
 
 	$labelAcc2 = new Label(array(
-		'name' => 'eyeMail_labelAcc2',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_labelAcc2',
+		'father' => 'xenonMail_createAccountBox',
 		'text' => 'Account Name:',
 		'y' => 130,
 		'x' => 59
@@ -1076,8 +1076,8 @@ function eyeMail_createAccount($params=null) {
 	$labelAcc2->show();
 
 	$labelAcc3 = new Label(array(
-		'name' => 'eyeMail_labelAcc3',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_labelAcc3',
+		'father' => 'xenonMail_createAccountBox',
 		'text' => 'Email Address:',
 		'y' => 220,
 		'x' => 59
@@ -1085,8 +1085,8 @@ function eyeMail_createAccount($params=null) {
 	$labelAcc3->show();
 
 	$labelAcc4 = new Label(array(
-		'name' => 'eyeMail_labelAcc4',
-		'father' => 'eyeMail_createAccountBox',
+		'name' => 'xenonMail_labelAcc4',
+		'father' => 'xenonMail_createAccountBox',
 		'text' => 'Password:',
 		'y' => 240,
 		'x' => 86
@@ -1096,8 +1096,8 @@ function eyeMail_createAccount($params=null) {
 	// Create Account 2
 
 	$createAccBox2 = new Simplebox(array(
-		'name' => 'eyeMail_createAccountBox2',
-		'father' => 'eyeMail_createAccountWND_Content',
+		'name' => 'xenonMail_createAccountBox2',
+		'father' => 'xenonMail_createAccountWND_Content',
 		'x' => 0,
 		'y' => 0,
 		'height' => 326,
@@ -1111,8 +1111,8 @@ function eyeMail_createAccount($params=null) {
 	$createAccBox2->hide();
 
 	$subLineCreate = new Line(array(
-		'name' => 'eyeMail_subLineCreate2',
-		'father' => 'eyeMail_createAccountBox2',
+		'name' => 'xenonMail_subLineCreate2',
+		'father' => 'xenonMail_createAccountBox2',
 		'vert' => 1,
 		'y' => 45,
 		'x' => 0,
@@ -1125,121 +1125,121 @@ function eyeMail_createAccount($params=null) {
 	));
 }
 
-function eyeMail_createAccount2($params=null) {
-	$serversConfig= getConfig('eyeMail','servers.xml');
-	$serversConfig = $serversConfig['eyeMail'][0]['servers'][0]['server'];
+function xenonMail_createAccount2($params=null) {
+	$serversConfig= getConfig('xenonMail','servers.xml');
+	$serversConfig = $serversConfig['xenonMail'][0]['servers'][0]['server'];
 	$finded = false;
 	foreach ($serversConfig as $key => $value) {
-		if (strtolower(substr(strstr($GLOBALS['eyeMail_textAcc2']->text, '@'), 1)) === $serversConfig[$key]['domain'][0]) { // utf8
+		if (strtolower(substr(strstr($GLOBALS['xenonMail_textAcc2']->text, '@'), 1)) === $serversConfig[$key]['domain'][0]) { // utf8
 			$finded = true;
 			$infoHidden = new Hidden(array(
-				'name' => 'eyeMail_infoHidden',
-				'father' => 'eyeMail_createAccountBox2',
+				'name' => 'xenonMail_infoHidden',
+				'father' => 'xenonMail_createAccountBox2',
 				'text' => $serversConfig[$key]
 			));
 			eyeWidgets('serialize',array($infoHidden));
-			eyeMail_createAccountAuto();
+			xenonMail_createAccountAuto();
 		}
 	}
 	if (!$finded) {
-		eyeMail_on_manualButton();
+		xenonMail_on_manualButton();
 	}
 }
 
-function eyeMail_finalize1($params=null) {
-	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
-	if (!is_array($accountsFile['eyeMail'][0]['accounts'][0]['account'])) {
-		$accountsFile['eyeMail'][0]['accounts'][0] = array('account' => array( 0 => array()));
+function xenonMail_finalize1($params=null) {
+	$accountsFile = xenonXML('getXMLconfig',array('xenonMail','accounts.xml'));
+	if (!is_array($accountsFile['xenonMail'][0]['accounts'][0]['account'])) {
+		$accountsFile['xenonMail'][0]['accounts'][0] = array('account' => array( 0 => array()));
 		$i = 0;
 	} else {
-		$i = count($accountsFile['eyeMail'][0]['accounts'][0]['account']);
+		$i = count($accountsFile['xenonMail'][0]['accounts'][0]['account']);
 	}
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['id'][0] = uniqid();
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['name'][0] = $GLOBALS['eyeMail_textAcc1']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['description'][0] = $GLOBALS['eyeMail_textAcc4']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['email'][0] = $GLOBALS['eyeMail_textAcc2']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['type'][0] = $GLOBALS['eyeMail_infoHidden']->text['type'][0];
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['typehost'][0] = $GLOBALS['eyeMail_infoHidden']->text['typehost'][0];
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['typeport'][0] = $GLOBALS['eyeMail_infoHidden']->text['typeport'][0];
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['typeuser'][0] = substr($GLOBALS['eyeMail_textAcc2']->text, 0, strpos($GLOBALS['eyeMail_textAcc2']->text, '@')); // utf8
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['typessl'][0] = $GLOBALS['eyeMail_infoHidden']->text['typessl'][0];
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtphost'][0] = $GLOBALS['eyeMail_infoHidden']->text['smtphost'][0];
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtpport'][0] = $GLOBALS['eyeMail_infoHidden']->text['smtpport'][0];
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtpuser'][0] = substr($GLOBALS['eyeMail_textAcc2']->text, 0, strpos($GLOBALS['eyeMail_textAcc2']->text, '@')); // utf8
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['typepassword'][0] = $GLOBALS['eyeMail_textAcc3']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtppassword'][0] = $GLOBALS['eyeMail_textAcc3']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtpssl'][0] = $GLOBALS['eyeMail_infoHidden']->text['smtpssl'][0];
-	xenonXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['id'][0] = uniqid();
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['name'][0] = $GLOBALS['xenonMail_textAcc1']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['description'][0] = $GLOBALS['xenonMail_textAcc4']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['email'][0] = $GLOBALS['xenonMail_textAcc2']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['type'][0] = $GLOBALS['xenonMail_infoHidden']->text['type'][0];
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['typehost'][0] = $GLOBALS['xenonMail_infoHidden']->text['typehost'][0];
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['typeport'][0] = $GLOBALS['xenonMail_infoHidden']->text['typeport'][0];
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['typeuser'][0] = substr($GLOBALS['xenonMail_textAcc2']->text, 0, strpos($GLOBALS['xenonMail_textAcc2']->text, '@')); // utf8
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['typessl'][0] = $GLOBALS['xenonMail_infoHidden']->text['typessl'][0];
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['smtphost'][0] = $GLOBALS['xenonMail_infoHidden']->text['smtphost'][0];
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['smtpport'][0] = $GLOBALS['xenonMail_infoHidden']->text['smtpport'][0];
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['smtpuser'][0] = substr($GLOBALS['xenonMail_textAcc2']->text, 0, strpos($GLOBALS['xenonMail_textAcc2']->text, '@')); // utf8
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['typepassword'][0] = $GLOBALS['xenonMail_textAcc3']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['smtppassword'][0] = $GLOBALS['xenonMail_textAcc3']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['smtpssl'][0] = $GLOBALS['xenonMail_infoHidden']->text['smtpssl'][0];
+	xenonXML('setXMLconfig',array('xenonMail','accounts.xml', $accountsFile));
 	xenonx('messageBox', array('content' => 'Email account has been created.'));
-	if(is_object($GLOBALS['eyeMail_listAccContainer'])) {
-		$GLOBALS['eyeMail_listAccContainer']->remove();
+	if(is_object($GLOBALS['xenonMail_listAccContainer'])) {
+		$GLOBALS['xenonMail_listAccContainer']->remove();
 	}
-	eyeMail_refreshListAcc();
-	eyeMail_on_cancelAccButton();
-	if (is_object($GLOBALS['eyeMail_listAccContainer'])) {
-		$GLOBALS['eyeMail_menuContainer']->remove();
+	xenonMail_refreshListAcc();
+	xenonMail_on_cancelAccButton();
+	if (is_object($GLOBALS['xenonMail_listAccContainer'])) {
+		$GLOBALS['xenonMail_menuContainer']->remove();
 	}
-	eyeMail_drawBoxes();
+	xenonMail_drawBoxes();
 	$myHidden = new Hidden(array(
 		'name'=>'defaultMail',
 		'father'=>'xenonApps',
-		'text'=>$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]
+		'text'=>$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]
 	));
 	eyeWidgets('serialize',array($myHidden));
-	eyeMail_createXMLmail();
+	xenonMail_createXMLmail();
 }
 
-function eyeMail_finalize2($params=null) {
-	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
-	if (!is_array($accountsFile['eyeMail'][0]['accounts'][0]['account'])) {
-		$accountsFile['eyeMail'][0]['accounts'][0] = array('account' => array( 0 => array()));
+function xenonMail_finalize2($params=null) {
+	$accountsFile = xenonXML('getXMLconfig',array('xenonMail','accounts.xml'));
+	if (!is_array($accountsFile['xenonMail'][0]['accounts'][0]['account'])) {
+		$accountsFile['xenonMail'][0]['accounts'][0] = array('account' => array( 0 => array()));
 		$i = 0;
 	} else {
-		$i = count($accountsFile['eyeMail'][0]['accounts'][0]['account']);
+		$i = count($accountsFile['xenonMail'][0]['accounts'][0]['account']);
 	}
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['id'][0] = uniqid();
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['name'][0] = $GLOBALS['eyeMail_textAcc1']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['description'][0] = $GLOBALS['eyeMail_textAcc4']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['email'][0] = $GLOBALS['eyeMail_textAcc2']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['type'][0] = $GLOBALS['eyeMail_typeSelect']->selected;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['typehost'][0] = $GLOBALS['eyeMail_thetextbox1']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['typeport'][0] = $GLOBALS['eyeMail_thetextbox2']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['typeuser'][0] = $GLOBALS['eyeMail_thetextbox3']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['typessl'][0] = $GLOBALS['eyeMail_typesslcheck']->checked;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtphost'][0] = $GLOBALS['eyeMail_thetextbox4']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtpport'][0] = $GLOBALS['eyeMail_thetextbox5']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtpuser'][0] = $GLOBALS['eyeMail_thetextbox6']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['typepassword'][0] = $GLOBALS['eyeMail_thetextbox7']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtppassword'][0] = $GLOBALS['eyeMail_thetextbox8']->text;
-	$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]['smtpssl'][0] = $GLOBALS['eyeMail_smtpsslcheck']->checked;
-	xenonXML('setXMLconfig',array('eyeMail','accounts.xml', $accountsFile));
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['id'][0] = uniqid();
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['name'][0] = $GLOBALS['xenonMail_textAcc1']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['description'][0] = $GLOBALS['xenonMail_textAcc4']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['email'][0] = $GLOBALS['xenonMail_textAcc2']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['type'][0] = $GLOBALS['xenonMail_typeSelect']->selected;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['typehost'][0] = $GLOBALS['xenonMail_thetextbox1']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['typeport'][0] = $GLOBALS['xenonMail_thetextbox2']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['typeuser'][0] = $GLOBALS['xenonMail_thetextbox3']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['typessl'][0] = $GLOBALS['xenonMail_typesslcheck']->checked;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['smtphost'][0] = $GLOBALS['xenonMail_thetextbox4']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['smtpport'][0] = $GLOBALS['xenonMail_thetextbox5']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['smtpuser'][0] = $GLOBALS['xenonMail_thetextbox6']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['typepassword'][0] = $GLOBALS['xenonMail_thetextbox7']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['smtppassword'][0] = $GLOBALS['xenonMail_thetextbox8']->text;
+	$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]['smtpssl'][0] = $GLOBALS['xenonMail_smtpsslcheck']->checked;
+	xenonXML('setXMLconfig',array('xenonMail','accounts.xml', $accountsFile));
 	xenonx('messageBox', array('content' => 'Email account has been created.'));
-	eyeMail_refreshListAcc();
-	eyeMail_on_cancelAccButton();
-	if (is_object($GLOBALS['eyeMail_menuContainer'])) {
-		$GLOBALS['eyeMail_menuContainer']->remove();
+	xenonMail_refreshListAcc();
+	xenonMail_on_cancelAccButton();
+	if (is_object($GLOBALS['xenonMail_menuContainer'])) {
+		$GLOBALS['xenonMail_menuContainer']->remove();
 	}
-	eyeMail_drawBoxes();
+	xenonMail_drawBoxes();
 	$myHidden = new Hidden(array(
 		'name'=>'defaultMail',
 		'father'=>'xenonApps',
-		'text'=>$accountsFile['eyeMail'][0]['accounts'][0]['account'][$i]
+		'text'=>$accountsFile['xenonMail'][0]['accounts'][0]['account'][$i]
 	));
 	eyeWidgets('serialize',array($myHidden));
-	eyeMail_createXMLmail();
+	xenonMail_createXMLmail();
 }
 
-function eyeMail_createAccountAuto($params=null) {
-	if(isset($GLOBALS['eyeMail_createAccountOption1'])) {
-		$GLOBALS['eyeMail_createAccountOption1']->remove();
+function xenonMail_createAccountAuto($params=null) {
+	if(isset($GLOBALS['xenonMail_createAccountOption1'])) {
+		$GLOBALS['xenonMail_createAccountOption1']->remove();
 	}
-	if(isset($GLOBALS['eyeMail_createAccountOption2'])) {
-		$GLOBALS['eyeMail_createAccountOption2']->remove();
+	if(isset($GLOBALS['xenonMail_createAccountOption2'])) {
+		$GLOBALS['xenonMail_createAccountOption2']->remove();
 	}
 
 	$createAccOption1 = new Simplebox(array(
-		'name' => 'eyeMail_createAccountOption1',
-		'father' => 'eyeMail_createAccountBox2',
+		'name' => 'xenonMail_createAccountOption1',
+		'father' => 'xenonMail_createAccountBox2',
 		'x' => 0,
 		'y' => 0,
 		'height' => 326,
@@ -1247,20 +1247,20 @@ function eyeMail_createAccountAuto($params=null) {
 		'border' => 0
 	));
 	$createAccOption1->show(0);
-	$textFind = 'eyeMail has found the %s server settings. Please, verify that the information below is correct. To enter the settings manually click on "Manual".';
+	$textFind = 'xenonMail has found the %s server settings. Please, verify that the information below is correct. To enter the settings manually click on "Manual".';
 	$labelFind = new Label(array(
-		'name' => 'eyeMail_labelFind',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_labelFind',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => $textFind,
-		'tokens' => array($GLOBALS['eyeMail_infoHidden']->text['name'][0]),
+		'tokens' => array($GLOBALS['xenonMail_infoHidden']->text['name'][0]),
 		'y' => 20,
 		'x' => 10
 	));
 	$labelFind->show();
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_label1',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_label1',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => 'Account Name:',
 		'y' => 80,
 		'x' => 10
@@ -1269,8 +1269,8 @@ function eyeMail_createAccountAuto($params=null) {
 	$thelabel->setCSS(array('font-weight' => 'bold'));
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_label2',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_label2',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => 'Full Name:',
 		'y' => 100,
 		'x' => 10
@@ -1279,8 +1279,8 @@ function eyeMail_createAccountAuto($params=null) {
 	$thelabel->setCSS(array('font-weight' => 'bold'));
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_label3',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_label3',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => 'Email Address:',
 		'y' => 120,
 		'x' => 10
@@ -1289,8 +1289,8 @@ function eyeMail_createAccountAuto($params=null) {
 	$thelabel->setCSS(array('font-weight' => 'bold'));
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_label4',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_label4',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => 'Incoming Server Type:',
 		'y' => 150,
 		'x' => 10
@@ -1299,8 +1299,8 @@ function eyeMail_createAccountAuto($params=null) {
 	$thelabel->setCSS(array('font-weight' => 'bold'));
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_label5',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_label5',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => 'Incoming Server Host:',
 		'y' => 170,
 		'x' => 10
@@ -1309,8 +1309,8 @@ function eyeMail_createAccountAuto($params=null) {
 	$thelabel->setCSS(array('font-weight' => 'bold'));
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_label6',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_label6',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => 'Port:',
 		'y' => 170,
 		'x' => 50,
@@ -1320,8 +1320,8 @@ function eyeMail_createAccountAuto($params=null) {
 	$thelabel->setCSS(array('font-weight' => 'bold'));
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_label7',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_label7',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => 'Incoming Username:',
 		'y' => 190,
 		'x' => 10
@@ -1330,8 +1330,8 @@ function eyeMail_createAccountAuto($params=null) {
 	$thelabel->setCSS(array('font-weight' => 'bold'));
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_label8',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_label8',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => 'Outgoing Server Host:',
 		'y' => 220,
 		'x' => 10
@@ -1340,8 +1340,8 @@ function eyeMail_createAccountAuto($params=null) {
 	$thelabel->setCSS(array('font-weight' => 'bold'));
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_label9',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_label9',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => 'Port:',
 		'y' => 220,
 		'horiz' => 1,
@@ -1351,8 +1351,8 @@ function eyeMail_createAccountAuto($params=null) {
 	$thelabel->setCSS(array('font-weight' => 'bold'));
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_label10',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_label10',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => 'Outgoing Username:',
 		'y' => 240,
 		'x' => 10
@@ -1361,55 +1361,55 @@ function eyeMail_createAccountAuto($params=null) {
 	$thelabel->setCSS(array('font-weight' => 'bold'));
 
 	$labelName = new Label(array(
-		'name' => 'eyeMail_labelName',
-		'father' => 'eyeMail_createAccountOption1',
-		'text' => $GLOBALS['eyeMail_textAcc4']->text,
+		'name' => 'xenonMail_labelName',
+		'father' => 'xenonMail_createAccountOption1',
+		'text' => $GLOBALS['xenonMail_textAcc4']->text,
 		'y' => 80,
 		'x' => 120
 	));
 	$labelName->show();
 
 	$labelFull = new Label(array(
-		'name' => 'eyeMail_labelFull',
-		'father' => 'eyeMail_createAccountOption1',
-		'text' => $GLOBALS['eyeMail_textAcc1']->text,
+		'name' => 'xenonMail_labelFull',
+		'father' => 'xenonMail_createAccountOption1',
+		'text' => $GLOBALS['xenonMail_textAcc1']->text,
 		'y' => 100,
 		'x' => 120
 	));
 	$labelFull->show();
 
 	$labelMail = new Label(array(
-		'name' => 'eyeMail_labelMail',
-		'father' => 'eyeMail_createAccountOption1',
-		'text' => utf8_strtolower($GLOBALS['eyeMail_textAcc2']->text),
+		'name' => 'xenonMail_labelMail',
+		'father' => 'xenonMail_createAccountOption1',
+		'text' => utf8_strtolower($GLOBALS['xenonMail_textAcc2']->text),
 		'y' => 120,
 		'x' => 120
 	));
 	$labelMail->show();
 
 	$labelType = new Label(array(
-		'name' => 'eyeMail_labelType',
-		'father' => 'eyeMail_createAccountOption1',
-		'text' => utf8_strtoupper($GLOBALS['eyeMail_infoHidden']->text['type'][0]),
+		'name' => 'xenonMail_labelType',
+		'father' => 'xenonMail_createAccountOption1',
+		'text' => utf8_strtoupper($GLOBALS['xenonMail_infoHidden']->text['type'][0]),
 		'y' => 150,
 		'x' => 167
 	));
 	$labelType->show();
 
 	$labeliServer = new Label(array(
-		'name' => 'eyeMail_labeliServer',
-		'father' => 'eyeMail_createAccountOption1',
-		'text' => $GLOBALS['eyeMail_infoHidden']->text['typehost'][0],
+		'name' => 'xenonMail_labeliServer',
+		'father' => 'xenonMail_createAccountOption1',
+		'text' => $GLOBALS['xenonMail_infoHidden']->text['typehost'][0],
 		'y' => 170,
 		'x' => 167
 	));
 	$labeliServer->show();
 
-	$iUser = utf8_strtolower(substr($GLOBALS['eyeMail_textAcc2']->text, 0, strpos($GLOBALS['eyeMail_textAcc2']->text, '@'))); // utf8
+	$iUser = utf8_strtolower(substr($GLOBALS['xenonMail_textAcc2']->text, 0, strpos($GLOBALS['xenonMail_textAcc2']->text, '@'))); // utf8
 
 	$labeliUser = new Label(array(
-		'name' => 'eyeMail_labeliUser',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_labeliUser',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => $iUser,
 		'y' => 190,
 		'x' => 167
@@ -1417,9 +1417,9 @@ function eyeMail_createAccountAuto($params=null) {
 	$labeliUser->show();
 
 	$labeliPort = new Label(array(
-		'name' => 'eyeMail_labeliPort',
-		'father' => 'eyeMail_createAccountOption1',
-		'text' => $GLOBALS['eyeMail_infoHidden']->text['typeport'][0],
+		'name' => 'xenonMail_labeliPort',
+		'father' => 'xenonMail_createAccountOption1',
+		'text' => $GLOBALS['xenonMail_infoHidden']->text['typeport'][0],
 		'y' => 170,
 		'x' => 23,
 		'horiz' => 1
@@ -1427,18 +1427,18 @@ function eyeMail_createAccountAuto($params=null) {
 	$labeliPort->show();
 
 	$labeloServer = new Label(array(
-		'name' => 'eyeMail_labeloServer',
-		'father' => 'eyeMail_createAccountOption1',
-		'text' => $GLOBALS['eyeMail_infoHidden']->text['smtphost'][0],
+		'name' => 'xenonMail_labeloServer',
+		'father' => 'xenonMail_createAccountOption1',
+		'text' => $GLOBALS['xenonMail_infoHidden']->text['smtphost'][0],
 		'y' => 220,
 		'x' => 167
 	));
 	$labeloServer->show();
 
 	$labeloPort = new Label(array(
-		'name' => 'eyeMail_labeloPort',
-		'father' => 'eyeMail_createAccountOption1',
-		'text' => $GLOBALS['eyeMail_infoHidden']->text['smtpport'][0],
+		'name' => 'xenonMail_labeloPort',
+		'father' => 'xenonMail_createAccountOption1',
+		'text' => $GLOBALS['xenonMail_infoHidden']->text['smtpport'][0],
 		'y' => 220,
 		'x' => 23,
 		'horiz' => 1
@@ -1446,8 +1446,8 @@ function eyeMail_createAccountAuto($params=null) {
 	$labeloPort->show();
 
 	$labeloUser = new Label(array(
-		'name' => 'eyeMail_labeloUser',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_labeloUser',
+		'father' => 'xenonMail_createAccountOption1',
 		'text' => $iUser,
 		'y' => 240,
 		'x' => 167
@@ -1455,22 +1455,22 @@ function eyeMail_createAccountAuto($params=null) {
 	$labeloUser->show();
 
 	$hiddenTSSL = new Hidden(array(
-		'name' => 'eyeMail_hiddenTSSL',
-		'father' => 'eyeMail_createAccountOption1',
-		'text' => $GLOBALS['eyeMail_infoHidden']->text['typessl'][0]
+		'name' => 'xenonMail_hiddenTSSL',
+		'father' => 'xenonMail_createAccountOption1',
+		'text' => $GLOBALS['xenonMail_infoHidden']->text['typessl'][0]
 	));
 	$hiddenTSSL->show();
 
 	$hiddenSSSL = new Hidden(array(
-		'name' => 'eyeMail_hiddenSSSL',
-		'father' => 'eyeMail_createAccountOption1',
-		'text' => $GLOBALS['eyeMail_infoHidden']->text['smtpssl'][0]
+		'name' => 'xenonMail_hiddenSSSL',
+		'father' => 'xenonMail_createAccountOption1',
+		'text' => $GLOBALS['xenonMail_infoHidden']->text['smtpssl'][0]
 	));
 	$hiddenSSSL->show();
 
 	$backAccButton = new Button(array(
 		'name' => 'backAccButton2',
-		'father' => 'eyeMail_createAccountOption1',
+		'father' => 'xenonMail_createAccountOption1',
 		'caption' => 'Back',
 		'x' => 235,
 		'y' => 293,
@@ -1480,7 +1480,7 @@ function eyeMail_createAccountAuto($params=null) {
 
 	$cancelAccButton = new Button(array(
 		'name' => 'cancelAccButton2',
-		'father' => 'eyeMail_createAccountOption1',
+		'father' => 'xenonMail_createAccountOption1',
 		'caption' => 'Cancel',
 		'x' => 20,
 		'y' => 293,
@@ -1489,8 +1489,8 @@ function eyeMail_createAccountAuto($params=null) {
 	$cancelAccButton->show();
 
 	$manualAccButton = new Button(array(
-		'name' => 'eyeMail_manualAccButton',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_manualAccButton',
+		'father' => 'xenonMail_createAccountOption1',
 		'caption' => 'Manual',
 		'x' => 175,
 		'y' => 293,
@@ -1498,8 +1498,8 @@ function eyeMail_createAccountAuto($params=null) {
 	));
 	$manualAccButton->show();
  	$finishAccButton = new Button(array(
-		'name' => 'eyeMail_finishAccButton',
-		'father' => 'eyeMail_createAccountOption1',
+		'name' => 'xenonMail_finishAccButton',
+		'father' => 'xenonMail_createAccountOption1',
 		'caption' => 'Finish',
 		'x' => 285,
 		'y' => 293,
@@ -1508,17 +1508,17 @@ function eyeMail_createAccountAuto($params=null) {
 	$finishAccButton->show();
 }
 
-function eyeMail_on_manualButton($paramsA=null) {
+function xenonMail_on_manualButton($paramsA=null) {
 	global $myPid;
-	if(isset($GLOBALS['eyeMail_createAccountOption1'])) {
-		$GLOBALS['eyeMail_createAccountOption1']->remove();
+	if(isset($GLOBALS['xenonMail_createAccountOption1'])) {
+		$GLOBALS['xenonMail_createAccountOption1']->remove();
 	}
-	if(isset($GLOBALS['eyeMail_createAccountOption2'])) {
-		$GLOBALS['eyeMail_createAccountOption2']->remove();
+	if(isset($GLOBALS['xenonMail_createAccountOption2'])) {
+		$GLOBALS['xenonMail_createAccountOption2']->remove();
 	}
 	$createAccOption2 = new Simplebox(array(
-		'name' => 'eyeMail_createAccountOption2',
-		'father' => 'eyeMail_createAccountBox2',
+		'name' => 'xenonMail_createAccountOption2',
+		'father' => 'xenonMail_createAccountBox2',
 		'x' => 0,
 		'y' => 0,
 		'height' => 326,
@@ -1529,8 +1529,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y = 10;
 
 	$labelOption2 = new Label(array(
-		'name' => 'eyeMail_labelOption2',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_labelOption2',
+		'father' => 'xenonMail_createAccountOption2',
 		'x' => 10,
 		'y' => $y,
 		'text' => 'Please fill out all fields.'
@@ -1539,8 +1539,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y += 30;
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_thelabel_Incoming',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thelabel_Incoming',
+		'father' => 'xenonMail_createAccountOption2',
 		'text' => 'Incoming',
 		'y' => $y,
 		'x' => 10
@@ -1550,8 +1550,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y += 25;
 
 	$typeSelect = new Select(array(
-		'name' => 'eyeMail_typeSelect',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_typeSelect',
+		'father' => 'xenonMail_createAccountOption2',
 		'x' => 110,
 		'y' => $y - 2
 	));
@@ -1560,22 +1560,22 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$typeSelect->addOption('POP3', 'pop3');
 	$typeSelect->addEvent('onchange', '
 	if (this.value == "imap") {
-		if (document.getElementById("' . $myPid . '_eyeMail_typesslcheck").checked) {
-			document.getElementById("' . $myPid . '_eyeMail_thetextbox2").value = "993";
+		if (document.getElementById("' . $myPid . '_xenonMail_typesslcheck").checked) {
+			document.getElementById("' . $myPid . '_xenonMail_thetextbox2").value = "993";
 		} else {
-			document.getElementById("' . $myPid . '_eyeMail_thetextbox2").value = "143";
+			document.getElementById("' . $myPid . '_xenonMail_thetextbox2").value = "143";
 		}
 	} else {
-		if (document.getElementById("' . $myPid . '_eyeMail_typesslcheck").checked) {
-			document.getElementById("' . $myPid . '_eyeMail_thetextbox2").value = "995";
+		if (document.getElementById("' . $myPid . '_xenonMail_typesslcheck").checked) {
+			document.getElementById("' . $myPid . '_xenonMail_thetextbox2").value = "995";
 		} else {
-			document.getElementById("' . $myPid . '_eyeMail_thetextbox2").value = "110";
+			document.getElementById("' . $myPid . '_xenonMail_thetextbox2").value = "110";
 		}
 	}');
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_thelabel1',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thelabel1',
+		'father' => 'xenonMail_createAccountOption2',
 		'text' => 'Server Type:',
 		'y' => $y,
 		'x' => 10
@@ -1584,8 +1584,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y += 25;
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_thelabel2',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thelabel2',
+		'father' => 'xenonMail_createAccountOption2',
 		'text' => 'Server Host:',
 		'y' => $y,
 		'x' => 10
@@ -1593,8 +1593,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$thelabel->show();
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_thelabel3',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thelabel3',
+		'father' => 'xenonMail_createAccountOption2',
 		'text' => 'Port:',
 		'y' => $y,
 		'x' => 50,
@@ -1604,8 +1604,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y += 25;
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_thelabel4',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thelabel4',
+		'father' => 'xenonMail_createAccountOption2',
 		'text' => 'Username:',
 		'y' => $y,
 		'x' => 10
@@ -1614,8 +1614,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y += 25;
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_thelabel9',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thelabel9',
+		'father' => 'xenonMail_createAccountOption2',
 		'text' => 'Password:',
 		'y' => $y,
 		'x' => 10
@@ -1624,8 +1624,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y += 30;
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_thelabel_Outgoing',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thelabel_Outgoing',
+		'father' => 'xenonMail_createAccountOption2',
 		'text' => 'Outgoing',
 		'y' => $y,
 		'x' => 10
@@ -1635,8 +1635,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y += 25;
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_thelabel5',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thelabel5',
+		'father' => 'xenonMail_createAccountOption2',
 		'text' => 'Server Host:',
 		'y' => $y,
 		'x' => 10
@@ -1644,8 +1644,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$thelabel->show();
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_thelabel6',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thelabel6',
+		'father' => 'xenonMail_createAccountOption2',
 		'text' => 'Port:',
 		'y' => $y,
 		'horiz' => 1,
@@ -1655,8 +1655,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y += 25;
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_thelabel7',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thelabel7',
+		'father' => 'xenonMail_createAccountOption2',
 		'text' => 'Username:',
 		'y' => $y,
 		'x' => 10
@@ -1665,8 +1665,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y += 25;
 
 	$thelabel = new Label(array(
-		'name' => 'eyeMail_thelabel8',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thelabel8',
+		'father' => 'xenonMail_createAccountOption2',
 		'text' => 'Password:',
 		'y' => $y,
 		'x' => 10
@@ -1675,8 +1675,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y = 88;
 
 	$thetextbox1 = new Textbox(array(
-		'name' => 'eyeMail_thetextbox1',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thetextbox1',
+		'father' => 'xenonMail_createAccountOption2',
 		'y'=> $y,
 		'x' => 110,
 		'width' => 140
@@ -1684,8 +1684,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$thetextbox1->show();
 
 	$thetextbox2 = new Textbox(array(
-		'name' => 'eyeMail_thetextbox2',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thetextbox2',
+		'father' => 'xenonMail_createAccountOption2',
 		'y'=> $y,
 		'x' => 12,
 		'horiz' => 1,
@@ -1696,8 +1696,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y += 25;
 
 	$thetextbox3 = new Textbox(array(
-		'name' => 'eyeMail_thetextbox3',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thetextbox3',
+		'father' => 'xenonMail_createAccountOption2',
 		'y'=> $y,
 		'x' => 110,
 		'width' => 140
@@ -1705,8 +1705,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$thetextbox3->show();
 
 	$typesslcheck = new Checkbox (array(
-		'name' => 'eyeMail_typesslcheck',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_typesslcheck',
+		'father' => 'xenonMail_createAccountOption2',
 		'y' => $y,
 		'horiz' => 1,
 		'x' => 38,
@@ -1714,24 +1714,24 @@ function eyeMail_on_manualButton($paramsA=null) {
 	));
 	$typesslcheck->show();
 	$typesslcheck->addEvent('onchange', '
-	if (document.getElementById("' . $myPid . '_eyeMail_typeSelect").value == "imap") {
+	if (document.getElementById("' . $myPid . '_xenonMail_typeSelect").value == "imap") {
 		if (this.checked) {
-			document.getElementById("' . $myPid . '_eyeMail_thetextbox2").value = "993";
+			document.getElementById("' . $myPid . '_xenonMail_thetextbox2").value = "993";
 		} else {
-			document.getElementById("' . $myPid . '_eyeMail_thetextbox2").value = "143";
+			document.getElementById("' . $myPid . '_xenonMail_thetextbox2").value = "143";
 		}
 	} else {
 		if (this.checked) {
-			document.getElementById("' . $myPid . '_eyeMail_thetextbox2").value = "995";
+			document.getElementById("' . $myPid . '_xenonMail_thetextbox2").value = "995";
 		} else {
-			document.getElementById("' . $myPid . '_eyeMail_thetextbox2").value = "110";
+			document.getElementById("' . $myPid . '_xenonMail_thetextbox2").value = "110";
 		}
 	}');
 	$y += 25;
 
 	$thetextbox7 = new Textbox(array(
-		'name' => 'eyeMail_thetextbox7',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thetextbox7',
+		'father' => 'xenonMail_createAccountOption2',
 		'y'=> $y,
 		'x' => 110,
 		'width' => 140,
@@ -1741,8 +1741,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y += 55;
 
 	$thetextbox4 = new Textbox(array(
-		'name' => 'eyeMail_thetextbox4',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thetextbox4',
+		'father' => 'xenonMail_createAccountOption2',
 		'y'=> $y,
 		'x' => 110,
 		'width' => 140
@@ -1750,8 +1750,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$thetextbox4->show();
 
 	$thetextbox5 = new Textbox(array(
-		'name' => 'eyeMail_thetextbox5',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thetextbox5',
+		'father' => 'xenonMail_createAccountOption2',
 		'y'=> $y,
 		'x' => 12,
 		'horiz' => 1,
@@ -1762,8 +1762,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$y += 25;
 
 	$thetextbox6 = new Textbox(array(
-		'name' => 'eyeMail_thetextbox6',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thetextbox6',
+		'father' => 'xenonMail_createAccountOption2',
 		'y'=> $y,
 		'x' => 110,
 		'width' => 140
@@ -1771,8 +1771,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$thetextbox6->show();
 
 	$smtpsslcheck = new Checkbox (array(
-		'name' => 'eyeMail_smtpsslcheck',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_smtpsslcheck',
+		'father' => 'xenonMail_createAccountOption2',
 		'y' => $y,
 		'horiz' => 1,
 		'x' => 38,
@@ -1781,15 +1781,15 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$smtpsslcheck->show();
 	$smtpsslcheck->addEvent('onchange', '
 	if (this.checked) {
-		document.getElementById("' . $myPid . '_eyeMail_thetextbox5").value = "465";
+		document.getElementById("' . $myPid . '_xenonMail_thetextbox5").value = "465";
 	} else {
-		document.getElementById("' . $myPid . '_eyeMail_thetextbox5").value = "25";
+		document.getElementById("' . $myPid . '_xenonMail_thetextbox5").value = "25";
 	}');
 	$y += 25;
 
 	$thetextbox8 = new Textbox(array(
-		'name' => 'eyeMail_thetextbox8',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_thetextbox8',
+		'father' => 'xenonMail_createAccountOption2',
 		'y'=> $y,
 		'x' => 110,
 		'width' => 140,
@@ -1799,7 +1799,7 @@ function eyeMail_on_manualButton($paramsA=null) {
 
 	$backAccButton = new Button(array(
 		'name' => 'backAccButton3',
-		'father' => 'eyeMail_createAccountOption2',
+		'father' => 'xenonMail_createAccountOption2',
 		'caption' => 'Back',
 		'x' => 235,
 		'y' => 293,
@@ -1809,7 +1809,7 @@ function eyeMail_on_manualButton($paramsA=null) {
 
 	$cancelAccButton = new Button(array(
 		'name' => 'cancelAccButton3',
-		'father' => 'eyeMail_createAccountOption2',
+		'father' => 'xenonMail_createAccountOption2',
 		'caption' => 'Cancel',
 		'x' => 20,
 		'y' => 293,
@@ -1818,8 +1818,8 @@ function eyeMail_on_manualButton($paramsA=null) {
 	$cancelAccButton->show();
 
 	$finishAccButton = new Button(array(
-		'name' => 'eyeMail_finishAccButton2',
-		'father' => 'eyeMail_createAccountOption2',
+		'name' => 'xenonMail_finishAccButton2',
+		'father' => 'xenonMail_createAccountOption2',
 		'caption' => 'Finish',
 		'x' => 285,
 		'y' => 293,

@@ -14,27 +14,27 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeMail/mail'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonMail/mail'.XE_CODE_EXTENSION);
 
-function eyeMail_run($params=null) {
+function xenonMail_run($params=null) {
 	if (!function_exists('sqlite_open')) {
 		xenonx('messageBox', array(
-			'content' => 'You cannot run eyeMail. The server\'s administrator needs to activate the PHP extension for SQLite first.',
+			'content' => 'You cannot run xenonMail. The server\'s administrator needs to activate the PHP extension for SQLite first.',
 			'img' => 'x',
-			'title' => 'eyeMail',
+			'title' => 'xenonMail',
 			'type' => 3,
-			'win_name' => 'eyeMail_Window',
+			'win_name' => 'xenonMail_Window',
 			'win_style' => CLOSE + LISTED + MIN + TITLE
 		));
 		return;
 	}
 	if (!function_exists('imap_open')) {
 		xenonx('messageBox', array(
-			'content' => 'You cannot run eyeMail. The server\'s administrator needs to activate the PHP extension for IMAP first.',
+			'content' => 'You cannot run xenonMail. The server\'s administrator needs to activate the PHP extension for IMAP first.',
 			'img' => 'x',
-			'title' => 'eyeMail',
+			'title' => 'xenonMail',
 			'type' => 3,
-			'win_name' => 'eyeMail_Window',
+			'win_name' => 'xenonMail_Window',
 			'win_style' => CLOSE + LISTED + MIN + TITLE
 		));
 		return;
@@ -42,11 +42,11 @@ function eyeMail_run($params=null) {
 
 	global $myPid, $checknum;
 	// error_reporting(E_ALL);
-	$config = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
+	$config = xenonXML('getXMLconfig',array('xenonMail','settings.xml'));
 	
 	$myWindow = new Window(array(
-		'title'=>'eyeMail',
-		'name'=>'eyeMail_WND_1',
+		'title'=>'xenonMail',
+		'name'=>'xenonMail_WND_1',
 		'father'=>'xenonApps',
 		'cent'=>1,
 		'width'=>800,
@@ -56,11 +56,11 @@ function eyeMail_run($params=null) {
 		'savePosition' => 1
 	));
 	$myWindow->show();
-	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_WND_1_Content").style.overflow = "hidden";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_xenonMail_WND_1_Content").style.overflow = "hidden";'));
 
 	$myToolbar = new Toolbar(array(
 		'name'=>'myBar',
-		'father'=>'eyeMail_WND_1_Content'
+		'father'=>'xenonMail_WND_1_Content'
 	));
 	$myToolbar->show();
 	$myToolbar->addItem('fetch','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/mail-receive.png','Fetch');
@@ -76,8 +76,8 @@ function eyeMail_run($params=null) {
 
 	//left and right line
 	$myLine = new Line(array(
-		'name' => 'eyeMail_line',
-		'father' => 'eyeMail_WND_1_Content',
+		'name' => 'xenonMail_line',
+		'father' => 'xenonMail_WND_1_Content',
 		'x' => 141,
 		'y' => 60,
 		'width' => 1,
@@ -88,8 +88,8 @@ function eyeMail_run($params=null) {
 
 	//top Left Menu tree
 	$menuContainer = new Box(array(
-		'name' => 'eyeMail_menuContainer_box',
-		'father' => 'eyeMail_WND_1_Content',
+		'name' => 'xenonMail_menuContainer_box',
+		'father' => 'xenonMail_WND_1_Content',
 		'x' => 1,
 		'y' => 59,
 		'width' => 142,
@@ -97,12 +97,12 @@ function eyeMail_run($params=null) {
 		'title' => ''
 	));
 	$menuContainer->show(0);
-	eyeMail_drawBoxes();
+	xenonMail_drawBoxes();
 	
 	//bottom left Menu
 	$activityContainer = new Box(array(
-		'name' => 'eyeMail_activityContainer',
-		'father' => 'eyeMail_WND_1_Content',
+		'name' => 'xenonMail_activityContainer',
+		'father' => 'xenonMail_WND_1_Content',
 		'x' => 1,
 		'y' => 1,
 		'width' => 142,
@@ -112,8 +112,8 @@ function eyeMail_run($params=null) {
 	));
 	$activityContainer->show(0);
 	$activityImgContainer = new Simplebox(array(
-		'name' => 'eyeMail_activityImgContainer',
-		'father' => 'eyeMail_activityContainer',
+		'name' => 'xenonMail_activityImgContainer',
+		'father' => 'xenonMail_activityContainer',
 		'x' => 0,
 		'y' => 0,
 		'width' => 142,
@@ -124,16 +124,16 @@ function eyeMail_run($params=null) {
 	$activityImgContainer->show(0);
 	$myImagebox = new Imagebox(array(
 		'cent' => 2,
-		'father' => 'eyeMail_activityImgContainer',
-		'name' => 'eyeMail_act_img',
+		'father' => 'xenonMail_activityImgContainer',
+		'name' => 'xenonMail_act_img',
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/desktop/loading.gif',
 		'x' => 0,
 		'y' => 10
 	));
 	$myImagebox->show();
 	$activityTextInfo = new Label(array(
-		'name'=>'eyeMail_act_textInfo',
-		'father'=>'eyeMail_activityImgContainer',
+		'name'=>'xenonMail_act_textInfo',
+		'father'=>'xenonMail_activityImgContainer',
 		'text'=>'Sending mail...',
 		'y' => 50,
 		'x' => 30
@@ -145,7 +145,7 @@ function eyeMail_run($params=null) {
 	//spliter
 	$mySplit = new Split(array(
 		'name'=> 'splitter',
-		'father'=> 'eyeMail_WND_1_Content',
+		'father'=> 'xenonMail_WND_1_Content',
 		'width'=> $myWindow->width - 150,
 		'height'=> $myWindow->height - 87,
 		'orientation' => SPLIT_HORIZONTAL,
@@ -153,7 +153,7 @@ function eyeMail_run($params=null) {
 		'sigResize' => 'resizeSplit',
 		'x'=>146,
 		'y'=>58,
-		'position'=>$config['eyeMail'][0]['splitPos'][0]
+		'position'=>$config['xenonMail'][0]['splitPos'][0]
 	));
 	$mySplit->show(0);
 
@@ -176,9 +176,9 @@ function eyeMail_run($params=null) {
 	));
 	$myTable->show(0);
 
-	//  mid  ok eyeMail 'From','Subject','Date',....
+	//  mid  ok xenonMail 'From','Subject','Date',....
 	$mailHeader = new Simplebox(array(
-		'name' => 'eyeMail_mailHeader',
+		'name' => 'xenonMail_mailHeader',
 		'father' => 'splitter_last',
 		'x' => 0,
 		'y' => 0,
@@ -198,8 +198,8 @@ function eyeMail_run($params=null) {
 		'color'=> '#0968B0'
 	);
 	$lfrom = new Label(array(
-		'name' => 'eyeMail_lfrom',
-		'father' => 'eyeMail_mailHeader',
+		'name' => 'xenonMail_lfrom',
+		'father' => 'xenonMail_mailHeader',
 		'text' => 'From:',
 		'x' => $lx,
 		'y' => $ly,
@@ -207,8 +207,8 @@ function eyeMail_run($params=null) {
 	$lfrom->show(0);
 	$lfrom->setCSS($lcss);
 	$lsubject = new Label(array(
-		'name' => 'eyeMail_lsubject',
-		'father' => 'eyeMail_mailHeader',
+		'name' => 'xenonMail_lsubject',
+		'father' => 'xenonMail_mailHeader',
 		'text' => 'Subject:',
 		'x' => $lx,
 		'y' => $ly + 20,
@@ -217,8 +217,8 @@ function eyeMail_run($params=null) {
 	$lsubject->show(0);
 	$lsubject->setCSS($lcss);
 	$ldate = new Label(array(
-		'name' => 'eyeMail_ldate',
-		'father' => 'eyeMail_mailHeader',
+		'name' => 'xenonMail_ldate',
+		'father' => 'xenonMail_mailHeader',
 		'text' => 'Date:',
 		'x' => $lx,
 		'y' => $ly + 40,
@@ -227,8 +227,8 @@ function eyeMail_run($params=null) {
 	$ldate->show(0);
 	$ldate->setCSS($lcss);
 	$lto = new Label(array(
-		'name' => 'eyeMail_lto',
-		'father' => 'eyeMail_mailHeader',
+		'name' => 'xenonMail_lto',
+		'father' => 'xenonMail_mailHeader',
 		'text' => 'To:',
 		'x' => $lx,
 		'y' => $ly + 60,
@@ -239,7 +239,7 @@ function eyeMail_run($params=null) {
 
 	// bottom box read email
 	$mailBody = new Textarea(array(
-		'name' => 'eyeMail_mailBody',
+		'name' => 'xenonMail_mailBody',
 		'father' => 'splitter_last',
 		'x' => 0,
 		'y' => 0,
@@ -249,16 +249,16 @@ function eyeMail_run($params=null) {
 	));
 	$mailBody->show(0);
 	$mailBody->setCSS(array('border'=>'none','background-color'=>'transparent','text-shadow'=>'0px 0px 0px #ffffff','font-size'=> '12px'));
-	xenonx('rawjs',array('js'=>'document.getElementById("'.$myPid.'_eyeMail_mailBody").setAttribute("READONLY","READONLY");'));
+	xenonx('rawjs',array('js'=>'document.getElementById("'.$myPid.'_xenonMail_mailBody").setAttribute("READONLY","READONLY");'));
 
 	$myHidden3 = new Hidden(array('name'=>'page','father'=>'xenonApps','text'=>0));
 	eyeWidgets('serialize',array($myHidden3));
 	$myHidden4 = new Hidden(array('name'=>'location','father'=>'xenonApps','text'=>'inbox'));
 	eyeWidgets('serialize',array($myHidden4));
-	eyeMail_starter();
+	xenonMail_starter();
 }
 
-function eyeMail_end($params=null) {
+function xenonMail_end($params=null) {
 	eyeWidgets('unserialize');
 }
 ?>

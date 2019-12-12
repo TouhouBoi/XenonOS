@@ -15,16 +15,16 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 if (function_exists('sqlite_open') === false && class_exists('SQLite3') === true) {
-	global $eyeMail_compat_sqlite;
+	global $xenonMail_compat_sqlite;
 	
 	define('SQLITE_ASSOC', SQLITE3_ASSOC);
 	define('SQLITE_BOTH', SQLITE3_BOTH);
-	$eyeMail_compat_sqlite = null;
+	$xenonMail_compat_sqlite = null;
 	
 	function sqlite_escape_string($item) {
-		global $eyeMail_compat_sqlite;
+		global $xenonMail_compat_sqlite;
 		
-		return $eyeMail_compat_sqlite->escapeString($item);
+		return $xenonMail_compat_sqlite->escapeString($item);
 	}
 	
 	function sqlite_exec($dbhandle, $query, &$error_msg = '') {
@@ -52,10 +52,10 @@ if (function_exists('sqlite_open') === false && class_exists('SQLite3') === true
 	}
 	
 	function sqlite_open($filename, $mode = 0666, &$error_message = '') {
-		global $eyeMail_compat_sqlite;
+		global $xenonMail_compat_sqlite;
 		
 		$return = new SQLite3($filename);
-		$eyeMail_compat_sqlite = $return;
+		$xenonMail_compat_sqlite = $return;
 		
 		if (is_object($return) === false) {
 			$error_message = $return->lastErrorMsg();

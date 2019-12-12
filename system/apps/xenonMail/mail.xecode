@@ -14,39 +14,39 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeMail/compat' . XE_CODE_EXTENSION;
+include_once XENONOS_ROOT . '/' . APP_DIR . '/xenonMail/compat' . XE_CODE_EXTENSION;
 
-function eyeMail_starter() {
+function xenonMail_starter() {
 	global $checknum;
-	$settings = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
-	if ($settings['eyeMail'][0]['startupCheck'][0] == 1) {
-		eyeMail_checkNew();
+	$settings = xenonXML('getXMLconfig',array('xenonMail','settings.xml'));
+	if ($settings['xenonMail'][0]['startupCheck'][0] == 1) {
+		xenonMail_checkNew();
 	}
-	if($settings['eyeMail'][0]['checkDelay'][0] == 5) {
+	if($settings['xenonMail'][0]['checkDelay'][0] == 5) {
 		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*5*60);'));
-	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 15) {
+	} elseif($settings['xenonMail'][0]['checkDelay'][0] == 15) {
 		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*15*60);'));
-	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 30) {
+	} elseif($settings['xenonMail'][0]['checkDelay'][0] == 30) {
 		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*30*60);'));
-	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 60) {
+	} elseif($settings['xenonMail'][0]['checkDelay'][0] == 60) {
 		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*60*60);'));
 	}
 	xenonx('sendMessage',array('msg'=>'printMails'));
 
 	//check if accounts list is empty
 
-	$accountsFile = xenonXML('getXMLconfig',array('eyeMail','accounts.xml'));
+	$accountsFile = xenonXML('getXMLconfig',array('xenonMail','accounts.xml'));
 	if (empty($accountsFile)) {
-		include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeMail/preferences'.XE_CODE_EXTENSION);
-		eyeMail_createAccount();
+		include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonMail/preferences'.XE_CODE_EXTENSION);
+		xenonMail_createAccount();
 	}
 }
 
-function eyeMail_createXMLmail($params=null) {
+function xenonMail_createXMLmail($params=null) {
 	$userconfig = $GLOBALS['defaultMail']->text;
 
 	//create sqlite table
-	$dbPath = um('getCurrentUserDir').'/conf/eyeMail/db_'.$userconfig['id'][0].'.sqlite';
+	$dbPath = um('getCurrentUserDir').'/conf/xenonMail/db_'.$userconfig['id'][0].'.sqlite';
 	$sqliteError = null;
 	$dbHandle = sqlite_open($dbPath, 0666, $sqliteError) or die($sqliteError);
 	$sqlCreateTable = 'CREATE TABLE mails(id INTEGER PRIMARY KEY, subject TEXT, date TEXT, sender TEXT, uid INTEGER, to TEXT, body TEXT)';
@@ -76,8 +76,8 @@ function eyeMail_createXMLmail($params=null) {
 	$nm = imap_status($connection, '{'.$server.'/'.$type.':'.$port.'}INBOX', SA_ALL);
 
 	$cXMLwindow = new Window(array(
-		'name' => 'eyeMail_cXMLwindow',
-		'father' => 'eyeMail_WND_1',
+		'name' => 'xenonMail_cXMLwindow',
+		'father' => 'xenonMail_WND_1',
 		'cent' => 1,
 		'height' => 150,
 		'width' => 300,
@@ -87,16 +87,16 @@ function eyeMail_createXMLmail($params=null) {
 	$cXMLwindow->show();
 
 	$cXMLlabel = new Label(array(
-		'name' => 'eyeMail_cXMLlabel',
-		'father' => 'eyeMail_cXMLwindow_Content',
+		'name' => 'xenonMail_cXMLlabel',
+		'father' => 'xenonMail_cXMLwindow_Content',
 		'text' => 'Downloading all mails...',
 		'x' => 10,
 		'y' => 30
 	));
 	$cXMLlabel->show();
 	$cXMLprogress = new ProgressBar(array(
-		'name' => 'eyeMail_cXMLprogress',
-		'father' => 'eyeMail_cXMLwindow_Content',
+		'name' => 'xenonMail_cXMLprogress',
+		'father' => 'xenonMail_cXMLwindow_Content',
 		'x' => 10,
 		'y' => 60,
 		'width' => 280,
@@ -115,10 +115,10 @@ function eyeMail_createXMLmail($params=null) {
 	xenonx('sendMessage',array('msg'=>'getMails'));
 }
 
-function eyeMail_on_getMails($params=null) {
+function xenonMail_on_getMails($params=null) {
 	$userconfig = $GLOBALS['defaultMail']->text;
 
-	$dbPath = um('getCurrentUserDir').'/conf/eyeMail/db_'.$userconfig['id'][0].'.sqlite';
+	$dbPath = um('getCurrentUserDir').'/conf/xenonMail/db_'.$userconfig['id'][0].'.sqlite';
 	$sqliteError = null;
 	$dbHandle = sqlite_open($dbPath, 0666, $sqliteError) or die($sqliteError);
 
@@ -138,8 +138,8 @@ function eyeMail_on_getMails($params=null) {
 	$x = intval($GLOBALS['steps']->text);
 
 	if($x > $nm) {
-		$GLOBALS['eyeMail_cXMLwindow']->close();
-		eyeMail_on_printMails();
+		$GLOBALS['xenonMail_cXMLwindow']->close();
+		xenonMail_on_printMails();
 		xenonx('messageBox',array('content'=>'Your account e-mails has been imported'));
 		return;
 	}
@@ -165,7 +165,7 @@ function eyeMail_on_getMails($params=null) {
 			sqlite_exec($dbHandle, $sqlInsert);
 		}
 	}
-	$GLOBALS['eyeMail_cXMLprogress']->setProgress($k);
+	$GLOBALS['xenonMail_cXMLprogress']->setProgress($k);
 	imap_close($connection);
 
 	$x+=300;
@@ -176,11 +176,11 @@ function eyeMail_on_getMails($params=null) {
 	xenonx('sendMessage',array('msg'=>'getMails'));
 }
 
-function eyeMail_on_printMails($params=null) {
+function xenonMail_on_printMails($params=null) {
 	$page = intval($GLOBALS['page']->text)*50;
 	$userconfig = $GLOBALS['defaultMail']->text;
 
-	$dbPath = um('getCurrentUserDir').'/conf/eyeMail/db_'.$userconfig['id'][0].'.sqlite';
+	$dbPath = um('getCurrentUserDir').'/conf/xenonMail/db_'.$userconfig['id'][0].'.sqlite';
 	$sqliteError = null;
 	$dbHandle = sqlite_open($dbPath, 0666, $sqliteError) or die($sqliteError);
 
@@ -200,11 +200,11 @@ function eyeMail_on_printMails($params=null) {
 	}
 }
 
-function eyeMail_on_printSent($params=null) {
+function xenonMail_on_printSent($params=null) {
 	$page = intval($GLOBALS['page']->text)*50;
 	$userconfig = $GLOBALS['defaultMail']->text;
 
-	$dbPath = um('getCurrentUserDir').'/conf/eyeMail/db_'.$userconfig['id'][0].'.sqlite';
+	$dbPath = um('getCurrentUserDir').'/conf/xenonMail/db_'.$userconfig['id'][0].'.sqlite';
 	$sqliteError = null;
 	$dbHandle = sqlite_open($dbPath, 0666, $sqliteError) or die($sqliteError);
 
@@ -223,7 +223,7 @@ function eyeMail_on_printSent($params=null) {
 	}
 }
 
-function eyeMail_checkNew($params=null) {
+function xenonMail_checkNew($params=null) {
 	$userconfig = $GLOBALS['defaultMail']->text;
 	$user = $userconfig['typeuser'][0];
 	$password = $userconfig['typepassword'][0];
@@ -240,7 +240,7 @@ function eyeMail_checkNew($params=null) {
 	$msgs = $nm->messages;
 	$userconfig = $GLOBALS['defaultMail']->text;
 
-	$dbPath = um('getCurrentUserDir').'/conf/eyeMail/db_'.$userconfig['id'][0].'.sqlite';
+	$dbPath = um('getCurrentUserDir').'/conf/xenonMail/db_'.$userconfig['id'][0].'.sqlite';
 	$sqliteError = null;
 	$dbHandle = sqlite_open($dbPath, 0666, $sqliteError) or die($sqliteError);
 
@@ -270,9 +270,9 @@ function eyeMail_checkNew($params=null) {
 			$sqlInsert.= '\''.sqlite_escape_string(date('d/m/y',strtotime($overview->date))).'\', \''.sqlite_escape_string($thefrom).'\', \''.sqlite_escape_string($overview->msgno).'\', \''.sqlite_escape_string($overview->to).'\')';
 			sqlite_exec($dbHandle, $sqlInsert);
 		}
-		eyeMail_on_printMails();
-		$settings = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
-		if($settings['eyeMail'][0]['visualAlert'][0] == 1) {
+		xenonMail_on_printMails();
+		$settings = xenonXML('getXMLconfig',array('xenonMail','settings.xml'));
+		if($settings['xenonMail'][0]['visualAlert'][0] == 1) {
 			if($dif == 1) {
 				xenonx('messageBox',array('content'=>'You have %s new mail','tokens' => array($dif)));
 			} else {
@@ -284,26 +284,26 @@ function eyeMail_checkNew($params=null) {
 	imap_close($connection);
 }
 
-function eyeMail_on_fetch($params) {
+function xenonMail_on_fetch($params) {
 	global $checknum;
-	eyeMail_checkNew();
-	$settings = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
-	if($settings['eyeMail'][0]['checkDelay'][0] == 5) {
+	xenonMail_checkNew();
+	$settings = xenonXML('getXMLconfig',array('xenonMail','settings.xml'));
+	if($settings['xenonMail'][0]['checkDelay'][0] == 5) {
 		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*5*60);'));
-	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 15) {
+	} elseif($settings['xenonMail'][0]['checkDelay'][0] == 15) {
 		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*15*60);'));
-	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 30) {
+	} elseif($settings['xenonMail'][0]['checkDelay'][0] == 30) {
 		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*30*60);'));
-	} elseif($settings['eyeMail'][0]['checkDelay'][0] == 60) {
+	} elseif($settings['xenonMail'][0]['checkDelay'][0] == 60) {
 		xenonx('rawjs',array('js'=>'setTimeout("sendMsg('.$checknum.',\'fetch\',\'\');",1000*60*60);'));
 	}
 }
 
-function eyeMail_sendMail($to,$cc,$cco,$sbj,$body) {
-	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeMail/class.phpmailer.php');
-	$config = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
+function xenonMail_sendMail($to,$cc,$cco,$sbj,$body) {
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonMail/class.phpmailer.php');
+	$config = xenonXML('getXMLconfig',array('xenonMail','settings.xml'));
 	$mail = new PHPMailer();
-	$mail->PluginDir = XENONOS_ROOT.'/'.APP_DIR.'/eyeMail/';
+	$mail->PluginDir = XENONOS_ROOT.'/'.APP_DIR.'/xenonMail/';
 
 	$defaultAccount = $GLOBALS['defaultMail']->text;
 	$mail->From = $defaultAccount['email'][0];
@@ -352,7 +352,7 @@ function eyeMail_sendMail($to,$cc,$cco,$sbj,$body) {
 
 	$mail->Port = $defaultAccount['smtpport'][0];
 
-	if(intval($config['eyeMail'][0]['sendRich'][0]) == 1) {
+	if(intval($config['xenonMail'][0]['sendRich'][0]) == 1) {
 		$mail->IsHTML(true);
 	} else {
 		$mail->IsHTML(false);
@@ -364,41 +364,41 @@ function eyeMail_sendMail($to,$cc,$cco,$sbj,$body) {
 	$mail->SMTPDebug = 0;
 
 	if($mail->Send()) {
-		$GLOBALS['eyeMail_activityImgContainer']->hide();
+		$GLOBALS['xenonMail_activityImgContainer']->hide();
 		$userconfig = $GLOBALS['defaultMail']->text;
 
-		$dbPath = um('getCurrentUserDir').'/conf/eyeMail/db_'.$userconfig['id'][0].'.sqlite';
+		$dbPath = um('getCurrentUserDir').'/conf/xenonMail/db_'.$userconfig['id'][0].'.sqlite';
 		$sqliteError = null;
 		$dbHandle = sqlite_open($dbPath, 0666, $sqliteError) or die($sqliteError);
 		$sqlInsert = 'INSERT INTO sent (subject, date, sender, to, body) VALUES (\''.sqlite_escape_string(imap_utf8($sbj)).'\',';
 		$sqlInsert.= '\''.sqlite_escape_string(date('d/m/y',time())).'\', \''.sqlite_escape_string($defaultAccount['email'][0]).'\', \''.sqlite_escape_string($oldTo).'\', \''.sqlite_escape_string($body).'\')';
 		sqlite_exec($dbHandle, $sqlInsert);
 		if($GLOBALS['location']->text == 'sent') {
-			eyeMail_on_printSent();
+			xenonMail_on_printSent();
 		}
-		if($config['eyeMail'][0]['visualAlert'][0] == 1) {
+		if($config['xenonMail'][0]['visualAlert'][0] == 1) {
 			xenonx('messageBox',array('content'=>'Your message has been sent'));
 		}
 	} else {
-		$GLOBALS['eyeMail_activityImgContainer']->hide();
+		$GLOBALS['xenonMail_activityImgContainer']->hide();
 		xenonx('messageBox',array('content'=>'Error sending mail'));
 	}
 
 }
 
-function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
+function xenonMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 	global $myPid;
 	global $checknum;
 
-	$config = xenonXML('getXMLconfig',array('eyeMail','settings.xml'));
+	$config = xenonXML('getXMLconfig',array('xenonMail','settings.xml'));
 
-	if(is_object($GLOBALS['eyeMail_Compose'])) {
-		$GLOBALS['eyeMail_Compose']->close();
+	if(is_object($GLOBALS['xenonMail_Compose'])) {
+		$GLOBALS['xenonMail_Compose']->close();
 	}
 
 	$myWindow = new Window(array(
 		'title'=>'Write a new mail',
-        'name'=>'eyeMail_Compose',
+        'name'=>'xenonMail_Compose',
         'father'=>'xenonApps',
         'cent'=>1,
         'width'=>450,
@@ -409,7 +409,7 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 		'sigClose' => 'closeCompose'
 	));
 	$myWindow->show();
-	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_Compose_Content").style.overflow = "hidden";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_xenonMail_Compose_Content").style.overflow = "hidden";'));
 
 	if(is_array($attachments)) {
 		$pos = 190;
@@ -418,7 +418,7 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 	}
 	$mySplit = new Split(array(
 		'name'=>'splitter_compose',
-		'father'=>'eyeMail_Compose_Content',
+		'father'=>'xenonMail_Compose_Content',
 		'width'=>$myWindow->width,
 		'height'=>270,
 		'orientation' => SPLIT_HORIZONTAL,
@@ -434,9 +434,9 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 	}
 
 	$myTextArea = new TextArea(array(
-		'name' => 'eyeMail_textareaSend',
+		'name' => 'xenonMail_textareaSend',
 		'father' => 'splitter_compose_first',
-		'rich' => $config['eyeMail'][0]['sendRich'][0],
+		'rich' => $config['xenonMail'][0]['sendRich'][0],
 		'x' => 0,
 		'y' => 0,
 		'width' => $myWindow->width,
@@ -453,7 +453,7 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 		$mySortabletable = new Sortabletable(array(
 			'father' => 'splitter_compose_last',
 			'height' => 78,
-			'name' => 'eyeMail_Sortabletable',
+			'name' => 'xenonMail_Sortabletable',
 			'sortypes' => array('Hidden','String','Number'),
 			'theader' => array('Id','Name','Size'),
 			'width' => $myWindow->width,
@@ -468,7 +468,7 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 		$mySortabletable = new Sortabletable(array(
 			'father' => 'splitter_compose_last',
 			'height' => 78,
-			'name' => 'eyeMail_Sortabletable',
+			'name' => 'xenonMail_Sortabletable',
 			'sortypes' => array('String','Number'),
 			'theader' => array('Name','Size'),
 			'width' => $myWindow->width,
@@ -481,13 +481,13 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 	}
 	if(is_array($attachments)) {
 		foreach($attachments as $value) {
-			$mySortabletable->addRow(array($value[2].','.$value[3],$value[0],eyeMail_ByteSize($value[1])));
+			$mySortabletable->addRow(array($value[2].','.$value[3],$value[0],xenonMail_ByteSize($value[1])));
 		}
 	}
 
 	$menuContainer = new Simplebox(array(
-		'name' => 'eyeMail_sendContainer',
-		'father' => 'eyeMail_Compose_Content',
+		'name' => 'xenonMail_sendContainer',
+		'father' => 'xenonMail_Compose_Content',
 		'x' => 0,
 		'y' => 59,
 		'width' => $myWindow->width,
@@ -509,18 +509,18 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 	}
 
 	$toLabel = new Label(array(
-		'name'=>'eyeMail_to_lbl',
-		'father'=>'eyeMail_sendContainer',
+		'name'=>'xenonMail_to_lbl',
+		'father'=>'xenonMail_sendContainer',
 		'text'=>$text,
 		'x'=>20,
 		'y'=>$y+10,
 	));
 	$toLabel->show();
-	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_to_lbl").style.width = "60px";xGetElementById("'.$myPid.'_eyeMail_to_lbl").style.textAlign="right";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_xenonMail_to_lbl").style.width = "60px";xGetElementById("'.$myPid.'_xenonMail_to_lbl").style.textAlign="right";'));
 
 	$toTextbox = new Textbox(array(
-		'name' => 'eyeMail_to_TXT',
-		'father' => 'eyeMail_sendContainer',
+		'name' => 'xenonMail_to_TXT',
+		'father' => 'xenonMail_sendContainer',
 		'x' => 85,
 		'y' => $y+10,
 		'width' => 350,
@@ -534,18 +534,18 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 	$y += 30;
 	//cc
 	$ccLabel = new Label(array(
-		'name'=>'eyeMail_cc_lbl',
-		'father'=>'eyeMail_sendContainer',
+		'name'=>'xenonMail_cc_lbl',
+		'father'=>'xenonMail_sendContainer',
 		'text'=>'CC:',
 		'x'=>20,
 		'y'=>$y+10,
 	));
 	$ccLabel->show();
-	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_cc_lbl").style.width = "60px";xGetElementById("'.$myPid.'_eyeMail_cc_lbl").style.textAlign="right";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_xenonMail_cc_lbl").style.width = "60px";xGetElementById("'.$myPid.'_xenonMail_cc_lbl").style.textAlign="right";'));
 
 	$ccTextbox = new Textbox(array(
-		'name' => 'eyeMail_cc_TXT',
-		'father' => 'eyeMail_sendContainer',
+		'name' => 'xenonMail_cc_TXT',
+		'father' => 'xenonMail_sendContainer',
 		'x' => 85,
 		'y' => $y+10,
 		'width' => 350
@@ -557,18 +557,18 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 	$y += 30;
 	//cco
 	$ccoLabel = new Label(array(
-		'name'=>'eyeMail_cco_lbl',
-		'father'=>'eyeMail_sendContainer',
+		'name'=>'xenonMail_cco_lbl',
+		'father'=>'xenonMail_sendContainer',
 		'text'=>'BCC:',
 		'x'=>20,
 		'y'=>$y+10,
 	));
 	$ccoLabel->show();
-	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_cco_lbl").style.width = "60px";xGetElementById("'.$myPid.'_eyeMail_cco_lbl").style.textAlign="right";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_xenonMail_cco_lbl").style.width = "60px";xGetElementById("'.$myPid.'_xenonMail_cco_lbl").style.textAlign="right";'));
 
 	$ccoTextbox = new Textbox(array(
-		'name' => 'eyeMail_cco_TXT',
-		'father' => 'eyeMail_sendContainer',
+		'name' => 'xenonMail_cco_TXT',
+		'father' => 'xenonMail_sendContainer',
 		'x' => 85,
 		'y' => $y+10,
 		'width' => 350
@@ -580,18 +580,18 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 	$y += 30;
 	//subject
 	$sbjLabel = new Label(array(
-		'name'=>'eyeMail_sbj_lbl',
-		'father'=>'eyeMail_sendContainer',
+		'name'=>'xenonMail_sbj_lbl',
+		'father'=>'xenonMail_sendContainer',
 		'text'=>'Subject:',
 		'x'=>20,
 		'y'=>$y+10,
 	));
 	$sbjLabel->show();
-	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeMail_sbj_lbl").style.width = "60px";xGetElementById("'.$myPid.'_eyeMail_sbj_lbl").style.textAlign="right";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_xenonMail_sbj_lbl").style.width = "60px";xGetElementById("'.$myPid.'_xenonMail_sbj_lbl").style.textAlign="right";'));
 
 	$sbjTextbox = new Textbox(array(
-		'name' => 'eyeMail_sbj_TXT',
-		'father' => 'eyeMail_sendContainer',
+		'name' => 'xenonMail_sbj_TXT',
+		'father' => 'xenonMail_sendContainer',
 		'x' => 85,
 		'y' => $y+10,
 		'width' => 350,
@@ -603,7 +603,7 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 
 	$myToolbar = new Toolbar(array(
 		'name'=>'myBarCompose',
-		'father'=>'eyeMail_Compose_Content'
+		'father'=>'xenonMail_Compose_Content'
 	));
 	if(!empty($body)) {
 		$myTextArea->focus();
@@ -619,14 +619,14 @@ function eyeMail_compose($to="",$sbj="",$body="",$recv=0,$attachments="") {
 	}
 }
 
-function eyeMail_drawBoxes() {
+function xenonMail_drawBoxes() {
 	global $myPid;
 	global $checknum;
 	
 	$menuContainer = new Simplebox(array(
 		'border' => 0,
-		'name' => 'eyeMail_menuContainer',
-		'father' => 'eyeMail_menuContainer_box_Container',
+		'name' => 'xenonMail_menuContainer',
+		'father' => 'xenonMail_menuContainer_box_Container',
 		'x' => 0,
 		'y' => 0,
 		'width' => 140,
@@ -635,16 +635,16 @@ function eyeMail_drawBoxes() {
 	));
 	$menuContainer->show(0);
 	xenonx('rawjs',array('js'=>'
-		xGetElementById("'.$myPid.'_eyeMail_menuContainer_Container").style.overflowX = "hidden";
-		xGetElementById("'.$myPid.'_eyeMail_menuContainer_Container").style.overflowY = "auto";
+		xGetElementById("'.$myPid.'_xenonMail_menuContainer_Container").style.overflowX = "hidden";
+		xGetElementById("'.$myPid.'_xenonMail_menuContainer_Container").style.overflowY = "auto";
 	'));
 
-	$config = xenonXML('getXMLConfig',array('eyeMail','accounts.xml'));
+	$config = xenonXML('getXMLConfig',array('xenonMail','accounts.xml'));
 	$y = 0;
-	if(!is_array($config['eyeMail'][0]['accounts'][0]['account'])) {
+	if(!is_array($config['xenonMail'][0]['accounts'][0]['account'])) {
 		return;
 	}
-	foreach($config['eyeMail'][0]['accounts'][0]['account'] as $value) {
+	foreach($config['xenonMail'][0]['accounts'][0]['account'] as $value) {
 		if($y == 0) {
 			$myHidden = new Hidden(array(
 				'name'=>'defaultMail',
@@ -654,8 +654,8 @@ function eyeMail_drawBoxes() {
 			eyeWidgets('serialize',array($myHidden));
 		}
 		$firstLabel = new Label(array(
-			'name'=>'eyeMail_firstLabel_'.$y,
-			'father'=>'eyeMail_menuContainer',
+			'name'=>'xenonMail_firstLabel_'.$y,
+			'father'=>'xenonMail_menuContainer',
 			'text'=>$value['description'][0],
 			'x'=>10,
 			'y'=>$y+5
@@ -670,8 +670,8 @@ function eyeMail_drawBoxes() {
 
 		//inbox
 		$inboxMenu = new Simplebox(array(
-			'name' => 'eyeMail_inboxMenu_'.$y,
-			'father' => 'eyeMail_menuContainer',
+			'name' => 'xenonMail_inboxMenu_'.$y,
+			'father' => 'xenonMail_menuContainer',
 			'x' => 0,
 			'y' => $y+25,
 			'width' => 141,
@@ -680,8 +680,8 @@ function eyeMail_drawBoxes() {
 		));
 		$inboxMenu->show(0);
 		$imageInboxMenu = new Imagebox(array(
-			'name' => 'eyeMail_imageInboxMenu_'.$y,
-			'father' => 'eyeMail_inboxMenu_'.$y,
+			'name' => 'xenonMail_imageInboxMenu_'.$y,
+			'father' => 'xenonMail_inboxMenu_'.$y,
 			'x'=>30,
 			'y'=>2,
 			'alt' => 'Inbox',
@@ -693,8 +693,8 @@ function eyeMail_drawBoxes() {
 		));
 		$imageInboxMenu->addEvent('onclick','sendMsg(' . $checknum . ',"openMailBox",eyeParam("mailbox","'.$value['id'][0].'"));');
 		$labelInboxMenu = new Label(array(
-			'name' => 'eyeMail_labelInboxMenu_'.$y,
-			'father' => 'eyeMail_inboxMenu_'.$y,
+			'name' => 'xenonMail_labelInboxMenu_'.$y,
+			'father' => 'xenonMail_inboxMenu_'.$y,
 			'x' => 50,
 			'y' => 3,
 			'signal' => 'inboxClick',
@@ -709,8 +709,8 @@ function eyeMail_drawBoxes() {
 
 		//sent
 		$sentMenu = new Simplebox(array(
-			'name' => 'eyeMail_sentMenu_'.$y,
-			'father' => 'eyeMail_menuContainer',
+			'name' => 'xenonMail_sentMenu_'.$y,
+			'father' => 'xenonMail_menuContainer',
 			'x' => 0,
 			'y' => $y+40,
 			'width' => 141,
@@ -720,8 +720,8 @@ function eyeMail_drawBoxes() {
 		$sentMenu->show(0);
 		$senty = 7;
 		$imageSentMenu = new Imagebox(array(
-			'name' => 'eyeMail_imageSentMenu_'.$y,
-			'father' => 'eyeMail_sentMenu_'.$y,
+			'name' => 'xenonMail_imageSentMenu_'.$y,
+			'father' => 'xenonMail_sentMenu_'.$y,
 			'x'=>30,
 			'y'=>$senty,
 			'signal' => 'sentClick',
@@ -734,8 +734,8 @@ function eyeMail_drawBoxes() {
 		));
 		$imageSentMenu->addEvent('onclick','sendMsg(' . $checknum . ',"openMailSent",eyeParam("mailbox","'.$value['id'][0].'"));');
 		$labelSentMenu = new Label(array(
-			'name' => 'eyeMail_labelSentMenu_'.$y,
-			'father' => 'eyeMail_sentMenu_'.$y,
+			'name' => 'xenonMail_labelSentMenu_'.$y,
+			'father' => 'xenonMail_sentMenu_'.$y,
 			'x' => 50,
 			'y' => $senty + 1,
 			'signal' => 'sentClick',
@@ -751,10 +751,10 @@ function eyeMail_drawBoxes() {
 	}
 }
 
-function eyeMail_drawContacts() {
+function xenonMail_drawContacts() {
 	$myWindow = new Window(array(
 		'title'=>'Contacts',
-        'name'=>'eyeMail_Contacts',
+        'name'=>'xenonMail_Contacts',
         'father'=>'xenonApps',
         'cent'=>1,
         'width'=>350,
@@ -764,9 +764,9 @@ function eyeMail_drawContacts() {
 	));
 	$myWindow->show();
 	$mySortabletable = new Sortabletable(array(
-		'father' => 'eyeMail_Contacts_Content',
+		'father' => 'xenonMail_Contacts_Content',
 		'height' => $myWindow->height-60,
-		'name' => 'eyeMail_SortableContact',
+		'name' => 'xenonMail_SortableContact',
 		'sortypes' => array('String','String','String'),
 		'theader' => array('Name','Surname','Mail'),
 		'width' => $myWindow->width-5,
