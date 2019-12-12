@@ -14,12 +14,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeContacts_run($params=null) {
+function xenonContacts_run($params=null) {
 	proc('launch',array('xenonAddressBook'));
 	proc('end');
 }
 
-function eyeContacts_end($params=null) {
+function xenonContacts_end($params=null) {
 	eyeWidgets('unserialize');
 }
 

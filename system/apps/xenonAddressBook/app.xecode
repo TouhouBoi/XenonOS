@@ -118,7 +118,7 @@ function xenonAddressBook_run($params=null) {
 function xenonAddressBook_initFunction() {
 	$config = xenonAddressBook('loadConfig');
 	if ($config['config'][0]['used'][0] == 0) {
-		xenonAddressBook('importFromEyeContacts');
+		xenonAddressBook('importFromxenonContacts');
 		$config['config'][0]['used'][0] = 1;
 		$path = um('getCurrentUserDir').CONF_USER_DIR.'/xenonAddressBook';
 		xenonXML('setXMLfile', array($path.'/config.xml', $config));

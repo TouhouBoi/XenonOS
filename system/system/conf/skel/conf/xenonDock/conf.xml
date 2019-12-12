@@ -163,10 +163,10 @@
 						<type>icon</type>
 					</entry-6>
 					<entry-7>
-						<command>eyeContacts.app</command>
+						<command>xenonContacts.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeContacts.png</image>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonContacts.png</image>
 						<text>Contact Manager</text>
 						<type>icon</type>
 					</entry-7>

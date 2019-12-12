@@ -775,7 +775,7 @@ function eyeMail_drawContacts() {
 		'master' => 2
 	));
 	$mySortabletable->show();
-	$contacts = eyeContacts('userList');
+	$contacts = xenonContacts('userList');
 	foreach($contacts as $value) {
 		$mySortabletable->addRow(array($value['name'][0],$value['surname'][0],$value['email'][0]));
 	}

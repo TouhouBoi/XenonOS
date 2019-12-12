@@ -212,7 +212,7 @@ function lib_xenonAddressBook_getContacts($params=null) {
 	}
 }
 
-function lib_xenonAddressBook_importFromEyeContacts() {
+function lib_xenonAddressBook_importFromxenonContacts() {
 	// first load list
 	$path = um('getCurrentUserDir').'/'.CONF_USER_DIR.'/ey'.'eContacts/';
 	$content = vfs('real_getDirContent',array($path));
@@ -222,7 +222,7 @@ function lib_xenonAddressBook_importFromEyeContacts() {
 			if(vfs('isDir',array($dir))){
 				$subContent = vfs('real_getDirContent',array($path.'/'.basename($dir)));
 				foreach($subContent as $contact){
-					$contactInfo = eyeContacts('pathToInfo',array($contact));
+					$contactInfo = xenonContacts('pathToInfo',array($contact));
 					$info  = xenonAddressBook('retrive_2',array($contactInfo[0],$contactInfo[1],$contactInfo[2]));
 					$myContacts[$contactInfo[2]] = $info;
 				}
@@ -752,9 +752,9 @@ function lib_xenonAddressBook_addGroup($params=null) {
 	}
 }
 
-// Retrocompatibility with eyeContacts
+// Retrocompatibility with xenonContacts
 
- // retrive_2 auxiliar function only to importfromeyecontacts
+ // retrive_2 auxiliar function only to importfromxenonContacts
 function lib_xenonAddressBook_retrive_2($params=null) {
 	if(empty($params) || count($params) < 1){
 		return false;
@@ -763,7 +763,7 @@ function lib_xenonAddressBook_retrive_2($params=null) {
 	$surname = $params[1];
 	$md5 = $params[2];
 
-	$path = eyeContacts('getContactPath',array($name));
+	$path = xenonContacts('getContactPath',array($name));
 	$fileToCreate = $name.'_'.$surname.'_'.$md5.'.'.EYECARD_EXT;
 
 	$path = $path.'/'.$fileToCreate;
