@@ -25,38 +25,38 @@ function restoreTrash_on_Do($params = '') {
 	$file = substr($GLOBALS['restoreTrash_Hidden_Path']->text, 0, -strlen('.' . XENONOS_TRASH_EXT)); // utf8
 	$path = um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/';
 	$xml = xenonXML('getXMLfile',array($path . '/' . $file . '.' . XENONOS_TRASH_EXT));
-	if ($xml['eyeTrash'][0]['type'][0] == 'dir') {
+	if ($xml['xenonTrash'][0]['type'][0] == 'dir') {
 		if ($to) {
 			if ($to[1] == 'real') {
-				xenonx('messageBox',array('content' => 'You cannot restore "%s" to a real folder!','tokens' => array($xml['eyeTrash'][0]['lastname'][0])));
-			} elseif (vfs('restoreDir',array($path . $file,$to[0] . '/' . basename($xml['eyeTrash'][0]['restorePoint'][0])))) {
+				xenonx('messageBox',array('content' => 'You cannot restore "%s" to a real folder!','tokens' => array($xml['xenonTrash'][0]['lastname'][0])));
+			} elseif (vfs('restoreDir',array($path . $file,$to[0] . '/' . basename($xml['xenonTrash'][0]['restorePoint'][0])))) {
 				$path = $to[1] . '://' . $to[2];
 			} else {
-				xenonx('messageBox',array('content' => '"%s" could not be restored!','tokens' => array($xml['eyeTrash'][0]['lastname'][0])));
+				xenonx('messageBox',array('content' => '"%s" could not be restored!','tokens' => array($xml['xenonTrash'][0]['lastname'][0])));
 			}
-		} elseif (vfs('restoreDir',array($path . $file,$xml['eyeTrash'][0]['restorePoint'][0]))) {
-			$path = substr(trim($xml['eyeTrash'][0]['restorePoint'][0], '/\\'), 0, -strlen(basename($xml['eyeTrash'][0]['restorePoint'][0]))); // utf8
-		} elseif (vfs('restoreDir',array($path . $file,um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . basename($xml['eyeTrash'][0]['restorePoint'][0])))) {
-			xenonx('messageBox',array('content' => '"%s" has been restored to your home folder!','tokens' => array($xml['eyeTrash'][0]['lastname'][0])));
+		} elseif (vfs('restoreDir',array($path . $file,$xml['xenonTrash'][0]['restorePoint'][0]))) {
+			$path = substr(trim($xml['xenonTrash'][0]['restorePoint'][0], '/\\'), 0, -strlen(basename($xml['xenonTrash'][0]['restorePoint'][0]))); // utf8
+		} elseif (vfs('restoreDir',array($path . $file,um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . basename($xml['xenonTrash'][0]['restorePoint'][0])))) {
+			xenonx('messageBox',array('content' => '"%s" has been restored to your home folder!','tokens' => array($xml['xenonTrash'][0]['lastname'][0])));
 			$path = 'home:///';
 		} else {
-			xenonx('messageBox',array('content' => '"%s" could not be restored!','tokens' => array($xml['eyeTrash'][0]['lastname'][0])));
+			xenonx('messageBox',array('content' => '"%s" could not be restored!','tokens' => array($xml['xenonTrash'][0]['lastname'][0])));
 		}
 	} elseif ($to) {
 		if ($to[1] == 'real') {
-			xenonx('messageBox',array('content' => 'You cannot restore "%s" to a real folder!','tokens' => array($xml['eyeTrash'][0]['lastname'][0])));
-		} elseif (vfs('restore',array($path . $file . '.' . XENONOS_TRASH_EXT,$to[0] . '/' . basename($xml['eyeTrash'][0]['restorePoint'][0])))) {
+			xenonx('messageBox',array('content' => 'You cannot restore "%s" to a real folder!','tokens' => array($xml['xenonTrash'][0]['lastname'][0])));
+		} elseif (vfs('restore',array($path . $file . '.' . XENONOS_TRASH_EXT,$to[0] . '/' . basename($xml['xenonTrash'][0]['restorePoint'][0])))) {
 			$path = $to[1] . '://' . $to[2];
 		} else {
-			xenonx('messageBox',array('content' => '"%s" could not be restored!','tokens' => array($xml['eyeTrash'][0]['lastname'][0])));
+			xenonx('messageBox',array('content' => '"%s" could not be restored!','tokens' => array($xml['xenonTrash'][0]['lastname'][0])));
 		}
-	} elseif (vfs('restore',array($path . $file,$xml['eyeTrash'][0]['restorePoint'][0]))) {
-		$path = substr(trim($xml['eyeTrash'][0]['restorePoint'][0], '/\\'), 0, -strlen(basename($xml['eyeTrash'][0]['restorePoint'][0]))); // utf8
-	} elseif (vfs('restore',array($path . $file,um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . basename($xml['eyeTrash'][0]['restorePoint'][0])))) {
-		xenonx('messageBox',array('content' => '"%s" has been restored to your home folder!','tokens' => array($xml['eyeTrash'][0]['lastname'][0])));
+	} elseif (vfs('restore',array($path . $file,$xml['xenonTrash'][0]['restorePoint'][0]))) {
+		$path = substr(trim($xml['xenonTrash'][0]['restorePoint'][0], '/\\'), 0, -strlen(basename($xml['xenonTrash'][0]['restorePoint'][0]))); // utf8
+	} elseif (vfs('restore',array($path . $file,um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . basename($xml['xenonTrash'][0]['restorePoint'][0])))) {
+		xenonx('messageBox',array('content' => '"%s" has been restored to your home folder!','tokens' => array($xml['xenonTrash'][0]['lastname'][0])));
 		$path = 'home:///';
 	} else {
-		xenonx('messageBox',array('content' => '"%s" could not be restored!','tokens' => array($xml['eyeTrash'][0]['lastname'][0])));
+		xenonx('messageBox',array('content' => '"%s" could not be restored!','tokens' => array($xml['xenonTrash'][0]['lastname'][0])));
 	}
 	if ($GLOBALS['restoreTrash_Hidden_Callback']->text) {
 		xenonx('rawjs',array('js' => $GLOBALS['restoreTrash_Hidden_Callback']->text));

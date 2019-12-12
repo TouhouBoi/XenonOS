@@ -24,9 +24,9 @@ function eyeProperties_run($params = '') {
 		$path[1] = 'trash';
 		$path[2] = '/';
 		$xml = xenonXML('getXMLfile',array($path[0] . '/' . $file));
-		$deletiondate = $xml['eyeTrash'][0]['deleteDate'][0];
-		$title = $xml['eyeTrash'][0]['lastname'][0];
-		if ($xml['eyeTrash'][0]['type'][0] == 'dir') {
+		$deletiondate = $xml['xenonTrash'][0]['deleteDate'][0];
+		$title = $xml['xenonTrash'][0]['lastname'][0];
+		if ($xml['xenonTrash'][0]['type'][0] == 'dir') {
 			$icon = 'filetypes/folder';
 			$type = 'Directory';
 		} else {

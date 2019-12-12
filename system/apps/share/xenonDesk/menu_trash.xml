@@ -2,7 +2,7 @@
 	<entry>
 		<icon>launcher</icon>
 		<text>Open trash</text>
-		<action>eyeTrash</action>
+		<action>xenonTrash</action>
 	</entry>
 	<entry>
 		<icon>delete</icon>

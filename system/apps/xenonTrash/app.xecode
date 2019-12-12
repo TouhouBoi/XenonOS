@@ -14,12 +14,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeTrash_run($params = '') {
+function xenonTrash_run($params = '') {
 	proc('launch',array('xenonFiles',array('/','trash')));
 	proc('end');
 }
 
-function eyeTrash_end($params = '') {
+function xenonTrash_end($params = '') {
 	eyeWidgets('unserialize');
 }
 ?>

@@ -25,10 +25,10 @@ function emptyTrash_run($params = '') {
 	$xml = xenonXML('getXMLfile',array(um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/' . $file));
  	$realFile = basename($file,'.'.XENONOS_TRASH_EXT);
 	$infoFile = um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/' . $realFile . '.' . XENONOS_FILE_EXT;
-	if (basename($xml['eyeTrash'][0]['lastname'][0]) && (vfs('real_fileExists', array($infoFile)) || vfs('isdir', array(um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/' . substr($file, 0, -strlen('.' . XENONOS_TRASH_EXT)))))) { // utf8
+	if (basename($xml['xenonTrash'][0]['lastname'][0]) && (vfs('real_fileExists', array($infoFile)) || vfs('isdir', array(um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/' . substr($file, 0, -strlen('.' . XENONOS_TRASH_EXT)))))) { // utf8
 		$content = 'Do you really want to remove "%s"?';
-		$title = i18n('translate',array('Delete %s',array($xml['eyeTrash'][0]['lastname'][0])));
-		$tokens = array($xml['eyeTrash'][0]['lastname'][0]);
+		$title = i18n('translate',array('Delete %s',array($xml['xenonTrash'][0]['lastname'][0])));
+		$tokens = array($xml['xenonTrash'][0]['lastname'][0]);
 	} else {
 		$file = '';
 		$content = 'Do you really want to empty the trash?';

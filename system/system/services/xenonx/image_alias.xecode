@@ -435,12 +435,12 @@ $alias[1][APP_DIR . '/xeSoft/gfx/install.png'] = 'icons/16x16/plus.png';
 $alias[1][APP_DIR . '/xeSoft/gfx/refresh.png'] = 'icons/16x16/refresh.png';
 $alias[1][APP_DIR . '/xeSoft/gfx/uninstall.png'] = 'icons/16x16/minus.png';
 
-// eyeTrash
-$alias[1][APP_DIR . '/eyeTrash/gfx/empty.png'] = 'icons/16x16/delete.png';
-$alias[1][APP_DIR . '/eyeTrash/gfx/empty_big.png'] = 'icons/48x48/rename.png';
-$alias[1][APP_DIR . '/eyeTrash/gfx/properties.png'] = 'icons/16x16/properties.png';
-$alias[1][APP_DIR . '/eyeTrash/gfx/restore.png'] = 'icons/16x16/restore.png';
-$alias[1][APP_DIR . '/eyeTrash/gfx/restore_big.png'] = 'icons/48x48/rename.png';
+// xenonTrash
+$alias[1][APP_DIR . '/xenonTrash/gfx/empty.png'] = 'icons/16x16/delete.png';
+$alias[1][APP_DIR . '/xenonTrash/gfx/empty_big.png'] = 'icons/48x48/rename.png';
+$alias[1][APP_DIR . '/xenonTrash/gfx/properties.png'] = 'icons/16x16/properties.png';
+$alias[1][APP_DIR . '/xenonTrash/gfx/restore.png'] = 'icons/16x16/restore.png';
+$alias[1][APP_DIR . '/xenonTrash/gfx/restore_big.png'] = 'icons/48x48/rename.png';
 
 // miniActions
 $alias[1][APP_DIR . '/miniActions/images/bg.png'] = 'images/'.APP_DIR.'/miniActions/bg.png';

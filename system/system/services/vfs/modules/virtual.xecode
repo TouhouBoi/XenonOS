@@ -194,7 +194,7 @@ function service_vfs_delete($params) {
 					copy($file.'.'.XENONOS_INFO_EXT,$myUserDir.'/'.TRASH_USER_DIR.'/'.$name.'.'.XENONOS_INFO_EXT) &&
 					unlink($file.'.'.XENONOS_FILE_EXT) && unlink($file.'.'.XENONOS_INFO_EXT)) {
 					$data = array(
-						'eyeTrash' => array(
+						'xenonTrash' => array(
 							array(
 							"deleteDate" => array(time()),
 							"restorePoint" => array($file),
@@ -814,7 +814,7 @@ function service_vfs_rmdir($params) {
 		rename($dir,$trashDir.$name);
 		vfs('real_create',array($trashDir.$name.'.'.XENONOS_TRASH_EXT));
 		$data = array(
-			'eyeTrash' => array(
+			'xenonTrash' => array(
 				array(
 				"deleteDate" => array(time()),
 				"restorePoint" => array($dir),

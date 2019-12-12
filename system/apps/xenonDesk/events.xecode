@@ -246,7 +246,7 @@ function xenonDesk_on_OpenPath($params = '') {
 		} elseif ($file[1] == 'link') {
 			$file[2] = i18n('translate',array(basename($file[2],'.' . XENONOS_LINK_EXT)));
 			$xml = xenonXML('getXMLfile',array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . $file[0]));
-			if ($xml['eyeLink'][0]['content'][0] === 'eyeTrash.app' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'trash://') { // utf8
+			if ($xml['eyeLink'][0]['content'][0] === 'xenonTrash.app' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'trash://') { // utf8
 				$menu = getConfig('xenonDesk','menu_trash.xml');
 				if ($xml['eyeLink'][0]['icon'][0] == 'trash') {
 					$_SESSION['xenonDesk'][$myPid]['trashes'][] = $i;
@@ -331,7 +331,7 @@ function xenonDesk_on_OpenPath($params = '') {
 		));
 		$myWidgetDrag->show();
 
-		if ($file[1] === 'folder' || $file[1] === 'link' && (strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 7)) === 'home://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 9)) === 'groups://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'trash://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'users://' || strtolower(substr($xml['eyeLink'][0]['content'][0],0,7)) == 'real://' || in_array($xml['eyeLink'][0]['content'][0], array('xenonFiles.app', 'eyeGroups.app', 'eyeTrash.app')) === true)) { // utf8
+		if ($file[1] === 'folder' || $file[1] === 'link' && (strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 7)) === 'home://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 9)) === 'groups://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'trash://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'users://' || strtolower(substr($xml['eyeLink'][0]['content'][0],0,7)) == 'real://' || in_array($xml['eyeLink'][0]['content'][0], array('xenonFiles.app', 'eyeGroups.app', 'xenonTrash.app')) === true)) { // utf8
 			$myWidgetDrop = new widgetDrop(array(
 				'father' => $myIcon->name . '_Container',
 				'name' => $myIcon->name . '_WidgetDrop'
@@ -343,7 +343,7 @@ function xenonDesk_on_OpenPath($params = '') {
 				$content = 'home:///';
 			} elseif ($xml['eyeLink'][0]['content'][0] == 'eyeGroups.app') {
 				$content = 'groups:///';
-			} elseif ($xml['eyeLink'][0]['content'][0] == 'eyeTrash.app') {
+			} elseif ($xml['eyeLink'][0]['content'][0] == 'xenonTrash.app') {
 				$content = 'trash:///';
 			} else {
 				$content = $xml['eyeLink'][0]['content'][0];
