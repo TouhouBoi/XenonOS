@@ -21,11 +21,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeFTP_logConsole(pid, text_b64, maxDisplayedLines, type, debug) {
+function xenonFTP_logConsole(pid, text_b64, maxDisplayedLines, type, debug) {
 	var consoleObj, existingText, i, lines, newText, now;
 	maxDisplayedLines = parseInt(maxDisplayedLines, 10);
 	maxDisplayedLines = (isNaN(maxDisplayedLines) || maxDisplayedLines < 1) ? 100 : maxDisplayedLines;
-	consoleObj = document.getElementById(pid + "_eyeFTP_log_CTNR");
+	consoleObj = document.getElementById(pid + "_xenonFTP_log_CTNR");
 	if (!consoleObj) {
 		return;
 	}
@@ -34,8 +34,8 @@ function eyeFTP_logConsole(pid, text_b64, maxDisplayedLines, type, debug) {
 		consoleObj.innerHTML += "<br>" + Base64.decode(text_b64);
 	} else {
 		now = new Date();
-		newText = "<span class=\"eyeFTP_logStyle_" + type + "\">";
-		newText += "<img src=\"index.php?theme=" + USERTHEME + "&extern=images/apps/eyeFTP/10x10/" + type + ".png\" style=\"vertical-align: middle;\" />&nbsp;";
+		newText = "<span class=\"xenonFTP_logStyle_" + type + "\">";
+		newText += "<img src=\"index.php?theme=" + USERTHEME + "&extern=images/apps/xenonFTP/10x10/" + type + ".png\" style=\"vertical-align: middle;\" />&nbsp;";
 		newText += "[" + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds() + "] ";
 		newText += Base64.decode(text_b64) + "</span>";
 
@@ -53,8 +53,8 @@ function eyeFTP_logConsole(pid, text_b64, maxDisplayedLines, type, debug) {
 	consoleObj.scrollTop = consoleObj.scrollHeight;
 }
 
-function eyeFTP_clearConsole(pid) {
-	var consoleObj = document.getElementById(pid + "_eyeFTP_log_CTNR");
+function xenonFTP_clearConsole(pid) {
+	var consoleObj = document.getElementById(pid + "_xenonFTP_log_CTNR");
 	if (!consoleObj) {
 		return;
 	}

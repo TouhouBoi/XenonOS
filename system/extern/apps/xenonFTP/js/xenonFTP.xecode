@@ -24,9 +24,9 @@ function get_dynamic_content($params = '')
 {
 	header('Content-type: text/javascript; charset=utf-8');
 	
-	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeFTP/js/eyeFTP.min.js';
+	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonFTP/js/xenonFTP.min.js';
 	
-	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeFTP/js/eyeFTP.js';
+	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonFTP/js/xenonFTP.js';
 	
 	if (USE_COMPRESSED && is_readable($path_compressed) && filemtime($path_compressed) >= filemtime($path_uncompressed))
 	{

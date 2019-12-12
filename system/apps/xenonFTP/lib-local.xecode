@@ -23,60 +23,60 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 /**
  * Removes all rows from the local files table
  */
-function eyeFTP_emptyLocalFilesTable() {
-	include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/app'.XE_CODE_EXTENSION);
+function xenonFTP_emptyLocalFilesTable() {
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/app'.XE_CODE_EXTENSION);
 	global $checknum, $myPid;
-	if ($GLOBALS['eyeFTP_localFiles_TAB']) {
-		$GLOBALS['eyeFTP_localFiles_TAB']->remove();
+	if ($GLOBALS['xenonFTP_localFiles_TAB']) {
+		$GLOBALS['xenonFTP_localFiles_TAB']->remove();
 	}
 
 	/* TABLE FOR LOCAL FILES LIST */
 	$localFilesTable = new Sortabletable(array(
-		'name' => 'eyeFTP_localFiles_TAB',
-		'father' => 'eyeFTP_leftRight_SPLT_first',
+		'name' => 'xenonFTP_localFiles_TAB',
+		'father' => 'xenonFTP_leftRight_SPLT_first',
 		'x' => 0,
 		'y' => 24,
-		'width' => $GLOBALS['eyeFTP_leftRight_SPLT']->position - 15,
-		'height' => $GLOBALS['eyeFTP_leftRight_SPLT']->height - 30,
+		'width' => $GLOBALS['xenonFTP_leftRight_SPLT']->position - 15,
+		'height' => $GLOBALS['xenonFTP_leftRight_SPLT']->height - 30,
 		'sortypes' => array('Html','String','Number','Date','String','Hidden'),
 		'master' => 5,
 		'theader' => array(' ','Filename','Filesize (B)','Date','Author','id'),
-		'signal' => 'eyeFTP_localFilesClick',
-		'dblsignal' => 'eyeFTP_localFilesDblClick'
+		'signal' => 'xenonFTP_localFilesClick',
+		'dblsignal' => 'xenonFTP_localFilesDblClick'
 	));
 	$localFilesTable->show();
 	xenonx('addEvent',array(
-		'name' => $myPid.'_eyeFTP_localFiles_TAB_Container',
-		'action' => 'sendMsg('.$checknum.',"eyeFTP_localFilesClick","")',
+		'name' => $myPid.'_xenonFTP_localFiles_TAB_Container',
+		'action' => 'sendMsg('.$checknum.',"xenonFTP_localFilesClick","")',
 		'event' => 'onclick',
 		'args'=>''
 	));
 	$localFilesTable->setCss(array('white-space' => 'nowrap'));
-	eyeFTP_setActiveView($GLOBALS['eyeFTP_selectedView_HID']->text);
+	xenonFTP_setActiveView($GLOBALS['xenonFTP_selectedView_HID']->text);
 
-	$GLOBALS['eyeFTP_serializedLocalFilesData_HID']->setText(serialize(array()));
-	$GLOBALS['eyeFTP_localPath_TXTBOX']->setText("");
+	$GLOBALS['xenonFTP_serializedLocalFilesData_HID']->setText(serialize(array()));
+	$GLOBALS['xenonFTP_localPath_TXTBOX']->setText("");
 }
 
-function eyeFTP_refreshLocal() {
-	$conf = eyeFTP_getConf();
-	eyeFTP_browseLocal($conf['currentLocalDir']);
+function xenonFTP_refreshLocal() {
+	$conf = xenonFTP_getConf();
+	xenonFTP_browseLocal($conf['currentLocalDir']);
 }
 
 /**
  * @param string $path The path within the user dir ('/', '/Documents', '/Desktop', etc.) to browse
  */
-function eyeFTP_browseLocal($path = '/') {
-	eyeFTP_emptyLocalFilesTable();
+function xenonFTP_browseLocal($path = '/') {
+	xenonFTP_emptyLocalFilesTable();
 
-	$path = eyeFTP_resolvePathInUserDir($path);
+	$path = xenonFTP_resolvePathInUserDir($path);
 	if ($path === false) {
-		eyeFTP_logConsole('Error while trying to browse local folder!', null, EYEFTP_LOGSTYLE_ERROR);
+		xenonFTP_logConsole('Error while trying to browse local folder!', null, xenonFTP_LOGSTYLE_ERROR);
 		return;
 	}
 
-	$fullPath = eyeFTP_resolvePathInUserDir($path,false);
-	$filesData = eyeFTP_listDir($fullPath);
+	$fullPath = xenonFTP_resolvePathInUserDir($path,false);
+	$filesData = xenonFTP_listDir($fullPath);
 	foreach($filesData as $id => $fileInfo) {
 		switch($fileInfo['type']) {
 			case 'd':
@@ -93,7 +93,7 @@ function eyeFTP_browseLocal($path = '/') {
 				$urlIcon = 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/file.png';
 				$size  = $fileInfo['size'];
 		}
-		$GLOBALS['eyeFTP_localFiles_TAB']->addRow(array(
+		$GLOBALS['xenonFTP_localFiles_TAB']->addRow(array(
 			'<img src="'.$urlIcon.'" />',
 			$fileInfo['displayedName'],
 			$size,
@@ -102,21 +102,21 @@ function eyeFTP_browseLocal($path = '/') {
 			$id
 		));
 	}
-	$GLOBALS['eyeFTP_serializedLocalFilesData_HID']->setText(serialize($filesData));
-	$GLOBALS['eyeFTP_currentLocalDir_HID']->setText($path);
+	$GLOBALS['xenonFTP_serializedLocalFilesData_HID']->setText(serialize($filesData));
+	$GLOBALS['xenonFTP_currentLocalDir_HID']->setText($path);
 
 	//FIXME: unable to use setText(), otherwise causes an "undefined entity" error on special chars in browser
-	//$GLOBALS['eyeFTP_path_TXTBOX']->setText($dir);
+	//$GLOBALS['xenonFTP_path_TXTBOX']->setText($dir);
 	global $myPid;
-	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_eyeFTP_localPath_TXTBOX").value=Base64.decode("'.base64_encode($path).'");'));
+	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_xenonFTP_localPath_TXTBOX").value=Base64.decode("'.base64_encode($path).'");'));
 }
 
 /**
  * @param string $dir The directory to browse (e.g. './users/jn4/john/files/Documents')
  * @return array
  */
-function eyeFTP_listDir($dir,$addParent=true) {
-	$dir = eyeFTP_getFormatedDirPath($dir);
+function xenonFTP_listDir($dir,$addParent=true) {
+	$dir = xenonFTP_getFormatedDirPath($dir);
 	$content = vfs('getDirContent', array($dir));
 
 	$i = 1;
@@ -124,7 +124,7 @@ function eyeFTP_listDir($dir,$addParent=true) {
 
 	if ($addParent) {
 		//add parent entry (..) only if we are not in the root directory
-		if (eyeFTP_resolvePathInUserDir($dir) != '/') {
+		if (xenonFTP_resolvePathInUserDir($dir) != '/') {
 			$fileInfo = array(
 				'type'=>'d',
 				'author'=>' ',
@@ -177,7 +177,7 @@ function eyeFTP_listDir($dir,$addParent=true) {
 		}
 	}
 
-	usort($filesData, 'eyeFTP_compareFilesData');
+	usort($filesData, 'xenonFTP_compareFilesData');
 	$return = array();
 	$i = 1;
 	foreach($filesData as $fileData) {
@@ -198,7 +198,7 @@ function eyeFTP_listDir($dir,$addParent=true) {
  *                                              (e.g. ./users/jn4/john/files/Documents)
  * @return mixed The resolved path or FALSE if the given path is not in the user files directory
  */
-function eyeFTP_resolvePathInUserDir($path,$returnUserFilesRelative = true) {
+function xenonFTP_resolvePathInUserDir($path,$returnUserFilesRelative = true) {
 	return vfs('resolvePath', array($path, 'user_files', $returnUserFilesRelative));
 }
 

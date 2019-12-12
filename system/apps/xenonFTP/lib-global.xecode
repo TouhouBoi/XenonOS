@@ -29,7 +29,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
  * @param array $params An array with at least the following content:
  *                      array('__signal' => the_name_of_the_signal_to_send)
  */
-function eyeFTP_bounceRequest($params=null) {
+function xenonFTP_bounceRequest($params=null) {
 	global $checknum;
 
 	$sendMsgParams = '';
@@ -49,38 +49,38 @@ function eyeFTP_bounceRequest($params=null) {
  * @return boolean TRUE if the arguments indicate that the function is called from a "bounced" request,
  *                 FALSE otherwise
  */
-function eyeFTP_isFromBouncedRequest($params=null) {
+function xenonFTP_isFromBouncedRequest($params=null) {
 	return (is_array($params) && $params['__bounce'][0] == 1);
 }
 
 /**
  * @return array The current running state of the application
  */
-function eyeFTP_getConf() {
+function xenonFTP_getConf() {
 	$conf = array();
 
-	$conf['isConnectionActive'] = $GLOBALS['eyeFTP_isFTPConnectionActive_HID']->text;
-	$conf['host'] = $GLOBALS['eyeFTP_host_TXTBOX']->text;
-	$conf['port'] = $GLOBALS['eyeFTP_port_TXTBOX']->text;
-	$conf['username'] = $GLOBALS['eyeFTP_username_TXTBOX']->text;
-	$conf['password'] = $GLOBALS['eyeFTP_password_TXTBOX']->text;
-	$conf['passiveMode'] = $GLOBALS['eyeFTP_passiveMode_CHKBOX']->checked;
+	$conf['isConnectionActive'] = $GLOBALS['xenonFTP_isFTPConnectionActive_HID']->text;
+	$conf['host'] = $GLOBALS['xenonFTP_host_TXTBOX']->text;
+	$conf['port'] = $GLOBALS['xenonFTP_port_TXTBOX']->text;
+	$conf['username'] = $GLOBALS['xenonFTP_username_TXTBOX']->text;
+	$conf['password'] = $GLOBALS['xenonFTP_password_TXTBOX']->text;
+	$conf['passiveMode'] = $GLOBALS['xenonFTP_passiveMode_CHKBOX']->checked;
 
-	$conf['currentLocalDir'] = $GLOBALS['eyeFTP_currentLocalDir_HID']->text;
-	$conf['currentRemoteDir'] = $GLOBALS['eyeFTP_currentRemoteDir_HID']->text;
-	$conf['displayedCurrentRemoteDir'] = $GLOBALS['eyeFTP_currentRemoteDir_HID']->text;
+	$conf['currentLocalDir'] = $GLOBALS['xenonFTP_currentLocalDir_HID']->text;
+	$conf['currentRemoteDir'] = $GLOBALS['xenonFTP_currentRemoteDir_HID']->text;
+	$conf['displayedCurrentRemoteDir'] = $GLOBALS['xenonFTP_currentRemoteDir_HID']->text;
 
-	$conf['listedLocalFilesData'] = unserialize($GLOBALS['eyeFTP_serializedLocalFilesData_HID']->text);
-	$conf['listedRemoteFilesData'] = unserialize($GLOBALS['eyeFTP_serializedRemoteFilesData_HID']->text);
+	$conf['listedLocalFilesData'] = unserialize($GLOBALS['xenonFTP_serializedLocalFilesData_HID']->text);
+	$conf['listedRemoteFilesData'] = unserialize($GLOBALS['xenonFTP_serializedRemoteFilesData_HID']->text);
 
-	$conf['selectedView'] = $GLOBALS['eyeFTP_selectedView_HID']->text;
+	$conf['selectedView'] = $GLOBALS['xenonFTP_selectedView_HID']->text;
 
-	if ($GLOBALS['eyeFTP_localFiles_TAB']->selected)
-		$conf['selectedLocalFile'] = $conf['listedLocalFilesData'][$GLOBALS['eyeFTP_localFiles_TAB']->selected];
+	if ($GLOBALS['xenonFTP_localFiles_TAB']->selected)
+		$conf['selectedLocalFile'] = $conf['listedLocalFilesData'][$GLOBALS['xenonFTP_localFiles_TAB']->selected];
 	else
 		$conf['selectedLocalFile'] = false;
-	if ($GLOBALS['eyeFTP_remoteFiles_TAB']->selected)
-		$conf['selectedRemoteFile'] = $conf['listedRemoteFilesData'][$GLOBALS['eyeFTP_remoteFiles_TAB']->selected];
+	if ($GLOBALS['xenonFTP_remoteFiles_TAB']->selected)
+		$conf['selectedRemoteFile'] = $conf['listedRemoteFilesData'][$GLOBALS['xenonFTP_remoteFiles_TAB']->selected];
 	else
 		$conf['selectedRemoteFile'] = false;
 
@@ -92,10 +92,10 @@ function eyeFTP_getConf() {
  *
  * @return boolean TRUE if connection is already active or established successfully, FALSE otherwise
  */
-function eyeFTP_autoConnect() {
-	$conf = eyeFTP_getConf();
-	if (! $GLOBALS['eyeFTP_ftpConnectionResource']) {
-		if (! eyeFTP_ftpConnect($conf['host'],$conf['port'],$conf['username'],$conf['password'],$conf['passiveMode'],true)) {
+function xenonFTP_autoConnect() {
+	$conf = xenonFTP_getConf();
+	if (! $GLOBALS['xenonFTP_ftpConnectionResource']) {
+		if (! xenonFTP_ftpConnect($conf['host'],$conf['port'],$conf['username'],$conf['password'],$conf['passiveMode'],true)) {
 			return false;
 		}
 	}
@@ -108,7 +108,7 @@ function eyeFTP_autoConnect() {
  * @param string $dir The path to format
  * @return string The path formated
  */
-function eyeFTP_getFormatedDirPath($dir) {
+function xenonFTP_getFormatedDirPath($dir) {
 	if ($dir == '' || $dir == '//') {
 		return '/';
 	}
@@ -125,8 +125,8 @@ function eyeFTP_getFormatedDirPath($dir) {
  * @param string $type Message type (normal, success, warning, ... See defined constants in events.xecode)
  * @param boolean $debug Debug mode (do a print_r() on the $text argument when displaying it)
  */
-function eyeFTP_logConsole($text, $tokens=null, $type=EYEFTP_LOGSTYLE_NORMAL, $debug=false) {
-	$type = ($type == null)? EYEFTP_LOGSTYLE_NORMAL : $type;
+function xenonFTP_logConsole($text, $tokens=null, $type=xenonFTP_LOGSTYLE_NORMAL, $debug=false) {
+	$type = ($type == null)? xenonFTP_LOGSTYLE_NORMAL : $type;
 	if ( $debug === true) {
 		$text = print_r($text,true);
 		$debug = 'true';
@@ -137,12 +137,12 @@ function eyeFTP_logConsole($text, $tokens=null, $type=EYEFTP_LOGSTYLE_NORMAL, $d
 
 	global $myPid;
 	$text_b64 = base64_encode(i18n('translate',array($text,$tokens)));
-	xenonx('rawjs',array('js' => 'eyeFTP_logConsole("'.$myPid.'","'.$text_b64.'",100,"'.$type.'",'.$debug.')'));
+	xenonx('rawjs',array('js' => 'xenonFTP_logConsole("'.$myPid.'","'.$text_b64.'",100,"'.$type.'",'.$debug.')'));
 }
 
-function eyeFTP_clearLogConsole() {
+function xenonFTP_clearLogConsole() {
 	global $myPid;
-	xenonx('rawjs',array('js' => 'eyeFTP_clearConsole("'.$myPid.'")'));
+	xenonx('rawjs',array('js' => 'xenonFTP_clearConsole("'.$myPid.'")'));
 }
 
 /**
@@ -150,27 +150,27 @@ function eyeFTP_clearLogConsole() {
  *
  * @param boolean $active Specifies whether the connection is active (TRUE), or inactive (FALSE)
  */
-function eyeFTP_setConnectionActive($active=true) {
+function xenonFTP_setConnectionActive($active=true) {
 	if ($active) {
-		$GLOBALS['eyeFTP_host_TXTBOX']->disable();
-		$GLOBALS['eyeFTP_port_TXTBOX']->disable();
-		$GLOBALS['eyeFTP_username_TXTBOX']->disable();
-		$GLOBALS['eyeFTP_password_TXTBOX']->disable();
-		$GLOBALS['eyeFTP_passiveMode_CHKBOX']->disable();
+		$GLOBALS['xenonFTP_host_TXTBOX']->disable();
+		$GLOBALS['xenonFTP_port_TXTBOX']->disable();
+		$GLOBALS['xenonFTP_username_TXTBOX']->disable();
+		$GLOBALS['xenonFTP_password_TXTBOX']->disable();
+		$GLOBALS['xenonFTP_passiveMode_CHKBOX']->disable();
 
-		$GLOBALS['eyeFTP_isFTPConnectionActive_HID']->setText('1');
-		$GLOBALS['eyeFTP_WND']->setTitle($GLOBALS['eyeFTP_username_TXTBOX']->text.'@'.$GLOBALS['eyeFTP_host_TXTBOX']->text.' - '.i18n('translate',array('FTP Client')));
+		$GLOBALS['xenonFTP_isFTPConnectionActive_HID']->setText('1');
+		$GLOBALS['xenonFTP_WND']->setTitle($GLOBALS['xenonFTP_username_TXTBOX']->text.'@'.$GLOBALS['xenonFTP_host_TXTBOX']->text.' - '.i18n('translate',array('FTP Client')));
 	}
 	else {
-		$GLOBALS['eyeFTP_host_TXTBOX']->enable();
-		$GLOBALS['eyeFTP_port_TXTBOX']->enable();
-		$GLOBALS['eyeFTP_username_TXTBOX']->enable();
-		$GLOBALS['eyeFTP_password_TXTBOX']->enable();
-		$GLOBALS['eyeFTP_passiveMode_CHKBOX']->enable();
+		$GLOBALS['xenonFTP_host_TXTBOX']->enable();
+		$GLOBALS['xenonFTP_port_TXTBOX']->enable();
+		$GLOBALS['xenonFTP_username_TXTBOX']->enable();
+		$GLOBALS['xenonFTP_password_TXTBOX']->enable();
+		$GLOBALS['xenonFTP_passiveMode_CHKBOX']->enable();
 
-		$GLOBALS['eyeFTP_isFTPConnectionActive_HID']->setText('0');
-		$GLOBALS['eyeFTP_WND']->setTitle(i18n('translate',array('Disconnected - FTP Client')));
-		eyeFTP_emptyRemoteFilesTable();
+		$GLOBALS['xenonFTP_isFTPConnectionActive_HID']->setText('0');
+		$GLOBALS['xenonFTP_WND']->setTitle(i18n('translate',array('Disconnected - FTP Client')));
+		xenonFTP_emptyRemoteFilesTable();
 	}
 }
 
@@ -181,18 +181,18 @@ function eyeFTP_setConnectionActive($active=true) {
  *
  * @param string $view Sets the active view for actions ('local' or 'remote')
  */
-function eyeFTP_setActiveView($view) {
+function xenonFTP_setActiveView($view) {
 	switch($view) {
 		case 'remote':
-			$GLOBALS['eyeFTP_selectedView_HID']->setText('remote');
-			$GLOBALS['eyeFTP_remoteFiles_TAB']->setContainerCss(array('border' => 'thin solid #19427f'));
-			$GLOBALS['eyeFTP_localFiles_TAB']->setContainerCss(array('border' => 'thin solid #FFFFFF'));
+			$GLOBALS['xenonFTP_selectedView_HID']->setText('remote');
+			$GLOBALS['xenonFTP_remoteFiles_TAB']->setContainerCss(array('border' => 'thin solid #19427f'));
+			$GLOBALS['xenonFTP_localFiles_TAB']->setContainerCss(array('border' => 'thin solid #FFFFFF'));
 			return;
 
 		default:
-			$GLOBALS['eyeFTP_selectedView_HID']->setText('local');
-			$GLOBALS['eyeFTP_localFiles_TAB']->setContainerCss(array('border' => 'thin solid #19427f'));
-			$GLOBALS['eyeFTP_remoteFiles_TAB']->setContainerCss(array('border' => 'thin solid #FFFFFF'));
+			$GLOBALS['xenonFTP_selectedView_HID']->setText('local');
+			$GLOBALS['xenonFTP_localFiles_TAB']->setContainerCss(array('border' => 'thin solid #19427f'));
+			$GLOBALS['xenonFTP_remoteFiles_TAB']->setContainerCss(array('border' => 'thin solid #FFFFFF'));
 			return;
 	}
 }
@@ -233,7 +233,7 @@ function parse_rawlist($array, $addParent=true) {
 	}
 
 	foreach ($array as $currentFile) {
-		//eyeFTP_logConsole($currentFile, null, true);
+		//xenonFTP_logConsole($currentFile, null, true);
 		$matches = array();
 		//            type   permissions   number     owner            group          size      month            day                     time/year       name
 		preg_match("/([-dl])([rwxst-]+).* ([0-9])+ ([a-zA-Z0-9]+).* ([a-zA-Z0-9]+).* ([0-9]*) ([a-zA-Z]{3}).? ([0-9]{1,2}) ([0-9]{2}:[0-9]{2}| [0-9]{4}) (.+)/", $currentFile, $matches); // utf8
@@ -251,14 +251,14 @@ function parse_rawlist($array, $addParent=true) {
 		$fileInfo['name'] = $matches[10];
 		$fileInfo['displayedName'] = $fileInfo['name'];	//originally was there because of encoding problems
 
-		//eyeFTP_logConsole($fileInfo, null, true);
+		//xenonFTP_logConsole($fileInfo, null, true);
 		if ($fileInfo['name'] != '.' && $fileInfo['name'] != '..' && $fileInfo['name'] != '') {
 			$filesData[] = $fileInfo;
 		}
 	}
 
 	//sort data (parent folder, other folders, then files)
-	usort($filesData, 'eyeFTP_compareFilesData');
+	usort($filesData, 'xenonFTP_compareFilesData');
 	$return = array();
 	$i = 1;
 	foreach($filesData as $fileData) {
@@ -276,7 +276,7 @@ function parse_rawlist($array, $addParent=true) {
  * @param array $b
  * @return int A negative value if $a must be placed before $b, a positive value otherwise
  */
-function eyeFTP_compareFilesData($a, $b) {
+function xenonFTP_compareFilesData($a, $b) {
 	if ($a['type'] == $b['type']) {
 		if ($a['name'] == '..')
 			return -1;
@@ -292,7 +292,7 @@ function eyeFTP_compareFilesData($a, $b) {
 		return 1;
 }
 
-function eyeFTP_prepareLongExecution() {
+function xenonFTP_prepareLongExecution() {
 	@ini_set('max_execution_time',0);
 	@set_time_limit(0);
 }
@@ -300,8 +300,8 @@ function eyeFTP_prepareLongExecution() {
 /**
  * @return string The current version extracted from the info.xml
  */
-function eyeFTP_getVersionFromInfoXML() {
-	$file = XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/info.xml';
+function xenonFTP_getVersionFromInfoXML() {
+	$file = XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/info.xml';
 	if(vfs('real_fileExists',array($file))) {
 		$content = file_get_contents($file);
 		$content = xenonXML('xml2array',array($content));

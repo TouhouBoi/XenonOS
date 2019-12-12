@@ -1,0 +1,413 @@
+<?php
+/*
+  ___  _ __   ___ _   _  ___
+ / _ \| '_ \ / _ \ | | |/ _ \
+| (_) | | | |  __/ |_| |  __/
+ \___/|_| |_|\___|\__, |\___|
+                  |___/
+
+oneye is released under the GNU Affero General Public License Version 3 (AGPL3)
+ -> provided with this release in license.txt
+ -> or via web at www.gnu.org/licenses/agpl-3.0.txt
+
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+*/
+
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/lib-global'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/lib-local'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/lib-remote'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/dialogs'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/lib-ftp'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/hosts'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/events-local'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/events-remote'.XE_CODE_EXTENSION);
+
+define('xenonFTP_LOGSTYLE_NORMAL', 'norm');
+define('xenonFTP_LOGSTYLE_SUCCESS', 'succ');
+define('xenonFTP_LOGSTYLE_INFO', 'info');
+define('xenonFTP_LOGSTYLE_WARNING', 'warn');
+define('xenonFTP_LOGSTYLE_ERROR', 'err');
+
+/*********************************************************************************************/
+/*********************************************************************************************/
+/*					FUNCTIONS TRIGGERED BY SIGNALS RAISED BY THE INTERFACE					 */
+/*********************************************************************************************/
+/*********************************************************************************************/
+
+/*********************************************************************************************/
+//		EVENTS RAISED DIRECTLY BY WIDGETS
+/*********************************************************************************************/
+
+/**
+ * Called after the initialization of the interface (function 'xenonFTP_run()' in app.xecode)
+ */
+function xenonFTP_on_xenonFTP_initComplete($params=null) {
+	$version = xenonFTP_getVersionFromInfoXML();
+	$conf = xenonFTP_getConf();
+
+	xenonFTP_logConsole('xenonFTP v.%s started', array($version), xenonFTP_LOGSTYLE_INFO);
+	xenonFTP_logConsole('Help and FAQ available on the eyeOS wiki: %s',array('http://wiki.eyeos.org/xenonFTP'));
+
+	xenonFTP_setActiveView('local');
+	xenonFTP_browseLocal('/');
+
+	//if the 'host' textbox is not empty, this means a connection string has been provided at launch
+	if ($conf['host'] != '') {
+		$connectParams = array(
+			'remoteDir' => array($conf['currentRemoteDir'])
+		);
+		xenonFTP_setConnectionActive(true);
+		xenonFTP_on_xenonFTP_connect_ITM($connectParams);
+	}
+}
+
+/**
+ * @see file hosts.xecode for operations concerning hosts management
+ */
+function xenonFTP_on_xenonFTP_manageHosts_ITM($params=null) {
+	showManageHostsDialog();
+}
+
+function xenonFTP_on_xenonFTP_connect_ITM($params=null) {
+	$conf = xenonFTP_getConf();
+	$remoteDir = null;
+	if (is_array($params)) {
+		if ($params['remoteDir'][0]) {
+			$remoteDir = $params['remoteDir'][0];
+		}
+	}
+
+	// === BOUNCED REQUEST PROCESSING ===
+	if (xenonFTP_isFromBouncedRequest($params)) {
+		if (xenonFTP_ftpConnect($conf['host'],$conf['port'],$conf['username'],$conf['password'],$conf['passiveMode']))
+			if (is_null($remoteDir)) {
+				$remoteDir = xenonFTP_ftpPwd();
+			}
+			xenonFTP_browseRemote($remoteDir);
+		return;
+	}
+	// === END OF BOUNCED REQUEST PROCESSING ===
+
+	//only the "host" textfield must be filled in
+	if (! $conf['host']){
+		xenonx('messageBox',array('content'=> 'Please specify a host to connect to'));
+		return;
+	}
+	if (! $conf['username']){
+		xenonx('messageBox',array('content'=> 'Please specify a username'));
+		return;
+	}
+
+	xenonFTP_clearLogConsole();
+	xenonFTP_logConsole('Trying to connect to %s:%s (user "%s") ...',
+		array($conf['host'],$conf['port'],$conf['username'])
+	);
+
+	xenonFTP_setConnectionActive(true);
+	$connectParams = array(
+		'__signal' => 'xenonFTP_connect_ITM',
+		'remoteDir' => $remoteDir
+	);
+	xenonFTP_bounceRequest($connectParams);
+}
+
+function xenonFTP_on_xenonFTP_disconnect_ITM($params=null) {
+	$conf = xenonFTP_getConf();
+	if ($conf['isConnectionActive']) {
+		xenonFTP_logConsole('Disconnecting from %s:%s',
+			array($conf['host'],$conf['port'])
+		);
+		xenonFTP_setConnectionActive(false);
+	}
+}
+
+
+
+function xenonFTP_on_xenonFTP_refresh_ITM($params=null) {
+	$conf = xenonFTP_getConf();
+	switch($conf['selectedView']) {
+		case 'local':
+			xenonFTP_on_xenonFTP_refreshLocal();
+			return;
+
+		case 'remote':
+			xenonFTP_on_xenonFTP_refreshRemote();
+			return;
+	}
+}
+
+function xenonFTP_on_xenonFTP_createFolder_ITM($params=null) {
+	$conf = xenonFTP_getConf();
+	switch($conf['selectedView']) {
+		case 'local':
+			xenonFTP_on_xenonFTP_createFolderLocal();
+			return;
+
+		case 'remote':
+			xenonFTP_on_xenonFTP_createFolderRemote();
+			return;
+	}
+}
+
+function xenonFTP_on_xenonFTP_rename_ITM($params=null) {
+	$conf = xenonFTP_getConf();
+	switch($conf['selectedView']) {
+		case 'local':
+			xenonFTP_on_xenonFTP_renameLocal();
+			return;
+
+		case 'remote':
+			xenonFTP_on_xenonFTP_renameMoveRemote();
+			return;
+	}
+}
+
+function xenonFTP_on_xenonFTP_delete_ITM($params=null) {
+	$conf = xenonFTP_getConf();
+	switch($conf['selectedView']) {
+		case 'local':
+			xenonFTP_on_xenonFTP_deleteLocal();
+			return;
+
+		case 'remote':
+			xenonFTP_on_xenonFTP_deleteRemote();
+			return;
+	}
+}
+
+function xenonFTP_on_xenonFTP_download_ITM($params=null) {
+	$conf = xenonFTP_getConf();
+	switch($conf['selectedView']) {
+		case 'local':
+			xenonFTP_on_xenonFTP_downloadLocal();
+			return;
+
+		case 'remote':
+			xenonFTP_on_xenonFTP_downloadRemote();
+			return;
+	}
+}
+
+function xenonFTP_on_xenonFTP_upload_ITM($params=null) {
+	$conf = xenonFTP_getConf();
+	switch($conf['selectedView']) {
+		case 'local':
+			xenonFTP_on_xenonFTP_uploadLocal();
+			return;
+
+		case 'remote':
+			xenonFTP_on_xenonFTP_uploadRemote();
+			return;
+	}
+}
+
+function xenonFTP_on_xenonFTP_help_ITM($params=null) {
+	proc('launch',array('eyeHelp','xenonFTP'));
+}
+
+
+/*********************************************************************************************/
+//		TRANSFERS BETWEEN LOCAL AND REMOTE VIEWS
+/*********************************************************************************************/
+/**
+ * Upload from oneye to FTP
+ * Launches transfer of the selected local file to the current directory on the FTP server.
+ */
+function xenonFTP_on_xenonFTP_transferToRight_IMG($params=null) {
+	$conf = xenonFTP_getConf();
+	// === BOUNCED REQUEST PROCESSING ===
+	if (xenonFTP_isFromBouncedRequest($params)) {
+		$localFilePath = $params['localFilePath'][0];
+		$dirPath = base64_decode($params['dirPath_b64'][0]);
+		switch($params['type'][0]) {
+			case 'd':
+				$success = xenonFTP_ftpPutFromEyeOS_dir($localFilePath, $dirPath);
+				if (! $success) {
+					xenonFTP_logConsole('Unable to upload directory, error occured', null, xenonFTP_LOGSTYLE_ERROR);
+				}
+			break;
+
+			default:
+				$success = xenonFTP_ftpPutFromEyeOS_file($localFilePath, $dirPath);
+				if (! $success) {
+					xenonFTP_logConsole('Unable to download file, error occured', null, xenonFTP_LOGSTYLE_ERROR);
+				}
+			break;
+		}
+		if ($success) {
+			if ($conf['currentRemoteDir'] == $dirPath) {
+				xenonFTP_refreshRemote();
+			}
+		}
+		return;
+	}
+	// === END OF BOUNCED REQUEST PROCESSING ===
+
+	if (! $conf['isConnectionActive']) {
+		xenonx('messageBox',array('content'=> 'You must connect first'));
+		return;
+	}
+	if (! $conf['selectedLocalFile'] || $conf['selectedLocalFile']['type'] == 'l') {
+		xenonx('messageBox',array('content'=> 'You must select a local file'));
+		return;
+	}
+
+	//check path validity
+	$fileDirPath = xenonFTP_resolvePathInUserDir(dirname($conf['selectedLocalFile']['path']),false);
+	if ($fileDirPath === false) {
+		xenonFTP_logConsole('An error occurred during path resolving, aborting', null, xenonFTP_LOGSTYLE_ERROR);
+		return;
+	}
+	$filePath = xenonFTP_getFormatedDirPath($fileDirPath.'/'.$conf['selectedLocalFile']['name']);
+	$displayedFilePath = xenonFTP_getFormatedDirPath(
+							xenonFTP_resolvePathInUserDir($fileDirPath).'/'.$conf['selectedLocalFile']['name'],$conf['currentRemoteDir']);
+
+	xenonFTP_logConsole('Uploading: "%s" to "%s"',
+		array($displayedFilePath,$conf['currentRemoteDir'])
+	);
+
+	xenonFTP_bounceRequest(array(
+		'__signal' => 'xenonFTP_transferToRight_IMG',
+		'localFilePath' => $filePath,
+		'dirPath_b64' => base64_encode($conf['currentRemoteDir']),
+		'type' => $conf['selectedLocalFile']['type']
+	));
+}
+
+/**
+ * Download from FTP to oneye
+ * Launches transfer of the selected remote file to the current directory on the local view.
+ */
+function xenonFTP_on_xenonFTP_transferToLeft_IMG($params=null) {
+	$conf = xenonFTP_getConf();
+	$success = false;
+	// === BOUNCED REQUEST PROCESSING ===
+	if (xenonFTP_isFromBouncedRequest($params)) {
+		$remoteFilePath = base64_decode($params['remoteFilePath_b64'][0]);
+		$dirPath = $params['dirPath'][0];
+		switch($params['type'][0]) {
+			case 'd':
+				$success = xenonFTP_ftpGetToeyeOS_dir($remoteFilePath, $dirPath);
+				if (! $success) {
+					xenonFTP_logConsole('Unable to download directory, error occured', null, xenonFTP_LOGSTYLE_ERROR);
+				}
+			break;
+
+			default:
+				$success = xenonFTP_ftpGetToeyeOS_file($remoteFilePath, $dirPath);
+				if (! $success) {
+					xenonFTP_logConsole('Unable to download file, error occured', null, xenonFTP_LOGSTYLE_ERROR);
+				}
+			break;
+		}
+		if ($success) {
+			$localPath = xenonFTP_resolvePathInUserDir($params['dirPath'][0]);
+			if ($conf['currentLocalDir'] == $localPath) {
+				xenonFTP_refreshLocal();
+			}
+		}
+		return;
+	}
+	// === END OF BOUNCED REQUEST PROCESSING ===
+
+	if (! $conf['isConnectionActive']) {
+		xenonx('messageBox',array('content'=> 'You must connect first'));
+		return;
+	}
+	if (! $conf['selectedRemoteFile']) {
+		xenonx('messageBox',array('content'=> 'You must select a remote file'));
+		return;
+	}
+
+	xenonFTP_logConsole('Downloading: "%s" to "%s"',
+		array(xenonFTP_getFormatedDirPath($conf['currentRemoteDir'].'/'.$conf['selectedRemoteFile']['name']),$conf['currentLocalDir'])
+	);
+
+	//launch bounced request
+	xenonFTP_bounceRequest(array(
+		'__signal' => 'xenonFTP_transferToLeft_IMG',
+		'remoteFilePath_b64' => base64_encode($conf['currentRemoteDir'].'/'.$conf['selectedRemoteFile']['name']),
+		'dirPath' => um('getCurrentUserDir').FILES_USER_DIR.'/'.$conf['currentLocalDir'],
+		'type' => $conf['selectedRemoteFile']['type']
+	));
+}
+
+function xenonFTP_on_xenonFTP_transferToLeft_resume() {
+
+}
+
+/*********************************************************************************************/
+//		OTHER EVENTS
+/*********************************************************************************************/
+
+function xenonFTP_on_windowResize($params=null) {
+	include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/app'.XE_CODE_EXTENSION);
+
+	$newWidth = intval($params['arg'][0]);
+	$newHeight = intval($params['arg'][1]);
+
+	$dWidth = $newWidth - xenonFTP_WINSIZE_WIDTH;
+	$dHeight = $newHeight - xenonFTP_WINSIZE_HEIGHT;
+
+	//log console
+	$GLOBALS['xenonFTP_log_CTNR']->setWidth(786 + $dWidth);
+	$GLOBALS['xenonFTP_connectionData_CTNR']->setWidth(780 + $dWidth);
+
+	//local/remote views splitter
+	$GLOBALS['xenonFTP_leftRight_SPLT']->setWidth($newWidth - 10);
+	$GLOBALS['xenonFTP_leftRight_SPLT']->setHeight($newHeight - 194);
+
+	$splitterPositionRatio = $GLOBALS['xenonFTP_leftRight_SPLT']->position / $GLOBALS['xenonFTP_WND']->width;
+	$newPosition = round($newWidth * $splitterPositionRatio);
+	$GLOBALS['xenonFTP_leftRight_SPLT']->setPosition($newPosition);
+	$GLOBALS['xenonFTP_leftRight_SPLT']->position = $newPosition;
+	eyeWidgets('serialize',array($GLOBALS['xenonFTP_leftRight_SPLT']));
+
+	//update window properties
+	$GLOBALS['xenonFTP_WND']->setWidth($newWidth);
+	$GLOBALS['xenonFTP_WND']->setHeight($newHeight);
+
+	xenonFTP_doResize();
+}
+function xenonFTP_on_leftRightSplitResize($params=null) {
+	$newLeftWidth = intval($params['arg'][0]);
+
+	$GLOBALS['xenonFTP_leftRight_SPLT']->position = $newLeftWidth;
+	eyeWidgets('serialize',array($GLOBALS['xenonFTP_leftRight_SPLT']));
+
+	xenonFTP_doResize();
+}
+
+function xenonFTP_doResize() {
+	//left browser (local files)
+	$GLOBALS['xenonFTP_localPath_TXTBOX']->setWidth($GLOBALS['xenonFTP_leftRight_SPLT']->position - 47);
+	$GLOBALS['xenonFTP_localFiles_TAB']->setWidth($GLOBALS['xenonFTP_leftRight_SPLT']->position - 15);
+	$GLOBALS['xenonFTP_localFiles_TAB']->setHeight($GLOBALS['xenonFTP_leftRight_SPLT']->height - 30);
+
+	//right browser (remote files)
+	$GLOBALS['xenonFTP_remotePath_TXTBOX']->setWidth($GLOBALS['xenonFTP_leftRight_SPLT']->width - $GLOBALS['xenonFTP_leftRight_SPLT']->position - 57);
+	$GLOBALS['xenonFTP_remoteFiles_TAB']->setWidth($GLOBALS['xenonFTP_leftRight_SPLT']->width - $GLOBALS['xenonFTP_leftRight_SPLT']->position - 25);
+	$GLOBALS['xenonFTP_remoteFiles_TAB']->setHeight($GLOBALS['xenonFTP_leftRight_SPLT']->height - 30);
+
+	//transfer arrows
+	$GLOBALS['xenonFTP_transferToRight_IMG']->setX($GLOBALS['xenonFTP_leftRight_SPLT']->position);
+	$GLOBALS['xenonFTP_transferToRight_IMG']->setY(150 + ($GLOBALS['xenonFTP_leftRight_SPLT']->height / 2));
+	$GLOBALS['xenonFTP_transferToLeft_IMG']->setX($GLOBALS['xenonFTP_leftRight_SPLT']->position);
+	$GLOBALS['xenonFTP_transferToLeft_IMG']->setY(182 + ($GLOBALS['xenonFTP_leftRight_SPLT']->height / 2));
+}
+
+function xenonFTP_on_fullScreen(){
+	global $myPid;
+	$GLOBALS['xenonFTP_WND']->setFullScreen();
+}
+
+function xenonFTP_on_Message($params=null) {
+	eyeWidgets('updateContent',$params);
+}
+
+function xenonFTP_on_Close(){
+	proc('end');
+}
+
+?>

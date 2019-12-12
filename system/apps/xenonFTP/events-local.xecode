@@ -14,12 +14,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-global'.XE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-local'.XE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-remote'.XE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/dialogs'.XE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-ftp'.XE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/hosts'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/lib-global'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/lib-local'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/lib-remote'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/dialogs'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/lib-ftp'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/hosts'.XE_CODE_EXTENSION);
 
 /*********************************************************************************************/
 /*********************************************************************************************/
@@ -27,68 +27,68 @@ include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/hosts'.XE_CODE_EXTENSION);
 /*********************************************************************************************/
 /*********************************************************************************************/
 
-function eyeFTP_on_eyeFTP_localHome_IMG() {
-	eyeFTP_browseLocal('/');
+function xenonFTP_on_xenonFTP_localHome_IMG() {
+	xenonFTP_browseLocal('/');
 }
 
-function eyeFTP_on_eyeFTP_refreshLocal() {
-	$conf = eyeFTP_getConf();
-	eyeFTP_browseLocal($conf['currentLocalDir']);
+function xenonFTP_on_xenonFTP_refreshLocal() {
+	$conf = xenonFTP_getConf();
+	xenonFTP_browseLocal($conf['currentLocalDir']);
 	eyeFiles('update',array($conf['currentLocalDir']));
 }
 
-function eyeFTP_on_eyeFTP_browseLocal() {
-	$conf = eyeFTP_getConf();
+function xenonFTP_on_xenonFTP_browseLocal() {
+	$conf = xenonFTP_getConf();
 	//browse only if selected element is a directory
 	if ($conf['selectedLocalFile']['type'] == 'd') {
-		eyeFTP_browseLocal(eyeFTP_getFormatedDirPath($conf['currentLocalDir'].'/'.$conf['selectedLocalFile']['name']));
+		xenonFTP_browseLocal(xenonFTP_getFormatedDirPath($conf['currentLocalDir'].'/'.$conf['selectedLocalFile']['name']));
 	}
 }
 
-function eyeFTP_on_eyeFTP_createFolderLocal() {
+function xenonFTP_on_xenonFTP_createFolderLocal() {
 	global $checknum;
-	$conf = eyeFTP_getConf();
+	$conf = xenonFTP_getConf();
 	proc('launch',array('eyeMkDir',array(
 										um('getCurrentUserDir').'/'.FILES_USER_DIR.$conf['currentLocalDir'],
-										'sendMsg('.$checknum.',"eyeFTP_refreshLocal","")'
+										'sendMsg('.$checknum.',"xenonFTP_refreshLocal","")'
 	)));
 }
 
-function eyeFTP_on_eyeFTP_renameLocal() {
+function xenonFTP_on_xenonFTP_renameLocal() {
 	global $checknum;
-	$conf = eyeFTP_getConf();
+	$conf = xenonFTP_getConf();
 	if ($conf['selectedLocalFile']['name'] != '..')  {
 		proc('launch',array('eyeRename',array(
 											$conf['selectedLocalFile']['path'],
-											'sendMsg('.$checknum.',"eyeFTP_refreshLocal","")'
+											'sendMsg('.$checknum.',"xenonFTP_refreshLocal","")'
 		)));
 	}
 }
 
-function eyeFTP_on_eyeFTP_deleteLocal() {
+function xenonFTP_on_xenonFTP_deleteLocal() {
 	global $checknum;
-	$conf = eyeFTP_getConf();
+	$conf = xenonFTP_getConf();
 	if ($conf['selectedLocalFile']['name'] != '..')  {
 		proc('launch',array('eyeDelete',array(
 											$conf['selectedLocalFile']['path'],
-											'sendMsg('.$checknum.',"eyeFTP_refreshLocal","")'
+											'sendMsg('.$checknum.',"xenonFTP_refreshLocal","")'
 		)));
 	}
 }
 
-function eyeFTP_on_eyeFTP_downloadLocal() {
-	$conf = eyeFTP_getConf();
+function xenonFTP_on_xenonFTP_downloadLocal() {
+	$conf = xenonFTP_getConf();
 	if ($conf['selectedLocalFile']['type'] != 'd')  {
 		proc('launch',array('xenonDownload',array($conf['selectedLocalFile']['path'])));
 	}
 }
 
-function eyeFTP_on_eyeFTP_uploadLocal() {
+function xenonFTP_on_xenonFTP_uploadLocal() {
 	global $checknum;
-	$conf = eyeFTP_getConf();
+	$conf = xenonFTP_getConf();
 	proc('launch',array('eyeUpload',array(
 										um('getCurrentUserDir').'/'.FILES_USER_DIR.$conf['currentLocalDir'],
-										'sendMsg('.$checknum.',"eyeFTP_refreshLocal","")'
+										'sendMsg('.$checknum.',"xenonFTP_refreshLocal","")'
 	)));
 }
 
@@ -96,23 +96,23 @@ function eyeFTP_on_eyeFTP_uploadLocal() {
 /*********************************************************************************************/
 //		TABLE CLICKS MANAGEMENT
 /*********************************************************************************************/
-function eyeFTP_on_eyeFTP_localFilesClick($params=null) {
-	eyeFTP_setActiveView('local');
+function xenonFTP_on_xenonFTP_localFilesClick($params=null) {
+	xenonFTP_setActiveView('local');
 }
 
-function eyeFTP_on_eyeFTP_localFilesDblClick($params=null) {
-	$conf = eyeFTP_getConf();
+function xenonFTP_on_xenonFTP_localFilesDblClick($params=null) {
+	$conf = xenonFTP_getConf();
 	//browse only if selected element is a directory
 	switch ($conf['selectedLocalFile']['type']) {
 		case 'd':
-			eyeFTP_on_eyeFTP_browseLocal();
+			xenonFTP_on_xenonFTP_browseLocal();
 			break;
 
 		case '-':
 			if ($conf['isConnectionActive'])
-				eyeFTP_on_eyeFTP_transferToRight_IMG();
+				xenonFTP_on_xenonFTP_transferToRight_IMG();
 			else
-				eyeFTP_on_eyeFTP_downloadLocal();
+				xenonFTP_on_xenonFTP_downloadLocal();
 			break;
 	}
 }

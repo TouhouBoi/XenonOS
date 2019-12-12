@@ -23,60 +23,60 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 /**
  * Removes all rows from the remote files table
  */
-function eyeFTP_emptyRemoteFilesTable() {
+function xenonFTP_emptyRemoteFilesTable() {
 	global $checknum, $myPid;
-	if ($GLOBALS['eyeFTP_remoteFiles_TAB']) {
-		$GLOBALS['eyeFTP_remoteFiles_TAB']->remove();
+	if ($GLOBALS['xenonFTP_remoteFiles_TAB']) {
+		$GLOBALS['xenonFTP_remoteFiles_TAB']->remove();
 	}
 
 	/* TABLE FOR REMOTE FILES LIST */
 	$remoteFilesTable = new Sortabletable(array(
-		'name' => 'eyeFTP_remoteFiles_TAB',
-		'father' => 'eyeFTP_leftRight_SPLT_last',
+		'name' => 'xenonFTP_remoteFiles_TAB',
+		'father' => 'xenonFTP_leftRight_SPLT_last',
 		'x' => 10,
 		'y' => 24,
-		'width' => $GLOBALS['eyeFTP_leftRight_SPLT']->width - $GLOBALS['eyeFTP_leftRight_SPLT']->position - 25,
-		'height' => $GLOBALS['eyeFTP_leftRight_SPLT']->height - 30,
+		'width' => $GLOBALS['xenonFTP_leftRight_SPLT']->width - $GLOBALS['xenonFTP_leftRight_SPLT']->position - 25,
+		'height' => $GLOBALS['xenonFTP_leftRight_SPLT']->height - 30,
 		'sortypes' => array('Html','String','Number','Date','String','String','Hidden'),
 		'master' => 6,
 		'theader' => array(' ','Filename','Filesize (B)','Date','Permissions','Owner','id'),
-		'signal' => 'eyeFTP_remoteFilesClick',
-		'dblsignal' => 'eyeFTP_remoteFilesDblClick'
+		'signal' => 'xenonFTP_remoteFilesClick',
+		'dblsignal' => 'xenonFTP_remoteFilesDblClick'
 	));
 	$remoteFilesTable->show();
 	xenonx('addEvent',array(
-		'name' => $myPid.'_eyeFTP_remoteFiles_TAB_Container',
-		'action' => 'sendMsg('.$checknum.',"eyeFTP_remoteFilesClick","")',
+		'name' => $myPid.'_xenonFTP_remoteFiles_TAB_Container',
+		'action' => 'sendMsg('.$checknum.',"xenonFTP_remoteFilesClick","")',
 		'event' => 'onclick',
 		'args'=>''
 	));
 	$remoteFilesTable->setCss(array('white-space' => 'nowrap'));
-	eyeFTP_setActiveView($GLOBALS['eyeFTP_selectedView_HID']->text);
+	xenonFTP_setActiveView($GLOBALS['xenonFTP_selectedView_HID']->text);
 
-	$GLOBALS['eyeFTP_serializedRemoteFilesData_HID']->setText(serialize(array()));
-	$GLOBALS['eyeFTP_remotePath_TXTBOX']->setText("");
+	$GLOBALS['xenonFTP_serializedRemoteFilesData_HID']->setText(serialize(array()));
+	$GLOBALS['xenonFTP_remotePath_TXTBOX']->setText("");
 }
 
-function eyeFTP_refreshRemote() {
-	$conf = eyeFTP_getConf();
-	eyeFTP_browseRemote($conf['currentRemoteDir']);
+function xenonFTP_refreshRemote() {
+	$conf = xenonFTP_getConf();
+	xenonFTP_browseRemote($conf['currentRemoteDir']);
 }
 
 /**
  * @param string $path The path to browse
  */
-function eyeFTP_browseRemote($path = '/') {
-	$conf = eyeFTP_getConf();
+function xenonFTP_browseRemote($path = '/') {
+	$conf = xenonFTP_getConf();
 	if (! $conf['isConnectionActive']) {
 		xenonx('messageBox',array('content'=>'You must connect first!'));
 		return;
 	}
 
-	eyeFTP_logConsole('Listing directory "%s"...',
-		array(eyeFTP_getFormatedDirPath($path))
+	xenonFTP_logConsole('Listing directory "%s"...',
+		array(xenonFTP_getFormatedDirPath($path))
 	);
-	eyeFTP_bounceRequest(array(
-		'__signal' => 'eyeFTP_browseRemote_bounced',
+	xenonFTP_bounceRequest(array(
+		'__signal' => 'xenonFTP_browseRemote_bounced',
 		'dir_b64' => base64_encode($path)
 	));
 }

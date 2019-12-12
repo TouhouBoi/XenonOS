@@ -1,7 +1,7 @@
-eyeFtp oneye's Client to connect to FTP servers through oneye. You can use it to browse, transfer and manage files on a remote server, using your oneye host server as a proxy for your connections.
+xenonFTP oneye's Client to connect to FTP servers through oneye. You can use it to browse, transfer and manage files on a remote server, using your oneye host server as a proxy for your connections.
 
 Author: Nanawel [mail]nanawel@eyeos.org[/mail]
-[url]http://wiki.eyeos.org/EyeFTP[/url]
+[url]http://wiki.eyeos.org/xenonFTP[/url]
 
 [h]Main features[/h]
 [list][*]Connect to any FTP server through the machine hosting your oneye

@@ -193,10 +193,10 @@
 						<type>icon</type>
 					</entry-1>
 					<entry-2>
-						<command>eyeFTP.app</command>
+						<command>xenonFTP.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeFTP.png</image>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonFTP.png</image>
 						<text>FTP Client</text>
 						<type>icon</type>
 					</entry-2>

@@ -30,7 +30,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 $alias[1][APP_DIR . '/eyeCalendar/css/eyeCalendar.css'] = 'css/'.APP_DIR.'/eyeCalendar/eyeCalendar.css';
-$alias[1][APP_DIR . '/eyeFTP/css/eyeFTP.css'] = 'css/'.APP_DIR.'/eyeFTP/eyeFTP.css';
+$alias[1][APP_DIR . '/xenonFTP/css/xenonFTP.css'] = 'css/'.APP_DIR.'/xenonFTP/xenonFTP.css';
 $alias[1][APP_DIR . '/eyeManageApps/css/eyeManageApps.css'] = 'css/'.APP_DIR.'/eyeManageApps/eyeManageApps.css';
 $alias[1][APP_DIR . '/eyeSheets/print.css'] = 'css/'.APP_DIR.'/eyeSheets/print.css';
 $alias[1][APP_DIR . '/eyeSheets/print_noline.css'] = 'css/'.APP_DIR.'/eyeSheets/print_noline.css';
@@ -160,7 +160,7 @@ $pic22 = array(
 	'eyeChess',
 	'eyeContacts',
 	'eyeDocs',
-	'eyeFTP',
+	'xenonFTP',
 	'eyeFeeds',
 	'eyeFiles',
 	'eyeGroups',
@@ -223,7 +223,7 @@ $alias[0]['icons/16x16/apps/eyeChess.png'] = 'images/apps/eyeLightDesk/16x16/app
 $alias[0]['icons/16x16/apps/eyeContacts.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeContacts.png';
 $alias[0]['icons/16x16/apps/eyeDocs.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeDocs.png';
 $alias[0]['icons/16x16/apps/eyeFiles.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeFiles.png';
-$alias[0]['icons/16x16/apps/eyeFTP.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeFTP.png';
+$alias[0]['icons/16x16/apps/xenonFTP.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonFTP.png';
 $alias[0]['icons/16x16/apps/eyeMail.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeMail.png';
 $alias[0]['icons/16x16/apps/eyeMessages.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeMessages.png';
 $alias[0]['icons/16x16/apps/eyeNav.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeNav.png';
@@ -352,36 +352,36 @@ $alias[1][APP_DIR . '/eyeFiles/gfx/newfolder_big.png'] = 'icons/48x48/folder.png
 $alias[1][APP_DIR . '/eyeFiles/gfx/rename_big.png'] = 'icons/48x48/rename.png';
 $alias[1][APP_DIR . '/eyeFiles/gfx/upload_big.png'] = 'icons/48x48/upload.png';
 
-// eyeFTP
-$alias[1][APP_DIR . '/eyeFTP/gfx/addhost.png'] = 'images/' . APP_DIR . '/eyeFTP/toolbar/addhost.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/connect.png'] = 'images/' . APP_DIR . '/eyeFTP/toolbar/connect.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/delete.png'] = 'images/toolbar/delete.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/deletehost.png'] = 'images/' . APP_DIR . '/eyeFTP/toolbar/deletehost.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/disconnect.png'] = 'images/' . APP_DIR . '/eyeFTP/toolbar/disconnect.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/download.png'] = 'images/toolbar/download.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/edithost.png'] = 'images/' . APP_DIR . '/eyeFTP/toolbar/edithost.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/help.png'] = 'images/toolbar/help.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/host.png'] = 'images/' . APP_DIR . '/eyeFTP/toolbar/host.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/loadhost.png'] = 'images/' . APP_DIR . '/eyeFTP/toolbar/loadhost.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/log_icons/err.png'] = 'images/' . APP_DIR . '/eyeFTP/10x10/err.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/log_icons/info.png'] = 'images/' . APP_DIR . '/eyeFTP/10x10/info.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/log_icons/norm.png'] = 'images/' . APP_DIR . '/eyeFTP/10x10/norm.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/log_icons/succ.png'] = 'images/' . APP_DIR . '/eyeFTP/10x10/succ.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/log_icons/warn.png'] = 'images/' . APP_DIR . '/eyeFTP/10x10/warn.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/managehosts.png'] = 'images/' . APP_DIR . '/eyeFTP/toolbar/managehosts.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/managehosts_logo.png'] = 'images/' . APP_DIR . '/eyeFTP/managehosts.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/minihost.png'] = 'images/' . APP_DIR . '/eyeFTP/minihost.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/newfolder.png'] = 'images/toolbar/newfolder.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/newfolder_big.png'] = 'icons/48x48/folder.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/rename.png'] = 'images/toolbar/rename.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/rename_big.png'] = 'icons/48x48/rename.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/toleft.png'] = 'icons/16x16/back.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/toright.png'] = 'icons/16x16/forward.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/typedefault.png'] = 'icons/16x16/file.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/typefolder.png'] = 'icons/16x16/folder.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/typelink.png'] = 'icons/16x16/link.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/upload.png'] = 'images/toolbar/upload.png';
-$alias[1][APP_DIR . '/eyeFTP/gfx/upload_big.png'] = 'icons/48x48/upload.png';
+// xenonFTP
+$alias[1][APP_DIR . '/xenonFTP/gfx/addhost.png'] = 'images/' . APP_DIR . '/xenonFTP/toolbar/addhost.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/connect.png'] = 'images/' . APP_DIR . '/xenonFTP/toolbar/connect.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/delete.png'] = 'images/toolbar/delete.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/deletehost.png'] = 'images/' . APP_DIR . '/xenonFTP/toolbar/deletehost.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/disconnect.png'] = 'images/' . APP_DIR . '/xenonFTP/toolbar/disconnect.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/download.png'] = 'images/toolbar/download.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/edithost.png'] = 'images/' . APP_DIR . '/xenonFTP/toolbar/edithost.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/help.png'] = 'images/toolbar/help.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/host.png'] = 'images/' . APP_DIR . '/xenonFTP/toolbar/host.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/loadhost.png'] = 'images/' . APP_DIR . '/xenonFTP/toolbar/loadhost.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/log_icons/err.png'] = 'images/' . APP_DIR . '/xenonFTP/10x10/err.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/log_icons/info.png'] = 'images/' . APP_DIR . '/xenonFTP/10x10/info.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/log_icons/norm.png'] = 'images/' . APP_DIR . '/xenonFTP/10x10/norm.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/log_icons/succ.png'] = 'images/' . APP_DIR . '/xenonFTP/10x10/succ.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/log_icons/warn.png'] = 'images/' . APP_DIR . '/xenonFTP/10x10/warn.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/managehosts.png'] = 'images/' . APP_DIR . '/xenonFTP/toolbar/managehosts.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/managehosts_logo.png'] = 'images/' . APP_DIR . '/xenonFTP/managehosts.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/minihost.png'] = 'images/' . APP_DIR . '/xenonFTP/minihost.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/newfolder.png'] = 'images/toolbar/newfolder.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/newfolder_big.png'] = 'icons/48x48/folder.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/rename.png'] = 'images/toolbar/rename.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/rename_big.png'] = 'icons/48x48/rename.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/toleft.png'] = 'icons/16x16/back.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/toright.png'] = 'icons/16x16/forward.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/typedefault.png'] = 'icons/16x16/file.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/typefolder.png'] = 'icons/16x16/folder.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/typelink.png'] = 'icons/16x16/link.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/upload.png'] = 'images/toolbar/upload.png';
+$alias[1][APP_DIR . '/xenonFTP/gfx/upload_big.png'] = 'icons/48x48/upload.png';
 
 // eyeLightDesk
 $alias[1][APP_DIR . '/eyeLightDesk/allapps.png'] = 'images/' . APP_DIR . '/eyeLightDesk/allapps.png';

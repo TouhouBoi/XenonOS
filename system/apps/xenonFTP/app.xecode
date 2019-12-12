@@ -20,61 +20,61 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
  * @updated 17-Sept-2009
  */
 
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeFTP/lib-global'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonFTP/lib-global'.XE_CODE_EXTENSION);
 
 /*********************************************************************************************/
 /*   IMAGES URL                                                                              */
 /*********************************************************************************************/
-define('EYEFTP_IMG_TOOLBAR_MANAGEHOSTS', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyeFTP/toolbar/managehosts.png');
-define('EYEFTP_IMG_TOOLBAR_CONNECT', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyeFTP/toolbar/connect.png');
-define('EYEFTP_IMG_TOOLBAR_DISCONNECT', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyeFTP/toolbar/disconnect.png');
-define('EYEFTP_IMG_TOOLBAR_REFRESH', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/refresh.png');
-define('EYEFTP_IMG_TOOLBAR_CREATEFOLDER', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/newfolder.png');
-define('EYEFTP_IMG_TOOLBAR_RENAME', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/rename.png');
-define('EYEFTP_IMG_TOOLBAR_DELETE', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/delete.png');
-define('EYEFTP_IMG_TOOLBAR_DOWNLOAD', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fileimport.png');
-define('EYEFTP_IMG_TOOLBAR_UPLOAD', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/upload.png');
-define('EYEFTP_IMG_TOOLBAR_HELP', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/help.png');
-define('EYEFTP_IMG_TOOLBAR_FULLSCREEN', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png');
+define('xenonFTP_IMG_TOOLBAR_MANAGEHOSTS', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonFTP/toolbar/managehosts.png');
+define('xenonFTP_IMG_TOOLBAR_CONNECT', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonFTP/toolbar/connect.png');
+define('xenonFTP_IMG_TOOLBAR_DISCONNECT', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonFTP/toolbar/disconnect.png');
+define('xenonFTP_IMG_TOOLBAR_REFRESH', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/refresh.png');
+define('xenonFTP_IMG_TOOLBAR_CREATEFOLDER', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/newfolder.png');
+define('xenonFTP_IMG_TOOLBAR_RENAME', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/rename.png');
+define('xenonFTP_IMG_TOOLBAR_DELETE', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/delete.png');
+define('xenonFTP_IMG_TOOLBAR_DOWNLOAD', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fileimport.png');
+define('xenonFTP_IMG_TOOLBAR_UPLOAD', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/upload.png');
+define('xenonFTP_IMG_TOOLBAR_HELP', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/help.png');
+define('xenonFTP_IMG_TOOLBAR_FULLSCREEN', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png');
 
-define('EYEFTP_IMG_LOCALVIEW_HOME', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyeFTP/toolbar/managehosts.png');
-define('EYEFTP_IMG_REMOTEVIEW_HOME', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyeFTP/toolbar/managehosts.png');
+define('xenonFTP_IMG_LOCALVIEW_HOME', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonFTP/toolbar/managehosts.png');
+define('xenonFTP_IMG_REMOTEVIEW_HOME', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonFTP/toolbar/managehosts.png');
 
-define('EYEFTP_IMG_LOCALCMN_CREATEFOLDER', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/newfolder.png');
-define('EYEFTP_IMG_LOCALCMN_SENDTORIGHT', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/forward.png');
-define('EYEFTP_IMG_LOCALCMN_RENAME', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/rename.png');
-define('EYEFTP_IMG_LOCALCMN_DELETE', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/delete.png');
+define('xenonFTP_IMG_LOCALCMN_CREATEFOLDER', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/newfolder.png');
+define('xenonFTP_IMG_LOCALCMN_SENDTORIGHT', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/forward.png');
+define('xenonFTP_IMG_LOCALCMN_RENAME', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/rename.png');
+define('xenonFTP_IMG_LOCALCMN_DELETE', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/delete.png');
 
-define('EYEFTP_IMG_REMOTECMN_CREATEFOLDER', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/newfolder.png');
-define('EYEFTP_IMG_REMOTECMN_SENDTOLEFT', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/back.png');
-define('EYEFTP_IMG_REMOTECMN_RENAME', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/rename.png');
-define('EYEFTP_IMG_REMOTECMN_DELETE', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/delete.png');
+define('xenonFTP_IMG_REMOTECMN_CREATEFOLDER', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/newfolder.png');
+define('xenonFTP_IMG_REMOTECMN_SENDTOLEFT', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/back.png');
+define('xenonFTP_IMG_REMOTECMN_RENAME', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/rename.png');
+define('xenonFTP_IMG_REMOTECMN_DELETE', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/delete.png');
 /*********************************************************************************************/
 
-define('EYEFTP_WINSIZE_WIDTH', 800);
-define('EYEFTP_WINSIZE_HEIGHT', 600);
+define('xenonFTP_WINSIZE_WIDTH', 800);
+define('xenonFTP_WINSIZE_HEIGHT', 600);
 
-function eyeFTP_run($params=null) {
+function xenonFTP_run($params=null) {
 	global $checknum, $myPid;
 
 	if (!function_exists('ftp_connect')) {
 		xenonx('messageBox', array(
-			'content' => 'You cannot run eyeFTP. The server\'s administrator needs to activate the PHP extension for FTP first.',
+			'content' => 'You cannot run xenonFTP. The server\'s administrator needs to activate the PHP extension for FTP first.',
 			'img' => 'x',
-			'title' => 'eyeFTP',
+			'title' => 'xenonFTP',
 			'type' => 3,
-			'win_name' => 'eyeFTP_Window',
+			'win_name' => 'xenonFTP_Window',
 			'win_style' => CLOSE + LISTED + MIN + TITLE
 		));
 		return;
 	}
 
 	$mainWindow = new Window(array(
-		'name' => 'eyeFTP_WND',
+		'name' => 'xenonFTP_WND',
 		'father' => 'xenonApps',
 		'cent' => 1,
-		'width' => EYEFTP_WINSIZE_WIDTH,
-		'height' => EYEFTP_WINSIZE_HEIGHT,
+		'width' => xenonFTP_WINSIZE_WIDTH,
+		'height' => xenonFTP_WINSIZE_HEIGHT,
 		'title' => 'FTP Client',
 		'sigResize' => 'windowResize',
 		'sendResizeMsg' => 1,
@@ -87,8 +87,8 @@ function eyeFTP_run($params=null) {
 	//		CONSOLE WIDGET
 	/**********************************************************/
 	$logConsole = new Container(array(
-		'name' => 'eyeFTP_log_CTNR',
-		'father' => 'eyeFTP_WND_Content',
+		'name' => 'xenonFTP_log_CTNR',
+		'father' => 'xenonFTP_WND_Content',
 		'x'	=> 5,
 		'y' => 90,
 		'width' => 786,
@@ -107,8 +107,8 @@ function eyeFTP_run($params=null) {
 	/**********************************************************/
 	/* CONTAINER (CONNECTION FORM ELEMENTS) */
 	$connectionDataContainer = new Container(array(
-		'name' => 'eyeFTP_connectionData_CTNR',
-		'father' => 'eyeFTP_WND_Content',
+		'name' => 'xenonFTP_connectionData_CTNR',
+		'father' => 'xenonFTP_WND_Content',
 		'x' => 10,
 		'y' => 64,
 		'width' => 780,
@@ -120,16 +120,16 @@ function eyeFTP_run($params=null) {
 
 	/* HOST LABEL/TEXTBOX */
 	$hostLabel = new Label(array(
-		'name' => 'eyeFTP_host_LBL',
-		'father' => 'eyeFTP_connectionData_CTNR',
+		'name' => 'xenonFTP_host_LBL',
+		'father' => 'xenonFTP_connectionData_CTNR',
 		'x' => 0,
 		'y' => 7,
 		'text' => 'Host: '
 	));
 	$hostLabel->show();
 	$hostTextbox = new Textbox(array(
-		'name' => 'eyeFTP_host_TXTBOX',
-		'father' => 'eyeFTP_connectionData_CTNR',
+		'name' => 'xenonFTP_host_TXTBOX',
+		'father' => 'xenonFTP_connectionData_CTNR',
 		'x' => 30,
 		'y' => 4,
 		'width' => 160
@@ -139,16 +139,16 @@ function eyeFTP_run($params=null) {
 
 	/* PORT LABEL/TEXTBOX */
 	$portLabel = new Label(array(
-		'name' => 'eyeFTP_port_LBL',
-		'father' => 'eyeFTP_connectionData_CTNR',
+		'name' => 'xenonFTP_port_LBL',
+		'father' => 'xenonFTP_connectionData_CTNR',
 		'x' => 210,
 		'y' => 7,
 		'text' => 'Port: '
 	));
 	$portLabel->show();
 	$portTextbox = new Textbox(array(
-		'name' => 'eyeFTP_port_TXTBOX',
-		'father' => 'eyeFTP_connectionData_CTNR',
+		'name' => 'xenonFTP_port_TXTBOX',
+		'father' => 'xenonFTP_connectionData_CTNR',
 		'x' => 240,
 		'y' => 4,
 		'width' => 40,
@@ -158,16 +158,16 @@ function eyeFTP_run($params=null) {
 
 	/* USER LABEL/TEXTBOX */
 	$usernameLabel = new Label(array(
-		'name' => 'eyeFTP_username_LBL',
-		'father' => 'eyeFTP_connectionData_CTNR',
+		'name' => 'xenonFTP_username_LBL',
+		'father' => 'xenonFTP_connectionData_CTNR',
 		'x' => 300,
 		'y' => 7,
 		'text' => 'User: '
 	));
 	$usernameLabel->show();
 	$usernameTextbox = new Textbox(array(
-		'name' => 'eyeFTP_username_TXTBOX',
-		'father' => 'eyeFTP_connectionData_CTNR',
+		'name' => 'xenonFTP_username_TXTBOX',
+		'father' => 'xenonFTP_connectionData_CTNR',
 		'x' => 334,
 		'y' => 4,
 		'width' => 110,
@@ -177,28 +177,28 @@ function eyeFTP_run($params=null) {
 
 	/* PASSWORD LABEL/TEXTBOX */
 	$passwordLabel = new Label(array(
-		'name' => 'eyeFTP_password_LBL',
-		'father' => 'eyeFTP_connectionData_CTNR',
+		'name' => 'xenonFTP_password_LBL',
+		'father' => 'xenonFTP_connectionData_CTNR',
 		'x' => 460,
 		'y' => 7,
 		'text' => 'Password: '
 	));
 	$passwordLabel->show();
 	$passwordTextbox = new Textbox(array(
-		'name' => 'eyeFTP_password_TXTBOX',
-		'father' => 'eyeFTP_connectionData_CTNR',
+		'name' => 'xenonFTP_password_TXTBOX',
+		'father' => 'xenonFTP_connectionData_CTNR',
 		'x' => 520,
 		'y' => 4,
 		'width' => 80,
-		'text' => 'eyeftp@eyeos.org',
+		'text' => 'xenonFTP@eyeos.org',
 		'password' => 1
 	));
 	$passwordTextbox->show();
 
 	/* PASSIVE MODE LABEL/CHECKBOX */
 	$passiveModeCheckbox = new Checkbox(array(
-		'name' => 'eyeFTP_passiveMode_CHKBOX',
-		'father' => 'eyeFTP_connectionData_CTNR',
+		'name' => 'xenonFTP_passiveMode_CHKBOX',
+		'father' => 'xenonFTP_connectionData_CTNR',
 		'x' => 630,
 		'y' => 4,
 		'width' => 135,
@@ -232,18 +232,18 @@ function eyeFTP_run($params=null) {
 	$passwordTextbox->addFriend($passiveModeCheckbox);
 
 	//"ENTER" EVENT
-	$hostTextbox->addEnterEventMsg('eyeFTP_connect_ITM');
-	$portTextbox->addEnterEventMsg('eyeFTP_connect_ITM');
-	$usernameTextbox->addEnterEventMsg('eyeFTP_connect_ITM');
-	$passwordTextbox->addEnterEventMsg('eyeFTP_connect_ITM');
+	$hostTextbox->addEnterEventMsg('xenonFTP_connect_ITM');
+	$portTextbox->addEnterEventMsg('xenonFTP_connect_ITM');
+	$usernameTextbox->addEnterEventMsg('xenonFTP_connect_ITM');
+	$passwordTextbox->addEnterEventMsg('xenonFTP_connect_ITM');
 
 	/**********************************************************/
 	//		FILE VIEWS WIDGETS
 	/**********************************************************/
 	/* LEFT/RIGHT SPLITTER */
 	$leftRightSplitter = new Split(array(
-		'name' => 'eyeFTP_leftRight_SPLT',
-		'father' => 'eyeFTP_WND_Content',
+		'name' => 'xenonFTP_leftRight_SPLT',
+		'father' => 'xenonFTP_WND_Content',
 		'x' => 5,
 		'y' => 166,
 		'orientation' => SPLIT_VERTICAL,
@@ -258,13 +258,13 @@ function eyeFTP_run($params=null) {
 
 	/* LOCAL HOME IMAGE BUTTON */
 	$localHomeButton = new Imagebox(array(
-		'name' => 'eyeFTP_localHome_IMG',
-		'father' => 'eyeFTP_leftRight_SPLT_first',
+		'name' => 'xenonFTP_localHome_IMG',
+		'father' => 'xenonFTP_leftRight_SPLT_first',
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/home.png',
 		'x' => 0,
 		'y' => 0,
 		'disableMsg' => 0,
-		'signal' => 'eyeFTP_localHome_IMG',
+		'signal' => 'xenonFTP_localHome_IMG',
 		'alt' => 'Home'
 	));
 	$localHomeButton->show();
@@ -272,8 +272,8 @@ function eyeFTP_run($params=null) {
 
 	/* LOCAL PATH TEXTBOX */
 	$localPathTextbox = new Textbox(array(
-		'name' => 'eyeFTP_localPath_TXTBOX',
-		'father' => 'eyeFTP_leftRight_SPLT_first',
+		'name' => 'xenonFTP_localPath_TXTBOX',
+		'father' => 'xenonFTP_leftRight_SPLT_first',
 		'x' => 30,
 		'y' => 4,
 		'width' => $leftRightSplitter->position - 47,
@@ -284,8 +284,8 @@ function eyeFTP_run($params=null) {
 
 	/* TABLE FOR LOCAL FILES LIST */
 	$localFilesTable = new Sortabletable(array(
-		'name' => 'eyeFTP_localFiles_TAB',
-		'father' => 'eyeFTP_leftRight_SPLT_first',
+		'name' => 'xenonFTP_localFiles_TAB',
+		'father' => 'xenonFTP_leftRight_SPLT_first',
 		'x' => 0,
 		'y' => 24,
 		'width' => $leftRightSplitter->position - 15,
@@ -293,13 +293,13 @@ function eyeFTP_run($params=null) {
 		'sortypes' => array('Html','String','Number','Date','String','Hidden'),
 		'master' => 5,
 		'theader' => array(' ','Filename','Filesize (B)','Date','Author','id'),
-		'signal' => 'eyeFTP_localFilesClick',
-		'dblsignal' => 'eyeFTP_localFilesDblClick'
+		'signal' => 'xenonFTP_localFilesClick',
+		'dblsignal' => 'xenonFTP_localFilesDblClick'
 	));
 	$localFilesTable->show();
 	xenonx('addEvent',array(
-		'name' => $myPid.'_eyeFTP_localFiles_TAB_Container',
-		'action' => 'sendMsg('.$checknum.',"eyeFTP_localFilesClick","")',
+		'name' => $myPid.'_xenonFTP_localFiles_TAB_Container',
+		'action' => 'sendMsg('.$checknum.',"xenonFTP_localFilesClick","")',
 		'event' => 'onclick',
 		'args'=>''
 	));
@@ -308,13 +308,13 @@ function eyeFTP_run($params=null) {
 
 	/* REMOTE HOME IMAGE BUTTON */
 	$remoteHomeButton = new Imagebox(array(
-		'name' => 'eyeFTP_remoteHome_IMG',
-		'father' => 'eyeFTP_leftRight_SPLT_last',
+		'name' => 'xenonFTP_remoteHome_IMG',
+		'father' => 'xenonFTP_leftRight_SPLT_last',
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/home.png',
 		'x' => 10,
 		'y' => 0,
 		'disableMsg' => 0,
-		'signal' => 'eyeFTP_remoteHome_IMG',
+		'signal' => 'xenonFTP_remoteHome_IMG',
 		'alt' => 'Home'
 	));
 	$remoteHomeButton->show();
@@ -322,8 +322,8 @@ function eyeFTP_run($params=null) {
 
 	/* REMOTE PATH TEXTBOX */
 	$remotePathTextbox = new Textbox(array(
-		'name' => 'eyeFTP_remotePath_TXTBOX',
-		'father' => 'eyeFTP_leftRight_SPLT_last',
+		'name' => 'xenonFTP_remotePath_TXTBOX',
+		'father' => 'xenonFTP_leftRight_SPLT_last',
 		'x' => 40,
 		'y' => 4,
 		'width' => $leftRightSplitter->width - $leftRightSplitter->position - 57,
@@ -334,8 +334,8 @@ function eyeFTP_run($params=null) {
 
 	/* TABLE FOR REMOTE FILES LIST */
 	$remoteFilesTable = new Sortabletable(array(
-		'name' => 'eyeFTP_remoteFiles_TAB',
-		'father' => 'eyeFTP_leftRight_SPLT_last',
+		'name' => 'xenonFTP_remoteFiles_TAB',
+		'father' => 'xenonFTP_leftRight_SPLT_last',
 		'x' => 10,
 		'y' => 24,
 		'width' => $leftRightSplitter->width - $leftRightSplitter->position - 25,
@@ -343,13 +343,13 @@ function eyeFTP_run($params=null) {
 		'sortypes' => array('Html','String','Number','Date','String','String','Hidden'),
 		'master' => 6,
 		'theader' => array(' ','Filename','Filesize (B)','Date','Permissions','Owner','id'),
-		'signal' => 'eyeFTP_remoteFilesClick',
-		'dblsignal' => 'eyeFTP_remoteFilesDblClick'
+		'signal' => 'xenonFTP_remoteFilesClick',
+		'dblsignal' => 'xenonFTP_remoteFilesDblClick'
 	));
 	$remoteFilesTable->show();
 	xenonx('addEvent',array(
-		'name' => $myPid.'_eyeFTP_remoteFiles_TAB_Container',
-		'action' => 'sendMsg('.$checknum.',"eyeFTP_remoteFilesClick","")',
+		'name' => $myPid.'_xenonFTP_remoteFiles_TAB_Container',
+		'action' => 'sendMsg('.$checknum.',"xenonFTP_remoteFilesClick","")',
 		'event' => 'onclick',
 		'args'=>''
 	));
@@ -358,13 +358,13 @@ function eyeFTP_run($params=null) {
 
 	/* TRANSFER BUTTONS (TO RIGHT/TO LEFT) */
 	$transferToRightButton = new Imagebox(array(
-		'name' => 'eyeFTP_transferToRight_IMG',
-		'father' => 'eyeFTP_WND_Content',
+		'name' => 'xenonFTP_transferToRight_IMG',
+		'father' => 'xenonFTP_WND_Content',
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/forward.png',
 		'x' => $leftRightSplitter->position,
 		'y' => 140 + ($leftRightSplitter->height / 2),
 		'disableMsg' => 0,
-		'signal' => 'eyeFTP_transferToRight_IMG',
+		'signal' => 'xenonFTP_transferToRight_IMG',
 		'alt' => 'Transfer selected file to right'
 	));
 	$transferToRightButton->addFriend($localFilesTable);
@@ -372,13 +372,13 @@ function eyeFTP_run($params=null) {
 	$transferToRightButton->setCss(array('cursor'=>'Pointer'));
 
 	$transferToLeftButton = new Imagebox(array(
-		'name' => 'eyeFTP_transferToLeft_IMG',
-		'father' => 'eyeFTP_WND_Content',
+		'name' => 'xenonFTP_transferToLeft_IMG',
+		'father' => 'xenonFTP_WND_Content',
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/back.png',
 		'x' => $leftRightSplitter->position,
 		'y' => 177 + ($leftRightSplitter->height / 2),
 		'disableMsg' => 0,
-		'signal' => 'eyeFTP_transferToLeft_IMG',
+		'signal' => 'xenonFTP_transferToLeft_IMG',
 		'alt' => 'Download selected file to current local folder'
 	));
 	$transferToLeftButton->addFriend($remoteFilesTable);
@@ -395,68 +395,68 @@ function eyeFTP_run($params=null) {
 	/**********************************************************/
 	/* ==== LOCAL FILES ==== */
 	/*$localFilesContextMenu = new ContextMenu(array(
-		'name' => 'eyeFTP_localFiles_CMN',
-		'father' => 'eyeFTP_localFiles_TAB',
+		'name' => 'xenonFTP_localFiles_CMN',
+		'father' => 'xenonFTP_localFiles_TAB',
 		'searchFather' => 1
 	));
 	$localFilesContextMenu->show();
 
 	//NEW FOLDER
 	$localFilesContextMenu->addEntry(
-		'<img src="'.EYEFTP_IMG_LOCALCMN_CREATEFOLDER.'" /> &nbsp; Create folder',
-		'eyeFTP_localFiles_CMN_createFolder_ENT',
-		'eyeFTP_localFiles_CMN_createFolder_ENT'
+		'<img src="'.xenonFTP_IMG_LOCALCMN_CREATEFOLDER.'" /> &nbsp; Create folder',
+		'xenonFTP_localFiles_CMN_createFolder_ENT',
+		'xenonFTP_localFiles_CMN_createFolder_ENT'
 	);
 	//UPLOAD
 	$localFilesContextMenu->addEntry(
-		'<img src="'.EYEFTP_IMG_LOCALCMN_SENDTORIGHT.'" /> &nbsp; Send to right',
-		'eyeFTP_localFiles_CMN_upload_ENT',
-		'eyeFTP_localFiles_CMN_upload_ENT'
+		'<img src="'.xenonFTP_IMG_LOCALCMN_SENDTORIGHT.'" /> &nbsp; Send to right',
+		'xenonFTP_localFiles_CMN_upload_ENT',
+		'xenonFTP_localFiles_CMN_upload_ENT'
 	);
 	//RENAME
 	$localFilesContextMenu->addEntry(
-		'<img src="'.EYEFTP_IMG_LOCALCMN_RENAME.'" /> &nbsp; Rename',
-		'eyeFTP_localFiles_CMN_rename_ENT',
-		'eyeFTP_localFiles_CMN_rename_ENT'
+		'<img src="'.xenonFTP_IMG_LOCALCMN_RENAME.'" /> &nbsp; Rename',
+		'xenonFTP_localFiles_CMN_rename_ENT',
+		'xenonFTP_localFiles_CMN_rename_ENT'
 	);
 	//DELETE
 	$localFilesContextMenu->addEntry(
-		'<img src="'.EYEFTP_IMG_LOCALCMN_DELETE.'" /> &nbsp; Delete',
-		'eyeFTP_localFiles_CMN_delete_ENT',
-		'eyeFTP_localFiles_CMN_delete_ENT'
+		'<img src="'.xenonFTP_IMG_LOCALCMN_DELETE.'" /> &nbsp; Delete',
+		'xenonFTP_localFiles_CMN_delete_ENT',
+		'xenonFTP_localFiles_CMN_delete_ENT'
 	);*/
 
 	/* ==== REMOTE FILES ==== */
 	/*$remoteFilesContextMenu = new ContextMenu(array(
-		'name' => 'eyeFTP_remoteFiles_CMN',
-		'father' => 'eyeFTP_remoteFiles_TAB',
+		'name' => 'xenonFTP_remoteFiles_CMN',
+		'father' => 'xenonFTP_remoteFiles_TAB',
 		'searchFather' => 1
 	));
 	$remoteFilesContextMenu->show();
 
 	//NEW FOLDER
 	$remoteFilesContextMenu->addEntry(
-		'<img src="'.EYEFTP_IMG_REMOTECMN_CREATEFOLDER.'" /> &nbsp; Create folder',
-		'eyeFTP_remoteFiles_CMN_createFolder_ENT',
-		'eyeFTP_remoteFiles_CMN_createFolder_ENT'
+		'<img src="'.xenonFTP_IMG_REMOTECMN_CREATEFOLDER.'" /> &nbsp; Create folder',
+		'xenonFTP_remoteFiles_CMN_createFolder_ENT',
+		'xenonFTP_remoteFiles_CMN_createFolder_ENT'
 	);
 	//DOWNLOAD
 	$remoteFilesContextMenu->addEntry(
-		'<img src="'.EYEFTP_IMG_REMOTECMN_SENDTOLEFT.'" /> &nbsp; Send to left',
-		'eyeFTP_remoteFiles_CMN_download_ENT',
-		'eyeFTP_remoteFiles_CMN_download_ENT'
+		'<img src="'.xenonFTP_IMG_REMOTECMN_SENDTOLEFT.'" /> &nbsp; Send to left',
+		'xenonFTP_remoteFiles_CMN_download_ENT',
+		'xenonFTP_remoteFiles_CMN_download_ENT'
 	);
 	//RENAME/MOVE
 	$remoteFilesContextMenu->addEntry(
-		'<img src="'.EYEFTP_IMG_REMOTECMN_RENAME.'" /> &nbsp; Rename/Move',
-		'eyeFTP_remoteFiles_CMN_renameMove_ENT',
-		'eyeFTP_remoteFiles_CMN_renameMove_ENT'
+		'<img src="'.xenonFTP_IMG_REMOTECMN_RENAME.'" /> &nbsp; Rename/Move',
+		'xenonFTP_remoteFiles_CMN_renameMove_ENT',
+		'xenonFTP_remoteFiles_CMN_renameMove_ENT'
 	);
 	//DELETE
 	$remoteFilesContextMenu->addEntry(
-		'<img src="'.EYEFTP_IMG_REMOTECMN_DELETE.'" /> &nbsp; Delete',
-		'eyeFTP_remoteFiles_CMN_delete_ENT',
-		'eyeFTP_remoteFiles_CMN_delete_ENT'
+		'<img src="'.xenonFTP_IMG_REMOTECMN_DELETE.'" /> &nbsp; Delete',
+		'xenonFTP_remoteFiles_CMN_delete_ENT',
+		'xenonFTP_remoteFiles_CMN_delete_ENT'
 	);*/
 
 
@@ -465,15 +465,15 @@ function eyeFTP_run($params=null) {
 	//		TOOLBAR
 	/**********************************************************/
 	$toolbar = new Toolbar(array(
-		'name' => 'eyeFTP_toolbar_TLB',
-		'father' => 'eyeFTP_WND_Content',
+		'name' => 'xenonFTP_toolbar_TLB',
+		'father' => 'xenonFTP_WND_Content',
 		'x' => 5,
 		'y' => 5
 	));
 	$toolbar->show();
 	$toolbar->addItem(
-		'eyeFTP_manageHosts_ITM',
-		EYEFTP_IMG_TOOLBAR_MANAGEHOSTS,
+		'xenonFTP_manageHosts_ITM',
+		xenonFTP_IMG_TOOLBAR_MANAGEHOSTS,
 		'Manage hosts'
 	);
 
@@ -481,14 +481,14 @@ function eyeFTP_run($params=null) {
 
 	//CONNECTION ACTIONS
 	$toolbar->addItem(
-		'eyeFTP_connect_ITM',
-		EYEFTP_IMG_TOOLBAR_CONNECT,
+		'xenonFTP_connect_ITM',
+		xenonFTP_IMG_TOOLBAR_CONNECT,
 		'Connect',
 		array($hostTextbox,$portTextbox,$usernameTextbox,$passwordTextbox,$passiveModeCheckbox)
 	);
 	$toolbar->addItem(
-		'eyeFTP_disconnect_ITM',
-		EYEFTP_IMG_TOOLBAR_DISCONNECT,
+		'xenonFTP_disconnect_ITM',
+		xenonFTP_IMG_TOOLBAR_DISCONNECT,
 		'Disconnect',
 		array($hostTextbox,$portTextbox,$usernameTextbox,$passwordTextbox,$passiveModeCheckbox)
 	);
@@ -497,38 +497,38 @@ function eyeFTP_run($params=null) {
 
 	//SELECTED VIEW DEPENDENT ACTIONS
 	$toolbar->addItem(
-		'eyeFTP_refresh_ITM',
-		EYEFTP_IMG_TOOLBAR_REFRESH,
+		'xenonFTP_refresh_ITM',
+		xenonFTP_IMG_TOOLBAR_REFRESH,
 		'Refresh'
 	);
 	$toolbar->addItem(
-		'eyeFTP_createFolder_ITM',
-		EYEFTP_IMG_TOOLBAR_CREATEFOLDER,
+		'xenonFTP_createFolder_ITM',
+		xenonFTP_IMG_TOOLBAR_CREATEFOLDER,
 		'New folder'
 	);
 	$toolbar->addItem(
-		'eyeFTP_rename_ITM',
-		EYEFTP_IMG_TOOLBAR_RENAME,
+		'xenonFTP_rename_ITM',
+		xenonFTP_IMG_TOOLBAR_RENAME,
 		'Rename/Move',
 		array($localFilesTable,$remoteFilesTable)
 	);
 	$toolbar->addItem(
-		'eyeFTP_delete_ITM',
-		EYEFTP_IMG_TOOLBAR_DELETE,
+		'xenonFTP_delete_ITM',
+		xenonFTP_IMG_TOOLBAR_DELETE,
 		'Delete',
 		array($localFilesTable,$remoteFilesTable)
 	);
 
 	//TRANSFER ACTIONS
 	$toolbar->addItem(
-		'eyeFTP_download_ITM',
-		EYEFTP_IMG_TOOLBAR_DOWNLOAD,
+		'xenonFTP_download_ITM',
+		xenonFTP_IMG_TOOLBAR_DOWNLOAD,
 		'Download',
 		array($remoteFilesTable)
 	);
 	$toolbar->addItem(
-		'eyeFTP_upload_ITM',
-		EYEFTP_IMG_TOOLBAR_UPLOAD,
+		'xenonFTP_upload_ITM',
+		xenonFTP_IMG_TOOLBAR_UPLOAD,
 		'Upload'
 	);
 
@@ -536,15 +536,15 @@ function eyeFTP_run($params=null) {
 
 	//HELP
 	$toolbar->addItem(
-		'eyeFTP_help_ITM',
-		EYEFTP_IMG_TOOLBAR_HELP,
+		'xenonFTP_help_ITM',
+		xenonFTP_IMG_TOOLBAR_HELP,
 		'Help',
 		'',
 		1
 	);
 	$toolbar->addItem(
 		'fullscreen',
-		EYEFTP_IMG_TOOLBAR_FULLSCREEN,
+		xenonFTP_IMG_TOOLBAR_FULLSCREEN,
 		'Full Screen',
 		'',
 		1
@@ -559,62 +559,62 @@ function eyeFTP_run($params=null) {
 	/* DOWNLOAD DUMMY FRAME
 	 * (used to show the 'save as' dialog when transfer from server to oneye is finished) */
 	$downloadFrame = new Iframe(array(
-		'name' => 'eyeFTP_download_FRM',
-		'father' => 'eyeFTP_WND_Content',
+		'name' => 'xenonFTP_download_FRM',
+		'father' => 'xenonFTP_WND_Content',
 		'x' => 0,
 		'y' => 0,
 		'height' => 1,
 		'width' => 1,
-		'url' => "index.php?checknum=$checknum&msg=eyeFTP_downloadRemote_finished",
+		'url' => "index.php?checknum=$checknum&msg=xenonFTP_downloadRemote_finished",
 		'scroll' => 0
 	));
 	$downloadFrame->show();
 
 	$arraySerializedLocalFilesData = new Hidden(array(
-		'name' =>'eyeFTP_serializedLocalFilesData_HID',
-		'father' => 'eyeFTP_WND_Content',
+		'name' =>'xenonFTP_serializedLocalFilesData_HID',
+		'father' => 'xenonFTP_WND_Content',
 		'text' => serialize(array())
 	));
 	eyeWidgets('serialize',array($arraySerializedLocalFilesData));
 	$arraySerializedRemoteFilesData = new Hidden(array(
-		'name' =>'eyeFTP_serializedRemoteFilesData_HID',
-		'father' => 'eyeFTP_WND_Content',
+		'name' =>'xenonFTP_serializedRemoteFilesData_HID',
+		'father' => 'xenonFTP_WND_Content',
 		'text' => serialize(array())
 	));
 	eyeWidgets('serialize',array($arraySerializedRemoteFilesData));
 	$isConnectionActive = new Hidden(array(
-		'name' => 'eyeFTP_isFTPConnectionActive_HID',
-		'father' => 'eyeFTP_WND_Content',
+		'name' => 'xenonFTP_isFTPConnectionActive_HID',
+		'father' => 'xenonFTP_WND_Content',
 		'text' => '0'
 	));
 	eyeWidgets('serialize',array($isConnectionActive));
 	$listA = new Hidden(array(
-		'name' => 'eyeFTP_listA_HID',
-		'father' => 'eyeFTP_WND_Content',
+		'name' => 'xenonFTP_listA_HID',
+		'father' => 'xenonFTP_WND_Content',
 		'text' => '1'
 	));
 	eyeWidgets('serialize',array($listA));
 	$currentLocalDir = new Hidden(array(
-		'name' => 'eyeFTP_currentLocalDir_HID',
-		'father' => 'eyeFTP_WND_Content',
+		'name' => 'xenonFTP_currentLocalDir_HID',
+		'father' => 'xenonFTP_WND_Content',
 		'text' => ''
 	));
 	eyeWidgets('serialize',array($currentLocalDir));
 	$currentRemoteDir = new Hidden(array(
-		'name' => 'eyeFTP_currentRemoteDir_HID',
-		'father' => 'eyeFTP_WND_Content',
+		'name' => 'xenonFTP_currentRemoteDir_HID',
+		'father' => 'xenonFTP_WND_Content',
 		'text' => ''
 	));
 	eyeWidgets('serialize',array($currentRemoteDir));
 	$selectedView = new Hidden(array(
-		'name' => 'eyeFTP_selectedView_HID',
-		'father' => 'eyeFTP_WND_Content',
+		'name' => 'xenonFTP_selectedView_HID',
+		'father' => 'xenonFTP_WND_Content',
 		'text' => ''
 	));
 	eyeWidgets('serialize',array($selectedView));
 
 	//check the user's configuration directory and create it if needed
-	$confDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeFTP';
+	$confDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonFTP';
 	if(!vfs('real_fileExists',array($confDir))) {
 		vfs('real_mkdir',array($confDir));
 	}
@@ -622,17 +622,17 @@ function eyeFTP_run($params=null) {
 	//listener service call to resize the app when the browser is resized
 	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 
-	xenonx('rawjs',array('js' => 'sendMsg('.$checknum.',"eyeFTP_initComplete","");'));
+	xenonx('rawjs',array('js' => 'sendMsg('.$checknum.',"xenonFTP_initComplete","");'));
 
 	//CSS
 	xenonx('loadCss',array(
-		'url' => 'index.php?extern=apps/eyeFTP/css/eyeFTP.css&type=css',
-		'id' => 'eyeFTP.css'
+		'url' => 'index.php?extern=apps/xenonFTP/css/xenonFTP.css&type=css',
+		'id' => 'xenonFTP.css'
 	));
 
 	//JS
 	xenonx('loadScript',array(
-		'url' => 'index.php?extern=apps/eyeFTP/js/eyeFTP'.XE_CODE_EXTENSION.'&type=dynamic&params[]='.$myPid.'&params[]='.$checknum
+		'url' => 'index.php?extern=apps/xenonFTP/js/xenonFTP'.XE_CODE_EXTENSION.'&type=dynamic&params[]='.$myPid.'&params[]='.$checknum
 	));
 
 	//processing provided connection string if any
@@ -662,7 +662,7 @@ function eyeFTP_run($params=null) {
 }
 
 
-function eyeFTP_end($params=null) {
+function xenonFTP_end($params=null) {
 	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }

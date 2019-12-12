@@ -13,22 +13,22 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-.eyeFTP_logStyle_err {
+.xenonFTP_logStyle_err {
 	color: #ff0000;
 }
 
-.eyeFTP_logStyle_info {
+.xenonFTP_logStyle_info {
 	color: #3333ff;
 }
 
-.eyeFTP_logStyle_norm {
+.xenonFTP_logStyle_norm {
 	color: #333333;
 }
 
-.eyeFTP_logStyle_succ {
+.xenonFTP_logStyle_succ {
 	color: #00aa00;
 }
 
-.eyeFTP_logStyle_warn {
+.xenonFTP_logStyle_warn {
 	color: #ee9900;
 }

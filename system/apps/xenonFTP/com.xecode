@@ -14,10 +14,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeFTP_com_fullResized($params = '') {
+function xenonFTP_com_fullResized($params = '') {
 	eyeWidgets('updateContent',$params);
-	if ($GLOBALS['eyeFTP_WND']->fullScreen) {
-		$GLOBALS['eyeFTP_WND']->listenerResizeFullScreen($params);
+	if ($GLOBALS['xenonFTP_WND']->fullScreen) {
+		$GLOBALS['xenonFTP_WND']->listenerResizeFullScreen($params);
 	}
 }
 ?>
