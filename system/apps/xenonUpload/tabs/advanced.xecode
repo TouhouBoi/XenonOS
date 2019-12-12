@@ -35,8 +35,8 @@ $myFlash = new Flash(array(
 		'advanced_Do'
 	),
 	'height' => 200,
-	'name' => 'eyeUpload_advanced_Flash',
-	'src' => 'index.php?extern=apps/eyeUpload/swf/eyeuploadx.swf&type=swf',
+	'name' => 'xenonUpload_advanced_Flash',
+	'src' => 'index.php?extern=apps/xenonUpload/swf/xenonUploadx.swf&type=swf',
 	'width' => 450,
 	'x' => 8,
 	'y' => 8

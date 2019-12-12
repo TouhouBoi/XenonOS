@@ -135,7 +135,7 @@ function eyeFiles_on_Real($params = '') {
 }
 
 function eyeFiles_on_Upload($params = '') {
-	proc('launch',array('eyeUpload',array($GLOBALS['eyeFiles_Hidden_Path']->text)));
+	proc('launch',array('xenonUpload',array($GLOBALS['eyeFiles_Hidden_Path']->text)));
 }
 
 function eyeFiles_on_NewFolder($params = '') {

@@ -16,7 +16,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 $myImagebox = new Imagebox(array(
 	'father' => $webTab,
-	'name' => 'eyeUpload_web_Imagebox',
+	'name' => 'xenonUpload_web_Imagebox',
 	'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/upload.png',
 	'x' => 22,
 	'y'=> 43
@@ -25,7 +25,7 @@ $myImagebox->show();
 
 $myLabel = new Label(array(
 	'father' => $webTab,
-	'name' => 'eyeUpload_web_Label',
+	'name' => 'xenonUpload_web_Label',
 	'text' => 'Please enter the HTTP address to a file:',
 	'x' => 75,
 	'y' => 50
@@ -35,7 +35,7 @@ $myLabel->setCss(array('text-align' => 'center','width' => '390px'));
 
 $myTextbox = new Textbox(array(
 	'father' => $webTab,
-	'name' => 'eyeUpload_web_Textbox',
+	'name' => 'xenonUpload_web_Textbox',
 	'width' => 300,
 	'x' => 120,
 	'y' => 70
@@ -46,7 +46,7 @@ $myTextbox->addEnterEventMsg('web_Do');
 $myButton = new Button(array(
 	'caption' => 'Upload',
 	'father' => $webTab,
-	'name' => 'eyeUpload_web_Button',
+	'name' => 'xenonUpload_web_Button',
 	'signal' => 'web_Do',
 	'width' => 100,
 	'x' => 210,

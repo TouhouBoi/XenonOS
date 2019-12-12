@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeUpload_run($params = '') {
+function xenonUpload_run($params = '') {
 	$myWindow = new Window(array(
 		'cent' => 1,
 		'father' => 'xenonApps',
-		'name' => 'eyeUpload_Window',
+		'name' => 'xenonUpload_Window',
 		'height' => 270,
 		'savePosition' => 1,
 		'style' => TITLE + CLOSE + LISTED,
@@ -28,8 +28,8 @@ function eyeUpload_run($params = '') {
 	$myWindow->show();
 
 	$myImage = new Imagebox(array(
-		'name' => 'eyeUpload_help',
-		'father' => 'eyeUpload_Window',
+		'name' => 'xenonUpload_help',
+		'father' => 'xenonUpload_Window',
 		'horiz' => 1,
 		'x' => 8,
 		'y' => 28,
@@ -41,22 +41,22 @@ function eyeUpload_run($params = '') {
 	$myImage->setCss(array('cursor' => 'Pointer'));
 
 	$myHidden = new Hidden(array(
-		'father' => 'eyeUpload_Window_Content',
-		'name' => 'eyeUpload_Hidden_Path',
+		'father' => 'xenonUpload_Window_Content',
+		'name' => 'xenonUpload_Hidden_Path',
 		'text' => $params[0]
 	));
 	$myHidden->show();
 
 	$myHidden = new Hidden(array(
-		'father' => 'eyeUpload_Window_Content',
-		'name' => 'eyeUpload_Hidden_Callback',
+		'father' => 'xenonUpload_Window_Content',
+		'name' => 'xenonUpload_Hidden_Callback',
 		'text' => $params[1]
 	));
 	$myHidden->show();
 
 	$myTab = new Tab(array(
-		'father' => 'eyeUpload_Window_Content',
-		'name' => 'eyeUpload_Tab',
+		'father' => 'xenonUpload_Window_Content',
+		'name' => 'xenonUpload_Tab',
 		'height' => 240,
 		'tabwidth' => 90,
 		'useDisplay' => 0,
@@ -67,14 +67,14 @@ function eyeUpload_run($params = '') {
 	$myTab->show();
 
 	$simpleTab = $myTab->addTab('Simple',1);
-	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeUpload/tabs/simple.xecode');
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonUpload/tabs/simple.xecode');
 	if ($_SESSION['SCREEN']['flash'] && $_SESSION['SCREEN']['flash_version'] > 8) {
 		$advancedTab = $myTab->addTab('Advanced', 1);
-		include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeUpload/tabs/advanced.xecode';
+		include_once XENONOS_ROOT . '/' . APP_DIR . '/xenonUpload/tabs/advanced.xecode';
 	}
 	if (WEB_UPLOAD) {
 		$webTab = $myTab->addTab('Web',1);
-		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeUpload/tabs/web.xecode');
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonUpload/tabs/web.xecode');
 	}
 	if (isset($advancedTab)) {
 		$myTab->selectByName('Advanced');
@@ -83,7 +83,7 @@ function eyeUpload_run($params = '') {
 	}
 }
 
-function eyeUpload_end($params = '') {
+function xenonUpload_end($params = '') {
 	eyeWidgets('unserialize',$params);
 }
 ?>

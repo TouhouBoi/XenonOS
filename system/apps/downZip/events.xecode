@@ -31,7 +31,7 @@ function downZip_on_Message($params = '') {
 function downZip_on_iframe($params = '') {
 	global $checknum;
 	header('Content-type: text/html');
-	i18n('loadLang',array('eyeUpload'));
+	i18n('loadLang',array('xenonUpload'));
 	echo '<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

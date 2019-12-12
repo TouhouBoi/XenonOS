@@ -23,7 +23,7 @@ function eyeDesk_on_Refresh($params = '') {
 }
 
 function eyeDesk_on_Upload($params = '') {
-	proc('launch',array('eyeUpload',array('home://Desktop/')));
+	proc('launch',array('xenonUpload',array('home://Desktop/')));
 }
 
 function eyeDesk_on_NewFolder($params = '') {

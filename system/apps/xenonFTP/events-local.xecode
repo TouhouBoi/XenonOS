@@ -86,7 +86,7 @@ function xenonFTP_on_xenonFTP_downloadLocal() {
 function xenonFTP_on_xenonFTP_uploadLocal() {
 	global $checknum;
 	$conf = xenonFTP_getConf();
-	proc('launch',array('eyeUpload',array(
+	proc('launch',array('xenonUpload',array(
 										um('getCurrentUserDir').'/'.FILES_USER_DIR.$conf['currentLocalDir'],
 										'sendMsg('.$checknum.',"xenonFTP_refreshLocal","")'
 	)));

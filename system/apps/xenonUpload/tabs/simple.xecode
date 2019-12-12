@@ -16,7 +16,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 $myImagebox = new Imagebox(array(
 	'father' => $simpleTab,
-	'name' => 'eyeUpload_simple_Imagebox',
+	'name' => 'xenonUpload_simple_Imagebox',
 	'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/upload.png',
 	'x' => 22,
 	'y'=> 43
@@ -28,7 +28,7 @@ $myFile = new File(array(
 	'father' => $simpleTab,
 	'filename' => 'myFile',
 	'multiple' => 1,
-	'name' => 'eyeUpload_simple_File',
+	'name' => 'xenonUpload_simple_File',
 	'x' => 80,
 	'y' => 10
 ));

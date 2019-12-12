@@ -71,7 +71,7 @@ function miniActions_on_Launch1($params=null) {
 	$checknum = proc('findChecknumByName',array('eyeDesk'));
 	$path = um('getCurrentUserDir').'/'.FILES_USER_DIR.'/Desktop/';
 	$callback = 'sendMsg('.$checknum.',"OpenPath","");';
-	proc('launch', array('eyeUpload',array($path,$callback)));
+	proc('launch', array('xenonUpload',array($path,$callback)));
 }
 
 function miniActions_on_Launch2($params=null) {
