@@ -10,6 +10,8 @@
 XenonOS is a fork of the oneye project.
 XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
 
+DISCLAIMER: XenonOS is not compatible with oneye or any of it's applications.
+
 Default Login: root
 Default Password: root
 
