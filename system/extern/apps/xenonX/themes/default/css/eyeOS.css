@@ -1488,10 +1488,6 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	background: transparent url('index.php?theme=USERTHEME&extern=images/windows/max.png') no-repeat;
 }
 
-.eyeWindowMaxButton:hover {
-	background: transparent url('index.php?theme=USERTHEME&extern=images/windows/max_x.png') no-repeat;
-}
-
 .eyeWindowMinimizeButton {
 	background: transparent url('index.php?theme=USERTHEME&extern=images/windows/min.png') no-repeat;
 }
