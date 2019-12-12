@@ -43,7 +43,7 @@ function xenonProcess_on_Kill($params = '') {
 }
 
 function xenonProcess_on_New($params = '') {
-	proc('launch',array('eyeLaunch'));
+	proc('launch',array('xenonLaunch'));
 }
 
 function xenonProcess_on_Killapp($params = ''){

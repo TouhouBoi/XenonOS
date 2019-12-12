@@ -15,12 +15,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 /*
-	eyeLaunch
+	xenonLaunch
 
 	This app launch apps introducing his name into the textbox and clicking the button
 */
 
-function eyeLaunch_run($params=null) {
+function xenonLaunch_run($params=null) {
 	global $myPid;
 
 	$myWindow = new Window(array('name'=>'wnd1','title'=>'Run...','father'=>'xenonApps','type'=>NORESIZE_WINDOW,'width'=>280,
@@ -31,7 +31,7 @@ function eyeLaunch_run($params=null) {
 		'father'=>'wnd1_Content','x'=>10,'y'=>10));
 	$myLabel1->show();
 
-	$myTextbox = new Textbox(array('name'=>'eyeLaunch_run','width'=>212,'father'=>'wnd1_Content','x'=>30,'y'=>50));
+	$myTextbox = new Textbox(array('name'=>'xenonLaunch_run','width'=>212,'father'=>'wnd1_Content','x'=>30,'y'=>50));
 	$myTextbox->show();
 
 	$myButton = new Button(array('name'=>'doLaunch','caption'=>'Run','father'=>'wnd1_Content','x'=>32,'y'=>85, 'horiz' => 1));
@@ -42,17 +42,17 @@ function eyeLaunch_run($params=null) {
 
 	$onCheck = 'document.getElementById("'.$myPid.'_wnd1").style.height="250px";';
 	$onCheck .= 'document.getElementById("'.$myPid.'_label2").style.display = "block";';
- 	$onCheck .= 'document.getElementById("'.$myPid.'_eyeLaunch_user").style.display = "block";';
+ 	$onCheck .= 'document.getElementById("'.$myPid.'_xenonLaunch_user").style.display = "block";';
  	$onCheck .= 'document.getElementById("'.$myPid.'_label3").style.display = "block";';
- 	$onCheck .= 'document.getElementById("'.$myPid.'_eyeLaunch_pass").style.display = "block";';
- 	$onCheck .= 'document.getElementById("'.$myPid.'_eyeLaunch_user").focus();';
+ 	$onCheck .= 'document.getElementById("'.$myPid.'_xenonLaunch_pass").style.display = "block";';
+ 	$onCheck .= 'document.getElementById("'.$myPid.'_xenonLaunch_user").focus();';
  
 	$unCheck = 'document.getElementById("'.$myPid.'_wnd1").style.height="150px";';
 	$unCheck .= 'document.getElementById("'.$myPid.'_label2").style.display = "none";';
- 	$unCheck .= 'document.getElementById("'.$myPid.'_eyeLaunch_user").style.display = "none";';
+ 	$unCheck .= 'document.getElementById("'.$myPid.'_xenonLaunch_user").style.display = "none";';
  	$unCheck .= 'document.getElementById("'.$myPid.'_label3").style.display = "none";';
- 	$unCheck .= 'document.getElementById("'.$myPid.'_eyeLaunch_pass").style.display = "none";';
- 	$unCheck .= 'document.getElementById("'.$myPid.'_eyeLaunch_run").focus();';
+ 	$unCheck .= 'document.getElementById("'.$myPid.'_xenonLaunch_pass").style.display = "none";';
+ 	$unCheck .= 'document.getElementById("'.$myPid.'_xenonLaunch_run").focus();';
  
 	$js = "if(document.getElementById('".$myPid."_su_chk').checked == true) { ".$onCheck." } else { ".$unCheck." }";
 
@@ -63,7 +63,7 @@ function eyeLaunch_run($params=null) {
 	$myLabel2->show();
 	$myLabel2->setCss(array('display'=>'none'));
 
-	$myTextboxU = new Textbox(array('name'=>'eyeLaunch_user','width'=>212,'father'=>'wnd1_Content','x'=>30,
+	$myTextboxU = new Textbox(array('name'=>'xenonLaunch_user','width'=>212,'father'=>'wnd1_Content','x'=>30,
 		'y'=>145));
 	$myTextboxU->show();
 	$myTextboxU->setCss(array('display'=>'none'));
@@ -73,7 +73,7 @@ function eyeLaunch_run($params=null) {
 	$myLabel2->show();
 	$myLabel2->setCss(array('display'=>'none'));
 
-	$myTextboxP = new Textbox(array('name'=>'eyeLaunch_pass','width'=>212,'father'=>'wnd1_Content','x'=>30,
+	$myTextboxP = new Textbox(array('name'=>'xenonLaunch_pass','width'=>212,'father'=>'wnd1_Content','x'=>30,
 		'y'=>185,'password' => 2));
 	$myTextboxP->show();
 	$myTextboxP->setCss(array('display'=>'none'));
@@ -102,7 +102,7 @@ function eyeLaunch_run($params=null) {
 	$myTextbox->focus();
 }
 
-function eyeLaunch_end($params=null) {
+function xenonLaunch_end($params=null) {
 	eyeWidgets('unserialize');
 }
 

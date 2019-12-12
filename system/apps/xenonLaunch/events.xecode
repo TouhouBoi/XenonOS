@@ -15,17 +15,17 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 /*
-	events resource for eyeLaunch
+	events resource for xenonLaunch
 */
 
-function eyeLaunch_on_Message($params="") {
+function xenonLaunch_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeLaunch_on_doLaunch($params="") {
+function xenonLaunch_on_doLaunch($params="") {
 	global $currentUser;
 
-	$myApp = $GLOBALS['eyeLaunch_run']->text;
+	$myApp = $GLOBALS['xenonLaunch_run']->text;
 
 	$myApp = sec('cleanOutPutString',array('var'=>$myApp,'maxLen' => 50,'noreturn' => 1));
 
@@ -34,8 +34,8 @@ function eyeLaunch_on_doLaunch($params="") {
 	array_shift($arguments);
 
 	if($GLOBALS['su_chk']->checked == 1) {
-		$user = $GLOBALS['eyeLaunch_user']->text;
-		$pass = base64_decode($GLOBALS['eyeLaunch_pass']->text);
+		$user = $GLOBALS['xenonLaunch_user']->text;
+		$pass = base64_decode($GLOBALS['xenonLaunch_pass']->text);
 		if(empty($user) || (empty($pass) && $currentUser != ROOTUSER)) {
 			xenonx('messageBox',array('content' => 'Error, empty username or password'));
 			return false;
@@ -155,7 +155,7 @@ function parseArguments($myApp){
 	return $items;
 }
 
-function eyeLaunch_on_Close(){
+function xenonLaunch_on_Close(){
 	proc('end');
 }
 

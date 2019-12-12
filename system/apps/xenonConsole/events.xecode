@@ -38,7 +38,7 @@ function xenonConsole_on_sendCmd($params=null) {
 	}
 }
 
-//steal from eyeLaunch
+//steal from xenonLaunch
 function parseArguments($myApp){
 /*Remplacing escaped quotes and spaces
  *
