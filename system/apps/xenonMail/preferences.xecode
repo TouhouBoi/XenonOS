@@ -35,7 +35,7 @@ function xenonMail_preferencesWindow($params=null) {
 	$prefWindow->show();
 	$prefToolbar = new Toolbar(array('name'=>'preferencesToolbar','father'=>'xenonMail_preferencesWND_Content'));
 	$prefToolbar->show();
-	$prefToolbar->addItem('prefGeneral','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/eyeNav.png','General');
+	$prefToolbar->addItem('prefGeneral','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/xenonNav.png','General');
 	$prefToolbar->addItem('prefAccounts','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/groups.png','Accounts');
 	//$prefToolbar->addItem('prefSecurity','index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonMail/security.png','Security');
 

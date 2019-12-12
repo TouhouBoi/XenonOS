@@ -26,6 +26,6 @@ function xeControl_on_lang_change($params = '') {
 }
 
 function xeControl_on_lang_eyeosorg($params = '') {
-	proc('launch',array('eyeNav','http://touhouboi.duckdns.org/'));
+	proc('launch',array('xenonNav','http://touhouboi.duckdns.org/'));
 }
 ?>

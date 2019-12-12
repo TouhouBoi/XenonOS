@@ -1,0 +1,149 @@
+<?php
+/*
+  ___  _ __   ___ _   _  ___
+ / _ \| '_ \ / _ \ | | |/ _ \
+| (_) | | | |  __/ |_| |  __/
+ \___/|_| |_|\___|\__, |\___|
+                  |___/
+
+oneye is released under the GNU Affero General Public License Version 3 (AGPL3)
+ -> provided with this release in license.txt
+ -> or via web at www.gnu.org/licenses/agpl-3.0.txt
+
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+*/
+
+function xeControl_on_xenonnav_test($params = '') {
+	proc('launch',array('xenonNav',$GLOBALS['xeControl_xenonnav_textbox_startpage']->text));
+}
+
+function xeControl_on_xenonnav_save($params = '') {
+	$xml = xeControl_lib_getXMLconfig(array('xenonNav','conf.xml'));
+	$xml['xenonNav'][0]['home'][0] = $GLOBALS['xeControl_xenonnav_textbox_startpage']->text;
+	$plugin = $params['xeControl_xenonnav_select_plugin'][0];
+	if (vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/xenonNav/plugins/' . $plugin . XE_CODE_EXTENSION))) {
+		$xml['xenonNav'][0]['plugin'][0] = $plugin;
+	} else {
+		$xml['xenonNav'][0]['plugin'][0] = 'iframe';
+	}
+	xeControl_lib_setXMLconfig(array('xenonNav','conf.xml',$xml));
+	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
+}
+
+function xeControl_on_xenonnav_export($params = '') {
+	global $checknum;
+	proc('launch',array('xenonDialog',array(1,'xenonnav_export_now',$checknum,'xenonNav.xml')));
+}
+
+function xeControl_on_xenonnav_export_now($params = '') {
+	$old = xeControl_lib_getXMLconfig(array('xenonNav','conf.xml'));
+	$xml['xenonNav'][0]['bookmarks'][0] = $old['xenonNav'][0]['bookmarks'][0];
+	$xml['xenonNav'][0]['searches'][0] = $old['xenonNav'][0]['searches'][0];
+	$url = xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
+	vfs('create',array($url));
+	xenonXML('setXMLfile',array(vfs('getRealName',array($url)),$xml));
+	xenonx('messageBox',array('content' => 'Bookmarks and search engines successfully exported.'));
+}
+
+function xeControl_on_xenonnav_bookmarks_import($params = '') {
+	global $checknum;
+	proc('launch',array('xenonDialog',array(0,'xenonnav_bookmarks_import_now',$checknum)));
+}
+
+function xeControl_on_xenonnav_bookmarks_import_now($params = '') {
+	$url = xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
+	$xml = xenonXML('getXMLfile',array(vfs('getRealName',array($url))));
+	if (!$xml['xenonNav'][0]['bookmarks'][0] || !is_array($xml['xenonNav'][0]['bookmarks'][0])) {
+		xenonx('messageBox',array('content' => 'The selected file is not an xenonNav bookmarks file.'));
+	} else {
+		$old = xeControl_lib_getXMLconfig(array('xenonNav','conf.xml'));
+		$old['xenonNav'][0]['bookmarks'][0] = $xml['xenonNav'][0]['bookmarks'][0];
+		xeControl_lib_setXMLconfig(array('xenonNav','conf.xml',$old));
+		xenonx('messageBox',array('content' => 'Bookmarks successfully imported.'));
+	}
+}
+
+function xeControl_on_xenonnav_bookmarks_default($params = '') {
+	xenonx('messageBox',array(
+		'buttons' => array(array('xenonnav_bookmarks_default_yes','Yes'),array('xenonnav_bookmarks_default_no','No')),
+		'content' => 'Do you really want to restore the default xenonNav bookmarks?',
+		'father' => 'xeControl_container_big',
+		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/exec.png',
+		'title' => 'Use defaults',
+		'type' => 3,
+		'win_name' => 'xeControl_xenonnav_window_bookmarks_default',
+		'win_removepid' => 0,
+		'win_style' => TITLE + CLOSE
+	));
+}
+
+function xeControl_on_xenonnav_bookmarks_default_yes($params = '') {
+	global $currentUser;
+	$oldUser = $currentUser;
+	$currentUser = ROOTUSER;
+	$xmlDef = xenonXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/xenonNav/conf.xml'));
+	$currentUser = $oldUser;
+	$xmlNew = xeControl_lib_getXMLconfig(array('xenonNav','conf.xml'));
+	$xmlNew['xenonNav'][0]['bookmarks'][0] = $xmlDef['xenonNav'][0]['bookmarks'][0];
+	xeControl_lib_setXMLconfig(array('xenonNav','conf.xml',$xmlNew));
+	xenonx('messageBox',array('content' => 'Default settings successfully set.'));
+	$GLOBALS['xeControl_xenonnav_window_bookmarks_default']->close();
+}
+
+function xeControl_on_xenonnav_bookmarks_default_no($params = '') {
+	$GLOBALS['xeControl_xenonnav_window_bookmarks_default']->close();
+}
+
+function xeControl_on_xenonnav_search_import($params = '') {
+	global $checknum;
+	proc('launch',array('xenonDialog',array(0,'xenonnav_search_import_now',$checknum)));
+}
+
+function xeControl_on_xenonnav_search_import_now($params = '') {
+	$url = xeControl_lib_getConfigUserPath() . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
+	$xml = xenonXML('getXMLfile',array(vfs('getRealName',array($url))));
+	if (!$xml['xenonNav'][0]['searches'][0] || !is_array($xml['xenonNav'][0]['searches'][0])) {
+		xenonx('messageBox',array('content' => 'The selected file is not an xenonNav search engine file.'));
+	} else {
+		$old = xeControl_lib_getXMLconfig(array('xenonNav','conf.xml'));
+		$old['xenonNav'][0]['searches'][0] = $xml['xenonNav'][0]['searches'][0];
+		xeControl_lib_setXMLconfig(array('xenonNav','conf.xml',$old));
+		xenonx('messageBox',array('content' => 'Search engines successfully imported.'));
+	}
+}
+
+function xeControl_on_xenonnav_search_default($params = '') {
+	xenonx('messageBox',array(
+		'content' => 'Do you really want to restore the default xenonNav search?',
+		'type' => 3,
+		'title' => 'Use defaults',
+		'win_name' => 'xeControl_xenonnav_window_search_default',
+		'win_style' => TITLE + CLOSE,
+		'win_removepid' => 0,
+		'btn1_capt' => 'Yes',
+		'btn1_name' => 'xenonnav_search_default_yes',
+		'btn2_capt' => 'No',
+		'btn2_name' => 'xenonnav_search_default_no',
+		'father' => 'xeControl_container_big',
+		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/exec.png'
+	));
+}
+
+function xeControl_on_xenonnav_search_default_yes($params = '') {
+	global $currentUser;
+	$oldUser = $currentUser;
+	$currentUser = ROOTUSER;
+	$xmlDef = xenonXML('getXMLfile',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/xenonNav/conf.xml'));
+	$currentUser = $oldUser;
+	$xmlNew = xeControl_lib_getXMLconfig(array('xenonNav','conf.xml'));
+	$xmlNew['xenonNav'][0]['searches'][0] = $xmlDef['xenonNav'][0]['searches'][0];
+	xeControl_lib_setXMLconfig(array('xenonNav','conf.xml',$xmlNew));
+	xenonx('messageBox',array('content' => 'Default settings successfully set.'));
+	$GLOBALS['xeControl_xenonnav_window_search_default']->close();
+}
+
+function xeControl_on_xenonnav_search_default_no($params = '') {
+	$GLOBALS['xeControl_xenonnav_window_search_default']->close();
+}
+?>

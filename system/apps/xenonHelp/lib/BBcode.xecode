@@ -38,8 +38,8 @@ $Text = preg_replace("(\[goto\=([$URLSearchString]*)\](.+?)\[/goto\])", '<span c
 $Text = preg_replace("(\[get\=([../$URLSearchString]*)\](.+?)\[/get\])", '<span class="goto" onclick="sendMsg(\''.$checknum.'\',\'open\',\'$1\');">$2</span>', $Text);
 
 // Perform URL Search
-$Text = preg_replace("/\[url\]([$URLSearchString]*)\[\/url\]/", '<span class="url" onclick="sendMsg(\''.$checknum.'\',\'eyeNav\',\'$1\');">$1</span>', $Text);
-$Text = preg_replace("(\[url\=([$URLSearchString]*)\](.+?)\[/url\])", '<span class="url" onclick="sendMsg(\''.$checknum.'\',\'eyeNav\',\'$1\');">$2</span>', $Text);
+$Text = preg_replace("/\[url\]([$URLSearchString]*)\[\/url\]/", '<span class="url" onclick="sendMsg(\''.$checknum.'\',\'xenonNav\',\'$1\');">$1</span>', $Text);
+$Text = preg_replace("(\[url\=([$URLSearchString]*)\](.+?)\[/url\])", '<span class="url" onclick="sendMsg(\''.$checknum.'\',\'xenonNav\',\'$1\');">$2</span>', $Text);
 
 // Perform MAIL Search
 $Text = preg_replace("(\[mail\]([$MAILSearchString]*)\[/mail\])", '<a href="mailto:$1" class="mail" >$1</a>', $Text);

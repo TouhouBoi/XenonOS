@@ -19,7 +19,7 @@ global $currentUser;
 $ContentY = 10;
 // Configure the startpage
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyenav_label_startpages',
+	'name' => 'xeControl_xenonnav_label_startpages',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -30,10 +30,10 @@ $myLabel->setCss(array(
 	'font-weight' => 'bold'
 ));
 $ContentY += 30;
-$NavUserConf = xeControl_lib_getXMLconfig(array('eyeNav','conf.xml'));
+$NavUserConf = xeControl_lib_getXMLconfig(array('xenonNav','conf.xml'));
 // Startpage
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyenav_label_startpage',
+	'name' => 'xeControl_xenonnav_label_startpage',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -41,25 +41,25 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myTextbox = new Textbox(array(
-	'name' => 'xeControl_eyenav_textbox_startpage',
+	'name' => 'xeControl_xenonnav_textbox_startpage',
 	'father' => $eyeContainer,
 	'x' => 160,
 	'y' => $ContentY,
 	'width' => 140,
-	'text' => $NavUserConf['eyeNav'][0]['home'][0]
+	'text' => $NavUserConf['xenonNav'][0]['home'][0]
 ));
 $myTextbox->show();
-$myTextbox->addEnterEventMsg('eyenav_test');
+$myTextbox->addEnterEventMsg('xenonnav_test');
 $myTextbox->focus();
 // Test address
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyenav_label_test',
+	'name' => 'xeControl_xenonnav_label_test',
 	'father' => $eyeContainer,
 	'x' => 320,
 	'y' => $ContentY + 3,
 	'text' => 'Test Address',
 	'disablemsg' => 0,
-	'signal' => 'eyenav_test'
+	'signal' => 'xenonnav_test'
 ));
 $myLabel->addFriend($myTextbox);
 $myLabel->show();
@@ -70,7 +70,7 @@ $myLabel->setCss(array(
 $ContentY += 30;
 // Browse Plugin
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyenav_label_plugin',
+	'name' => 'xeControl_xenonnav_label_plugin',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY + 3,
@@ -78,7 +78,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $mySelect = new Select(array(
-	'name' => 'xeControl_eyenav_select_plugin',
+	'name' => 'xeControl_xenonnav_select_plugin',
 	'father' => $eyeContainer,
 	'width' => 145,
 	'x' => 160,
@@ -88,12 +88,12 @@ $mySelect->show();
 $mySelect->addOption('Iframe (' . i18n('translate',array('Default')) . ')','iframe');
 $oldUser = $currentUser;
 $currentUser = ROOTUSER;
-$openDir = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/plugins/','*' . XE_CODE_EXTENSION));
+$openDir = vfs('real_getDirContent',array(XENONOS_ROOT . '/' . APP_DIR . '/xenonNav/plugins/','*' . XE_CODE_EXTENSION));
 $currentUser = $oldUser;
 foreach ($openDir as $plugin) {
 	$plugin = basename($plugin,XE_CODE_EXTENSION);
 	if ($plugin != 'iframe') {
-		if ($plugin == $NavUserConf['eyeNav'][0]['plugin'][0]) {
+		if ($plugin == $NavUserConf['xenonNav'][0]['plugin'][0]) {
 			$select = 1;
 		} else {
 			$select = 0;
@@ -104,12 +104,12 @@ foreach ($openDir as $plugin) {
 $ContentY += 30;
 // Save Changes
 $myButton = new Button(array(
-	'name' => 'xeControl_eyenav_button_save',
+	'name' => 'xeControl_xenonnav_button_save',
 	'father' => $eyeContainer,
 	'x' => 50,
 	'y' => $ContentY,
 	'caption' => 'Save Changes',
-	'signal' => 'eyenav_save'
+	'signal' => 'xenonnav_save'
 ));
 $myButton->addFriend($myTextbox);
 $myButton->addFriend($mySelect);
@@ -117,7 +117,7 @@ $myButton->show();
 $ContentY += 60;
 // Export default bookmarks and search engines
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyenav_label_export',
+	'name' => 'xeControl_xenonnav_label_export',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -130,9 +130,9 @@ $myLabel->setCss(array(
 $ContentY += 30;
 // Export
 $myButton = new Button(array(
-	'name' => 'xeControl_eyenav_button_export',
+	'name' => 'xeControl_xenonnav_button_export',
 	'father' => $eyeContainer,
-	'signal' => 'eyenav_export',
+	'signal' => 'xenonnav_export',
 	'caption' => 'Export',
 	'width' => 90,
 	'x' => 50,
@@ -143,7 +143,7 @@ $myButton->show();
 $ContentY += 60;
 // Manage default bookmarks
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyenav_label_bookmarks_import',
+	'name' => 'xeControl_xenonnav_label_bookmarks_import',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -156,9 +156,9 @@ $myLabel->setCss(array(
 $ContentY += 30;
 // Import
 $myButton = new Button(array(
-	'name' => 'xeControl_eyenav_button_bookmarks_import',
+	'name' => 'xeControl_xenonnav_button_bookmarks_import',
 	'father' => $eyeContainer,
-	'signal' => 'eyenav_bookmarks_import',
+	'signal' => 'xenonnav_bookmarks_import',
 	'caption' => 'Import',
 	'width' => 90,
 	'x' => 50,
@@ -169,9 +169,9 @@ $myButton->show();
 if (xeControl_lib_getConfigUser() != '[skel]') {
 	// Use defaults
 	$myButton = new Button(array(
-		'name' => 'xeControl_eyenav_button_bookmarks_default',
+		'name' => 'xeControl_xenonnav_button_bookmarks_default',
 		'father' => $eyeContainer,
-		'signal' => 'eyenav_bookmarks_default',
+		'signal' => 'xenonnav_bookmarks_default',
 		'caption' => 'Use Defaults',
 		'width' => 100,
 		'x' => 200,
@@ -183,7 +183,7 @@ if (xeControl_lib_getConfigUser() != '[skel]') {
 $ContentY += 60;
 // Manage default search engines
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyenav_label_search_import',
+	'name' => 'xeControl_xenonnav_label_search_import',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -196,9 +196,9 @@ $myLabel->setCss(array(
 $ContentY += 30;
 // Import
 $myButton = new Button(array(
-	'name' => 'xeControl_eyenav_button_search_import',
+	'name' => 'xeControl_xenonnav_button_search_import',
 	'father' => $eyeContainer,
-	'signal' => 'eyenav_search_import',
+	'signal' => 'xenonnav_search_import',
 	'caption' => 'Import',
 	'width' => 90,
 	'x' => 50,
@@ -209,9 +209,9 @@ $myButton->show();
 if (xeControl_lib_getConfigUser() != '[skel]') {
 	// Use defaults
 	$myButton = new Button(array(
-		'name' => 'xeControl_eyenav_button_search_default',
+		'name' => 'xeControl_xenonnav_button_search_default',
 		'father' => $eyeContainer,
-		'signal' => 'eyenav_search_default',
+		'signal' => 'xenonnav_search_default',
 		'caption' => 'Use Defaults',
 		'width' => 100,
 		'x' => 200,

@@ -32,7 +32,7 @@ function xenonInfo_on_Message($params = '')
 
 function xenonInfo_on_Navigate($params = '')
 {
-	proc('launch', array('eyeNav','http://touhouboi.duckdns.org/'));
+	proc('launch', array('xenonNav','http://touhouboi.duckdns.org/'));
 }
 
 function xenonInfo_on_PhpInfo($params = null)

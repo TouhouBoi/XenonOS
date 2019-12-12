@@ -20,33 +20,33 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeNav_lib_ShowBookmarks($params = array()) {
+function xenonNav_lib_ShowBookmarks($params = array()) {
 	global $myPid;
 
 	$url = '<none>';
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-	$xml['eyeNav'][0]['sidebar'][0] = 1;
-	xenonXML('setXMLconfig',array('eyeNav','conf.xml',$xml));
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+	$xml['xenonNav'][0]['sidebar'][0] = 1;
+	xenonXML('setXMLconfig',array('xenonNav','conf.xml',$xml));
 	if ($params['arg'][0]) {
 		$url = um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
 		$xml = xenonXML('getXMLfile',array(vfs('getRealName',array($url))));
-		if (!$xml['eyeNav'][0]['bookmarks'][0] || !is_array($xml['eyeNav'][0]['bookmarks'][0])) {
-			xenonx('messageBox',array('content' => 'The selected file is not a valid eyeNav bookmarks file!'));
+		if (!$xml['xenonNav'][0]['bookmarks'][0] || !is_array($xml['xenonNav'][0]['bookmarks'][0])) {
+			xenonx('messageBox',array('content' => 'The selected file is not a valid xenonNav bookmarks file!'));
 			return;
 		}
 	}
 
-	if (is_object($GLOBALS['eyeNav_hidden_search_url'])) {
-		$GLOBALS['eyeNav_hidden_search_url']->setText('none');
+	if (is_object($GLOBALS['xenonNav_hidden_search_url'])) {
+		$GLOBALS['xenonNav_hidden_search_url']->setText('none');
 	}
-	if (is_object($GLOBALS['eyeNav_box'])) {
-		$GLOBALS['eyeNav_box']->remove();
+	if (is_object($GLOBALS['xenonNav_box'])) {
+		$GLOBALS['xenonNav_box']->remove();
 	}
 
 	$myContainer = new Container(array(
-		'father' => 'eyeNav_window_box',
+		'father' => 'xenonNav_window_box',
 		'height' => 0,
-		'name' => 'eyeNav_box',
+		'name' => 'xenonNav_box',
 		'width' => 140,
 		'x' => 0,
 		'y' => 0
@@ -56,19 +56,19 @@ function eyeNav_lib_ShowBookmarks($params = array()) {
 	$myContainer->setCss(array(
 		'direction' => 'ltr'
 	));
-	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeNav_window_box_Content").style.top = "0";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonNav_window_box_Content").style.top = "0";'));
 
-	if (!is_object($GLOBALS['eyeNav_hidden_bookmarks_url'])) {
+	if (!is_object($GLOBALS['xenonNav_hidden_bookmarks_url'])) {
 		// $myHidden
 		$myHidden = new Hidden(array(
-			'father' => 'eyeNav_box',
-			'name' => 'eyeNav_hidden_bookmarks_url',
+			'father' => 'xenonNav_box',
+			'name' => 'xenonNav_hidden_bookmarks_url',
 			'text' => $url
 		));
 		$myHidden->show();
 		eyeWidgets('serialize',array($myHidden));
 	} else {
-		$GLOBALS['eyeNav_hidden_bookmarks_url']->setText($url);
+		$GLOBALS['xenonNav_hidden_bookmarks_url']->setText($url);
 	}
 
 	$x = 1;
@@ -77,65 +77,65 @@ function eyeNav_lib_ShowBookmarks($params = array()) {
 	if (!is_object($GLOBALS['selectedBookmarkId_HID'])) {
 		$myHidden = new Hidden(array(
 			'name' => 'selectedBookmarkId_HID',
-			'father' => 'eyeNav_box',
+			'father' => 'xenonNav_box',
 			'text' => ''
 		));
 		eyeWidgets('serialize',array($myHidden));
 	}
 	// add for new bookmarks
-	eyeNav_lib_refreshTree();
+	xenonNav_lib_refreshTree();
 
 
 }
-function eyeNav_lib_refreshTree() {
+function xenonNav_lib_refreshTree() {
 	if (is_object($GLOBALS['nav_TREE'])) {
 		$GLOBALS['nav_TREE']->remove();
 	}
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
 	$myTree = new Tree(array(
 		'name' => 'nav_TREE',
-		'father' => 'eyeNav_box',
+		'father' => 'xenonNav_box',
 		'x' => 0,
 		'y' => 0,
 		'width' => 130,
 		'clickTree' => 1
 	));
 	$myTree->show(0);
-	$myTree->addItem('nav_TREE', 'nav_TREE_root', i18n('translate',array($xml['eyeNav'][0]['bookmarks'][0]['title'][0])));
+	$myTree->addItem('nav_TREE', 'nav_TREE_root', i18n('translate',array($xml['xenonNav'][0]['bookmarks'][0]['title'][0])));
 	$myTree->addSubList('nav_TREE_root', 'nav#folder_root');
-	eyeNav_lib_addContextMenu('#menu_nav_TREE_root','nav_TREE_root', true);
-	eyeNav_lib_fillBookmarks($xml['eyeNav'][0]['bookmarks'][0],'nav#folder_root');
+	xenonNav_lib_addContextMenu('#menu_nav_TREE_root','nav_TREE_root', true);
+	xenonNav_lib_fillBookmarks($xml['xenonNav'][0]['bookmarks'][0],'nav#folder_root');
 	$myTree->processList();
 	$myTree->expandTree();
 }
 
-function eyeNav_lib_fillBookmarks($xml,$folder) {
+function xenonNav_lib_fillBookmarks($xml,$folder) {
 	if (is_array($xml['bookmark'])) {
 		foreach ($xml['bookmark'] as $bookmark) {
 			if ($bookmark['type'][0] == 'folder') {
 				$GLOBALS['nav_TREE']->addItem($folder,'nav#item_'.$bookmark['id'][0],$bookmark['name'][0]);
 				$GLOBALS['nav_TREE']->addSubList('nav#item_'.$bookmark['id'][0],'nav#folder_'.$bookmark['id'][0]);
-				eyeNav_lib_addContextMenu('#foldermenu_nav_'.$bookmark['id'][0],'nav#item_'.$bookmark['id'][0]);
-				eyeNav_lib_fillBookmarks($bookmark,'nav#folder_'.$bookmark['id'][0]);
+				xenonNav_lib_addContextMenu('#foldermenu_nav_'.$bookmark['id'][0],'nav#item_'.$bookmark['id'][0]);
+				xenonNav_lib_fillBookmarks($bookmark,'nav#folder_'.$bookmark['id'][0]);
 			} else {
 				$GLOBALS['nav_TREE']->addItem($folder,'nav#item_'.$bookmark['id'][0],$bookmark['name'][0]);
-				eyeNav_lib_addContextMenu('#menu_nav_'.$bookmark['id'][0],'nav#item_'.$bookmark['id'][0]);
+				xenonNav_lib_addContextMenu('#menu_nav_'.$bookmark['id'][0],'nav#item_'.$bookmark['id'][0]);
 			}
 		}
 	}
 }
 
-function eyeNav_lib_getUrl($xml,$id) {
+function xenonNav_lib_getUrl($xml,$id) {
 	foreach ($xml['bookmark'] as $bookmark) {
 		if (($bookmark['type'][0] == 'url') && ($id == $bookmark['id'][0])) {
 			return $bookmark['url'][0];
 		} else {
-			eyeNav_lib_getUrl($bookmark,$id);
+			xenonNav_lib_getUrl($bookmark,$id);
 		}
 	}
 }
 
-function eyeNav_lib_addContextMenu($menuName, $nodeName, $addOnly=false) {
+function xenonNav_lib_addContextMenu($menuName, $nodeName, $addOnly=false) {
 	$BookmarkId = /* utf8 */ substr($nodeName, 9);
 
 	$myMenu = new ContextMenu(array(
@@ -189,28 +189,28 @@ function eyeNav_lib_addContextMenu($menuName, $nodeName, $addOnly=false) {
 	}
 }
 
-function eyeNav_on_nav_asApp($params=null,$theurl = null) {
-	eyeNav_prepareForModalDialog();
+function xenonNav_on_nav_asApp($params=null,$theurl = null) {
+	xenonNav_prepareForModalDialog();
 	global $myPid;
 	$GLOBALS['selectedBookmarkId_HID']->setText($params);
 	$GLOBALS['nav_TREE']->selectItem('nav#item_'.$params);
 
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-	$xml = $xml['eyeNav'][0]['bookmarks'][0]['bookmark'];
-	$bookmark = eyeNav_getBookmarkFromId($xml,$params);
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+	$xml = $xml['xenonNav'][0]['bookmarks'][0]['bookmark'];
+	$bookmark = xenonNav_getBookmarkFromId($xml,$params);
 
 	proc('launch',array('xenonIFramize',$bookmark['url'][0]));
 }
 
-function eyeNav_on_nav_addBookmark($params=null,$theurl = null) {
-	eyeNav_prepareForModalDialog();
+function xenonNav_on_nav_addBookmark($params=null,$theurl = null) {
+	xenonNav_prepareForModalDialog();
 	global $myPid;
 	$GLOBALS['selectedBookmarkId_HID']->setText($params);
 	$GLOBALS['nav_TREE']->selectItem('nav#item_'.$params);
 
 	$myWindow = new Window(array(
 		'name' => 'addBookmark_DLG',
-		'father' => 'eyeNav_window_Content',
+		'father' => 'xenonNav_window_Content',
 		'type' => NOLIST_CLOSE_WINDOW,
 		'cent' => 1,
 		'width' => 540,
@@ -246,15 +246,15 @@ function eyeNav_on_nav_addBookmark($params=null,$theurl = null) {
 	$myTree->addItem('addBookmark_folders_TREE', 'addBookmark_folders_TREE_root', i18n('translate',array('Bookmarks')));
 	$myTree->addSubList('addBookmark_folders_TREE_root', 'addBookmark#folder_root');
 
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-	$xml = $xml['eyeNav'][0]['bookmarks'][0];
-	eyeNav_lib_fillFolders($xml,'addBookmark#folder_root','add');
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+	$xml = $xml['xenonNav'][0]['bookmarks'][0];
+	xenonNav_lib_fillFolders($xml,'addBookmark#folder_root','add');
 	$myTree->processList();
 	$myTree->setCss(array('border' => 'thin solid grey'));
 	if ($params!='root') {
-		$bm = eyeNav_getBookmarkFromId($xml['bookmark'],$params);
+		$bm = xenonNav_getBookmarkFromId($xml['bookmark'],$params);
 		if ($bm['type'][0] == 'url') {
-			$parent = eyeNav_getParentBookmarkFromId($xml,$GLOBALS['selectedBookmarkId_HID']->text);
+			$parent = xenonNav_getParentBookmarkFromId($xml,$GLOBALS['selectedBookmarkId_HID']->text);
 			$parent = $parent['id'][0];
 			if ($parent == 'root') {
 				$parentFolderId = 'addBookmark_folders_TREE_root';
@@ -359,15 +359,15 @@ function eyeNav_on_nav_addBookmark($params=null,$theurl = null) {
 
 }
 
-function eyeNav_on_nav_addFolder($params=null) {
-	eyeNav_prepareForModalDialog();
+function xenonNav_on_nav_addFolder($params=null) {
+	xenonNav_prepareForModalDialog();
 	global $myPid;
 	$GLOBALS['selectedBookmarkId_HID']->setText($params);
 	$GLOBALS['nav_TREE']->selectItem('nav#item_'.$params);
 
 	$myWindow = new Window(array(
 		'name' => 'addFolder_DLG',
-		'father' => 'eyeNav_window_Content',
+		'father' => 'xenonNav_window_Content',
 		'type' => NOLIST_CLOSE_WINDOW,
 		'cent' => 1,
 		'width' => 540,
@@ -403,15 +403,15 @@ function eyeNav_on_nav_addFolder($params=null) {
 	//root node
 	$myTree->addItem('addFolder_folders_TREE', 'addFolder_folders_TREE_root', i18n('translate',array('Bookmarks')));
 	$myTree->addSubList('addFolder_folders_TREE_root', 'addFolder#folder_root');
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-	$xml = $xml['eyeNav'][0]['bookmarks'][0];
-	eyeNav_lib_fillFolders($xml,'addFolder#folder_root','add');
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+	$xml = $xml['xenonNav'][0]['bookmarks'][0];
+	xenonNav_lib_fillFolders($xml,'addFolder#folder_root','add');
 	$myTree->processList();
 	$myTree->setCss(array('border' => 'thin solid grey'));
 	if ($params!='root') {
-		$bm = eyeNav_getBookmarkFromId($xml['bookmark'],$params);
+		$bm = xenonNav_getBookmarkFromId($xml['bookmark'],$params);
 		if ($bm['type'][0] == 'url') {
-			$parent = eyeNav_getParentBookmarkFromId($xml,$GLOBALS['selectedBookmarkId_HID']->text);
+			$parent = xenonNav_getParentBookmarkFromId($xml,$GLOBALS['selectedBookmarkId_HID']->text);
 			$parent = $parent['id'][0];
 			if ($parent == 'root') {
 				$parentFolderId = 'addFolder_folders_TREE_root';
@@ -485,7 +485,7 @@ function eyeNav_on_nav_addFolder($params=null) {
 	eyeWidgets('serialize',array($selectedFolder));
 }
 
-function eyeNav_on_addFolder_folders_TREE($params=null) {
+function xenonNav_on_addFolder_folders_TREE($params=null) {
 	$item = $params['itemName'][0];
 	if ($item == 'addFolder_folders_TREE_root') {
 		$GLOBALS['addFolder_selectedFolder_HID']->setText('root');
@@ -494,7 +494,7 @@ function eyeNav_on_addFolder_folders_TREE($params=null) {
 	}
 }
 
-function eyeNav_on_addBookmark_folders_TREE($params=null) {
+function xenonNav_on_addBookmark_folders_TREE($params=null) {
 	$item = $params['itemName'][0];
 	if ($item == 'addBookmark_folders_TREE_root') {
 		$GLOBALS['addBookmark_selectedFolder_HID']->setText('root');
@@ -503,7 +503,7 @@ function eyeNav_on_addBookmark_folders_TREE($params=null) {
 	}
 }
 
-function eyeNav_on_editBookmark_folders_TREE($params=null) {
+function xenonNav_on_editBookmark_folders_TREE($params=null) {
 	$item = $params['itemName'][0];
 	if ($item == 'editBookmark_folders_TREE_root') {
 		$GLOBALS['editBookmark_selectedFolder_HID']->setText('root');
@@ -512,7 +512,7 @@ function eyeNav_on_editBookmark_folders_TREE($params=null) {
 	}
 }
 
-function eyeNav_on_editFolder_folders_TREE($params=null) {
+function xenonNav_on_editFolder_folders_TREE($params=null) {
 	$item = $params['itemName'][0];
 	if ($item == 'editFolder_folders_TREE_root') {
 		$GLOBALS['editFolder_selectedFolder_HID']->setText('root');
@@ -521,40 +521,40 @@ function eyeNav_on_editFolder_folders_TREE($params=null) {
 	}
 }
 
-function eyeNav_lib_fillFolders($xml,$folder,$label='',$ignore = null) {
+function xenonNav_lib_fillFolders($xml,$folder,$label='',$ignore = null) {
 	if (is_array($xml['bookmark'])) {
 		foreach ($xml['bookmark'] as $bookmark) {
 			if ($bookmark['type'][0] == 'folder') {
 				if ($bookmark['id'][0]!=$ignore) {
 					$GLOBALS['nav_TREE']->addItem($folder,'nav#item_'.$label.'_'.$bookmark['id'][0],$bookmark['name'][0]);
 					$GLOBALS['nav_TREE']->addSubList('nav#item_'.$label.'_'.$bookmark['id'][0],'nav#folder_'.$label.'_'.$bookmark['id'][0]);
-					eyeNav_lib_fillFolders($bookmark,'nav#folder_'.$label.'_'.$bookmark['id'][0],$label,$ignore);
+					xenonNav_lib_fillFolders($bookmark,'nav#folder_'.$label.'_'.$bookmark['id'][0],$label,$ignore);
 				}
 			}
 		}
 	}
 }
-function eyeNav_on_nav_edit($params=null) {
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-	$bookmark = eyeNav_getBookmarkFromId($xml['eyeNav'][0]['bookmarks'][0]['bookmark'], $params);
+function xenonNav_on_nav_edit($params=null) {
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+	$bookmark = xenonNav_getBookmarkFromId($xml['xenonNav'][0]['bookmarks'][0]['bookmark'], $params);
 	if ($bookmark['type'][0] == 'folder') {
-		eyeNav_on_nav_edit_folder($params);
+		xenonNav_on_nav_edit_folder($params);
 	} else {
-		eyeNav_on_nav_edit_bookmark($params);
+		xenonNav_on_nav_edit_bookmark($params);
 	}
 }
-function eyeNav_on_nav_edit_folder($params=null) {
-	eyeNav_prepareForModalDialog();
+function xenonNav_on_nav_edit_folder($params=null) {
+	xenonNav_prepareForModalDialog();
 	global $myPid;
 	$GLOBALS['selectedBookmarkId_HID']->setText($params);
 	$GLOBALS['nav_TREE']->selectItem('nav#item_'.$params);
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-	$xml = $xml['eyeNav'][0]['bookmarks'][0]['bookmark'];
-	$bookmark = eyeNav_getBookmarkFromId($xml,$params);
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+	$xml = $xml['xenonNav'][0]['bookmarks'][0]['bookmark'];
+	$bookmark = xenonNav_getBookmarkFromId($xml,$params);
 
 	$myWindow = new Window(array(
 		'name' => 'editFolder_DLG',
-		'father' => 'eyeNav_window_Content',
+		'father' => 'xenonNav_window_Content',
 		'type' => NOLIST_CLOSE_WINDOW,
 		'cent' => 1,
 		'width' => 540,
@@ -588,14 +588,14 @@ function eyeNav_on_nav_edit_folder($params=null) {
 	xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_editFolder_folders_TREE").style.overflow = "auto";'));
 	$myTree->addItem('editFolder_folders_TREE', 'editFolder_folders_TREE_root', i18n('translate',array('Bookmarks')));
 	$myTree->addSubList('editFolder_folders_TREE_root', 'editFolder#folder_root');
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-	$xml = $xml['eyeNav'][0]['bookmarks'][0];
-	eyeNav_lib_fillFolders($xml,'editFolder#folder_root','edit',$params);
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+	$xml = $xml['xenonNav'][0]['bookmarks'][0];
+	xenonNav_lib_fillFolders($xml,'editFolder#folder_root','edit',$params);
 	$myTree->processList();
 	$myTree->setCss(array('border' => 'thin solid grey'));
 	if ($params!='root') {
-		$bm = eyeNav_getBookmarkFromId($xml['bookmark'],$params);
-		$parent = eyeNav_getParentBookmarkFromId($xml,$GLOBALS['selectedBookmarkId_HID']->text);
+		$bm = xenonNav_getBookmarkFromId($xml['bookmark'],$params);
+		$parent = xenonNav_getParentBookmarkFromId($xml,$GLOBALS['selectedBookmarkId_HID']->text);
 		$parent = $parent['id'][0];
 		if ($bm['type'][0] == 'url') {
 			if ($parent == 'root') {
@@ -678,18 +678,18 @@ function eyeNav_on_nav_edit_folder($params=null) {
 	eyeWidgets('serialize',array($selectedFolder));
 }
 
-function eyeNav_on_nav_edit_bookmark($params=null) {
-	eyeNav_prepareForModalDialog();
+function xenonNav_on_nav_edit_bookmark($params=null) {
+	xenonNav_prepareForModalDialog();
 	global $myPid;
 	$GLOBALS['selectedBookmarkId_HID']->setText($params);
 	$GLOBALS['nav_TREE']->selectItem('nav#item_'.$params);
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-	$xml = $xml['eyeNav'][0]['bookmarks'][0]['bookmark'];
-	$bookmark = eyeNav_getBookmarkFromId($xml,$params);
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+	$xml = $xml['xenonNav'][0]['bookmarks'][0]['bookmark'];
+	$bookmark = xenonNav_getBookmarkFromId($xml,$params);
 
 	$myWindow = new Window(array(
 		'name' => 'editBookmark_DLG',
-		'father' => 'eyeNav_window_Content',
+		'father' => 'xenonNav_window_Content',
 		'type' => NOLIST_CLOSE_WINDOW,
 		'cent' => 1,
 		'width' => 540,
@@ -724,15 +724,15 @@ function eyeNav_on_nav_edit_bookmark($params=null) {
 	//root node
 	$myTree->addItem('editBookmark_folders_TREE', 'editBookmark_folders_TREE_root', i18n('translate',array('Bookmarks')));
 	$myTree->addSubList('editBookmark_folders_TREE_root', 'editBookmark#folder_root');
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-	$xml = $xml['eyeNav'][0]['bookmarks'][0];
-	eyeNav_lib_fillFolders($xml,'editBookmark#folder_root','edit');
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+	$xml = $xml['xenonNav'][0]['bookmarks'][0];
+	xenonNav_lib_fillFolders($xml,'editBookmark#folder_root','edit');
 	$myTree->processList();
 	$myTree->setCss(array('border' => 'thin solid grey'));
 	if ($params!='root') {
-		$bm = eyeNav_getBookmarkFromId($xml['bookmark'],$params);
+		$bm = xenonNav_getBookmarkFromId($xml['bookmark'],$params);
 		if ($bm['type'][0] == 'url') {
-			$parent = eyeNav_getParentBookmarkFromId($xml,$GLOBALS['selectedBookmarkId_HID']->text);
+			$parent = xenonNav_getParentBookmarkFromId($xml,$GLOBALS['selectedBookmarkId_HID']->text);
 			$parent = $parent['id'][0];
 			if ($parent == 'root') {
 				$parentFolderId = 'editBookmark_folders_TREE_root';
@@ -838,14 +838,14 @@ function eyeNav_on_nav_edit_bookmark($params=null) {
 	eyeWidgets('serialize',array($selectedFolder));
 }
 
-function eyeNav_on_nav_del($params=null) {
-	eyeNav_prepareForModalDialog();
+function xenonNav_on_nav_del($params=null) {
+	xenonNav_prepareForModalDialog();
 	$GLOBALS['selectedBookmarkId_HID']->text = $params;
 	$GLOBALS['nav_TREE']->selectItem('nav#item_'.$params);
 	$id = $params;
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-	$xml = $xml['eyeNav'][0]['bookmarks'][0]['bookmark'];
-	$xml = eyeNav_getBookmarkFromId($xml,$id);
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+	$xml = $xml['xenonNav'][0]['bookmarks'][0]['bookmark'];
+	$xml = xenonNav_getBookmarkFromId($xml,$id);
 	$type = $xml['type'][0];
 	$name = $xml['name'][0];
 
@@ -862,23 +862,23 @@ function eyeNav_on_nav_del($params=null) {
 		'btn2_name' => 'delete_deleteNo_BTN',
 		'hidden_name' => 'delete_BookmarkId_HID',
 		'hidden_text' => $id,
-		'father' => 'eyeNav_window_Content',
+		'father' => 'xenonNav_window_Content',
 		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/editClean.png'
 	));
 }
-function eyeNav_on_delete_deleteNo_BTN($params=null) {
+function xenonNav_on_delete_deleteNo_BTN($params=null) {
 	$GLOBALS['delete_DLG']->close();
 }
-function eyeNav_on_delete_deleteYes_BTN($params=null) {
+function xenonNav_on_delete_deleteYes_BTN($params=null) {
 	$id = $GLOBALS['delete_BookmarkId_HID']->text;
 	$selectedid = $GLOBALS['selectedBookmarkId_HID']->text;
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-	$newBookmarksToSave = eyeNav_deleteBookmarkFolder($xml['eyeNav'][0]['bookmarks'][0], $id);
-	$xml['eyeNav'][0]['bookmarks'][0] = $newBookmarksToSave;
-	xenonXML('setXMLconfig',array('eyeNav','conf.xml',$xml));
-	if (xenonXML('setXMLconfig',array('eyeNav','conf.xml',$xml))){
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+	$newBookmarksToSave = xenonNav_deleteBookmarkFolder($xml['xenonNav'][0]['bookmarks'][0], $id);
+	$xml['xenonNav'][0]['bookmarks'][0] = $newBookmarksToSave;
+	xenonXML('setXMLconfig',array('xenonNav','conf.xml',$xml));
+	if (xenonXML('setXMLconfig',array('xenonNav','conf.xml',$xml))){
 		xenonx('messageBox',array('content'=> 'Element successfully deleted'));
-		eyeNav_lib_refreshTree();
+		xenonNav_lib_refreshTree();
 	}else
 		xenonx('messageBox',array('content'=> 'Error deleting the feed'));
 
@@ -887,11 +887,11 @@ function eyeNav_on_delete_deleteYes_BTN($params=null) {
 	}
 }
 
-function eyeNav_saveBookmarks($xml) {
+function xenonNav_saveBookmarks($xml) {
 
 }
 
-function eyeNav_deleteBookmarkFolder($bookmarks, $id) {
+function xenonNav_deleteBookmarkFolder($bookmarks, $id) {
 	if (!is_array($bookmarks))
 		return false;
 
@@ -901,20 +901,20 @@ function eyeNav_deleteBookmarkFolder($bookmarks, $id) {
 			break;
 		}
 		elseif ($value['type'][0] == 'folder') {
-			$bookmarks['bookmark'][$key] = eyeNav_deleteBookmarkFolder($value, $id);
+			$bookmarks['bookmark'][$key] = xenonNav_deleteBookmarkFolder($value, $id);
 		}
 	}
 	return $bookmarks;
 }
 
-function eyeNav_getBookmarkFromId($xml, $id) {
+function xenonNav_getBookmarkFromId($xml, $id) {
 	$return = false;
 	if ($id == null) {
 		return $xml;
 	}
 	foreach($xml as $key => $value) {
 		if ($value['type'][0] == 'folder')
-			$return = eyeNav_getBookmarkFromId($value['bookmark'], $id);
+			$return = xenonNav_getBookmarkFromId($value['bookmark'], $id);
 		if ($value['id'][0] == $id)
 			$return = $xml[$key];
 
@@ -923,7 +923,7 @@ function eyeNav_getBookmarkFromId($xml, $id) {
 	}
 	return $return;
 }
-function eyeNav_prepareForModalDialog() {
+function xenonNav_prepareForModalDialog() {
 	if ($GLOBALS['addBookmark_DLG'])
 		$GLOBALS['addBookmark_DLG']->close();
 
@@ -940,32 +940,32 @@ function eyeNav_prepareForModalDialog() {
 		$GLOBALS['delete_DLG']->close();
 }
 
-function eyeNav_lib_ShowSearch($params = array()) {
+function xenonNav_lib_ShowSearch($params = array()) {
 	global $myPid;
 
 	$url = '<none>';
-	$xml = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-	$xml['eyeNav'][0]['sidebar'][0] = 2;
-	xenonXML('setXMLconfig',array('eyeNav','conf.xml',$xml));
+	$xml = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+	$xml['xenonNav'][0]['sidebar'][0] = 2;
+	xenonXML('setXMLconfig',array('xenonNav','conf.xml',$xml));
 	if ($params['arg'][0]) {
 		$url = um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0];
 		$xml = xenonXML('getXMLfile',array(vfs('getRealName',array($url))));
-		if (!$xml['eyeNav'][0]['searches'][0] || !is_array($xml['eyeNav'][0]['searches'][0])) {
-			xenonx('messageBox',array('content' => 'The selected file is not a valid eyeNav search file!'));
+		if (!$xml['xenonNav'][0]['searches'][0] || !is_array($xml['xenonNav'][0]['searches'][0])) {
+			xenonx('messageBox',array('content' => 'The selected file is not a valid xenonNav search file!'));
 			return;
 		}
 	}
 
-	if (is_object($GLOBALS['eyeNav_hidden_bookmarks_url'])) {
-		$GLOBALS['eyeNav_hidden_bookmarks_url']->setText('none');
+	if (is_object($GLOBALS['xenonNav_hidden_bookmarks_url'])) {
+		$GLOBALS['xenonNav_hidden_bookmarks_url']->setText('none');
 	}
-	if (is_object($GLOBALS['eyeNav_box'])) {
-		$GLOBALS['eyeNav_box']->remove();
+	if (is_object($GLOBALS['xenonNav_box'])) {
+		$GLOBALS['xenonNav_box']->remove();
 	}
 
 	$myContainer = new Container(array(
-		'father' => 'eyeNav_window_box',
-		'name' => 'eyeNav_box',
+		'father' => 'xenonNav_window_box',
+		'name' => 'xenonNav_box',
 		'height' => 0,
 		'width' => 140,
 		'x' => 0,
@@ -976,25 +976,25 @@ function eyeNav_lib_ShowSearch($params = array()) {
 	$myContainer->setCss(array(
 		'direction' => 'ltr'
 	));
-	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeNav_window_box_Content").style.top = "0";'));
+	xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonNav_window_box_Content").style.top = "0";'));
 
-	if (!is_object($GLOBALS['eyeNav_hidden_search_url'])) {
+	if (!is_object($GLOBALS['xenonNav_hidden_search_url'])) {
 		// $myHidden
 		$myHidden = new Hidden(array(
-			'father' => 'eyeNav_box',
-			'name' => 'eyeNav_hidden_search_url',
+			'father' => 'xenonNav_box',
+			'name' => 'xenonNav_hidden_search_url',
 			'text' => $url
 		));
 		$myHidden->show();
 		eyeWidgets('serialize',array($myHidden));
 	} else {
-		$GLOBALS['eyeNav_hidden_search_url']->setText($url);
+		$GLOBALS['xenonNav_hidden_search_url']->setText($url);
 	}
 
 	$myLabel = new Label(array(
-		'father' => 'eyeNav_box',
-		'name' => 'eyeNav_box_label_0',
-		'text' => $xml['eyeNav'][0]['searches'][0]['title'][0],
+		'father' => 'xenonNav_box',
+		'name' => 'xenonNav_box_label_0',
+		'text' => $xml['xenonNav'][0]['searches'][0]['title'][0],
 		'x' => 10,
 		'y' => 0
 	));
@@ -1007,8 +1007,8 @@ function eyeNav_lib_ShowSearch($params = array()) {
 	));
 
 	$myLine = new Line(array(
-		'father' => 'eyeNav_box',
-		'name' => 'eyeNav_line_search_0',
+		'father' => 'xenonNav_box',
+		'name' => 'xenonNav_line_search_0',
 		'width' => 130,
 		'x' => 10,
 		'y' => 15
@@ -1017,8 +1017,8 @@ function eyeNav_lib_ShowSearch($params = array()) {
 
 	// 'Nav's search' search box
 	$myTextbox = new Textbox(array(
-		'father' => 'eyeNav_box',
-		'name' => 'eyeNav_search',
+		'father' => 'xenonNav_box',
+		'name' => 'xenonNav_search',
 		'width' => 130,
 		'x' => 10,
 		'y' => 25
@@ -1029,10 +1029,10 @@ function eyeNav_lib_ShowSearch($params = array()) {
 
 	$x = 1;
 	$boxY = 50;
-	foreach($xml['eyeNav'][0]['searches'][0]['category'] as $category) {
+	foreach($xml['xenonNav'][0]['searches'][0]['category'] as $category) {
 		$myLabel = new Label(array(
-			'father' => 'eyeNav_box',
-			'name' => 'eyeNav_box_label_' . $x,
+			'father' => 'xenonNav_box',
+			'name' => 'xenonNav_box_label_' . $x,
 			'text' => $category['name'][0],
 			'x' => 20,
 			'y' => $boxY
@@ -1047,14 +1047,14 @@ function eyeNav_lib_ShowSearch($params = array()) {
 		$boxY += 20;
 		foreach($category['link'] as $link) {
 			$myHiddenURL = new Hidden(array(
-				'father' => 'eyeNav_box',
-				'name' => 'eyeNav_box_hiddenSearch_' . $x,
+				'father' => 'xenonNav_box',
+				'name' => 'xenonNav_box_hiddenSearch_' . $x,
 				'text' => $link['url'][0]
 			));
 			$myHiddenURL->show();
 			$myImagebox = new Imagebox(array(
-				'father' => 'eyeNav_box',
-				'name' => 'eyeNav_box_imagebox_' . $x,
+				'father' => 'xenonNav_box',
+				'name' => 'xenonNav_box_imagebox_' . $x,
 				'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/12x12/link.png',
 				'x' => 30,
 				'y' => $boxY
@@ -1063,11 +1063,11 @@ function eyeNav_lib_ShowSearch($params = array()) {
 			$myImagebox->setCss(array(
 				'cursor' => 'pointer'
 			));
-			xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_eyeNav_box_imagebox_' . $x . '_Container").onclick = function() { window.open("' . str_replace('%s','" + document.getElementById("' . $myPid . '_eyeNav_search").value + "',$link['url'][0]) . '"); return false; }'));
+			xenonx('rawjs',array('js' => 'document.getElementById("' . $myPid . '_xenonNav_box_imagebox_' . $x . '_Container").onclick = function() { window.open("' . str_replace('%s','" + document.getElementById("' . $myPid . '_xenonNav_search").value + "',$link['url'][0]) . '"); return false; }'));
 			$myLabel = new Label(array(
 				'disablemsg' => 0,
-				'father' => 'eyeNav_box',
-				'name' => 'eyeNav_box_label_' . $x,
+				'father' => 'xenonNav_box',
+				'name' => 'xenonNav_box_label_' . $x,
 				'signal' => 'search_label',
 				'text' => $link['name'][0],
 				'x' => 46,
@@ -1087,8 +1087,8 @@ function eyeNav_lib_ShowSearch($params = array()) {
 	}
 
 	$myLine = new Line(array(
-		'father' => 'eyeNav_box',
-		'name' => 'eyeNav_line_search_1',
+		'father' => 'xenonNav_box',
+		'name' => 'xenonNav_line_search_1',
 		'width' => 130,
 		'x' => 10,
 		'y' => $boxY
@@ -1097,9 +1097,9 @@ function eyeNav_lib_ShowSearch($params = array()) {
 
 	$myButton = new Button(array(
 		'caption' => 'Open searches',
-		'father' => 'eyeNav_box',
+		'father' => 'xenonNav_box',
 		'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/folder.png',
-		'name' => 'eyeNav_button_search_open',
+		'name' => 'xenonNav_button_search_open',
 		'signal' => 'open_searches',
 		'width' => 100,
 		'x' => 10,
@@ -1109,7 +1109,7 @@ function eyeNav_lib_ShowSearch($params = array()) {
 
 }
 
-function eyeNav_lib_array_findIdByText($params) {
+function xenonNav_lib_array_findIdByText($params) {
 	$array = $params[0];
 	$text = $params[1];
 	$path = $params[2];
@@ -1135,14 +1135,14 @@ function eyeNav_lib_array_findIdByText($params) {
 	return($return);
 }
 
-function eyeNav_lib_doUrl($params = array()) {
+function xenonNav_lib_doUrl($params = array()) {
 	global $checknum;
 	global $currentUser;
 	global $myPid;
 
 	if (!$params['page'][0]) {
-		$config = xenonXML('getXMLconfig',array('eyeNav','conf.xml'));
-		$page = $config['eyeNav'][0]['home'][0];
+		$config = xenonXML('getXMLconfig',array('xenonNav','conf.xml'));
+		$page = $config['xenonNav'][0]['home'][0];
 		if ($page == 'http://touhouboi.duckdns.org/') {
 			$page .= '?lang=' . i18n('getLang');
 			if ($currentUser == ROOTUSER) {
@@ -1155,7 +1155,7 @@ function eyeNav_lib_doUrl($params = array()) {
 	if ( /* utf8 */ strpos($page, ':') === false) {
 		$page = 'http://' . $page;
 	}
-	$GLOBALS['eyeNav_url']->setText($page);
+	$GLOBALS['xenonNav_url']->setText($page);
 	if (!$params['frame'][0]) {
 		xenonx('runjs', array('js' => 'var doUrl, frame;
 
@@ -1166,21 +1166,21 @@ function eyeNav_lib_doUrl($params = array()) {
 			contentDocument.getElementsByTagName("iframe")[0].src = "index.php?checknum=' . $checknum . '&msg=doOutput&page=' . base64_encode($page) . '";
 		};
 
-		frame = parent.frames["' . strval($myPid) . '_eyeNav_frame"];
+		frame = parent.frames["' . strval($myPid) . '_xenonNav_frame"];
 		if (frame.contentDocument) {
 			doUrl();
 		} else {
 			setTimeout(doUrl, 200);
 		}'));
 
-		eyeNav_lib_FocusFrame();
+		xenonNav_lib_FocusFrame();
 	}
 }
 
-function eyeNav_lib_FocusFrame() {
+function xenonNav_lib_FocusFrame() {
 	global $myPid;
 
-	$GLOBALS['eyeNav_frame']->focus();
+	$GLOBALS['xenonNav_frame']->focus();
 
 	xenonx('runjs', array('js' => 'var focus, frame;
 
@@ -1191,7 +1191,7 @@ function eyeNav_lib_FocusFrame() {
 		contentDocument.getElementsByTagName("iframe")[0].focus();
 	};
 
-	frame = parent.frames["' . strval($myPid) . '_eyeNav_frame"];
+	frame = parent.frames["' . strval($myPid) . '_xenonNav_frame"];
 	if (frame.contentDocument) {
 		focus();
 	} else {

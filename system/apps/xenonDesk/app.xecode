@@ -55,10 +55,10 @@ function xenonDesk_run($params = '') {
 			}
 			copy(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . CONF_USER_DIR . '/skel/' . CONF_USER_DIR . '/xenonDock/conf.xml', $userDir . '/' . CONF_USER_DIR . '/xenonDock/conf.xml');
 
-			$navXml = xenonXML('getXMLconfig', array('eyeNav', 'conf.xml'));
+			$navXml = xenonXML('getXMLconfig', array('xenonNav', 'conf.xml'));
 			$bookmarks = array();
 			$id = 0;
-			foreach ($navXml['eyeNav'][0]['bookmarks'][0]['category'] as $category) {
+			foreach ($navXml['xenonNav'][0]['bookmarks'][0]['category'] as $category) {
 				$bookmark = array();
 				$id++;
 				$bookmark['id'][0] = $id;
@@ -75,9 +75,9 @@ function xenonDesk_run($params = '') {
 				}
 				$bookmarks[] = $bookmark;
 			}
-			unset($navXml['eyeNav'][0]['bookmarks'][0]['category']);
-			$navXml['eyeNav'][0]['bookmarks'][0]['bookmark'] = $bookmarks;
-			xenonXML('setXMLconfig', array('eyeNav', 'conf.xml', $navXml));
+			unset($navXml['xenonNav'][0]['bookmarks'][0]['category']);
+			$navXml['xenonNav'][0]['bookmarks'][0]['bookmark'] = $bookmarks;
+			xenonXML('setXMLconfig', array('xenonNav', 'conf.xml', $navXml));
 		}
 
 		// oneye 0.8.0

@@ -214,7 +214,7 @@ function xenonFeeds_on_feedItemClick($params=null) {
 
 function xenonFeeds_on_feedItemDblClick($params=null) {
 	$item = xenonFeeds_getSelectedFeedItem();
-	proc('launch', array('eyeNav', $item['permalink']));
+	proc('launch', array('xenonNav', $item['permalink']));
 }
 
 function xenonFeeds_on_openEnclosure($params=null) {
@@ -247,7 +247,7 @@ function xenonFeeds_on_contentLinkClick($params=null) {
 	if (! is_array($params) || !$params['url'])
 		return;
 	$url = urldecode($params['url'][0]);
-	proc('launch', array('eyeNav', $url));
+	proc('launch', array('xenonNav', $url));
 }
 
 

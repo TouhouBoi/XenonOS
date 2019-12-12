@@ -404,7 +404,7 @@ function lib_xenonFiles_launchCommand($params = '') {
 	if ( /* utf8 */ strrchr($link[0], '.') === '.app') {
 		proc('launch',array(basename($link[0],'.app'),array_slice($link,1),$params[1]));
 	} elseif (strtolower(substr($params[0], 0, 7)) === 'http://' || strtolower(substr($params[0], 0, 8)) === 'https://') { // utf8
-		proc('launch',array('eyeNav',$params[0],$params[1]));
+		proc('launch',array('xenonNav',$params[0],$params[1]));
 	} elseif (strtolower(substr($params[0], 0, 7)) == 'ftp://') { // utf8
 		proc('launch',array('xenonFTP',$params[0],$params[1]));
 	} else {

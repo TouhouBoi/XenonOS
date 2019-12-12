@@ -124,7 +124,7 @@ function xenonApps_lib_GetCategoryIcon($category) {
 		'File Management' => 'homeFolder',
 		'Games' => 'xeChess',
 		'Multimedia' => 'xenonMedia',
-		'Networking' => 'eyeNav',
+		'Networking' => 'xenonNav',
 		'Office' => 'xenonDocs',
 		'Utilities' => 'mail-attach',
 		'Widgets' => 'desktop_widgets'

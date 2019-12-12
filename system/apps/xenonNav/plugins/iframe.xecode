@@ -20,13 +20,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeNav_com_fullResized($params = '')
+function xenonNav_on_doOutput($params = '')
 {
-	eyeWidgets('updateContent', $params);
+	header('Location: ' . base64_decode($_REQUEST['page']));
 
-	if ($GLOBALS['eyeNav_window']->fullScreen)
-	{
-		$GLOBALS['eyeNav_window']->listenerResizeFullScreen($params);
-	}
+	exit;
 }
 ?>

@@ -2,7 +2,7 @@
 
 /*
    +-----------------+------------------------------------------------------------+
-   |  Script         | eyeNavProxy fork of PHProxy                                |
+   |  Script         | xenonNavProxy fork of PHProxy                                |
    |  Author         | Forked by Fabian Olesen, original author Abdullah Arif     |
    |  Last Modified  | 5:27 PM 1/20/2007                                          |
    +-----------------+------------------------------------------------------------+
@@ -103,7 +103,7 @@ $GLOBALS['_system']            = array
                     );
 $GLOBALS['_proxify']           = array('text/html' => 1, 'application/xml+xhtml' => 1, 'application/xhtml+xml' => 1, 'text/css' => 1);
 $GLOBALS['_version']           = '0.1';
-$GLOBALS['_scriptname']        = 'eyeNavProxy';
+$GLOBALS['_scriptname']        = 'xenonNavProxy';
 $GLOBALS['_http_host']         = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : (isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : 'localhost');
 // $GLOBALS['_script_url']        = 'http' . ((isset($_ENV['HTTPS']) && $_ENV['HTTPS'] == 'on') || $_SERVER['SERVER_PORT'] == 443 ? 's' : '') . '://' . $GLOBALS['_http_host'] . ($_SERVER['SERVER_PORT'] != 80 && $_SERVER['SERVER_PORT'] != 443 ? ':' . $_SERVER['SERVER_PORT'] : '') . $_SERVER['PHP_SELF']; // oneye
 // $GLOBALS['_script_base']       = substr($GLOBALS['_script_url'], 0, strrpos($GLOBALS['_script_url'], '/')+1); // oneye
@@ -903,7 +903,7 @@ if (!isset($GLOBALS['_proxify'][$GLOBALS['_content_type']]))
 	</head>
 	<body onload=\'window.parent.sendMsg(' . $checknum . ',"Download","&lt;basename&gt;' . basename($GLOBALS['_url']) . '&lt;/basename&gt;"); history.back();\' style="font-family: Verdana,Arial,sans-serif,FreeSans; font-size: 14px; margin: 0;"></body>
 		<div style="margin-top: -7px; position: absolute; text-align: center; top: 50%; width: 100%;">
-			<a href="' . complete_url($GLOBALS['eyeNav_url']->text) . '">&nbsp;' . htmlspecialchars(i18n('translate', array('Back')), ENT_NOQUOTES, 'UTF-8') . '&nbsp;</a>
+			<a href="' . complete_url($GLOBALS['xenonNav_url']->text) . '">&nbsp;' . htmlspecialchars(i18n('translate', array('Back')), ENT_NOQUOTES, 'UTF-8') . '&nbsp;</a>
 		</div>
 	</body>
 </html>';

@@ -281,9 +281,9 @@ function xenonHelp_on_SendMessage()
 	proc('launch', array ('newMessage', array ('action' => 'new', 'to' => $xml['xenonHelp'][0]['contact'][0])));
 }
 
-function xenonHelp_on_eyeNav($param)
+function xenonHelp_on_xenonNav($param)
 {
-	proc('launch', array('eyeNav', $param));
+	proc('launch', array('xenonNav', $param));
 }
 
 function xenonHelp_Code($Text)

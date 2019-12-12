@@ -169,7 +169,7 @@ $pic22 = array(
 	'xenonMail',
 	'xenonMedia',
 	'xenonMessages',
-	'eyeNav',
+	'xenonNav',
 	'eyeNotes',
 	'eyePresentation',
 	'xenonProcess',
@@ -226,7 +226,7 @@ $alias[0]['icons/16x16/apps/xenonFiles.png'] = 'images/apps/eyeLightDesk/16x16/a
 $alias[0]['icons/16x16/apps/xenonFTP.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonFTP.png';
 $alias[0]['icons/16x16/apps/xenonMail.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonMail.png';
 $alias[0]['icons/16x16/apps/xenonMessages.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonMessages.png';
-$alias[0]['icons/16x16/apps/eyeNav.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeNav.png';
+$alias[0]['icons/16x16/apps/xenonNav.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonNav.png';
 $alias[0]['icons/16x16/apps/eyeNotes.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeNotes.png';
 $alias[0]['icons/16x16/apps/eyePresentation.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyePresentation.png';
 $alias[0]['icons/16x16/apps/xenonProcess.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonProcess.png';
@@ -251,7 +251,7 @@ $alias[0]['icons/48x48/filemanager.png'] = 'icons/48x48/xenonFiles.png';
 $alias[0]['icons/48x48/home.png'] = 'icons/48x48/xenonFiles.png';
 $alias[0]['icons/48x48/managegroups.png'] = 'icons/48x48/xenonGroups.png';
 $alias[0]['icons/48x48/manageusers.png'] = 'icons/48x48/public.png';
-$alias[0]['icons/48x48/webbrowser.png'] = 'icons/48x48/eyeNav.png';
+$alias[0]['icons/48x48/webbrowser.png'] = 'icons/48x48/xenonNav.png';
 $alias[0]['images/widgets/folder.png'] = 'icons/16x16/folder.png';
 $alias[0]['images/widgets/folder_open.png'] = 'icons/16x16/folder_open.png';
 
@@ -420,9 +420,9 @@ $alias[0]['images/apps/xenonMail/mail-reply-sender.png'] = 'icons/22x22/mail-rep
 $alias[0]['images/apps/xenonMail/mail-forward.png'] = 'icons/22x22/mail-forward.png';
 $alias[0]['images/apps/xenonMail/preferences-system.png'] = 'icons/22x22/settings.png';
 
-// eyeNav
-$alias[1][APP_DIR . '/eyeNav/gfx/delete.png'] = 'images/'.APP_DIR.'/eyeNav/delete.png';
-$alias[1][APP_DIR . '/eyeNav/gfx/link.png'] = 'images/'.APP_DIR.'/eyeNav/link.png';
+// xenonNav
+$alias[1][APP_DIR . '/xenonNav/gfx/delete.png'] = 'images/'.APP_DIR.'/xenonNav/delete.png';
+$alias[1][APP_DIR . '/xenonNav/gfx/link.png'] = 'images/'.APP_DIR.'/xenonNav/link.png';
 
 // eyeSnow
 $alias[1][APP_DIR . '/eyeSnow/0.png'] = 'images/'.APP_DIR.'/eyeSnow/0.png';

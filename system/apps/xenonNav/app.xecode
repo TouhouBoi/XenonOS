@@ -24,15 +24,15 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	XenonOS Browser
 */
 
-function eyeNav_run($params = '')
+function xenonNav_run($params = '')
 {
 	global $myPid;
 
-	$xml = xenonXML('getXMLconfig', array('eyeNav','conf.xml'));
+	$xml = xenonXML('getXMLconfig', array('xenonNav','conf.xml'));
 
 	$myWindow = new Window(
 		array (
-			'name' => 'eyeNav_window',
+			'name' => 'xenonNav_window',
 			'father' => 'xenonApps',
 			'title' => 'Browser',
 			'cent' => 1,
@@ -52,8 +52,8 @@ function eyeNav_run($params = '')
 
 	$myTextbox = new Textbox(
 		array (
-			'name' => 'eyeNav_url',
-			'father' => 'eyeNav_window_Content',
+			'name' => 'xenonNav_url',
+			'father' => 'xenonNav_window_Content',
 			'width' => $myWindow->width - 207,
 			'x' => 24,
 			'y' => $myY,
@@ -79,12 +79,12 @@ function eyeNav_run($params = '')
 
 	$myTextbox->addEnterEventMsg('OpenURL');
 
-	$GLOBALS['eyeNav_url'] = $myTextbox;
+	$GLOBALS['xenonNav_url'] = $myTextbox;
 
 	$myButton = new Button(
 		array (
-			'name' => 'eyeNav_saveUrl',
-			'father' => 'eyeNav_window_Content',
+			'name' => 'xenonNav_saveUrl',
+			'father' => 'xenonNav_window_Content',
 			'signal' => 'saveUrl',
 			'caption' => '',
 			'x' => 5,
@@ -99,8 +99,8 @@ function eyeNav_run($params = '')
 
 	$myImage = new Imagebox(
 		array (
-			'name' => 'eyeNav_image_url_right',
-			'father' => 'eyeNav_window_Content',
+			'name' => 'xenonNav_image_url_right',
+			'father' => 'xenonNav_window_Content',
 			'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/windows/pathgo.png',
 			'x' => $myTextbox->x + $myTextbox->width,
 			'y' => $myYimg,
@@ -118,8 +118,8 @@ function eyeNav_run($params = '')
 	// Search box
 	$myTextboxSearch = new Textbox(
 		array (
-			'name' => 'eyeNav_url_search',
-			'father' => 'eyeNav_window_Content',
+			'name' => 'xenonNav_url_search',
+			'father' => 'xenonNav_window_Content',
 			'horiz' => 1,
 			'text' => i18n('translate', array('Search')),
 			'width' => $myWindow->width - 665,
@@ -143,14 +143,14 @@ function eyeNav_run($params = '')
 
 	$myTextboxSearch->addEnterEventMsg('searchFor');
 
-	$myTextboxSearch->addEvent('onfocus', 'var e = document.getElementById("' . $myPid . '_eyeNav_url_search"); if (e.value == "' . utf8_htmlspecialchars(i18n('translate', array('Search')), ENT_QUOTES) . '") { e.value = "" }');
+	$myTextboxSearch->addEvent('onfocus', 'var e = document.getElementById("' . $myPid . '_xenonNav_url_search"); if (e.value == "' . utf8_htmlspecialchars(i18n('translate', array('Search')), ENT_QUOTES) . '") { e.value = "" }');
 
-	$myTextboxSearch->addEvent('onblur', 'var e = document.getElementById("' . $myPid . '_eyeNav_url_search"); if (e.value == "") { e.value = "' . utf8_htmlspecialchars(i18n('translate', array('Search')), ENT_QUOTES) . '" }');
+	$myTextboxSearch->addEvent('onblur', 'var e = document.getElementById("' . $myPid . '_xenonNav_url_search"); if (e.value == "") { e.value = "' . utf8_htmlspecialchars(i18n('translate', array('Search')), ENT_QUOTES) . '" }');
 
 	$myImageSearch = new Imagebox(
 		array (
-			'name' => 'eyeNav_image_search_left',
-			'father' => 'eyeNav_window_Content',
+			'name' => 'xenonNav_image_search_left',
+			'father' => 'xenonNav_window_Content',
 			'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/windows/pathDiv.png',
 			'horiz' => 1,
 			'x' => $myTextboxSearch->width + 25,
@@ -162,8 +162,8 @@ function eyeNav_run($params = '')
 
 	$myImageSearch = new Imagebox(
 		array (
-			'name' => 'eyeNav_image_search_right',
-			'father' => 'eyeNav_window_Content',
+			'name' => 'xenonNav_image_search_right',
+			'father' => 'xenonNav_window_Content',
 			'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/windows/pathsearch.png',
 			'horiz' => 1,
 			'x' => 5,
@@ -182,8 +182,8 @@ function eyeNav_run($params = '')
 	// Main Browser Window
 	$myWindow_box = new Window(
 		array (
-			'name' => 'eyeNav_window_box',
-			'father' => 'eyeNav_window_Content',
+			'name' => 'xenonNav_window_box',
+			'father' => 'xenonNav_window_Content',
 			'x' => 10,
 			'y' => $myTextbox->y + 30,
 			'height' => $myWindow->height - $myTextbox->y - 65,
@@ -201,9 +201,9 @@ function eyeNav_run($params = '')
 		)
 	);
 
-	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_window_box"); e.style.visibility = ""; e.style.zIndex = 0;'));
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_xenonNav_window_box"); e.style.visibility = ""; e.style.zIndex = 0;'));
 
-	if (!$xml['eyeNav'][0]['sidebar'][0])
+	if (!$xml['xenonNav'][0]['sidebar'][0])
 	{
 		$visible = 0;
 		$width = $myWindow->width - 20;
@@ -218,8 +218,8 @@ function eyeNav_run($params = '')
 
 	$myLine = new Line(
 		array (
-			'name' => 'eyeNav_line',
-			'father' => 'eyeNav_window_Content',
+			'name' => 'xenonNav_line',
+			'father' => 'xenonNav_window_Content',
 			'x' => 165,
 			'y' => $myWindow_box->y,
 			'width' => 1,
@@ -232,8 +232,8 @@ function eyeNav_run($params = '')
 
 	$myIframe = new Iframe(
 		array (
-			'name' => 'eyeNav_frame',
-			'father' => 'eyeNav_window_Content',
+			'name' => 'xenonNav_frame',
+			'father' => 'xenonNav_window_Content',
 			'x' => $x,
 			'y' => $myWindow_box->y,
 			'height' => $myWindow_box->height,
@@ -243,7 +243,7 @@ function eyeNav_run($params = '')
 
 	$myIframe->show();
 
-	$GLOBALS['eyeNav_frame'] = $myIframe;
+	$GLOBALS['xenonNav_frame'] = $myIframe;
 
 	xenonx('runjs', array('js' => 'var frame, init;
 
@@ -254,7 +254,7 @@ function eyeNav_run($params = '')
 		contentDocument.body.innerHTML = \'<iframe style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%;" />\';
 	};
 
-	frame = parent.frames["' . strval($myPid) . '_eyeNav_frame"];
+	frame = parent.frames["' . strval($myPid) . '_xenonNav_frame"];
 	if (frame.contentDocument) {
 		init();
 	} else {
@@ -263,8 +263,8 @@ function eyeNav_run($params = '')
 
 	$myToolbar = new Toolbar(
 		array (
-			'name' => 'eyeNav_toolbar',
-			'father' => 'eyeNav_window_Content'
+			'name' => 'xenonNav_toolbar',
+			'father' => 'xenonNav_window_Content'
 		)
 	);
 
@@ -294,23 +294,23 @@ function eyeNav_run($params = '')
 
 	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 
-	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeNav/libs.xecode');
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonNav/libs.xecode');
 
-	if ($xml['eyeNav'][0]['sidebar'][0] == 2)
+	if ($xml['xenonNav'][0]['sidebar'][0] == 2)
 	{
-		eyeNav_lib_ShowSearch();
-		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_toolbar");
+		xenonNav_lib_ShowSearch();
+		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_xenonNav_toolbar");
 		for (var i = 0; i < e.childNodes.length; i++) {
 			if (e.childNodes[i].id == "Search_Container") {
 				e.childNodes[i].className = "blockbarItemPress";
 			}
 		}'));
 	}
-	elseif ($xml['eyeNav'][0]['sidebar'][0])
+	elseif ($xml['xenonNav'][0]['sidebar'][0])
 	{
-		eyeNav_lib_ShowBookmarks();
+		xenonNav_lib_ShowBookmarks();
 
-		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeNav_toolbar");
+		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_xenonNav_toolbar");
 		for (var i = 0; i < e.childNodes.length; i++) {
 			if (e.childNodes[i].id == "Bookmarks_Container") {
 				e.childNodes[i].className = "blockbarItemPress";
@@ -320,23 +320,23 @@ function eyeNav_run($params = '')
 
 	if ($params[0])
 	{
-		eyeNav_lib_doUrl( array ('page' => array ($params[0]) ) );
+		xenonNav_lib_doUrl( array ('page' => array ($params[0]) ) );
 	}
 	else
 	{
-		eyeNav_lib_doUrl();
+		xenonNav_lib_doUrl();
 	}
 
 	xenonx('createDiv',
 		array (
-			'name' => 'eyeNav_url_bar',
-			'father' => 'eyeNav_window_Content',
-			'class' => 'eyeNav_url_bar'
+			'name' => 'xenonNav_url_bar',
+			'father' => 'xenonNav_window_Content',
+			'class' => 'xenonNav_url_bar'
 		)
 	);
 }
 
-function eyeNav_end($params = '')
+function xenonNav_end($params = '')
 {
 	removeListenerServiceCall('xenonx','resizedbrowser');
 
