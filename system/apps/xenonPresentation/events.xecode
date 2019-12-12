@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyePresentation_on_Message($params="") {
+function xenonPresentation_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyePresentation_on_Open($params=null) {
+function xenonPresentation_on_Open($params=null) {
 	global $checknum;
 	$options = array(
 		0,
@@ -28,7 +28,7 @@ function eyePresentation_on_Open($params=null) {
 	proc('launch',array('xenonDialog',$options));
 }
 
-function eyePresentation_on_SelectFileOpen($params=null) {
+function xenonPresentation_on_SelectFileOpen($params=null) {
 	global $myPid;
 
 	$file = $params['arg'][0];
@@ -57,12 +57,12 @@ function eyePresentation_on_SelectFileOpen($params=null) {
 	}
 }
 
-function eyePresentation_on_fullscreen($params=null) {
+function xenonPresentation_on_fullscreen($params=null) {
 	global $checknum;
 	$GLOBALS['presentationWND']->setFullScreen();
 }
 
-function eyePresentation_on_back($params=null) {
+function xenonPresentation_on_back($params=null) {
 	global $checknum;
 	$myNumber = intval($GLOBALS['currentSlide']->text);
 	if($myNumber == 0) {
@@ -74,7 +74,7 @@ function eyePresentation_on_back($params=null) {
 	}
 }
 
-function eyePresentation_on_next($params=null) {
+function xenonPresentation_on_next($params=null) {
 	global $checknum;
 	$myNumber = intval($GLOBALS['currentSlide']->text);
 	$myNumber++;
@@ -82,7 +82,7 @@ function eyePresentation_on_next($params=null) {
 	$GLOBALS['imgFrame']->setUrl("index.php?checknum=".$checknum."&msg=getSlide&anticache=".md5(uniqid(time())));
 }
 
-function eyePresentation_on_getSlide($params=null) {
+function xenonPresentation_on_getSlide($params=null) {
 	global $myPid;
 	$myNumber = $GLOBALS['currentSlide']->text;
 	$myName = basename($GLOBALS['filepath']->text);
@@ -107,7 +107,7 @@ function eyePresentation_on_getSlide($params=null) {
 	exit;
 }
 
-function eyePresentation_on_Resize($params=null) {
+function xenonPresentation_on_Resize($params=null) {
 	$width = $params['arg'][0];
 	$height = $params['arg'][1];
 	$width = intval($width);
@@ -132,7 +132,7 @@ function gotoSlide($num) {
 	}
 }
 
-function eyePresentation_on_Close(){
+function xenonPresentation_on_Close(){
 	proc('end');
 }
 

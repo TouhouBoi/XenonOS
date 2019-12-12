@@ -116,7 +116,7 @@ function xenonPictures_run($params="") {
 	
 	$itemIds[] = $myToolbar->addItem('browseSignal','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/search.png','Browse');
 	$itemIds[] = $myToolbar->addItem('viewSignal','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/xenonImages.png','View');
-	$itemIds[] = $myToolbar->addItem('slideShow','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/eyePresentation.png','Slide Show');
+	$itemIds[] = $myToolbar->addItem('slideShow','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/xenonPresentation.png','Slide Show');
 	$myToolbar->addLine();
 	
 	$myToolbar->addItem('rotateleftSignal','index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/Toolbar/object-rotate-left.png','Rotate Left');
