@@ -87,10 +87,10 @@ function miniActions_on_Launch4($params=null) {
 }
 
 function miniActions_on_Launch($params=null) {
-	$messagesPid = proc('findPidByName', array('eyeCalendar'));
+	$messagesPid = proc('findPidByName', array('xenonCalendar'));
 
 	if($messagesPid == false) {
-		proc('launch', array('eyeCalendar'));
+		proc('launch', array('xenonCalendar'));
 	}
 }
 

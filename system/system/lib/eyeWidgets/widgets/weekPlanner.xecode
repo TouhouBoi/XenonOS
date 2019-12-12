@@ -148,7 +148,7 @@ class weekPlanner {
 		global $myPid;
 		$this->width = intval($width);
 		xenonx('rawjs',array('js' => 'document.getElementById("'.$myPid.'_daysBase").style.width="'.$this->width.'px";'));
-		xenonx('rawjs',array('js' => 'onResizeEyeCalendar('.$myPid.');'));
+		xenonx('rawjs',array('js' => 'onResizexenonCalendar('.$myPid.');'));
 	}
 
 	function setHeight($height) {

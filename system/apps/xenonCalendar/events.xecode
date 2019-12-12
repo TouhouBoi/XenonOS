@@ -14,20 +14,20 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once XENONOS_ROOT.'/'.APP_DIR.'/eyeCalendar/configDialogs/configEvents.xecode';
+include_once XENONOS_ROOT.'/'.APP_DIR.'/xenonCalendar/configDialogs/configEvents.xecode';
 
-function eyeCalendar_on_Help($params = '') {
-	proc('launch',array('eyeHelp','eyeCalendar'));
+function xenonCalendar_on_Help($params = '') {
+	proc('launch',array('eyeHelp','xenonCalendar'));
 }
 
-function eyeCalendar_on_Message($params="") {
+function xenonCalendar_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeCalendar_on_Launch($params="") {
+function xenonCalendar_on_Launch($params="") {
 	global $myPid;
 	global $checknum;
-	$defaultView = eyeCalendar('getDefaultView');
+	$defaultView = xenonCalendar('getDefaultView');
 	_changeView($defaultView);
 	_paintDaysOfMonth();
 }
@@ -49,7 +49,7 @@ function _paintDaysOfMonth(){
 	$monthDays = _getMonthDays($dateInfo['mon'],$dateInfo['year']);
 
 	$firstDayWeekDay = $dateInfo['wday'];
-	$i10n = eyeCalendar('geti10n');
+	$i10n = xenonCalendar('geti10n');
 	$discount = 1;
 
 	if($i10n['startDay'] == 1){
@@ -64,7 +64,7 @@ function _paintDaysOfMonth(){
 	$js = '';
 	for($x=$firstDayWeekDay-$discount;$x>=0;$x--){
 		$day = $preMonthDays-$x;
-		$note = eyeCalendar('getDayNotes',array('mday'=>$day,'month'=>$dateInfo['mon']-1,'year'=>$dateInfo['year']));
+		$note = xenonCalendar('getDayNotes',array('mday'=>$day,'month'=>$dateInfo['mon']-1,'year'=>$dateInfo['year']));
 		if($note != false){
 			$js .= 'xGetElementById("'.$myPid.'_calendarWidget_'.$day.'_pre").style.fontWeight = 900;';
 		}
@@ -72,7 +72,7 @@ function _paintDaysOfMonth(){
 
 	for($x=1;$x<=$monthDays;$x++){
 		$day = $x;
-		$note = eyeCalendar('getDayNotes',array('mday'=>$day,'month'=>$dateInfo['mon'],'year'=>$dateInfo['year']));
+		$note = xenonCalendar('getDayNotes',array('mday'=>$day,'month'=>$dateInfo['mon'],'year'=>$dateInfo['year']));
 		if($note != false){
 			$js .= 'xGetElementById("'.$myPid.'_calendarWidget_'.$day.'_current").style.fontWeight = 900;';
 		}
@@ -80,7 +80,7 @@ function _paintDaysOfMonth(){
 	$rest = 42; // -count($setOfDays);
 	for($x=1;$x<=$rest;$x++){
 		$day = $x;
-		$note = eyeCalendar('getDayNotes',array('mday'=>$day,'month'=>$dateInfo['mon']+1,'year'=>$dateInfo['year']));
+		$note = xenonCalendar('getDayNotes',array('mday'=>$day,'month'=>$dateInfo['mon']+1,'year'=>$dateInfo['year']));
 		if($note != false){
 			$js .= 'xGetElementById("'.$myPid.'_calendarWidget_'.$day.'_rest").style.fontWeight = 900;';
 		}
@@ -89,21 +89,21 @@ function _paintDaysOfMonth(){
 }
 
 //Event recivers maybe we'll use messageTables instead recivers functions
-function eyeCalendar_on_WeekView(){
+function xenonCalendar_on_WeekView(){
  	_changeView('week');
 }
-function eyeCalendar_on_DayView(){
+function xenonCalendar_on_DayView(){
 	_changeView('day');
 }
-function eyeCalendar_on_WorkView(){
+function xenonCalendar_on_WorkView(){
 	_changeView('work');
 }
 
 //these functions generate the correct weekplanner widget for each view
 function _WeekView($date,$num){
-	$i10n = eyeCalendar('geti10n');
-	$info = eyeCalendar('getConfig');
-	$info = $info['eyeCalendar'][0];
+	$i10n = xenonCalendar('geti10n');
+	$info = xenonCalendar('getConfig');
+	$info = $info['xenonCalendar'][0];
 	$myWeekPlanner = new WeekPlanner(array(
 		'name'=>'weekPlanner',
 		'father'=>'calendarContainer_Container',
@@ -130,8 +130,8 @@ function _DayView($date,$num){
 		$dayFrom = $dateInfo['wday'];
 		$dayEven = $dateInfo['wday'];
 	}
-	$info = eyeCalendar('getConfig');
-	$info = $info['eyeCalendar'][0];
+	$info = xenonCalendar('getConfig');
+	$info = $info['xenonCalendar'][0];
 	$myWeekPlanner = new WeekPlanner(array(
 		'name'=>'weekPlanner',
 		'father'=>'calendarContainer_Container',
@@ -147,8 +147,8 @@ function _DayView($date,$num){
 	return $myWeekPlanner;
 }
 function _WorkView($date,$num){
-	$info = eyeCalendar('getConfig');
-	$info = $info['eyeCalendar'][0];
+	$info = xenonCalendar('getConfig');
+	$info = $info['xenonCalendar'][0];
 	$workEndDay = $info['workEndDay'][0];
 	$workStartHour = $info['workStartHour'][0];
 	$workEndHour = $info['workEndHour'][0];
@@ -176,11 +176,11 @@ function _changeView($type){
 		$date = $GLOBALS['weekPlanner']->date;
 		$GLOBALS['weekPlanner']->killme();
 	}else{
-		$windowWidth = $GLOBALS['eyeCalendarWin1']->width;
+		$windowWidth = $GLOBALS['xenonCalendarWin1']->width;
 		$width = $windowWidth-142-75-17;
 		$date = null;
 	}
-	$num = eyeCalendar('getCurrentCalendar');
+	$num = xenonCalendar('getCurrentCalendar');
 	if($type == 'week'){
 		$myWeekPlanner = _WeekView($date,$num);
 	}elseif($type == 'day'){
@@ -196,25 +196,25 @@ function _changeView($type){
 	$myWeekPlanner->show();
 
 	//Getting notes for the week.
-	$calendars = eyeCalendar('getCalendarsInfo');
+	$calendars = xenonCalendar('getCalendarsInfo');
 	$myWeekPlanner->addCalendars($calendars);
 	$myDays = $myWeekPlanner->getDays();
-	$notes = eyeCalendar('getWeekNotes',array($myDays));
+	$notes = xenonCalendar('getWeekNotes',array($myDays));
 	$myWeekPlanner->addNotes($notes);
 	$myWeekPlanner->goToFirstNote();
-	eyeCalendar('setDefaultView',array($type));
+	xenonCalendar('setDefaultView',array($type));
 }
 
-function eyeCalendar_on_GoToday(){
+function xenonCalendar_on_GoToday(){
 	$width = $GLOBALS['weekPlanner']->width;
 	$GLOBALS['weekPlanner']->killme();
 	$date = mktime();
 	$dateInfo = getDate($date);
 	$dayFrom = $dateInfo['wday'];
 	$dayEven = $dateInfo['wday'];
-	$num = eyeCalendar('getCurrentCalendar');
-	$info = eyeCalendar('getConfig');
-	$info = $info['eyeCalendar'][0];
+	$num = xenonCalendar('getCurrentCalendar');
+	$info = xenonCalendar('getConfig');
+	$info = $info['xenonCalendar'][0];
 	$myWeekPlanner = new WeekPlanner(array(
 		'name'=>'weekPlanner',
 		'father'=>'calendarContainer_Container',
@@ -229,19 +229,19 @@ function eyeCalendar_on_GoToday(){
 		'selectedCalendar'=>$num
 	));
 	$myWeekPlanner->show();
-	$calendars = eyeCalendar('getCalendarsInfo');
+	$calendars = xenonCalendar('getCalendarsInfo');
 	$myWeekPlanner->addCalendars($calendars);
 	$myDays = $myWeekPlanner->getDays();
-	$notes = eyeCalendar('getWeekNotes',array($myDays));
+	$notes = xenonCalendar('getWeekNotes',array($myDays));
 	$myWeekPlanner->addNotes($notes);
 	$myWeekPlanner->goToFirstNote();
 }
 
 //Go forward and go back receivers
-function eyeCalendar_on_GoBack($params){
+function xenonCalendar_on_GoBack($params){
 	_backOrFordward(true);
 }
-function eyeCalendar_on_GoForward($params){
+function xenonCalendar_on_GoForward($params){
 	_backOrFordward(false);
 }
 function _backOrFordward($back=false){
@@ -290,9 +290,9 @@ function _backOrFordward($back=false){
 			$time = mktime(0,0,0,$month,$day,$year);
 		}
 
-		$num = eyeCalendar('getCurrentCalendar');
-		$info = eyeCalendar('getConfig');
-		$info = $info['eyeCalendar'][0];
+		$num = xenonCalendar('getCurrentCalendar');
+		$info = xenonCalendar('getConfig');
+		$info = $info['xenonCalendar'][0];
 		$myWeekPlanner = new WeekPlanner(array(
 			'name'=>'weekPlanner',
 			'father'=>'calendarContainer_Container',
@@ -307,17 +307,17 @@ function _backOrFordward($back=false){
 			'selectedCalendar'=>$num
 		));
 		$myWeekPlanner->show();
-		$calendars = eyeCalendar('getCalendarsInfo');
+		$calendars = xenonCalendar('getCalendarsInfo');
 		$myWeekPlanner->addCalendars($calendars);
 		$myWeekPlanner->goToFirstNote();
 
 		$myDays = $myWeekPlanner->getDays();
-		$notes = eyeCalendar('getWeekNotes',array($myDays));
+		$notes = xenonCalendar('getWeekNotes',array($myDays));
 		$myWeekPlanner->addNotes($notes);
 		//Calendar widget.
 		$calendarWidgetDate = $time*1000;
 
-		$i10n = eyeCalendar('geti10n');
+		$i10n = xenonCalendar('geti10n');
 		$myCalendarWidget = new Calendar(array(
 							'name'=>'calendarWidget',
 							'father'=>'container',
@@ -356,9 +356,9 @@ function _backOrFordward($back=false){
 	//To be compatible with the new way to create week calendars 2008/05/21/
 	$dayEven = $dayEven -1;
 	$time = mktime(0,0,0,$month,$day,$year);
-	$num = eyeCalendar('getCurrentCalendar');
-	$info = eyeCalendar('getConfig');
-	$info = $info['eyeCalendar'][0];
+	$num = xenonCalendar('getCurrentCalendar');
+	$info = xenonCalendar('getConfig');
+	$info = $info['xenonCalendar'][0];
 	$myWeekPlanner = new WeekPlanner(array(
 		'name'=>'weekPlanner',
 		'father'=>'calendarContainer_Container',
@@ -373,16 +373,16 @@ function _backOrFordward($back=false){
 		'selectedCalendar'=>$num
 	));
 	$myWeekPlanner->show();
-	$calendars = eyeCalendar('getCalendarsInfo');
+	$calendars = xenonCalendar('getCalendarsInfo');
 	$myWeekPlanner->addCalendars($calendars);
 	$myDays = $myWeekPlanner->getDays();
-	$notes = eyeCalendar('getWeekNotes',array($myDays));
+	$notes = xenonCalendar('getWeekNotes',array($myDays));
 	$myWeekPlanner->addNotes($notes);
 	$myWeekPlanner->goToFirstNote();
 	//Calendar widget.
 	$calendarWidgetDate = $time*1000;
 
-	$i10n = eyeCalendar('geti10n');
+	$i10n = xenonCalendar('geti10n');
 	$myCalendarWidget = new Calendar(array(
 						'name'=>'calendarWidget',
 						'father'=>'container',
@@ -400,14 +400,14 @@ function _backOrFordward($back=false){
 	$myCalendarWidget->show();
 	_paintDaysOfMonth();
 }
-function eyeCalendar_on_mainResize($params){
+function xenonCalendar_on_mainResize($params){
 	$width = intval($params['arg'][0]);
 	$height = intval($params['arg'][1]);
 
-	$widthDiff = $GLOBALS['eyeCalendarWin1']->width - $width;
-	$heightDiff = $GLOBALS['eyeCalendarWin1']->height - $height;
-	$GLOBALS['eyeCalendarWin1']->width = $width;
-	$GLOBALS['eyeCalendarWin1']->height = $height;
+	$widthDiff = $GLOBALS['xenonCalendarWin1']->width - $width;
+	$heightDiff = $GLOBALS['xenonCalendarWin1']->height - $height;
+	$GLOBALS['xenonCalendarWin1']->width = $width;
+	$GLOBALS['xenonCalendarWin1']->height = $height;
 
 	//Reusing  the var because we don't need it anymore
 	$width = $GLOBALS['container']->width - $widthDiff;
@@ -432,14 +432,14 @@ function eyeCalendar_on_mainResize($params){
 
 }
 
-function eyeCalendar_on_addNote($params="") {
+function xenonCalendar_on_addNote($params="") {
 	//Creating the noteTime
 	$id = $params['id'][0];
 	if (!is_numeric($id)) {
 		xenonx('messageBox', array('content' => 'Failed technically. ID is not given or not numeric.'));
 		return false;
 	}
-	if (eyeCalendar('getCalendarName', array($params['calendar'][0])) === false) {
+	if (xenonCalendar('getCalendarName', array($params['calendar'][0])) === false) {
 		xenonx('messageBox', array('content' => 'Failed. You need to select a calendar first.'));
 		return false;
 	}
@@ -455,7 +455,7 @@ function eyeCalendar_on_addNote($params="") {
 	$noteTime = mktime($params['hourFrom'][0],$params['minFrom'][0],$date['seconds'],$params['month'][0],$params['day'][0],$params['year'][0]);
 	$params['time'][0] = $noteTime;
 	$GLOBALS['weekPlanner']->notes[$id] = $noteTime;
-	eyeCalendar('saveNote',$params);
+	xenonCalendar('saveNote',$params);
 	$info = getDate(time());//TODO: We've to decide if we follow the server or the client data...
 
 	$prefix = '';
@@ -470,7 +470,7 @@ function eyeCalendar_on_addNote($params="") {
 	xenonx('rawjs',array('js'=>$js));
 }
 
-function eyeCalendar_on_delNote($params="") {
+function xenonCalendar_on_delNote($params="") {
 	$id = $params['id'][0];
 	if(!is_numeric($id)){
 		//TODO: remove command
@@ -479,12 +479,12 @@ function eyeCalendar_on_delNote($params="") {
 	$calendar = $params['calendar'][0];
 	$idNote = $GLOBALS['weekPlanner']->notes[$id];
 
-	eyeCalendar('deleteNote',array('dateInt'=>$idNote,'calendar'=>$calendar));
+	xenonCalendar('deleteNote',array('dateInt'=>$idNote,'calendar'=>$calendar));
 	$GLOBALS['weekPlanner']->deleteNote($id);
 
 	//Checking if the day have notes
 	$nInfo = getDate($idNote);
-	$notes = eyeCalendar('getDayNotes',array('year'=>$nInfo['year'],'month'=>$nInfo['mon'],'mday'=>$nInfo['mday']));
+	$notes = xenonCalendar('getDayNotes',array('year'=>$nInfo['year'],'month'=>$nInfo['mon'],'mday'=>$nInfo['mday']));
 
 	//If there are no more notes in this day
 	if($notes === false){
@@ -502,7 +502,7 @@ function eyeCalendar_on_delNote($params="") {
 	}
 }
 
-function eyeCalendar_on_resizeNote($params=""){
+function xenonCalendar_on_resizeNote($params=""){
 	$id = $params['id'][0];
 	if(!is_numeric($id)){
 		return false;
@@ -512,13 +512,13 @@ function eyeCalendar_on_resizeNote($params=""){
 	$minEven = $params['minEven'][0];
 	$calendar = $params['calendar'][0];
 	$idNote = $GLOBALS['weekPlanner']->notes[$id];
-	$oldNoteInfo = eyeCalendar('retriveNote',array('dateInt'=>$idNote,'calendar'=>$calendar));
+	$oldNoteInfo = xenonCalendar('retriveNote',array('dateInt'=>$idNote,'calendar'=>$calendar));
 	$oldNoteInfo['note'][0]['minEven'][0] = $minEven;
 	$oldNoteInfo['note'][0]['hourEven'][0] = $hourEven;
 	$oldNoteInfo['note'][0]['title'][0] = base64_encode($oldNoteInfo['note'][0]['title'][0]);
-	eyeCalendar('updateNote',array('calendar'=>$calendar,'info'=>$oldNoteInfo,'oldId'=>$idNote));
+	xenonCalendar('updateNote',array('calendar'=>$calendar,'info'=>$oldNoteInfo,'oldId'=>$idNote));
 }
-function eyeCalendar_on_moveNote($params=""){
+function xenonCalendar_on_moveNote($params=""){
 	$id = $params['id'][0];
 	if(!is_numeric($id)){
 		return false;
@@ -533,7 +533,7 @@ function eyeCalendar_on_moveNote($params=""){
 	$year = $infoDays['year'][$day];
 	$month = $infoDays['month'][$day];
 
-	$oldNoteInfo = eyeCalendar('retriveNote',array('dateInt'=>$idNote,'calendar'=>$calendar));
+	$oldNoteInfo = xenonCalendar('retriveNote',array('dateInt'=>$idNote,'calendar'=>$calendar));
 
 	$oldNoteInfo['note'][0]['hourFrom'][0] = $params['hourFrom'][0];
 	$oldNoteInfo['note'][0]['minFrom'][0] = $params['minFrom'][0];
@@ -546,14 +546,14 @@ function eyeCalendar_on_moveNote($params=""){
 	$oldNoteInfo['note'][0]['title'][0] = base64_encode($oldNoteInfo['note'][0]['title'][0]);
 	$oldNoteInfo['note'][0]['dateInt'][0] = mktime($params['hourFrom'][0],$params['minFrom'][0],0,$month,$monDay,$year);
 	$GLOBALS['weekPlanner']->notes[$id] = $oldNoteInfo['note'][0]['dateInt'][0];
-	eyeCalendar('updateNote',array('info'=>$oldNoteInfo,'calendar'=>$calendar,'oldId'=>$idNote));
+	xenonCalendar('updateNote',array('info'=>$oldNoteInfo,'calendar'=>$calendar,'oldId'=>$idNote));
 	//Checking if the day has changed
 	$nInfo = getDate($idNote);
 	$info = getDate(time());
 	if($nInfo['mday'] != $monDay){
 		//Chekcking if the old day have more notes
 		$params = array('year'=>$nInfo['year'],'month'=>$nInfo['mon'],'mday'=>$nInfo['mday']);
-		if(eyeCalendar('getDayNotes',$params) === false){
+		if(xenonCalendar('getDayNotes',$params) === false){
 			//The old day doesn't have more notes, removing widgetCalendar highligh
 			if($nInfo['mon'] == $info['mon']){
 				$prefix = 'current';
@@ -577,7 +577,7 @@ function eyeCalendar_on_moveNote($params=""){
 		xenonx('rawjs',array('js'=>$js));
 	}
 }
-function eyeCalendar_on_updateTitle($params=""){
+function xenonCalendar_on_updateTitle($params=""){
 	$id = $params['id'][0];
 	if(!is_numeric($id)){
 		return false;
@@ -585,11 +585,11 @@ function eyeCalendar_on_updateTitle($params=""){
 	$title = $params['title'][0];
 	$calendar = $params['calendar'][0];
 	$idNote = $GLOBALS['weekPlanner']->notes[$id];
-	$oldNoteInfo = eyeCalendar('retriveNote',array('dateInt'=>$idNote,'calendar'=>$calendar));
+	$oldNoteInfo = xenonCalendar('retriveNote',array('dateInt'=>$idNote,'calendar'=>$calendar));
 	$oldNoteInfo['note'][0]['title'][0] = base64_encode($title);
-	eyeCalendar('updateNote',array('calendar'=>$calendar,'info'=>$oldNoteInfo,'oldId'=>$idNote));
+	xenonCalendar('updateNote',array('calendar'=>$calendar,'info'=>$oldNoteInfo,'oldId'=>$idNote));
 }
-function eyeCalendar_on_changeDate($params=""){
+function xenonCalendar_on_changeDate($params=""){
 	$date = $params['date'][0];
 	$date = $date / 1000;//MiliSecons to seconds
 
@@ -603,9 +603,9 @@ function eyeCalendar_on_changeDate($params=""){
 		$dateInfo = getdate($date);
 		$dayFrom = $dateInfo['wday'];
 		$dayEven = $dateInfo['wday'];
-		$num = eyeCalendar('getCurrentCalendar');
-		$info = eyeCalendar('getConfig');
-		$info = $info['eyeCalendar'][0];
+		$num = xenonCalendar('getCurrentCalendar');
+		$info = xenonCalendar('getConfig');
+		$info = $info['xenonCalendar'][0];
 		$myWeekPlanner = new WeekPlanner(array(
 			'name'=>'weekPlanner',
 			'father'=>'calendarContainer_Container',
@@ -620,10 +620,10 @@ function eyeCalendar_on_changeDate($params=""){
 			'selectedCalendar'=>$num
 		));
 		$myWeekPlanner->show();
-		$calendars = eyeCalendar('getCalendarsInfo');
+		$calendars = xenonCalendar('getCalendarsInfo');
 		$myWeekPlanner->addCalendars($calendars);
 		$myDays = $myWeekPlanner->getDays();
-		$notes = eyeCalendar('getWeekNotes',array($myDays));
+		$notes = xenonCalendar('getWeekNotes',array($myDays));
 		$myWeekPlanner->addNotes($notes);
 		$myWeekPlanner->goToFirstNote();
 		return true;
@@ -632,28 +632,28 @@ function eyeCalendar_on_changeDate($params=""){
 	$GLOBALS['weekPlanner']->cleanNotes();
 	$GLOBALS['weekPlanner']->updateDate($date);
 	$days = $GLOBALS['weekPlanner']->getDays();
-	$notes = eyeCalendar('getWeekNotes',array($days));
+	$notes = xenonCalendar('getWeekNotes',array($days));
 	if(is_array($notes)){
 		$GLOBALS['weekPlanner']->addNotes($notes);
 	}
 }
 
-function eyeCalendar_on_calendarShow($params=""){
+function xenonCalendar_on_calendarShow($params=""){
 	$status = $params['showed'][0];
 	$num = $params['calendar'][0];
 
-	if(!eyeCalendar('setCalendarsInfo',array($num,$status))){
+	if(!xenonCalendar('setCalendarsInfo',array($num,$status))){
 		return false;
 	}
 	return true;
 }
-function eyeCalendar_on_addCalendar(){
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+function xenonCalendar_on_addCalendar(){
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 	xenonx('messageBox',array(
 		'content' => 'Please specify the calendar name:',
 		'type' => 3,
 		'title' => 'Add Calendar',
-		'father' => 'eyeCalendarWin1',
+		'father' => 'xenonCalendarWin1',
 		'win_name' => 'addCalendars',
 		'win_removepid' => 0,
 		'win_style' => TITLE + CLOSE,
@@ -667,14 +667,14 @@ function eyeCalendar_on_addCalendar(){
 	));
 }
 
-function eyeCalendar_on_createCalendar($params=""){
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+function xenonCalendar_on_createCalendar($params=""){
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 	if(!$params['calendarName'][0]){
 		xenonx('messageBox',array('content'=>"Please type a name for the calendar"));
 		return false;
 	}
 	$name = $params['calendarName'][0];
-	$info = eyeCalendar('createCalendar',array($name));
+	$info = xenonCalendar('createCalendar',array($name));
 	if(!$info){
 		xenonx('messageBox',array('content'=>"A calendar with the same name already exists!"));
 		return false;
@@ -683,21 +683,21 @@ function eyeCalendar_on_createCalendar($params=""){
 	xenonx('messageBox',array('content'=>"Calendar added succesfully"));
 	$GLOBALS['addCalendars']->close();
 }
-function eyeCalendar_on_addCalendar_Closed($params=""){
+function xenonCalendar_on_addCalendar_Closed($params=""){
 	$GLOBALS['addCalendars']->close();
 }
-function eyeCalendar_on_manageCalendar_Closed($params=""){
+function xenonCalendar_on_manageCalendar_Closed($params=""){
 	$GLOBALS['manageCalendars']->close();
 }
 
-function eyeCalendar_on_selectCalendar($params){
+function xenonCalendar_on_selectCalendar($params){
 	if(!$params['calendar']){
 		return false;
 	}
-	eyeCalendar('setCurrentCalendar',array($params['calendar'][0]));
+	xenonCalendar('setCurrentCalendar',array($params['calendar'][0]));
 }
 
-function eyeCalendar_on_hideLeftPanel(){
+function xenonCalendar_on_hideLeftPanel(){
 	//hidding panel content
 	$hidden = true;
 	if(!$GLOBALS['hiddenPanel']){
@@ -763,11 +763,11 @@ function eyeCalendar_on_hideLeftPanel(){
 		$GLOBALS['horizPanel']->unhide();
 	}
 }
-function eyeCalendar_on_fullScreen(){
+function xenonCalendar_on_fullScreen(){
 	global $myPid;
-	$GLOBALS['eyeCalendarWin1']->setFullScreen();
+	$GLOBALS['xenonCalendarWin1']->setFullScreen();
 }
-function eyeCalendar_on_Close(){
+function xenonCalendar_on_Close(){
 	proc('end');
 }
 ?>

@@ -689,7 +689,7 @@ function Calendar_show(params, name, father, x, y, horiz, vert, checknum, cent) 
 	calendarBase.appendChild(weekDaysNames);
 	calendarBase.appendChild(calendarBody);
 
-	createWidget(name + '_Container', father, calendarBase, horiz, vert, x, y, myWidth, myHeight, "eyeCalendar", cent, 'px', visible, 'Calendar', 1);
+	createWidget(name + '_Container', father, calendarBase, horiz, vert, x, y, myWidth, myHeight, "xenonCalendar", cent, 'px', visible, 'Calendar', 1);
 }
 
 function Checkbox_show(params, name, father, x, y, horiz, vert, checknum, cent) {

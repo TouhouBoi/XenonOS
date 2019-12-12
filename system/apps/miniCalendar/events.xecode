@@ -23,10 +23,10 @@ function miniCalendar_on_Close($params=null) {
 }
 
 function miniCalendar_on_Launch($params=null) {
-	$messagesPid = proc('findPidByName', array('eyeCalendar'));
+	$messagesPid = proc('findPidByName', array('xenonCalendar'));
 
 	if($messagesPid == false) {
-		proc('launch', array('eyeCalendar'));
+		proc('launch', array('xenonCalendar'));
 	}
 }
 
@@ -50,7 +50,7 @@ function miniCalendar_on_today($params=null) {
 function miniCalendar_dayNotes($year, $month, $day) {
 	global $myPid;
 
-	$num = eyeCalendar('getDayNotes', array('year' => $year, 'month' => $month, 'mday' => $day));
+	$num = xenonCalendar('getDayNotes', array('year' => $year, 'month' => $month, 'mday' => $day));
 	xenonx('setDiv', array('name' => 'miniCalendarInnerRight', 'content' => ' '));
 
 	if(is_array($num)) {
@@ -58,7 +58,7 @@ function miniCalendar_dayNotes($year, $month, $day) {
 		$Yoffset = 4;
 		$text = '';
 		foreach($num as $event) {
-			$cname = eyeCalendar('getCalendarName', array($event['note'][0]['calendar'][0]));
+			$cname = xenonCalendar('getCalendarName', array($event['note'][0]['calendar'][0]));
 
 			$text = base64_decode($event['note'][0]['title'][0]);
 			if(!empty($text)) {

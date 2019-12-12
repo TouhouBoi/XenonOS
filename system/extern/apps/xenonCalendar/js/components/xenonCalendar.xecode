@@ -16,14 +16,14 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 function get_dynamic_content($params = '') {
 	header('Content-type: text/javascript; charset=UTF-8');
-	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeCalendar/js/components/eyeCalendar.min.js';
-	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeCalendar/js/components/eyeCalendar.js';
+	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonCalendar/js/components/xenonCalendar.min.js';
+	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonCalendar/js/components/xenonCalendar.js';
 	if (USE_COMPRESSED && is_readable($path_compressed) && filemtime($path_compressed) >= filemtime($path_uncompressed)) {
 		$content = file_get_contents($path_compressed);
 	} else {
 		$content = file_get_contents($path_uncompressed);
 	}
-	i18n('loadLang',array('eyeCalendar'));
+	i18n('loadLang',array('xenonCalendar'));
 	$content = str_replace('$lang:Delete', utf8_htmlspecialchars(i18n('translate', array('Delete')), ENT_QUOTES), $content);
 	$content = str_replace('$lang:Text for this event:', utf8_htmlspecialchars(i18n('translate', array('Text for this event:')), ENT_QUOTES), $content);
 	$content = str_replace('$lang:Accept', utf8_htmlspecialchars(i18n('translate', array('Accept')), ENT_QUOTES), $content);

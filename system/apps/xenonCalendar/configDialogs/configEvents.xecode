@@ -18,16 +18,16 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 *GLOBAL configuration event
 *This even create the configuration window, and call to the default or desired config dialog
 */
-function eyeCalendar_on_globalConfigureCalendar($params=''){
+function xenonCalendar_on_globalConfigureCalendar($params=''){
 	if($GLOBALS['configureCalendar']){
 		$GLOBALS['configureCalendar']->focus();
 		return true;
 	}
-	$info = eyeCalendar('getConfig');
-	$info = $info['eyeCalendar'][0];
+	$info = xenonCalendar('getConfig');
+	$info = $info['xenonCalendar'][0];
 	$winWidth = 400;
 	$winHeight = 350;
-	$myWindow1 = new Window(array('title'=>'Configure calendar','name'=>'configureCalendar','father'=>'eyeCalendarWin1','cent'=>1,'width'=>$winWidth,'height'=>$winHeight,'sigClose'=>'configure_Closed','style' => TITLE + CLOSE));
+	$myWindow1 = new Window(array('title'=>'Configure calendar','name'=>'configureCalendar','father'=>'xenonCalendarWin1','cent'=>1,'width'=>$winWidth,'height'=>$winHeight,'sigClose'=>'configure_Closed','style' => TITLE + CLOSE));
 	$myWindow1->show();
 
 	$myToolbar = new Toolbar(array('name'=>'myConfigBar','father'=>'configureCalendar_Content'));
@@ -44,24 +44,24 @@ function eyeCalendar_on_globalConfigureCalendar($params=''){
 	$myHiddenWindow->show();
 	if($params == ''){
 		$myToolbar->pressItem(array($itemIds[0]));
- 		eyeCalendar_on_calendarConfig();
+ 		xenonCalendar_on_calendarConfig();
 	}elseif($params == 'calendars'){
 		$myToolbar->pressItem(array($itemIds[0]));
-		eyeCalendar_on_calendarConfig();
+		xenonCalendar_on_calendarConfig();
 	}elseif($params == 'general'){
 		$myToolbar->pressItem(array($itemIds[1]));
-		eyeCalendar_on_generalConfig();
+		xenonCalendar_on_generalConfig();
 	}elseif($params == 'work'){
 		$myToolbar->pressItem(array($itemIds[2]));
-		eyeCalendar_on_workViewConfig();
+		xenonCalendar_on_workViewConfig();
 	}
 }
 /*
 *This dialog configure the calendars, show, remove etc
 */
-function eyeCalendar_on_calendarConfig($params=""){
+function xenonCalendar_on_calendarConfig($params=""){
 	if(!isset($GLOBALS['configureCalendar'])) {
-		eyeCalendar_on_globalConfigureCalendar('calendars');
+		xenonCalendar_on_globalConfigureCalendar('calendars');
 		return true;
 	}
 	if(isset($GLOBALS['hiddenWin'])){
@@ -69,7 +69,7 @@ function eyeCalendar_on_calendarConfig($params=""){
 	}
 	$myHiddenWindow = new Window(array('name'=>'hiddenWin','father'=>'configureCalendar_Content','type'=>INVISIBLE_WINDOW,'y'=>60,'x'=>0,'width'=>398,'height'=>266));
 	$myHiddenWindow->show();
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 
 	$myLabel1 = new Label(array('name' => "nameLabel",'father' => 'hiddenWin',
 			'text' =>"Calendars management",'x' => 10,'y' => 10));
@@ -135,11 +135,11 @@ function eyeCalendar_on_calendarConfig($params=""){
 /*
 *This dialog allow configure the work view
 */
-function eyeCalendar_on_workViewConfig(){
+function xenonCalendar_on_workViewConfig(){
 	global $myPid;
 	
 	if(!isset($GLOBALS['configureCalendar'])) {
-		eyeCalendar_on_globalConfigureCalendar('work');
+		xenonCalendar_on_globalConfigureCalendar('work');
 		return true;
 	}
 	if(isset($GLOBALS['hiddenWin'])){
@@ -148,9 +148,9 @@ function eyeCalendar_on_workViewConfig(){
 	$myHiddenWindow = new Window(array('name'=>'hiddenWin','father'=>'configureCalendar_Content','type'=>INVISIBLE_WINDOW,'y'=>60,'x'=>0,'width'=>398,'height'=>266));
 	$myHiddenWindow->show();
 	
-	$xml = eyeCalendar('getConfig');
-	$workStartDay = (intval($xml['eyeCalendar'][0]['workStartDay'][0]) + intval($xml['eyeCalendar'][0]['workStartMonday'][0])) % 7;
-	$workEndDay = (intval($xml['eyeCalendar'][0]['workEndDay'][0]) + intval($xml['eyeCalendar'][0]['workStartMonday'][0])) % 7;
+	$xml = xenonCalendar('getConfig');
+	$workStartDay = (intval($xml['xenonCalendar'][0]['workStartDay'][0]) + intval($xml['xenonCalendar'][0]['workStartMonday'][0])) % 7;
+	$workEndDay = (intval($xml['xenonCalendar'][0]['workEndDay'][0]) + intval($xml['xenonCalendar'][0]['workStartMonday'][0])) % 7;
 	
 	$title = new Label(array('name'=>'TittleConfig','father'=>'hiddenWin','text'=>'Work View Configuration:','x'=>15,'y'=>10));
 	$title->show();
@@ -203,7 +203,7 @@ function eyeCalendar_on_workViewConfig(){
 		if($xy < 10){
 			$xy = '0'.$xy;
 		}
-		$mySelect->addOption($xy . ':00', $xy, $xml['eyeCalendar'][0]['workStartHour'][0] == $xy);
+		$mySelect->addOption($xy . ':00', $xy, $xml['xenonCalendar'][0]['workStartHour'][0] == $xy);
 	}
 
 	$y += 30;
@@ -218,7 +218,7 @@ function eyeCalendar_on_workViewConfig(){
 		if($x < 10){
 			$x = '0'.$x;
 		}
-		$mySelect->addOption($x . ':00', $x, $xml['eyeCalendar'][0]['workEndHour'][0] == $x);
+		$mySelect->addOption($x . ':00', $x, $xml['xenonCalendar'][0]['workEndHour'][0] == $x);
 	}
 	$myButton->show();
 	$cancelBtn = new Button(array('name'=>'configureCalendarSave2','father'=>'hiddenWin','x'=>120,'y'=>5,'horiz'=>1,'vert'=>1,'caption'=>'Cancel','width'=>100,'signal'=>'configure_Closed'));
@@ -227,11 +227,11 @@ function eyeCalendar_on_workViewConfig(){
 /*
 *This dialgo let configure the general optiosn of the calendar
 */
-function eyeCalendar_on_generalConfig(){
+function xenonCalendar_on_generalConfig(){
 	global $myPid;
 	
 	if(!isset($GLOBALS['configureCalendar'])) {
-		eyeCalendar_on_globalConfigureCalendar('general');
+		xenonCalendar_on_globalConfigureCalendar('general');
 		return true;
 	}
 	if(isset($GLOBALS['hiddenWin'])){
@@ -240,9 +240,9 @@ function eyeCalendar_on_generalConfig(){
 	$myHiddenWindow = new Window(array('name'=>'hiddenWin','father'=>'configureCalendar_Content','type'=>INVISIBLE_WINDOW,'y'=>60,'x'=>0,'width'=>398,'height'=>266));
 	$myHiddenWindow->show();
 	
-	$xml = eyeCalendar('getConfig');
-	$generalStartDay = (intval($xml['eyeCalendar'][0]['generalStartDay'][0]) + intval($xml['eyeCalendar'][0]['startMonday'][0])) % 7;
-	$generalEndDay = (intval($xml['eyeCalendar'][0]['generalEndDay'][0]) + intval($xml['eyeCalendar'][0]['startMonday'][0])) % 7;
+	$xml = xenonCalendar('getConfig');
+	$generalStartDay = (intval($xml['xenonCalendar'][0]['generalStartDay'][0]) + intval($xml['xenonCalendar'][0]['startMonday'][0])) % 7;
+	$generalEndDay = (intval($xml['xenonCalendar'][0]['generalEndDay'][0]) + intval($xml['xenonCalendar'][0]['startMonday'][0])) % 7;
 	
 	$title = new Label(array('name'=>'TittleConfig','father'=>'hiddenWin','text'=>'General Configuration:','x'=>15,'y'=>10));
 	$title->show();
@@ -300,7 +300,7 @@ function eyeCalendar_on_generalConfig(){
 		if($xy < 10){
 			$xy = '0'.$xy;
 		}
-		$mySelect->addOption($xy . ':00', $xy, $xml['eyeCalendar'][0]['generalStartHour'][0] == $xy);
+		$mySelect->addOption($xy . ':00', $xy, $xml['xenonCalendar'][0]['generalStartHour'][0] == $xy);
 	}
 
 	$y += 30;
@@ -314,14 +314,14 @@ function eyeCalendar_on_generalConfig(){
 		if($x < 10){
 			$x = '0'.$x;
 		}
-		$mySelect->addOption($x . ':00', $x, $xml['eyeCalendar'][0]['generalEndHour'][0] == $x);
+		$mySelect->addOption($x . ':00', $x, $xml['xenonCalendar'][0]['generalEndHour'][0] == $x);
 	}
 	$myButton->show();
 	$cancelBtn = new Button(array('name'=>'configureCalendarSave2','father'=>'hiddenWin','x'=>120,'y'=>5,'horiz'=>1,'vert'=>1,'caption'=>'Cancel','width'=>100,'signal'=>'configure_Closed'));
 	$cancelBtn->show();
 }
 //Save functions!
-function eyeCalendar_on_updateCalendars($params=""){
+function xenonCalendar_on_updateCalendars($params=""){
 	$paramsInfo = Array();
 	foreach($params as $key=>$value){
 		$preNum = substr($key, 0, strpos($key, '_')); // utf8
@@ -356,9 +356,9 @@ function eyeCalendar_on_updateCalendars($params=""){
 	$names = array();
 	foreach($paramsInfo as $key =>$info){
 		if($info['delete'] == 'true'){
-			$calednarsNum = eyeCalendar('numOfCalendars');
+			$calednarsNum = xenonCalendar('numOfCalendars');
 			if($calednarsNum > 1){
-				eyeCalendar('deleteCalendar',array($paramsInfo[$key]['name']));
+				xenonCalendar('deleteCalendar',array($paramsInfo[$key]['name']));
 				$GLOBALS['weekPlanner']->deleteCalendarNotes($paramsInfo[$key]['num']);
 				unset($paramsInfo[$key]);
 				continue;
@@ -386,7 +386,7 @@ function eyeCalendar_on_updateCalendars($params=""){
 			return false;
 		}
 	}
-	$newCalendars = eyeCalendar('updateCalendarsInfo',array($paramsInfo));
+	$newCalendars = xenonCalendar('updateCalendarsInfo',array($paramsInfo));
 	if($newCalendars == false){
 		return false;
 	}
@@ -404,38 +404,38 @@ function eyeCalendar_on_updateCalendars($params=""){
 		break;
 	}
 
-	eyeCalendar('setCurrentCalendar',array($num));
+	xenonCalendar('setCurrentCalendar',array($num));
 	$GLOBALS['weekPlanner']->cleanCalendars();
 	$GLOBALS['weekPlanner']->addCalendars($newCalendars);
 	$GLOBALS['weekPlanner']->selectCalendar($num);
 	$myDays = $GLOBALS['weekPlanner']->getDays();
-	$notes = eyeCalendar('getWeekNotes',array($myDays));
+	$notes = xenonCalendar('getWeekNotes',array($myDays));
 	$GLOBALS['weekPlanner']->cleanNotes();
 	$GLOBALS['weekPlanner']->addNotes($notes);
 	xenonx('messageBox',array('content'=>'Configuration Saved'));
 }
-function eyeCalendar_on_workViewSave($params=''){
+function xenonCalendar_on_workViewSave($params=''){
 // 	$configDaySelect = intval($params['configDaySelect'][0]);
 	$workStartDay = intval($params['weekStartSelect'][0]);
 	$workEndDay = intval($params['weekEndSelect'][0]);
 	$workStartHour = intval($params['dayStartSelect'][0]);
 	$workEndHour = intval($params['dayEndSelect'][0]);
-	$info = eyeCalendar('getConfig');
+	$info = xenonCalendar('getConfig');
 	if($workEndDay == 0 && $workStartDay == 1){
-		$info['eyeCalendar'][0]['workStartMonday'][0] = 1;
+		$info['xenonCalendar'][0]['workStartMonday'][0] = 1;
 // 		return false;
 	}else{
-		$info['eyeCalendar'][0]['workStartMonday'][0] = 0;
+		$info['xenonCalendar'][0]['workStartMonday'][0] = 0;
 	}
 
 	if($workStartDay == 0){
-		$info['eyeCalendar'][0]['workStartMonday'][0] = 0;
+		$info['xenonCalendar'][0]['workStartMonday'][0] = 0;
 // 		return false;
 	}
 
 	//Checking if the user has changed the startMonday
-// // 	$info = eyeCalendar('getConfig');
-	$startDay = $info['eyeCalendar'][0]['workStartMonday'][0];
+// // 	$info = xenonCalendar('getConfig');
+	$startDay = $info['xenonCalendar'][0]['workStartMonday'][0];
 	if($startDay == 1){
 		//If the i10n is set as monday
 		if($workStartDay == 1){
@@ -458,43 +458,43 @@ function eyeCalendar_on_workViewSave($params=''){
 		return false;
 	}*/
 
-	$info['eyeCalendar'][0]['workStartDay'][0] = $workStartDay;
-	$info['eyeCalendar'][0]['workEndDay'][0] = $workEndDay;
-	$info['eyeCalendar'][0]['workStartHour'][0] = $workStartHour;
-	$info['eyeCalendar'][0]['workEndHour'][0] = $workEndHour;
+	$info['xenonCalendar'][0]['workStartDay'][0] = $workStartDay;
+	$info['xenonCalendar'][0]['workEndDay'][0] = $workEndDay;
+	$info['xenonCalendar'][0]['workStartHour'][0] = $workStartHour;
+	$info['xenonCalendar'][0]['workEndHour'][0] = $workEndHour;
 
-	eyeCalendar('setConfig',array($info));
+	xenonCalendar('setConfig',array($info));
 	xenonx('messageBox',array('content'=>'Configuration saved correctly'));
 	if($GLOBALS['calendarView']->text == 'work'){
 		_changeView($GLOBALS['calendarView']->text);
 	}
 	return true;
 }
-function eyeCalendar_on_configure_Closed(){
+function xenonCalendar_on_configure_Closed(){
 	$GLOBALS['configureCalendar']->close();
 }
-function eyeCalendar_on_generalViewSave($params=''){
+function xenonCalendar_on_generalViewSave($params=''){
 // 	$configDaySelect = intval($params['configDaySelect'][0]);
 	$workStartDay = intval($params['weekStartSelect'][0]);
 	$workEndDay = intval($params['weekEndSelect'][0]);
 	$workStartHour = intval($params['dayStartSelect'][0]);
 	$workEndHour = intval($params['dayEndSelect'][0]);
 
-	$info = eyeCalendar('getConfig');
+	$info = xenonCalendar('getConfig');
 	if($workEndDay == 0 && $workStartDay == 1){
-		$info['eyeCalendar'][0]['startMonday'][0] = 1;
+		$info['xenonCalendar'][0]['startMonday'][0] = 1;
 // 		return false;
 	}else{
-		$info['eyeCalendar'][0]['startMonday'][0] = 0;
+		$info['xenonCalendar'][0]['startMonday'][0] = 0;
 	}
 
 	if($workStartDay == 0){
-		$info['eyeCalendar'][0]['startMonday'][0] = 0;
+		$info['xenonCalendar'][0]['startMonday'][0] = 0;
 // 		return false;
 	}
 
 	//Checking if the user has changed the startMonday
-	$startDay = $info['eyeCalendar'][0]['startMonday'][0];
+	$startDay = $info['xenonCalendar'][0]['startMonday'][0];
 	if($startDay == 1){
 		//If the i10n is set as monday
 		if($workStartDay == 1){
@@ -518,12 +518,12 @@ function eyeCalendar_on_generalViewSave($params=''){
 		return false;
 	}*/
 
-	$info['eyeCalendar'][0]['generalStartDay'][0] = $workStartDay;
-	$info['eyeCalendar'][0]['generalEndDay'][0] = $workEndDay;
-	$info['eyeCalendar'][0]['generalStartHour'][0] = $workStartHour;
-	$info['eyeCalendar'][0]['generalEndHour'][0] = $workEndHour;
+	$info['xenonCalendar'][0]['generalStartDay'][0] = $workStartDay;
+	$info['xenonCalendar'][0]['generalEndDay'][0] = $workEndDay;
+	$info['xenonCalendar'][0]['generalStartHour'][0] = $workStartHour;
+	$info['xenonCalendar'][0]['generalEndHour'][0] = $workEndHour;
 
-	eyeCalendar('setConfig',array($info));
+	xenonCalendar('setConfig',array($info));
 	xenonx('messageBox',array('content'=>'Configuration saved correctly'));
 	if($GLOBALS['calendarView']->text == 'work'){
 		_changeView($GLOBALS['calendarView']->text);

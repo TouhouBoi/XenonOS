@@ -1,4 +1,4 @@
-/*global addContextEntry, ContextMenu_show, eyeCalendarChecknum, eyeParam, getArrayArg, IEversion, sendMsg, USERTHEME, xAddEventListener, xEvent, xGetElementById, xHeight, xPreventDefault, xRemoveEventListener, xTop, xWidth */
+/*global addContextEntry, ContextMenu_show, xenonCalendarChecknum, eyeParam, getArrayArg, IEversion, sendMsg, USERTHEME, xAddEventListener, xEvent, xGetElementById, xHeight, xPreventDefault, xRemoveEventListener, xTop, xWidth */
 /*jslint browser: true, devel: true, newcap: true, sloppy: true, todo: true, windows: true */
 /*
   ___  _ __   ___ _   _  ___
@@ -379,7 +379,7 @@ function weekPlanner_base(weekPlanner, dayFrom, dayEven) {
 		d = this.father.dayFrom;
 		weekDay.setAttribute('id', this.father.pid + '_day_' + d);
 		//css
-		weekDay.className = 'eyeCalendar_day';
+		weekDay.className = 'xenonCalendar_day';
 		weekDay.style.width = this.father.rowWidth + 'px';
 		weekDay.notes = [];
 		weekDay.orderNotes = orderNotes;
@@ -391,7 +391,7 @@ function weekPlanner_base(weekPlanner, dayFrom, dayEven) {
 			hour = document.createElement('div');
 			hour.setAttribute('id', this.father.pid + '_hour_' + d + '_' + h);
 			//css
-			hour.className = 'eyeCalendar_hour';
+			hour.className = 'xenonCalendar_hour';
 			hour.style.height = this.father.rowHeight + 'px';
 			hour.pid = this.father.pid;
 
@@ -401,7 +401,7 @@ function weekPlanner_base(weekPlanner, dayFrom, dayEven) {
 				part = document.createElement('div');
 				//css
 				part.setAttribute('id', d + '_part_' + l);
-				part.className = 'eyeCalendar_part';
+				part.className = 'xenonCalendar_part';
 				part.pid = this.father.pid;
 				part.evenType = 'default';
 				part.day = d;
@@ -423,7 +423,7 @@ function weekPlanner_base(weekPlanner, dayFrom, dayEven) {
 			halfHour = document.createElement('div');
 			halfHour.setAttribute('id', 'halfHour');
 			halfHour.style.top = (this.father.rowHeight / 2) + 'px';
-			halfHour.className = 'eyeCalendar_halfHour';
+			halfHour.className = 'xenonCalendar_halfHour';
 			hour.appendChild(halfHour);
 			//Filling the week day
 			weekDay.appendChild(hour);
@@ -868,7 +868,7 @@ function weekPlanner_calendars(weekPlanner) {
 		imageContainer.style.height = '100%';
 		imageContainer.style.right = '5px';
 		image = document.createElement('img');
-		image.src = 'index.php?theme=' + USERTHEME + '&extern=images/apps/eyeCalendar/widget/selected.png';
+		image.src = 'index.php?theme=' + USERTHEME + '&extern=images/apps/xenonCalendar/widget/selected.png';
 		image.setAttribute('id', this.father.pid + '_selectedImg_img');
 		imageContainer.appendChild(image);
 //		fixPNG(image);
@@ -1367,7 +1367,7 @@ function weekPlanner_notes(weekPlanner) {
 	this.draw_editBox = function draw_editBox(text) {
 		var textContainer = document.createElement('div');
 		textContainer.setAttribute('id', 'eventCotnainer');
-		textContainer.className = 'eyeCalendar_hover';
+		textContainer.className = 'xenonCalendar_hover';
 		textContainer.style.position = 'relative';
 		textContainer.style.paddingLeft = '1px';
 		textContainer.style.paddingRight = '1px';
@@ -1770,7 +1770,7 @@ function weekPlanner_notes(weekPlanner) {
 		noteRemove.setAttribute('id', 'noteRemove');
 		noteRemove.style.position = 'absolute';
 		noteRemove.style.backgroundRepeat = 'no-repeat';
-		noteRemove.style.backgroundImage = 'url(index.php?theme=' + USERTHEME + '&extern=images/apps/eyeCalendar/deleteNote.png)';
+		noteRemove.style.backgroundImage = 'url(index.php?theme=' + USERTHEME + '&extern=images/apps/xenonCalendar/deleteNote.png)';
 		noteRemove.style.top = '0px';
 		noteRemove.style.right = '0px';
 		noteRemove.style.height = this.father.pixelPart + 'px';
@@ -2012,7 +2012,7 @@ function weekPlanner_show(params, name, father, x, y, horiz, vert, checknum, cen
  * PHP Events
  */
 
-function onResizeEyeCalendar(pid) {
+function onResizexenonCalendar(pid) {
 	weekPlanner_instances[pid].resizeDays();
 }
 
@@ -2065,7 +2065,7 @@ function onShowNotesCalendar(pid, num) {
  */
 
 function init_calendar() {
-	sendMsg(eyeCalendarChecknum, 'Launch', '');
+	sendMsg(xenonCalendarChecknum, 'Launch', '');
 }
 
 init_calendar();

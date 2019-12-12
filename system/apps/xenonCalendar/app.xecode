@@ -14,27 +14,27 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeCalendar_run($params = '') {
+function xenonCalendar_run($params = '') {
 	global $checknum;
 	global $myPid;
 	global $procInfo;
 	global $myPid;
 	
-	$path = um('getCurrentUserDir') . '/' . CONF_USER_DIR . '/eyeCalendar';
+	$path = um('getCurrentUserDir') . '/' . CONF_USER_DIR . '/xenonCalendar';
 	if (!is_dir($path)) {
 		mkdir($path);
-		recursiveCopy(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/eyeCalendar', $path);
+		recursiveCopy(XENONOS_ROOT . '/' . SYSTEM_DIR . '/' . SYSTEM_CONF_DIR . '/skel/' . CONF_USER_DIR . '/xenonCalendar', $path);
 	}
 	
 	foreach (proc('getProcessTable') as $process) {
-		if ($process['appName'] == 'eyeCalendar' && $process['pid'] != $myPid) {
-			xenonx('messageBox', array('content' => 'eyeCalendar is already running!'));
+		if ($process['appName'] == 'xenonCalendar' && $process['pid'] != $myPid) {
+			xenonx('messageBox', array('content' => 'xenonCalendar is already running!'));
 			return proc('end');
 		}
 	}
 
 	if($procInfo['exec'] == 'task'){
-		$_SESSION['eyeCalendarJs'] = false;
+		$_SESSION['xenonCalendarJs'] = false;
 		if(isset($_SESSION[WTABLE][$myPid]['weekPlanner'])){
 			$_SESSION[WTABLE][$myPid]['weekPlanner']->killme();
 		}
@@ -49,10 +49,10 @@ function eyeCalendar_run($params = '') {
 	}
 	//Call component js part
 	//xenonx('messageBox',array('content'=>$_SESSION['SCREEN']['refresh'],'type'=>2));
-	if(!isset($_SESSION['eyeCalendarJs']) || $_SESSION['eyeCalendarJs'] < $_SESSION['SCREEN']['refresh']){
-		xenonx('rawjs',array('js'=>'eyeCalendarChecknum = '.$checknum.';'));
-		xenonx('loadScript',array('url' => 'index.php?extern=apps/eyeCalendar/js/components/eyeCalendar' . XE_CODE_EXTENSION . '&type=dynamic'));
-		xenonx('loadCss',array('url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/eyeCalendar/eyeCalendar.css&type=css','id' =>'eyeCalendar.css'));
+	if(!isset($_SESSION['xenonCalendarJs']) || $_SESSION['xenonCalendarJs'] < $_SESSION['SCREEN']['refresh']){
+		xenonx('rawjs',array('js'=>'xenonCalendarChecknum = '.$checknum.';'));
+		xenonx('loadScript',array('url' => 'index.php?extern=apps/xenonCalendar/js/components/xenonCalendar' . XE_CODE_EXTENSION . '&type=dynamic'));
+		xenonx('loadCss',array('url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=css/apps/xenonCalendar/xenonCalendar.css&type=css','id' =>'xenonCalendar.css'));
 	}
 
 	$currentDate = time();
@@ -61,16 +61,16 @@ function eyeCalendar_run($params = '') {
 	//Making the main window
 	$windowWidth = 864;
 	$windowHeight = 550;
-	$myWindow1 = new Window(array('title'=>'Calendar','name'=>'eyeCalendarWin1','father' => 'xenonApps',
+	$myWindow1 = new Window(array('title'=>'Calendar','name'=>'xenonCalendarWin1','father' => 'xenonApps',
 	'y'=>35,'type'=>NORMAL_WINDOW,'sendResizeMsg'=>1,'sigResize'=>'mainResize','x'=>0,'cent'=>2,'width'=>$windowWidth,'height'=>$windowHeight,'savePosition' => 1));
 	$myWindow1->show();
-	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_eyeCalendarWin1_Content").style.overflow = "hidden";'));
+	xenonx('rawjs',array('js'=>'xGetElementById("'.$myPid.'_xenonCalendarWin1_Content").style.overflow = "hidden";'));
 	$windowHeight = 535;
 
 
 	$myWindow1->setCss(array('display'=>'inline'));
 
-	$myToolbar = new Toolbar(array('name'=>'myBar','father'=>'eyeCalendarWin1_Content'));
+	$myToolbar = new Toolbar(array('name'=>'myBar','father'=>'xenonCalendarWin1_Content'));
 	$myToolbar->show();
 	$myToolbar->addItem('GoBack','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/previous.png','Previous');
 	$myToolbar->addItem('GoForward','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/next.png','Next');
@@ -96,10 +96,10 @@ function eyeCalendar_run($params = '') {
 		$myToolbar->addItem('fullScreen','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png','Full Screen','',1);
 	}
 
-	$myContainer = new Simplebox(array('name'=>'container','father'=>'eyeCalendarWin1_Content','x'=>0,'y'=>58,'width'=>$windowWidth-2,'height'=>$windowHeight-62,'border'=>0));
+	$myContainer = new Simplebox(array('name'=>'container','father'=>'xenonCalendarWin1_Content','x'=>0,'y'=>58,'width'=>$windowWidth-2,'height'=>$windowHeight-62,'border'=>0));
 	$myContainer->show(0);
 
-	$myLine = new Line(array('name'=>'verticalPanel','father'=>'eyeCalendarWin1_Content','x'=>160,'y'=>59,'width'=>5,'height'=>$windowHeight-83));
+	$myLine = new Line(array('name'=>'verticalPanel','father'=>'xenonCalendarWin1_Content','x'=>160,'y'=>59,'width'=>5,'height'=>$windowHeight-83));
 	$myLine->show(0);
 	$myLine->setCss(array('backgroundColor'=>'#eeeeee',
 						'borderLeft'=>'1px transparent solid',
@@ -118,7 +118,7 @@ function eyeCalendar_run($params = '') {
 	xenonx('rawjs',array('js'=>$js));
 
 	//Calendar widget.
-	$i10n = eyeCalendar('geti10n');
+	$i10n = xenonCalendar('geti10n');
 	$myCalendarWidget = new Calendar(array(
 					'name'=>'calendarWidget',
 					'father'=>'container',
@@ -153,26 +153,26 @@ function eyeCalendar_run($params = '') {
 // 	document.getElementById("'.$myPid.'_calendarContainer_Container").style.overflowY="scroll";'));
 
 	//VERSION CHECK; this is needed since 1.0 version.
-	if(!eyeCalendar('calendarInfoExists')){
-		eyeCalendar('indexCalendarInfo',array(1));
+	if(!xenonCalendar('calendarInfoExists')){
+		xenonCalendar('indexCalendarInfo',array(1));
 	}
 	//Maybe the user was added in a new group so we have to check everything
 //the group shared calendar has been desactivated until 1.9
-// 	eyeCalendar('indexGroups');
+// 	xenonCalendar('indexGroups');
 
 	$calendarView = new Hidden(array('name'=>'calendarView','text'=>''));
 	eyeWidgets('serialize',array($calendarView));
 	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 	//The weekPlanner is loaded in launch event
-	if(!isset($_SESSION['eyeCalendarJs']) || $_SESSION['eyeCalendarJs'] < $_SESSION['SCREEN']['refresh']){
-		$_SESSION['eyeCalendarJs'] = $_SESSION['SCREEN']['refresh'];
+	if(!isset($_SESSION['xenonCalendarJs']) || $_SESSION['xenonCalendarJs'] < $_SESSION['SCREEN']['refresh']){
+		$_SESSION['xenonCalendarJs'] = $_SESSION['SCREEN']['refresh'];
 	}else{
-		include_once XENONOS_ROOT.'/'.APP_DIR.'/eyeCalendar/events.xecode';
-		eyeCalendar_on_Launch();
+		include_once XENONOS_ROOT.'/'.APP_DIR.'/xenonCalendar/events.xecode';
+		xenonCalendar_on_Launch();
 	}
 }
 
-function eyeCalendar_end($params=null) {
+function xenonCalendar_end($params=null) {
 	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }

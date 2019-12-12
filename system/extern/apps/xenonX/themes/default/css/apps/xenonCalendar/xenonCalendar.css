@@ -13,35 +13,35 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-.eyeCalendar_day, .eyeCalendar_hour, .eyeCalendar_part {
+.xenonCalendar_day, .xenonCalendar_hour, .xenonCalendar_part {
 	float: left;
 	position: relative;
 }
 
-.eyeCalendar_day {
+.xenonCalendar_day {
 	height: 100%;
 }
 
-.eyeCalendar_halfHour {
+.xenonCalendar_halfHour {
 	border-top: 1px dotted #dddddd;
 	height: 1px;
 	position: absolute;
 }
 
-.eyeCalendar_halfHour, .eyeCalendar_hour, .eyeCalendar_part {
+.xenonCalendar_halfHour, .xenonCalendar_hour, .xenonCalendar_part {
 	width: 100%;
 }
 
-.eyeCalendar_hover:hover {
+.xenonCalendar_hover:hover {
 	text-decoration: underline;
 }
 
-.eyeCalendar_part {
+.xenonCalendar_part {
 	height: 25%;
 	z-index: 2;
 }
 
-.eyeCalendar {
+.xenonCalendar {
 	padding-right: 2px;
 }
 

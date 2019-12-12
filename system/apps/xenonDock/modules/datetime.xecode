@@ -36,7 +36,7 @@ xenonx('createDiv',array(
 	'father' => 'xenonDock_' . $type . '_' . $place . '_' . $id,
 	'name' => 'xenonDock_' . $type . '_' . $place . '_' . $id . '_entries'
 ));
-$i10n = eyeCalendar('geti10n');
+$i10n = xenonCalendar('geti10n');
 xenonx('runjs',array(
 	'js' => 'DockMenu.DateTime.Create("' . $checknum . '","' . $myPid . '","' . $type . '","' . $place . '","' . $id . '",%s,' . $i10n['startDay'] . ');',
 	'tokens' => array($element[0]['format'][0])

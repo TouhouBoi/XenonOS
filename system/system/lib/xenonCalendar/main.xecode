@@ -18,12 +18,12 @@ define('EYENOTE_EXT', 'eyeNote');
 define('CALENDARSINFO', 'calendarsInfo.xml');
 
 //General propose functions
-function lib_eyeCalendar_getWeekNotes($params){
+function lib_xenonCalendar_getWeekNotes($params){
 	//Creating time for every day
 	$daysInfo = $params[0];
 	$notes = array();
 	for($x=0;$x < 7;$x++){
-		$note = eyeCalendar('getDayNotes',array('mday'=>$daysInfo['nums'][$x],'month'=>$daysInfo['month'][$x],'year'=>$daysInfo['year'][$x]));
+		$note = xenonCalendar('getDayNotes',array('mday'=>$daysInfo['nums'][$x],'month'=>$daysInfo['month'][$x],'year'=>$daysInfo['year'][$x]));
 		if(is_array($note)){
 			foreach($note as $inNote){
 				$notes[] = $inNote;
@@ -32,21 +32,21 @@ function lib_eyeCalendar_getWeekNotes($params){
 	}
 	return $notes;
 }
-function lib_eyeCalendar_getDayNotes($params){
+function lib_xenonCalendar_getDayNotes($params){
 	$myYear = $params['year'];
 	$myMonth = $params['month'];
 	$myDay = $params['mday'];
-	$calDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/';
+	$calDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/';
 	$noteDir = '/'.$myYear.'/'.$myMonth.'/'.$myDay;
 	$returnNotes = false;
 
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 	foreach($myCalendars['calendars'][0]['calendarInfo'] as $calendarInfo){
 		$calendarName = $calendarInfo['name'][0];
 		$calendarNum = $calendarInfo['num'][0];
 		if($calendarInfo['remote'][0]){
 			if($params['remoteType'][0] = 'group'){
-				$calDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendarName.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/';
+				$calDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendarName.'/'.CONF_GROUP_DIR.'/xenonCalendar/calendars/';
 			}
 		}
 		$dir = $calDir.$calendarName.$noteDir;
@@ -68,7 +68,7 @@ function lib_eyeCalendar_getDayNotes($params){
 
 
 //Basic notes functions
-function lib_eyeCalendar_saveNote($params)
+function lib_xenonCalendar_saveNote($params)
 {
 	$noteTitle = $params['title'][0];
 	$myYear = $params['year'][0];
@@ -84,14 +84,14 @@ function lib_eyeCalendar_saveNote($params)
 	$time = $params['time'][0];
 	//Getting calendar folder
 
-	$calendar = eyeCalendar('getCalendarName',array($params['calendar'][0]));
-	if(eyeCalendar('getCalendarRemote',array($params['calendar'][0]))){
-		$type = eyeCalendar('getCalendarRemoteType',array($params['calendar'][0]));
+	$calendar = xenonCalendar('getCalendarName',array($params['calendar'][0]));
+	if(xenonCalendar('getCalendarRemote',array($params['calendar'][0]))){
+		$type = xenonCalendar('getCalendarRemoteType',array($params['calendar'][0]));
 		if($type = 'group'){
-			$noteDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/'.$calendar;
+			$noteDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/xenonCalendar/calendars/'.$calendar;
 		}
 	}else{
-		$noteDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.$calendar;
+		$noteDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/'.$calendar;
 	}
 
 	if(!vfs('fileExists',array($noteDir)))
@@ -146,23 +146,23 @@ function lib_eyeCalendar_saveNote($params)
 	fwrite($fp,$xml);
 	fclose($fp);
 }
-function lib_eyeCalendar_retriveNote($params){
+function lib_xenonCalendar_retriveNote($params){
 	$dateInt = $params['dateInt'];
 	$calendar = $params['calendar'];
-	$calendar = eyeCalendar('getCalendarName',array($calendar));
+	$calendar = xenonCalendar('getCalendarName',array($calendar));
 	if(!is_numeric($dateInt))
 	{
 		xenonx('messageBox',array('content' => 'Error %s','tokens' => array($dateInt)));
 		return;
 	}
 
-	if(eyeCalendar('getCalendarRemote',array($params['calendar']))){
-		$type = eyeCalendar('getCalendarRemoteType',array($params['calendar']));
+	if(xenonCalendar('getCalendarRemote',array($params['calendar']))){
+		$type = xenonCalendar('getCalendarRemoteType',array($params['calendar']));
 		if($type = 'group'){
-			$noteDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/'.$calendar;
+			$noteDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/xenonCalendar/calendars/'.$calendar;
 		}
 	}else{
-		$noteDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.$calendar;
+		$noteDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/'.$calendar;
 	}
 
 	$myDate = getdate($dateInt);
@@ -180,13 +180,13 @@ function lib_eyeCalendar_retriveNote($params){
 	return $xml;
 
 }
-function lib_eyeCalendar_updateNote($params){
+function lib_xenonCalendar_updateNote($params){
 	$info = $params['info'];
 	$oldId = $params['oldId'];
 	$id = $info['note'][0]['dateInt'][0];
 	$calendar = $params['calendar'];
-	$calendar = eyeCalendar('getCalendarName',array($calendar));
-	$remoteType = eyeCalendar('getCalendarRemoteType',array($params['calendar']));
+	$calendar = xenonCalendar('getCalendarName',array($calendar));
+	$remoteType = xenonCalendar('getCalendarRemoteType',array($params['calendar']));
 	$dir = getDirTime($oldId,$calendar,$remoteType);
 	$file = $dir.'/'.$oldId.'.'.EYENOTE_EXT;
 
@@ -200,31 +200,31 @@ function lib_eyeCalendar_updateNote($params){
 	}
 	return true;
 }
-function lib_eyeCalendar_deleteNote($params)
+function lib_xenonCalendar_deleteNote($params)
 {
 	$dateInt = $params['dateInt'];
 	$calendar = $params['calendar'];
-	$calendar = eyeCalendar('getCalendarName',array($calendar));
-	$remoteType = eyeCalendar('getCalendarRemoteType',array($params['calendar']));
+	$calendar = xenonCalendar('getCalendarName',array($calendar));
+	$remoteType = xenonCalendar('getCalendarRemoteType',array($params['calendar']));
 	$noteDir = getDirTime($dateInt,$calendar,$remoteType);
 	$noteDir .= '/'.$dateInt.'.'.EYENOTE_EXT;
 	vfs('real_delete',array($noteDir));
 }
 
 //Calendars managment
-function lib_eyeCalendar_getCalendarsInfo(){
-	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.CALENDARSINFO;
+function lib_xenonCalendar_getCalendarsInfo(){
+	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/'.CALENDARSINFO;
 	if(!vfs('real_fileExists',array($calendarsInfo))){
 		return false;
 	}
 	$calendarsInfo = xenonXML('getXMLfile',array($calendarsInfo));
 	return $calendarsInfo;
 }
-function lib_eyeCalendar_setCalendarsInfo($params){
+function lib_xenonCalendar_setCalendarsInfo($params){
 	$num = $params[0];
 	$status = $params[1];
 
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 	$count = count($myCalendars['calendars'][0]['calendarInfo']);
 
 	for($x=0;$x < $count;$x++){
@@ -237,16 +237,16 @@ function lib_eyeCalendar_setCalendarsInfo($params){
 			break;
 		}
 	}
-	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.CALENDARSINFO;
+	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/'.CALENDARSINFO;
 	if(!xenonXML('setXMLfile',array($calendarsInfo,$myCalendars))){
 		return false;
 	}
 	return true;
 }
-function lib_eyeCalendar_updateCalendarsInfo($params){
+function lib_xenonCalendar_updateCalendarsInfo($params){
 	$paramsInfo = $params[0];
-	$calendarsPath = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/';
-	$calendarsOldInfo = eyeCalendar('getCalendarsInfo');
+	$calendarsPath = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/';
+	$calendarsOldInfo = xenonCalendar('getCalendarsInfo');
 
 	foreach($paramsInfo as $key=>$calendarInfo){
 		$file = $calendarsPath.$calendarInfo['name'];
@@ -280,9 +280,9 @@ function lib_eyeCalendar_updateCalendarsInfo($params){
 
 	return $myCalendars;
 }
-function lib_eyeCalendar_calendarExists($params){
+function lib_xenonCalendar_calendarExists($params){
 	$num = $params[0];
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 	foreach($myCalendars['calendars'][0]['calendarInfo'] as $calendarInfo){
 		if($calendarInfo['num'][0] == $num){
 			return true;
@@ -290,9 +290,9 @@ function lib_eyeCalendar_calendarExists($params){
 	}
 	return false;
 }
-function lib_eyeCalendar_getCalendarName($params){
+function lib_xenonCalendar_getCalendarName($params){
 	$num = $params[0];
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 	foreach($myCalendars['calendars'][0]['calendarInfo'] as $calendarInfo){
 		if($calendarInfo['num'][0] == $num){
 			return $calendarInfo['name'][0];
@@ -300,28 +300,28 @@ function lib_eyeCalendar_getCalendarName($params){
 	}
 	return false;
 }
-function lib_eyeCalendar_getCalendarRemote($params){
+function lib_xenonCalendar_getCalendarRemote($params){
 	$num = $params[0];
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 	foreach($myCalendars['calendars'][0]['calendarInfo'] as $calendarInfo){
 		if($calendarInfo['num'][0] == $num){
 			return $calendarInfo['remote'][0];
 		}
 	}
 }
-function lib_eyeCalendar_getCalendarRemoteType($params){
+function lib_xenonCalendar_getCalendarRemoteType($params){
 	$num = $params[0];
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 	foreach($myCalendars['calendars'][0]['calendarInfo'] as $calendarInfo){
 		if($calendarInfo['num'][0] == $num){
 			return $calendarInfo['remoteType'][0];
 		}
 	}
 }
-function lib_eyeCalendar_createCalendar($params){
+function lib_xenonCalendar_createCalendar($params){
 	$name = $params[0];
 	$nums = array();
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 
 	//If there are no calednars, evade all "caching"
 	if($myCalendars != false){
@@ -358,14 +358,14 @@ function lib_eyeCalendar_createCalendar($params){
 	}
 
 	//Making dir if it don't exists
-	$file = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.$name;
+	$file = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/'.$name;
 	if(!vfs('real_fileExists',array($file))){
 		if(!vfs('real_mkDir',array($file))){
 			return false;
 		}
 	}
 
-	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.CALENDARSINFO;
+	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/'.CALENDARSINFO;
 
 	if(!xenonXML('setXMLfile',array($calendarsInfo,$myCalendars))){
 		return false;
@@ -374,32 +374,32 @@ function lib_eyeCalendar_createCalendar($params){
 	$calendarInfo['calendars'][0]['calendarInfo'][0] = $myCalendars['calendars'][0]['calendarInfo'][$count];
 	return $calendarInfo;
 }
-function lib_eyeCalendar_deleteCalendar($params){
+function lib_xenonCalendar_deleteCalendar($params){
 	$name = $params[0];
 	$name = basename($name);
 
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 	foreach($myCalendars['calendars'][0]['calendarInfo'] as $key => $calendarInfo){
 		if($calendarInfo['name'][0] == $name){
 			unset($myCalendars['calendars'][0]['calendarInfo'][$key]);
 		}
 	}
 
-	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.CALENDARSINFO;
+	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/'.CALENDARSINFO;
 	if(!xenonXML('setXMLfile',array($calendarsInfo,$myCalendars))){
 		return false;
 	}
 
-	$calendarsPath = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.$name;
+	$calendarsPath = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/'.$name;
 	vfs('real_rmdir',array($calendarsPath));
 	return true;
 }
-function lib_eyeCalendar_numOfCalendars(){
-	$calendars = eyeCalendar('getCalendarsInfo');
+function lib_xenonCalendar_numOfCalendars(){
+	$calendars = xenonCalendar('getCalendarsInfo');
 	return count($calendars['calendars'][0]['calendarInfo']);
 }
-function lib_eyeCalendar_calendarInfoExists(){
-	$calendarsPath = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.CALENDARSINFO;
+function lib_xenonCalendar_calendarInfoExists(){
+	$calendarsPath = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/'.CALENDARSINFO;
 	if(vfs('real_fileExists',array($calendarsPath))){
 		return true;
 	}else{
@@ -408,20 +408,20 @@ function lib_eyeCalendar_calendarInfoExists(){
 }
 
 //Indexation tools
-function lib_eyeCalendar_indexGroups(){
+function lib_xenonCalendar_indexGroups(){
 	print_r("GROUPS DSACTIVATED UNTIL 1.9!!");exit;
 // 	global $currentUser;
 // 	$groups = um('getCurrentGroups');
 // 	foreach($groups as $group=>$trash) {
 // 		$params = array($group,'extraParams'=>array('remote'=>'1','remoteType'=>'group'));
-// 		lib_eyeCalendar_createCalendar($params);
+// 		lib_xenonCalendar_createCalendar($params);
 // 	}
 }
-function lib_eyeCalendar_indexCalendarInfo($params){
+function lib_xenonCalendar_indexCalendarInfo($params){
 	if($params[0]){
 		$first = true;
 	}
-	$calendarsPath = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/';
+	$calendarsPath = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/';
 	$subfolder = vfs('real_getDirContent',array($calendarsPath,'*'));
 	$selected = 0;
 	foreach($subfolder as $key=>$calendar){
@@ -449,9 +449,9 @@ function lib_eyeCalendar_indexCalendarInfo($params){
 	}
 }
 
-//eyeCalendar Application functions
-function lib_eyeCalendar_getCurrentCalendar(){
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+//xenonCalendar Application functions
+function lib_xenonCalendar_getCurrentCalendar(){
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 	foreach($myCalendars['calendars'][0]['calendarInfo'] as $calendarInfo){
 		if(is_array($calendarInfo) && isset($calendarInfo['selected']) && $calendarInfo['selected'][0] == 1){
 			return $calendarInfo['num'][0];
@@ -464,12 +464,12 @@ function lib_eyeCalendar_getCurrentCalendar(){
 	}
 	return false;
 }
-function lib_eyeCalendar_setCurrentCalendar($params){
+function lib_xenonCalendar_setCurrentCalendar($params){
 	$calendar = $params[0];
-	if(!eyeCalendar('calendarExists',array($calendar))){
+	if(!xenonCalendar('calendarExists',array($calendar))){
 		return false;
 	}
-	$myCalendars = eyeCalendar('getCalendarsInfo');
+	$myCalendars = xenonCalendar('getCalendarsInfo');
 	//Updating selected info
 	foreach($myCalendars['calendars'][0]['calendarInfo'] as $key => $calendarInfo){
 		if($calendarInfo['selected'][0] == 1){
@@ -479,39 +479,39 @@ function lib_eyeCalendar_setCurrentCalendar($params){
 			$myCalendars['calendars'][0]['calendarInfo'][$key]['selected'][0] = 1;
 		}
 	}
-	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.CALENDARSINFO;
+	$calendarsInfo = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/'.CALENDARSINFO;
 	if(!xenonXML('setXMLfile',array($calendarsInfo,$myCalendars))){
 		return false;
 	}
 	return true;
 }
-function lib_eyeCalendar_setDefaultView($params){
+function lib_xenonCalendar_setDefaultView($params){
 	if(!$params[0]){
 		return false;
 	}
 	$view = $params[0];
-	$info = eyeCalendar('getConfig');
-	$info['eyeCalendar'][0]['defaultView'][0] = $view;
-	xenonXML('setXMLconfig',array('eyeCalendar','conf.xml',$info));
+	$info = xenonCalendar('getConfig');
+	$info['xenonCalendar'][0]['defaultView'][0] = $view;
+	xenonXML('setXMLconfig',array('xenonCalendar','conf.xml',$info));
 }
-function lib_eyeCalendar_getDefaultView(){
-	$info = eyeCalendar('getConfig');
-	return $info['eyeCalendar'][0]['defaultView'][0];
+function lib_xenonCalendar_getDefaultView(){
+	$info = xenonCalendar('getConfig');
+	return $info['xenonCalendar'][0]['defaultView'][0];
 }
-function lib_eyeCalendar_getConfig(){
-	$info = xenonXML('getXMLconfig',array('eyeCalendar','conf.xml'));
+function lib_xenonCalendar_getConfig(){
+	$info = xenonXML('getXMLconfig',array('xenonCalendar','conf.xml'));
 	return $info;
 }
-function lib_eyeCalendar_setConfig($params=''){
+function lib_xenonCalendar_setConfig($params=''){
 	$info = $params[0];
-	xenonXML('setXMLconfig',array('eyeCalendar','conf.xml',$info));
+	xenonXML('setXMLconfig',array('xenonCalendar','conf.xml',$info));
 }
 
-function lib_eyeCalendar_geti10n(){
-	$info = xenonXML('getXMLconfig',array('eyeCalendar','conf.xml'));
+function lib_xenonCalendar_geti10n(){
+	$info = xenonXML('getXMLconfig',array('xenonCalendar','conf.xml'));
 //TODO: extens it if we need
-	if(isset($info['eyeCalendar'][0]['startMonday'][0])){
-		return array('startDay'=>$info['eyeCalendar'][0]['startMonday'][0]);
+	if(isset($info['xenonCalendar'][0]['startMonday'][0])){
+		return array('startDay'=>$info['xenonCalendar'][0]['startMonday'][0]);
 	}else{
 		return array('startDay'=>1);
 	}
@@ -522,9 +522,9 @@ function getDirTime($time,$calendar,$remoteType=null){
 	$myDate = getDate($time);
 	$noteDir = '';
 	if($remoteType != null){
-		$noteDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/'.$calendar.'/';
+		$noteDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/xenonCalendar/calendars/'.$calendar.'/';
 	}else{
-		$noteDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.$calendar.'/';
+		$noteDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/'.$calendar.'/';
 	}
 	$noteDir .= $myDate['year'];
 	$noteDir .= '/'.$myDate['mon'];
@@ -534,9 +534,9 @@ function getDirTime($time,$calendar,$remoteType=null){
 function mkDirTime($time,$calendar,$remoteType){
 	$myDate = getDate($time);
 	if($remoteType != null){
-		$noteDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/eyeCalendar/calendars/'.$calendar.'/';
+		$noteDir = XENONOS_ROOT.'/'.GROUPS_DIR.'/'.$calendar.'/'.CONF_GROUP_DIR.'/xenonCalendar/calendars/'.$calendar.'/';
 	}else{
-		$noteDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeCalendar/calendars/'.$calendar.'/';
+		$noteDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonCalendar/calendars/'.$calendar.'/';
 	}
 
 	if(!vfs('fileExists',array($noteDir)))

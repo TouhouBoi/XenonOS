@@ -29,7 +29,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	STYLE ALIASES
 */
 
-$alias[1][APP_DIR . '/eyeCalendar/css/eyeCalendar.css'] = 'css/'.APP_DIR.'/eyeCalendar/eyeCalendar.css';
+$alias[1][APP_DIR . '/xenonCalendar/css/xenonCalendar.css'] = 'css/'.APP_DIR.'/xenonCalendar/xenonCalendar.css';
 $alias[1][APP_DIR . '/xenonFTP/css/xenonFTP.css'] = 'css/'.APP_DIR.'/xenonFTP/xenonFTP.css';
 $alias[1][APP_DIR . '/eyeManageApps/css/eyeManageApps.css'] = 'css/'.APP_DIR.'/eyeManageApps/eyeManageApps.css';
 $alias[1][APP_DIR . '/eyeSheets/print.css'] = 'css/'.APP_DIR.'/eyeSheets/print.css';
@@ -156,7 +156,7 @@ $pic22 = array(
 	'xenonAddressBook',
 	'xenonChat',
 	'xenonCalculator',
-	'eyeCalendar',
+	'xenonCalendar',
 	'eyeChess',
 	'eyeContacts',
 	'eyeDocs',
@@ -218,7 +218,7 @@ $alias[0]['icons/16x16/apps/editbar.png'] = 'images/apps/eyeLightDesk/16x16/apps
 $alias[0]['icons/16x16/apps/exec.png'] = 'images/apps/eyeLightDesk/16x16/apps/exec.png';
 $alias[0]['icons/16x16/apps/xenonChat.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonChat.png';
 $alias[0]['icons/16x16/apps/xenonCalculator.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonCalculator.png';
-$alias[0]['icons/16x16/apps/eyeCalendar.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeCalendar.png';
+$alias[0]['icons/16x16/apps/xenonCalendar.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonCalendar.png';
 $alias[0]['icons/16x16/apps/eyeChess.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeChess.png';
 $alias[0]['icons/16x16/apps/eyeContacts.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeContacts.png';
 $alias[0]['icons/16x16/apps/eyeDocs.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeDocs.png';
@@ -260,14 +260,14 @@ $alias[0]['images/widgets/folder_open.png'] = 'icons/16x16/folder_open.png';
 	EXTERN ALIASES
 */
 
-// eyeCalendar
-$alias[1][APP_DIR . '/eyeCalendar/gfx/deleteNote.gif'] = 'images/' . APP_DIR . '/eyeCalendar/deleteNote.gif';
-$alias[1][APP_DIR . '/eyeCalendar/gfx/deleteNote.png'] = 'images/' . APP_DIR . '/eyeCalendar/deleteNote.png';
-$alias[1][APP_DIR . '/eyeCalendar/gfx/dotted.gif'] = 'images/' . APP_DIR . '/eyeCalendar/dotted.gif';
-$alias[1][APP_DIR . '/eyeCalendar/gfx/dotted.png'] = 'images/' . APP_DIR . '/eyeCalendar/dotted.png';
-$alias[1][APP_DIR . '/eyeCalendar/gfx/widget/plus.png'] = 'images/' . APP_DIR . '/eyeCalendar/widget/plus.png';
-$alias[1][APP_DIR . '/eyeCalendar/gfx/widget/selected.gif'] = 'images/' . APP_DIR . '/eyeCalendar/widget/selected.gif';
-$alias[1][APP_DIR . '/eyeCalendar/gfx/widget/selected.png'] = 'images/' . APP_DIR . '/eyeCalendar/widget/selected.png';
+// xenonCalendar
+$alias[1][APP_DIR . '/xenonCalendar/gfx/deleteNote.gif'] = 'images/' . APP_DIR . '/xenonCalendar/deleteNote.gif';
+$alias[1][APP_DIR . '/xenonCalendar/gfx/deleteNote.png'] = 'images/' . APP_DIR . '/xenonCalendar/deleteNote.png';
+$alias[1][APP_DIR . '/xenonCalendar/gfx/dotted.gif'] = 'images/' . APP_DIR . '/xenonCalendar/dotted.gif';
+$alias[1][APP_DIR . '/xenonCalendar/gfx/dotted.png'] = 'images/' . APP_DIR . '/xenonCalendar/dotted.png';
+$alias[1][APP_DIR . '/xenonCalendar/gfx/widget/plus.png'] = 'images/' . APP_DIR . '/xenonCalendar/widget/plus.png';
+$alias[1][APP_DIR . '/xenonCalendar/gfx/widget/selected.gif'] = 'images/' . APP_DIR . '/xenonCalendar/widget/selected.gif';
+$alias[1][APP_DIR . '/xenonCalendar/gfx/widget/selected.png'] = 'images/' . APP_DIR . '/xenonCalendar/widget/selected.png';
 
 // eyeChess
 $alias[1][APP_DIR . '/eyeChess/0.png'] = 'images/' . APP_DIR . '/eyeChess/0.png';

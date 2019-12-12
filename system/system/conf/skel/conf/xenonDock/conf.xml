@@ -155,10 +155,10 @@
 						<type>icon</type>
 					</entry-5>
 					<entry-6>
-						<command>eyeCalendar.app</command>
+						<command>xenonCalendar.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeCalendar.png</image>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonCalendar.png</image>
 						<text>Calendar</text>
 						<type>icon</type>
 					</entry-6>
@@ -358,10 +358,10 @@
 				<type>icon</type>
 			</element-14>
 			<element-15>
-				<command>eyeCalendar.app</command>
+				<command>xenonCalendar.app</command>
 				<hideImage>0</hideImage>
 				<hideText>1</hideText>
-				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeCalendar.png</image>
+				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonCalendar.png</image>
 				<text>Calendar</text>
 				<type>icon</type>
 			</element-15>
