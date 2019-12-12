@@ -24,7 +24,7 @@
 
 'use strict';
 
-var DEFAULT_URL = 'index.php?extern=apps/eyePdf/web/compressed.tracemonkey-pldi-09.pdf';
+var DEFAULT_URL = 'index.php?extern=apps/xenonPDF/web/compressed.tracemonkey-pldi-09.pdf';
 var DEFAULT_SCALE = 'auto';
 var DEFAULT_SCALE_DELTA = 1.1;
 var UNKNOWN_SCALE = 0;
@@ -55,9 +55,9 @@ var FindStates = {
   FIND_PENDING: 3
 };
 
-PDFJS.imageResourcesPath = 'index.php?extern=apps/eyePdf/web/./images/';
-  PDFJS.workerSrc = 'index.php?extern=apps/eyePdf/web/../build/pdf.worker.js';
-  PDFJS.cMapUrl = 'index.php?extern=apps/eyePdf/web/../web/cmaps/';
+PDFJS.imageResourcesPath = 'index.php?extern=apps/xenonPDF/web/./images/';
+  PDFJS.workerSrc = 'index.php?extern=apps/xenonPDF/web/../build/pdf.worker.js';
+  PDFJS.cMapUrl = 'index.php?extern=apps/xenonPDF/web/../web/cmaps/';
   PDFJS.cMapPacked = true;
 
 var mozL10n = document.mozL10n || document.webL10n;

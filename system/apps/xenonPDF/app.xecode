@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyePdf_run($params = '') {
+function xenonPDF_run($params = '') {
 	global $checknum;
 	if ($params[0]) {
-		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyePdf/events' . XE_CODE_EXTENSION);
-		eyePdf_on_Init($params);
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonPDF/events' . XE_CODE_EXTENSION);
+		xenonPDF_on_Init($params);
 	} else {
 		proc('launch',array('xenonDialog',array(XENONDIALOG_TYPE_OPENFILE,'Init',$checknum,'',array(
 			'PDF files' => '*.pdf',
@@ -27,7 +27,7 @@ function eyePdf_run($params = '') {
 	}
 }
 
-function eyePdf_end($params = '') {
+function xenonPDF_end($params = '') {
 	removeListenerServiceCall('xenonx', 'resizedbrowser');
 	eyeWidgets('unserialize', $params);
 }

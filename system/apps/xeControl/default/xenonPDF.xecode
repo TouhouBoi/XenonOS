@@ -19,18 +19,18 @@ global $currentUser, $myPid;
 $ContentY = 10;
 
 $userDir = um('getCurrentUserDir');
-if (!vfs('real_fileExists',array($userDir . 'conf/eyePdf/conf.xml'))) {
+if (!vfs('real_fileExists',array($userDir . 'conf/xenonPDF/conf.xml'))) {
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	vfs('real_mkDir', array($userDir . 'conf/eyePdf'));
-	vfs('real_copy',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/conf/skel/' . CONF_USER_DIR . '/eyePdf/conf.xml',$userDir . 'conf/eyePdf/conf.xml'));
+	vfs('real_mkDir', array($userDir . 'conf/xenonPDF'));
+	vfs('real_copy',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/conf/skel/' . CONF_USER_DIR . '/xenonPDF/conf.xml',$userDir . 'conf/xenonPDF/conf.xml'));
 	$currentUser = $oldUser;
 }
-$PdfUserConf = xeControl_lib_getXMLconfig(array('eyePdf','conf.xml'));
+$PdfUserConf = xeControl_lib_getXMLconfig(array('xenonPDF','conf.xml'));
 
 // Browse Plugin
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyePdf_label_renderer',
+	'name' => 'xeControl_xenonPDF_label_renderer',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -38,20 +38,20 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $mySelect = new Select(array(
-	'name' => 'xeControl_eyePdf_select_renderer',
+	'name' => 'xeControl_xenonPDF_select_renderer',
 	'father' => $eyeContainer,
 	'width' => 165,
 	'x' => 160,
 	'y' => $ContentY
 ));
 $mySelect->show();
-$mySelect->addOption('Browser plugin', 'plugin', ($PdfUserConf['eyePdf'][0]['renderer'][0] == 'plugin' ? 1 : 0));
-$mySelect->addOption('HTML5 integrated renderer', 'pdf.js', ($PdfUserConf['eyePdf'][0]['renderer'][0] == 'pdf.js' ? 1 : 0));
-$mySelect->addOption('Direct download', 'download', ($PdfUserConf['eyePdf'][0]['renderer'][0] == 'download' ? 1 : 0));
+$mySelect->addOption('Browser plugin', 'plugin', ($PdfUserConf['xenonPDF'][0]['renderer'][0] == 'plugin' ? 1 : 0));
+$mySelect->addOption('HTML5 integrated renderer', 'pdf.js', ($PdfUserConf['xenonPDF'][0]['renderer'][0] == 'pdf.js' ? 1 : 0));
+$mySelect->addOption('Direct download', 'download', ($PdfUserConf['xenonPDF'][0]['renderer'][0] == 'download' ? 1 : 0));
 $ContentY += 30;
 // Start maximized
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyePdf_label_start_maximized',
+	'name' => 'xeControl_xenonPDF_label_start_maximized',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -59,10 +59,10 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myCheckbox = new Checkbox(array(
-	'name' => 'xeControl_eyePdf_checkbox_start_maximized',
+	'name' => 'xeControl_xenonPDF_checkbox_start_maximized',
 	'father' => $eyeContainer,
 	'text' => '',
-	'checked' => $PdfUserConf['eyePdf'][0]['start_maximized'][0],
+	'checked' => $PdfUserConf['xenonPDF'][0]['start_maximized'][0],
 	'x' => 160,
 	'y' => $ContentY
 ));
@@ -70,12 +70,12 @@ $myCheckbox->show();
 $ContentY += 30;
 // Save Changes
 $myButton = new Button(array(
-	'name' => 'xeControl_eyePdf_button_save',
+	'name' => 'xeControl_xenonPDF_button_save',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
 	'caption' => 'Save Changes',
-	'signal' => 'eyePdf_save'
+	'signal' => 'xenonPDF_save'
 ));
 $myButton->addFriend($mySelect);
 $myButton->addFriend($myCheckbox);
@@ -83,7 +83,7 @@ $myButton->show();
 $ContentY += 120;
 // Notes on renderers
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyePdf_label_notes_title',
+	'name' => 'xeControl_xenonPDF_label_notes_title',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -93,7 +93,7 @@ $myLabel->show();
 $myLabel->setCss(array('font-weight' => 'bold'));
 $ContentY += 30;
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyePdf_label_notes_title_plugin',
+	'name' => 'xeControl_xenonPDF_label_notes_title_plugin',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -101,7 +101,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyePdf_label_notes_body_plugin',
+	'name' => 'xeControl_xenonPDF_label_notes_body_plugin',
 	'father' => $eyeContainer,
 	'x' => 150,
 	'y' => $ContentY,
@@ -110,7 +110,7 @@ $myLabel = new Label(array(
 $myLabel->show();
 $ContentY += 45;
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyePdf_label_notes_title_pdf.js',
+	'name' => 'xeControl_xenonPDF_label_notes_title_pdf.js',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -118,7 +118,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyePdf_label_notes_body_pdf.js',
+	'name' => 'xeControl_xenonPDF_label_notes_body_pdf.js',
 	'father' => $eyeContainer,
 	'x' => 150,
 	'y' => $ContentY,
@@ -127,7 +127,7 @@ $myLabel = new Label(array(
 $myLabel->show();
 $ContentY += 45;
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyePdf_label_notes_title_download',
+	'name' => 'xeControl_xenonPDF_label_notes_title_download',
 	'father' => $eyeContainer,
 	'x' => 20,
 	'y' => $ContentY,
@@ -135,7 +135,7 @@ $myLabel = new Label(array(
 ));
 $myLabel->show();
 $myLabel = new Label(array(
-	'name' => 'xeControl_eyePdf_label_notes_body_download',
+	'name' => 'xeControl_xenonPDF_label_notes_body_download',
 	'father' => $eyeContainer,
 	'x' => 150,
 	'y' => $ContentY,

@@ -182,7 +182,7 @@
 		<content>
 			<description>Choose the rendering method for PDF files</description>
 			<display>PDF Reader</display>
-			<name>eyePdf</name>
+			<name>xenonPDF</name>
 			<permissions>all</permissions>
 			<title>yes</title>
 			<img>index.php?theme=USERTHEME&amp;extern=icons/48x48/filetypes/pdf.png</img>

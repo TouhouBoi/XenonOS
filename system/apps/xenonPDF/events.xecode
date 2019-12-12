@@ -14,32 +14,32 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyePdf_on_Init($params = '') {
+function xenonPDF_on_Init($params = '') {
 	global $checknum, $myPid, $currentUser;
 	$userDir = um('getCurrentUserDir');
 	if (isset($params['arg'][0])) {
 		$params[0] = $userDir . FILES_USER_DIR . '/' . $params['arg'][0];
 	}
-	if (!vfs('real_fileExists',array($userDir . 'conf/eyePdf/conf.xml'))) {
+	if (!vfs('real_fileExists',array($userDir . 'conf/xenonPDF/conf.xml'))) {
 		$oldUser = $currentUser;
 		$currentUser = ROOTUSER;
-		vfs('real_mkDir', array($userDir . 'conf/eyePdf'));
-		vfs('real_copy',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/conf/skel/' . CONF_USER_DIR . '/eyePdf/conf.xml',$userDir . 'conf/eyePdf/conf.xml'));
+		vfs('real_mkDir', array($userDir . 'conf/xenonPDF'));
+		vfs('real_copy',array(XENONOS_ROOT . '/' . SYSTEM_DIR . '/conf/skel/' . CONF_USER_DIR . '/xenonPDF/conf.xml',$userDir . 'conf/xenonPDF/conf.xml'));
 		$currentUser = $oldUser;
 	}
-	$xml = xenonXML('getXMLconfig',array('eyePdf','conf.xml'));
-	if ($xml['eyePdf'][0]['renderer'][0] == 'pdf.js') {
-		xenonx('rawjs', array('js' => 'sendMsg(' . $checknum . ',"Load",eyeParam("path","'.$params[0].'") + eyeParam("renderer","pdf.js") + eyeParam("start_maximized","' . $xml['eyePdf'][0]['start_maximized'][0] . '"));'));
-	} elseif ($xml['eyePdf'][0]['renderer'][0] == 'download') {
-		xenonx('rawjs', array('js' => 'sendMsg(' . $checknum . ',"downloadPdf",eyeParam("path","'.$params[0].'") + eyeParam("start_maximized","' . $xml['eyePdf'][0]['start_maximized'][0] . '"));'));
+	$xml = xenonXML('getXMLconfig',array('xenonPDF','conf.xml'));
+	if ($xml['xenonPDF'][0]['renderer'][0] == 'pdf.js') {
+		xenonx('rawjs', array('js' => 'sendMsg(' . $checknum . ',"Load",eyeParam("path","'.$params[0].'") + eyeParam("renderer","pdf.js") + eyeParam("start_maximized","' . $xml['xenonPDF'][0]['start_maximized'][0] . '"));'));
+	} elseif ($xml['xenonPDF'][0]['renderer'][0] == 'download') {
+		xenonx('rawjs', array('js' => 'sendMsg(' . $checknum . ',"downloadPdf",eyeParam("path","'.$params[0].'") + eyeParam("start_maximized","' . $xml['xenonPDF'][0]['start_maximized'][0] . '"));'));
 	} else {
 		xenonx('runjs',array(
 			'js' => '
 				if ((navigator.userAgent.indexOf("Safari") !== -1) && (navigator.userAgent.indexOf("mobile") !== -1)) {
-					sendMsg(' . $checknum . ',"Load",eyeParam("path",%s) + eyeParam("start_maximized","' . $xml['eyePdf'][0]['start_maximized'][0] . '") + eyeParam("renderer","safari"));
+					sendMsg(' . $checknum . ',"Load",eyeParam("path",%s) + eyeParam("start_maximized","' . $xml['xenonPDF'][0]['start_maximized'][0] . '") + eyeParam("renderer","safari"));
 				} else {
 					if (IEversion || navigator.mimeTypes["application/pdf"] && navigator.mimeTypes["application/pdf"].enabledPlugin != null) {
-						sendMsg(' . $checknum . ',"Load",eyeParam("path",%s) + eyeParam("start_maximized","' . $xml['eyePdf'][0]['start_maximized'][0] . '"));
+						sendMsg(' . $checknum . ',"Load",eyeParam("path",%s) + eyeParam("start_maximized","' . $xml['xenonPDF'][0]['start_maximized'][0] . '"));
 					} else  {
 						sendMsg(' . $checknum . ',"downloadPdf",eyeParam("path",%s));
 					}
@@ -50,7 +50,7 @@ function eyePdf_on_Init($params = '') {
 }
 
 /* THE TOOLBAR HAS BEEN DELETED
-function eyePdf_on_Open($params = '') {
+function xenonPDF_on_Open($params = '') {
 	global $checknum;
 	proc('launch',array('xenonDialog',array(XENONDIALOG_TYPE_OPENFILE,'OpenDo',$checknum,'',array(
 		'PDF files' => '*.pdf',
@@ -58,30 +58,30 @@ function eyePdf_on_Open($params = '') {
 	),'','','Close')));
 }
 
-function eyePdf_on_OpenDo($params = '') {
+function xenonPDF_on_OpenDo($params = '') {
 	global $checknum;
-	$GLOBALS['eyePdf_Hidden_Path']->setText(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0]);
-	$GLOBALS['eyePdf_Iframe']->setUrl('index.php?checknum=' . $checknum . '&msg=getPdf&time=' . time());
-	$GLOBALS['eyePdf_Window']->setTitle(basename($params['arg'][0]) . ' - eyePdf');
+	$GLOBALS['xenonPDF_Hidden_Path']->setText(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0]);
+	$GLOBALS['xenonPDF_Iframe']->setUrl('index.php?checknum=' . $checknum . '&msg=getPdf&time=' . time());
+	$GLOBALS['xenonPDF_Window']->setTitle(basename($params['arg'][0]) . ' - xenonPDF');
 }
 */
 
-function eyePdf_on_Close($params = '') {
+function xenonPDF_on_Close($params = '') {
 	proc('end');
 }
 
-function eyePdf_on_Message($params = '') {
+function xenonPDF_on_Message($params = '') {
 	eyeWidgets('updateContent',$params);
 }
 
 /* THE TOOLBAR HAS BEEN DELETED
-function eyePdf_on_Fullscreen($params = '') {
+function xenonPDF_on_Fullscreen($params = '') {
 	global $myPid;
-	$GLOBALS['eyePdf_Window']->setFullScreen();
-	if ($GLOBALS['eyePdf_Window']->fullScreen) {
+	$GLOBALS['xenonPDF_Window']->setFullScreen();
+	if ($GLOBALS['xenonPDF_Window']->fullScreen) {
 		$press = 'Press';
 	}
-	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyePdf_Toolbar");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_xenonPDF_Toolbar");
 	for (var i = 0; i < e.childNodes.length; i++) {
 		if (e.childNodes[i].id == "Fullscreen_Container") {
 			e.childNodes[i].className = "blockbarItem' . $press . '_right";
@@ -90,12 +90,12 @@ function eyePdf_on_Fullscreen($params = '') {
 }
 */
 
-function eyePdf_on_downloadPdf($params = '') {
+function xenonPDF_on_downloadPdf($params = '') {
 	proc('launch',array('xenonDownload',array($params['path'][0])));
 	proc('end');
 }
 
-function eyePdf_on_getPdf($params = '') {
+function xenonPDF_on_getPdf($params = '') {
 	if (VFS_MODULE === "real") {
 		$functions_prefix = "real_";
 		$function_readfile = 'printFile';
@@ -106,7 +106,7 @@ function eyePdf_on_getPdf($params = '') {
 	if (!empty($params[0]) && vfs($functions_prefix.'fileExists', array($params[0]))) {
 		$path = $params[0];
 	} else {
-		$path = $GLOBALS['eyePdf_Hidden_Path']->text;
+		$path = $GLOBALS['xenonPDF_Hidden_Path']->text;
 	}
 	header('Content-Type: application/pdf');
 	header('Content-Length: ' . vfs($functions_prefix.'filesize',array($path)));
@@ -115,7 +115,7 @@ function eyePdf_on_getPdf($params = '') {
 	exit;
 }
 
-function eyePdf_on_Load($params = '') {
+function xenonPDF_on_Load($params = '') {
 	global $checknum, $myPid;
 	//THE TOOLBAR HAS BEEN DELETED addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 	if ($_SESSION['SCREEN']['xenonApps']['width'] >= 600) {
@@ -141,7 +141,7 @@ function eyePdf_on_Load($params = '') {
 		'height' => $window_height,
 		'minHeight' => 200,
 		'minWidth' => 200,
-		'name' => 'eyePdf_Window',
+		'name' => 'xenonPDF_Window',
 		'title' => basename($params['path'][0]),
 		'savePosition' => 1,
 		'sendResizeMsg' => 1,
@@ -155,7 +155,7 @@ function eyePdf_on_Load($params = '') {
 
 	if ($params['renderer'][0] == 'pdf.js') {
 		$path = 'index.php?checknum=' . strval($checknum) . '&msg=getPdf&time=' . strval(time());
-		$iframe_url = 'index.php?extern=apps/eyePdf/pdf.js' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . strval($checknum) . '&file=' . urlencode($path);
+		$iframe_url = 'index.php?extern=apps/xenonPDF/pdf.js' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . strval($checknum) . '&file=' . urlencode($path);
 	} elseif ($params['renderer'][0] == 'safari') {
 		$rPath = vfs('getRealName',array($params['path'][0]));
 		$tPath = um('getCurrentUserDir').'tmp/'.$myPid.'.pdf';
@@ -166,9 +166,9 @@ function eyePdf_on_Load($params = '') {
 	}
 	
 	$myIframe = new Iframe(array(
-		'father' => 'eyePdf_Window_Content',
+		'father' => 'xenonPDF_Window_Content',
 		'height' => $myWindow->height - 24,
-		'name' => 'eyePdf_Iframe',
+		'name' => 'xenonPDF_Iframe',
 		'url' => $iframe_url,
 		'width' => $myWindow->width - 3,
 		'x' => 0,
@@ -178,17 +178,17 @@ function eyePdf_on_Load($params = '') {
 	$myIframe->focus();
 
 	$myHidden = new Hidden(array(
-		'father' => 'eyePdf_Window_Content',
-		'name' => 'eyePdf_Hidden_Path',
+		'father' => 'xenonPDF_Window_Content',
+		'name' => 'xenonPDF_Hidden_Path',
 		'text' => $params['path'][0]
 	));
 	$myHidden->show();
 }
 
-function eyePdf_on_Resize($params = '') {
-	$GLOBALS['eyePdf_Window']->width = $params['arg'][0];
-	$GLOBALS['eyePdf_Window']->height = $params['arg'][1];
-	$GLOBALS['eyePdf_Iframe']->setWidth($GLOBALS['eyePdf_Window']->width - 3);
-	$GLOBALS['eyePdf_Iframe']->setHeight($GLOBALS['eyePdf_Window']->height - 24);
+function xenonPDF_on_Resize($params = '') {
+	$GLOBALS['xenonPDF_Window']->width = $params['arg'][0];
+	$GLOBALS['xenonPDF_Window']->height = $params['arg'][1];
+	$GLOBALS['xenonPDF_Iframe']->setWidth($GLOBALS['xenonPDF_Window']->width - 3);
+	$GLOBALS['xenonPDF_Iframe']->setHeight($GLOBALS['xenonPDF_Window']->height - 24);
 }
 ?>

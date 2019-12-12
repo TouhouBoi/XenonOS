@@ -15,10 +15,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 /* DISABLED, SINCE THE TOOLBAR HAVE BEEN DELETED, AT LEAST FOR THE MOMENT
-function eyePdf_com_fullResized($params = '') {
+function xenonPDF_com_fullResized($params = '') {
 	eyeWidgets('updateContent',$params);
-	if ($GLOBALS['eyePdf_Window']->fullScreen) {
-		$GLOBALS['eyePdf_Window']->listenerResizeFullScreen($params);
+	if ($GLOBALS['xenonPDF_Window']->fullScreen) {
+		$GLOBALS['xenonPDF_Window']->listenerResizeFullScreen($params);
 	}
 }*/
 ?>

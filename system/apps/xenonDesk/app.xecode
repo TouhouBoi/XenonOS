@@ -122,10 +122,10 @@ function xenonDesk_run($params = '') {
 
 		// oneye 0.9.6 Preview
 		if (check_versions($xml['xenonDesk'][0]['confVersion'][0], '1.11.6.0') === 2) {
-			$data = xenonXML('getXMLconfig', array('eyePdf', 'conf.xml'));
-			if ($data['eyePdf'][0]['renderer'][0] === 'plugin') {
-				$data['eyePdf'][0]['renderer'][0] = 'pdf.js';
-				xenonXML('setXMLconfig', array('eyePdf', 'conf.xml', $xml));
+			$data = xenonXML('getXMLconfig', array('xenonPDF', 'conf.xml'));
+			if ($data['xenonPDF'][0]['renderer'][0] === 'plugin') {
+				$data['xenonPDF'][0]['renderer'][0] = 'pdf.js';
+				xenonXML('setXMLconfig', array('xenonPDF', 'conf.xml', $xml));
 			}
 		}
 

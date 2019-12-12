@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function xeControl_on_eyePdf_save($params = '') {
-	$PdfUserConf = xeControl_lib_getXMLconfig(array('eyePdf','conf.xml'));
-	$PdfUserConf['eyePdf'][0]['renderer'][0] = $GLOBALS['xeControl_eyePdf_select_renderer']->selected;
-	$PdfUserConf['eyePdf'][0]['start_maximized'][0] = $GLOBALS['xeControl_eyePdf_checkbox_start_maximized']->checked;
-	xeControl_lib_setXMLconfig(array('eyePdf','conf.xml',$PdfUserConf));
+function xeControl_on_xenonPDF_save($params = '') {
+	$PdfUserConf = xeControl_lib_getXMLconfig(array('xenonPDF','conf.xml'));
+	$PdfUserConf['xenonPDF'][0]['renderer'][0] = $GLOBALS['xeControl_xenonPDF_select_renderer']->selected;
+	$PdfUserConf['xenonPDF'][0]['start_maximized'][0] = $GLOBALS['xeControl_xenonPDF_checkbox_start_maximized']->checked;
+	xeControl_lib_setXMLconfig(array('xenonPDF','conf.xml',$PdfUserConf));
 	xenonx('messageBox',array('content' => 'Changes successfully saved.'));
 }
 
