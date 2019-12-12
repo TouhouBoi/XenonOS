@@ -14,14 +14,14 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeNotes_run($params=null) {
+function Notepad_run($params=null) {
 	global $myPid;
 	$content = ' ';
-	$myWindow = new Window(array('name'=>'eyeNotesWND','father'=>'xenonApps', 'removeWin' => 2,
+	$myWindow = new Window(array('name'=>'NotepadWND','father'=>'xenonApps', 'removeWin' => 2,
 	'cent'=>1,'width'=>600,'height'=>500,'title'=>'Text Editor','sendResizeMsg'=>1,'sigResize'=>'Resize','savePosition' => 1));
 
 	if (stripos($_SERVER['HTTP_USER_AGENT'], 'safari') !== false) {
-		$myTextArea = new Textarea(array('name'=>'noteContent','father'=>'eyeNotesWND_Content',
+		$myTextArea = new Textarea(array('name'=>'noteContent','father'=>'NotepadWND_Content',
 			'width'=>$myWindow->width-6,'height'=>$myWindow->height-90,'x'=>0,'y'=>60));
 	} else {
 		if($params[0]) {
@@ -61,7 +61,7 @@ function eyeNotes_run($params=null) {
 		} else {
 			$lang = 'text';
 		}
-		$myTextArea = new Textarea(array('name'=>'noteContent','father'=>'eyeNotesWND_Content',
+		$myTextArea = new Textarea(array('name'=>'noteContent','father'=>'NotepadWND_Content',
 			'width'=>$myWindow->width-8,'height'=>$myWindow->height-84,'x'=>2,'y'=>57,'code'=>1,'lang'=>$lang));
 	}
 	$myWindow->addFriend($myTextArea);
@@ -84,7 +84,7 @@ function eyeNotes_run($params=null) {
 
 	$myTextArea->setCss($myCssText);
 
-	$myToolbar = new Toolbar(array('name'=>'myBar','father'=>'eyeNotesWND_Content'));
+	$myToolbar = new Toolbar(array('name'=>'myBar','father'=>'NotepadWND_Content'));
 	$myToolbar->show();
 	$myToolbar->addItem('new','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/filenew.png','New');
 	$myToolbar->addItem('open','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fileopen.png','Open');
@@ -100,7 +100,7 @@ function eyeNotes_run($params=null) {
 			xenonx('messageBox',array('content'=>'File not found'));
 			return;
 		}
-		$myHidden = new Hidden(array('name'=>'notePath','father'=>'eyeNotesWND','text'=>$file));
+		$myHidden = new Hidden(array('name'=>'notePath','father'=>'NotepadWND','text'=>$file));
 		eyeWidgets('serialize',array($myHidden));
 		$size = vfs('filesize',array($file));
 		$content = fread($fp,$size);
@@ -109,13 +109,13 @@ function eyeNotes_run($params=null) {
 	}
 	$myHiddenContent = new Hidden(array(
 		'name' => 'textAreaContent',
-		'father' => 'eyeNotesWND_Content',
+		'father' => 'NotepadWND_Content',
 		'text' => $content
 	));
 	eyeWidgets('serialize',array($myHiddenContent));
 }
 
-function eyeNotes_end($params=null) {
+function Notepad_end($params=null) {
 	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }

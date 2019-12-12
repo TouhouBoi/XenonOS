@@ -170,7 +170,7 @@ $pic22 = array(
 	'xenonMedia',
 	'xenonMessages',
 	'xenonNav',
-	'eyeNotes',
+	'Notepad',
 	'eyePresentation',
 	'xenonProcess',
 	'eyeSheets',
@@ -227,7 +227,7 @@ $alias[0]['icons/16x16/apps/xenonFTP.png'] = 'images/apps/eyeLightDesk/16x16/app
 $alias[0]['icons/16x16/apps/xenonMail.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonMail.png';
 $alias[0]['icons/16x16/apps/xenonMessages.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonMessages.png';
 $alias[0]['icons/16x16/apps/xenonNav.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonNav.png';
-$alias[0]['icons/16x16/apps/eyeNotes.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeNotes.png';
+$alias[0]['icons/16x16/apps/Notepad.png'] = 'images/apps/eyeLightDesk/16x16/apps/Notepad.png';
 $alias[0]['icons/16x16/apps/eyePresentation.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyePresentation.png';
 $alias[0]['icons/16x16/apps/xenonProcess.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonProcess.png';
 $alias[0]['icons/16x16/apps/eyeSheets.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeSheets.png';

@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeNotes_on_Message($params="") {
+function Notepad_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeNotes_on_Open($params=null) {
+function Notepad_on_Open($params=null) {
 	global $checknum;
 	$options = array(
 		XENONDIALOG_TYPE_OPENFILE,
@@ -40,24 +40,24 @@ function eyeNotes_on_Open($params=null) {
 	proc('launch',array('xenonDialog',$options));
 }
 
-function eyeNotes_on_Resize($params=null) {
+function Notepad_on_Resize($params=null) {
 	$width = $params['arg'][0];
 	$height = $params['arg'][1];
 	$width = intval($width);
 	$height = intval($height);
-	$GLOBALS['eyeNotesWND']->width = $width;
-	$GLOBALS['eyeNotesWND']->height = $height;
+	$GLOBALS['NotepadWND']->width = $width;
+	$GLOBALS['NotepadWND']->height = $height;
 	$width = $width - 8;
 	$height = $height - 84;
 	$GLOBALS['noteContent']->setWidth($width);
 	$GLOBALS['noteContent']->setHeight($height);
 }
 
-function eyeNotes_on_fullScreen() {
-	$GLOBALS['eyeNotesWND']->setFullScreen();
+function Notepad_on_fullScreen() {
+	$GLOBALS['NotepadWND']->setFullScreen();
 }
 
-function eyeNotes_on_Save($params=null) {
+function Notepad_on_Save($params=null) {
 	global $checknum;
 	$options = array(
 		XENONDIALOG_TYPE_SAVEFILE,
@@ -87,7 +87,7 @@ function eyeNotes_on_Save($params=null) {
 		xenonx('messageBox',array('content'=>'File saved successfully.'));
 		$myHiddenContent = new Hidden(array(
 			'name' => 'textAreaContent',
-			'father' => 'eyeNotesWND_Content',
+			'father' => 'NotepadWND_Content',
 			'text' => $GLOBALS['noteContent']->text
 		));
 		eyeWidgets('serialize',array($myHiddenContent));
@@ -96,7 +96,7 @@ function eyeNotes_on_Save($params=null) {
 	}
 }
 
-function eyeNotes_on_SaveAs($params=null) {
+function Notepad_on_SaveAs($params=null) {
 	global $checknum;
 	$options = array(
 		1,
@@ -119,14 +119,14 @@ function eyeNotes_on_SaveAs($params=null) {
 }
 
 
-function eyeNotes_on_SelectFileSave($params=null) {
+function Notepad_on_SelectFileSave($params=null) {
 	$file = $params['arg'][0];
 	if($file) {
 		if ( /* utf8 */ strpos($file, '.') === false) {
 			$file .= '.txt';
 		}
 		$file = um('getCurrentUserDir').FILES_USER_DIR.'/'.$file;
-		if(!vfs('create',array($file,'eyeNotes'))) {
+		if(!vfs('create',array($file,'Notepad'))) {
 			xenonx('messageBox',array('content'=>'Unable to create file'));
 			return;
 		}
@@ -137,21 +137,21 @@ function eyeNotes_on_SelectFileSave($params=null) {
 		}
 		fwrite($fp,$GLOBALS['noteContent']->text);
 		fclose($fp);
-		$myHidden = new Hidden(array('name'=>'notePath','father'=>'eyeNotesWND','text'=>$file));
+		$myHidden = new Hidden(array('name'=>'notePath','father'=>'NotepadWND','text'=>$file));
 		eyeWidgets('serialize',array($myHidden));
 		xenonFiles('update',array(dirname($file)));
 		xenonx('messageBox',array('content'=>'File saved successfully.'));
 		$myHiddenContent = new Hidden(array(
 			'name' => 'textAreaContent',
-			'father' => 'eyeNotesWND_Content',
+			'father' => 'NotepadWND_Content',
 			'text' => $GLOBALS['noteContent']->text
 		));
 		eyeWidgets('serialize',array($myHiddenContent));
-		$GLOBALS['eyeNotesWND']->setTitle(basename($file.' - '.i18n('translate',array('Text Editor'))));
+		$GLOBALS['NotepadWND']->setTitle(basename($file.' - '.i18n('translate',array('Text Editor'))));
 	}
 }
 
-function eyeNotes_on_SelectFileOpen($params=null) {
+function Notepad_on_SelectFileOpen($params=null) {
 	$file = $params['arg'][0];
 	if($file) {
 		$file = um('getCurrentUserDir').FILES_USER_DIR.'/'.$file;
@@ -193,8 +193,8 @@ function eyeNotes_on_SelectFileOpen($params=null) {
 			xenonx('messageBox',array('content'=>'Sorry, you do not have sufficient permissions.'));
 			return;
 		}
-		$GLOBALS['eyeNotesWND']->setTitle(basename($file.' - '.i18n('translate',array('Text Editor'))));
-		$myHidden = new Hidden(array('name'=>'notePath','father'=>'eyeNotesWND','text'=>$file));
+		$GLOBALS['NotepadWND']->setTitle(basename($file.' - '.i18n('translate',array('Text Editor'))));
+		$myHidden = new Hidden(array('name'=>'notePath','father'=>'NotepadWND','text'=>$file));
 		eyeWidgets('serialize',array($myHidden));
 		$size = vfs('filesize',array($file));
 		$content = fread($fp,$size);
@@ -202,14 +202,14 @@ function eyeNotes_on_SelectFileOpen($params=null) {
 		$GLOBALS['noteContent']->setText($content);
 		$myHiddenContent = new Hidden(array(
 			'name' => 'textAreaContent',
-			'father' => 'eyeNotesWND_Content',
+			'father' => 'NotepadWND_Content',
 			'text' => $content
 		));
 		eyeWidgets('serialize',array($myHiddenContent));
 	}
 }
 
-function eyeNotes_on_Close($params=null){
+function Notepad_on_Close($params=null){
 
 	$taContent = $GLOBALS['textAreaContent']->text;
 	$content = $GLOBALS['noteContent']->text;
@@ -235,16 +235,16 @@ function eyeNotes_on_Close($params=null){
 	}
 }
 
-function eyeNotes_on_cancel($params=""){
+function Notepad_on_cancel($params=""){
 	$GLOBALS['delete_warning']->close();
 }
 
-function eyeNotes_on_nDelete($params=""){
+function Notepad_on_nDelete($params=""){
 	$GLOBALS['delete_warning']->close();
 	proc('end');
 }
 
-function eyeNotes_on_yDelete($params=null){
+function Notepad_on_yDelete($params=null){
 	global $checknum;
 	$options = array(
 		XENONDIALOG_TYPE_SAVEFILE,
@@ -272,14 +272,14 @@ function eyeNotes_on_yDelete($params=null){
 	}
 }
 
-function eyeNotes_on_SelectFileSaveClose($params=null) {
+function Notepad_on_SelectFileSaveClose($params=null) {
 	$file = $params['arg'][0];
 	if($file) {
 		if ( /* utf8 */ strpos($file, '.') === false) {
 			$file .= '.txt';
 		}
 		$file = um('getCurrentUserDir').FILES_USER_DIR.'/'.$file;
-		if(!vfs('create',array($file,'eyeNotes'))) {
+		if(!vfs('create',array($file,'Notepad'))) {
 			xenonx('messageBox',array('content'=>'Unable to create file'));
 			return;
 		}
@@ -290,7 +290,7 @@ function eyeNotes_on_SelectFileSaveClose($params=null) {
 		}
 		fwrite($fp,$GLOBALS['noteContent']->text);
 		fclose($fp);
-		$myHidden = new Hidden(array('name'=>'notePath','father'=>'eyeNotesWND','text'=>$file));
+		$myHidden = new Hidden(array('name'=>'notePath','father'=>'NotepadWND','text'=>$file));
 		eyeWidgets('serialize',array($myHidden));
 		xenonFiles('update',array(dirname($file)));
 		xenonx('messageBox',array('content'=>'File saved successfully.'));
@@ -299,7 +299,7 @@ function eyeNotes_on_SelectFileSaveClose($params=null) {
 }
 
 
-function eyeNotes_on_New(){
-	proc('launch',array('eyeNotes'));
+function Notepad_on_New(){
+	proc('launch',array('Notepad'));
 }
 ?>
