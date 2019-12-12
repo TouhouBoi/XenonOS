@@ -14,13 +14,13 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeMkDir_on_Close($params = '') {
+function xenonMKDir_on_Close($params = '') {
 	proc('end');
 }
 
-function eyeMkDir_on_Do($params = '') {
-	$path = xenonFiles('cleanPath',array($GLOBALS['eyeMkDir_Hidden_Path']->text));
-	$folder = $GLOBALS['eyeMkDir_Textbox']->text;
+function xenonMKDir_on_Do($params = '') {
+	$path = xenonFiles('cleanPath',array($GLOBALS['xenonMKDir_Hidden_Path']->text));
+	$folder = $GLOBALS['xenonMKDir_Textbox']->text;
 	if (vfs('checkSpecialChars',array($folder)) === false) {
 		global $charBlackList;
 		foreach ($charBlackList as $char){
@@ -30,14 +30,14 @@ function eyeMkDir_on_Do($params = '') {
 	}
 	if (!vfs('mkDir',array($path[0] . '/' . $folder))) {
 		xenonx('messageBox',array('content' => 'Error creating directory!'));
-	} elseif ($GLOBALS['eyeMkDir_Hidden_Callback']->text) {
-		xenonx('rawjs',array('js' => $GLOBALS['eyeMkDir_Hidden_Callback']->text));
+	} elseif ($GLOBALS['xenonMKDir_Hidden_Callback']->text) {
+		xenonx('rawjs',array('js' => $GLOBALS['xenonMKDir_Hidden_Callback']->text));
 	}
 	xenonFiles('update',array($path[1] . '://' . $path[2]));
 	proc('end');
 }
 
-function eyeMkDir_on_Message($params = '') {
+function xenonMKDir_on_Message($params = '') {
 	eyeWidgets('updateContent',$params);
 }
 ?>

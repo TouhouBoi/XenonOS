@@ -48,7 +48,7 @@ function xenonFTP_on_xenonFTP_browseLocal() {
 function xenonFTP_on_xenonFTP_createFolderLocal() {
 	global $checknum;
 	$conf = xenonFTP_getConf();
-	proc('launch',array('eyeMkDir',array(
+	proc('launch',array('xenonMKDir',array(
 										um('getCurrentUserDir').'/'.FILES_USER_DIR.$conf['currentLocalDir'],
 										'sendMsg('.$checknum.',"xenonFTP_refreshLocal","")'
 	)));

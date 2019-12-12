@@ -139,7 +139,7 @@ function xenonFiles_on_Upload($params = '') {
 }
 
 function xenonFiles_on_NewFolder($params = '') {
-	proc('launch',array('eyeMkDir',array($GLOBALS['xenonFiles_Hidden_Path']->text)));
+	proc('launch',array('xenonMKDir',array($GLOBALS['xenonFiles_Hidden_Path']->text)));
 }
 
 function xenonFiles_on_NewFile($params = '') {

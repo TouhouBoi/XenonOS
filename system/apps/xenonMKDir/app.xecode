@@ -14,19 +14,19 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeMkDir_run($params = '') {
+function xenonMKDir_run($params = '') {
 	if ($params[0]) {
 		xenonx('messageBox',array(
 			'buttons' => array(array('Do','Accept'),array('Close','Cancel')),
 			'content' => 'Type the name of the new folder',
-			'hiddens' => array(array('eyeMkDir_Hidden_Path',$params[0]),array('eyeMkDir_Hidden_Callback',$params[1])),
+			'hiddens' => array(array('xenonMKDir_Hidden_Path',$params[0]),array('xenonMKDir_Hidden_Callback',$params[1])),
 			'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/folder.png',
 			'savePosition' => 1,
 			'textbox_event' => 'Do',
-			'textbox_name' => 'eyeMkDir_Textbox',
+			'textbox_name' => 'xenonMKDir_Textbox',
 			'title' => 'Create folder',
 			'type' => 3,
-			'win_name' => 'eyeMkDir_Window',
+			'win_name' => 'xenonMKDir_Window',
 			'win_style' => TITLE + LISTED + MIN + CLOSE
 		));
 	} else {
@@ -34,7 +34,7 @@ function eyeMkDir_run($params = '') {
 	}
 }
 
-function eyeMkDir_end($params = '') {
+function xenonMKDir_end($params = '') {
 	eyeWidgets('unserialize');
 }
 ?>

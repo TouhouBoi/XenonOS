@@ -27,7 +27,7 @@ function xenonDesk_on_Upload($params = '') {
 }
 
 function xenonDesk_on_NewFolder($params = '') {
-	proc('launch',array('eyeMkDir',array('home://Desktop/')));
+	proc('launch',array('xenonMKDir',array('home://Desktop/')));
 }
 
 function xenonDesk_on_NewFile($params = '') {
