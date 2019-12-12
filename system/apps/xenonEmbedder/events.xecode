@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function xenonEmbedder_on_ChooseApplicationIcon($params = null) {
 	global $checknum, $myPid;
 	
-	proc('launch', array('eyeDialog', array(EYEDIALOG_TYPE_OPENFILE, 'ChooseApplicationIcon2', $checknum, null, array(
+	proc('launch', array('xenonDialog', array(XENONDIALOG_TYPE_OPENFILE, 'ChooseApplicationIcon2', $checknum, null, array(
 		'Image formats' => '*.bmp|*.gif|*.jpeg|*.jpg|*.png',
 		'BMP files' => '*.bmp',
 		'GIF files' => '*.gif',
@@ -113,7 +113,7 @@ function xenonEmbedder_on_Package($params = null) {
 	}
 	
 	// Get xePackage destination
-	proc('launch', array('eyeDialog', array(EYEDIALOG_TYPE_SAVEFILE, 'Package2', $checknum, $applicationName . '.xepackage', array(
+	proc('launch', array('xenonDialog', array(XENONDIALOG_TYPE_SAVEFILE, 'Package2', $checknum, $applicationName . '.xepackage', array(
 		'xePackage files' => '*.xepackage',
 		'All files' => '*.*'
 	))));

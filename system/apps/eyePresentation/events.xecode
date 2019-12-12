@@ -25,7 +25,7 @@ function eyePresentation_on_Open($params=null) {
 		'SelectFileOpen',
 		$checknum,
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
 function eyePresentation_on_SelectFileOpen($params=null) {

@@ -20,7 +20,7 @@ function eyeImages_run($params = '') {
 		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeImages/events' . XE_CODE_EXTENSION);
 		eyeImages_on_Init($params);
 	} else {
-		proc('launch',array('eyeDialog',array(EYEDIALOG_TYPE_OPENFILE,'Init',$checknum,'',array(
+		proc('launch',array('xenonDialog',array(XENONDIALOG_TYPE_OPENFILE,'Init',$checknum,'',array(
 			'Image formats' => '*.bmp|*.gif|*.jpeg|*.jpg|*.png|*.tiff',
 			'BMP files' => '*.bmp',
 			'GIF files' => '*.gif',

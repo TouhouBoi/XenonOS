@@ -26,7 +26,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function xenonArchive_on_Open($params=null){
 	global $checknum;
 	$options = array(
-		EYEDIALOG_TYPE_OPENFILE,
+		XENONDIALOG_TYPE_OPENFILE,
 		'SelectOpenFile',
 		$checknum,
 		'',
@@ -39,17 +39,17 @@ function xenonArchive_on_Open($params=null){
 			'All files' => '*.*'
 		)
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
 
 
 ///
-///		real open events (called generally by eyeDialog)
+///		real open events (called generally by xenonDialog)
 ///
 
 /**
- * A event for recive the selected folder from eyeDialog
+ * A event for recive the selected folder from xenonDialog
  *
  * @param unknown_type $params
  */

@@ -128,7 +128,7 @@ function eyeSheets_on_openFile($params=null) {
 		'SelectFileOpen',
 		$checknum,
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
 function eyeSheets_on_saveFile($params=null) {
@@ -221,7 +221,7 @@ function eyeSheets_on_SaveAs($params=null) {
 		'SelectFileSave',
 		$checknum,
 	);
-	proc('launch', array('eyeDialog',$options));
+	proc('launch', array('xenonDialog',$options));
 }
 
 function eyeSheets_on_SelectFileSave($params=null) {

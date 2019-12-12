@@ -21,7 +21,7 @@ function eyeImport_on_Import($params="") {
 		'SelectDestDialog',
 		$checknum
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
 function eyeImport_on_doImport($params="") {

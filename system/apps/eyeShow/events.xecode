@@ -58,11 +58,11 @@ function eyeShow_on_Save($params=null) {
 			fclose($fp);
 		xenonx('messageBox',array('content'=>'Document saved successfully.'));
 	} else {
-		proc('launch',array('eyeDialog',$options));
+		proc('launch',array('xenonDialog',$options));
 	}
 }
 
-// Saving As Event - Open eyeDialog
+// Saving As Event - Open xenonDialog
 
 function eyeShow_on_SaveAs($params=null) {
 	global $checknum;
@@ -79,10 +79,10 @@ function eyeShow_on_SaveAs($params=null) {
 		'SelectFileSave',
 		$checknum,
 	);
-	proc('launch', array('eyeDialog',$options));
+	proc('launch', array('xenonDialog',$options));
 }
 
-// Saving Event - Response to eyeDialog
+// Saving Event - Response to xenonDialog
 
 function eyeShow_on_SelectFileSave($params=null) {
 	global $checknum;
@@ -107,7 +107,7 @@ function eyeShow_on_SelectFileSave($params=null) {
 	}
 }
 
-// Open a file , open eyeDialog
+// Open a file , open xenonDialog
 
 function eyeShow_on_openFile($params=null) {
 	global $checknum;
@@ -116,10 +116,10 @@ function eyeShow_on_openFile($params=null) {
 		'SelectFileOpen',
 		$checknum,
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
-// Response to eyeDialog
+// Response to xenonDialog
 
 function eyeShow_on_SelectFileOpen($params=null) {
 	global $myPid;
@@ -145,7 +145,7 @@ function eyeShow_on_NewFile($params=null) {
 		proc('end');
 }
 
-// Open eyeDialog, to insert an image from oneye
+// Open xenonDialog, to insert an image from oneye
 
 function eyeshow_on_Insert_eyeos_Image($params=null) {
 	global $checknum;
@@ -154,10 +154,10 @@ function eyeshow_on_Insert_eyeos_Image($params=null) {
 		'SelectInsertImage',
 		$checknum,
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
-// Response to eyeDialog
+// Response to xenonDialog
 
 function eyeShow_on_SelectInsertImage($params=null) {
 global $checknum ;

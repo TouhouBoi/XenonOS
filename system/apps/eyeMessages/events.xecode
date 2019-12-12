@@ -211,12 +211,12 @@ function eyeMessages_on_downloadAttach($params=null) {
 	global $checknum;
 
 	$options = array(
-		EYEDIALOG_TYPE_SAVEFILE,
+		XENONDIALOG_TYPE_SAVEFILE,
 		'SelectFileSave',
 		$checknum,
 		$GLOBALS['filename']->text
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
 function eyeMessages_on_SelectFileSave($params=null) {

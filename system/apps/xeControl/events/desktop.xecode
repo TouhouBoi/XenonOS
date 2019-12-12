@@ -89,7 +89,7 @@ function xeControl_on_desktop_reset_windows($params = '') {
 
 function xeControl_on_desktop_select($params = '') {
 	global $checknum;
-	proc('launch',array('eyeDialog',array(0,'desktop_select_now',$checknum)));
+	proc('launch',array('xenonDialog',array(0,'desktop_select_now',$checknum)));
 }
 
 function xeControl_on_desktop_select_now($params=null) {

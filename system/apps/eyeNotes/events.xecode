@@ -21,7 +21,7 @@ function eyeNotes_on_Message($params="") {
 function eyeNotes_on_Open($params=null) {
 	global $checknum;
 	$options = array(
-		EYEDIALOG_TYPE_OPENFILE,
+		XENONDIALOG_TYPE_OPENFILE,
 		'SelectFileOpen',
 		$checknum,
 		'',
@@ -37,7 +37,7 @@ function eyeNotes_on_Open($params=null) {
 			'All files' => '*'
 		)
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
 function eyeNotes_on_Resize($params=null) {
@@ -60,7 +60,7 @@ function eyeNotes_on_fullScreen() {
 function eyeNotes_on_Save($params=null) {
 	global $checknum;
 	$options = array(
-		EYEDIALOG_TYPE_SAVEFILE,
+		XENONDIALOG_TYPE_SAVEFILE,
 		'SelectFileSave',
 		$checknum,
 		'',
@@ -92,7 +92,7 @@ function eyeNotes_on_Save($params=null) {
 		));
 		eyeWidgets('serialize',array($myHiddenContent));
 	} else {
-		proc('launch',array('eyeDialog',$options));
+		proc('launch',array('xenonDialog',$options));
 	}
 }
 
@@ -115,7 +115,7 @@ function eyeNotes_on_SaveAs($params=null) {
 			'All files' => '*.*'
 		)
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
 
@@ -247,7 +247,7 @@ function eyeNotes_on_nDelete($params=""){
 function eyeNotes_on_yDelete($params=null){
 	global $checknum;
 	$options = array(
-		EYEDIALOG_TYPE_SAVEFILE,
+		XENONDIALOG_TYPE_SAVEFILE,
 		'SelectFileSaveClose',
 		$checknum,
 		'',
@@ -268,7 +268,7 @@ function eyeNotes_on_yDelete($params=null){
 		xenonx('messageBox',array('content'=>'File saved successfully.'));
 		proc('end');
 	} else {
-		proc('launch',array('eyeDialog',$options));
+		proc('launch',array('xenonDialog',$options));
 	}
 }
 

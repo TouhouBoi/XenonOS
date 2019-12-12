@@ -102,9 +102,9 @@ define('KE_KERNEL_VERSION', '1.0.3alpha');
 define('KE_KERNEL_HASH', hash_file("sha256", KERNEL_FULL_PATH."/"."kernel.xecode")); // SHA256 Hash of "kernel.xecode"
 
 // Define XenonOS Dialog Types
-define('EYEDIALOG_TYPE_OPENFILE', 0);
-define('EYEDIALOG_TYPE_SAVEFILE', 1);
-define('EYEDIALOG_TYPE_SELECTFOLDER', 2);
+define('XENONDIALOG_TYPE_OPENFILE', 0);
+define('XENONDIALOG_TYPE_SAVEFILE', 1);
+define('XENONDIALOG_TYPE_SELECTFOLDER', 2);
 
 // DEPRECATED
 define('CHECK_MOBILE', 0);

@@ -20,7 +20,7 @@ function eyePdf_run($params = '') {
 		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyePdf/events' . XE_CODE_EXTENSION);
 		eyePdf_on_Init($params);
 	} else {
-		proc('launch',array('eyeDialog',array(EYEDIALOG_TYPE_OPENFILE,'Init',$checknum,'',array(
+		proc('launch',array('xenonDialog',array(XENONDIALOG_TYPE_OPENFILE,'Init',$checknum,'',array(
 			'PDF files' => '*.pdf',
 			'All files' => '*.*'
 		),'','','Close')));

@@ -55,11 +55,11 @@ function xenonArchive_on_Extract($params="") {
 function xenonArchive_on_SelectDest(){
 	global $checknum;
 	$options = array(
-		EYEDIALOG_TYPE_SELECTFOLDER,
+		XENONDIALOG_TYPE_SELECTFOLDER,
 		'SelectDestDialog',
 		$checknum
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
 function xenonArchive_on_SelectDestDialog($params = null){

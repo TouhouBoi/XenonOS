@@ -293,9 +293,9 @@ function eyeNav_on_open_bookmarks($params = '')
 	global $checknum;
 
 	proc('launch',
-		array ('eyeDialog',
+		array ('xenonDialog',
 			array (
-				EYEDIALOG_TYPE_OPENFILE,
+				XENONDIALOG_TYPE_OPENFILE,
 				'open_bookmarks_now',
 				$checknum
 			)
@@ -313,9 +313,9 @@ function eyeNav_on_Download($params = '')
 	global $checknum;
 
 	proc('launch',
-		array ('eyeDialog',
+		array ('xenonDialog',
 			array (
-				EYEDIALOG_TYPE_SAVEFILE,
+				XENONDIALOG_TYPE_SAVEFILE,
 				'DownloadNow',
 				$checknum,
 				$params['basename'][0],
@@ -407,9 +407,9 @@ function eyeNav_on_open_searches($params = '')
 	global $checknum;
 
 	proc('launch',
-		array ('eyeDialog',
+		array ('xenonDialog',
 			array (
-				EYEDIALOG_TYPE_OPENFILE,
+				XENONDIALOG_TYPE_OPENFILE,
 				'open_searches_now',
 				$checknum
 			)

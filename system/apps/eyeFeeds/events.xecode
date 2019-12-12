@@ -93,7 +93,7 @@ function eyeFeeds_on_import_ITM($params=null) {
 function eyeFeeds_on_export_ITM($params=null) {
 	global $checknum;
 	$options = array(
-		EYEDIALOG_TYPE_SAVEFILE,
+		XENONDIALOG_TYPE_SAVEFILE,
 		'doExport',
 		$checknum,
 		'',
@@ -104,7 +104,7 @@ function eyeFeeds_on_export_ITM($params=null) {
 		false,
 		true
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 function eyeFeeds_on_doExport($params=null) {
 	if (! is_array($params['arg']) || !$params['arg'][0]) {

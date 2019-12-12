@@ -25,11 +25,11 @@ function newMessage_on_Close(){
 function newMessage_on_addAttach($params=null) {
 	global $checknum;
 	$options = array(
-		EYEDIALOG_TYPE_OPENFILE,
+		XENONDIALOG_TYPE_OPENFILE,
 		'SelectFileOpen',
 		$checknum,
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
 function newMessage_on_SelectFileOpen($params=null) {

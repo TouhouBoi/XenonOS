@@ -67,7 +67,7 @@ function eyeMedia_on_tlbToolbar_Open_Folder($params=null) {
 		'Select_Folder',
 		$checknum,
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
 function eyeMedia_on_tlbToolbar_Add_File($params=null) {
@@ -77,7 +77,7 @@ function eyeMedia_on_tlbToolbar_Add_File($params=null) {
 		'Select_File',
 		$checknum,
 	);
-	proc('launch',array('eyeDialog',$options));
+	proc('launch',array('xenonDialog',$options));
 }
 
 function eyeMedia_on_tlbToolbar_Remove_File($params=null) {

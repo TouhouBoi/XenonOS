@@ -52,7 +52,7 @@ function eyePdf_on_Init($params = '') {
 /* THE TOOLBAR HAS BEEN DELETED
 function eyePdf_on_Open($params = '') {
 	global $checknum;
-	proc('launch',array('eyeDialog',array(EYEDIALOG_TYPE_OPENFILE,'OpenDo',$checknum,'',array(
+	proc('launch',array('xenonDialog',array(XENONDIALOG_TYPE_OPENFILE,'OpenDo',$checknum,'',array(
 		'PDF files' => '*.pdf',
 		'All files' => '*.*'
 	),'','','Close')));

@@ -33,7 +33,7 @@ function xeControl_on_eyenav_save($params = '') {
 
 function xeControl_on_eyenav_export($params = '') {
 	global $checknum;
-	proc('launch',array('eyeDialog',array(1,'eyenav_export_now',$checknum,'eyeNav.xml')));
+	proc('launch',array('xenonDialog',array(1,'eyenav_export_now',$checknum,'eyeNav.xml')));
 }
 
 function xeControl_on_eyenav_export_now($params = '') {
@@ -48,7 +48,7 @@ function xeControl_on_eyenav_export_now($params = '') {
 
 function xeControl_on_eyenav_bookmarks_import($params = '') {
 	global $checknum;
-	proc('launch',array('eyeDialog',array(0,'eyenav_bookmarks_import_now',$checknum)));
+	proc('launch',array('xenonDialog',array(0,'eyenav_bookmarks_import_now',$checknum)));
 }
 
 function xeControl_on_eyenav_bookmarks_import_now($params = '') {
@@ -97,7 +97,7 @@ function xeControl_on_eyenav_bookmarks_default_no($params = '') {
 
 function xeControl_on_eyenav_search_import($params = '') {
 	global $checknum;
-	proc('launch',array('eyeDialog',array(0,'eyenav_search_import_now',$checknum)));
+	proc('launch',array('xenonDialog',array(0,'eyenav_search_import_now',$checknum)));
 }
 
 function xeControl_on_eyenav_search_import_now($params = '') {

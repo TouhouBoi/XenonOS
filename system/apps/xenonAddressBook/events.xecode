@@ -902,7 +902,7 @@ function xenonAddressBook_on_saveNewContact($params=null) {
 function xenonAddressBook_on_import() {
     global $checknum;
     $options = array(
-        EYEDIALOG_TYPE_OPENFILE,
+        XENONDIALOG_TYPE_OPENFILE,
         'loadvCard',
         $checknum,
         '',
@@ -911,7 +911,7 @@ function xenonAddressBook_on_import() {
             'All files' => '*'
         )
     );
-    proc('launch',array('eyeDialog',$options));
+    proc('launch',array('xenonDialog',$options));
 }
 
 function xenonAddressBook_on_export() {
@@ -945,7 +945,7 @@ function xenonAddressBook_on_exportWindow($params=null) {
     eyeWidgets('serialize',array($hiddenExport));
     global $checknum;
     $options = array(
-        EYEDIALOG_TYPE_SAVEFILE,
+        XENONDIALOG_TYPE_SAVEFILE,
         'savevCard',
         $checknum,
         '',
@@ -954,7 +954,7 @@ function xenonAddressBook_on_exportWindow($params=null) {
             'All files' => '*'
         )
     );
-    proc('launch',array('eyeDialog',$options));
+    proc('launch',array('xenonDialog',$options));
 }
 
 function xenonAddressBook_on_sendMessage() {
@@ -1024,7 +1024,7 @@ function xenonAddressBook_on_loadvCard($params=null) {
 function xenonAddressBook_on_loadImageDialog() {
     global $checknum;
     $options = array(
-        EYEDIALOG_TYPE_OPENFILE,
+        XENONDIALOG_TYPE_OPENFILE,
         'loadImage',
         $checknum,
         '',
@@ -1032,7 +1032,7 @@ function xenonAddressBook_on_loadImageDialog() {
             'All files' => '*'
         )
     );
-    proc('launch',array('eyeDialog',$options));
+    proc('launch',array('xenonDialog',$options));
 }
 
 function xenonAddressBook_on_loadImage($params=null) {

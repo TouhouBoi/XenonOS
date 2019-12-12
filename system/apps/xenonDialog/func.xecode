@@ -14,52 +14,52 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeDialog/app'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonDialog/app'.XE_CODE_EXTENSION);
 
 
 /********** VALIDATION OPERATIONS **********/
-function eyeDialog_openFile($folderPath, $filename) {
+function xenonDialog_openFile($folderPath, $filename) {
 	$dialogParams = unserialize($GLOBALS['serialized_dialogParams_HID']->text);
 	$callback = $dialogParams[1];
 	$callback_checknum = $dialogParams[2];
 
-	$folderPath = eyeDialog_resolvePath($folderPath,true);		//true only for eyeDialog1 compatibility
-	$filePath = eyeDialog_getFormatedDirPath($folderPath.'/'.$filename);
+	$folderPath = xenonDialog_resolvePath($folderPath,true);		//true only for xenonDialog1 compatibility
+	$filePath = xenonDialog_getFormatedDirPath($folderPath.'/'.$filename);
 	if($callback && $callback_checknum) {
 		xenonx('rawjs',array('js'=>'sendMsg('.$callback_checknum.',"'.$callback.'",eyeParam("arg","'.$filePath.'"));'));
 	}
-	eyeDialog_closeDialog();
+	xenonDialog_closeDialog();
 }
-function eyeDialog_selectFolder($folderPath) {
+function xenonDialog_selectFolder($folderPath) {
 	$dialogParams = unserialize($GLOBALS['serialized_dialogParams_HID']->text);
 	$callback = $dialogParams[1];
 	$callback_checknum = $dialogParams[2];
 
-	$folderPath = eyeDialog_resolvePath($folderPath,true);		//true only for eyeDialog1 compatibility
+	$folderPath = xenonDialog_resolvePath($folderPath,true);		//true only for xenonDialog1 compatibility
 	if($callback && $callback_checknum) {
 		xenonx('rawjs',array('js'=>'sendMsg('.$callback_checknum.',"'.$callback.'",eyeParam("arg","'.$folderPath.'"));'));
 	}
 	//xenonx('messageBox',array('content'=> 'Select folder OK: '.$folderPath));
-	eyeDialog_closeDialog();
+	xenonDialog_closeDialog();
 }
-function eyeDialog_saveAs($folderPath, $filename, $overwrite=false) {
+function xenonDialog_saveAs($folderPath, $filename, $overwrite=false) {
 	$dialogParams = unserialize($GLOBALS['serialized_dialogParams_HID']->text);
 	$callback = $dialogParams[1];
 	$callback_checknum = $dialogParams[2];
 
-	$folderPath = eyeDialog_resolvePath($folderPath,true);		//true only for eyeDialog1 compatibility
+	$folderPath = xenonDialog_resolvePath($folderPath,true);		//true only for xenonDialog1 compatibility
 	if (vfs('checkSpecialChars',array($filename)) === false) {
 		$filename = str_replace('/','',$filename);
 		$filename = str_replace('\\','',$filename);
 	}
-	$filename = eyeDialog_autoSetExtensionToFilename($filename, $dialogParams[6], true);		//force extension if needed
-	$filePath = eyeDialog_getFormatedDirPath($folderPath.'/'.$filename);
+	$filename = xenonDialog_autoSetExtensionToFilename($filename, $dialogParams[6], true);		//force extension if needed
+	$filePath = xenonDialog_getFormatedDirPath($folderPath.'/'.$filename);
 
-	//xenonx('rawjs', array('js' => 'console.log("'.eyeDialog_resolvePath($folderPath).'/'.$filename.'")'));
-	$filenameExtension = eyeDialog_getFilenameAndExtension($filename);
+	//xenonx('rawjs', array('js' => 'console.log("'.xenonDialog_resolvePath($folderPath).'/'.$filename.'")'));
+	$filenameExtension = xenonDialog_getFilenameAndExtension($filename);
 	$filenameExtension = $filenameExtension[1];
-	if (!$overwrite && vfs('fileExists', array(eyeDialog_resolvePath($folderPath).'/'.$filename))) {
-		eyeDialog_confirmFileReplace($folderPath, $filename);
+	if (!$overwrite && vfs('fileExists', array(xenonDialog_resolvePath($folderPath).'/'.$filename))) {
+		xenonDialog_confirmFileReplace($folderPath, $filename);
 		return;
 	}
 
@@ -67,10 +67,10 @@ function eyeDialog_saveAs($folderPath, $filename, $overwrite=false) {
 		xenonx('rawjs',array('js'=>'sendMsg('.$callback_checknum.',"'.$callback.'",eyeParam("arg","'.$filePath.'")+eyeParam("ext","'.$filenameExtension.'")+eyeParam("fileType","'.$GLOBALS['selectedFileType']->text.'"));'));
 	}
 	//xenonx('messageBox',array('content'=> 'Save as OK: '.$filePath));
-	eyeDialog_closeDialog();
+	xenonDialog_closeDialog();
 }
 
-function eyeDialog_confirmFileReplace($folderPath, $filename) {
+function xenonDialog_confirmFileReplace($folderPath, $filename) {
 	xenonx('messageBox',array(
 		'content' => 'Are you sure you want to replace this file?',
 		'type' => 3,
@@ -84,44 +84,44 @@ function eyeDialog_confirmFileReplace($folderPath, $filename) {
 		'btn2_name' => 'confirmFileReplace_DLG_no_BTN',
 		'hidden_name' => 'confirmFileReplace_DLG_params_HID',
 		'hidden_text' => serialize(array($folderPath,$filename)),
-		'father' => 'eyeDialog_WND',
+		'father' => 'xenonDialog_WND',
 		'img' => '?'
 	));
 }
 
 
 /********** OTHER INTERNAL OPERATIONS **********/
-function eyeDialog_closeDialog() {
-	$GLOBALS['eyeDialog_WND']->close();
+function xenonDialog_closeDialog() {
+	$GLOBALS['xenonDialog_WND']->close();
 	proc('end');
 }
 
-function eyeDialog_refreshFilesList() {
+function xenonDialog_refreshFilesList() {
 	switch ($GLOBALS['currentPlace_HID']->text) {
-		case __EYEDIALOG_PLACE_GROUPS:
+		case __XENONDIALOG_PLACE_GROUPS:
 			//TODO
-			/*eyeDialog_browseGroups($GLOBALS['currentPath_HID']->text);*/
+			/*xenonDialog_browseGroups($GLOBALS['currentPath_HID']->text);*/
 			break;
 		default:
-			eyeDialog_browseHome($GLOBALS['currentPath_HID']->text);
+			xenonDialog_browseHome($GLOBALS['currentPath_HID']->text);
 			break;
 	}
 }
 
-function eyeDialog_autoSetExtensionToFilename($filename, $forceExtension=false, $appendExtension=false) {
+function xenonDialog_autoSetExtensionToFilename($filename, $forceExtension=false, $appendExtension=false) {
 	//xenonx('rawjs', array('js' => 'console.log("original name = '.$filename.'")'));
 	$return = '';
 	$dialogParams = unserialize($GLOBALS['serialized_dialogParams_HID']->text);
 	$displayedFiletypes = /* utf8 */ explode('|', $GLOBALS['currentFiletypeFilter_HID']->text);
 
-	$defaultFilenameExt = eyeDialog_getFilenameAndExtension($displayedFiletypes[0]);	//first one is default
-	$filenameExt = eyeDialog_getFilenameAndExtension($filename);
+	$defaultFilenameExt = xenonDialog_getFilenameAndExtension($displayedFiletypes[0]);	//first one is default
+	$filenameExt = xenonDialog_getFilenameAndExtension($filename);
 	$extensionOk = false;
 
 	if ($filenameExt[1] != '') {
 		//the filename has an extension
 		foreach($displayedFiletypes as $filetype) {
-			$filetypeExt = eyeDialog_getFilenameAndExtension($filetype);
+			$filetypeExt = xenonDialog_getFilenameAndExtension($filetype);
 			if (utf8_strcasecmp($filetypeExt[1], $filenameExt[1]) === 0) {
 				$extensionOk = true;
 			}
@@ -164,7 +164,7 @@ function eyeDialog_autoSetExtensionToFilename($filename, $forceExtension=false, 
  *
  * @return SortableTable
  */
-function eyeDialog_clearFiles() {
+function xenonDialog_clearFiles() {
 	global $myPid;
 
 	//remove previous table
@@ -174,7 +174,7 @@ function eyeDialog_clearFiles() {
 	//create and add new table
 	$filesTable = new Sortabletable(array(
 		'name' => 'files_TAB',
-		'father' => 'eyeDialog_WND_Content',
+		'father' => 'xenonDialog_WND_Content',
 		'x' => 178,
 		'y' => 4,
 		'width' => 414,
@@ -191,7 +191,7 @@ function eyeDialog_clearFiles() {
 	return $filesTable;
 }
 
-function eyeDialog_drawFoldersTree($selectedFolder='') {
+function xenonDialog_drawFoldersTree($selectedFolder='') {
 	global $currentUser;
 
 	if ($GLOBALS['folders_TREE'])
@@ -209,13 +209,13 @@ function eyeDialog_drawFoldersTree($selectedFolder='') {
 	$myTree->show();
 
 	switch ($GLOBALS['currentPlace_HID']->text) {
-		case __EYEDIALOG_PLACE_GROUPS:
+		case __XENONDIALOG_PLACE_GROUPS:
 			//TODO
-			/*$rootNodeName = __EYEDIALOG_FOLDERSTREE_ROOTNODE_GROUPS;*/
+			/*$rootNodeName = __XENONDIALOG_FOLDERSTREE_ROOTNODE_GROUPS;*/
 			break;
 
 		default:
-			$rootNodeName = __EYEDIALOG_FOLDERSTREE_ROOTNODE_HOME;
+			$rootNodeName = __XENONDIALOG_FOLDERSTREE_ROOTNODE_HOME;
 			break;
 	}
 
@@ -224,21 +224,21 @@ function eyeDialog_drawFoldersTree($selectedFolder='') {
 	$myTree->addSubList('item_root', 'list_root');
 
 	switch ($GLOBALS['currentPlace_HID']->text) {
-		case __EYEDIALOG_PLACE_GROUPS:
+		case __XENONDIALOG_PLACE_GROUPS:
 			//TODO
 			/*$userInfo = um('retrieveUser',array($currentUser));
 			foreach($userInfo['eyeUser'][0]['group'] as $groupname) {
-				$relativePath = eyeDialog_resolvePathInGroupsDir('/', false, $groupname);
+				$relativePath = xenonDialog_resolvePathInGroupsDir('/', false, $groupname);
 				$itemId = md5($relativePath);
 				$myTree->addItem('list_root', 'item_'.$itemId, $groupname);
 				$myTree->addSubList('item_'.$itemId, 'list_'.$itemId);
-				eyeDialog_drawFolderNode($myTree, 'list_'.$itemId, $relativePath);
+				xenonDialog_drawFolderNode($myTree, 'list_'.$itemId, $relativePath);
 			}*/
 			break;
 
 		default:
-			$relativePath = eyeDialog_resolvePathInUserDir('/');
-			$firstSubItemId = eyeDialog_drawFolderNode($myTree, 'list_root', $relativePath);
+			$relativePath = xenonDialog_resolvePathInUserDir('/');
+			$firstSubItemId = xenonDialog_drawFolderNode($myTree, 'list_root', $relativePath);
 			break;
 	}
 
@@ -253,9 +253,9 @@ function eyeDialog_drawFoldersTree($selectedFolder='') {
  *
  * @param string $relativePath oneye root relative path
  */
-function eyeDialog_drawFolderNode($treeObject, $parentListNode, $relativePath) {
+function xenonDialog_drawFolderNode($treeObject, $parentListNode, $relativePath) {
 	$firstItemId = false;
-	$relativePath = eyeDialog_resolvePath($relativePath, false);
+	$relativePath = xenonDialog_resolvePath($relativePath, false);
 	//xenonx('rawjs', array('js' => 'console.log("'.print_r('relative path = '.$relativePath,true).'")'));
 	if ($relativePath !== false) {
 		$dirContent = vfs('getDirContent', array($relativePath));
@@ -269,7 +269,7 @@ function eyeDialog_drawFolderNode($treeObject, $parentListNode, $relativePath) {
 					}
 					$treeObject->addItem($parentListNode, 'item_'.$itemId, basename($filepath));
 					$treeObject->addSubList('item_'.$itemId, 'list_'.$itemId);
-					eyeDialog_drawFolderNode($treeObject, 'list_'.$itemId, $filepath);
+					xenonDialog_drawFolderNode($treeObject, 'list_'.$itemId, $filepath);
 				}
 			}
 		}
@@ -277,9 +277,9 @@ function eyeDialog_drawFolderNode($treeObject, $parentListNode, $relativePath) {
 	return $firstItemId;
 }
 
-function eyeDialog_selectTreeFolder($path) {
-	$resolvedPath = eyeDialog_resolvePathInUserDir($path);
-	if ($resolvedPath == eyeDialog_resolvePathInUserDir('/'))
+function xenonDialog_selectTreeFolder($path) {
+	$resolvedPath = xenonDialog_resolvePathInUserDir($path);
+	if ($resolvedPath == xenonDialog_resolvePathInUserDir('/'))
 		$GLOBALS['folders_TREE']->selectItem('item_root');
 	else
 		$GLOBALS['folders_TREE']->selectItem('item_'.md5($resolvedPath));
@@ -288,19 +288,19 @@ function eyeDialog_selectTreeFolder($path) {
 /**
  * @param string $path The path within the user dir ('/', '/Documents', '/Desktop', etc.) to browse
  */
-function eyeDialog_browseHome($path = '/') {
-	$filesTable = eyeDialog_clearFiles();
+function xenonDialog_browseHome($path = '/') {
+	$filesTable = xenonDialog_clearFiles();
 
 	$displayedFiletypes = /* utf8 */ explode('|', $GLOBALS['currentFiletypeFilter_HID']->text);
 
-	$path = eyeDialog_resolvePathInUserDir($path);
+	$path = xenonDialog_resolvePathInUserDir($path);
 	if ($path === false) {
 		xenonx('messageBox',array('content'=> i18n("translate",array('Error while trying to browse folder'))));
 		return;
 	}
 
-	$fullPath = eyeDialog_resolvePathInUserDir($path,false);
-	$filesData = eyeDialog_listDir($fullPath);
+	$fullPath = xenonDialog_resolvePathInUserDir($path,false);
+	$filesData = xenonDialog_listDir($fullPath);
 	foreach($filesData as $id => $fileInfo) {
 		switch($fileInfo['type']) {
 			case 'd':
@@ -351,9 +351,9 @@ function eyeDialog_browseHome($path = '/') {
  * @param string $path (e.g. /MyFolder)
  * @param string $groupname The name of the group (empty to display the groups folders)
  */
-//function eyeDialog_browseGroups($path, $groupname = ''){
+//function xenonDialog_browseGroups($path, $groupname = ''){
 //	global $currentUser;
-//	$filesTable = eyeDialog_clearFiles();
+//	$filesTable = xenonDialog_clearFiles();
 //
 //	$filesData = array();
 //
@@ -379,29 +379,29 @@ function eyeDialog_browseHome($path = '/') {
 //	else {
 //		$displayedFiletypes = /* utf8 */ explode('|', $GLOBALS['currentFiletypeFilter_HID']->text);
 //
-//		$fullPath = eyeDialog_resolvePathInGroupsDir($path, false, $groupname);
+//		$fullPath = xenonDialog_resolvePathInGroupsDir($path, false, $groupname);
 //		if ($path === false) {
 //			xenonx('messageBox',array('content'=> i18n("translate",array('Error while trying to browse folder'))));
 //			return;
 //		}
-//		$filesData = eyeDialog_listDir($fullPath, $groupname);
+//		$filesData = xenonDialog_listDir($fullPath, $groupname);
 //	}
 //
 //
 //	foreach($filesData as $id => $fileInfo) {
 //		switch($fileInfo['type']) {
 //			case 'd':
-//				$urlIcon = 'index.php?extern=apps/eyeDialog/gfx/typefolder.png';
+//				$urlIcon = 'index.php?extern=apps/xenonDialog/gfx/typefolder.png';
 //				$size = ' ';
 //				break;
 //
 //			case 'l':
-//				$urlIcon = 'index.php?extern=apps/eyeDialog/gfx/typelink.png';
+//				$urlIcon = 'index.php?extern=apps/xenonDialog/gfx/typelink.png';
 //				$size  = ' ';
 //				break;
 //
 //			default:
-//				$urlIcon = 'index.php?extern=apps/eyeDialog/gfx/typedefault.png';
+//				$urlIcon = 'index.php?extern=apps/xenonDialog/gfx/typedefault.png';
 //				$size  = $fileInfo['size'];
 //		}
 //		$displayOk = false;
@@ -437,15 +437,15 @@ function eyeDialog_browseHome($path = '/') {
  * @param string $dir The directory to browse (e.g. './users/jn4/john/files/Documents')
  * @return array
  */
-function eyeDialog_listDir($dir) {
-	$dir = eyeDialog_getFormatedDirPath($dir);
+function xenonDialog_listDir($dir) {
+	$dir = xenonDialog_getFormatedDirPath($dir);
 	$content = vfs('getDirContent', array($dir));
 
 	$i = 1;
 	$filesData = array();
 	//add parent entry (..) only if we are not in the root directory
-	$checkedDir = eyeDialog_resolvePathInUserDir($dir);
-	if ($checkedDir != eyeDialog_resolvePathInUserDir('/')) {
+	$checkedDir = xenonDialog_resolvePathInUserDir($dir);
+	if ($checkedDir != xenonDialog_resolvePathInUserDir('/')) {
 		$fileInfo = array(
 			'id' => urlencode(serialize(array('d',$dir.'/..'))),
 			'type'=>'d',
@@ -499,20 +499,20 @@ function eyeDialog_listDir($dir) {
 		}
 	}
 
-	usort($filesData, 'eyeDialog_compareFilesData');
+	usort($filesData, 'xenonDialog_compareFilesData');
 	return $filesData;
 }
 
 /**
- * Sort files list processed by eyeDialog_listDir() in order to put the folders on top
+ * Sort files list processed by xenonDialog_listDir() in order to put the folders on top
  * of the list.
- * AUTOMATICALLY CALLED BY eyeDialog_listDir()
+ * AUTOMATICALLY CALLED BY xenonDialog_listDir()
  *
  * @param array $a
  * @param array $b
  * @return int A negative value if $a must be placed before $b, a positive value otherwise
  */
-function eyeDialog_compareFilesData($a, $b) {
+function xenonDialog_compareFilesData($a, $b) {
 	if ($a['type'] == $b['type']) {
 		if ($a['name'] == '..')
 			return -1;
@@ -534,7 +534,7 @@ function eyeDialog_compareFilesData($a, $b) {
  * @param string $dir The path to format
  * @return string The path formated
  */
-function eyeDialog_getFormatedDirPath($dir) {
+function xenonDialog_getFormatedDirPath($dir) {
 	if ($dir == '' || $dir == '//') {
 		return '/';
 	}
@@ -548,7 +548,7 @@ function eyeDialog_getFormatedDirPath($dir) {
  * @param string $filename
  * @return array (0 => filename_without_extension, 1 => extension)
  */
-function eyeDialog_getFilenameAndExtension($filename) {
+function xenonDialog_getFilenameAndExtension($filename) {
 	$nbMatches = /* utf8 */ preg_match('/^(.*)\.([_\*A-Za-z]+)$/', $filename, $matches);
 	if ($nbMatches == 0) {
 		$return = array(
@@ -565,18 +565,18 @@ function eyeDialog_getFilenameAndExtension($filename) {
 	return $return;
 }
 
-function eyeDialog_resolvePath($path, $returnReferenceFolderRelative = false, $groupname = '') {
-	if ($GLOBALS['currentPlace_HID']->text == __EYEDIALOG_PLACE_GROUPS)
-		return eyeDialog_resolvePathInGroupsDir($path, $returnReferenceFolderRelative, $groupname);
+function xenonDialog_resolvePath($path, $returnReferenceFolderRelative = false, $groupname = '') {
+	if ($GLOBALS['currentPlace_HID']->text == __XENONDIALOG_PLACE_GROUPS)
+		return xenonDialog_resolvePathInGroupsDir($path, $returnReferenceFolderRelative, $groupname);
 	else
-		return eyeDialog_resolvePathInUserDir($path, $returnReferenceFolderRelative);
+		return xenonDialog_resolvePathInUserDir($path, $returnReferenceFolderRelative);
 }
 
-function eyeDialog_resolvePathInUserDir($path, $returnUserFilesRelative = false) {
+function xenonDialog_resolvePathInUserDir($path, $returnUserFilesRelative = false) {
 	return vfs('resolvePath', array($path, 'user_files', $returnUserFilesRelative));
 }
 
-function eyeDialog_resolvePathInGroupsDir($path, $returnGroupsDirRelative = false, $groupname) {
+function xenonDialog_resolvePathInGroupsDir($path, $returnGroupsDirRelative = false, $groupname) {
 	return vfs('resolvePath', array($path, 'group_files', $returnGroupsDirRelative, $groupname));
 }
 

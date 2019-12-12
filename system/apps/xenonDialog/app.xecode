@@ -20,14 +20,14 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeDialog/events'.XE_CODE_EXTENSION);
-include_once(XENONOS_ROOT.'/'.APP_DIR.'/eyeDialog/func'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonDialog/events'.XE_CODE_EXTENSION);
+include_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonDialog/func'.XE_CODE_EXTENSION);
 
 //PRIVATE
-define('__EYEDIALOG_PLACE_HOME', 'home');
-define('__EYEDIALOG_PLACE_GROUPS', 'groups');
-define('__EYEDIALOG_FOLDERSTREE_ROOTNODE_HOME', 'Home');
-define('__EYEDIALOG_FOLDERSTREE_ROOTNODE_GROUPS', 'Groups');
+define('__XENONDIALOG_PLACE_HOME', 'home');
+define('__XENONDIALOG_PLACE_GROUPS', 'groups');
+define('__XENONDIALOG_FOLDERSTREE_ROOTNODE_HOME', 'Home');
+define('__XENONDIALOG_FOLDERSTREE_ROOTNODE_GROUPS', 'Groups');
 
 
 /**
@@ -50,14 +50,14 @@ define('__EYEDIALOG_FOLDERSTREE_ROOTNODE_GROUPS', 'Groups');
  * 						'All types' => '*'
  *					)
  */
-function eyeDialog_run($params=null) {
+function xenonDialog_run($params=null) {
 	global $checknum, $myPid;
 
 	//DEBUG
 	/*$params = array(
-		//0 => EYEDIALOG_TYPE_OPENFILE,
-		//0 => EYEDIALOG_TYPE_SELECTFOLDER,
-		0 => EYEDIALOG_TYPE_SAVEFILE,
+		//0 => XENONDIALOG_TYPE_OPENFILE,
+		//0 => XENONDIALOG_TYPE_SELECTFOLDER,
+		0 => XENONDIALOG_TYPE_SAVEFILE,
 		1 => 'test',
 		2 => $checknum,
 		3 => 'defaultFilename.ext',
@@ -84,21 +84,21 @@ function eyeDialog_run($params=null) {
 		//0- dialog type
 		if (intval($params[0]) >= 0 && intval($params[0]) < 3) {
 			switch($params[0]) {
-				case EYEDIALOG_TYPE_SELECTFOLDER:
+				case XENONDIALOG_TYPE_SELECTFOLDER:
 					$type = $params[0];
 					break;
-				case EYEDIALOG_TYPE_OPENFILE:
+				case XENONDIALOG_TYPE_OPENFILE:
 					$type = $params[0];
 					break;
-				case EYEDIALOG_TYPE_SAVEFILE:
+				case XENONDIALOG_TYPE_SAVEFILE:
 					$type = $params[0];
 					break;
 				default:
-					$type = EYEDIALOG_TYPE_OPENFILE;
+					$type = XENONDIALOG_TYPE_OPENFILE;
 			}
 		}
 		else {
-			$type = EYEDIALOG_TYPE_OPENFILE;
+			$type = XENONDIALOG_TYPE_OPENFILE;
 		}
 		//1- callback
 		$callback_event = $params[1];
@@ -111,17 +111,17 @@ function eyeDialog_run($params=null) {
 			$filetypes = $params[4];
 		}
 		//5- default current place and path
-		if (is_string($params[5]) && eyeDialog_resolvePathInUserDir($params[5]) !== false) {
-			$currentPlaceId = __EYEDIALOG_PLACE_HOME;
-			$defaultPath = eyeDialog_resolvePathInUserDir($params[5]);
+		if (is_string($params[5]) && xenonDialog_resolvePathInUserDir($params[5]) !== false) {
+			$currentPlaceId = __XENONDIALOG_PLACE_HOME;
+			$defaultPath = xenonDialog_resolvePathInUserDir($params[5]);
 		}
-		/*elseif(eyeDialog_resolvePathInGroupsDir($params[5]) !== false) {
-			$currentPlaceId = __EYEDIALOG_PLACE_GROUPS;
-			$defaultPath = eyeDialog_resolvePathInGroupsDir($params[5]);
+		/*elseif(xenonDialog_resolvePathInGroupsDir($params[5]) !== false) {
+			$currentPlaceId = __XENONDIALOG_PLACE_GROUPS;
+			$defaultPath = xenonDialog_resolvePathInGroupsDir($params[5]);
 		}*/
 		else {
-			$currentPlaceId = __EYEDIALOG_PLACE_HOME;
-			$defaultPath = eyeDialog_resolvePathInUserDir('/');
+			$currentPlaceId = __XENONDIALOG_PLACE_HOME;
+			$defaultPath = xenonDialog_resolvePathInUserDir('/');
 		}
 		//6- default extension
 		if ($params[6]) {
@@ -132,12 +132,12 @@ function eyeDialog_run($params=null) {
 		}
 	}
 	else {
-		$type = EYEDIALOG_TYPE_OPENFILE;
+		$type = XENONDIALOG_TYPE_OPENFILE;
 		$callback_event = '';
 		$callback_checknum = '';
 		$defaultFilename = '';
-		$defaultPath = eyeDialog_resolvePathInUserDir('/');
-		$currentPlaceId = __EYEDIALOG_PLACE_HOME;
+		$defaultPath = xenonDialog_resolvePathInUserDir('/');
+		$currentPlaceId = __XENONDIALOG_PLACE_HOME;
 		$forceExtension = false;
 	}
 	if (count($filetypes) == 0) {
@@ -159,15 +159,15 @@ function eyeDialog_run($params=null) {
 	);
 
 	switch($type) {
-		case EYEDIALOG_TYPE_OPENFILE:
+		case XENONDIALOG_TYPE_OPENFILE:
 			$windowTitle = i18n("translate",array('Select a file to open'));
 			$okButtonCaption = i18n("translate",array('Open'));
 			break;
-		case EYEDIALOG_TYPE_SELECTFOLDER:
+		case XENONDIALOG_TYPE_SELECTFOLDER:
 			$windowTitle = i18n("translate",array('Select a folder'));
 			$okButtonCaption = i18n("translate",array('Select'));
 			break;
-		case EYEDIALOG_TYPE_SAVEFILE:
+		case XENONDIALOG_TYPE_SAVEFILE:
 			$windowTitle = i18n("translate",array('Save as...'));
 			$okButtonCaption = i18n("translate",array('Save'));
 			break;
@@ -178,7 +178,7 @@ function eyeDialog_run($params=null) {
 	/********** INTERFACE COMPONENTS **********/
 
 	$mainWindow = new Window(array(
-		'name' => 'eyeDialog_WND',
+		'name' => 'xenonDialog_WND',
 		'father' => 'xenonApps',
 		'type' => NOLIST_CLOSE_WINDOW,
 		'cent' => 1,
@@ -191,7 +191,7 @@ function eyeDialog_run($params=null) {
 	//folders box
 	$foldersBox = new Box(array(
 		'name'=>'folders_BOX',
-		'father'=>'eyeDialog_WND_Content',
+		'father'=>'xenonDialog_WND_Content',
 		'x'=>4,
 		'y'=>4,
 		'width'=>170,
@@ -226,7 +226,7 @@ function eyeDialog_run($params=null) {
 	//FILENAME TEXTBOX
 	$filenameTextbox = new Textbox(array(
 		'name' => 'filename_TXTBOX',
-		'father' => 'eyeDialog_WND_Content',
+		'father' => 'xenonDialog_WND_Content',
 		'x' => 178,
 		'y' => 272,
 		'width' => 316,
@@ -244,7 +244,7 @@ function eyeDialog_run($params=null) {
 	//FILETYPE SELECT
 	$filetypeSelect = new Select(array(
 		'name'=>'filetype_SEL',
-		'father'=>'eyeDialog_WND_Content',
+		'father'=>'xenonDialog_WND_Content',
 		'x'=>178,
 		'y'=>300,
 		'width' => 320
@@ -278,7 +278,7 @@ function eyeDialog_run($params=null) {
 	//OK BUTTON
 	$okButton = new Button(array(
 		'name' => 'ok_BTN',
-		'father' => 'eyeDialog_WND_Content',
+		'father' => 'xenonDialog_WND_Content',
 		'caption' => $okButtonCaption,
 		'x' => 502,
 		'y' => 272,
@@ -292,7 +292,7 @@ function eyeDialog_run($params=null) {
 	//CANCEL BUTTON
 	$cancelButton = new Button(array(
 		'name' => 'cancel_BTN',
-		'father' => 'eyeDialog_WND_Content',
+		'father' => 'xenonDialog_WND_Content',
 		'caption' => 'Cancel',
 		'x' => 502,
 		'y' => 300,
@@ -308,35 +308,35 @@ function eyeDialog_run($params=null) {
 
 	$dialogParams = new Hidden(array(
 		'name' =>'serialized_dialogParams_HID',
-		'father' => 'eyeDialog_WND_Content',
+		'father' => 'xenonDialog_WND_Content',
 		'text' => serialize($params)
 	));
 	eyeWidgets('serialize',array($dialogParams));
 
 	$currentFiletypeFilter = new Hidden(array(
 		'name' =>'currentFiletypeFilter_HID',
-		'father' => 'eyeDialog_WND_Content',
+		'father' => 'xenonDialog_WND_Content',
 		'text' => current($params[4])
 	));
 	eyeWidgets('serialize',array($currentFiletypeFilter));
 
 	$currentPath = new Hidden(array(
 		'name' =>'currentPath_HID',
-		'father' => 'eyeDialog_WND_Content',
+		'father' => 'xenonDialog_WND_Content',
 		'text' => ''
 	));
 	eyeWidgets('serialize',array($currentPath));
 
 	$currentPlace = new Hidden(array(
 		'name' =>'currentPlace_HID',
-		'father' => 'eyeDialog_WND_Content',
+		'father' => 'xenonDialog_WND_Content',
 		'text' => $currentPlaceId
 	));
 	eyeWidgets('serialize',array($currentPlace));
 
 	$currentGroup = new Hidden(array(
 		'name' =>'currentGroup_HID',
-		'father' => 'eyeDialog_WND_Content',
+		'father' => 'xenonDialog_WND_Content',
 		'text' => ''
 	));
 	eyeWidgets('serialize',array($currentGroup));
@@ -346,7 +346,7 @@ function eyeDialog_run($params=null) {
 }
 
 
-function eyeDialog_end($params=null) {
+function xenonDialog_end($params=null) {
 	eyeWidgets('unserialize');
 }
 
