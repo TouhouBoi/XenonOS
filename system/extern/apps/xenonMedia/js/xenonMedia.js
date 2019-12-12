@@ -15,10 +15,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row) {
+function xenonMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row) {
 	Current_Row.className = "sort-table-select";
 	var This_Table;
-	This_Table = window['table_' + myPid + '_eyeMedia_tblPlaylist'];
+	This_Table = window['table_' + myPid + '_xenonMedia_tblPlaylist'];
 	This_Table.lastClick = Current_Row;
 	//alert(This_Table.lastClick.className + ' vs ' + Current_Row.className);
 	if (This_Table.mySignal) {
@@ -29,9 +29,9 @@ function eyeMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row) {
 	}
 }
 
-function eyeMedia_Next(myPid, Keep_Playing, Check_Num) {
+function xenonMedia_Next(myPid, Keep_Playing, Check_Num) {
 	var Current_Row, Random_Number;
-	Current_Row = document.getElementById(myPid + '_eyeMedia_tblPlaylist_Body').firstChild;
+	Current_Row = document.getElementById(myPid + '_xenonMedia_tblPlaylist_Body').firstChild;
 	while (Current_Row.className !== "sort-table-select") {
 		Current_Row = Current_Row.nextSibling;
 	}
@@ -39,20 +39,20 @@ function eyeMedia_Next(myPid, Keep_Playing, Check_Num) {
 	if (document.getElementById(myPid + '_tlbToolbar_Shuffle_Container').className === 'blockbarItemPress') {
 		Random_Number = Math.floor(Math.random() * Current_Row.parentNode.childNodes.length);
 		Current_Row = Current_Row.parentNode.childNodes[Random_Number];
-		eyeMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row);
+		xenonMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row);
 	} else if (!Current_Row.nextSibling) {
 		if (document.getElementById(myPid + '_tlbToolbar_Repeat_Container').className === 'blockbarItemPress') {
 			Current_Row = Current_Row.parentNode.firstChild;
-			eyeMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row);
+			xenonMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row);
 		}
 	} else {
 		Current_Row = Current_Row.nextSibling;
-		eyeMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row);
+		xenonMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row);
 	}
 }
 
-function eyeMedia_Previous(myPid, Keep_Playing, Check_Num) {
-	var Current_Row = document.getElementById(myPid + '_eyeMedia_tblPlaylist_Body').firstChild;
+function xenonMedia_Previous(myPid, Keep_Playing, Check_Num) {
+	var Current_Row = document.getElementById(myPid + '_xenonMedia_tblPlaylist_Body').firstChild;
 	while (Current_Row.className !== "sort-table-select") {
 		Current_Row = Current_Row.nextSibling;
 	}
@@ -60,17 +60,17 @@ function eyeMedia_Previous(myPid, Keep_Playing, Check_Num) {
 	if (!Current_Row.nextSibling) {
 		if (document.getElementById(myPid + '_tlbToolbar_Repeat_Container').className === 'blockbarItemPress') {
 			Current_Row = Current_Row.parentNode.lastChild;
-			eyeMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row);
+			xenonMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row);
 		}
 	} else {
 		Current_Row = Current_Row.previousSibling;
-		eyeMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row);
+		xenonMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row);
 	}
 }
 
-function eyeMedia_SelectFirst(myPid, Keep_Playing, Check_Num) {
-	var Current_Row = document.getElementById(myPid + '_eyeMedia_tblPlaylist_Body').firstChild;
-	eyeMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row);
+function xenonMedia_SelectFirst(myPid, Keep_Playing, Check_Num) {
+	var Current_Row = document.getElementById(myPid + '_xenonMedia_tblPlaylist_Body').firstChild;
+	xenonMedia_NextPreviousDo(myPid, Keep_Playing, Check_Num, Current_Row);
 	while (Current_Row.className !== "sort-table-select") {
 		Current_Row = Current_Row.nextSibling;
 	}

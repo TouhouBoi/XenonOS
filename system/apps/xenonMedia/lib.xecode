@@ -14,18 +14,18 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeMedia_PlayPause($params=null) {
+function xenonMedia_PlayPause($params=null) {
 	global $myPid;
 	global $checknum;
 	eyeWidgets('updateContent',$params);
-	$Current_Value = $GLOBALS['eyeMedia_txtStatus']->text;
+	$Current_Value = $GLOBALS['xenonMedia_txtStatus']->text;
 	if ($Current_Value == 'Playing.')
 	{
-		$GLOBALS['eyeMedia_txtStatus']->setText('Paused.');
+		$GLOBALS['xenonMedia_txtStatus']->setText('Paused.');
 		xenonx('rawjs',array('js'=>"if(document.getElementById('".$myPid."_tlbToolbar_Play_Container').className == 'blockbarItemPress') {document.getElementById('".$myPid."_tlbToolbar_Play_Container').className = 'blockbarItem';}"));
 		eyeSound('pause', array('sndSound'));
 	} else {
-		$Cur_Selected_Row = $GLOBALS['eyeMedia_tblPlaylist']->selected;
+		$Cur_Selected_Row = $GLOBALS['xenonMedia_tblPlaylist']->selected;
 		if ($Cur_Selected_Row)
 		{
 			if ($Current_Value == 'Nothing Playing.')
@@ -35,10 +35,10 @@ function eyeMedia_PlayPause($params=null) {
 				$Cur_File = rand();
 				addShortUrl($Cur_File,'getFile');
 				eyeSound('createSound', array('sndSound', 'index.php/'.$Cur_File));
-				$GLOBALS['eyeMedia_hdnCurFile']->setText($Cur_File);
-				xenonx('messageBox',array('content'=>'Playing: %s','tokens' => array($GLOBALS['eyeMedia_tblPlaylist']->selected), 'sound' => ''));
+				$GLOBALS['xenonMedia_hdnCurFile']->setText($Cur_File);
+				xenonx('messageBox',array('content'=>'Playing: %s','tokens' => array($GLOBALS['xenonMedia_tblPlaylist']->selected), 'sound' => ''));
 			}
-			$GLOBALS['eyeMedia_txtStatus']->setText('Playing.');
+			$GLOBALS['xenonMedia_txtStatus']->setText('Playing.');
 			xenonx('rawjs', array('js' => "document.getElementById('".$myPid."_tlbToolbar_Play_Container').className = 'blockbarItemPress';"));
 			eyeSound('play', array('sndSound'));
 			eyeSound('onFinish', array('sndSound', 'Sound_Finished'));
@@ -46,47 +46,47 @@ function eyeMedia_PlayPause($params=null) {
 	}
 }
 
-function eyeMedia_Stop($params=null) {
+function xenonMedia_Stop($params=null) {
 	global $myPid;
 	eyeWidgets('updateContent',$params);
-	$Current_Value = $GLOBALS['eyeMedia_txtStatus']->text;
+	$Current_Value = $GLOBALS['xenonMedia_txtStatus']->text;
 	if (!($Current_Value == 'Nothing Playing.'))
 	{
-		$GLOBALS['eyeMedia_txtStatus']->setText('Nothing Playing.');
+		$GLOBALS['xenonMedia_txtStatus']->setText('Nothing Playing.');
 		xenonx('rawjs',array('js'=>"if(document.getElementById('".$myPid."_tlbToolbar_Play_Container').className == 'blockbarItemPress') {document.getElementById('".$myPid."_tlbToolbar_Play_Container').className = 'blockbarItem';}"));
 		eyeSound('stop', array('sndSound'));
 		eyeSound('destroySound', array('sndSound'));
-		delShortUrl('index.php/'.$GLOBALS['eyeMedia_hdnCurFile']->text);
+		delShortUrl('index.php/'.$GLOBALS['xenonMedia_hdnCurFile']->text);
 	}
 }
 
-function eyeMedia_Previous($params=null) {
+function xenonMedia_Previous($params=null) {
 	global $myPid;
 	global $checknum;
-	$Current_Value = $GLOBALS['eyeMedia_txtStatus']->text;
+	$Current_Value = $GLOBALS['xenonMedia_txtStatus']->text;
 	$Keep_Playing = 0;
 	if (!($Current_Value == 'Nothing Playing.'))
 	{
-		eyeMedia_Stop($params);
+		xenonMedia_Stop($params);
 		$Keep_Playing = 1;
 	}
-	xenonx('rawjs',array('js'=>'eyeMedia_Previous(' . $myPid . ', ' . $Keep_Playing . ', ' . $checknum . ');'));
+	xenonx('rawjs',array('js'=>'xenonMedia_Previous(' . $myPid . ', ' . $Keep_Playing . ', ' . $checknum . ');'));
 }
 
-function eyeMedia_Next($params=null) {
+function xenonMedia_Next($params=null) {
 	global $myPid;
 	global $checknum;
-	$Current_Value = $GLOBALS['eyeMedia_txtStatus']->text;
+	$Current_Value = $GLOBALS['xenonMedia_txtStatus']->text;
 	$Keep_Playing = 0;
 	if (!($Current_Value == 'Nothing Playing.'))
 	{
-		eyeMedia_Stop($params);
+		xenonMedia_Stop($params);
 		$Keep_Playing = 1;
 	}
-	xenonx('rawjs',array('js'=>'eyeMedia_Next(' . $myPid . ', ' . $Keep_Playing . ', ' . $checknum . ');'));
+	xenonx('rawjs',array('js'=>'xenonMedia_Next(' . $myPid . ', ' . $Keep_Playing . ', ' . $checknum . ');'));
 }
 
-function eyeMedia_RemoveDoubleSlash($text) {
+function xenonMedia_RemoveDoubleSlash($text) {
 	if ($text == '' || $text == '//') {
 		return '/';
 	}

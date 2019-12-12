@@ -6,6 +6,6 @@
 	<author>Trinity</author>
 	<license>AGPL</license>
 	<type>Application</type>
-	<icon>index.php?theme=USERTHEME&amp;extern=icons/48x48/eyeMedia.png</icon>
+	<icon>index.php?theme=USERTHEME&amp;extern=icons/48x48/xenonMedia.png</icon>
 	<openWith>1</openWith>
 </package>

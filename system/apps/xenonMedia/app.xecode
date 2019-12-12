@@ -14,12 +14,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeMedia_run($params=null) {
+function xenonMedia_run($params=null) {
 	global $checknum;
 	global $myPid;
 
 	$wndMediaVault = new Window(array(
-		'name'=>'eyeMedia_WND',
+		'name'=>'xenonMedia_WND',
 		'title'=>'Media Player',
 		'father'=>'xenonApps',
 		'type'=>NORMAL_WINDOW,
@@ -35,8 +35,8 @@ function eyeMedia_run($params=null) {
 	$wndMediaVault->show();
 
 	$conContainer = new Container(array(
-		'name'=>'eyeMedia_conContainer',
-		'father'=>'eyeMedia_WND_Content',
+		'name'=>'xenonMedia_conContainer',
+		'father'=>'xenonMedia_WND_Content',
 		'width'=>$wndMediaVault->width-15,
 		'height'=>$wndMediaVault->height-100,
 		'x'=>5,
@@ -45,29 +45,29 @@ function eyeMedia_run($params=null) {
 	$conContainer->show();
 
 	$hdnStatus = new Hidden(array(
-		'name'=>'eyeMedia_hdnStatus',
-		'father'=>'eyeMedia_conContainer',
+		'name'=>'xenonMedia_hdnStatus',
+		'father'=>'xenonMedia_conContainer',
 		'text'=>'null'
 	));
 	$hdnStatus->show();
 
 	$hdnShuffle = new Hidden(array(
-		'name'=>'eyeMedia_hdnShuffle',
-		'father'=>'eyeMedia_conContainer',
+		'name'=>'xenonMedia_hdnShuffle',
+		'father'=>'xenonMedia_conContainer',
 		'text'=>'0'
 	));
 	$hdnShuffle->show();
 
 	$hdnRepeat = new Hidden(array(
-		'name'=>'eyeMedia_hdnRepeat',
-		'father'=>'eyeMedia_conContainer',
+		'name'=>'xenonMedia_hdnRepeat',
+		'father'=>'xenonMedia_conContainer',
 		'text'=>'0'
 	));
 	$hdnRepeat->show();
 
 	$hdnPid = new Hidden(array(
-		'name'=>'eyeMedia_hdnPid',
-		'father'=>'eyeMedia_conContainer',
+		'name'=>'xenonMedia_hdnPid',
+		'father'=>'xenonMedia_conContainer',
 		'text'=>$myPid
 	));
 	$hdnPid->show();
@@ -75,16 +75,16 @@ function eyeMedia_run($params=null) {
 	//This is used to store the random number that will be used as a
 	//short URL to fetch the current file.
 	$hdnCurFile = new Hidden(array(
-		'name'=>'eyeMedia_hdnCurFile',
-		'father'=>'eyeMedia_conContainer',
+		'name'=>'xenonMedia_hdnCurFile',
+		'father'=>'xenonMedia_conContainer',
 		'text'=>'null'
 	));
 	$hdnCurFile->show();
 
 	/*
 	$btnVolDown = new Button(array(
-		'name'=>'eyeMedia_btnVolDown',
-		'father'=>'eyeMedia_conContainer',
+		'name'=>'xenonMedia_btnVolDown',
+		'father'=>'xenonMedia_conContainer',
 		'caption'=>'-',
 		'horiz'=>1,
 		'height'=>18,
@@ -95,8 +95,8 @@ function eyeMedia_run($params=null) {
 	*/
 
 	$txtStatus = new Label(array(
-		'name'=>'eyeMedia_txtStatus',
-		'father'=>'eyeMedia_conContainer',
+		'name'=>'xenonMedia_txtStatus',
+		'father'=>'xenonMedia_conContainer',
 		'x'=>5,
 		'y'=>5
 	));
@@ -106,8 +106,8 @@ function eyeMedia_run($params=null) {
 	$sortypes = array("String");
 	$myHeader = array('Filename');
 	$tblPlaylist = new Sortabletable(array(
-		'name'=>'eyeMedia_tblPlaylist',
-		'father'=>'eyeMedia_conContainer',
+		'name'=>'xenonMedia_tblPlaylist',
+		'father'=>'xenonMedia_conContainer',
 		'sortypes'=>$sortypes,
 		'theader'=>$myHeader,
 		'master' => 0,
@@ -121,12 +121,12 @@ function eyeMedia_run($params=null) {
 	$tblPlaylist->show();
 	// The table won't resize properly without explicitly initializing these values.
 	// Fixed in 1.8! :D
-	//$GLOBALS['eyeMedia_tblPlaylist']->setWidth($tblPlaylist->width);
-	//$GLOBALS['eyeMedia_tblPlaylist']->setHeight($tblPlaylist->height);
+	//$GLOBALS['xenonMedia_tblPlaylist']->setWidth($tblPlaylist->width);
+	//$GLOBALS['xenonMedia_tblPlaylist']->setHeight($tblPlaylist->height);
 
 	$tlbToolbar = new Toolbar(array(
-		'name'=>'eyeMedia_tlbToolbar',
-		'father'=>'eyeMedia_WND_Content'
+		'name'=>'xenonMedia_tlbToolbar',
+		'father'=>'xenonMedia_WND_Content'
 	));
 	$tlbToolbar->show();
 	$tlbToolbar->addItem('tlbToolbar_Open_Folder','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/newfolder.png','Add Folder');
@@ -143,21 +143,21 @@ function eyeMedia_run($params=null) {
 	$tlbToolbar->addItem('tlbToolbar_Shuffle','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/edit-undo.png','Shuffle');
 	$tlbToolbar->addItem('tlbToolbar_Fullscreen','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png','Full Screen','',1);
 
-	xenonx('loadScript', array('url' => 'index.php?extern=apps/eyeMedia/js/eyeMedia' . XE_CODE_EXTENSION . '&type=dynamic'));
+	xenonx('loadScript', array('url' => 'index.php?extern=apps/xenonMedia/js/xenonMedia' . XE_CODE_EXTENSION . '&type=dynamic'));
 
 	if (isset($params[0]) === true) {
-		include(XENONOS_ROOT.'/'.APP_DIR.'/eyeMedia/events'.XE_CODE_EXTENSION);
+		include(XENONOS_ROOT.'/'.APP_DIR.'/xenonMedia/events'.XE_CODE_EXTENSION);
 		$Open_File = str_replace(um('getCurrentUserDir').'files/', '/', $params[0]);
 		$Open_File = str_replace('//', '/', $Open_File);
 		// If more needs to be done when opening a file later on...
-		//eyeMedia_on_Select_File(array('arg'=>array($Open_File)));
-		$GLOBALS['eyeMedia_tblPlaylist']->addRow(array($Open_File));
-		xenonx('rawjs',array('js'=>'setTimeout("eyeMedia_SelectFirst(' . $myPid . ', 1, ' . $checknum . ')",500);'));
+		//xenonMedia_on_Select_File(array('arg'=>array($Open_File)));
+		$GLOBALS['xenonMedia_tblPlaylist']->addRow(array($Open_File));
+		xenonx('rawjs',array('js'=>'setTimeout("xenonMedia_SelectFirst(' . $myPid . ', 1, ' . $checknum . ')",500);'));
 	}
 
 }
 
-function eyeMedia_end($params=null) {
+function xenonMedia_end($params=null) {
 	eyeWidgets('unserialize');
 }
 

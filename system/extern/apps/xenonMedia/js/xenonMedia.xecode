@@ -24,8 +24,8 @@ function get_dynamic_content($params = '')
 {
 	header('Content-type: text/javascript; charset=utf-8');
 	
-	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeMedia/js/eyeMedia.min.js';
-	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeMedia/js/eyeMedia.js';
+	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonMedia/js/xenonMedia.min.js';
+	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonMedia/js/xenonMedia.js';
 	
 	if (USE_COMPRESSED && is_readable($path_compressed) && filemtime($path_compressed) >= filemtime($path_uncompressed))
 	{

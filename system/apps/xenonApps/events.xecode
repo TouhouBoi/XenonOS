@@ -123,7 +123,7 @@ function xenonApps_lib_GetCategoryIcon($category) {
 		'All Applications' => 'rating_g',
 		'File Management' => 'homeFolder',
 		'Games' => 'eyeChess',
-		'Multimedia' => 'eyeMedia',
+		'Multimedia' => 'xenonMedia',
 		'Networking' => 'eyeNav',
 		'Office' => 'xenonDocs',
 		'Utilities' => 'mail-attach',
