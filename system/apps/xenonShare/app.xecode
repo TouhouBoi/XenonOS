@@ -14,14 +14,14 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeShare_run($params = '') {
+function xenonShare_run($params = '') {
 	global $myPid;
 
 	$myWindow = new Window(array(
 		'cent' => 1,
 		'father' => 'xenonApps',
 		'height' => 280,
-		'name' => 'eyeShare_Window',
+		'name' => 'xenonShare_Window',
 		'savePosition' => 1,
 		'style' => TITLE + LISTED + MIN + CLOSE,
 		'title' => i18n('translate',array('Share "%s" with...', array(basename($params[0])))),
@@ -30,26 +30,26 @@ function eyeShare_run($params = '') {
 	$myWindow->show();
 
 	$myHidden = new Hidden(array(
-		'father' => 'eyeShare_Window_Content',
-		'name' => 'eyeShare_Hidden',
+		'father' => 'xenonShare_Window_Content',
+		'name' => 'xenonShare_Hidden',
 		'text' => $params[0]
 	));
 	eyeWidgets('serialize',array($myHidden));
 
 	$myLabel = new Label(array(
-		'father' => 'eyeShare_Window_Content',
-		'name' => 'eyeShare_Label',
+		'father' => 'xenonShare_Window_Content',
+		'name' => 'xenonShare_Label',
 		'text' => 'Choose the groups to share with'
 	));
 	$myLabel->show();
 	$myLabel->setCSS(array('font-weight' => 'bold'));
-	xenonx('rawjs', array('js' => 'setWidgetPos("' . $myPid . '_eyeShare_Label_Container", "' . $myPid . '_eyeShare_Window_Content", 0, 0, 0, 20, 2);'));
+	xenonx('rawjs', array('js' => 'setWidgetPos("' . $myPid . '_xenonShare_Label_Container", "' . $myPid . '_xenonShare_Window_Content", 0, 0, 0, 20, 2);'));
 
 	$myButton = new Button(array(
 		'cent' => 2,
 		'caption' => 'Share',
-		'father' => 'eyeShare_Window_Content',
-		'name' => 'eyeShare_Button',
+		'father' => 'xenonShare_Window_Content',
+		'name' => 'xenonShare_Button',
 		'signal' => 'Share',
 		'vert' => 1,
 		'x' => 0,
@@ -58,9 +58,9 @@ function eyeShare_run($params = '') {
 
 	$myContainer = new Container(array(
 		'cent' => 2,
-		'father' => 'eyeShare_Window_Content',
+		'father' => 'xenonShare_Window_Content',
 		'height' => 160,
-		'name' => 'eyeShare_Container',
+		'name' => 'xenonShare_Container',
 		'width' => 200,
 		'x' => 0,
 		'y' => 50
@@ -74,21 +74,21 @@ function eyeShare_run($params = '') {
 	$y = 0;
 	foreach (um('getCurrentGroups') as $group => $value) {
 		$myCheckbox = new Checkbox(array(
-			'father' => 'eyeShare_Container',
-			'name' => 'eyeShare_Checkbox_' . $group,
+			'father' => 'xenonShare_Container',
+			'name' => 'xenonShare_Checkbox_' . $group,
 			'text' => $group,
 			'x' => 0,
 			'y' => $y
 		));
 		$myCheckbox->show();
-		xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_eyeShare_Checkbox_' . $group . '_textContainer").style.whiteSpace = "nowrap";'));
+		xenonx('rawjs', array('js' => 'document.getElementById("' . $myPid . '_xenonShare_Checkbox_' . $group . '_textContainer").style.whiteSpace = "nowrap";'));
 		$myButton->addFriend($myCheckbox);
 		$y += 22;
 	}
 	$myButton->show();
 }
 
-function eyeShare_end($params = '') {
+function xenonShare_end($params = '') {
 	eyeWidgets('unserialize');
 }
 ?>

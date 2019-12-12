@@ -14,15 +14,15 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeShare_on_Close($params = '') {
+function xenonShare_on_Close($params = '') {
 	proc('end');
 }
 
-function eyeShare_on_Share($params = '') {
-	if ($GLOBALS['eyeShare_Hidden']->text) {
+function xenonShare_on_Share($params = '') {
+	if ($GLOBALS['xenonShare_Hidden']->text) {
 		foreach (um('getCurrentGroups') as $group => $value) {
-			if ($GLOBALS['eyeShare_Checkbox_' . $group]->checked) {
-				proc('launch', array('eyePaste', array('groups://' . $group, 'path' => $GLOBALS['eyeShare_Hidden']->text)));
+			if ($GLOBALS['xenonShare_Checkbox_' . $group]->checked) {
+				proc('launch', array('eyePaste', array('groups://' . $group, 'path' => $GLOBALS['xenonShare_Hidden']->text)));
 			}
 		}
 	}
