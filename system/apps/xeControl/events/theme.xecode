@@ -37,9 +37,9 @@ function xeControl_on_theme_change($params = '') {
 		$xenonx['CONFIG'][0]['DEFAULT_THEME'][0] = $params['xeControl_theme_select'][0];
 		xenonXML('setXMLFile',array($file,$xenonx));
 		// LOGIN_THEME
-		$eyelogin = getConfig('eyeLogin');
-		$eyelogin['CONFIG'][0]['LOGIN_THEME'][0] = $params['xeControl_theme_select'][0];
-		setConfig('eyeLogin','conf.xml',$eyelogin);
+		$xenonlogin = getConfig('xenonLogin');
+		$xenonlogin['CONFIG'][0]['LOGIN_THEME'][0] = $params['xeControl_theme_select'][0];
+		setConfig('xenonLogin','conf.xml',$xenonlogin);
 	} else {
 		$xml = xeControl_lib_getXMLconfig(array('xenonx','xenonx.xml'));
 		$xml['changes'][0]['increase'][0] = '1';

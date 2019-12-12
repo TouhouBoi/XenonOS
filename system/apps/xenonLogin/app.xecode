@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeLogin_run($params = '') {
+function xenonLogin_run($params = '') {
 	global $checknum;
 	global $currentUser;
 	global $myPid;
@@ -43,8 +43,8 @@ function eyeLogin_run($params = '') {
 			}
 			$currentUser = $oldUser;
 		}
-		// Load themable eyeLogin part
-		loadConfig('eyeLogin');
+		// Load themable xenonLogin part
+		loadConfig('xenonLogin');
 		eyeSessions('setVar', array('usertheme', LOGIN_THEME));
 		xenonx('runjs', array('js' => 'USERTHEME = %s;', 'tokens' => array(LOGIN_THEME)));
 		if (SECURE_LOGIN == 1 && function_exists('service_um_loginWithHash')) {
@@ -52,7 +52,7 @@ function eyeLogin_run($params = '') {
 		} else {
 			$_SESSION['sawasc'] = '';
 		}
-		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeLogin/themes/default/window' . XE_CODE_EXTENSION);
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonLogin/themes/default/window' . XE_CODE_EXTENSION);
 		
 		if (isset($_SESSION['username']) === true && isset($_SESSION['password']) === true && isset($_SESSION['language']) === true) {
 			$password = $_SESSION['password'];
@@ -61,8 +61,8 @@ function eyeLogin_run($params = '') {
 			} else {
 				$password = base64_encode($password);
 			}
-			xenonx('runjs', array('js' => 'xGetElementById("' . $myPid . '_eyeLogin_Textbox_1_User").value = %s;
-	sendMsg(' . $checknum . ', "Login", eyeParam("eyeLogin_Textbox_1_User", %s) + eyeParam("eyeLogin_Textbox_1_Password", %s) + eyeParam("eyeLogin_Select_1_Language", %s));', 'tokens' => array($_SESSION['username'], $_SESSION['username'], $password, $_SESSION['language'])));
+			xenonx('runjs', array('js' => 'xGetElementById("' . $myPid . '_xenonLogin_Textbox_1_User").value = %s;
+	sendMsg(' . $checknum . ', "Login", eyeParam("xenonLogin_Textbox_1_User", %s) + eyeParam("xenonLogin_Textbox_1_Password", %s) + eyeParam("xenonLogin_Select_1_Language", %s));', 'tokens' => array($_SESSION['username'], $_SESSION['username'], $password, $_SESSION['language'])));
 			unset($_SESSION['username']);
 			unset($_SESSION['password']);
 			unset($_SESSION['language']);
@@ -70,7 +70,7 @@ function eyeLogin_run($params = '') {
 	}
 }
 
-function eyeLogin_end($params = '') {
+function xenonLogin_end($params = '') {
 	eyeWidgets('unserialize',$params);
 }
 ?>

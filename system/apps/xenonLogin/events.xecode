@@ -14,65 +14,65 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeLogin_on_Create($params = '') {
+function xenonLogin_on_Create($params = '') {
 	global $checknum;
 	global $currentUser;
 	global $myPid;
 	if (ALLOW_USER_REGISTER) {
-		$user = $GLOBALS['eyeLogin_Textbox_2_User']->text;
-		$password1 = base64_decode($GLOBALS['eyeLogin_Textbox_2_Password_1']->text);
-		$password2 = base64_decode($GLOBALS['eyeLogin_Textbox_2_Password_2']->text);
-		$language = basename($GLOBALS['eyeLogin_Select_2_Language']->selected);
+		$user = $GLOBALS['xenonLogin_Textbox_2_User']->text;
+		$password1 = base64_decode($GLOBALS['xenonLogin_Textbox_2_Password_1']->text);
+		$password2 = base64_decode($GLOBALS['xenonLogin_Textbox_2_Password_2']->text);
+		$language = basename($GLOBALS['xenonLogin_Select_2_Language']->selected);
 		if (!$user || !$password1 || !$password2) {
-			$GLOBALS['eyeLogin_Label_2_Message']->setText('Please fill out all fields!');
+			$GLOBALS['xenonLogin_Label_2_Message']->setText('Please fill out all fields!');
 		} else if (utf8_strlen($user) < 2) {
-			$GLOBALS['eyeLogin_Label_2_Message']->setText('Username is too short!');
+			$GLOBALS['xenonLogin_Label_2_Message']->setText('Username is too short!');
 		} else if (um('isValidUsername', array($user)) === false) {
-			$GLOBALS['eyeLogin_Label_2_Message']->setText('Username should be alpha-numeric!');
+			$GLOBALS['xenonLogin_Label_2_Message']->setText('Username should be alpha-numeric!');
 		} else if (utf8_strlen($password1) < 4) {
-			$GLOBALS['eyeLogin_Label_2_Message']->setText('Password is too short!');
+			$GLOBALS['xenonLogin_Label_2_Message']->setText('Password is too short!');
 		} elseif ($password1 != $password2) {
-			$GLOBALS['eyeLogin_Label_2_Message']->setText('Password fields do not match!');
-			$GLOBALS['eyeLogin_Textbox_2_Password_2']->setText('');
+			$GLOBALS['xenonLogin_Label_2_Message']->setText('Password fields do not match!');
+			$GLOBALS['xenonLogin_Textbox_2_Password_2']->setText('');
 		} elseif ($language != 'en' && !vfs('real_fileExists',array(XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/i18n/' . $language . '.xml'))) {
-			$GLOBALS['eyeLogin_Label_2_Message']->setText('The language does not exist!');
+			$GLOBALS['xenonLogin_Label_2_Message']->setText('The language does not exist!');
 		} else {
 			$oldUser = $currentUser;
 			$currentUser = ROOTUSER;
 			if (um('userExist',array($user))) {
 				$currentUser = $oldUser;
-				$GLOBALS['eyeLogin_Label_2_Message']->setText('That user already exists!');
-				$GLOBALS['eyeLogin_Textbox_2_User']->setText('');
+				$GLOBALS['xenonLogin_Label_2_Message']->setText('That user already exists!');
+				$GLOBALS['xenonLogin_Textbox_2_User']->setText('');
 			} elseif (um('createUser',array('username' => $user,'password' => $password1))) {
 				$currentUser = $user;
 				$xml = xenonXML('getXMLconfig',array('i18n','lang.xml'));
 				$xml['lang'][0] = $language;
 				xenonXML('setXMLconfig',array('i18n','lang.xml',$xml));
-				xenonx('rawjs',array('js' => 'eyeLogin_2_Clean(' . $myPid . ');'));
+				xenonx('rawjs',array('js' => 'xenonLogin_2_Clean(' . $myPid . ');'));
 				if (um('login',array($user,$password1))) {
 					i18n('setLang',array($language));
 					proc('setProcessUser',array($myPid));
-					xenonx('rawjs',array('js' => 'xGetElementById("xenonx-info").style.display = "block"; xGetElementById("xenonx-powered").style.display = "block"; eyeLogin_successLogin("' . sec('cleanOutPutString',array('var' => $user,'noreturn' => 1,'nohtml' => 1)) . '","' . $checknum . '","' . $myPid . '");'));
+					xenonx('rawjs',array('js' => 'xGetElementById("xenonx-info").style.display = "block"; xGetElementById("xenonx-powered").style.display = "block"; xenonLogin_successLogin("' . sec('cleanOutPutString',array('var' => $user,'noreturn' => 1,'nohtml' => 1)) . '","' . $checknum . '","' . $myPid . '");'));
 				}
 			} else {
 				$currentUser = $oldUser;
-				$GLOBALS['eyeLogin_Label_2_Message']->setText('Error creating new user!');
+				$GLOBALS['xenonLogin_Label_2_Message']->setText('Error creating new user!');
 			}
 		}
 	} else {
-		if (is_object($GLOBALS['eyeLogin_Label_2_Message'])) {
-			$GLOBALS['eyeLogin_Label_2_Message']->setText('This system does not allow user registrations!');
+		if (is_object($GLOBALS['xenonLogin_Label_2_Message'])) {
+			$GLOBALS['xenonLogin_Label_2_Message']->setText('This system does not allow user registrations!');
 		}
 	}
-	$GLOBALS['eyeLogin_Label_2_Message']->unhide();
+	$GLOBALS['xenonLogin_Label_2_Message']->unhide();
 }
 
-function eyeLogin_on_Login($params = '') {
+function xenonLogin_on_Login($params = '') {
 	global $checknum;
 	global $currentUser;
 	global $myPid;
-	$GLOBALS['eyeLogin_Label_1_Disabled']->hide();
-	$user = basename($GLOBALS['eyeLogin_Textbox_1_User']->text);
+	$GLOBALS['xenonLogin_Label_1_Disabled']->hide();
+	$user = basename($GLOBALS['xenonLogin_Textbox_1_User']->text);
 	$loginCorrect = false;
 	//If secure login is enabled, and the UM module have the needed function to login with hash, use it (SAWASC)
 	if (SECURE_LOGIN == 1 && function_exists('service_um_loginWithHash')) {
@@ -80,19 +80,19 @@ function eyeLogin_on_Login($params = '') {
 		$currentUser = ROOTUSER;
 		$xml = um('retrieveUser',array($user));
 		$currentUser = $oldUser;
-		$password = $GLOBALS['eyeLogin_Textbox_1_Password']->text;
+		$password = $GLOBALS['xenonLogin_Textbox_1_Password']->text;
 		$password2 = md5($_SESSION['sawasc'] . $xml['eyeUser'][0]['password'][0]);
 		if (hash_equals($password2, $password) && um('loginWidthHash',array($user,$xml['eyeUser'][0]['password'][0]))) {
 			$loginCorrect = true;
 		}
 	//If not, just use the classic plain text
 	} else {
-		$password = base64_decode($GLOBALS['eyeLogin_Textbox_1_Password']->text);
+		$password = base64_decode($GLOBALS['xenonLogin_Textbox_1_Password']->text);
 		if (um('login',array($user,$password))) {
 			$loginCorrect = true;
 		}
 	}
-	$language = $GLOBALS['eyeLogin_Select_1_Language']->selected;
+	$language = $GLOBALS['xenonLogin_Select_1_Language']->selected;
 	if ($loginCorrect == true) {
 		unset($_SESSION['sawasc']);
 		$currentUser = $user;
@@ -113,21 +113,21 @@ function eyeLogin_on_Login($params = '') {
 			}
 		}
 		proc('setProcessUser',array($myPid));
-		xenonx('rawjs',array('js' => 'xGetElementById("xenonx-info").style.display = "block"; xGetElementById("xenonx-powered").style.display = "block"; eyeLogin_successLogin("' . sec('cleanOutPutString',array('var' => $user,'noreturn' => 1,'nohtml' => 1)) . '","' . $checknum . '","' . $myPid . '");'));
+		xenonx('rawjs',array('js' => 'xGetElementById("xenonx-info").style.display = "block"; xGetElementById("xenonx-powered").style.display = "block"; xenonLogin_successLogin("' . sec('cleanOutPutString',array('var' => $user,'noreturn' => 1,'nohtml' => 1)) . '","' . $checknum . '","' . $myPid . '");'));
 	} else {
 		if (errorCodes('getErrorCode') == UM_USER_IS_DISABLED) {
-			$GLOBALS['eyeLogin_Label_1_Disabled']->unhide();
+			$GLOBALS['xenonLogin_Label_1_Disabled']->unhide();
 		} else {
-			xenonx('rawjs',array('js' => 'eyeLogin_badLogin("' . sec('cleanOutPutString',array('var' => $user,'noreturn' => 1,'nohtml' => 1)) . '","' . sec('cleanOutPutString',array('var' => $password,'noreturn' => 1,'nohtml' => 1)) . '","' . $checknum . '","' . $myPid . '");'));
+			xenonx('rawjs',array('js' => 'xenonLogin_badLogin("' . sec('cleanOutPutString',array('var' => $user,'noreturn' => 1,'nohtml' => 1)) . '","' . sec('cleanOutPutString',array('var' => $password,'noreturn' => 1,'nohtml' => 1)) . '","' . $checknum . '","' . $myPid . '");'));
 		}
 	}
 }
 
-function eyeLogin_on_Message($params = '') {
+function xenonLogin_on_Message($params = '') {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeLogin_on_successLogin($params = '') {
+function xenonLogin_on_successLogin($params = '') {
 	global $currentUser;
 	if ($currentUser) {
 		$pid = proc('findPidByName',array('xenonx'));
@@ -142,21 +142,21 @@ function eyeLogin_on_successLogin($params = '') {
 
 		$xml = um('retrieveUser',array($currentUser));
 		if (isset($xml['eyeUser'][0]['resetPassword']) === true && $xml['eyeUser'][0]['resetPassword'][0]) {
-			eyeLogin_dialog_ResetPassword();
+			xenonLogin_dialog_ResetPassword();
 		} else {
-			loadConfig('eyeLogin');
+			loadConfig('xenonLogin');
 			proc('launch',array(LOGIN_EXECUTE,'autorun'));
 			proc('end');
 		}
 	}
 }
 
-function eyeLogin_dialog_ResetPassword() {
+function xenonLogin_dialog_ResetPassword() {
 	$myWindow = new Window(array(
 		'cent' => 1,
 		'father' => 'xenonApps',
 		'height' => 200,
-		'name' => 'eyeLogin_Window_ResetPassword',
+		'name' => 'xenonLogin_Window_ResetPassword',
 		'style' => TITLE,
 		'title' => 'Change password',
 		'width' => 350
@@ -165,8 +165,8 @@ function eyeLogin_dialog_ResetPassword() {
 
 	$y = 20;
 	$myLabel = new Label(array(
-		'father' => 'eyeLogin_Window_ResetPassword_Content',
-		'name' => 'eyeLogin_Label_ResetPassword',
+		'father' => 'xenonLogin_Window_ResetPassword_Content',
+		'name' => 'xenonLogin_Label_ResetPassword',
 		'text' => 'You need to specify a new password for this account now...',
 		'x' => 10,
 		'y' => $y
@@ -175,16 +175,16 @@ function eyeLogin_dialog_ResetPassword() {
 
 	$y += 40;
 	$myLabel = new Label(array(
-		'father' => 'eyeLogin_Window_ResetPassword_Content',
-		'name' => 'eyeLogin_Label_ResetPassword_1',
+		'father' => 'xenonLogin_Window_ResetPassword_Content',
+		'name' => 'xenonLogin_Label_ResetPassword_1',
 		'text' => 'New Password:',
 		'x' => 10,
 		'y' => $y + 3
 	));
 	$myLabel->show();
 	$myTextbox_1 = new Textbox(array(
-		'father' => 'eyeLogin_Window_ResetPassword_Content',
-		'name' => 'eyeLogin_Textbox_ResetPassword_1',
+		'father' => 'xenonLogin_Window_ResetPassword_Content',
+		'name' => 'xenonLogin_Textbox_ResetPassword_1',
 		'password' => 2,
 		'width' => 160,
 		'x' => 160,
@@ -195,16 +195,16 @@ function eyeLogin_dialog_ResetPassword() {
 
 	$y += 40;
 	$myLabel = new Label(array(
-		'father' => 'eyeLogin_Window_ResetPassword_Content',
-		'name' => 'eyeLogin_Label_ResetPassword_2',
+		'father' => 'xenonLogin_Window_ResetPassword_Content',
+		'name' => 'xenonLogin_Label_ResetPassword_2',
 		'text' => 'Retype password:',
 		'x' => 10,
 		'y' => $y + 3
 	));
 	$myLabel->show();
 	$myTextbox_2 = new Textbox(array(
-		'father' => 'eyeLogin_Window_ResetPassword_Content',
-		'name' => 'eyeLogin_Textbox_ResetPassword_2',
+		'father' => 'xenonLogin_Window_ResetPassword_Content',
+		'name' => 'xenonLogin_Textbox_ResetPassword_2',
 		'password' => 2,
 		'width' => 160,
 		'x' => 160,
@@ -218,8 +218,8 @@ function eyeLogin_dialog_ResetPassword() {
 	$myButton = new Button(array(
 		'caption' => 'Set new password',
 		'cent' => 2,
-		'father' => 'eyeLogin_Window_ResetPassword_Content',
-		'name' => 'eyeLogin_Button_ResetPassword',
+		'father' => 'xenonLogin_Window_ResetPassword_Content',
+		'name' => 'xenonLogin_Button_ResetPassword',
 		'signal' => 'ResetPassword',
 		'y' => $y
 	));
@@ -228,12 +228,12 @@ function eyeLogin_dialog_ResetPassword() {
 	$myButton->show();
 }
 
-function eyeLogin_on_ResetPassword($params = '') {
+function xenonLogin_on_ResetPassword($params = '') {
 	global $currentUser;
 
 	if ($currentUser) {
-		$password1 = base64_decode($GLOBALS['eyeLogin_Textbox_ResetPassword_1']->text);
-		$password2 = base64_decode($GLOBALS['eyeLogin_Textbox_ResetPassword_2']->text);
+		$password1 = base64_decode($GLOBALS['xenonLogin_Textbox_ResetPassword_1']->text);
+		$password2 = base64_decode($GLOBALS['xenonLogin_Textbox_ResetPassword_2']->text);
 
 		if (!$password1 || !$password2) {
 			xenonx('messageBox', array('content' => 'Please fill out all fields!'));
@@ -247,7 +247,7 @@ function eyeLogin_on_ResetPassword($params = '') {
 			um('updateUser',array('username' => $oldUser, 'password' => $password1, 'resetPassword' => 0));
 			$currentUser = $oldUser;
 
-			loadConfig('eyeLogin');
+			loadConfig('xenonLogin');
 			proc('launch',array(LOGIN_EXECUTE,'autorun'));
 			proc('end');
 		}

@@ -24,9 +24,9 @@ function get_dynamic_content($params = '')
 {
 	header('Content-type: text/javascript; charset=utf-8');
 	
-	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeLogin/themes/default/eyeLogin.min.js';
+	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonLogin/themes/default/xenonLogin.min.js';
 	
-	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeLogin/themes/default/eyeLogin.js';
+	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonLogin/themes/default/xenonLogin.js';
 	
 	if (USE_COMPRESSED && is_readable($path_compressed) && filemtime($path_compressed) >= filemtime($path_uncompressed))
 	{

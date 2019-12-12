@@ -23,7 +23,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 /*
 	This application is a "logout" app and is a part of XenonOS utils.
 	When this app is executed, XenonOS ends current session and relaunch the base_app,
-	normally eyeLogin, by refreshing the current page.
+	normally xenonLogin, by refreshing the current page.
 */
 
 function exit_run($params=null) {
@@ -75,7 +75,7 @@ function exit_run($params=null) {
 		'father' => 'exit_lightbox_main',
 		'width' => 32,
 		'height' => 32,
-		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyeLogin/loading.gif',
+		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonLogin/loading.gif',
 		'x' => (($myContainer->width / 2) - 16),
 		'y' => (($myContainer->height / 2) - 16)
 	));

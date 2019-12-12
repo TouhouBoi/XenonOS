@@ -392,19 +392,19 @@ $alias[1][APP_DIR . '/eyeLightDesk/icon2.png'] = 'images/' . APP_DIR . '/eyeLigh
 $alias[1][APP_DIR . '/eyeLightDesk/icon3.png'] = 'images/' . APP_DIR . '/eyeLightDesk/icon3.png';
 $alias[1][APP_DIR . '/eyeLightDesk/menubg.png'] = 'images/' . APP_DIR . '/eyeLightDesk/menubg.png';
 
-// eyeLogin
-$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/bg_login.png'] = 'images/'.APP_DIR.'/eyeLogin/bg_login.png';
-$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/bg_newuser.png'] = 'images/'.APP_DIR.'/eyeLogin/bg_newuser.png';
-$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/IE/bg_newuser.png'] = 'images/'.APP_DIR.'/eyeLogin/bg_newuser_ie.png';
-$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/box.png'] = 'images/'.APP_DIR.'/eyeLogin/box.png';
-$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/box_x.png'] = 'images/'.APP_DIR.'/eyeLogin/box_x.png';
-$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/createaccount.png'] = 'images/'.APP_DIR.'/eyeLogin/createaccount.png';
-$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/enter.png'] = 'images/'.APP_DIR.'/eyeLogin/enter.png';
-$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/eyeoslogo.png'] = 'images/'.APP_DIR.'/eyeLogin/eyeoslogo.png';
-$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/line.png'] = 'images/'.APP_DIR.'/eyeLogin/line.png';
-$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/line_x.png'] = 'images/'.APP_DIR.'/eyeLogin/line_x.png';
-$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/new.png'] = 'images/'.APP_DIR.'/eyeLogin/new.png';
-$alias[1][APP_DIR.'/eyeLogin/themes/default/gfx/new_x.png'] = 'images/'.APP_DIR.'/eyeLogin/new_x.png';
+// xenonLogin
+$alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/bg_login.png'] = 'images/'.APP_DIR.'/xenonLogin/bg_login.png';
+$alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/bg_newuser.png'] = 'images/'.APP_DIR.'/xenonLogin/bg_newuser.png';
+$alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/IE/bg_newuser.png'] = 'images/'.APP_DIR.'/xenonLogin/bg_newuser_ie.png';
+$alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/box.png'] = 'images/'.APP_DIR.'/xenonLogin/box.png';
+$alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/box_x.png'] = 'images/'.APP_DIR.'/xenonLogin/box_x.png';
+$alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/createaccount.png'] = 'images/'.APP_DIR.'/xenonLogin/createaccount.png';
+$alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/enter.png'] = 'images/'.APP_DIR.'/xenonLogin/enter.png';
+$alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/eyeoslogo.png'] = 'images/'.APP_DIR.'/xenonLogin/eyeoslogo.png';
+$alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/line.png'] = 'images/'.APP_DIR.'/xenonLogin/line.png';
+$alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/line_x.png'] = 'images/'.APP_DIR.'/xenonLogin/line_x.png';
+$alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/new.png'] = 'images/'.APP_DIR.'/xenonLogin/new.png';
+$alias[1][APP_DIR.'/xenonLogin/themes/default/gfx/new_x.png'] = 'images/'.APP_DIR.'/xenonLogin/new_x.png';
 
 // eyeMail
 $alias[1][APP_DIR.'/eyeMail/gfx/delete.png'] = 'icons/16x16/message_trash.png';

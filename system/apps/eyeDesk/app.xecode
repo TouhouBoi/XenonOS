@@ -136,9 +136,9 @@ function eyeDesk_run($params = '') {
 	$theme = basename($xml['eyeDesk'][0]['theme'][0]);
 	if ($theme != $_SESSION['usertheme']) {
 		$path = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonx/themes/';
-		foreach ($_SESSION['eyeLogin']['removeCss'] as $key => $value) {
+		foreach ($_SESSION['xenonLogin']['removeCss'] as $key => $value) {
 			xenonx('removeCSS', array('id' => $value));
-			unset($_SESSION['eyeLogin']['removeCss'][$key]);
+			unset($_SESSION['xenonLogin']['removeCss'][$key]);
 		}
 
 		$oldUser = $currentUser;

@@ -66,43 +66,43 @@ function xenonX_run($params = '') {
 	}
 
 	echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=css/eyeOS.css&amp;type=css" id="eyeOSCss" rel="stylesheet" type="text/css" />' . "\n";
-	$_SESSION['eyeLogin']['removeCss'] = array();
-	$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSCss';
+	$_SESSION['xenonLogin']['removeCss'] = array();
+	$_SESSION['xenonLogin']['removeCss'][] = 'eyeOSCss';
 
 	if ($themexml['theme'][0]['cssBase'][0]) {
 		if (stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'chrome') !== false) { // utf8
 			echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS_chrome.css&amp;type=css" id="eyeOSchromeCss" rel="stylesheet" type="text/css" />' . "\n";
-			$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSchromeCss';
+			$_SESSION['xenonLogin']['removeCss'][] = 'eyeOSchromeCss';
 		} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false) {
 			echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS_safari.css&amp;type=css" id="eyeOSsafariCss" rel="stylesheet" type="text/css" />' . "\n";
-			$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSsafariCss';
+			$_SESSION['xenonLogin']['removeCss'][] = 'eyeOSsafariCss';
 		} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'presto') !== false) {
 			echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS_opera.css&amp;type=css" id="eyeOSoperaCss" rel="stylesheet" type="text/css" />' . "\n";
-			$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSoperaCss';
+			$_SESSION['xenonLogin']['removeCss'][] = 'eyeOSoperaCss';
 		} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'gecko') !== false) {
 			echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS_firefox.css&amp;type=css" id="eyeOSfirefoxCss" rel="stylesheet" type="text/css" />' . "\n";
-			$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSfirefoxCss';
+			$_SESSION['xenonLogin']['removeCss'][] = 'eyeOSfirefoxCss';
 		} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'khtml') !== false) {
 			echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=../' . $themexml['theme'][0]['cssBase'][0] . '/css/eyeOS_firefox.css&amp;type=css" id="eyeOSkhtmlCss" rel="stylesheet" type="text/css" />' . "\n";
-			$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSkhtmlCss';
+			$_SESSION['xenonLogin']['removeCss'][] = 'eyeOSkhtmlCss';
 		}
 	}
 
 	if (stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false && stripos($_SERVER['HTTP_USER_AGENT'], 'chrome') !== false) { // utf8
 		echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=css/eyeOS_chrome.css&amp;type=css" id="eyeOSchromeCss" rel="stylesheet" type="text/css" />' . "\n";
-		$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSchromeCss';
+		$_SESSION['xenonLogin']['removeCss'][] = 'eyeOSchromeCss';
 	} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'webkit') !== false) {
 		echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=css/eyeOS_safari.css&amp;type=css" id="eyeOSsafariCss" rel="stylesheet" type="text/css" />' . "\n";
-		$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSsafariCss';
+		$_SESSION['xenonLogin']['removeCss'][] = 'eyeOSsafariCss';
 	} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'presto') !== false) {
 		echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=css/eyeOS_opera.css&amp;type=css" id="eyeOSoperaCss" rel="stylesheet" type="text/css" />' . "\n";
-		$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSoperaCss';
+		$_SESSION['xenonLogin']['removeCss'][] = 'eyeOSoperaCss';
 	} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'gecko') !== false) {
 		echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=css/eyeOS_firefox.css&amp;type=css" id="eyeOSfirefoxCss" rel="stylesheet" type="text/css" />' . "\n";
-		$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSfirefoxCss';
+		$_SESSION['xenonLogin']['removeCss'][] = 'eyeOSfirefoxCss';
 	} else if ( /* utf8 */ stripos($_SERVER['HTTP_USER_AGENT'], 'khtml') !== false) {
 		echo "\t\t" . '<link href="index.php?theme=' . $_SESSION['usertheme'] . '&amp;extern=css/eyeOS_firefox.css&amp;type=css" id="eyeOSkhtmlCss" rel="stylesheet" type="text/css" />' . "\n";
-		$_SESSION['eyeLogin']['removeCss'][] = 'eyeOSkhtmlCss';
+		$_SESSION['xenonLogin']['removeCss'][] = 'eyeOSkhtmlCss';
 	}
 	echo "\t\t" . '<script type="text/javascript">
 			var USERTHEME = "' . $_SESSION['usertheme'] . '";
