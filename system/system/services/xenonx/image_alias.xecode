@@ -155,7 +155,7 @@ $pic22 = array(
 	'exit',
 	'xenonAddressBook',
 	'xenonChat',
-	'eyeCalc',
+	'xenonCalculator',
 	'eyeCalendar',
 	'eyeChess',
 	'eyeContacts',
@@ -217,7 +217,7 @@ $alias[0]['icons/16x16/places/Public.png'] = 'images/apps/eyeLightDesk/16x16/pla
 $alias[0]['icons/16x16/apps/editbar.png'] = 'images/apps/eyeLightDesk/16x16/apps/editbar.png';
 $alias[0]['icons/16x16/apps/exec.png'] = 'images/apps/eyeLightDesk/16x16/apps/exec.png';
 $alias[0]['icons/16x16/apps/xenonChat.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonChat.png';
-$alias[0]['icons/16x16/apps/eyeCalc.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeCalc.png';
+$alias[0]['icons/16x16/apps/xenonCalculator.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonCalculator.png';
 $alias[0]['icons/16x16/apps/eyeCalendar.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeCalendar.png';
 $alias[0]['icons/16x16/apps/eyeChess.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeChess.png';
 $alias[0]['icons/16x16/apps/eyeContacts.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeContacts.png';

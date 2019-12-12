@@ -16,14 +16,14 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 function get_dynamic_content($params = '') {
 	header('Content-type: text/javascript; charset=utf-8');
-	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeCalc/eyeCalc.min.js';
-	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeCalc/eyeCalc.js';
+	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonCalculator/xenonCalculator.min.js';
+	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xenonCalculator/xenonCalculator.js';
 	if (USE_COMPRESSED && is_readable($path_compressed) && filemtime($path_compressed) >= filemtime($path_uncompressed)) {
 		$content = file_get_contents($path_compressed);
 	} else {
 		$content = file_get_contents($path_uncompressed);
 	}
-	i18n('loadLang',array('eyeCalc'));
+	i18n('loadLang',array('xenonCalculator'));
 	$content = str_replace('$myPid', $params[0], $content);
 	$content = str_replace('$lang:Division by zero is invalid!', /* utf8 */ addcslashes(i18n('translate',array('Division by zero is invalid!')), '\'\\'), $content);
 	$content = str_replace('$lang:Exponentiation of zero by a negative number or zero is invalid!', /* utf8 */ addcslashes(i18n('translate',array('Exponentiation of zero by a negative number or zero is invalid!')), '\'\\'), $content);

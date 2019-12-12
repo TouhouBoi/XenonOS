@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeCalc_run($params = '') {
+function xenonCalculator_run($params = '') {
 	global $checknum;
 	global $myPid;
-	$xml = xenonXML('getXMLconfig', array('eyeCalc', 'conf.xml'));
-	if ($params['advanced'] || !isset($params['advanced']) && intval($xml['eyeCalc'][0]['advanced'][0])) {
+	$xml = xenonXML('getXMLconfig', array('xenonCalculator', 'conf.xml'));
+	if ($params['advanced'] || !isset($params['advanced']) && intval($xml['xenonCalculator'][0]['advanced'][0])) {
 		$rows = array(
 			array(false, 'delete' => 'Delete', 'ce' => 'CE', 'c' => 'C'),
 			array(false, 'exp' => 'Exp', 'ln' => 'ln', '7' => '7', '8' => '8', '9' => '9', 'divide' => '/', 'sqrt' => 'sqrt'),
@@ -29,7 +29,7 @@ function eyeCalc_run($params = '') {
 		$caption = 'Simple';
 		$signal = 'Advanced';
 		$width = 288;
-		$xml['eyeCalc'][0]['advanced'][0] = 1;
+		$xml['xenonCalculator'][0]['advanced'][0] = 1;
 	} else {
 		$rows = array(
 			array(false, 'delete' => 'Del', 'ce' => 'CE', 'c' => 'C'),
@@ -41,15 +41,15 @@ function eyeCalc_run($params = '') {
 		$caption = 'Adv.';
 		$signal = 'Simple';
 		$width = 172;
-		$xml['eyeCalc'][0]['advanced'][0] = 0;
+		$xml['xenonCalculator'][0]['advanced'][0] = 0;
 	}
-	xenonXML('setXMLconfig', array('eyeCalc', 'conf.xml', $xml));
+	xenonXML('setXMLconfig', array('xenonCalculator', 'conf.xml', $xml));
 
 	$myWindow = new Window(array(
 		'cent' => 1,
 		'father' => 'xenonApps',
 		'height' => 240,
-		'name' => 'eyeCalc_Window',
+		'name' => 'xenonCalculator_Window',
 		'savePosition' => 1,
 		'style' => CLOSE + MIN + LISTED + TITLE,
 		'title' => 'Calculator',
@@ -58,8 +58,8 @@ function eyeCalc_run($params = '') {
 	$myWindow->show();
 
 	$myTextbox = new Textbox(array(
-		'father' => 'eyeCalc_Window_Content',
-		'name' => 'eyeCalc_Textbox',
+		'father' => 'xenonCalculator_Window_Content',
+		'name' => 'xenonCalculator_Textbox',
 		'text' => '0',
 		'width' => $myWindow->width - 17,
 		'x' => 5,
@@ -75,9 +75,9 @@ function eyeCalc_run($params = '') {
 
 	$myButton = new Button(array(
 		'caption' => $caption,
-		'father' => 'eyeCalc_Window_Content',
+		'father' => 'xenonCalculator_Window_Content',
 		'height' => 30,
-		'name' => 'eyeCalc_Button_' . $signal,
+		'name' => 'xenonCalculator_Button_' . $signal,
 		'signal' => $signal,
 		'width' => ($myWindow->width + 3) / 4 - 5,
 		'x' => 5,
@@ -99,9 +99,9 @@ function eyeCalc_run($params = '') {
 				$myButton = new Button(array(
 					'caption' => $caption,
 					'disablemsg' => 1,
-					'father' => 'eyeCalc_Window_Content',
+					'father' => 'xenonCalculator_Window_Content',
 					'height' => 30,
-					'name' => 'eyeCalc_Button_' . $name,
+					'name' => 'xenonCalculator_Button_' . $name,
 					'width' => $width,
 					'x' => $x,
 					'y' => $y
@@ -121,12 +121,12 @@ function eyeCalc_run($params = '') {
 		$y += 35;
 	}
 
-	xenonx('loadScript',array('url' => 'index.php?extern=apps/eyeCalc/eyeCalc' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid));
+	xenonx('loadScript',array('url' => 'index.php?extern=apps/xenonCalculator/xenonCalculator' . XE_CODE_EXTENSION . '&type=dynamic&params[]=' . $myPid));
 }
 
-function eyeCalc_end($params = '') {
+function xenonCalculator_end($params = '') {
 	global $myPid;
 	eyeWidgets('unserialize', $params);
-	xenonx('rawjs', array('js' => 'eyeCalc_' . $myPid . ' = 0;'));
+	xenonx('rawjs', array('js' => 'xenonCalculator_' . $myPid . ' = 0;'));
 }
 ?>

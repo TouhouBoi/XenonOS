@@ -14,21 +14,21 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeCalc_on_Advanced($params = '') {
-	proc('launch', array('eyeCalc', array('advanced' => 0)));
+function xenonCalculator_on_Advanced($params = '') {
+	proc('launch', array('xenonCalculator', array('advanced' => 0)));
 	proc('end');
 }
 
-function eyeCalc_on_Close($params = '') {
+function xenonCalculator_on_Close($params = '') {
 	proc('end');
 }
 
-function eyeCalc_on_Message($params = '') {
+function xenonCalculator_on_Message($params = '') {
 	eyeWidgets('updateContent', $params);
 }
 
-function eyeCalc_on_Simple($params = '') {
-	proc('launch', array('eyeCalc', array('advanced' => 1)));
+function xenonCalculator_on_Simple($params = '') {
+	proc('launch', array('xenonCalculator', array('advanced' => 1)));
 	proc('end');
 }
 ?>
