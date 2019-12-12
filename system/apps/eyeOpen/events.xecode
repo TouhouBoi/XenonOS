@@ -21,7 +21,7 @@ function eyeOpen_on_Close($params = '') {
 function eyeOpen_on_Icon_Clicked($params = '') {
 	$path = $GLOBALS['eyeOpen_Hidden_Path']->text;
 	$file = basename($path);
-	$path = eyeFiles('cleanPath', array(substr(trim($path, '/\\'), 0, -strlen($file)))); // utf8
+	$path = xenonFiles('cleanPath', array(substr(trim($path, '/\\'), 0, -strlen($file)))); // utf8
 	proc('launch',array($params['arg0'][0],array($path[0] . '/' . $file,$GLOBALS['eyeOpen_Hidden_Callback']->text)));
 	proc('end');
 }

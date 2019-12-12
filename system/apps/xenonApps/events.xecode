@@ -167,9 +167,9 @@ function xenonApps_lib_ShowApps($category) {
 		'position' => 'absolute'
 	));
 
-	$conf = xenonXML('getXMLconfig',array('eyeFiles','conf.xml'));
-	if (!isset($conf['eyeFiles'][0]['clickMethod'][0])) {
-		$conf['eyeFiles'][0]['clickMethod'][0] = 1;
+	$conf = xenonXML('getXMLconfig',array('xenonFiles','conf.xml'));
+	if (!isset($conf['xenonFiles'][0]['clickMethod'][0])) {
+		$conf['xenonFiles'][0]['clickMethod'][0] = 1;
 	}
 
 	$i = 0;
@@ -184,8 +184,8 @@ function xenonApps_lib_ShowApps($category) {
 				'father' => 'xenonApps_Container',
 				'image' => $app[1],
 				'name' => 'xenonApps_Icon_' . $i,
-				'onclick' => $conf['eyeFiles'][0]['clickMethod'][0],
-				'overClass' => 'eyeFiles_icons',
+				'onclick' => $conf['xenonFiles'][0]['clickMethod'][0],
+				'overClass' => 'xenonFiles_icons',
 				'text' => $title,
 				'useClass' => 1,
 				'x' => $x,

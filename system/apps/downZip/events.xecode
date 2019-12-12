@@ -50,7 +50,7 @@ function downZip_on_download($params = '') {
 	global $myPid,$checknum;
 	$path = $_SESSION['downZip'][$myPid];
 	$file = basename($path);
-	$path = eyeFiles('cleanPath', array(substr(trim($path, '/\\'), 0, -strlen($file)))); // utf8
+	$path = xenonFiles('cleanPath', array(substr(trim($path, '/\\'), 0, -strlen($file)))); // utf8
 	$content = simpleZip('createZip',array($path[0] . '/' . $file,$path[1] == 'real'));
 	if($content == false){
 		//If the server doesn't have zip support

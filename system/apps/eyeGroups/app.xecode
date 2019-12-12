@@ -18,7 +18,7 @@ function eyeGroups_run($params = '') {
 	if (!isset($params[0])) {
 		$params[0] = '/';
 	}
-	proc('launch',array('eyeFiles',array($params[0],'groups')));
+	proc('launch',array('xenonFiles',array($params[0],'groups')));
 	proc('end');
 }
 

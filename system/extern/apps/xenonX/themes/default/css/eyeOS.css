@@ -181,7 +181,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	border-radius: 7px;
 }
 
-.eyeMessageBoxText, .eyeDesk_iconsOver:hover, .eyeIcon:hover, .eyeFiles_icons:hover {
+.eyeMessageBoxText, .eyeDesk_iconsOver:hover, .eyeIcon:hover, .xenonFiles_icons:hover {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
@@ -438,7 +438,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	z-index: 50000;
 }
 
-.eyeDesk_iconsOver, .eyeFiles_icons {
+.eyeDesk_iconsOver, .xenonFiles_icons {
 	color: white;
 	cursor: pointer;
 	margin-top: -4px;
@@ -446,7 +446,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	padding-bottom: 2px;
 }
 
-.eyeIcon:hover, .eyeFiles_icons:hover {
+.eyeIcon:hover, .xenonFiles_icons:hover {
 	background: #f1f1f1 url('index.php?theme=USERTHEME&extern=images/windows/toolbar.png') repeat-x center bottom;
 	position: absolute;
 	z-index: 1;
@@ -1112,11 +1112,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	width: auto;
 }
 
-.eyeFiles_icons {
+.xenonFiles_icons {
 	color: #000000;
 }
 
-.eyeFiles_icons:hover {/*look in .eyeDesk_iconsOver:hover*/}
+.xenonFiles_icons:hover {/*look in .eyeDesk_iconsOver:hover*/}
 
 .eyeIcon {
 	border: 1px solid transparent;
@@ -1482,7 +1482,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 }
 
 .eyeWindowMainDrag {
-	background: #bfdaff url('index.php?theme=USERTHEME&extern=images/windows/eyefilesbg.png') no-repeat top left;
+	background: #bfdaff url('index.php?theme=USERTHEME&extern=images/windows/xenonFilesbg.png') no-repeat top left;
 	border: 0;
 	overflow: hidden;
 }
@@ -1548,7 +1548,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	opacity: 0.8;
 }
 
-.eyeDesk_iconsOver:hover, .xenonDock_bottom_left_menu:hover, .xenonDock_top_left_icon:hover, .xenonDock_bottom_right_menu_selected, .eyeIcon:hover, .eyeFiles_icons:hover {
+.eyeDesk_iconsOver:hover, .xenonDock_bottom_left_menu:hover, .xenonDock_top_left_icon:hover, .xenonDock_bottom_right_menu_selected, .eyeIcon:hover, .xenonFiles_icons:hover {
 	opacity: 1.0;
 }
 
@@ -1556,7 +1556,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 	opacity: 0.7;
 }
 
-.sort-table td, .eyeIcon, .eyeFiles_icons {
+.sort-table td, .eyeIcon, .xenonFiles_icons {
 	opacity: 0.9;
 }
 

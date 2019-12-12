@@ -20,14 +20,14 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeInfo_run($params = '')
+function xenonInfo_run($params = '')
 {
 	$myWindow = new Window(
 		array(
 			'cent' => 1,
 			'father' => 'xenonApps',
 			'height' => 400,
-			'name' => 'eyeInfo_Window',
+			'name' => 'xenonInfo_Window',
 			'title' => 'About',
 			'savePosition' => 1,
 			'style' => TITLE + LISTED + CLOSE + MIN,
@@ -42,8 +42,8 @@ function eyeInfo_run($params = '')
 			'cent' => 2,
 			'cssClass' => 'cPointer',
 			'disableMsg' => 0,
-			'father' => 'eyeInfo_Window_Content',
-			'name' => 'eyeInfo_Imagebox_Logo',
+			'father' => 'xenonInfo_Window_Content',
+			'name' => 'xenonInfo_Imagebox_Logo',
 			'signal' => 'Navigate',
 			'url' => 'index.php?extern=apps/xenonx/gfx/logo.png',
 			'x' => 0,
@@ -55,8 +55,8 @@ function eyeInfo_run($params = '')
 
 	$myLabel = new Label(
 		array(
-			'father' => 'eyeInfo_Window_Content',
-			'name' => 'eyeInfo_Label_Version',
+			'father' => 'xenonInfo_Window_Content',
+			'name' => 'xenonInfo_Label_Version',
 			'text' => 'XenonOS ' . 'v' . XENONOS_VERSION,
 			'x' => 0,
 			'y' => 75
@@ -74,7 +74,7 @@ function eyeInfo_run($params = '')
 	);
 }
 
-function eyeInfo_end($params = '')
+function xenonInfo_end($params = '')
 {
 	eyeWidgets('unserialize', $params);
 }

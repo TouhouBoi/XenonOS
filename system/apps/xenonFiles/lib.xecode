@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeFiles_lib_CreateTree($type,$cleaned,$path,$myTree,$tree,$expand) {
+function xenonFiles_lib_CreateTree($type,$cleaned,$path,$myTree,$tree,$expand) {
 	global $currentUser;
 	global $myPid;
 	if ($currentUser == ROOTUSER && $type == 'real') {
@@ -44,7 +44,7 @@ function eyeFiles_lib_CreateTree($type,$cleaned,$path,$myTree,$tree,$expand) {
 			)));
 			$myTree->addSubList('item_' . $basename . '_' . $md5,'list_'.$basename . '_' . $md5);
 			if ( /* utf8 */ strpos($expand, realpath($path)) === 0 && $expand !== realpath($path . '/')) {
-				eyeFiles_lib_CreateTree($type,$cleaned . '/' . $basename,$folder,$myTree,'list_' . $basename . '_' . $md5,$expand);
+				xenonFiles_lib_CreateTree($type,$cleaned . '/' . $basename,$folder,$myTree,'list_' . $basename . '_' . $md5,$expand);
 			}
 		}
 	}

@@ -469,7 +469,7 @@ function xenonDock_on_Command($params = '') {
 	} else {
 		$command = $element['command'][0];
 	}
-	eyeFiles('launchCommand',array($command));
+	xenonFiles('launchCommand',array($command));
 }
 
 function xenonDock_on_CreateFavorite($params = '') {

@@ -227,7 +227,7 @@ function eyeMessages_on_SelectFileSave($params=null) {
 		$file = um('getCurrentUserDir').FILES_USER_DIR.'/'.$file;
 
 		if(eyeSwap('getFile', array($hash.'.fileSwap', $file, 'eyeMessages'))) {
-			eyeFiles('update',array(dirname($file)));
+			xenonFiles('update',array(dirname($file)));
 			xenonx('messageBox',array('content'=>'File saved successfully.'));
 		}
 	}

@@ -46,7 +46,7 @@ function xenonDownload_on_download($params = '') {
 	ob_end_clean();
 	$path = $_SESSION['xenonDownload'][$myPid];
 	$file = basename($path);
-	$path = eyeFiles('cleanPath', array(substr(trim($path, '/\\'), 0, -strlen($file)))); // utf8
+	$path = xenonFiles('cleanPath', array(substr(trim($path, '/\\'), 0, -strlen($file)))); // utf8
 	header('Content-Disposition: attachment; filename="' . $file . '"');
 	if ($path[1] == 'real') {
 		header('Content-Length: ' . vfs('real_filesize',array($path[0] . '/' . $file)));

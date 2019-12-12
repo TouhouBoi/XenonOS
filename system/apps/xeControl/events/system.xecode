@@ -65,11 +65,11 @@ function xeControl_on_system_system($params = '')
 	
 	xenonXML('setXMLFile', array($file, $xml));
 
-	$xml = getConfig('eyeFiles', 'conf.xml');
+	$xml = getConfig('xenonFiles', 'conf.xml');
 	
-	$xml['eyeFiles'][0]['CreateThumbnails'][0] = $GLOBALS['xeControl_system_system_checkbox_thumbnails']->checked;
+	$xml['xenonFiles'][0]['CreateThumbnails'][0] = $GLOBALS['xeControl_system_system_checkbox_thumbnails']->checked;
 	
-	setConfig('eyeFiles', 'conf.xml', $xml);
+	setConfig('xenonFiles', 'conf.xml', $xml);
 
 	xenonx('messageBox', array('content' => 'Changes successfully saved.'));
 }

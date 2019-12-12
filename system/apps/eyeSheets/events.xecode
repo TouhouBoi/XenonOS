@@ -193,7 +193,7 @@ function eyeSheets_on_saveFile($params=null) {
 		$convertToExcel = 1;
 	}
 	saveOds($ods, $sheetPath, $convertToExcel);
-	eyeFiles('update',array(dirname($sheetPath)));
+	xenonFiles('update',array(dirname($sheetPath)));
 	xenonx('messageBox',array('content'=>'Spreadsheet saved successfully.'));
 }
 

@@ -1147,7 +1147,7 @@ function moveAndClick(name) {
 		}
 		dropPid = this.params.pid;
 		iconPid = drag.myPid;
-		//If drag is an eyeFiles icon child, only move it
+		//If drag is an xenonFiles icon child, only move it
 		//If not is a child, trhow th emenu
 		if (dropPid === iconPid) {
 			this.moveAction(drop, drag, x, y, event, checknum);

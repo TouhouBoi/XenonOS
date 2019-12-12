@@ -224,7 +224,7 @@ function eyeDesk_run($params = '') {
 
 	xenonx('messageBox', array('content' => 'Welcome to %s, %s.', 'sound' => false, 'tokens' => array(XENONOS_HOSTNAME,'<strong>' . $currentUser . '</strong>')));
 
-	addListenerLibraryCall('onEvent','eyeFiles','update');
+	addListenerLibraryCall('onEvent','xenonFiles','update');
 	addListenerServiceCall('onResized','xenonx','resizedBrowser',1);
 
 	if ($params[0] == 'autorun') {

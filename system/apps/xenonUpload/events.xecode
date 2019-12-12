@@ -21,7 +21,7 @@ function xenonUpload_on_advanced_Do($params = '') {
 	//We replace the forbidden characters by '-' to avoid failing the transfer just because of that
 	$file = str_replace($charBlackList, '-', $file);
 
-	$path = eyeFiles('cleanPath',array($GLOBALS['xenonUpload_Hidden_Path']->text));
+	$path = xenonFiles('cleanPath',array($GLOBALS['xenonUpload_Hidden_Path']->text));
 	$path[0] .= '/' . $file;
 	if (is_uploaded_file($_FILES['Filedata']['tmp_name'])) {
 		if (!vfs('checkPermissions',array($path[0]))) {
@@ -75,7 +75,7 @@ function xenonUpload_on_Close($params = '') {
 		if ($GLOBALS['xenonUpload_Hidden_Callback']->text) {
 			xenonx('rawjs',array('js' => $GLOBALS['xenonUpload_Hidden_Callback']->text));
 		}
-		eyeFiles('update',array($GLOBALS['xenonUpload_Hidden_Path']->text));
+		xenonFiles('update',array($GLOBALS['xenonUpload_Hidden_Path']->text));
 	}
 	proc('end');
 }
@@ -85,9 +85,9 @@ function xenonUpload_on_help($params=null) {
 }
 
 function xenonUpload_on_initFlash($params = '') {
-	$memory_limit = eyeFiles('stringToBytes', array(ini_get('memory_limit')));
-	$post_max_size = eyeFiles('stringToBytes', array(ini_get('post_max_size')));
-	$upload_max_filesize = eyeFiles('stringToBytes', array(ini_get('upload_max_filesize')));
+	$memory_limit = xenonFiles('stringToBytes', array(ini_get('memory_limit')));
+	$post_max_size = xenonFiles('stringToBytes', array(ini_get('post_max_size')));
+	$upload_max_filesize = xenonFiles('stringToBytes', array(ini_get('upload_max_filesize')));
 	$maxUpload_bytes = min($memory_limit, $post_max_size, $upload_max_filesize);
 	$maxUpload_mbytes = $maxUpload_bytes / (1024 * 1024);
 	
@@ -121,7 +121,7 @@ function xenonUpload_on_Message($params = '') {
 }
 
 function xenonUpload_on_simple_Do($params = '') {
-	$path = eyeFiles('cleanPath',array($GLOBALS['xenonUpload_Hidden_Path']->text));
+	$path = xenonFiles('cleanPath',array($GLOBALS['xenonUpload_Hidden_Path']->text));
 	if ($path[1] == 'real') {
 		$suffix = 'real_';
 	}
@@ -135,7 +135,7 @@ function xenonUpload_on_simple_Do($params = '') {
 
 function xenonUpload_on_simple_Done($params = '') {
 	xenonx('messageBox',array('content' => 'The file has been uploaded successfully.'));
-	eyeFiles('update',array($GLOBALS['xenonUpload_Hidden_Path']->text));
+	xenonFiles('update',array($GLOBALS['xenonUpload_Hidden_Path']->text));
 	proc('end');
 }
 
@@ -150,7 +150,7 @@ function xenonUpload_on_web_Do($params = '') {
 	$http->setURL($file);
 	$http->sendRequest();
 	if ($http->getResponseBody()) {
-		$path = eyeFiles('cleanPath',array($GLOBALS['xenonUpload_Hidden_Path']->text));
+		$path = xenonFiles('cleanPath',array($GLOBALS['xenonUpload_Hidden_Path']->text));
 		$path[0] .= '/' . basename($file);
 		$extension = substr(strrchr($path[0], '.'), 1); // utf8
 		$countFiles = 0;
@@ -170,7 +170,7 @@ function xenonUpload_on_web_Do($params = '') {
 			vfs('writeFile',array($path[0],$http->getResponseBody()));
 		}
 		xenonx('messageBox',array('content' => 'File uploaded successfully.'));
-		eyeFiles('update',array($GLOBALS['xenonUpload_Hidden_Path']->text));
+		xenonFiles('update',array($GLOBALS['xenonUpload_Hidden_Path']->text));
 		$GLOBALS['xenonUpload_web_Textbox']->setText('');
 	} else {
 		xenonx('messageBox',array('content' => 'Error uploading file!'));

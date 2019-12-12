@@ -43,7 +43,7 @@ function xenonArchive_on_Compress($params){
 		xenonx('messageBox',array('content'=>'Compression failed'));
 		return false;
 	}
-	eyeFiles('update',array(dirname($dest)));
+	xenonFiles('update',array(dirname($dest)));
 	xenonx('messageBox',array('content'=>'Compressed successfully'));
 }
 ?>

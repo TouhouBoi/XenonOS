@@ -20,7 +20,7 @@ function eyeDesk_com_onEvent($params = '') {
 	$desktop = false;
 	$trash = false;
 	foreach ($params as $value) {
-		$value = eyeFiles('cleanPath',array($value));
+		$value = xenonFiles('cleanPath',array($value));
 		if ($value[1] == 'home' && $value[2] == 'Desktop/') {
 			$desktop = true;
 		} elseif ($value[1] == 'trash') {

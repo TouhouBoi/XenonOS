@@ -19,7 +19,7 @@ function newFile_on_Close($params = '') {
 }
 
 function newFile_on_Do($params = '') {
-	$path = eyeFiles('cleanPath',array($GLOBALS['newFile_Hidden_Path']->text));
+	$path = xenonFiles('cleanPath',array($GLOBALS['newFile_Hidden_Path']->text));
 	$file = $GLOBALS['newFile_Textbox']->text;
 	if (vfs('checkSpecialChars',array($file)) === false) {
 		global $charBlackList;
@@ -33,8 +33,8 @@ function newFile_on_Do($params = '') {
 		if ($GLOBALS['newFile_Hidden_Callback']->text) {
 			xenonx('rawjs',array('js' => $GLOBALS['newFile_Hidden_Callback']->text));
 		}
-		$path = eyeFiles('cleanPath', array(substr(trim($path[0], '/\\'), 0, -strlen(basename($path[0]))))); // utf8
-		eyeFiles('update',array($path[1] . '://' . $path[2]));
+		$path = xenonFiles('cleanPath', array(substr(trim($path[0], '/\\'), 0, -strlen(basename($path[0]))))); // utf8
+		xenonFiles('update',array($path[1] . '://' . $path[2]));
 	} else {
 		xenonx('messageBox',array('content' => 'Error creating file!'));
 	}

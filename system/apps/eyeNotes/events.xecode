@@ -139,7 +139,7 @@ function eyeNotes_on_SelectFileSave($params=null) {
 		fclose($fp);
 		$myHidden = new Hidden(array('name'=>'notePath','father'=>'eyeNotesWND','text'=>$file));
 		eyeWidgets('serialize',array($myHidden));
-		eyeFiles('update',array(dirname($file)));
+		xenonFiles('update',array(dirname($file)));
 		xenonx('messageBox',array('content'=>'File saved successfully.'));
 		$myHiddenContent = new Hidden(array(
 			'name' => 'textAreaContent',
@@ -292,7 +292,7 @@ function eyeNotes_on_SelectFileSaveClose($params=null) {
 		fclose($fp);
 		$myHidden = new Hidden(array('name'=>'notePath','father'=>'eyeNotesWND','text'=>$file));
 		eyeWidgets('serialize',array($myHidden));
-		eyeFiles('update',array(dirname($file)));
+		xenonFiles('update',array(dirname($file)));
 		xenonx('messageBox',array('content'=>'File saved successfully.'));
 	}
 	proc('end');

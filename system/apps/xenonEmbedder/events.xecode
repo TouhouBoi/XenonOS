@@ -37,7 +37,7 @@ function xenonEmbedder_on_ChooseApplicationIcon($params = null) {
 function xenonEmbedder_on_ChooseApplicationIcon2($params = null) {
 	global $checknum, $myPid;
 	
-	include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/lib/eyeFiles/images' . XE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/lib/xenonFiles/images' . XE_CODE_EXTENSION;
 	
 	// Validate image
 	$image = images_imagecreatefromfile(vfs('getRealName', array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/' . $params['arg'][0])));
@@ -200,7 +200,7 @@ function xenonEmbedder_on_Package2($params = null) {
 	if (!eyeFileArchive('compress', array(array('simple' => array($temp . '/' . APP_DIR, $temp . '/' . EXTERN_DIR)), $xePackage, 'eqTypes' => array('xepackage' => 'tgz')))) {
 		xenonx('messageBox', array('content' => 'Failed packaging.'));
 	} else {
-		eyeFiles('update', array(dirname($xePackage)));
+		xenonFiles('update', array(dirname($xePackage)));
 	}
 	
 	// Remove temporary folder

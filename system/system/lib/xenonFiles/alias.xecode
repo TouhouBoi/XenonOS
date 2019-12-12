@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeFiles($call,$args = null,$noList = false) {
-	return reqLib('eyeFiles', $call, $args, $noList);
+function xenonFiles($call,$args = null,$noList = false) {
+	return reqLib('xenonFiles', $call, $args, $noList);
 }
 ?>

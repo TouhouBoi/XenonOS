@@ -162,7 +162,7 @@ $pic22 = array(
 	'eyeDocs',
 	'xenonFTP',
 	'eyeFeeds',
-	'eyeFiles',
+	'xenonFiles',
 	'eyeGroups',
 	'eyeHelp',
 	'eyeImages',
@@ -222,7 +222,7 @@ $alias[0]['icons/16x16/apps/xenonCalendar.png'] = 'images/apps/eyeLightDesk/16x1
 $alias[0]['icons/16x16/apps/eyeChess.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeChess.png';
 $alias[0]['icons/16x16/apps/xenonContacts.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonContacts.png';
 $alias[0]['icons/16x16/apps/eyeDocs.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeDocs.png';
-$alias[0]['icons/16x16/apps/eyeFiles.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeFiles.png';
+$alias[0]['icons/16x16/apps/xenonFiles.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonFiles.png';
 $alias[0]['icons/16x16/apps/xenonFTP.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonFTP.png';
 $alias[0]['icons/16x16/apps/eyeMail.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeMail.png';
 $alias[0]['icons/16x16/apps/eyeMessages.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeMessages.png';
@@ -244,11 +244,11 @@ $alias[0]['icons/16x16/apps/preferences.png'] = 'images/apps/eyeLightDesk/16x16/
 $alias[0]['icons/16x16/apps/public.png'] = 'images/apps/eyeLightDesk/16x16/apps/public.png';
 $alias[0]['icons/16x16/apps/RSS.png'] = 'icons/16x16/RSS.png';
 $alias[0]['icons/16x16/apps/trash.png'] = 'images/apps/eyeLightDesk/16x16/apps/trash.png';
-$alias[0]['icons/20x20/home.png'] = 'icons/20x20/eyeFiles.png';
+$alias[0]['icons/20x20/home.png'] = 'icons/20x20/xenonFiles.png';
 $alias[0]['icons/48x48/apps/RSS.png'] = 'icons/48x48/RSS.png';
 $alias[0]['icons/48x48/autorun.png'] = 'icons/48x48/exec.png';
-$alias[0]['icons/48x48/filemanager.png'] = 'icons/48x48/eyeFiles.png';
-$alias[0]['icons/48x48/home.png'] = 'icons/48x48/eyeFiles.png';
+$alias[0]['icons/48x48/filemanager.png'] = 'icons/48x48/xenonFiles.png';
+$alias[0]['icons/48x48/home.png'] = 'icons/48x48/xenonFiles.png';
 $alias[0]['icons/48x48/managegroups.png'] = 'icons/48x48/eyeGroups.png';
 $alias[0]['icons/48x48/manageusers.png'] = 'icons/48x48/public.png';
 $alias[0]['icons/48x48/webbrowser.png'] = 'icons/48x48/eyeNav.png';
@@ -327,30 +327,30 @@ $alias[1][APP_DIR . '/eyeFeeds/gfx/search.png'] = 'images/' . APP_DIR . '/eyeFee
 $alias[1][APP_DIR . '/eyeFeeds/gfx/settings.png'] = 'images/' . APP_DIR . '/eyeFeeds/20x20/settings.png';
 $alias[1][APP_DIR . '/eyeFeeds/gfx/settings_logo.png'] = 'images/' . APP_DIR . '/eyeFeeds/settings.png';
 
-// eyeFiles
-$alias[1][APP_DIR . '/eyeFiles/gfx/Back.png'] = 'images/' . APP_DIR . '/eyeFiles/back.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/copy.png'] = 'icons/16x16/copy.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/delete.png'] = 'icons/16x16/delete.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/down.png'] = 'icons/16x16/download.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/download.png'] = 'icons/16x16/save.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/downzip.png'] = 'icons/16x16/downzip.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/eyefilesbg.png'] = 'images/' . APP_DIR . '/eyeFiles/eyefilesbg.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/eyegroupsbg.png'] = 'images/' . APP_DIR . '/eyeFiles/eyegroupsbg.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/newfolder.png'] = 'icons/16x16/newfolder.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/Next.png'] = 'images/' . APP_DIR . '/eyeFiles/next.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/paste.png'] = 'icons/16x16/paste.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/PathCenter.png'] = 'images/' . APP_DIR . '/eyeFiles/pathcenter.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/PathGo.png'] = 'images/' . APP_DIR . '/eyeFiles/pathgo.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/PathLeft.png'] = 'images/' . APP_DIR . '/eyeFiles/pathleft.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/properties.png'] = 'icons/16x16/properties.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/rename.png'] = 'icons/16x16/rename.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/save.png'] = 'icons/16x16/save.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/site.png'] = 'icons/16x16/folder.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/Top.png'] = 'images/' . APP_DIR . '/eyeFiles/top.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/upload.png'] = 'icons/16x16/upload.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/newfolder_big.png'] = 'icons/48x48/folder.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/rename_big.png'] = 'icons/48x48/rename.png';
-$alias[1][APP_DIR . '/eyeFiles/gfx/upload_big.png'] = 'icons/48x48/upload.png';
+// xenonFiles
+$alias[1][APP_DIR . '/xenonFiles/gfx/Back.png'] = 'images/' . APP_DIR . '/xenonFiles/back.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/copy.png'] = 'icons/16x16/copy.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/delete.png'] = 'icons/16x16/delete.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/down.png'] = 'icons/16x16/download.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/download.png'] = 'icons/16x16/save.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/downzip.png'] = 'icons/16x16/downzip.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/xenonFilesbg.png'] = 'images/' . APP_DIR . '/xenonFiles/xenonFilesbg.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/eyegroupsbg.png'] = 'images/' . APP_DIR . '/xenonFiles/eyegroupsbg.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/newfolder.png'] = 'icons/16x16/newfolder.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/Next.png'] = 'images/' . APP_DIR . '/xenonFiles/next.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/paste.png'] = 'icons/16x16/paste.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/PathCenter.png'] = 'images/' . APP_DIR . '/xenonFiles/pathcenter.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/PathGo.png'] = 'images/' . APP_DIR . '/xenonFiles/pathgo.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/PathLeft.png'] = 'images/' . APP_DIR . '/xenonFiles/pathleft.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/properties.png'] = 'icons/16x16/properties.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/rename.png'] = 'icons/16x16/rename.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/save.png'] = 'icons/16x16/save.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/site.png'] = 'icons/16x16/folder.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/Top.png'] = 'images/' . APP_DIR . '/xenonFiles/top.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/upload.png'] = 'icons/16x16/upload.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/newfolder_big.png'] = 'icons/48x48/folder.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/rename_big.png'] = 'icons/48x48/rename.png';
+$alias[1][APP_DIR . '/xenonFiles/gfx/upload_big.png'] = 'icons/48x48/upload.png';
 
 // xenonFTP
 $alias[1][APP_DIR . '/xenonFTP/gfx/addhost.png'] = 'images/' . APP_DIR . '/xenonFTP/toolbar/addhost.png';

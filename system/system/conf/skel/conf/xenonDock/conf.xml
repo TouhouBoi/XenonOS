@@ -60,7 +60,7 @@
 						<type>icon</type>
 					</entry-2>
 					<entry-3>
-						<command>eyeInfo.app</command>
+						<command>xenonInfo.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
 						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/info.png</image>
@@ -115,10 +115,10 @@
 				<type>menu</type>
 				<entries>
 					<entry-1>
-						<command>eyeFiles.app</command>
+						<command>xenonFiles.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeFiles.png</image>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonFiles.png</image>
 						<text>File Manager</text>
 						<type>icon</type>
 					</entry-1>
@@ -326,10 +326,10 @@
 				<type>line</type>
 			</element-10>
 			<element-11>
-				<command>eyeFiles.app</command>
+				<command>xenonFiles.app</command>
 				<hideImage>0</hideImage>
 				<hideText>1</hideText>
-				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeFiles.png</image>
+				<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xenonFiles.png</image>
 				<text>File Manager</text>
 				<type>icon</type>
 			</element-11>

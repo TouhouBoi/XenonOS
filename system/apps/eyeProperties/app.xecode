@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function eyeProperties_run($params = '') {
 	global $myPid;
 	$file = basename($params[0]);
-	$path = eyeFiles('cleanPath',array(substr(trim($params[0], '/\\'), 0, -strlen($file)))); // utf8
+	$path = xenonFiles('cleanPath',array(substr(trim($params[0], '/\\'), 0, -strlen($file)))); // utf8
 // Trash
 	if ($path[1] !== 'real' && strtolower(strrchr($file, '.')) === strtolower('.' . XENONOS_TRASH_EXT) && vfs('real_fileExists',array(um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/' . $file)) === true) { // utf8
 		$path[0] = um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/';

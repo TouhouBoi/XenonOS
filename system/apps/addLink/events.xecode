@@ -30,7 +30,7 @@ function addLink_on_Do($params = '') {
 	if ($GLOBALS['addLink_Hidden']->text) {
 		xenonx('rawjs',array('js' => $GLOBALS['addLink_Hidden']->text));
 	}
-	eyeFiles('update',array('home://Desktop/'));
+	xenonFiles('update',array('home://Desktop/'));
 	proc('launch',array('editLink',array($file,$GLOBALS['addLink_Hidden']->text)));
 	proc('end');
 }

@@ -785,7 +785,7 @@ function eyeFeeds_exportFeeds($outputFilePath) {
 		xenonx('messageBox',array('content'=> 'Unable to export list to the specified location'));
 		return;
 	}
-	eyeFiles('update',array(dirname($outputFilePath)));
+	xenonFiles('update',array(dirname($outputFilePath)));
 	xenonx('messageBox',array('content'=> 'Feeds list successfully exported'));
 }
 

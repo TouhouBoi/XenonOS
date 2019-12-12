@@ -21,7 +21,7 @@ function eyeVideo_on_Close($params = '') {
 function eyeVideo_on_getFile($params = '') {
 	$url = $GLOBALS['eyeVideo_Hidden']->text;
 	$file = basename($url);
-	$path = eyeFiles('cleanPath', array(substr(trim($url, '/\\'), 0, -strlen($file)))); // utf8
+	$path = xenonFiles('cleanPath', array(substr(trim($url, '/\\'), 0, -strlen($file)))); // utf8
 	header('Content-type: video/x-flv');
 	if ($path[1] == 'real') {
 		header('Content-Length: ' . vfs('real_filesize',array($path[0] . '/' . $file)));

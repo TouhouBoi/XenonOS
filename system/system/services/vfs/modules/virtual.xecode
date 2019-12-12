@@ -15,7 +15,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 /*
-	Virtual filesystem service module based on virtual files .eyeInfo and .eyeFile
+	Virtual filesystem service module based on virtual files .xenonInfo and .eyeFile
 */
 
 /*
@@ -23,7 +23,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 	vfs always checks permissions before operating and has two type of actions:
 
-	- abstract actions: work with .eyeInfo and .eyeFile abstraction
+	- abstract actions: work with .xenonInfo and .eyeFile abstraction
 	- real actions: work with normal files
 
 */
@@ -886,15 +886,15 @@ function service_vfs_checkPermissions($params) {
 					$myFile = $file_path.'/'.$filename;
 					$myRealName = vfs('getRealName',array($myFile));
 					$eyeFile = realpath($myRealName);
-					$eyeInfo = substr($eyeFile, 0, strrpos($eyeFile, '.')); // utf8
-					$eyeInfo .= '.'.XENONOS_INFO_EXT;
-					$eyeInfo = realpath($eyeInfo);
-					if($eyeFile && $eyeInfo && $myRealName) {
+					$xenonInfo = substr($eyeFile, 0, strrpos($eyeFile, '.')); // utf8
+					$xenonInfo .= '.'.XENONOS_INFO_EXT;
+					$xenonInfo = realpath($xenonInfo);
+					if($eyeFile && $xenonInfo && $myRealName) {
 						$mode = $params[1];
 						if($mode == 'r' || $mode == 'R') {
 							return true;
 						}
-						$xml = xenonXML('xml2array',array(file_get_contents($eyeInfo)));
+						$xml = xenonXML('xml2array',array(file_get_contents($xenonInfo)));
 						if($xml['eyeFile'][0]['author'][0] == $currentUser) {
 							return true;
 						}
@@ -1819,7 +1819,7 @@ function service_vfs_realToVirtual($params=null){
 	//Generate the new name
 	$fileToCreate = $file.'_'.md5(uniqid(mt_rand(0, 99999))); //path/filename+id.
 
-//eyeInfo creation
+//xenonInfo creation
 	//Getting information
 	global $currentUser;
 

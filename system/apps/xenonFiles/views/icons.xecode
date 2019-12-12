@@ -18,58 +18,58 @@ global $checknum;
 global $myPid;
 
 $myWidgetDrop = new widgetDrop(array(
-	'father' => 'eyeFiles_Container',
-	'name' => 'eyeFiles_View_Icons_WidgetDrop'
+	'father' => 'xenonFiles_Container',
+	'name' => 'xenonFiles_View_Icons_WidgetDrop'
 ));
 $myWidgetDrop->show();
 $myWidgetDrop->addBehaviour(array(
 	'type' => 'moveAndClick',
 	'params' => array(
-		'content' => array($GLOBALS['eyeFiles_Hidden_Path']->text),
+		'content' => array($GLOBALS['xenonFiles_Hidden_Path']->text),
 		'moveType' => 2,
 		'pid' => $myPid,
 		'signal' => 'Icon_Dropped'
 )));
 
 $myContextMenu = new ContextMenu(array(
-	'father' => 'eyeFiles_Container',
-	'name' => 'eyeFiles_View_Icons_ContextMenu'
+	'father' => 'xenonFiles_Container',
+	'name' => 'xenonFiles_View_Icons_ContextMenu'
 ));
 $myContextMenu->show();
-if ($eyeFiles_noactions) {
+if ($xenonFiles_noactions) {
 	if ($type == 'trash') {
-		$myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/delete.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Empty trash')), ENT_QUOTES),'eyeFiles_View_Icons_ContextMenu_delete','EmptyTrash','',$myPid . '_eyeFiles_View_Icons_ContextMenu_delete_img');
+		$myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/delete.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Empty trash')), ENT_QUOTES),'xenonFiles_View_Icons_ContextMenu_delete','EmptyTrash','',$myPid . '_xenonFiles_View_Icons_ContextMenu_delete_img');
 	} else {
-		$myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/upload.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Upload files')), ENT_QUOTES),'eyeFiles_View_Icons_ContextMenu_upload','Upload','',$myPid . '_eyeFiles_View_Icons_ContextMenu_upload_img');
-		$myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/newfolder.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('New folder')), ENT_QUOTES),'eyeFiles_View_Icons_ContextMenu_newfolder','NewFolder','',$myPid . '_eyeFiles_View_Icons_ContextMenu_newfolder_img');
-		$myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/new.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('New file')), ENT_QUOTES),'eyeFiles_View_Icons_ContextMenu_new','NewFile','',$myPid . '_eyeFiles_View_Icons_ContextMenu_new_img');
-		$myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/paste.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Paste')), ENT_QUOTES),'eyeFiles_View_Icons_ContextMenu_paste','Paste','',$myPid . '_eyeFiles_View_Icons_ContextMenu_paste_img');
+		$myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/upload.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Upload files')), ENT_QUOTES),'xenonFiles_View_Icons_ContextMenu_upload','Upload','',$myPid . '_xenonFiles_View_Icons_ContextMenu_upload_img');
+		$myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/newfolder.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('New folder')), ENT_QUOTES),'xenonFiles_View_Icons_ContextMenu_newfolder','NewFolder','',$myPid . '_xenonFiles_View_Icons_ContextMenu_newfolder_img');
+		$myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/new.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('New file')), ENT_QUOTES),'xenonFiles_View_Icons_ContextMenu_new','NewFile','',$myPid . '_xenonFiles_View_Icons_ContextMenu_new_img');
+		$myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/paste.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Paste')), ENT_QUOTES),'xenonFiles_View_Icons_ContextMenu_paste','Paste','',$myPid . '_xenonFiles_View_Icons_ContextMenu_paste_img');
 	}
 }
-$myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/refresh.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Refresh')), ENT_QUOTES),'eyeFiles_View_Icons_ContextMenu_refresh','OpenPath','',$myPid . '_eyeFiles_View_Icons_ContextMenu_refresh_img');
+$myContextMenu->addEntry('<img style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/refresh.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Refresh')), ENT_QUOTES),'xenonFiles_View_Icons_ContextMenu_refresh','OpenPath','',$myPid . '_xenonFiles_View_Icons_ContextMenu_refresh_img');
 
-$conf = xenonXML('getXMLconfig',array('eyeFiles','conf.xml'));
-if (isset($conf['eyeFiles'][0]['clickMethod']) === false || !$conf['eyeFiles'][0]['clickMethod'][0]) {
-	$conf['eyeFiles'][0]['clickMethod'][0] = 1;
+$conf = xenonXML('getXMLconfig',array('xenonFiles','conf.xml'));
+if (isset($conf['xenonFiles'][0]['clickMethod']) === false || !$conf['xenonFiles'][0]['clickMethod'][0]) {
+	$conf['xenonFiles'][0]['clickMethod'][0] = 1;
 }
-$shareConf = getConfig('eyeFiles','conf.xml');
+$shareConf = getConfig('xenonFiles','conf.xml');
 $mime = getConfig('mime','mime.xml');
 if ($type == 'trash') {
-	$menu = getConfig('eyeFiles','menu_trash.xml');
+	$menu = getConfig('xenonFiles','menu_trash.xml');
 } else {
-	$menu_files = getConfig('eyeFiles','menu_files.xml');
-	$menu_folders = getConfig('eyeFiles','menu_folders.xml');
-	$menu_links = getConfig('eyeFiles','menu_links.xml');
+	$menu_files = getConfig('xenonFiles','menu_files.xml');
+	$menu_folders = getConfig('xenonFiles','menu_folders.xml');
+	$menu_links = getConfig('xenonFiles','menu_links.xml');
 }
 
-if ($GLOBALS['eyeFiles_Box_View_Radio_ShowNot']->checked) {
+if ($GLOBALS['xenonFiles_Box_View_Radio_ShowNot']->checked) {
 	$filter = 3;
-} else if ($GLOBALS['eyeFiles_Box_View_Radio_ShowOnly']->checked) {
+} else if ($GLOBALS['xenonFiles_Box_View_Radio_ShowOnly']->checked) {
 	$filter = 2;
 } else {
 	$filter = 1;
 }
-$files = eyeFiles('getDirContent',array($path,$type,$GLOBALS['eyeFiles_Box_View_Textbox_Filter']->text,$filter,$GLOBALS['eyeFiles_Box_View_Checkbox_Files']->checked,$GLOBALS['eyeFiles_Box_View_Checkbox_Links']->checked,$GLOBALS['eyeFiles_Box_View_Checkbox_Folders']->checked,$GLOBALS['eyeFiles_Box_View_Checkbox_Folders_First']->checked));
+$files = xenonFiles('getDirContent',array($path,$type,$GLOBALS['xenonFiles_Box_View_Textbox_Filter']->text,$filter,$GLOBALS['xenonFiles_Box_View_Checkbox_Files']->checked,$GLOBALS['xenonFiles_Box_View_Checkbox_Links']->checked,$GLOBALS['xenonFiles_Box_View_Checkbox_Folders']->checked,$GLOBALS['xenonFiles_Box_View_Checkbox_Folders_First']->checked));
 $i = 0;
 $x = 20;
 $y = 20;
@@ -77,7 +77,7 @@ foreach ($files as $file) {
 	if ($file[1] == 'file') {
 		$image = 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/filetypes/unknown.png';
 		$extension = strtolower(substr(strrchr($file[2], '.'), 1)); // utf8
-		if ($shareConf['eyeFiles'][0]['CreateThumbnails'][0] != '0' && ($extension == 'bmp' || $extension == 'gif' || $extension == 'jpeg' || $extension == 'jpg' || $extension == 'png') && function_exists('gd_info')) {
+		if ($shareConf['xenonFiles'][0]['CreateThumbnails'][0] != '0' && ($extension == 'bmp' || $extension == 'gif' || $extension == 'jpeg' || $extension == 'jpg' || $extension == 'png') && function_exists('gd_info')) {
 			$gd_info = gd_info();
 			if ($extension == 'bmp' || ($extension == 'gif' && $gd_info['GIF Read Support'] && $gd_info['GIF Create Support']) || (($extension == 'jpeg' || $extension == 'jpg') && $gd_info['JPEG Support']) || ($extension == 'png' && $gd_info['PNG Support'])) {
 				if (substr(strrchr($file[0], '.'), 1) === XENONOS_TRASH_EXT && VFS_MODULE === 'real') { // utf8
@@ -109,11 +109,11 @@ foreach ($files as $file) {
 	$myIcon = new Icon(array(
 		'content' => $file[0],
 		'draggable' => 0,
-		'father' => 'eyeFiles_Container',
+		'father' => 'xenonFiles_Container',
 		'image' => $image,
-		'name' => 'eyeFiles_View_Icons_Icon_' . $i,
-		'onclick' => $conf['eyeFiles'][0]['clickMethod'][0],
-		'overClass' => 'eyeFiles_icons',
+		'name' => 'xenonFiles_View_Icons_Icon_' . $i,
+		'onclick' => $conf['xenonFiles'][0]['clickMethod'][0],
+		'overClass' => 'xenonFiles_icons',
 		'text' => $file[2],
 		'useClass' => 1,
 		'x' => $x,
@@ -122,7 +122,7 @@ foreach ($files as $file) {
 	$myIcon->show();
 	xenonx('rawjs',array('js' => 'xGetElementById("' . $myPid . '_' . $myIcon->name . '_Container").style.textAlign = "center"; xGetElementById("img_' . $myPid . '_' . $myIcon->name . '").style.marginLeft = "-1px";'));
 
-	if ($eyeFiles_noactions) {
+	if ($xenonFiles_noactions) {
 		$myWidgetDrag = new widgetDrag(array(
 			'content' => array($file[1],$show2 . '/' . $file[0]),
 			'dragAlpha' => 75,
@@ -142,17 +142,17 @@ foreach ($files as $file) {
 		$myWidgetDrop->addBehaviour(array(
 			'type' => 'widgetDrop_simpleMsg',
 			'params' => array(
-				'content' => array($GLOBALS['eyeFiles_Hidden_Path']->text . '/' . $file[0] . '/'),
+				'content' => array($GLOBALS['xenonFiles_Hidden_Path']->text . '/' . $file[0] . '/'),
 				'pid' => $myPid,
 				'signal' => 'Icon_Dropped'
 		)));
 	}
 
-	if ($eyeFiles_noactions) {
+	if ($xenonFiles_noactions) {
 		$myContextMenu = new ContextMenu(array(
 			'father' => $myIcon->name . '_globalContainer',
 			'name' => $myIcon->name . '_ContextMenu',
-			'mfather' => 'eyeFiles_Container',
+			'mfather' => 'xenonFiles_Container',
 			'searchFather' => 1
 		));
 		$myContextMenu->show();
@@ -161,7 +161,7 @@ foreach ($files as $file) {
 		}
 	}
 	$x += 88;
-	if ($GLOBALS['eyeFiles_Container']->width - $x - 88 < 0) {
+	if ($GLOBALS['xenonFiles_Container']->width - $x - 88 < 0) {
 		$x = 20;
 		$y += 88;
 	}

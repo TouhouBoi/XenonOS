@@ -19,7 +19,7 @@ function eyeMkDir_on_Close($params = '') {
 }
 
 function eyeMkDir_on_Do($params = '') {
-	$path = eyeFiles('cleanPath',array($GLOBALS['eyeMkDir_Hidden_Path']->text));
+	$path = xenonFiles('cleanPath',array($GLOBALS['eyeMkDir_Hidden_Path']->text));
 	$folder = $GLOBALS['eyeMkDir_Textbox']->text;
 	if (vfs('checkSpecialChars',array($folder)) === false) {
 		global $charBlackList;
@@ -33,7 +33,7 @@ function eyeMkDir_on_Do($params = '') {
 	} elseif ($GLOBALS['eyeMkDir_Hidden_Callback']->text) {
 		xenonx('rawjs',array('js' => $GLOBALS['eyeMkDir_Hidden_Callback']->text));
 	}
-	eyeFiles('update',array($path[1] . '://' . $path[2]));
+	xenonFiles('update',array($path[1] . '://' . $path[2]));
 	proc('end');
 }
 

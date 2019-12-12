@@ -34,7 +34,7 @@ function editLink_on_Do($params = '') {
 	if ($GLOBALS['editLink_Hidden_Callback']->text) {
 		xenonx('rawjs',array('js' => $GLOBALS['editLink_Hidden_Callback']->text));
 	}
-	eyeFiles('update',array('home://Desktop/'));
+	xenonFiles('update',array('home://Desktop/'));
 	proc('end');
 }
 

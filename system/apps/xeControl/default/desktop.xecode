@@ -387,14 +387,14 @@ $myLabel->setCss(array(
 ));
 $ContentY += 25;
 // Use doubleclicks
-$xml = xeControl_lib_getXMLconfig(array('eyeFiles','conf.xml'));
+$xml = xeControl_lib_getXMLconfig(array('xenonFiles','conf.xml'));
 $myCheckbox = new Checkbox(array(
 	'name' => 'xeControl_desktop_checkbox_usedblclicks',
 	'father' => $iconsTab,
 	'x' => 50,
 	'y' => $ContentY,
 	'text' => 'Use Doubleclicks',
-	'checked' => $xml['eyeFiles'][0]['clickMethod'][0] == '2'
+	'checked' => $xml['xenonFiles'][0]['clickMethod'][0] == '2'
 ));
 $myCheckbox->show();
 $myCheckbox->addEvent('onclick','sendMsg(' . $checknum . ',"desktop_savedblclicks",eyeParam("selected",this.checked));');

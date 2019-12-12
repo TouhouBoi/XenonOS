@@ -186,7 +186,7 @@ function eyePictures_imageResizeRotate($noresize = 0, $type, $src, $dst = NULL, 
 		  if($type == 'jpeg') $type = 'jpg';
 		  
 		  switch($type){
-			case 'bmp': $img = eyeFiles('imagecreatefrombmp',array($src)); break;
+			case 'bmp': $img = xenonFiles('imagecreatefrombmp',array($src)); break;
 			case 'wbmp': $img = imagecreatefromwbmp($src); break;
 			case 'gif': $img = imagecreatefromgif($src); break;
 			case 'jpg': $img = imagecreatefromjpeg($src); break;
@@ -198,7 +198,7 @@ function eyePictures_imageResizeRotate($noresize = 0, $type, $src, $dst = NULL, 
 				
 				$img = imagerotate($img, $rotation_degrees, 0);
 				switch($type){
-					case 'bmp': eyeFiles('imagebmp', array($img, $src)); break;
+					case 'bmp': xenonFiles('imagebmp', array($img, $src)); break;
 					case 'wbmp': imagewbmp($img, $src); break;
 					case 'gif': imagegif($img, $src); break;
 					case 'jpg': imagejpeg($img, $src); break;
@@ -343,8 +343,8 @@ function eyePictures_setPicStatusBarInfo($params) {
 		}
 		else {
 			$realFile = vfs('getRealName',array($file));
-			$eyeInfo = str_replace(array(eyeFile),'eyeInfo',$realFile);
-			$xml = xenonXML('getXMLfile', array($eyeInfo));
+			$xenonInfo = str_replace(array(eyeFile),'xenonInfo',$realFile);
+			$xml = xenonXML('getXMLfile', array($xenonInfo));
 			
 			$timestamp = $xml['eyeFile'][0]['created'][0];
 			$author = $xml['eyeFile'][0]['author'][0];
@@ -456,11 +456,11 @@ function eyePictures_applyFilter($params) {
 	
 	if ($extension == 'bmp') {
 		
-		$image = eyeFiles('imagecreatefrombmp',array($realFile));
+		$image = xenonFiles('imagecreatefrombmp',array($realFile));
 		imagealphablending($image,0);
 		imagesavealpha($image,1);
 		$image = eyePictures_selectFilter(array('filter' => $params, 'image' => $image, 'name' => basename($currentPic)));
-		eyeFiles('imagebmp', array($image, $realFile));
+		xenonFiles('imagebmp', array($image, $realFile));
 	
 	} elseif ($extension == 'wbmp') {
 		
@@ -1505,7 +1505,7 @@ function eyePictures_on_saveFile($params=null) {
 		return;
 	}
 	$split = utf8_explode('/files/', $currentFolder, 2);
-	eyeFiles('update', array('home://' . $split[1]));
+	xenonFiles('update', array('home://' . $split[1]));
 }
 
 function eyePictures_on_Close($params=null) {

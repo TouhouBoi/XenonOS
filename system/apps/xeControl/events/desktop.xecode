@@ -18,11 +18,11 @@ function xeControl_on_desktop_savedblclicks($params = '') {
 	global $currentUser;
 	$xml = xeControl_lib_getXMLconfig(array('eyeFile','conf.xml'));
 	if ($params['selected'][0] == 'false') {
-		$xml['eyeFiles'][0]['clickMethod'][0] = '1';
+		$xml['xenonFiles'][0]['clickMethod'][0] = '1';
 	} else {
-		$xml['eyeFiles'][0]['clickMethod'][0] = '2';
+		$xml['xenonFiles'][0]['clickMethod'][0] = '2';
 	}
-	xeControl_lib_setXMLconfig(array('eyeFiles','conf.xml',$xml));
+	xeControl_lib_setXMLconfig(array('xenonFiles','conf.xml',$xml));
 	if (xeControl_lib_getConfigUser() == $currentUser) {
 		$desk_checknum = proc('findChecknumByName',array('eyeDesk'));
 		if ($desk_checknum) {

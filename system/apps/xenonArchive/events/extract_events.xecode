@@ -47,7 +47,7 @@ function xenonArchive_on_Extract($params="") {
 	//TODO: remove it and put other system that don't need open the archived again
 	//$filesExtracted = eyeFileArchive('list',array('src'=>$path,'virtual'=>1));
 
-	eyeFiles('update',array(dirname($myRealFile)));
+	xenonFiles('update',array(dirname($myRealFile)));
 	xenonx('messageBox',array('content'=>'File extracted successfully.'));
 	return true;
 }

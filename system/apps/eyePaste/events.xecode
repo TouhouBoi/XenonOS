@@ -19,8 +19,8 @@ function eyePaste_on_Close($params = '') {
 }
 
 function eyePaste_libs_Dialog($from,$file,$to,$callback) {
-	$from2 = eyeFiles('cleanPath',array($from));
-	$to2 = eyeFiles('cleanPath',array($to));
+	$from2 = xenonFiles('cleanPath',array($from));
+	$to2 = xenonFiles('cleanPath',array($to));
 	if ($from2[1] . '://' . $from2[2] == $to2[1] . '://' . $to2[2]) {
 		$buttons = array(array('Rename','Rename'),array('Close','Cancel'));
 	} else {
@@ -65,8 +65,8 @@ function eyePaste_libs_Dialog($from,$file,$to,$callback) {
 function eyePaste_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 	$file = basename($file);
 	$file2 = basename($file2);
-	$from = eyeFiles('cleanPath',array($from));
-	$to = eyeFiles('cleanPath',array($to));
+	$from = xenonFiles('cleanPath',array($from));
+	$to = xenonFiles('cleanPath',array($to));
 	if ($from[1] == 'trash') {
 		xenonx('messageBox',array('content' => '"%s" cannot be copied from trash.','tokens' => array($file)));
 	} elseif ($to[1] == 'trash') {
@@ -124,7 +124,7 @@ function eyePaste_libs_Do($from,$file,$to,$file2,$callback,$replace = 0) {
 		if ($callback) {
 			xenonx('rawjs',array('js' => $callback));
 		}
-		eyeFiles('update',array($to[1] . '://' . $to[2]));
+		xenonFiles('update',array($to[1] . '://' . $to[2]));
 	}
 	proc('end');
 }

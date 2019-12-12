@@ -16,10 +16,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 global $myPid;
 $myContainer = new Container(array(
-	'father' => 'eyeFiles_Box_View',
-	'height' => $GLOBALS['eyeFiles_Box_Tree']->height - 35,
-	'name' => 'eyeFiles_Box_View_Container2',
-	'width' => $GLOBALS['eyeFiles_Box_Tree']->width - 2,
+	'father' => 'xenonFiles_Box_View',
+	'height' => $GLOBALS['xenonFiles_Box_Tree']->height - 35,
+	'name' => 'xenonFiles_Box_View_Container2',
+	'width' => $GLOBALS['xenonFiles_Box_Tree']->width - 2,
 	'x' => 1,
 	'y' => 30
 ));
@@ -28,10 +28,10 @@ $myContainer->setCss(array('display' => 'block','overflow' => 'auto','overflow-x
 eyeWidgets('serialize',array($myContainer));
 
 $myRadioIcons = new Radio(array(
-	'checked' => $xml['eyeFiles'][0]['View'][0] != 2 && $xml['eyeFiles'][0]['View'][0] != 3,
-	'father' => 'eyeFiles_Box_View_Container2',
+	'checked' => $xml['xenonFiles'][0]['View'][0] != 2 && $xml['xenonFiles'][0]['View'][0] != 3,
+	'father' => 'xenonFiles_Box_View_Container2',
 	'group' => 'View',
-	'name' => 'eyeFiles_Box_View_Radio_Icons',
+	'name' => 'xenonFiles_Box_View_Radio_Icons',
 	'text' => 'Icons',
 	'x' => 10,
 	'y' => 10
@@ -40,10 +40,10 @@ $myRadioIcons->show();
 $y = 30;
 
 $myRadioList = new Radio(array(
-	'checked' => $xml['eyeFiles'][0]['View'][0] == 2,
-	'father' => 'eyeFiles_Box_View_Container2',
+	'checked' => $xml['xenonFiles'][0]['View'][0] == 2,
+	'father' => 'xenonFiles_Box_View_Container2',
 	'group' => 'View',
-	'name' => 'eyeFiles_Box_View_Radio_List',
+	'name' => 'xenonFiles_Box_View_Radio_List',
 	'text' => 'List',
 	'x' => 10,
 	'y' => $y
@@ -52,10 +52,10 @@ $myRadioList->show();
 $y += 20;
 
 $myRadioDetails = new Radio(array(
-	'checked' => $xml['eyeFiles'][0]['View'][0] == 3,
-	'father' => 'eyeFiles_Box_View_Container2',
+	'checked' => $xml['xenonFiles'][0]['View'][0] == 3,
+	'father' => 'xenonFiles_Box_View_Container2',
 	'group' => 'View',
-	'name' => 'eyeFiles_Box_View_Radio_Details',
+	'name' => 'xenonFiles_Box_View_Radio_Details',
 	'text' => 'Details',
 	'x' => 10,
 	'y' => $y
@@ -64,8 +64,8 @@ $myRadioDetails->show();
 $y += 40;
 
 $myCheckboxFolders = new Checkbox(array(
-	'father' => 'eyeFiles_Box_View_Container2',
-	'name' => 'eyeFiles_Box_View_Checkbox_Folders',
+	'father' => 'xenonFiles_Box_View_Container2',
+	'name' => 'xenonFiles_Box_View_Checkbox_Folders',
 	'text' => 'Show folders',
 	'checked' => 1,
 	'x' => 10,
@@ -75,8 +75,8 @@ $myCheckboxFolders->show();
 $y += 20;
 
 $myCheckboxFoldersFirst = new Checkbox(array(
-	'father' => 'eyeFiles_Box_View_Container2',
-	'name' => 'eyeFiles_Box_View_Checkbox_Folders_First',
+	'father' => 'xenonFiles_Box_View_Container2',
+	'name' => 'xenonFiles_Box_View_Checkbox_Folders_First',
 	'text' => 'Folders at first',
 	'checked' => 1,
 	'x' => 30,
@@ -86,8 +86,8 @@ $myCheckboxFoldersFirst->show();
 $y += 20;
 
 $myCheckboxFiles = new Checkbox(array(
-	'father' => 'eyeFiles_Box_View_Container2',
-	'name' => 'eyeFiles_Box_View_Checkbox_Files',
+	'father' => 'xenonFiles_Box_View_Container2',
+	'name' => 'xenonFiles_Box_View_Checkbox_Files',
 	'text' => 'Show files',
 	'checked' => 1,
 	'x' => 10,
@@ -97,8 +97,8 @@ $myCheckboxFiles->show();
 $y += 20;
 
 $myCheckboxLinks = new Checkbox(array(
-	'father' => 'eyeFiles_Box_View_Container2',
-	'name' => 'eyeFiles_Box_View_Checkbox_Links',
+	'father' => 'xenonFiles_Box_View_Container2',
+	'name' => 'xenonFiles_Box_View_Checkbox_Links',
 	'text' => 'Show links',
 	'checked' => 1,
 	'x' => 10,
@@ -108,8 +108,8 @@ $myCheckboxLinks->show();
 $y += 40;
 
 $myLabelFilter = new Label(array(
-	'father' => 'eyeFiles_Box_View_Container2',
-	'name' => 'eyeFiles_Box_View_Label_Filter',
+	'father' => 'xenonFiles_Box_View_Container2',
+	'name' => 'xenonFiles_Box_View_Label_Filter',
 	'text' => 'Filter:',
 	'x' => 10,
 	'y' => $y,
@@ -119,9 +119,9 @@ $y += 20;
 
 $myRadioShowAll = new Radio(array(
 	'checked' => 1,
-	'father' => 'eyeFiles_Box_View_Container2',
+	'father' => 'xenonFiles_Box_View_Container2',
 	'group' => 'Filter',
-	'name' => 'eyeFiles_Box_View_Radio_ShowAll',
+	'name' => 'xenonFiles_Box_View_Radio_ShowAll',
 	'text' => 'Show all',
 	'x' => 10,
 	'y' => $y
@@ -130,43 +130,43 @@ $myRadioShowAll->show();
 $y += 20;
 
 $myRadioShowOnly = new Radio(array(
-	'father' => 'eyeFiles_Box_View_Container2',
+	'father' => 'xenonFiles_Box_View_Container2',
 	'group' => 'Filter',
-	'name' => 'eyeFiles_Box_View_Radio_ShowOnly',
+	'name' => 'xenonFiles_Box_View_Radio_ShowOnly',
 	'text' => 'Show only',
 	'x' => 10,
 	'y' => $y
 ));
 $myRadioShowOnly->show();
-$myRadioShowOnly->addEvent('onchange','xGetElementById("' . $myPid . '_eyeFiles_Box_View_Textbox_Filter").focus();');
+$myRadioShowOnly->addEvent('onchange','xGetElementById("' . $myPid . '_xenonFiles_Box_View_Textbox_Filter").focus();');
 $y += 20;
 
 $myRadioShowNot = new Radio(array(
-	'father' => 'eyeFiles_Box_View_Container2',
+	'father' => 'xenonFiles_Box_View_Container2',
 	'group' => 'Filter',
-	'name' => 'eyeFiles_Box_View_Radio_ShowNot',
+	'name' => 'xenonFiles_Box_View_Radio_ShowNot',
 	'text' => 'Show not',
 	'x' => 10,
 	'y' => $y
 ));
 $myRadioShowNot->show();
-$myRadioShowNot->addEvent('onchange','xGetElementById("' . $myPid . '_eyeFiles_Box_View_Textbox_Filter").focus();');
+$myRadioShowNot->addEvent('onchange','xGetElementById("' . $myPid . '_xenonFiles_Box_View_Textbox_Filter").focus();');
 $y += 30;
 
 $myTextboxFilter = new Textbox(array(
-	'father' => 'eyeFiles_Box_View_Container2',
-	'name' => 'eyeFiles_Box_View_Textbox_Filter',
+	'father' => 'xenonFiles_Box_View_Container2',
+	'name' => 'xenonFiles_Box_View_Textbox_Filter',
 	'x' => 30,
 	'y' => $y
 ));
 $myTextboxFilter->show();
-$myTextboxFilter->addEvent('onfocus','if (xGetElementById("' . $myPid . '_eyeFiles_Box_View_Radio_ShowAll").checked) { xGetElementById("' . $myPid . '_eyeFiles_Box_View_Radio_ShowOnly").checked = 1; }');
+$myTextboxFilter->addEvent('onfocus','if (xGetElementById("' . $myPid . '_xenonFiles_Box_View_Radio_ShowAll").checked) { xGetElementById("' . $myPid . '_xenonFiles_Box_View_Radio_ShowOnly").checked = 1; }');
 $y += 40;
 
 $myButton = new Button(array(
 	'caption' => 'Update view',
-	'father' => 'eyeFiles_Box_View_Container2',
-	'name' => 'eyeFiles_Box_View_Button',
+	'father' => 'xenonFiles_Box_View_Container2',
+	'name' => 'xenonFiles_Box_View_Button',
 	'signal' => 'UpdateView',
 	'x' => 10,
 	'y' => $y
@@ -184,15 +184,15 @@ $myButton->addFriend($myCheckboxFiles);
 $myButton->addFriend($myCheckboxLinks);
 $myButton->show();
 
-$GLOBALS['eyeFiles_Box_View_Radio_Icons'] = $myRadioIcons;
-$GLOBALS['eyeFiles_Box_View_Radio_List'] = $myRadioList;
-$GLOBALS['eyeFiles_Box_View_Radio_Details'] = $myRadioDetails;
-$GLOBALS['eyeFiles_Box_View_Radio_ShowAll'] = $myRadioShowAll;
-$GLOBALS['eyeFiles_Box_View_Radio_ShowOnly'] = $myRadioShowOnly;
-$GLOBALS['eyeFiles_Box_View_Radio_ShowNot'] = $myRadioShowNot;
-$GLOBALS['eyeFiles_Box_View_Textbox_Filter'] = $myTextboxFilter;
-$GLOBALS['eyeFiles_Box_View_Checkbox_Folders'] = $myCheckboxFolders;
-$GLOBALS['eyeFiles_Box_View_Checkbox_Folders_First'] = $myCheckboxFoldersFirst;
-$GLOBALS['eyeFiles_Box_View_Checkbox_Files'] = $myCheckboxFiles;
-$GLOBALS['eyeFiles_Box_View_Checkbox_Links'] = $myCheckboxLinks;
+$GLOBALS['xenonFiles_Box_View_Radio_Icons'] = $myRadioIcons;
+$GLOBALS['xenonFiles_Box_View_Radio_List'] = $myRadioList;
+$GLOBALS['xenonFiles_Box_View_Radio_Details'] = $myRadioDetails;
+$GLOBALS['xenonFiles_Box_View_Radio_ShowAll'] = $myRadioShowAll;
+$GLOBALS['xenonFiles_Box_View_Radio_ShowOnly'] = $myRadioShowOnly;
+$GLOBALS['xenonFiles_Box_View_Radio_ShowNot'] = $myRadioShowNot;
+$GLOBALS['xenonFiles_Box_View_Textbox_Filter'] = $myTextboxFilter;
+$GLOBALS['xenonFiles_Box_View_Checkbox_Folders'] = $myCheckboxFolders;
+$GLOBALS['xenonFiles_Box_View_Checkbox_Folders_First'] = $myCheckboxFoldersFirst;
+$GLOBALS['xenonFiles_Box_View_Checkbox_Files'] = $myCheckboxFiles;
+$GLOBALS['xenonFiles_Box_View_Checkbox_Links'] = $myCheckboxLinks;
 ?>

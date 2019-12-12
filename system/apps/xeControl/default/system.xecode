@@ -182,7 +182,7 @@ if (this.value == "custom") {
 }');
 $ContentY += 40;
 // Create thumbnails
-$xml = getConfig('eyeFiles','conf.xml');
+$xml = getConfig('xenonFiles','conf.xml');
 $myLabel = new Label(array(
 	'name' => 'xeControl_system_system_label_thumbnails',
 	'father' => $systemTab,
@@ -197,7 +197,7 @@ $myCheckbox_thumbnails = new Checkbox(array(
 	'x' => 160,
 	'y' => $ContentY,
 	'text' => ' ',
-	'checked' => $xml['eyeFiles'][0]['CreateThumbnails'][0] != '0'
+	'checked' => $xml['xenonFiles'][0]['CreateThumbnails'][0] != '0'
 ));
 $myCheckbox_thumbnails->show();
 $ContentY += 40;

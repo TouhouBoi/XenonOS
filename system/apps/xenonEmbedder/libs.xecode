@@ -92,7 +92,7 @@ function xenonEmbedder_lib_GetValues() {
 }
 
 function xenonEmbedder_lib_ResizeIcon($oldPath, $newPath, $width, $height = null) {
-	include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/lib/eyeFiles/images' . XE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/lib/xenonFiles/images' . XE_CODE_EXTENSION;
 	
 	if ($height === null) {
 		$height = $width;

@@ -50,21 +50,21 @@ function eyeDesk_on_Action($params = '') {
 	global $myPid;
 	if ($params['Action'][0] == 'launch') {
 		$xml = xenonXML('getXMLfile',array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . $params['File'][0]));
-		eyeFiles('launchCommand',array($xml['eyeLink'][0]['content'][0], $xml['eyeLink'][0]['xArgs'][0]));
+		xenonFiles('launchCommand',array($xml['eyeLink'][0]['content'][0], $xml['eyeLink'][0]['xArgs'][0]));
 	} else {
 		proc('launch',array($params['Action'][0],array('home://Desktop/' . $params['File'][0])));
 	}
 }
 
 function eyeDesk_on_GetThumbnail($params = '') {
-	eyeFiles('createThumbnail',array('home://Desktop/',$params['File'][0]));
+	xenonFiles('createThumbnail',array('home://Desktop/',$params['File'][0]));
 }
 
 function eyeDesk_on_Icon_Clicked($params = '') {
 	$file = $params['arg0'][0];
 	$path = um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . $file;
 	if (vfs('isdir',array($path))) {
-		proc('launch',array('eyeFiles',array('home://Desktop/' . $file)));
+		proc('launch',array('xenonFiles',array('home://Desktop/' . $file)));
 	} else if (strtolower(substr($file, -strlen('.' . XENONOS_LINK_EXT))) === '.' . strtolower(XENONOS_LINK_EXT)) { // utf8
 		unset($params);
 		$params['Action'][0] = 'launch';
@@ -143,7 +143,7 @@ function eyeDesk_on_Icon_Dropped($params = '') {
 			$xml['eyeLink'][0]['icon'][0] = 'file';
 		}
 		xenonXML('setXMLfile',array(um('getCurrentUserDir') . '/' . FILES_USER_DIR . '/Desktop/' . $file . '.' . XENONOS_LINK_EXT,$xml));
-		eyeFiles('update',array('home://Desktop/'));
+		xenonFiles('update',array('home://Desktop/'));
 	} else if (in_array( /* utf8 */ strtolower($params['arg0'][0]), array('file', 'folder', 'link'))) {
 		proc('launch',array('moveDrag',array($params['arg1'][0],$params['arg2'][0])));
 	}
@@ -153,20 +153,20 @@ function eyeDesk_on_OpenPath($params = '') {
 	global $checknum;
 	global $myPid;
 	
-	$confFiles = xenonXML('getXMLconfig',array('eyeFiles','conf.xml'));
-	if (!isset($confFiles['eyeFiles'][0]['clickMethod'][0])) {
-		$confFiles['eyeFiles'][0]['clickMethod'][0] = 1;
+	$confFiles = xenonXML('getXMLconfig',array('xenonFiles','conf.xml'));
+	if (!isset($confFiles['xenonFiles'][0]['clickMethod'][0])) {
+		$confFiles['xenonFiles'][0]['clickMethod'][0] = 1;
 	}
 	$confDesk = xenonXML('getXMLconfig',array('eyeDesk','conf.xml'));
 	if (!isset($confDesk['eyeDesk'][0]['loadIconPositions'][0])) {
 		$confDesk['eyeDesk'][0]['loadIconPositions'][0] = 1;
 	}
 	$icons = xenonXML('getXMLconfig',array('eyeDesk','icons.xml'));
-	$shareConf = getConfig('eyeFiles','conf.xml');
+	$shareConf = getConfig('xenonFiles','conf.xml');
 	$mime = getConfig('mime','mime.xml');
-	$menu_files = getConfig('eyeFiles','menu_files.xml');
-	$menu_links = getConfig('eyeFiles','menu_links.xml');
-	$menu_folders = getConfig('eyeFiles','menu_folders.xml');
+	$menu_files = getConfig('xenonFiles','menu_files.xml');
+	$menu_links = getConfig('xenonFiles','menu_links.xml');
+	$menu_folders = getConfig('xenonFiles','menu_folders.xml');
 	$_SESSION['eyeDesk'][$myPid]['trashes'] = array();
 
 	if (isset($GLOBALS['eyeDesk_Container']) === true && is_object($GLOBALS['eyeDesk_Container'])) {
@@ -215,10 +215,10 @@ function eyeDesk_on_OpenPath($params = '') {
 		'name' => 'eyeDesk_View_Icons_ContextMenu'
 	));
 	$myContextMenu->show();
-	$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDesk_View_Icons_ContextMenu_upload_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/upload.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Upload files')), ENT_QUOTES),'eyeFiles_View_Icons_ContextMenu_upload','Upload','',$myPid . '_eyeDesk_View_Icons_ContextMenu_upload_img');
-	$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDesk_View_Icons_ContextMenu_newfolder_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/newfolder.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('New folder')), ENT_QUOTES),'eyeFiles_View_Icons_ContextMenu_newfolder','NewFolder','',$myPid . '_eyeDesk_View_Icons_ContextMenu_newfolder_img');
-	$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDesk_View_Icons_ContextMenu_new_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/new.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('New file')), ENT_QUOTES),'eyeFiles_View_Icons_ContextMenu_new','NewFile','',$myPid . '_eyeDesk_View_Icons_ContextMenu_new_img');
-	$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDesk_View_Icons_ContextMenu_launcher_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/link.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('New launcher')), ENT_QUOTES),'eyeFiles_View_Icons_ContextMenu_launcher','NewLauncher','',$myPid . '_eyeDesk_View_Icons_ContextMenu_launcher_img');
+	$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDesk_View_Icons_ContextMenu_upload_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/upload.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Upload files')), ENT_QUOTES),'xenonFiles_View_Icons_ContextMenu_upload','Upload','',$myPid . '_eyeDesk_View_Icons_ContextMenu_upload_img');
+	$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDesk_View_Icons_ContextMenu_newfolder_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/newfolder.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('New folder')), ENT_QUOTES),'xenonFiles_View_Icons_ContextMenu_newfolder','NewFolder','',$myPid . '_eyeDesk_View_Icons_ContextMenu_newfolder_img');
+	$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDesk_View_Icons_ContextMenu_new_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/new.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('New file')), ENT_QUOTES),'xenonFiles_View_Icons_ContextMenu_new','NewFile','',$myPid . '_eyeDesk_View_Icons_ContextMenu_new_img');
+	$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDesk_View_Icons_ContextMenu_launcher_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/link.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('New launcher')), ENT_QUOTES),'xenonFiles_View_Icons_ContextMenu_launcher','NewLauncher','',$myPid . '_eyeDesk_View_Icons_ContextMenu_launcher_img');
 	$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDesk_View_Icons_ContextMenu_paste_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/paste.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Paste')), ENT_QUOTES),'eyeDesk_View_Icons_ContextMenu_paste','Paste','',$myPid . '_eyeDesk_View_Icons_ContextMenu_paste_img');
 	$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDesk_View_Icons_ContextMenu_refresh_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/refresh.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Refresh')), ENT_QUOTES),'eyeDesk_View_Icons_ContextMenu_refresh','Refresh','',$myPid . '_eyeDesk_View_Icons_ContextMenu_refresh_img');
 	$myContextMenu->addEntry('<img id="' . $myPid . '_eyeDesk_View_Icons_ContextMenu_preferences_img" style="height: 16px; width: 16px;" src="index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/preferences.png" /> &nbsp;' . utf8_htmlspecialchars(i18n('translate', array('Preferences')), ENT_QUOTES),'eyeDesk_View_Icons_ContextMenu_preferences','Preferences','',$myPid . '_eyeDesk_View_Icons_ContextMenu_preferences_img');
@@ -226,12 +226,12 @@ function eyeDesk_on_OpenPath($params = '') {
 	$i = 0;
 	$x = 30;
 	$y = 30;
-	foreach (eyeFiles('getDeskContent') as $file) {
+	foreach (xenonFiles('getDeskContent') as $file) {
 		if ($file[1] == 'file') {
 			$menu = $menu_files;
 			$image = 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/filetypes/unknown.png';
 			$extension = strtolower(substr(strrchr($file[2], '.'), 1)); // utf8
-			if ($shareConf['eyeFiles'][0]['CreateThumbnails'][0] != '0' && ($extension == 'bmp' || $extension == 'gif' || $extension == 'jpeg' || $extension == 'jpg' || $extension == 'png') && function_exists('gd_info')) {
+			if ($shareConf['xenonFiles'][0]['CreateThumbnails'][0] != '0' && ($extension == 'bmp' || $extension == 'gif' || $extension == 'jpeg' || $extension == 'jpg' || $extension == 'png') && function_exists('gd_info')) {
 				$gd_info = gd_info();
 				if ($extension == 'bmp' || ($extension == 'gif' && $gd_info['GIF Read Support'] && $gd_info['GIF Create Support']) || (($extension == 'jpeg' || $extension == 'jpg') && $gd_info['JPEG Support']) || ($extension == 'png' && $gd_info['PNG Support'])) {
 					$image = 'index.php?checknum=' . $checknum . '&msg=GetThumbnail&params=<File>' . $file[2] . '</File>';
@@ -312,7 +312,7 @@ function eyeDesk_on_OpenPath($params = '') {
 			'father' => 'eyeDesk_Container',
 			'image' => $image,
 			'name' => 'eyeDesk_View_Icons_Icon_' . $i,
-			'onclick' => $confFiles['eyeFiles'][0]['clickMethod'][0],
+			'onclick' => $confFiles['xenonFiles'][0]['clickMethod'][0],
 			'overClass' => 'eyeDesk_iconsOver',
 			'text' => $file[2],
 			'useClass' => 1,
@@ -331,7 +331,7 @@ function eyeDesk_on_OpenPath($params = '') {
 		));
 		$myWidgetDrag->show();
 
-		if ($file[1] === 'folder' || $file[1] === 'link' && (strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 7)) === 'home://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 9)) === 'groups://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'trash://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'users://' || strtolower(substr($xml['eyeLink'][0]['content'][0],0,7)) == 'real://' || in_array($xml['eyeLink'][0]['content'][0], array('eyeFiles.app', 'eyeGroups.app', 'eyeTrash.app')) === true)) { // utf8
+		if ($file[1] === 'folder' || $file[1] === 'link' && (strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 7)) === 'home://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 9)) === 'groups://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'trash://' || strtolower(substr($xml['eyeLink'][0]['content'][0], 0, 8)) === 'users://' || strtolower(substr($xml['eyeLink'][0]['content'][0],0,7)) == 'real://' || in_array($xml['eyeLink'][0]['content'][0], array('xenonFiles.app', 'eyeGroups.app', 'eyeTrash.app')) === true)) { // utf8
 			$myWidgetDrop = new widgetDrop(array(
 				'father' => $myIcon->name . '_Container',
 				'name' => $myIcon->name . '_WidgetDrop'
@@ -339,7 +339,7 @@ function eyeDesk_on_OpenPath($params = '') {
 			$myWidgetDrop->show();
 			if ($file[1] == 'folder') {
 				$content = 'home://Desktop/' . $file[0] . '/';
-			} elseif ($xml['eyeLink'][0]['content'][0] == 'eyeFiles.app') {
+			} elseif ($xml['eyeLink'][0]['content'][0] == 'xenonFiles.app') {
 				$content = 'home:///';
 			} elseif ($xml['eyeLink'][0]['content'][0] == 'eyeGroups.app') {
 				$content = 'groups:///';

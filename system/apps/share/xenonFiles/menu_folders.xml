@@ -2,7 +2,7 @@
 	<entry>
 		<icon>launcher</icon>
 		<text>Explore</text>
-		<action>eyeFiles</action>
+		<action>xenonFiles</action>
 	</entry>
 	<entry>
 		<icon>download</icon>

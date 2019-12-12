@@ -14,40 +14,40 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeFiles_run($params = '') {
+function xenonFiles_run($params = '') {
 	global $checknum;
 	global $currentUser;
 	global $myPid;
 
-	if (isset($_SESSION['eyeFiles'][$myPid]) === false || !$_SESSION['eyeFiles'][$myPid]['history']['list']) {
-		$_SESSION['eyeFiles'][$myPid]['history']['list'] = array();
-		$_SESSION['eyeFiles'][$myPid]['history']['position'] = -1;
+	if (isset($_SESSION['xenonFiles'][$myPid]) === false || !$_SESSION['xenonFiles'][$myPid]['history']['list']) {
+		$_SESSION['xenonFiles'][$myPid]['history']['list'] = array();
+		$_SESSION['xenonFiles'][$myPid]['history']['position'] = -1;
 	}
 
-	$xml = xenonXML('getXMLconfig',array('eyeFiles','conf.xml'));
-	if (isset($xml['eyeFiles'][0]['Box']) === false || !$xml['eyeFiles'][0]['Box'][0]) {
-		$xml['eyeFiles'][0]['Box'][0] = 'Tree';
+	$xml = xenonXML('getXMLconfig',array('xenonFiles','conf.xml'));
+	if (isset($xml['xenonFiles'][0]['Box']) === false || !$xml['xenonFiles'][0]['Box'][0]) {
+		$xml['xenonFiles'][0]['Box'][0] = 'Tree';
 	}
-	if (isset($xml['eyeFiles'][0]['View']) === false || !$xml['eyeFiles'][0]['View'][0]) {
-		$xml['eyeFiles'][0]['View'][0] = 1;
+	if (isset($xml['xenonFiles'][0]['View']) === false || !$xml['xenonFiles'][0]['View'][0]) {
+		$xml['xenonFiles'][0]['View'][0] = 1;
 	}
 
 	$myWindow = new Window(array(
 		'cent' => 1,
 		'father' => 'xenonApps',
 		'height' => 550,
-		'name' => 'eyeFiles_Window',
+		'name' => 'xenonFiles_Window',
 		'savePosition' => 1,
 		'sendResizeMsg' => 1,
 		'sigResize' => 'Resize',
 		'width' => 750
 	));
 	$myWindow->show();
-	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Window_Content"); e.style.backgroundPosition = "right bottom"; e.style.backgroundRepeat = "no-repeat";'));
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_xenonFiles_Window_Content"); e.style.backgroundPosition = "right bottom"; e.style.backgroundRepeat = "no-repeat";'));
 
 	$myToolbar = new Toolbar(array(
-		'father' => 'eyeFiles_Window_Content',
-		'name' => 'eyeFiles_Toolbar'
+		'father' => 'xenonFiles_Window_Content',
+		'name' => 'xenonFiles_Toolbar'
 	));
 	$myToolbar->show();
 	$myToolbar->addItem('Back','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/previous.png','Back');
@@ -113,49 +113,49 @@ function eyeFiles_run($params = '') {
 	$myToolbar->addItem('Fullscreen','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/fullScreen.png','Full Screen','',1);
 
 	$myHiddenBox = new Hidden(array(
-		'father' => 'eyeFiles_Window_Content',
-		'name' => 'eyeFiles_Hidden_Box',
-		'text' => $xml['eyeFiles'][0]['Box'][0]
+		'father' => 'xenonFiles_Window_Content',
+		'name' => 'xenonFiles_Hidden_Box',
+		'text' => $xml['xenonFiles'][0]['Box'][0]
 	));
 	$myHiddenBox->show();
 
 	$myHiddenStack = new Hidden(array(
-		'father' => 'eyeFiles_Window_Content',
-		'name' => 'eyeFiles_Hidden_Stack',
+		'father' => 'xenonFiles_Window_Content',
+		'name' => 'xenonFiles_Hidden_Stack',
 		'text' => array()
 	));
 	eyeWidgets('serialize',array($myHiddenStack));
 
 	$myHiddenStackPosition = new Hidden(array(
-		'father' => 'eyeFiles_Window_Content',
-		'name' => 'eyeFiles_Hidden_StackPosition',
+		'father' => 'xenonFiles_Window_Content',
+		'name' => 'xenonFiles_Hidden_StackPosition',
 		'text' => 0
 	));
 	eyeWidgets('serialize',array($myHiddenStackPosition));
 
 	$myBoxTree = new Box(array(
-		'father' => 'eyeFiles_Window_Content',
+		'father' => 'xenonFiles_Window_Content',
 		'height' => $myWindow->height - 155,
-		'name' => 'eyeFiles_Box_Tree',
+		'name' => 'xenonFiles_Box_Tree',
 		'title' => 'Tree',
 		'width' => 170,
 		'x' => 5,
 		'y' => 65
 	));
 	$myBoxTree->show(0);
-	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_Tree_Container");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_xenonFiles_Box_Tree_Container");
 	e.style.height = "24px";
 	e.onclick = function() {
-		if (xGetElementById("' . $myPid . '_eyeFiles_Hidden_Box").value != "Tree") {
-			e = xGetElementById("' . $myPid . '_eyeFiles_Box_Tree_Container");
+		if (xGetElementById("' . $myPid . '_xenonFiles_Hidden_Box").value != "Tree") {
+			e = xGetElementById("' . $myPid . '_xenonFiles_Box_Tree_Container");
 			e.style.cursor = "";
 			e.style.overflow = "";
-			e = xGetElementById("' . $myPid . '_eyeFiles_Box_View_Container");
+			e = xGetElementById("' . $myPid . '_xenonFiles_Box_View_Container");
 			e.style.bottom = "35px";
 			e.style.cursor = "pointer";
 			e.style.overflow = "hidden";
 			e.style.top = "";
-			e = xGetElementById("' . $myPid . '_eyeFiles_Box_Actions_Container");
+			e = xGetElementById("' . $myPid . '_xenonFiles_Box_Actions_Container");
 			e.style.bottom = "5px";
 			e.style.cursor = "pointer";
 			e.style.overflow = "hidden";
@@ -165,9 +165,9 @@ function eyeFiles_run($params = '') {
 	}'));
 
 	$myBoxView = new Box(array(
-		'father' => 'eyeFiles_Window_Content',
+		'father' => 'xenonFiles_Window_Content',
 		'height' => $myBoxTree->height,
-		'name' => 'eyeFiles_Box_View',
+		'name' => 'xenonFiles_Box_View',
 		'title' => 'View',
 		'vert' => 1,
 		'width' => $myBoxTree->width,
@@ -175,21 +175,21 @@ function eyeFiles_run($params = '') {
 		'y' => 35
 	));
 	$myBoxView->show(0);
-	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_View_Container");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_xenonFiles_Box_View_Container");
 	e.style.cursor = "pointer";
 	e.style.height = "24px";
 	e.style.overflow = "hidden";
 	e.onclick = function() {
-		if (xGetElementById("' . $myPid . '_eyeFiles_Hidden_Box").value != "View") {
-			e = xGetElementById("' . $myPid . '_eyeFiles_Box_Tree_Container");
+		if (xGetElementById("' . $myPid . '_xenonFiles_Hidden_Box").value != "View") {
+			e = xGetElementById("' . $myPid . '_xenonFiles_Box_Tree_Container");
 			e.style.cursor = "pointer";
 			e.style.overflow = "hidden";
-			e = xGetElementById("' . $myPid . '_eyeFiles_Box_View_Container");
+			e = xGetElementById("' . $myPid . '_xenonFiles_Box_View_Container");
 			e.style.bottom = "";
 			e.style.cursor = "";
 			e.style.overflow = "";
 			e.style.top = "95px";
-			e = xGetElementById("' . $myPid . '_eyeFiles_Box_Actions_Container");
+			e = xGetElementById("' . $myPid . '_xenonFiles_Box_Actions_Container");
 			e.style.bottom = "5px";
 			e.style.cursor = "pointer";
 			e.style.overflow = "hidden";
@@ -197,28 +197,28 @@ function eyeFiles_run($params = '') {
 			sendMsg(' . $checknum . ',"ChangeBox",eyeParam("Box","View"));
 		}
 	}'));
-	if ($xml['eyeFiles'][0]['Box'][0] == 'View') {
-		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_Tree_Container");
+	if ($xml['xenonFiles'][0]['Box'][0] == 'View') {
+		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_xenonFiles_Box_Tree_Container");
 		e.style.cursor = "pointer";
 		e.style.overflow = "hidden";
-		e = xGetElementById("' . $myPid . '_eyeFiles_Box_View_Container");
+		e = xGetElementById("' . $myPid . '_xenonFiles_Box_View_Container");
 		e.style.bottom = "";
 		e.style.cursor = "";
 		e.style.overflow = "";
 		e.style.top = "95px";'));
 	}
-	include(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/boxes/view' . XE_CODE_EXTENSION);
+	include(XENONOS_ROOT . '/' . APP_DIR . '/xenonFiles/boxes/view' . XE_CODE_EXTENSION);
 
 	$myHiddenAction = new Hidden(array(
-		'father' => 'eyeFiles_Window_Content',
-		'name' => 'eyeFiles_Hidden_Action'
+		'father' => 'xenonFiles_Window_Content',
+		'name' => 'xenonFiles_Hidden_Action'
 	));
 	$myHiddenAction->show();
 
 	$myBoxActions = new Box(array(
-		'father' => 'eyeFiles_Window_Content',
+		'father' => 'xenonFiles_Window_Content',
 		'height' => $myBoxTree->height,
-		'name' => 'eyeFiles_Box_Actions',
+		'name' => 'xenonFiles_Box_Actions',
 		'title' => 'Actions',
 		'vert' => 1,
 		'width' => $myBoxTree->width,
@@ -226,21 +226,21 @@ function eyeFiles_run($params = '') {
 		'y' => 5
 	));
 	$myBoxActions->show(0);
-	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_Actions_Container");
+	xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_xenonFiles_Box_Actions_Container");
 	e.style.cursor = "pointer";
 	e.style.height = "24px";
 	e.style.overflow = "hidden";
 	e.onclick = function() {
-		if (xGetElementById("' . $myPid . '_eyeFiles_Hidden_Box").value != "Actions") {
-			e = xGetElementById("' . $myPid . '_eyeFiles_Box_Tree_Container");
+		if (xGetElementById("' . $myPid . '_xenonFiles_Hidden_Box").value != "Actions") {
+			e = xGetElementById("' . $myPid . '_xenonFiles_Box_Tree_Container");
 			e.style.cursor = "pointer";
 			e.style.overflow = "hidden";
-			e = xGetElementById("' . $myPid . '_eyeFiles_Box_View_Container");
+			e = xGetElementById("' . $myPid . '_xenonFiles_Box_View_Container");
 			e.style.bottom = "";
 			e.style.cursor = "pointer";
 			e.style.overflow = "hidden";
 			e.style.top = "95px";
-			e = xGetElementById("' . $myPid . '_eyeFiles_Box_Actions_Container");
+			e = xGetElementById("' . $myPid . '_xenonFiles_Box_Actions_Container");
 			e.style.bottom = "";
 			e.style.cursor = "";
 			e.style.overflow = "";
@@ -248,26 +248,26 @@ function eyeFiles_run($params = '') {
 			sendMsg(' . $checknum . ',"ChangeBox",eyeParam("Box","Actions"));
 		}
 	}'));
-	if ($xml['eyeFiles'][0]['Box'][0] == 'Actions') {
-		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_eyeFiles_Box_Tree_Container");
+	if ($xml['xenonFiles'][0]['Box'][0] == 'Actions') {
+		xenonx('rawjs',array('js' => 'e = xGetElementById("' . $myPid . '_xenonFiles_Box_Tree_Container");
 		e.style.cursor = "pointer";
 		e.style.overflow = "hidden";
-		e = xGetElementById("' . $myPid . '_eyeFiles_Box_View_Container");
+		e = xGetElementById("' . $myPid . '_xenonFiles_Box_View_Container");
 		e.style.bottom = "";
 		e.style.top = "95px";
-		e = xGetElementById("' . $myPid . '_eyeFiles_Box_Actions_Container");
+		e = xGetElementById("' . $myPid . '_xenonFiles_Box_Actions_Container");
 		e.style.bottom = "";
 		e.style.cursor = "";
 		e.style.overflow = "";
 		e.style.top = "125px";'));
 	}
-	include(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/boxes/actions' . XE_CODE_EXTENSION);
+	include(XENONOS_ROOT . '/' . APP_DIR . '/xenonFiles/boxes/actions' . XE_CODE_EXTENSION);
 
 	$y = $myBoxTree->y;
 
 	$myImageboxLeft = new Imagebox(array(
-		'father' => 'eyeFiles_Window_Content',
-		'name' => 'eyeFiles_Imagebox_Path_Left',
+		'father' => 'xenonFiles_Window_Content',
+		'name' => 'xenonFiles_Imagebox_Path_Left',
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/windows/pathleft.png',
 		'x' => $myBoxTree->width + 13,
 		'y' => $y
@@ -275,14 +275,14 @@ function eyeFiles_run($params = '') {
 	$myImageboxLeft->show();
 
 	$myHiddenPath = new Hidden(array(
-		'father' => 'eyeFiles_Window_Content',
-		'name' => 'eyeFiles_Hidden_Path'
+		'father' => 'xenonFiles_Window_Content',
+		'name' => 'xenonFiles_Hidden_Path'
 	));
 	$myHiddenPath->show();
 
 	$myTextbox = new Textbox(array(
-		'father' => 'eyeFiles_Window_Content',
-		'name' => 'eyeFiles_Textbox_Path',
+		'father' => 'xenonFiles_Window_Content',
+		'name' => 'xenonFiles_Textbox_Path',
 		'width' => $myWindow->width - $myBoxTree->width - 57,
 		'x' => $myImageboxLeft->x + 14,
 		'y' => $myBoxTree->y
@@ -305,8 +305,8 @@ function eyeFiles_run($params = '') {
 
 	$myImageboxRight = new Imagebox(array(
 		'disableMsg' => 0,
-		'father' => 'eyeFiles_Window_Content',
-		'name' => 'eyeFiles_Imagebox_Path_Right',
+		'father' => 'xenonFiles_Window_Content',
+		'name' => 'xenonFiles_Imagebox_Path_Right',
 		'signal' => 'OpenPath',
 		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/windows/pathgo.png',
 		'x' => $myTextbox->x + $myTextbox->width,
@@ -316,22 +316,22 @@ function eyeFiles_run($params = '') {
 	$myImageboxRight->show(0);
 	$myImageboxRight->setCss(array('cursor' => 'pointer'));
 
-	$GLOBALS['eyeFiles_Hidden_Box'] = $myHiddenBox;
-	$GLOBALS['eyeFiles_Box_Tree'] = $myBoxTree;
-	$GLOBALS['eyeFiles_Hidden_Action'] = $myHiddenAction;
-	$GLOBALS['eyeFiles_Hidden_Path'] = $myHiddenPath;
-	$GLOBALS['eyeFiles_Textbox_Path'] = $myTextbox;
-	include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeFiles/events' . XE_CODE_EXTENSION);
-	eyeFiles_on_OpenPath($params);
-	addListenerLibraryCall('onEvent','eyeFiles','update');
+	$GLOBALS['xenonFiles_Hidden_Box'] = $myHiddenBox;
+	$GLOBALS['xenonFiles_Box_Tree'] = $myBoxTree;
+	$GLOBALS['xenonFiles_Hidden_Action'] = $myHiddenAction;
+	$GLOBALS['xenonFiles_Hidden_Path'] = $myHiddenPath;
+	$GLOBALS['xenonFiles_Textbox_Path'] = $myTextbox;
+	include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonFiles/events' . XE_CODE_EXTENSION);
+	xenonFiles_on_OpenPath($params);
+	addListenerLibraryCall('onEvent','xenonFiles','update');
 	addListenerServiceCall('fullResized','xenonx','resizedbrowser');
 }
 
-function eyeFiles_end($params = '') {
+function xenonFiles_end($params = '') {
 	global $myPid;
 
-	unset($_SESSION['eyeFiles'][$myPid]);
-	removeListenerLibraryCall('eyeFiles','update');
+	unset($_SESSION['xenonFiles'][$myPid]);
+	removeListenerLibraryCall('xenonFiles','update');
 	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize',$params);
 }

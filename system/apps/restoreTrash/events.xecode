@@ -20,7 +20,7 @@ function restoreTrash_on_Close($params = '') {
 
 function restoreTrash_on_Do($params = '') {
 	if ($GLOBALS['restoreTrash_Hidden_To']->text) {
-		$to = eyeFiles('cleanPath',array($GLOBALS['restoreTrash_Hidden_To']->text));
+		$to = xenonFiles('cleanPath',array($GLOBALS['restoreTrash_Hidden_To']->text));
 	}
 	$file = substr($GLOBALS['restoreTrash_Hidden_Path']->text, 0, -strlen('.' . XENONOS_TRASH_EXT)); // utf8
 	$path = um('getCurrentUserDir') . '/' . TRASH_USER_DIR . '/';
@@ -61,7 +61,7 @@ function restoreTrash_on_Do($params = '') {
 	if ($GLOBALS['restoreTrash_Hidden_Callback']->text) {
 		xenonx('rawjs',array('js' => $GLOBALS['restoreTrash_Hidden_Callback']->text));
 	}
-	eyeFiles('update',array($path,'trash:///'));
+	xenonFiles('update',array($path,'trash:///'));
 	proc('end');
 }
 

@@ -34,7 +34,7 @@ function xenonFTP_on_xenonFTP_localHome_IMG() {
 function xenonFTP_on_xenonFTP_refreshLocal() {
 	$conf = xenonFTP_getConf();
 	xenonFTP_browseLocal($conf['currentLocalDir']);
-	eyeFiles('update',array($conf['currentLocalDir']));
+	xenonFiles('update',array($conf['currentLocalDir']));
 }
 
 function xenonFTP_on_xenonFTP_browseLocal() {

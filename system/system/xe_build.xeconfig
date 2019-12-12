@@ -64,7 +64,7 @@ define('SERVICE_FULL_PATH', XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.SERVICE_DIR.'/');
 define('LIB_FULL_PATH', XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/');
 
 // XenonOS file extensions
-define('XENONOS_INFO_EXT', 'eyeInfo');
+define('XENONOS_INFO_EXT', 'xenonInfo');
 define('XENONOS_FILE_EXT', 'eyeFile');
 define('XENONOS_LINK_EXT', 'eyeLink');
 define('XE_CODE_EXTENSION', '.xecode');

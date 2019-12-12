@@ -20,29 +20,29 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeInfo_on_Close($prams = '')
+function xenonInfo_on_Close($prams = '')
 {
 	proc('end');
 }
 
-function eyeInfo_on_Message($params = '')
+function xenonInfo_on_Message($params = '')
 {
 	eyeWidgets('updateContent', $params);
 }
 
-function eyeInfo_on_Navigate($params = '')
+function xenonInfo_on_Navigate($params = '')
 {
 	proc('launch', array('eyeNav','http://touhouboi.duckdns.org/'));
 }
 
-function eyeInfo_on_PhpInfo($params = null)
+function xenonInfo_on_PhpInfo($params = null)
 {
 	global $checknum;
 	
 	proc('launch', array('eyeIframize', array('index.php?checknum=' . $checknum . '&msg=ShowPhpInfo', 'PHP Info')));
 }
 
-function eyeInfo_on_ShowPhpInfo($params = null)
+function xenonInfo_on_ShowPhpInfo($params = null)
 {
 	phpinfo();
 	exit;
