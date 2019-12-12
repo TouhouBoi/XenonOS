@@ -14,20 +14,20 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeMessages_on_Message($params="") {
+function xenonMessages_on_Message($params="") {
 	eyeWidgets('updateContent',$params);
 }
 
-function eyeMessages_on_Close(){
+function xenonMessages_on_Close(){
 	proc('end');
 }
 
-function eyeMessages_on_new($params) {
+function xenonMessages_on_new($params) {
 	global $checknum;
 	proc('launch', array('newMessage', array('callback' => array($checknum, 'gotosection'))));
 }
 
-function eyeMessages_on_open($params) {
+function xenonMessages_on_open($params) {
 	$hash = $GLOBALS['table_1']->selected;
 	$folder = "";
 	if ( /* utf8 */ strpos($hash, ',') !== false) {
@@ -41,10 +41,10 @@ function eyeMessages_on_open($params) {
 	}
 
 	if(empty($folder)) {
-		eyeMessages_on_gotosection();
+		xenonMessages_on_gotosection();
 	}
 
-	$msg = eyeMessages('openMessage', array($hash, $folder));
+	$msg = xenonMessages('openMessage', array($hash, $folder));
 
 	if(!is_array($msg)) {
 		xenonx('messageBox', array('content' => 'Error opening message'));
@@ -119,7 +119,7 @@ function eyeMessages_on_open($params) {
 	$y = 60;
 
 	if(is_array($msg['header'][0]['attach'])) {
-		$info = eyeMessages('getAttach', array($msg['header'][0]['attach'][0]));
+		$info = xenonMessages('getAttach', array($msg['header'][0]['attach'][0]));
 
 
 		if(is_array($info)) {
@@ -196,7 +196,7 @@ function eyeMessages_on_open($params) {
 	}
 }
 
-function eyeMessages_on_reply($params=null) {
+function xenonMessages_on_reply($params=null) {
 	if(is_object($GLOBALS['openMessage_WND'])) {
 		$to = $GLOBALS['tboxFrom']->text;
 		$subject = 'Re: '.$GLOBALS['tboxSubject']->text;
@@ -207,7 +207,7 @@ function eyeMessages_on_reply($params=null) {
 	}
 }
 
-function eyeMessages_on_downloadAttach($params=null) {
+function xenonMessages_on_downloadAttach($params=null) {
 	global $checknum;
 
 	$options = array(
@@ -219,21 +219,21 @@ function eyeMessages_on_downloadAttach($params=null) {
 	proc('launch',array('xenonDialog',$options));
 }
 
-function eyeMessages_on_SelectFileSave($params=null) {
+function xenonMessages_on_SelectFileSave($params=null) {
 	$file = $params['arg'][0];
 	$hash = $GLOBALS['filehash']->text;
 
 	if($file && $hash) {
 		$file = um('getCurrentUserDir').FILES_USER_DIR.'/'.$file;
 
-		if(eyeSwap('getFile', array($hash.'.fileSwap', $file, 'eyeMessages'))) {
+		if(eyeSwap('getFile', array($hash.'.fileSwap', $file, 'xenonMessages'))) {
 			xenonFiles('update',array(dirname($file)));
 			xenonx('messageBox',array('content'=>'File saved successfully.'));
 		}
 	}
 }
 
-function eyeMessages_on_empty($params=null) {
+function xenonMessages_on_empty($params=null) {
 	if(!is_object($GLOBALS['section']) || empty($GLOBALS['section']->text)) {
 		return;
 	}
@@ -253,29 +253,29 @@ function eyeMessages_on_empty($params=null) {
 	));
 }
 
-function eyeMessages_on_emptyYes($params=null) {
-	eyeMessages('empty', array($GLOBALS['section']->text));
+function xenonMessages_on_emptyYes($params=null) {
+	xenonMessages('empty', array($GLOBALS['section']->text));
 	xenonx('messageBox', array('content' => 'Emptied'));
 	$GLOBALS['emptyWND']->close();
-	eyeMessages_on_gotosection();
+	xenonMessages_on_gotosection();
 }
 
-function eyeMessages_on_emptyNo($params=null) {
+function xenonMessages_on_emptyNo($params=null) {
 	$GLOBALS['emptyWND']->close();
 }
 
-function eyeMessages_on_restore($params=null) {
+function xenonMessages_on_restore($params=null) {
 	$hash = $GLOBALS['table_1']->selected;
 
 	if ( /* utf8 */ strpos($hash, ',') !== false) {
 		$hash = substr($hash, 0, strpos($hash, ',')); // utf8
 	}
-	eyeMessages('restoreMessage', array($hash));
+	xenonMessages('restoreMessage', array($hash));
 	xenonx('messageBox', array('content' => 'Message restored in its original folder'));
-	eyeMessages_on_gotosection();
+	xenonMessages_on_gotosection();
 }
 
-function eyeMessages_on_delete($params=null) {
+function xenonMessages_on_delete($params=null) {
 	$hash = $GLOBALS['table_1']->selected;
 	$folder = "";
 	if ( /* utf8 */ strpos($hash, ',') !== false) {
@@ -288,11 +288,11 @@ function eyeMessages_on_delete($params=null) {
 		return;
 	}
 
-	eyeMessages('deleteMessage', array($hash, $folder));
-	eyeMessages_on_gotosection();
+	xenonMessages('deleteMessage', array($hash, $folder));
+	xenonMessages_on_gotosection();
 }
 
-function eyeMessages_on_gotosection($params=null) {
+function xenonMessages_on_gotosection($params=null) {
 	if(!is_array($params) || empty($params['section'][0])) {
 		$section = $GLOBALS['section']->text;
 	} else {
@@ -318,7 +318,7 @@ function eyeMessages_on_gotosection($params=null) {
 	xenonx('rawjs', array('js' => $js));
 
 	if($section == 'read') {
-		$list = eyeMessages('getRead');
+		$list = xenonMessages('getRead');
 		if(is_array($list)) {
 			foreach($list as $value) {
 				$myDate = date('Y-m-d G:i',$value['date']);
@@ -326,7 +326,7 @@ function eyeMessages_on_gotosection($params=null) {
 			}
 		}
 	} elseif($section == 'unread') {
-		$list = eyeMessages('getUnread');
+		$list = xenonMessages('getUnread');
 		if(is_array($list)) {
 			foreach($list as $value) {
 				$myDate = date('Y-m-d G:i',$value['date']);
@@ -334,7 +334,7 @@ function eyeMessages_on_gotosection($params=null) {
 			}
 		}
 	} elseif($section == 'inbox') {
-		$list = eyeMessages('getInbox');
+		$list = xenonMessages('getInbox');
 
 		if(is_array($list)) {
 			foreach($list as $value) {
@@ -343,7 +343,7 @@ function eyeMessages_on_gotosection($params=null) {
 			}
 		}
 	} elseif($section == 'sent') {
-		$list = eyeMessages('getSent');
+		$list = xenonMessages('getSent');
 		if(is_array($list)) {
 			foreach($list as $value) {
 				$myDate = date('Y-m-d G:i', $value['date']);
@@ -351,7 +351,7 @@ function eyeMessages_on_gotosection($params=null) {
 			}
 		}
 	} elseif($section == 'trash') {
-		$list = eyeMessages('getTrash');
+		$list = xenonMessages('getTrash');
 		if(is_array($list)) {
 			foreach($list as $value) {
 				$myDate = date('Y-m-d G:i',$value['date']);
@@ -362,14 +362,14 @@ function eyeMessages_on_gotosection($params=null) {
 	$GLOBALS['table_1']->sort(2, true);
 }
 
-function eyeMessages_on_mainResize($params=''){
+function xenonMessages_on_mainResize($params=''){
 	$width = intval($params['arg'][0]);
 	$height = intval($params['arg'][1]);
 
-	$widthDiff = $GLOBALS['eyeMessagesWND']->width - $width;
-	$heightDiff = $GLOBALS['eyeMessagesWND']->height - $height;
-	$GLOBALS['eyeMessagesWND']->width = $width;
-	$GLOBALS['eyeMessagesWND']->height = $height;
+	$widthDiff = $GLOBALS['xenonMessagesWND']->width - $width;
+	$heightDiff = $GLOBALS['xenonMessagesWND']->height - $height;
+	$GLOBALS['xenonMessagesWND']->width = $width;
+	$GLOBALS['xenonMessagesWND']->height = $height;
 
 	//Reusing  the var because we don't need it anymore
 	$width = $GLOBALS['msgContainer']->width - $widthDiff;
@@ -384,8 +384,8 @@ function eyeMessages_on_mainResize($params=''){
 	$GLOBALS['table_1']->setHeight($height);
 }
 
-function eyeMessages_on_fullScreen(){
+function xenonMessages_on_fullScreen(){
 	global $myPid;
-	$GLOBALS['eyeMessagesWND']->setFullScreen();
+	$GLOBALS['xenonMessagesWND']->setFullScreen();
 }
 ?>

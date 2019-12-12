@@ -105,7 +105,7 @@ function miniMessages_run($params=null) {
 	));
 	$containerMessages->show();
 
-	$newMsgs = eyeMessages('getUnread');
+	$newMsgs = xenonMessages('getUnread');
 
 	if(is_array($newMsgs)) {
 		$newMsgs = date_sort($newMsgs);

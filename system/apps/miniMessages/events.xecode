@@ -29,10 +29,10 @@ function miniMessages_on_Refresh($params=null) {
 }
 
 function miniMessages_on_Launch($params=null) {
-	$messagesPid = proc('findPidByName', array('eyeMessages'));
+	$messagesPid = proc('findPidByName', array('xenonMessages'));
 
 	if($messagesPid == false) {
-		proc('launch', array('eyeMessages'));
+		proc('launch', array('xenonMessages'));
 	}
 }
 

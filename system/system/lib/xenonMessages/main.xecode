@@ -14,8 +14,8 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function lib_eyeMessages_start($params=null) {
-	$msgDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/';
+function lib_xenonMessages_start($params=null) {
+	$msgDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/';
 
 	vfs('real_mkDir', array($msgDir));
 	vfs('real_mkDir', array($msgDir.'read/'));
@@ -23,7 +23,7 @@ function lib_eyeMessages_start($params=null) {
 	vfs('real_mkDir', array($msgDir.'trash/'));
 }
 
-function lib_eyeMessages_sendMessage($params) {
+function lib_xenonMessages_sendMessage($params) {
 	if(!is_array($params) || count($params) < 3) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
@@ -48,7 +48,7 @@ function lib_eyeMessages_sendMessage($params) {
 		$addressees = /* utf8 */ explode(',', $to_users);
 		foreach($addressees as $ad) {
 			$ad = /* utf8 */ trim($ad);
-			if(eyeSwap('send', array($ad, $subject, $content, 'eyeMessages', $attach))) {
+			if(eyeSwap('send', array($ad, $subject, $content, 'xenonMessages', $attach))) {
 				if(empty($to)) {
 					$to = $ad;
 				} else {
@@ -68,7 +68,7 @@ function lib_eyeMessages_sendMessage($params) {
 
 				if(is_array($usersInGroup)) {
 					foreach($usersInGroup as $user) {
-						eyeSwap('send', array($user, $subject, $content, 'eyeMessages', $attach));
+						eyeSwap('send', array($user, $subject, $content, 'xenonMessages', $attach));
 					}
 
 					if(empty($to)) {
@@ -98,7 +98,7 @@ function lib_eyeMessages_sendMessage($params) {
 	);
 
 	$hash = md5(uniqid(time()));
-	$sentDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/sent/';
+	$sentDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/sent/';
 	while(vfs('real_fileExists',array($sentDir.$hash.'.msgSwap'))) {
 		$hash = md5(uniqid(time()));
 	}
@@ -107,7 +107,7 @@ function lib_eyeMessages_sendMessage($params) {
 	return true;
 }
 
-function lib_eyeMessages_openMessage($params) {
+function lib_xenonMessages_openMessage($params) {
 	if(!is_array($params) || count($params) < 2) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
@@ -121,15 +121,15 @@ function lib_eyeMessages_openMessage($params) {
 	}
 
 	if(empty($folder)) { //The message is not in one of eyeMessage's folders
-		$msg = eyeSwap('read', array($hash, 'eyeMessages'));
+		$msg = eyeSwap('read', array($hash, 'xenonMessages'));
 
 		if(!is_array($msg)) {
 			return false;
 		}
 
-		eyeSwap('delete', array($hash, 'eyeMessages'));
+		eyeSwap('delete', array($hash, 'xenonMessages'));
 
-		$readDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/read/';
+		$readDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/read/';
 		$xml = array(
 			'swapMessage' => array($msg)
 		);
@@ -142,26 +142,26 @@ function lib_eyeMessages_openMessage($params) {
 		vfs('real_create', array($readDir.$hash.'.msgSwap'));
 		xenonXML('setXMLfile', array($readDir.$hash.'.msgSwap', $xml));
 	} else {
-		$msg = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/'.$folder.'/'.$hash.'.msgSwap';
+		$msg = um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/'.$folder.'/'.$hash.'.msgSwap';
 		$msg = xenonXML('getXMLfile', array($msg));
 		$msg = $msg['swapMessage'][0];
 	}
 	return $msg;
 }
 
-function lib_eyeMessages_getAttach($params) {
+function lib_xenonMessages_getAttach($params) {
 	if(!is_array($params) || empty($params[0])) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
 
 	$fileHash = $params[0];
-	$swapDir = um('getCurrentUserDir').'swap/eyeMessages/';
+	$swapDir = um('getCurrentUserDir').'swap/xenonMessages/';
 	$info = xenonXML('getXMLfile', array($swapDir.$fileHash.'.infoSwap'));
 	return $info;
 }
 
-function lib_eyeMessages_deleteMessage($params) {
+function lib_xenonMessages_deleteMessage($params) {
 	if(!is_array($params) || count($params) < 2) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
@@ -175,11 +175,11 @@ function lib_eyeMessages_deleteMessage($params) {
 	}
 
 	if(empty($folder)) { //The message is still in the swap directory
-		$msg = eyeSwap('read', array($hash, 'eyeMessages'));
+		$msg = eyeSwap('read', array($hash, 'xenonMessages'));
 
-		eyeSwap('delete', array($hash, 'eyeMessages'));
+		eyeSwap('delete', array($hash, 'xenonMessages'));
 
-		$trashDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/trash/';
+		$trashDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/trash/';
 		$xml = array(
 			'swapMessage' => array($msg)
 		);
@@ -192,28 +192,28 @@ function lib_eyeMessages_deleteMessage($params) {
 		vfs('real_create', array($trashDir.$hash.'.msgSwap'));
 		xenonXML('setXMLfile', array($trashDir.$hash.'.msgSwap', $xml));
 	} else {
-		$dir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/'.$folder.'/'.$hash;
-		$trashDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/trash/';
+		$dir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/'.$folder.'/'.$hash;
+		$trashDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/trash/';
 		_move_message($dir, $trashDir);
 	}
 	return true;
 }
 
-function lib_eyeMessages_empty($params=null) {
+function lib_xenonMessages_empty($params=null) {
 	if(!is_array($params) || empty($params[0])) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
 	$section = $params[0];
 	if($section == "inbox" || $section == "unread") {
-		$list = eyeSwap('list', array('eyeMessages'));
+		$list = eyeSwap('list', array('xenonMessages'));
 		$attach = '';
 		foreach($list as $msg) {
-			$body = eyeSwap('read', array($msg['hash'], 'eyeMessages'));
+			$body = eyeSwap('read', array($msg['hash'], 'xenonMessages'));
 			if(is_array($body) && is_array($body['swapMessage'][0]['header'][0]['attach'])) {
 				eyeSwap('deleteFile', array($body['swapMessage'][0]['header'][0]['attach'][0]));
 			}
-			eyeSwap('delete', array($msg['hash'], 'eyeMessages'));
+			eyeSwap('delete', array($msg['hash'], 'xenonMessages'));
 		}
 	}
 
@@ -222,7 +222,7 @@ function lib_eyeMessages_empty($params=null) {
 		if($section == "inbox") {
 			$section = "read";
 		}
-		$dir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/'.$section;
+		$dir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/'.$section;
 
 		$list = vfs('real_getDirContent', array($dir));
 
@@ -230,7 +230,7 @@ function lib_eyeMessages_empty($params=null) {
 			foreach($list as $msg) {
 				$xml = xenonXML('getXMLfile', array($msg));
 				if(is_array($xml['swapMessage'][0]['header'][0]['attach'])) {
-					eyeSwap('deleteFile', array($xml['swapMessage'][0]['header'][0]['attach'][0], 'eyeMessages'));
+					eyeSwap('deleteFile', array($xml['swapMessage'][0]['header'][0]['attach'][0], 'xenonMessages'));
 				}
 				vfs('real_delete', array($msg));
 			}
@@ -239,28 +239,28 @@ function lib_eyeMessages_empty($params=null) {
 	return true;
 }
 
-function lib_eyeMessages_restoreMessage($params) {
+function lib_xenonMessages_restoreMessage($params) {
 	if(!is_array($params) || empty($params[0])) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
 
 	$hash = $params[0];
-	$trashDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/trash/';
-	$readDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/read/';
+	$trashDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/trash/';
+	$readDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/read/';
 	_move_message($trashDir.$hash, $readDir);
 }
 
-function lib_eyeMessages_getUnread($params=null) {
-	$list = eyeSwap('list', array('eyeMessages'));
+function lib_xenonMessages_getUnread($params=null) {
+	$list = eyeSwap('list', array('xenonMessages'));
 	if (is_array($list) === true) {
 		return $list;
 	}
 	return array();
 }
 
-function lib_eyeMessages_getRead($params=null) {
-	$readDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/read/';
+function lib_xenonMessages_getRead($params=null) {
+	$readDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/read/';
 
 	$list = vfs('real_getDirContent', array($readDir, '*.msgSwap'));
 
@@ -277,13 +277,13 @@ function lib_eyeMessages_getRead($params=null) {
 	return $myArray;
 }
 
-function lib_eyeMessages_getInbox($params=null) {
-	$list = array_merge(lib_eyeMessages_getUnread(), lib_eyeMessages_getRead());
+function lib_xenonMessages_getInbox($params=null) {
+	$list = array_merge(lib_xenonMessages_getUnread(), lib_xenonMessages_getRead());
 	return $list;
 }
 
-function lib_eyeMessages_getTrash($params=null) {
-	$trashDir =	um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/trash/';
+function lib_xenonMessages_getTrash($params=null) {
+	$trashDir =	um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/trash/';
 
 	$list = vfs('real_getDirContent', array($trashDir, '*.msgSwap'));
 
@@ -300,8 +300,8 @@ function lib_eyeMessages_getTrash($params=null) {
 	return $myArray;
 }
 
-function lib_eyeMessages_getSent($params=null) {
-	$sentDir = um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/sent/';
+function lib_xenonMessages_getSent($params=null) {
+	$sentDir = um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/sent/';
 
 	$list = vfs('real_getDirContent', array($sentDir, '*.msgSwap'));
 

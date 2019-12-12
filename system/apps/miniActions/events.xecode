@@ -75,7 +75,7 @@ function miniActions_on_Launch1($params=null) {
 }
 
 function miniActions_on_Launch2($params=null) {
-	proc('launch', array('eyeMessages'));
+	proc('launch', array('xenonMessages'));
 }
 
 function miniActions_on_Launch3($params=null) {

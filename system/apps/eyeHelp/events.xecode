@@ -227,7 +227,7 @@ function eyeHelp_on_pref()
 				'btn1_capt' => 'Submit',
 				'btn1_name' => 'submit',
 				'content' => 'User to contact to ask for help:',
-				'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/eyeMessages.png',
+				'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/xenonMessages.png',
 				'textbox_name' => 'eyeHelp_contact_box',
 				'textbox_text' => $xml['eyeHelp'][0]['contact'][0],
 				'textbox_event' => 'submit',

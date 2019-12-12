@@ -46,7 +46,7 @@ function newMessage_on_send($params) {
 	$content = $GLOBALS['contentTarea']->text;
 	$attach = um('getCurrentUserDir').FILES_USER_DIR.'/'.$GLOBALS['tboxAttach']->text;
 
-	if(eyeMessages('sendMessage', array($to_users, $subject, $content, $attach, $to_groups))) {
+	if(xenonMessages('sendMessage', array($to_users, $subject, $content, $attach, $to_groups))) {
 		xenonx('messageBox', array('content' => 'Message sent'));
 
 		if(is_object($GLOBALS['callback'])) {

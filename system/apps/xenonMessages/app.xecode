@@ -20,13 +20,13 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeMessages_run($params = null)
+function xenonMessages_run($params = null)
 {
 	global $myPid, $checknum;
 	
 	//Check if the user has the needed directories
-	if (!vfs('isdir', array(um('getCurrentUserDir').CONF_USER_DIR.'/eyeMessages/'))) {
-		eyeMessages('start');
+	if (!vfs('isdir', array(um('getCurrentUserDir').CONF_USER_DIR.'/xenonMessages/'))) {
+		xenonMessages('start');
 	}
 
 	if ($params['action'] == 'new')
@@ -40,7 +40,7 @@ function eyeMessages_run($params = null)
 
 	$myWindow = new Window(
 		array(
-			'name' => 'eyeMessagesWND',
+			'name' => 'xenonMessagesWND',
 			'father' => 'xenonApps',
 			'cent' => 1,
 			'width' => 700,
@@ -59,7 +59,7 @@ function eyeMessages_run($params = null)
 	$myLine = new Line(
 		array(
 			'name' => 'verticalPanel',
-			'father' =>'eyeMessagesWND_Content',
+			'father' =>'xenonMessagesWND_Content',
 			'x' => 140,
 			'y' => 59,
 			'width' => 1,
@@ -73,7 +73,7 @@ function eyeMessages_run($params = null)
 	$inboxcontainer = new Container(
 		array(
 			'name' => 'inbox_container',
-			'father' => 'eyeMessagesWND_Content',
+			'father' => 'xenonMessagesWND_Content',
 			'x' => 10,
 			'y' => 80,
 			'width' => 129,
@@ -144,7 +144,7 @@ function eyeMessages_run($params = null)
 	$unreadcontainer = new Container(
 		array(
 			'name' => 'unread_container',
-			'father' => 'eyeMessagesWND_Content',
+			'father' => 'xenonMessagesWND_Content',
 			'x' => 10,
 			'y' => 100,
 			'width' => 129,
@@ -215,7 +215,7 @@ function eyeMessages_run($params = null)
 	$readcontainer = new Container(
 		array(
 			'name' => 'read_container',
-			'father' => 'eyeMessagesWND_Content',
+			'father' => 'xenonMessagesWND_Content',
 			'x' => 10,
 			'y' => 120,
 			'width' => 129,
@@ -274,7 +274,7 @@ function eyeMessages_run($params = null)
 	//left menu
 	$sentcontainer = new Container(array(
 		'name' => 'sent_container',
-		'father' => 'eyeMessagesWND_Content',
+		'father' => 'xenonMessagesWND_Content',
 		'x' => 10,
 		'y' => 140,
 		'width' => 129,
@@ -324,7 +324,7 @@ function eyeMessages_run($params = null)
 	//left menu
 	$trashcontainer = new Container(array(
 		'name' => 'trash_container',
-		'father' => 'eyeMessagesWND_Content',
+		'father' => 'xenonMessagesWND_Content',
 		'x' => 10,
 		'y' => 160,
 		'width' => 129,
@@ -373,7 +373,7 @@ function eyeMessages_run($params = null)
 
 	$myContainer = new Container(array(
 		'name' => 'msgContainer',
-		'father' => 'eyeMessagesWND_Content',
+		'father' => 'xenonMessagesWND_Content',
 		'x' => 142,
 		'y' => 60,
 		'width' => 555,
@@ -385,7 +385,7 @@ function eyeMessages_run($params = null)
 	//Initialize section by default to the Inbox
 	$myHidden = new Hidden(array(
 		'name' => 'section',
-		'father' => 'eyeMessagesWND',
+		'father' => 'xenonMessagesWND',
 		'text' => 'inbox'
 	));
 	eyeWidgets('serialize', array($myHidden));
@@ -408,7 +408,7 @@ function eyeMessages_run($params = null)
 	));
 	$myTable->show();
 
-	$myToolbar = new Toolbar(array('name'=>'myBar','father'=>'eyeMessagesWND_Content'));
+	$myToolbar = new Toolbar(array('name'=>'myBar','father'=>'xenonMessagesWND_Content'));
 	$myToolbar->show();
 	$myToolbar->addItem('new','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/message_new.png','New');
 	$myToolbar->addItem('open','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/message_open.png','(do) Read',array($myTable));
@@ -423,7 +423,7 @@ function eyeMessages_run($params = null)
 	xenonx('sendMessage', array('msg' => 'gotosection'));
 }
 
-function eyeMessages_end($params=null) {
+function xenonMessages_end($params=null) {
 	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize');
 }
