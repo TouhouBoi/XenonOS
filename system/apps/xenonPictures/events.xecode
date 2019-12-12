@@ -671,7 +671,7 @@ function xenonPictures_on_showImage($params) {
 		$new_height = (integer)($original_height * $ratio);
 	}
 	
-	$target_tmp_file = eyeSessions('getVar', array('xenonPictures_tmp_folder')) . '/' . /* utf8 */ substr(basename($file, '.' . $type), 0, 15) . '_' . vfs('real_filesize', array($file)) . '_' . $new_width . 'x' . $new_height . '.' . $type; // Example: ./users/rt4/root/tmp/eyeImages/Image_17005_640x480.png
+	$target_tmp_file = eyeSessions('getVar', array('xenonPictures_tmp_folder')) . '/' . /* utf8 */ substr(basename($file, '.' . $type), 0, 15) . '_' . vfs('real_filesize', array($file)) . '_' . $new_width . 'x' . $new_height . '.' . $type; // Example: ./users/rt4/root/tmp/xenonImages/Image_17005_640x480.png
 	
 	if (vfs('real_fileExists', array($target_tmp_file))) {
 		$filemtime = filemtime($target_tmp_file);
@@ -765,7 +765,7 @@ function xenonPictures_on_createThumbnail($params) {
 		$new_height = (integer)($original_height * $ratio);
 	}
 	
-	$path_thumbnail_cache = $tmp_folder_thumbnails . '/' . /* utf8 */ substr(basename($path, '.' . $type), 0, 15) . '_' . vfs('real_filesize', array($path)) . '_' . $new_width . 'x' . $new_height . '.' . $type; // Example: ./users/rt4/root/tmp/eyeImages/thumbnails/Image_17005_48x36.png
+	$path_thumbnail_cache = $tmp_folder_thumbnails . '/' . /* utf8 */ substr(basename($path, '.' . $type), 0, 15) . '_' . vfs('real_filesize', array($path)) . '_' . $new_width . 'x' . $new_height . '.' . $type; // Example: ./users/rt4/root/tmp/xenonImages/thumbnails/Image_17005_48x36.png
 	if (!vfs('real_fileExists', array($path_thumbnail_cache))) {
 		// The thumbnail is not in the cache. So let's create it!
 		xenonPictures_imageResizeRotate($noresize, $type, $path, $path_thumbnail_cache, $new_width, $new_height);
@@ -913,7 +913,7 @@ function xenonPictures_on_listContent($path) {
 					$new_height = (integer)($original_height * $ratio);
 				}
 				$tmp_folder_thumbnails = eyeSessions('getVar', array('xenonPictures_tmp_folder_thumbnails'));
-				$path_thumbnail_cache = $tmp_folder_thumbnails . '/' . /* utf8 */ substr($info['filename'], 0, 15) . '_' . vfs($functions_prefix.'filesize', array($realFile)) . '_' . $new_width . 'x' . $new_height . '.' . $kind; // Example: ./users/rt4/root/tmp/eyeImages/thumbnails/Image_17005_48x36.png
+				$path_thumbnail_cache = $tmp_folder_thumbnails . '/' . /* utf8 */ substr($info['filename'], 0, 15) . '_' . vfs($functions_prefix.'filesize', array($realFile)) . '_' . $new_width . 'x' . $new_height . '.' . $kind; // Example: ./users/rt4/root/tmp/xenonImages/thumbnails/Image_17005_48x36.png
 				$image_path = $path.'/'.$name;
 				
 				if (vfs('real_fileExists', array($path_thumbnail_cache))) {

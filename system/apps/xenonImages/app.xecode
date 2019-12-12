@@ -14,11 +14,11 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeImages_run($params = '') {
+function xenonImages_run($params = '') {
 	global $checknum;
 	if ($params[0]) {
-		include_once(XENONOS_ROOT . '/' . APP_DIR . '/eyeImages/events' . XE_CODE_EXTENSION);
-		eyeImages_on_Init($params);
+		include_once(XENONOS_ROOT . '/' . APP_DIR . '/xenonImages/events' . XE_CODE_EXTENSION);
+		xenonImages_on_Init($params);
 	} else {
 		proc('launch',array('xenonDialog',array(XENONDIALOG_TYPE_OPENFILE,'Init',$checknum,'',array(
 			'Image formats' => '*.bmp|*.gif|*.jpeg|*.jpg|*.png|*.tiff',
@@ -33,7 +33,7 @@ function eyeImages_run($params = '') {
 	}
 }
 
-function eyeImages_end($params = '') {
+function xenonImages_end($params = '') {
 	removeListenerServiceCall('xenonx','resizedbrowser');
 	eyeWidgets('unserialize',$params);
 }

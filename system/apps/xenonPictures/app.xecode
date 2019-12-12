@@ -19,7 +19,7 @@ function xenonPictures_run($params="") {
 	global $myPid,$currentUser;
 	
 	if (!extension_loaded('gd') || !function_exists('gd_info')) {
-		proc('launch', array('eyeImages', $params));
+		proc('launch', array('xenonImages', $params));
 		return proc('end');
 	}
 	
@@ -115,7 +115,7 @@ function xenonPictures_run($params="") {
 	$myToolbar->addLine();
 	
 	$itemIds[] = $myToolbar->addItem('browseSignal','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/search.png','Browse');
-	$itemIds[] = $myToolbar->addItem('viewSignal','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/eyeImages.png','View');
+	$itemIds[] = $myToolbar->addItem('viewSignal','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/xenonImages.png','View');
 	$itemIds[] = $myToolbar->addItem('slideShow','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/eyePresentation.png','Slide Show');
 	$myToolbar->addLine();
 	
