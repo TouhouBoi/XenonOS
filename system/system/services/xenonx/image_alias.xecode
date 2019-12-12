@@ -164,7 +164,7 @@ $pic22 = array(
 	'eyeFeeds',
 	'xenonFiles',
 	'eyeGroups',
-	'eyeHelp',
+	'xenonHelp',
 	'xenonImages',
 	'xenonMail',
 	'xenonMedia',

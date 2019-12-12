@@ -36,7 +36,7 @@ function xenonProcess_run($params = '') {
 		'horiz' => 1,
 		'x' => 8,
 		'y' => 28,
-		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/eyeHelp.png',
+		'url' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/xenonHelp.png',
 		'disableMsg' => 0,
 		'signal' => 'help'
 	));

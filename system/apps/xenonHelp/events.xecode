@@ -1,0 +1,323 @@
+<?php
+/*
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+ ##   ##  ##       ###   ## ##     ## ###   ## ##     ## ##    ##
+  ## ##   ##       ####  ## ##     ## ####  ## ##     ## ##
+   ###    ######   ## ## ## ##     ## ## ## ## ##     ##  ######
+  ## ##   ##       ##  #### ##     ## ##  #### ##     ##       ##
+ ##   ##  ##       ##   ### ##     ## ##   ### ##     ## ##    ##
+##     ## ######## ##    ##  #######  ##    ##  #######   ######
+
+
+XenonOS is a fork of the oneye project.
+XenonOS Copyright © 2019 Trinity (touhouboi@protonmail.com)
+
+Original Copyright
+------------------------------------------
+https://oneye-project.org
+Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
+             since 2010 Lars Knickrehm (mail@lars-sh.de)
+
+*/
+
+function xenonHelp_on_cancel($paramse = null)
+{
+	$GLOBALS["edit_wnd"]->close();
+}
+
+function xenonHelp_on_Message($params = null)
+{
+	eyeWidgets('updateContent',$params);
+}
+
+function xenonHelp_on_Resize($params = '')
+{
+	$GLOBALS['WND_1']->height = intval($params['arg'][1]);
+	$GLOBALS['WND_1']->width = intval($params['arg'][0]);
+	$GLOBALS['WND_2']->setHeight($GLOBALS['WND_1']->height - $GLOBALS['WND_2']->y - 28);
+	$GLOBALS['WND_2']->setWidth($GLOBALS['WND_1']->width - 215);
+	$GLOBALS['WND_3']->setHeight($GLOBALS['WND_2']->height);
+	$GLOBALS['BOX_1']->setHeight($GLOBALS['WND_3']->height - 0);
+	$GLOBALS['WND_BOX_1']->setHeight($GLOBALS['WND_3']->height - 29);
+}
+
+function xenonHelp_getFolder($params = null)
+{
+	global $myPid;
+
+	$return = XENONOS_ROOT.'/'.APP_DIR.'/'.SHARE_USER_DIR.'/xenonHelp/';
+
+	if ($params[0])
+	{
+		eyeSessions('setVar',array('xenonHelp_'.$myPid.'_app',$params[0]));
+	}
+
+	$app = eyeSessions('getVar',array('xenonHelp_'.$myPid.'_app'));
+
+	if($app != '' && $params['root'] != 1)
+	{
+		$return .= '/'.$app;
+	}
+
+	return($return);
+}
+
+function getTitleTopic($params = null)
+{
+	global $currentUser;
+	global $checknum,$myPid;
+
+	$oldUser = $currentUser;
+	$currentUser = ROOTUSER;
+	$myDir = $folder;
+
+	if (substr($myDir, -1) !== '/')
+	{
+		$myDir .= '/';
+	}
+
+	$myInfoFile = $myDir.'info.xml';
+
+	if (file_exists($myDir . $_SESSION['lang'] . '.xml') === true)
+	{
+		$myInfoFile = $myDir . $_SESSION['lang'] . '.xml';
+	}
+
+	$size = vfs('real_filesize',array($myInfoFile));
+
+	if ($size > 0)
+	{
+		$fp = vfs('real_open',array($myInfoFile,'r'));
+		$InfoContent = fread($fp,$size);
+
+		fclose($fp);
+	}
+
+	$currentUser = $oldUser;
+
+	$info = xenonXML('xml2array',array($InfoContent));
+	$info = $info['xenonHelp'][0];
+
+	$title = trim($info['title'][0]);
+	$myDir2 = substr($myDir, -1);
+
+	if($title == "")
+	{
+		$title = basename($myDir2);
+	}
+}
+
+function xenonHelp_on_goto($params = null)
+{
+	global $myPid, $checknum;
+	global $currentUser;
+
+	$folder = xenonHelp_getFolder();
+	$open = substr($params['itemName'][0], 5);
+
+	if ($params[0])
+	{
+		$open = str_replace('..','.',$params[0]);
+	}
+
+	if ($open == 'OX_1_Content')
+	{
+		$stop = TRUE;
+	}
+
+	if ($open && $stop!==TRUE)
+	{
+		$myDir = $open;
+
+		if (substr($myDir, -1) !== '/')
+		{
+			$myDir .= '/';
+		}
+
+		$oldUser = $currentUser;
+		$currentUser = ROOTUSER;
+		$myInfoFile = $myDir.'info.xml';
+
+		if (file_exists($myDir . $_SESSION['lang'] . '.xml') === true)
+		{
+			$myInfoFile = $myDir . $_SESSION['lang'] . '.xml';
+		}
+
+		$size = vfs('real_filesize', array($myInfoFile));
+
+		if ($size > 0)
+		{
+			$fp = vfs('real_open', array($myInfoFile, 'r'));
+			$InfoContent = fread($fp, $size);
+
+			fclose($fp);
+		}
+
+		$info = xenonXML('xml2array', array($InfoContent));
+		$info = $info['xenonHelp'][0];;
+
+		if (file_exists($myDir.$_SESSION['lang'].'.xenonHelp') && filesize($myDir.$_SESSION['lang'].'.xenonHelp') > 0)
+		{
+			$myIndexFile = $myDir.$_SESSION['lang'].'.xenonHelp';
+		}
+		else
+		{
+			$myIndexFile = $myDir.'index.xenonHelp';
+		}
+
+		$size = vfs('real_filesize', array ($myIndexFile));
+
+		if ($size > 0)
+		{
+			$fp = vfs('real_open', array ($myIndexFile, 'r'));
+			$IndexContent = fread($fp, $size);
+
+			fclose($fp);
+		}
+
+		$currentUser = $oldUser;
+
+		$title = trim($info['title'][0]);
+		$myDir2 = substr($myDir, 0, strlen($myDir) - 1);
+
+		if ($title == "")
+		{
+			$title = basename($myDir2);
+		}
+
+		xenonx('runjs', array ('js'=>'document.getElementById("'.$myPid.'_label1").innerHTML="<h1>'.str_replace('"', '\\"', $title).'</h1><hr />";'));
+
+		if (trim($info['HTML-only'][0]) !== '1')
+		{
+			$IndexContent = xenonHelp_Code($IndexContent);
+		}
+
+		$IndexContent_array = explode('<br />[split]<br />',$IndexContent);
+
+		foreach($IndexContent_array as $value)
+		{
+			xenonx('concatDiv', array('name' => $myPid.'_label1', 'value' => $value));
+		}
+	}
+}
+
+function xenonHelp_on_open($param)
+{
+	if (strpos($param, '..') !== false)
+	{
+		$getfolder_param['root'] = 1;
+	}
+
+	$goto = array(xenonHelp_getFolder($getfolder_param).$param);
+
+	xenonHelp_on_goto($goto);
+}
+
+function xenonHelp_on_pref()
+{
+	global $checknum;
+	global $currentUser;
+
+	if ($currentUser == ROOTUSER)
+	{
+		$xml = getConfig('xenonHelp', 'conf.xml');
+
+		xenonx('messageBox',
+			array (
+				'btn1_capt' => 'Submit',
+				'btn1_name' => 'submit',
+				'content' => 'User to contact to ask for help:',
+				'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/48x48/xenonMessages.png',
+				'textbox_name' => 'xenonHelp_contact_box',
+				'textbox_text' => $xml['xenonHelp'][0]['contact'][0],
+				'textbox_event' => 'submit',
+				'title' => 'xenonHelp preferences',
+				'type' => 3,
+				'win_name' => 'xenonHelp_prefs',
+				'win_removepid'=>0,
+				'win_style' => TITLE + NOT_LISTED + CLOSE
+			)
+		);
+	}
+	else
+	{
+		xenonx('messageBox', array ('content' => 'Access Denied.'));
+	}
+}
+
+function xenonHelp_on_submit()
+{
+	global $currentUser;
+
+	if ($currentUser == ROOTUSER)
+	{
+		if ($GLOBALS['xenonHelp_contact_box']->text!='')
+		{
+			$xml['xenonHelp'][0]['contact'][0] = $GLOBALS['xenonHelp_contact_box']->text;
+
+			xenonXML('setXMLfile', array (XENONOS_ROOT . '/' . APP_DIR . '/' . APP_CONF_SHARE . '/xenonHelp/conf.xml', $xml));
+
+			xenonx('messageBox', array ('content' => 'Changes successfully applied.'));
+
+			$GLOBALS['xenonHelp_prefs']->close();
+		}
+		else
+		{
+			xenonx('messageBox', array ('content' => 'The field must not be left empty.'));
+		}
+	}
+	else
+	{
+		xenonx('messageBox', array ('content' => 'You are not allowed to do this.'));
+
+		$GLOBALS['xenonHelp_prefs']->close();
+	}
+}
+
+function xenonHelp_on_SendMessage()
+{
+	$xml = getConfig('xenonHelp', 'conf.xml');
+
+	proc('launch', array ('newMessage', array ('action' => 'new', 'to' => $xml['xenonHelp'][0]['contact'][0])));
+}
+
+function xenonHelp_on_eyeNav($param)
+{
+	proc('launch', array('eyeNav', $param));
+}
+
+function xenonHelp_Code($Text)
+{
+	global $checknum;
+	global $currentUser;
+
+	$dir = XENONOS_ROOT . '/' . APP_DIR . '/xenonHelp/lib/';
+	$oldUser = $currentUser;
+	$currentUser = ROOTUSER;
+	$openDir = vfs('real_getDirContent',array($dir,'*' . XE_CODE_EXTENSION));
+	$currentUser = $oldUser;
+
+	foreach ($openDir as $file)
+	{
+		include_once($file);
+	}
+
+	return($Text);
+}
+
+function xenonHelp_on_Restart()
+{
+	global $myPid;
+
+	proc('end');
+	proc('launch', array ('xenonHelp'));
+}
+
+function xenonHelp_on_Close()
+{
+	global $myPid;
+
+	eyeSessions('delVar', array ('xenonHelp_'.$myPid.'_app'));
+	proc('end');
+}
+?>

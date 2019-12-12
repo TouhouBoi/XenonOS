@@ -155,7 +155,7 @@ function xenonFiles_on_EmptyTrash($params = '') {
 }
 
 function xenonFiles_on_Help($params = '') {
-	proc('launch',array('eyeHelp','xenonFiles'));
+	proc('launch',array('xenonHelp','xenonFiles'));
 }
 
 function xenonFiles_on_Action($params = '') {

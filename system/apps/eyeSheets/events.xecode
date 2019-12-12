@@ -118,7 +118,7 @@ function parseMyODS($content) {
 }
 
 function eyeSheets_on_help($params = '') {
-	proc('launch',array('eyeHelp','eyeSheets'));
+	proc('launch',array('xenonHelp','eyeSheets'));
 }
 
 function eyeSheets_on_openFile($params=null) {

@@ -102,7 +102,7 @@ function xeSoft_run($params = null)
 		'signal'=>'Help',
 		'caption'=>'Help',
 		'x'=>300,'y'=>15,
-		'img'=>'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/eyeHelp.png'
+		'img'=>'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/16x16/xenonHelp.png'
 	));
 	$myButton->show();
 

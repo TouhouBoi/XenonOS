@@ -106,12 +106,12 @@ function xeControl_on_system_office($params = '')
 
 function xeControl_on_system_office_howtowindows($params = '')
 {
-	proc('launch', array('eyeHelp', 'xeControl'));
+	proc('launch', array('xenonHelp', 'xeControl'));
 }
 
 function xeControl_on_system_office_howtolinux($params = '')
 {
-	proc('launch', array('eyeHelp', 'xeControl'));
+	proc('launch', array('xenonHelp', 'xeControl'));
 }
 
 function xeControl_on_system_uninstall($params = '')

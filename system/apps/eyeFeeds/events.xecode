@@ -138,7 +138,7 @@ function eyeFeeds_on_settings_ITM($params="") {
 }
 
 function eyeFeeds_on_help_ITM($params="") {
-	proc('launch',array('eyeHelp','eyeFeeds'));
+	proc('launch',array('xenonHelp','eyeFeeds'));
 }
 
 function eyeFeeds_on_feeds_TREE($params=null) {

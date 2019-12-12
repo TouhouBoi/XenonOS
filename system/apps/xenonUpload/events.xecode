@@ -81,7 +81,7 @@ function xenonUpload_on_Close($params = '') {
 }
 
 function xenonUpload_on_help($params=null) {
-	proc('launch',array('eyeHelp','xenonUpload'));
+	proc('launch',array('xenonHelp','xenonUpload'));
 }
 
 function xenonUpload_on_initFlash($params = '') {

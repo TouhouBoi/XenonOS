@@ -37,7 +37,7 @@ foreach ($openDir as $file) {
 }
 
 function xeControl_on_help($params=null) {
-	proc('launch',array('eyeHelp','xeControl'));
+	proc('launch',array('xenonHelp','xeControl'));
 }
 
 function xeControl_on_Message($params = '') {

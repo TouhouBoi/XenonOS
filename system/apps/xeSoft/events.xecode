@@ -21,7 +21,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 */
 
 function xeSoft_on_Help($params = '') {
-	proc('launch',array('eyeHelp','xeSoft'));
+	proc('launch',array('xenonHelp','xeSoft'));
 }
 
 function xeSoft_on_Message($params="") {

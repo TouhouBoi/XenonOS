@@ -203,7 +203,7 @@ function xenonFTP_on_xenonFTP_upload_ITM($params=null) {
 }
 
 function xenonFTP_on_xenonFTP_help_ITM($params=null) {
-	proc('launch',array('eyeHelp','xenonFTP'));
+	proc('launch',array('xenonHelp','xenonFTP'));
 }
 
 

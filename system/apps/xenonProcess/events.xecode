@@ -34,7 +34,7 @@ function xenonProcess_on_Close($params = '') {
 }
 
 function xenonProcess_on_help($params=null) {
-	proc('launch',array('eyeHelp','xenonProcess'));
+	proc('launch',array('xenonHelp','xenonProcess'));
 }
 
 function xenonProcess_on_Kill($params = '') {

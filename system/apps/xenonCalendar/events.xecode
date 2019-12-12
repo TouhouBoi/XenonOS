@@ -17,7 +17,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 include_once XENONOS_ROOT.'/'.APP_DIR.'/xenonCalendar/configDialogs/configEvents.xecode';
 
 function xenonCalendar_on_Help($params = '') {
-	proc('launch',array('eyeHelp','xenonCalendar'));
+	proc('launch',array('xenonHelp','xenonCalendar'));
 }
 
 function xenonCalendar_on_Message($params="") {
