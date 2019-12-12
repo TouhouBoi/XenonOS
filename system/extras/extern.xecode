@@ -32,6 +32,8 @@ function XenonOS_init()
 		
 		require_once(XENONOS_ROOT.'/../system/system/xe_build.xeconfig');
 		
+		require_once(XENONOS_ROOT.'/../user_config.xeconfig');
+		
 		error_reporting($error_reporting);
 
 		include_once(XENONOS_ROOT.'/'.SYSTEM_DIR.'/'.LIB_DIR.'/xenonString/main'.XE_CODE_EXTENSION);
