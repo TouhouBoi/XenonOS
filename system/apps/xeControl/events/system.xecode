@@ -165,6 +165,7 @@ function xeControl_on_system_uninstall_yes($params = '')
 		vfs('real_delete', array(XENONOS_ROOT . '/../php-ini'));
 		vfs('real_delete', array(XENONOS_ROOT . '/../README.txt'));
 		vfs('real_delete', array(XENONOS_ROOT . '/../system/system/xe_build.xeconfig'));
+		vfs('real_delete', array(XENONOS_ROOT . '/../user_config.xeconfig'));
 		vfs('real_rmdir', array(XENONOS_ROOT . '/'));
 	}
 }
