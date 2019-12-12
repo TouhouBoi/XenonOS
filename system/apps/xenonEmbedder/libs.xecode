@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeEmbedder_lib_CreateIconsPath($path) {
+function xenonEmbedder_lib_CreateIconsPath($path) {
 	$path .= '/' . EXTERN_DIR;
 	vfs('real_mkDir', array($path));
 	
@@ -39,7 +39,7 @@ function eyeEmbedder_lib_CreateIconsPath($path) {
 	return $path;
 }
 
-function eyeEmbedder_lib_GetCategories() {
+function xenonEmbedder_lib_GetCategories() {
 	$categories = array();
 	
 	foreach (vfs('real_getDirContent', array(XENONOS_ROOT . '/' . APP_DIR)) as $path) {
@@ -58,7 +58,7 @@ function eyeEmbedder_lib_GetCategories() {
 	return $categories;
 }
 
-function eyeEmbedder_lib_GetIcons() {
+function xenonEmbedder_lib_GetIcons() {
 	$icons = array();
 	
 	$path = xenonx('getThemeImage', array('icons/48x48', 2));
@@ -71,27 +71,27 @@ function eyeEmbedder_lib_GetIcons() {
 	return $icons;
 }
 
-function eyeEmbedder_lib_GetValues() {
-	$applicationName = $GLOBALS['eyeEmbedder_Textbox_ApplicationName']->text;
+function xenonEmbedder_lib_GetValues() {
+	$applicationName = $GLOBALS['xenonEmbedder_Textbox_ApplicationName']->text;
 	
 	return array(
-		'ApplicationAuthor' => $GLOBALS['eyeEmbedder_Textbox_ApplicationAuthor']->text,
-		'ApplicationCategory' => $GLOBALS['eyeEmbedder_Select_ApplicationCategory']->selected,
-		'ApplicationDescription' => $GLOBALS['eyeEmbedder_Textbox_ApplicationDescription']->text,
+		'ApplicationAuthor' => $GLOBALS['xenonEmbedder_Textbox_ApplicationAuthor']->text,
+		'ApplicationCategory' => $GLOBALS['xenonEmbedder_Select_ApplicationCategory']->selected,
+		'ApplicationDescription' => $GLOBALS['xenonEmbedder_Textbox_ApplicationDescription']->text,
 		'ApplicationIcon' => 'index.php?theme=USERTHEME&extern=icons/48x48/' . $applicationName . '.png',
-		'ApplicationLicense' => $GLOBALS['eyeEmbedder_Textbox_ApplicationLicense']->text,
+		'ApplicationLicense' => $GLOBALS['xenonEmbedder_Textbox_ApplicationLicense']->text,
 		'ApplicationName' => $applicationName,
-		'ApplicationType' => $GLOBALS['eyeEmbedder_Select_ApplicationType']->selected,
-		'ApplicationVersion' => $GLOBALS['eyeEmbedder_Textbox_ApplicationVersion']->text,
-		'Address' => $GLOBALS['eyeEmbedder_Textbox_Address']->text,
-		'DefaultHeight' => $GLOBALS['eyeEmbedder_Checkbox_DefaultHeight']->checked ? intval($GLOBALS['eyeEmbedder_Textbox_DefaultHeight']->text) : null,
-		'DefaultWidth' => $GLOBALS['eyeEmbedder_Checkbox_DefaultWidth']->checked ? intval($GLOBALS['eyeEmbedder_Textbox_DefaultWidth']->text) : null,
-		'Title' => $GLOBALS['eyeEmbedder_Textbox_Title']->text,
-		'StartMaximized' => $GLOBALS['eyeEmbedder_Textbox_StartMaximized']->checked
+		'ApplicationType' => $GLOBALS['xenonEmbedder_Select_ApplicationType']->selected,
+		'ApplicationVersion' => $GLOBALS['xenonEmbedder_Textbox_ApplicationVersion']->text,
+		'Address' => $GLOBALS['xenonEmbedder_Textbox_Address']->text,
+		'DefaultHeight' => $GLOBALS['xenonEmbedder_Checkbox_DefaultHeight']->checked ? intval($GLOBALS['xenonEmbedder_Textbox_DefaultHeight']->text) : null,
+		'DefaultWidth' => $GLOBALS['xenonEmbedder_Checkbox_DefaultWidth']->checked ? intval($GLOBALS['xenonEmbedder_Textbox_DefaultWidth']->text) : null,
+		'Title' => $GLOBALS['xenonEmbedder_Textbox_Title']->text,
+		'StartMaximized' => $GLOBALS['xenonEmbedder_Textbox_StartMaximized']->checked
 	);
 }
 
-function eyeEmbedder_lib_ResizeIcon($oldPath, $newPath, $width, $height = null) {
+function xenonEmbedder_lib_ResizeIcon($oldPath, $newPath, $width, $height = null) {
 	include_once XENONOS_ROOT . '/' . SYSTEM_DIR . '/lib/eyeFiles/images' . XE_CODE_EXTENSION;
 	
 	if ($height === null) {
@@ -115,7 +115,7 @@ function eyeEmbedder_lib_ResizeIcon($oldPath, $newPath, $width, $height = null) 
 	return true;
 }
 
-function eyeEmbedder_lib_ValidateApplicationName($applicationName, $showMessage = true) {
+function xenonEmbedder_lib_ValidateApplicationName($applicationName, $showMessage = true) {
 	if (preg_match('/^[a-zA-Z_\\x7f-\\xff][a-zA-Z0-9_\\x7f-\\xff]*$/', $applicationName) === 1 && $applicationName !== '') {
 		return true;
 	}

@@ -14,10 +14,10 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeEmbedder_run($params = null) {
+function xenonEmbedder_run($params = null) {
 	global $checknum, $currentUser, $myPid;
 	
-	include_once XENONOS_ROOT . '/' . APP_DIR . '/eyeEmbedder/libs' . XE_CODE_EXTENSION;
+	include_once XENONOS_ROOT . '/' . APP_DIR . '/xenonEmbedder/libs' . XE_CODE_EXTENSION;
 	
 	if ($currentUser !== ROOTUSER) {
 		xenonx('messageBox', array('content' => 'Administrator privilegs required.'));
@@ -26,7 +26,7 @@ function eyeEmbedder_run($params = null) {
 		return;
 	}
 	
-	$namePrefix = 'eyeEmbedder_';
+	$namePrefix = 'xenonEmbedder_';
 	
 	$toolbarFriends = array();
 	$toolbarHeight = 57;
@@ -383,7 +383,7 @@ function eyeEmbedder_run($params = null) {
 	// Add default application icons
 	$defaultGroup = $namePrefix . 'Select_ApplicationIcon_Group_Default';
 	$GLOBALS[$name]->addGroup('Default Icons', $defaultGroup);
-	foreach (eyeEmbedder_lib_getIcons() as $icon) {
+	foreach (xenonEmbedder_lib_getIcons() as $icon) {
 		$GLOBALS[$name]->addOption($icon, null, $icon === $defaultApplicationIcon, null, $defaultGroup);
 	}
 	xenonx('runjs', array('js' => 'setTimeout(function () {
@@ -480,7 +480,7 @@ function eyeEmbedder_run($params = null) {
 		'y' => $y
 	));
 	$GLOBALS[$name]->show();
-	foreach (eyeEmbedder_lib_GetCategories() as $category) {
+	foreach (xenonEmbedder_lib_GetCategories() as $category) {
 		$GLOBALS[$name]->addOption($category, null, $category === $defaultApplicationCategory);
 	}
 	array_push($toolbarFriends, $GLOBALS[$name]);
@@ -582,7 +582,7 @@ function eyeEmbedder_run($params = null) {
 	$GLOBALS[$name]->addItem('Package', 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/archive-extract.png', 'Package', $toolbarFriends);
 }
 
-function eyeEmbedder_end($params = null) {
+function xenonEmbedder_end($params = null) {
 	eyeWidgets('unserialize', $params);
 }
 ?>
