@@ -19,7 +19,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-var windowd = document.getElementById('$myPid_eyeChess_Window_Content');
+var windowd = document.getElementById('$myPid_xeChess_Window_Content');
 
 M=I=P=N=q=K=J=Btime=0
 Bt=1999
@@ -207,11 +207,11 @@ Ic.left=(e.clientX+1)+'px'
 Ic.top=(e.clientY-4)+'px'}
 function O(x,y,z){if((A||x!='PI')&&z)x='i'+(P?119-x:x)
 d.images[x].src='index.php?theme=' + USERTHEME + '&extern=$imagesDir/'+y+'.png'}
-h='<table cellpadding="4" class="eyeChess_t">'
+h='<table cellpadding="4" class="xeChess_t">'
 for(y=90;y>10;y-=10){h+='<tr>'
 for(x=0;x<10;x++){z=y+x
-if(x&&x<9){h+=('<td class="'+(x+(y/10)&1?'eyeChess_b':'eyeChess_w')+'"><span onclick="B(P?119-'+z+':'+z+');" style="cursor: pointer;"><img src="index.php?theme=' + USERTHEME + '&extern=$imagesDir/0.png" width="0" height="48" border="0"><img src="index.php?theme=' + USERTHEME + '&extern=$imagesDir/0.png" width="47" height="48" name="i'+z+'" border="0" /><img src="index.php?theme=' + USERTHEME + '&extern=$imagesDir/0.png" width="0" height="48" border="0" /></span></td>\n')}}h+='</tr>\n'}h+='</table>'
+if(x&&x<9){h+=('<td class="'+(x+(y/10)&1?'xeChess_b':'xeChess_w')+'"><span onclick="B(P?119-'+z+':'+z+');" style="cursor: pointer;"><img src="index.php?theme=' + USERTHEME + '&extern=$imagesDir/0.png" width="0" height="48" border="0"><img src="index.php?theme=' + USERTHEME + '&extern=$imagesDir/0.png" width="47" height="48" name="i'+z+'" border="0" /><img src="index.php?theme=' + USERTHEME + '&extern=$imagesDir/0.png" width="0" height="48" border="0" /></span></td>\n')}}h+='</tr>\n'}h+='</table>'
 windowd.innerHTML += h;
 Rf(0);
-windowd.innerHTML += '<form name="FF"><div style="text-align: center;"><table class="eyeChess_Table" border="0"><tr><td></td><td><textarea name="b" style="margin-top:5px;margin-left:5px;height:457px;" cols="12" rows="24" class="eyeTextarea">$lang:Movements:</textarea></td></tr></table><input type="button" class="eyeButtonClass" value="$lang:Undo" class="eyeButton" style="margin-top: 6px; position:absolute; top:475px; left:400px;" onclick="Gb();" /><div class="eyeChess_Text" style="margin-top: 15px;">$lang:Next pawn becomes: <select name="h" class="eyeSelect"><option selected="selected">$lang:Queen</option><option>$lang:Bishop</option><option>$lang:Knight</option><option>$lang:Rook</option></select> &nbsp; $lang:Computer level: <select class="eyeSelect" name="i"><option>$lang:Easy</option><option selected="selected">$lang:Middling</option><option>$lang:Slow</option></select></div></div></form>';
+windowd.innerHTML += '<form name="FF"><div style="text-align: center;"><table class="xeChess_Table" border="0"><tr><td></td><td><textarea name="b" style="margin-top:5px;margin-left:5px;height:457px;" cols="12" rows="24" class="eyeTextarea">$lang:Movements:</textarea></td></tr></table><input type="button" class="eyeButtonClass" value="$lang:Undo" class="eyeButton" style="margin-top: 6px; position:absolute; top:475px; left:400px;" onclick="Gb();" /><div class="xeChess_Text" style="margin-top: 15px;">$lang:Next pawn becomes: <select name="h" class="eyeSelect"><option selected="selected">$lang:Queen</option><option>$lang:Bishop</option><option>$lang:Knight</option><option>$lang:Rook</option></select> &nbsp; $lang:Computer level: <select class="eyeSelect" name="i"><option>$lang:Easy</option><option selected="selected">$lang:Middling</option><option>$lang:Slow</option></select></div></div></form>';
 H();

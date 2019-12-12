@@ -208,38 +208,38 @@ textarea {
 	font-size: 11px;
 }
 
-.eyeChess_b {
+.xeChess_b {
 	background-color: #888888
 }
 
-.eyeChess_t {
+.xeChess_t {
 	background-color: #dddddd;
 	margin-top: 8px;
 	margin-left: 10px;
 }
 
-.eyeChess_w {
+.xeChess_w {
 	background-color: #cccccc
 }
 
-.eyeChess_Table {
+.xeChess_Table {
 	left: 469px;
 	position: absolute;
 	top: 4px;
 }
 
-.eyeChess_Text {
+.xeChess_Text {
 	left: 10px;
 	position: absolute;
 	bottom: 5px;
 }
 
-.eyeChess_textarea {
+.xeChess_textarea {
 	border: 1px inset #808080;
 	height: 450px;
 }
 
-.eyeChess_TextUndo {
+.xeChess_TextUndo {
 	left: 180px;
 	position: absolute;
 	top: 460px;

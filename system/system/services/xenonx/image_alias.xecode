@@ -157,7 +157,7 @@ $pic22 = array(
 	'xenonChat',
 	'xenonCalculator',
 	'xenonCalendar',
-	'eyeChess',
+	'xeChess',
 	'xenonContacts',
 	'xenonDocs',
 	'xenonFTP',
@@ -219,7 +219,7 @@ $alias[0]['icons/16x16/apps/exec.png'] = 'images/apps/eyeLightDesk/16x16/apps/ex
 $alias[0]['icons/16x16/apps/xenonChat.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonChat.png';
 $alias[0]['icons/16x16/apps/xenonCalculator.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonCalculator.png';
 $alias[0]['icons/16x16/apps/xenonCalendar.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonCalendar.png';
-$alias[0]['icons/16x16/apps/eyeChess.png'] = 'images/apps/eyeLightDesk/16x16/apps/eyeChess.png';
+$alias[0]['icons/16x16/apps/xeChess.png'] = 'images/apps/eyeLightDesk/16x16/apps/xeChess.png';
 $alias[0]['icons/16x16/apps/xenonContacts.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonContacts.png';
 $alias[0]['icons/16x16/apps/xenonDocs.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonDocs.png';
 $alias[0]['icons/16x16/apps/xenonFiles.png'] = 'images/apps/eyeLightDesk/16x16/apps/xenonFiles.png';
@@ -269,37 +269,37 @@ $alias[1][APP_DIR . '/xenonCalendar/gfx/widget/plus.png'] = 'images/' . APP_DIR 
 $alias[1][APP_DIR . '/xenonCalendar/gfx/widget/selected.gif'] = 'images/' . APP_DIR . '/xenonCalendar/widget/selected.gif';
 $alias[1][APP_DIR . '/xenonCalendar/gfx/widget/selected.png'] = 'images/' . APP_DIR . '/xenonCalendar/widget/selected.png';
 
-// eyeChess
-$alias[1][APP_DIR . '/eyeChess/0.png'] = 'images/' . APP_DIR . '/eyeChess/0.png';
-$alias[1][APP_DIR . '/eyeChess/1.png'] = 'images/' . APP_DIR . '/eyeChess/1.png';
-$alias[1][APP_DIR . '/eyeChess/2.png'] = 'images/' . APP_DIR . '/eyeChess/2.png';
-$alias[1][APP_DIR . '/eyeChess/3.png'] = 'images/' . APP_DIR . '/eyeChess/3.png';
-$alias[1][APP_DIR . '/eyeChess/4.png'] = 'images/' . APP_DIR . '/eyeChess/4.png';
-$alias[1][APP_DIR . '/eyeChess/5.png'] = 'images/' . APP_DIR . '/eyeChess/5.png';
-$alias[1][APP_DIR . '/eyeChess/6.png'] = 'images/' . APP_DIR . '/eyeChess/6.png';
-$alias[1][APP_DIR . '/eyeChess/7.png'] = 'images/' . APP_DIR . '/eyeChess/7.png';
-$alias[1][APP_DIR . '/eyeChess/8.png'] = 'images/' . APP_DIR . '/eyeChess/8.png';
-$alias[1][APP_DIR . '/eyeChess/9.png'] = 'images/' . APP_DIR . '/eyeChess/9.png';
-$alias[1][APP_DIR . '/eyeChess/10.png'] = 'images/' . APP_DIR . '/eyeChess/10.png';
-$alias[1][APP_DIR . '/eyeChess/11.png'] = 'images/' . APP_DIR . '/eyeChess/11.png';
-$alias[1][APP_DIR . '/eyeChess/12.png'] = 'images/' . APP_DIR . '/eyeChess/12.png';
-$alias[1][APP_DIR . '/eyeChess/13.png'] = 'images/' . APP_DIR . '/eyeChess/13.png';
-$alias[1][APP_DIR . '/eyeChess/14.png'] = 'images/' . APP_DIR . '/eyeChess/14.png';
-$alias[1][APP_DIR . '/eyeChess/IE/0.png'] = 'images/' . APP_DIR . '/eyeChess/IE/0.png';
-$alias[1][APP_DIR . '/eyeChess/IE/1.png'] = 'images/' . APP_DIR . '/eyeChess/IE/1.png';
-$alias[1][APP_DIR . '/eyeChess/IE/2.png'] = 'images/' . APP_DIR . '/eyeChess/IE/2.png';
-$alias[1][APP_DIR . '/eyeChess/IE/3.png'] = 'images/' . APP_DIR . '/eyeChess/IE/3.png';
-$alias[1][APP_DIR . '/eyeChess/IE/4.png'] = 'images/' . APP_DIR . '/eyeChess/IE/4.png';
-$alias[1][APP_DIR . '/eyeChess/IE/5.png'] = 'images/' . APP_DIR . '/eyeChess/IE/5.png';
-$alias[1][APP_DIR . '/eyeChess/IE/6.png'] = 'images/' . APP_DIR . '/eyeChess/IE/6.png';
-$alias[1][APP_DIR . '/eyeChess/IE/7.png'] = 'images/' . APP_DIR . '/eyeChess/IE/7.png';
-$alias[1][APP_DIR . '/eyeChess/IE/8.png'] = 'images/' . APP_DIR . '/eyeChess/IE/8.png';
-$alias[1][APP_DIR . '/eyeChess/IE/9.png'] = 'images/' . APP_DIR . '/eyeChess/IE/9.png';
-$alias[1][APP_DIR . '/eyeChess/IE/10.png'] = 'images/' . APP_DIR . '/eyeChess/IE/10.png';
-$alias[1][APP_DIR . '/eyeChess/IE/11.png'] = 'images/' . APP_DIR . '/eyeChess/IE/11.png';
-$alias[1][APP_DIR . '/eyeChess/IE/12.png'] = 'images/' . APP_DIR . '/eyeChess/IE/12.png';
-$alias[1][APP_DIR . '/eyeChess/IE/13.png'] = 'images/' . APP_DIR . '/eyeChess/IE/13.png';
-$alias[1][APP_DIR . '/eyeChess/IE/14.png'] = 'images/' . APP_DIR . '/eyeChess/IE/14.png';
+// xeChess
+$alias[1][APP_DIR . '/xeChess/0.png'] = 'images/' . APP_DIR . '/xeChess/0.png';
+$alias[1][APP_DIR . '/xeChess/1.png'] = 'images/' . APP_DIR . '/xeChess/1.png';
+$alias[1][APP_DIR . '/xeChess/2.png'] = 'images/' . APP_DIR . '/xeChess/2.png';
+$alias[1][APP_DIR . '/xeChess/3.png'] = 'images/' . APP_DIR . '/xeChess/3.png';
+$alias[1][APP_DIR . '/xeChess/4.png'] = 'images/' . APP_DIR . '/xeChess/4.png';
+$alias[1][APP_DIR . '/xeChess/5.png'] = 'images/' . APP_DIR . '/xeChess/5.png';
+$alias[1][APP_DIR . '/xeChess/6.png'] = 'images/' . APP_DIR . '/xeChess/6.png';
+$alias[1][APP_DIR . '/xeChess/7.png'] = 'images/' . APP_DIR . '/xeChess/7.png';
+$alias[1][APP_DIR . '/xeChess/8.png'] = 'images/' . APP_DIR . '/xeChess/8.png';
+$alias[1][APP_DIR . '/xeChess/9.png'] = 'images/' . APP_DIR . '/xeChess/9.png';
+$alias[1][APP_DIR . '/xeChess/10.png'] = 'images/' . APP_DIR . '/xeChess/10.png';
+$alias[1][APP_DIR . '/xeChess/11.png'] = 'images/' . APP_DIR . '/xeChess/11.png';
+$alias[1][APP_DIR . '/xeChess/12.png'] = 'images/' . APP_DIR . '/xeChess/12.png';
+$alias[1][APP_DIR . '/xeChess/13.png'] = 'images/' . APP_DIR . '/xeChess/13.png';
+$alias[1][APP_DIR . '/xeChess/14.png'] = 'images/' . APP_DIR . '/xeChess/14.png';
+$alias[1][APP_DIR . '/xeChess/IE/0.png'] = 'images/' . APP_DIR . '/xeChess/IE/0.png';
+$alias[1][APP_DIR . '/xeChess/IE/1.png'] = 'images/' . APP_DIR . '/xeChess/IE/1.png';
+$alias[1][APP_DIR . '/xeChess/IE/2.png'] = 'images/' . APP_DIR . '/xeChess/IE/2.png';
+$alias[1][APP_DIR . '/xeChess/IE/3.png'] = 'images/' . APP_DIR . '/xeChess/IE/3.png';
+$alias[1][APP_DIR . '/xeChess/IE/4.png'] = 'images/' . APP_DIR . '/xeChess/IE/4.png';
+$alias[1][APP_DIR . '/xeChess/IE/5.png'] = 'images/' . APP_DIR . '/xeChess/IE/5.png';
+$alias[1][APP_DIR . '/xeChess/IE/6.png'] = 'images/' . APP_DIR . '/xeChess/IE/6.png';
+$alias[1][APP_DIR . '/xeChess/IE/7.png'] = 'images/' . APP_DIR . '/xeChess/IE/7.png';
+$alias[1][APP_DIR . '/xeChess/IE/8.png'] = 'images/' . APP_DIR . '/xeChess/IE/8.png';
+$alias[1][APP_DIR . '/xeChess/IE/9.png'] = 'images/' . APP_DIR . '/xeChess/IE/9.png';
+$alias[1][APP_DIR . '/xeChess/IE/10.png'] = 'images/' . APP_DIR . '/xeChess/IE/10.png';
+$alias[1][APP_DIR . '/xeChess/IE/11.png'] = 'images/' . APP_DIR . '/xeChess/IE/11.png';
+$alias[1][APP_DIR . '/xeChess/IE/12.png'] = 'images/' . APP_DIR . '/xeChess/IE/12.png';
+$alias[1][APP_DIR . '/xeChess/IE/13.png'] = 'images/' . APP_DIR . '/xeChess/IE/13.png';
+$alias[1][APP_DIR . '/xeChess/IE/14.png'] = 'images/' . APP_DIR . '/xeChess/IE/14.png';
 
 // xeControl
 $alias[1][APP_DIR . '/xeControl/gfx/back.png'] = 'icons/16x16/back.png';

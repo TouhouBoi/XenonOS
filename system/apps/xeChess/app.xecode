@@ -20,7 +20,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function eyeChess_run($params = '')
+function xeChess_run($params = '')
 {
 	global $checknum;
 	global $myPid;
@@ -30,7 +30,7 @@ function eyeChess_run($params = '')
 			'cent' => 1,
 			'father' => 'xenonApps',
 			'height' => 530,
-			'name' => 'eyeChess_Window',
+			'name' => 'xeChess_Window',
 			'savePosition' => 1,
 			'title' => 'Chess Game',
 			'type' => NORESIZE_WINDOW,
@@ -40,10 +40,10 @@ function eyeChess_run($params = '')
 	
 	$myWindow->show();
 	
-	xenonx('loadScript', array('url' => 'index.php?extern=apps/eyeChess/eyeChess'.XE_CODE_EXTENSION.'&type=dynamic&params[]='.$myPid.'&params[]='.$checknum));
+	xenonx('loadScript', array('url' => 'index.php?extern=apps/xeChess/xeChess'.XE_CODE_EXTENSION.'&type=dynamic&params[]='.$myPid.'&params[]='.$checknum));
 }
 
-function eyeChess_end($params = '')
+function xeChess_end($params = '')
 {
 	eyeWidgets('unserialize', $params);
 }

@@ -23,9 +23,9 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 function get_dynamic_content($params = '') {
 	header('Content-type: text/javascript; charset=utf-8');
 
-	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeChess/eyeChess.min.js';
+	$path_compressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xeChess/xeChess.min.js';
 	
-	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/eyeChess/eyeChess.js';
+	$path_uncompressed = XENONOS_ROOT . '/' . EXTERN_DIR . '/' . APP_DIR . '/xeChess/xeChess.js';
 	
 	if (USE_COMPRESSED && is_readable($path_compressed) && filemtime($path_compressed) >= filemtime($path_uncompressed))
 	{
@@ -38,9 +38,9 @@ function get_dynamic_content($params = '') {
 	
 	$content = str_replace('$myPid', $params[0], $content);
 	$content = str_replace('$checknum', $params[1], $content);
-	$content = str_replace('$imagesDir', 'images/' . APP_DIR . '/eyeChess', $content);
+	$content = str_replace('$imagesDir', 'images/' . APP_DIR . '/xeChess', $content);
 	
-	i18n('loadLang', array('eyeChess'));
+	i18n('loadLang', array('xeChess'));
 	
 	$content = str_replace('$lang:Movements', utf8_htmlspecialchars(i18n('translate', array('Movements')), ENT_QUOTES), $content);
 	$content = str_replace('$lang:Undo', utf8_htmlspecialchars(i18n('translate', array('Undo')), ENT_QUOTES), $content);

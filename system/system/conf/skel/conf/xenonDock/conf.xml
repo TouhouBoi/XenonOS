@@ -275,10 +275,10 @@
 				<type>menu</type>
 				<entries>
 					<entry-1>
-						<command>eyeChess.app</command>
+						<command>xeChess.app</command>
 						<hideImage>0</hideImage>
 						<hideText>0</hideText>
-						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/eyeChess.png</image>
+						<image>index.php?theme=USERTHEME&amp;extern=icons/22x22/xeChess.png</image>
 						<text>Chess Game</text>
 						<type>icon</type>
 					</entry-1>
