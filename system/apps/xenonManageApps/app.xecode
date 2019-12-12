@@ -14,12 +14,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeManageApps_run($params = '') {
+function xenonManageApps_run($params = '') {
 	$myWindow = new Window(array(
 		'cent' => 1,
 		'father' => 'xenonApps',
 		'height' => 300,
-		'name' => 'eyeManageApps_Window',
+		'name' => 'xenonManageApps_Window',
 		'savePosition' => 1,
 		'style' => TITLE + LISTED + MIN + CLOSE,
 		'title' => 'Manage Dock',
@@ -29,8 +29,8 @@ function eyeManageApps_run($params = '') {
 
 	$y = 30;
 	$myLabel = new Label(array(
-		'father' => 'eyeManageApps_Window_Content',
-		'name' => 'eyeManageApps_Label',
+		'father' => 'xenonManageApps_Window_Content',
+		'name' => 'xenonManageApps_Label',
 		'text' => 'This panel is made to control the Dock system. It provides some maintenance features. Please see the context menus of the dock for further options.',
 		'x' => 20,
 		'y' => $y
@@ -45,8 +45,8 @@ function eyeManageApps_run($params = '') {
 
 	$y += 70;
 	$myLabel = new Label(array(
-		'father' => 'eyeManageApps_Window_Content',
-		'name' => 'eyeManageApps_Label_Top',
+		'father' => 'xenonManageApps_Window_Content',
+		'name' => 'xenonManageApps_Label_Top',
 		'text' => 'Top',
 		'x' => 20,
 		'y' => $y
@@ -59,8 +59,8 @@ function eyeManageApps_run($params = '') {
 
 	$myButton = new Button(array(
 		'caption' => 'Show / Hide',
-		'father' => 'eyeManageApps_Window_Content',
-		'name' => 'eyeManageApps_Button_Top_ShowHide',
+		'father' => 'xenonManageApps_Window_Content',
+		'name' => 'xenonManageApps_Button_Top_ShowHide',
 		'signal' => 'Top_ShowHide',
 		'x' => 25,
 		'y' => $y
@@ -70,8 +70,8 @@ function eyeManageApps_run($params = '') {
 	$myButton = new Button(array(
 		'caption' => 'Refresh',
 		'cent' => 2,
-		'father' => 'eyeManageApps_Window_Content',
-		'name' => 'eyeManageApps_Button_Top_Refresh',
+		'father' => 'xenonManageApps_Window_Content',
+		'name' => 'xenonManageApps_Button_Top_Refresh',
 		'signal' => 'Top_Refresh',
 		'y' => $y
 	));
@@ -79,9 +79,9 @@ function eyeManageApps_run($params = '') {
 
 	$myButton = new Button(array(
 		'caption' => 'Add Element',
-		'father' => 'eyeManageApps_Window_Content',
+		'father' => 'xenonManageApps_Window_Content',
 		'horiz' => 1,
-		'name' => 'eyeManageApps_Button_Top_AddElement',
+		'name' => 'xenonManageApps_Button_Top_AddElement',
 		'signal' => 'Top_AddElement',
 		'x' => 25,
 		'y' => $y
@@ -92,8 +92,8 @@ function eyeManageApps_run($params = '') {
 
 	$y += 60;
 	$myLabel = new Label(array(
-		'father' => 'eyeManageApps_Window_Content',
-		'name' => 'eyeManageApps_Label_Bottom',
+		'father' => 'xenonManageApps_Window_Content',
+		'name' => 'xenonManageApps_Label_Bottom',
 		'text' => 'Bottom',
 		'x' => 20,
 		'y' => $y
@@ -106,8 +106,8 @@ function eyeManageApps_run($params = '') {
 
 	$myButton = new Button(array(
 		'caption' => 'Show / Hide',
-		'father' => 'eyeManageApps_Window_Content',
-		'name' => 'eyeManageApps_Button_Bottom_ShowHide',
+		'father' => 'xenonManageApps_Window_Content',
+		'name' => 'xenonManageApps_Button_Bottom_ShowHide',
 		'signal' => 'Bottom_ShowHide',
 		'x' => 25,
 		'y' => $y
@@ -117,8 +117,8 @@ function eyeManageApps_run($params = '') {
 	$myButton = new Button(array(
 		'caption' => 'Refresh',
 		'cent' => 2,
-		'father' => 'eyeManageApps_Window_Content',
-		'name' => 'eyeManageApps_Button_Bottom_Refresh',
+		'father' => 'xenonManageApps_Window_Content',
+		'name' => 'xenonManageApps_Button_Bottom_Refresh',
 		'signal' => 'Bottom_Refresh',
 		'y' => $y
 	));
@@ -126,9 +126,9 @@ function eyeManageApps_run($params = '') {
 
 	$myButton = new Button(array(
 		'caption' => 'Add Element',
-		'father' => 'eyeManageApps_Window_Content',
+		'father' => 'xenonManageApps_Window_Content',
 		'horiz' => 1,
-		'name' => 'eyeManageApps_Button_Bottom_AddElement',
+		'name' => 'xenonManageApps_Button_Bottom_AddElement',
 		'signal' => 'Bottom_AddElement',
 		'x' => 25,
 		'y' => $y
@@ -136,7 +136,7 @@ function eyeManageApps_run($params = '') {
 	$myButton->show();
 }
 
-function eyeManageApps_end($params = '') {
+function xenonManageApps_end($params = '') {
 	eyeWidgets('unserialize');
 }
 ?>

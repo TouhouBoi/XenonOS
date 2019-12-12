@@ -31,7 +31,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 $alias[1][APP_DIR . '/xenonCalendar/css/xenonCalendar.css'] = 'css/'.APP_DIR.'/xenonCalendar/xenonCalendar.css';
 $alias[1][APP_DIR . '/xenonFTP/css/xenonFTP.css'] = 'css/'.APP_DIR.'/xenonFTP/xenonFTP.css';
-$alias[1][APP_DIR . '/eyeManageApps/css/eyeManageApps.css'] = 'css/'.APP_DIR.'/eyeManageApps/eyeManageApps.css';
+$alias[1][APP_DIR . '/xenonManageApps/css/xenonManageApps.css'] = 'css/'.APP_DIR.'/xenonManageApps/xenonManageApps.css';
 $alias[1][APP_DIR . '/eyeSheets/print.css'] = 'css/'.APP_DIR.'/eyeSheets/print.css';
 $alias[1][APP_DIR . '/eyeSheets/print_noline.css'] = 'css/'.APP_DIR.'/eyeSheets/print_noline.css';
 $alias[1][APP_DIR . '/eyeSheets/styles.css'] = 'css/'.APP_DIR.'/eyeSheets/styles.css';

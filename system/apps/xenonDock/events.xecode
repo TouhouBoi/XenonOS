@@ -488,7 +488,7 @@ function xenonDock_on_CreateFavorite($params = '') {
 }
 
 function xenonDock_on_ManageDock($params = '') {
-	proc('launch', array('eyeManageApps'));
+	proc('launch', array('xenonManageApps'));
 }
 
 function xenonDock_on_Message($params = '') {

@@ -14,15 +14,15 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeManageApps_on_Bottom_AddElement($params = '') {
+function xenonManageApps_on_Bottom_AddElement($params = '') {
 	xenonx('rawjs', array('js' => 'sendMsg(' . proc('findChecknumByName', array('xenonDock')) . ', "AddElement", eyeParam("type", "bottom"));'));
 }
 
-function eyeManageApps_on_Bottom_Refresh($params = '') {
+function xenonManageApps_on_Bottom_Refresh($params = '') {
 	xenonx('rawjs', array('js' => 'sendMsg(' . proc('findChecknumByName', array('xenonDock')) . ', "Refresh", eyeParam("type", "bottom"));'));
 }
 
-function eyeManageApps_on_Bottom_ShowHide($params = '') {
+function xenonManageApps_on_Bottom_ShowHide($params = '') {
 	$xml = xenonXML('getXMLconfig',array('xenonDock', 'conf.xml'));
 	if ($xml['xenonDock'][0]['bottom'][0]['show'][0]) {
 		$xml['xenonDock'][0]['bottom'][0]['show'][0] = '0';
@@ -30,26 +30,26 @@ function eyeManageApps_on_Bottom_ShowHide($params = '') {
 		$xml['xenonDock'][0]['bottom'][0]['show'][0] = '1';
 	}
 	xenonXML('setXMLconfig',array('xenonDock', 'conf.xml', $xml));
-	eyeManageApps_on_Bottom_Refresh();
+	xenonManageApps_on_Bottom_Refresh();
 }
 
-function eyeManageApps_on_Close($params = '') {
+function xenonManageApps_on_Close($params = '') {
 	proc('end');
 }
 
-function eyeManageApps_on_Message($params = '') {
+function xenonManageApps_on_Message($params = '') {
 	eyeWidgets('updateContent', $params);
 }
 
-function eyeManageApps_on_Top_AddElement($params = '') {
+function xenonManageApps_on_Top_AddElement($params = '') {
 	xenonx('rawjs', array('js' => 'sendMsg(' . proc('findChecknumByName', array('xenonDock')) . ', "AddElement", eyeParam("type", "top"));'));
 }
 
-function eyeManageApps_on_Top_Refresh($params = '') {
+function xenonManageApps_on_Top_Refresh($params = '') {
 	xenonx('rawjs', array('js' => 'sendMsg(' . proc('findChecknumByName', array('xenonDock')) . ', "Refresh", eyeParam("type", "top"));'));
 }
 
-function eyeManageApps_on_Top_ShowHide($params = '') {
+function xenonManageApps_on_Top_ShowHide($params = '') {
 	$xml = xenonXML('getXMLconfig',array('xenonDock', 'conf.xml'));
 	if ($xml['xenonDock'][0]['top'][0]['show'][0]) {
 		$xml['xenonDock'][0]['top'][0]['show'][0] = '0';
@@ -57,6 +57,6 @@ function eyeManageApps_on_Top_ShowHide($params = '') {
 		$xml['xenonDock'][0]['top'][0]['show'][0] = '1';
 	}
 	xenonXML('setXMLconfig',array('xenonDock', 'conf.xml', $xml));
-	eyeManageApps_on_Top_Refresh();
+	xenonManageApps_on_Top_Refresh();
 }
 ?>

@@ -52,7 +52,7 @@ function xenonApps_on_InstallApps($params = '') {
 }
 
 function xenonApps_on_ManageDock($params = '') {
-	proc('launch',array('eyeManageApps'));
+	proc('launch',array('xenonManageApps'));
 }
 
 function xenonApps_on_fullScreen() {
