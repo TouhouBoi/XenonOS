@@ -117,5 +117,4 @@ define('LDAP_SERVER', 'localhost');
 define('XML_COMPAT', 1);
 define('XML_PARSER', 'pure');
 define('ACL_SUPPORT', 1);
-define('TIMEZONE', 'UTC'); // It must be a valid timezone identifier: http://www.php.net/manual/en/timezones.php
 ?>
