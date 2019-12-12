@@ -42,7 +42,7 @@ function downZip_run($params = '') {
 	}
 }
 
-function eyeDownload_end($params = '') {
+function xenonDownload_end($params = '') {
 	eyeWidgets('unserialize',$params);
 }
 ?>

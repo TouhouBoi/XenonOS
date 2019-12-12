@@ -7,7 +7,7 @@
 	<entry>
 		<icon>download</icon>
 		<text>Download</text>
-		<action>eyeDownload</action>
+		<action>xenonDownload</action>
 	</entry>
 	<entry>
 		<icon>downzip</icon>

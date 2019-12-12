@@ -91,7 +91,7 @@ function eyePdf_on_Fullscreen($params = '') {
 */
 
 function eyePdf_on_downloadPdf($params = '') {
-	proc('launch',array('eyeDownload',array($params['path'][0])));
+	proc('launch',array('xenonDownload',array($params['path'][0])));
 	proc('end');
 }
 

@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyeDownload_run($params = '') {
+function xenonDownload_run($params = '') {
 	global $checknum;
 	global $myPid;
 	if ($params[0]) {
@@ -27,10 +27,10 @@ function eyeDownload_run($params = '') {
 			proc('launch',array('downZip',array($path[1] . '://' . $path[2] . '/' . $file)));
 			proc('end');
 		} else {
-			$_SESSION['eyeDownload'][$myPid] = $path[1] . '://' . $path[2] . '/' . $file;
+			$_SESSION['xenonDownload'][$myPid] = $path[1] . '://' . $path[2] . '/' . $file;
 			$myIframe = new Iframe(array(
 				'father' => 'xenonApps',
-				'name' => 'eyeDownload_Iframe',
+				'name' => 'xenonDownload_Iframe',
 				'url' => 'index.php?msg=download&checknum=' . $checknum,
 				'visible' => 0
 			));
@@ -39,7 +39,7 @@ function eyeDownload_run($params = '') {
 	}
 }
 
-function eyeDownload_end($params = '') {
+function xenonDownload_end($params = '') {
 	eyeWidgets('unserialize',$params);
 }
 ?>

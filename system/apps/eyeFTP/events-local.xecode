@@ -79,7 +79,7 @@ function eyeFTP_on_eyeFTP_deleteLocal() {
 function eyeFTP_on_eyeFTP_downloadLocal() {
 	$conf = eyeFTP_getConf();
 	if ($conf['selectedLocalFile']['type'] != 'd')  {
-		proc('launch',array('eyeDownload',array($conf['selectedLocalFile']['path'])));
+		proc('launch',array('xenonDownload',array($conf['selectedLocalFile']['path'])));
 	}
 }
 
