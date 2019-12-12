@@ -14,7 +14,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
              since 2010 Lars Knickrehm (mail@lars-sh.de)
 */
 
-function eyePictures_run($params="") {
+function xenonPictures_run($params="") {
 
 	global $myPid,$currentUser;
 	
@@ -23,19 +23,19 @@ function eyePictures_run($params="") {
 		return proc('end');
 	}
 	
-	$tmp_folder = um('getUserDir', array($currentUser)).'tmp/eyePictures';
-	eyeSessions('delVar', array('eyePictures_currentPic_'.$myPid));
-	eyeSessions('setVar', array('eyePictures_currentDir_'.$myPid, um('getCurrentUserDir').'files'));
-	eyeSessions('setVar', array('eyePictures_mode_'.$myPid, 'browse')); // MODES: 'view', 'browse', 'slideshow'
-	eyeSessions('setVar', array('eyePictures_max_processable_resolution', 18000000)); // 18000000 = 18 MegaPixels
-	eyeSessions('setVar', array('eyePictures_tmp_folder', $tmp_folder));
-	eyeSessions('setVar', array('eyePictures_tmp_folder_thumbnails', $tmp_folder.'/thumbnails'));
+	$tmp_folder = um('getUserDir', array($currentUser)).'tmp/xenonPictures';
+	eyeSessions('delVar', array('xenonPictures_currentPic_'.$myPid));
+	eyeSessions('setVar', array('xenonPictures_currentDir_'.$myPid, um('getCurrentUserDir').'files'));
+	eyeSessions('setVar', array('xenonPictures_mode_'.$myPid, 'browse')); // MODES: 'view', 'browse', 'slideshow'
+	eyeSessions('setVar', array('xenonPictures_max_processable_resolution', 18000000)); // 18000000 = 18 MegaPixels
+	eyeSessions('setVar', array('xenonPictures_tmp_folder', $tmp_folder));
+	eyeSessions('setVar', array('xenonPictures_tmp_folder_thumbnails', $tmp_folder.'/thumbnails'));
 	
 	// Empties the tmp directory
 	if (vfs('real_fileExists', array($tmp_folder))) vfs('real_rmdir', array($tmp_folder));
 	if (!vfs('real_mkDir', array($tmp_folder)) || !vfs('real_mkDir', array($tmp_folder.'/backup')) || !vfs('real_mkDir', array($tmp_folder.'/thumbnails'))) {
 		
-		xenonx('messageBox', array('content' => 'Error during the tmp folder creation. Cannot load eyePictures.'));
+		xenonx('messageBox', array('content' => 'Error during the tmp folder creation. Cannot load xenonPictures.'));
 		proc('end');
 	}
 	
@@ -45,10 +45,10 @@ function eyePictures_run($params="") {
 	
 	$window = new Window(array(
 		'father' => 'xenonApps',
-		'name' => 'eyePictures_MainWnd',
+		'name' => 'xenonPictures_MainWnd',
 		'width' => 705,
 		'height' => $window_height,
-		'title' => 'eyePictures',
+		'title' => 'xenonPictures',
 		'x' => 0,
 		'y' => 0,
 		'cent' => 1,
@@ -60,7 +60,7 @@ function eyePictures_run($params="") {
 
 	$mainBox = new Simplebox(array(
 		'name' => 'eyeMainBox',
-		'father' => 'eyePictures_MainWnd_Content',
+		'father' => 'xenonPictures_MainWnd_Content',
 		'x' => 0,
 		'y' => 57,
 		'width' => $window->width - 2,
@@ -79,7 +79,7 @@ function eyePictures_run($params="") {
 
 	$bottomBox = new Simplebox(array(
 		'name' => 'extrasBox',
-		'father' => 'eyePictures_MainWnd_Content',
+		'father' => 'xenonPictures_MainWnd_Content',
 		'x' => 0,
 		'y' => 0,
 		'width' => $window->width - 2,
@@ -102,7 +102,7 @@ function eyePictures_run($params="") {
 	$myStatusBarLabel->show(0);
 
 	$myToolbar = new Toolbar(array(
-		'father' => 'eyePictures_MainWnd_Content',
+		'father' => 'xenonPictures_MainWnd_Content',
 		'name' => 'toolBar',
 		'paintOnClick' => 1
 	));
@@ -119,11 +119,11 @@ function eyePictures_run($params="") {
 	$itemIds[] = $myToolbar->addItem('slideShow','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/eyePresentation.png','Slide Show');
 	$myToolbar->addLine();
 	
-	$myToolbar->addItem('rotateleftSignal','index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyePictures/Toolbar/object-rotate-left.png','Rotate Left');
-	$myToolbar->addItem('rotaterightSignal','index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyePictures/Toolbar/object-rotate-right.png','Rotate Right');
+	$myToolbar->addItem('rotateleftSignal','index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/Toolbar/object-rotate-left.png','Rotate Left');
+	$myToolbar->addItem('rotaterightSignal','index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/Toolbar/object-rotate-right.png','Rotate Right');
 	$myToolbar->addLine();
 	
-	$itemIds[] = $myToolbar->addItem('colorEdit','index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyePictures/Toolbar/color-preferences.png','Edit Colors');
+	$itemIds[] = $myToolbar->addItem('colorEdit','index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/Toolbar/color-preferences.png','Edit Colors');
 	$myToolbar->addLine();
 	$myToolbar->addItem('Settings','index.php?theme=' . $_SESSION['usertheme'] . '&extern=icons/22x22/lin_agt_wrench.png','Settings');
 	$myToolbar->addLine();
@@ -245,7 +245,7 @@ function eyePictures_run($params="") {
 	}
 }
 
-function eyePictures_end($params=null) {
+function xenonPictures_end($params=null) {
 	eyeWidgets('unserialize');
 }
 ?>

@@ -16,12 +16,12 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 // BEGIN OF FUNCTIONS AREA
 
-function eyePictures_cleanBox($params) {
+function xenonPictures_cleanBox($params) {
 
 	global $myPid;
 	if(isset($GLOBALS['eyeMainBox']->width)){
 
-		if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'browse') {
+		if (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) == 'browse') {
 
 			$GLOBALS['dirLabel']->remove();
 			$GLOBALS['pixLabel']->remove();
@@ -34,11 +34,11 @@ function eyePictures_cleanBox($params) {
 
 		$mainBox = new Simplebox(array(
 			'name' => 'eyeMainBox',
-			'father' => 'eyePictures_MainWnd_Content',
+			'father' => 'xenonPictures_MainWnd_Content',
 			'x' => 0,
 			'y' => 57,
-			'width' => $GLOBALS['eyePictures_MainWnd']->width - 2,
-			'height' => $GLOBALS['eyePictures_MainWnd']->height - 103,
+			'width' => $GLOBALS['xenonPictures_MainWnd']->width - 2,
+			'height' => $GLOBALS['xenonPictures_MainWnd']->height - 103,
 			'border' => 0,
 			'vert' => 0
 		));
@@ -157,7 +157,7 @@ function eyePictures_cleanBox($params) {
 	return true;
 }
 
-function eyePictures_send_header($imageType, $imageLenght = NULL, $LastModified = FALSE) {
+function xenonPictures_send_header($imageType, $imageLenght = NULL, $LastModified = FALSE) {
 
 	if ($imageType == "jpg") $imageType = "jpeg";
 	if ($LastModified == FALSE) $LastModified = time();
@@ -170,7 +170,7 @@ function eyePictures_send_header($imageType, $imageLenght = NULL, $LastModified 
 	header("Accept-Ranges: bytes");
 }
 
-function eyePictures_imageResizeRotate($noresize = 0, $type, $src, $dst = NULL, $new_width, $new_height, $rotation_degrees = 0, $filemtime = FALSE) { // IF $dst is NULL, then send the image data directly (and headers too). Otherwise save it to the $dst file
+function xenonPictures_imageResizeRotate($noresize = 0, $type, $src, $dst = NULL, $new_width, $new_height, $rotation_degrees = 0, $filemtime = FALSE) { // IF $dst is NULL, then send the image data directly (and headers too). Otherwise save it to the $dst file
 
 	if ($noresize == 0 || $rotation_degrees == 90 || $rotation_degrees == -90) {
 		  if(!list($w, $h) = getimagesize($src)) {
@@ -178,7 +178,7 @@ function eyePictures_imageResizeRotate($noresize = 0, $type, $src, $dst = NULL, 
 				return FALSE;
 			}
 
-		  if (($w * $h) > eyeSessions('getVar', array('eyePictures_max_processable_resolution'))) {
+		  if (($w * $h) > eyeSessions('getVar', array('xenonPictures_max_processable_resolution'))) {
 				xenonx('messageBox', array('content' => "The resolution of this photo is too high to be processed! Resize aborted."));
 				return FALSE;
 			}
@@ -205,7 +205,7 @@ function eyePictures_imageResizeRotate($noresize = 0, $type, $src, $dst = NULL, 
 					case 'png': imagepng($img, $src); break;
 				}
 				imagedestroy($img);
-				eyePictures_imageResizeRotate($noresize, $type, $src, $dst, $new_width, $new_height, 0);
+				xenonPictures_imageResizeRotate($noresize, $type, $src, $dst, $new_width, $new_height, 0);
 				return true;
 		  }
 		  
@@ -220,7 +220,7 @@ function eyePictures_imageResizeRotate($noresize = 0, $type, $src, $dst = NULL, 
 		  
 		  imagecopyresampled($new, $img, 0, 0, 0, 0, $new_width, $new_height, $w, $h);
 		  
-		  if ($dst == NULL) eyePictures_send_header($type, NULL, FALSE);
+		  if ($dst == NULL) xenonPictures_send_header($type, NULL, FALSE);
 		  
 		  switch($type){
 			case 'wbmp': imagewbmp($new, $dst); break;
@@ -234,7 +234,7 @@ function eyePictures_imageResizeRotate($noresize = 0, $type, $src, $dst = NULL, 
 	}
 	elseif ($dst == NULL) {
 	
-		  eyePictures_send_header($type, filesize($src), FALSE);
+		  xenonPictures_send_header($type, filesize($src), FALSE);
 		  readfile($src);
 		  exit;
 	}
@@ -250,7 +250,7 @@ function eyePictures_imageResizeRotate($noresize = 0, $type, $src, $dst = NULL, 
   if ($dst == NULL) exit;
 }
 
-function eyePictures_groupFiles($params){
+function xenonPictures_groupFiles($params){
 	
 	if (!empty($params)) {
 
@@ -269,7 +269,7 @@ function eyePictures_groupFiles($params){
 	return $files;
 }
 
-function eyePictures_setDirStatusBarInfo($params) {
+function xenonPictures_setDirStatusBarInfo($params) {
 	$info = '%s Directories, %s Images (%s)';
 	if ($params['numPix'] == 0){
 		$info = '%s Directories, %s Images';
@@ -298,7 +298,7 @@ function eyePictures_setDirStatusBarInfo($params) {
 	return true;
 }
 
-function eyePictures_setPicStatusBarInfo($params) {
+function xenonPictures_setPicStatusBarInfo($params) {
 
 	global $myPid;
 	
@@ -312,7 +312,7 @@ function eyePictures_setPicStatusBarInfo($params) {
 	if (VFS_MODULE === "real") $functions_prefix = "real_";
 	else $functions_prefix = "";
 	
-	$realSize = eyePictures_getFileSize(vfs($functions_prefix.'filesize', array($file)));
+	$realSize = xenonPictures_getFileSize(vfs($functions_prefix.'filesize', array($file)));
 
 	if ($mode == 'browseMode') {
 
@@ -363,7 +363,7 @@ function eyePictures_setPicStatusBarInfo($params) {
 	}
 }
 
-function eyePictures_classifyDirContent($params) {
+function xenonPictures_classifyDirContent($params) {
 
 	if (empty($params)) {
 		return;
@@ -390,12 +390,12 @@ function eyePictures_classifyDirContent($params) {
 		}
 	}
 	
-	$sbInfo['fileSize'] = eyePictures_getFileSize($sbInfo['fileSize']);
+	$sbInfo['fileSize'] = xenonPictures_getFileSize($sbInfo['fileSize']);
 	
 	return $sbInfo;
 }
 
-function eyePictures_getFileSize($params) {
+function xenonPictures_getFileSize($params) {
 	
 	if (empty($params)){
 		return;
@@ -416,11 +416,11 @@ function eyePictures_getFileSize($params) {
 
 }
 
-function eyePictures_backUpFile($params=null) {
+function xenonPictures_backUpFile($params=null) {
 
 	global $myPid;
-	$tmpDir = eyeSessions('getVar', array('eyePictures_tmp_folder')).'/backup';
-	$currentPic = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
+	$tmpDir = eyeSessions('getVar', array('xenonPictures_tmp_folder')).'/backup';
+	$currentPic = eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid));
 	$targetFile = $tmpDir.'/'.basename($currentPic);
 	
 	if (VFS_MODULE === "real") $functions_prefix = "real_";
@@ -435,19 +435,19 @@ function eyePictures_backUpFile($params=null) {
 	return true;
 }
 
-function eyePictures_applyFilter($params) {
+function xenonPictures_applyFilter($params) {
 	
 	global $myPid;
-	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'browse') {
+	if (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) == 'browse') {
 		xenonx('messageBox',array('content'=>'Color effects are not available in browse mode, use view mode instead.'));
-		eyePictures_on_closeEditColors();
+		xenonPictures_on_closeEditColors();
 		return;
 	}
 	
-	$currentPic = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
-	$tmpDir = eyeSessions('getVar', array('eyePictures_tmp_folder')).'/backup';
+	$currentPic = eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid));
+	$tmpDir = eyeSessions('getVar', array('xenonPictures_tmp_folder')).'/backup';
 	$info = pathinfo($currentPic);
-	if ($info['dirname'] != $tmpDir) eyeSessions('setVar', array('eyePictures_currentPic_'.$myPid, $currentPic));
+	if ($info['dirname'] != $tmpDir) eyeSessions('setVar', array('xenonPictures_currentPic_'.$myPid, $currentPic));
 
 	$file = $tmpDir.'/'.basename($currentPic);
 	if (VFS_MODULE === "real") $realFile = $file;
@@ -459,7 +459,7 @@ function eyePictures_applyFilter($params) {
 		$image = xenonFiles('imagecreatefrombmp',array($realFile));
 		imagealphablending($image,0);
 		imagesavealpha($image,1);
-		$image = eyePictures_selectFilter(array('filter' => $params, 'image' => $image, 'name' => basename($currentPic)));
+		$image = xenonPictures_selectFilter(array('filter' => $params, 'image' => $image, 'name' => basename($currentPic)));
 		xenonFiles('imagebmp', array($image, $realFile));
 	
 	} elseif ($extension == 'wbmp') {
@@ -467,7 +467,7 @@ function eyePictures_applyFilter($params) {
 		$image = imagecreatefromwbmp($realFile);
 		imagealphablending($image,0);
 		imagesavealpha($image,1);
-		$image = eyePictures_selectFilter(array('filter' => $params, 'image' => $image, 'name' => basename($currentPic)));
+		$image = xenonPictures_selectFilter(array('filter' => $params, 'image' => $image, 'name' => basename($currentPic)));
 		imagewbmp($image, $realFile);
 	
 	} elseif ($extension == 'jpeg' || $extension == 'jpg') {
@@ -475,7 +475,7 @@ function eyePictures_applyFilter($params) {
 		$image = imagecreatefromjpeg($realFile);
 		imagealphablending($image,0);
 		imagesavealpha($image,1);
-		$image = eyePictures_selectFilter(array('filter' => $params, 'image' => $image, 'name' => basename($currentPic)));
+		$image = xenonPictures_selectFilter(array('filter' => $params, 'image' => $image, 'name' => basename($currentPic)));
 		imagejpeg($image,$realFile);
 	
 	} elseif ($extension == 'gif') {
@@ -483,13 +483,13 @@ function eyePictures_applyFilter($params) {
 		$image = imagecreatefromgif($realFile);
 		imagealphablending($image,0);
 		imagesavealpha($image,1);
-		$image = eyePictures_selectFilter(array('filter' => $params, 'image' => $image, 'name' => basename($currentPic)));
+		$image = xenonPictures_selectFilter(array('filter' => $params, 'image' => $image, 'name' => basename($currentPic)));
 		imagegif($image,$realFile);
 	
 	} elseif($extension == 'png') {
 		
 		$image = imagecreatefrompng($realFile);
-		$image = eyePictures_selectFilter(array('filter' => $params, 'image' => $image, 'name' => basename($currentPic)));
+		$image = xenonPictures_selectFilter(array('filter' => $params, 'image' => $image, 'name' => basename($currentPic)));
 		imagealphablending($image,0);
 		imagesavealpha($image,1);
 		imagepng($image,$realFile);
@@ -499,11 +499,11 @@ function eyePictures_applyFilter($params) {
 	}
 
 	imagedestroy($image);
-	eyePictures_on_showImage(serialize($file));
+	xenonPictures_on_showImage(serialize($file));
 	return true;
 }
 
-function eyePictures_selectFilter($params) {
+function xenonPictures_selectFilter($params) {
 	
 	$image = $params['image'];
 	$filter = $params['filter'];
@@ -568,16 +568,16 @@ function eyePictures_selectFilter($params) {
 	}
 }
 
-function eyePictures_slideShow($params=null) {
+function xenonPictures_slideShow($params=null) {
 
 	global $currentUser,$myPid;
 	
 	$path = um('getUserDir', array($currentUser));
-	$path .= CONF_USER_DIR .'/'. eyePictures.'/conf.xml';
+	$path .= CONF_USER_DIR .'/'. xenonPictures.'/conf.xml';
 	
 	if (file_exists($path)) {
-		$config=xenonXML('getXMLconfig', array('eyePictures', 'conf.xml'));
-		$delay = $config['eyePictures'][0]['slideShowDelay'][0] * 1000;
+		$config=xenonXML('getXMLconfig', array('xenonPictures', 'conf.xml'));
+		$delay = $config['xenonPictures'][0]['slideShowDelay'][0] * 1000;
 	} else {
 		$delay = 5000;
 	}
@@ -594,13 +594,13 @@ function eyePictures_slideShow($params=null) {
 
 // BEGIN OF EVENTS AREA
 
-function eyePictures_on_Icon_Clicked($params) {
+function xenonPictures_on_Icon_Clicked($params) {
 
 	global $myPid;
 	if (is_dir($params['arg0'][0])) {
 
-		eyePictures_cleanBox($var='list');
-		eyePictures_on_listContent($params['arg0'][0]);
+		xenonPictures_cleanBox($var='list');
+		xenonPictures_on_listContent($params['arg0'][0]);
 		if(isset($GLOBALS['goFwd']->text)){
 			//$GLOBALS['goFwd']->setText('');
 			eyeWidgets('singleUnserialize', array(goFwd));
@@ -608,19 +608,19 @@ function eyePictures_on_Icon_Clicked($params) {
 		return;
 	} else {
 		
-		eyeSessions('setVar', array('eyePictures_mode_'.$myPid, 'view'));
+		eyeSessions('setVar', array('xenonPictures_mode_'.$myPid, 'view'));
 		$GLOBALS['toolBar']->pressItem(array('viewSignal'));
 		$GLOBALS['toolBar']->unpressItem(array('browseSignal'));
-		eyePictures_cleanBox($var='');
-		eyePictures_on_showImage(serialize($params['arg0'][0]));
+		xenonPictures_cleanBox($var='');
+		xenonPictures_on_showImage(serialize($params['arg0'][0]));
 		if (isset($GLOBALS['editColors_Wnd']->title)) {
-				eyePictures_backUpFile();
+				xenonPictures_backUpFile();
 		}
 		return;
 	}
 }
 
-function eyePictures_on_showImage($params) {
+function xenonPictures_on_showImage($params) {
 
 	global $checknum,$myPid;
 	
@@ -637,15 +637,15 @@ function eyePictures_on_showImage($params) {
 		$file = str_replace('//', '/', $params);
 		$rotation_degrees = 0;
 	}
-	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) != 'slideshow') eyeSessions('setVar', array('eyePictures_mode_'.$myPid, 'view'));
-	$GLOBALS['eyePictures_MainWnd']->setTitle('eyePictures - '.basename($file));
+	if (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) != 'slideshow') eyeSessions('setVar', array('xenonPictures_mode_'.$myPid, 'view'));
+	$GLOBALS['xenonPictures_MainWnd']->setTitle('xenonPictures - '.basename($file));
 	
 	$picStatuBarInfo = array();
 	$picStatuBarInfo['mode'] = 'viewMode';
 	$picStatuBarInfo['filename'] = $file;
-	eyePictures_setPicStatusBarInfo($picStatuBarInfo);
+	xenonPictures_setPicStatusBarInfo($picStatuBarInfo);
 	$type = strtolower(substr(strrchr($file, '.'), 1)); // utf8
-	eyeSessions('setVar', array('eyePictures_currentPic_'.$myPid, $file));
+	eyeSessions('setVar', array('xenonPictures_currentPic_'.$myPid, $file));
 	
 	if (VFS_MODULE != "real" && !is_file($file)) $file = vfs('getRealName',array($file));
 	
@@ -671,7 +671,7 @@ function eyePictures_on_showImage($params) {
 		$new_height = (integer)($original_height * $ratio);
 	}
 	
-	$target_tmp_file = eyeSessions('getVar', array('eyePictures_tmp_folder')) . '/' . /* utf8 */ substr(basename($file, '.' . $type), 0, 15) . '_' . vfs('real_filesize', array($file)) . '_' . $new_width . 'x' . $new_height . '.' . $type; // Example: ./users/rt4/root/tmp/eyeImages/Image_17005_640x480.png
+	$target_tmp_file = eyeSessions('getVar', array('xenonPictures_tmp_folder')) . '/' . /* utf8 */ substr(basename($file, '.' . $type), 0, 15) . '_' . vfs('real_filesize', array($file)) . '_' . $new_width . 'x' . $new_height . '.' . $type; // Example: ./users/rt4/root/tmp/eyeImages/Image_17005_640x480.png
 	
 	if (vfs('real_fileExists', array($target_tmp_file))) {
 		$filemtime = filemtime($target_tmp_file);
@@ -683,26 +683,26 @@ function eyePictures_on_showImage($params) {
 		else {
 			// This file has already been resized in this session. So we use the cached version instead of generating a new one!
 			$noresize = 1;
-			$file = $target_tmp_file; // Setting $dst = $src is the way to tell eyePictures_imageResizeRotate that the image is already cached
+			$file = $target_tmp_file; // Setting $dst = $src is the way to tell xenonPictures_imageResizeRotate that the image is already cached
 		}
 	}
 	else $filemtime = FALSE;
 	
-	if (!isset($GLOBALS['eyePictures_Resize_Data']->text)) {
+	if (!isset($GLOBALS['xenonPictures_Resize_Data']->text)) {
 		$myHidden = new Hidden(array(
 			'father' => 'eyeMainBox_Container',
-			'name' => 'eyePictures_Resize_Data',
+			'name' => 'xenonPictures_Resize_Data',
 			'text' => serialize(array('src' => $file, 'type' => $type, 'dst' => $target_tmp_file, 'noresize' => $noresize, 'new_width' => $new_width, 'new_height' => $new_height, 'filemtime' => $filemtime, 'rotation_degrees' => $rotation_degrees))
 		));
 		$myHidden->show(0);
 	}
-	else $GLOBALS['eyePictures_Resize_Data']->setText(serialize(array('src' => $file, 'type' => $type, 'dst' => $target_tmp_file, 'noresize' => $noresize, 'new_width' => $new_width, 'new_height' => $new_height, 'filemtime' => $filemtime, 'rotation_degrees' => $rotation_degrees)));
+	else $GLOBALS['xenonPictures_Resize_Data']->setText(serialize(array('src' => $file, 'type' => $type, 'dst' => $target_tmp_file, 'noresize' => $noresize, 'new_width' => $new_width, 'new_height' => $new_height, 'filemtime' => $filemtime, 'rotation_degrees' => $rotation_degrees)));
 	
-	if (isset($GLOBALS['eyePictures_Imagebox']->url)) $GLOBALS['eyePictures_Imagebox']->remove();
+	if (isset($GLOBALS['xenonPictures_Imagebox']->url)) $GLOBALS['xenonPictures_Imagebox']->remove();
 	
 	$myImagebox = new Imagebox(array(
 		'father' => 'eyeMainBox_Container',
-		'name' => 'eyePictures_Imagebox',
+		'name' => 'xenonPictures_Imagebox',
 		'url' => 'index.php?checknum='.$checknum.'&msg=ResizeAndShowImage&browserCache='.base64_encode($target_tmp_file).$noBrowserCacheOnResize,
 		'width' => $new_width,
 		'height' => $new_height,
@@ -716,9 +716,9 @@ function eyePictures_on_showImage($params) {
 	return TRUE;
 }
 
-function eyePictures_on_ResizeAndShowImage($params = NULL) {
+function xenonPictures_on_ResizeAndShowImage($params = NULL) {
 
-	$data = unserialize($GLOBALS['eyePictures_Resize_Data']->text);
+	$data = unserialize($GLOBALS['xenonPictures_Resize_Data']->text);
 	if ($data == FALSE) {
 		
 		xenonx('messageBox', array('content' => "An error has occurred during image resize (unserialize failed)"));
@@ -730,14 +730,14 @@ function eyePictures_on_ResizeAndShowImage($params = NULL) {
 		header("Last-Modified: ".gmdate('D, d M Y H:i:s', $data['filemtime'])." GMT", true, 304);
 		return true;
 	}
-	$new_filemtime = eyePictures_imageResizeRotate($data['noresize'], $data['type'], $data['src'], $data['dst'], $data['new_width'], $data['new_height'], $data['rotation_degrees'], $data['filemtime']);
+	$new_filemtime = xenonPictures_imageResizeRotate($data['noresize'], $data['type'], $data['src'], $data['dst'], $data['new_width'], $data['new_height'], $data['rotation_degrees'], $data['filemtime']);
 	$size = vfs('real_filesize', array($data['dst']));
-	eyePictures_send_header($data['type'], $size, $new_filemtime);
+	xenonPictures_send_header($data['type'], $size, $new_filemtime);
 	vfs('printFile', array($data['dst']));
 	exit;
 }
 
-function eyePictures_on_createThumbnail($params) {
+function xenonPictures_on_createThumbnail($params) {
 
 	global $myPid;
 	
@@ -750,7 +750,7 @@ function eyePictures_on_createThumbnail($params) {
 	$type = strtolower(substr(strrchr($path, '.'), 1)); // utf8
 	if (VFS_MODULE != "real") $path = vfs('getRealName', array($path));
 	
-	$tmp_folder_thumbnails = eyeSessions('getVar', array('eyePictures_tmp_folder_thumbnails'));
+	$tmp_folder_thumbnails = eyeSessions('getVar', array('xenonPictures_tmp_folder_thumbnails'));
 	
 	list($original_width, $original_height) = getimagesize($path);
 	if($original_width <= 48 && $original_height <= 48) {
@@ -768,7 +768,7 @@ function eyePictures_on_createThumbnail($params) {
 	$path_thumbnail_cache = $tmp_folder_thumbnails . '/' . /* utf8 */ substr(basename($path, '.' . $type), 0, 15) . '_' . vfs('real_filesize', array($path)) . '_' . $new_width . 'x' . $new_height . '.' . $type; // Example: ./users/rt4/root/tmp/eyeImages/thumbnails/Image_17005_48x36.png
 	if (!vfs('real_fileExists', array($path_thumbnail_cache))) {
 		// The thumbnail is not in the cache. So let's create it!
-		eyePictures_imageResizeRotate($noresize, $type, $path, $path_thumbnail_cache, $new_width, $new_height);
+		xenonPictures_imageResizeRotate($noresize, $type, $path, $path_thumbnail_cache, $new_width, $new_height);
 	}
 	elseif (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) && (strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) >= (filemtime($path_thumbnail_cache) - 1)) && (strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) <= (filemtime($path_thumbnail_cache) + 1))) {
 		// Already in server cache && in browser cache. So I send a 304 code!
@@ -776,16 +776,16 @@ function eyePictures_on_createThumbnail($params) {
 		return true;
 	}
 	
-	eyePictures_send_header($type, vfs('real_filesize', array($path_thumbnail_cache)), filemtime($path_thumbnail_cache));
+	xenonPictures_send_header($type, vfs('real_filesize', array($path_thumbnail_cache)), filemtime($path_thumbnail_cache));
 	vfs('printFile', array($path_thumbnail_cache));
 	exit;
 }
 
-function eyePictures_on_listContent($path) {
+function xenonPictures_on_listContent($path) {
 
 	global $checknum,$myPid;
 	
-	eyeSessions('setVar', array('eyePictures_currentDir_'.$myPid, $path));
+	eyeSessions('setVar', array('xenonPictures_currentDir_'.$myPid, $path));
 	
 	if (VFS_MODULE === "real") $functions_prefix = "real_";
 	else $functions_prefix = "";
@@ -813,12 +813,12 @@ function eyePictures_on_listContent($path) {
 		$path_levelup = substr($path, 0, strrpos($path, '/')); // utf8
 	}
 	
-	$GLOBALS['eyePictures_MainWnd']->setTitle('eyePictures - '.$title_path);
+	$GLOBALS['xenonPictures_MainWnd']->setTitle('xenonPictures - '.$title_path);
 	
 	if (!isset($GLOBALS['goBack']->text)) {
 		$goBack = new Hidden(array(
 			'name' => 'goBack',
-			'father' => 'eyePictures_MainWnd_Content',
+			'father' => 'xenonPictures_MainWnd_Content',
 			'text' => pathinfo($path)
 		));
 		$goBack->show(0);
@@ -879,9 +879,9 @@ function eyePictures_on_listContent($path) {
 				'y' => $y
 			));
 			$dir->show(0);
-			$label = eyePictures_classifyDirContent($value);
+			$label = xenonPictures_classifyDirContent($value);
 			$label['onMouseOver'] = 1;
-			$info = eyePictures_setDirStatusBarInfo($label);
+			$info = xenonPictures_setDirStatusBarInfo($label);
 			$dir->addEvent('onmouseover','document.getElementById("'.$myPid.'_statusBarLabel").innerHTML="'.$info.'";');
 			$dir->addEvent('onmouseout','document.getElementById("'.$myPid.'_statusBarLabel").innerHTML=varPictures;');
 
@@ -912,7 +912,7 @@ function eyePictures_on_listContent($path) {
 					$new_width = (integer)($original_width * $ratio);
 					$new_height = (integer)($original_height * $ratio);
 				}
-				$tmp_folder_thumbnails = eyeSessions('getVar', array('eyePictures_tmp_folder_thumbnails'));
+				$tmp_folder_thumbnails = eyeSessions('getVar', array('xenonPictures_tmp_folder_thumbnails'));
 				$path_thumbnail_cache = $tmp_folder_thumbnails . '/' . /* utf8 */ substr($info['filename'], 0, 15) . '_' . vfs($functions_prefix.'filesize', array($realFile)) . '_' . $new_width . 'x' . $new_height . '.' . $kind; // Example: ./users/rt4/root/tmp/eyeImages/thumbnails/Image_17005_48x36.png
 				$image_path = $path.'/'.$name;
 				
@@ -947,7 +947,7 @@ function eyePictures_on_listContent($path) {
 				$picStatuBarInfo = array();
 				$picStatuBarInfo['mode'] = 'browseMode';
 				$picStatuBarInfo['filename'] = $info['dirname'].'/'.$info['basename'];
-				$label = eyePictures_setPicStatusBarInfo($picStatuBarInfo);
+				$label = xenonPictures_setPicStatusBarInfo($picStatuBarInfo);
 				$file->addEvent('onmouseover','document.getElementById("'.$myPid.'_statusBarLabel").innerHTML="'.$label.'";');
 				$file->addEvent('onmouseout','document.getElementById("'.$myPid.'_statusBarLabel").innerHTML=varPictures;');
 				$posX+=73;
@@ -960,11 +960,11 @@ function eyePictures_on_listContent($path) {
 		}
 	}
 	
-	$sbInfo['fileSize'] = eyePictures_getFileSize($sbInfo['fileSize']);
-	eyePictures_setDirStatusBarInfo($sbInfo);
+	$sbInfo['fileSize'] = xenonPictures_getFileSize($sbInfo['fileSize']);
+	xenonPictures_setDirStatusBarInfo($sbInfo);
 }
 
-function eyePictures_on_backSignal($params=null) {
+function xenonPictures_on_backSignal($params=null) {
 
 	global $currentUser,$myPid;
 	$userDir = substr($currentUser, 0, 1) . substr($currentUser, -1) . substr(strval(strlen($currentUser)), 0, 1); // utf8
@@ -972,22 +972,22 @@ function eyePictures_on_backSignal($params=null) {
 	if (VFS_MODULE === "real") $functions_prefix = "real_";
 	else $functions_prefix = "";
 
-	if((eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'browse') && $GLOBALS['goBack']->text['dirname'] != './users/'. $userDir .'/'.$currentUser) {
+	if((eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) == 'browse') && $GLOBALS['goBack']->text['dirname'] != './users/'. $userDir .'/'.$currentUser) {
 		$goFwd = new Hidden(array(
 			'name' => 'goFwd',
-			'father' => 'eyePictures_MainWnd_Content',
+			'father' => 'xenonPictures_MainWnd_Content',
 			'text' => $GLOBALS['goBack']->text
 		));
 		$goFwd->show(0);
 
-		eyePictures_cleanBox($params='list');
-		eyePictures_on_listContent($GLOBALS['goBack']->text['dirname']);
+		xenonPictures_cleanBox($params='list');
+		xenonPictures_on_listContent($GLOBALS['goBack']->text['dirname']);
 
 		return;
 
-	} elseif (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) != 'browse') {
+	} elseif (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) != 'browse') {
 
-		$currentPic = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
+		$currentPic = eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid));
 
 		if (!isset($GLOBALS['goBack']->text['basename'])) {
 
@@ -1000,7 +1000,7 @@ function eyePictures_on_backSignal($params=null) {
 		}
 		
 		$pix = array();
-		$files = eyePictures_groupFiles($files);
+		$files = xenonPictures_groupFiles($files);
 
 		foreach($files as $file) {
 
@@ -1011,9 +1011,9 @@ function eyePictures_on_backSignal($params=null) {
 				}
 				$rpix = array_reverse($pix);
 				foreach($rpix as $image) {
-					eyePictures_on_showImage(serialize($image));
+					xenonPictures_on_showImage(serialize($image));
 					if (isset($GLOBALS['editColors_Wnd']->title)) {
-						eyePictures_backUpFile();
+						xenonPictures_backUpFile();
 					}
 					return;
 				}
@@ -1025,21 +1025,21 @@ function eyePictures_on_backSignal($params=null) {
 	}
 }
 
-function eyePictures_on_nextSignal($params=null) {
+function xenonPictures_on_nextSignal($params=null) {
 
 	global $myPid;
 	if (VFS_MODULE === "real") $functions_prefix = "real_";
 	else $functions_prefix = "";
 	
-	if ((eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'browse') && isset($GLOBALS['goFwd']->text) && !empty($GLOBALS['goFwd']->text)) {
+	if ((eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) == 'browse') && isset($GLOBALS['goFwd']->text) && !empty($GLOBALS['goFwd']->text)) {
 
-		eyePictures_cleanBox($params='list');
-		eyePictures_on_listContent($GLOBALS['goFwd']->text['dirname'].'/'.$GLOBALS['goFwd']->text['basename']);
+		xenonPictures_cleanBox($params='list');
+		xenonPictures_on_listContent($GLOBALS['goFwd']->text['dirname'].'/'.$GLOBALS['goFwd']->text['basename']);
 		return;
 
-	} elseif (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) != 'browse') {
+	} elseif (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) != 'browse') {
 
-		$currentPic = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
+		$currentPic = eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid));
 
 		if (!isset($GLOBALS['goBack']->text)) {
 			$search = array(basename($currentPic));
@@ -1049,7 +1049,7 @@ function eyePictures_on_nextSignal($params=null) {
 			$files = vfs($functions_prefix.'getDirContent', array($GLOBALS['goBack']->text['dirname'].'/'.$GLOBALS['goBack']->text['basename']));
 		}
 
-		$files = eyePictures_groupFiles($files);
+		$files = xenonPictures_groupFiles($files);
 		foreach ($files as $file) {
 
 			if ($file == $currentPic) {
@@ -1057,26 +1057,26 @@ function eyePictures_on_nextSignal($params=null) {
 					xenonx('messageBox',array('content' => 'This is the last image of the folder!'));
 					return;
 				}
-				eyePictures_on_showImage(serialize(current($files)));
+				xenonPictures_on_showImage(serialize(current($files)));
 
 				if (isset($GLOBALS['editColors_Wnd']->title)) {
-					eyePictures_backUpFile();
+					xenonPictures_backUpFile();
 				}
 			}
 		}
 	}
 }
 
-function eyePictures_on_slideShowNextSignal($params=null) {
+function xenonPictures_on_slideShowNextSignal($params=null) {
 
 	global $myPid,$checknum;
 	
 	if (VFS_MODULE === "real") $functions_prefix = "real_";
 	else $functions_prefix = "";
 	
-	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) != 'browse') {
+	if (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) != 'browse') {
 
-		$currentPic = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
+		$currentPic = eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid));
 
 		if (!isset($GLOBALS['goBack']->text)) {
 			$search = array(basename($currentPic));
@@ -1086,7 +1086,7 @@ function eyePictures_on_slideShowNextSignal($params=null) {
 			$files = vfs($functions_prefix.'getDirContent', array($GLOBALS['goBack']->text['dirname'].'/'.$GLOBALS['goBack']->text['basename']));
 		}
 
-		$files = eyePictures_groupFiles($files);
+		$files = xenonPictures_groupFiles($files);
 		foreach ($files as $file) {
 
 			if ($file == $currentPic) {
@@ -1100,12 +1100,12 @@ function eyePictures_on_slideShowNextSignal($params=null) {
 					xenonx('sendMessage', array('msg' => 'slideShowStop', 'params' => ''));
 					return;
 				}
-				//eyePictures_cleanBox($var='');
-				eyePictures_on_showImage(serialize(current($files)));
+				//xenonPictures_cleanBox($var='');
+				xenonPictures_on_showImage(serialize(current($files)));
 
 				if (isset($GLOBALS['editColors_Wnd']->title)) {
-					eyePictures_backUpFile();
-					//eyePictures_updateCurrentPicHidden();
+					xenonPictures_backUpFile();
+					//xenonPictures_updateCurrentPicHidden();
 				}
 
 				xenonx('rawjs',array('js' => '
@@ -1119,29 +1119,29 @@ function eyePictures_on_slideShowNextSignal($params=null) {
 	}
 }
 
-function eyePictures_on_slideShowJS($params=null) {
+function xenonPictures_on_slideShowJS($params=null) {
 
-	eyePictures_slideshow(0);
+	xenonPictures_slideshow(0);
 }
 
-function eyePictures_on_slideShowStop($params=null) {
+function xenonPictures_on_slideShowStop($params=null) {
 
 	global $myPid;
-	eyeSessions('setVar', array('eyePictures_mode_'.$myPid, 'view'));
+	eyeSessions('setVar', array('xenonPictures_mode_'.$myPid, 'view'));
 	$GLOBALS['toolBar']->unpressItem(array('slideShow'));
 	$GLOBALS['toolBar']->pressItem(array('viewSignal'));
 	xenonx('messageBox',array('content'=>'Slideshow stopped. You are now in view mode.'));
 }
 
-function eyePictures_on_slideShow($params=null) {
+function xenonPictures_on_slideShow($params=null) {
 
 	global $checknum,$myPid;
 	$params = array();
-	$old_mode = eyeSessions('getVar', array('eyePictures_mode_'.$myPid));
+	$old_mode = eyeSessions('getVar', array('xenonPictures_mode_'.$myPid));
 	
 	if ($old_mode != 'slideshow') {
 	
-		eyeSessions('setVar', array('eyePictures_mode_'.$myPid, 'slideshow'));
+		eyeSessions('setVar', array('xenonPictures_mode_'.$myPid, 'slideshow'));
 		xenonx('messageBox',array('content'=>'Slideshow mode enabled.'));
 	}
 	
@@ -1164,18 +1164,18 @@ function eyePictures_on_slideShow($params=null) {
 	}
 
 	$params['mode'] = 'slideShow';
-	eyePictures_on_fullScreenCheck();
-	eyePictures_on_viewSignal($params);
+	xenonPictures_on_fullScreenCheck();
+	xenonPictures_on_viewSignal($params);
 	$GLOBALS['toolBar']->unpressItem(array('viewSignal'));
 }
 
-function eyePictures_on_viewSignal($params) {
+function xenonPictures_on_viewSignal($params) {
 	$GLOBALS['toolBar']->pressItem(array('viewSignal'));
 	
 	global $myPid,$checknum;
 	if (VFS_MODULE === "real") $functions_prefix = "real_";
 	else $functions_prefix = "";
-	$mode = eyeSessions('getVar', array('eyePictures_mode_'.$myPid));
+	$mode = eyeSessions('getVar', array('xenonPictures_mode_'.$myPid));
 	
 	if ($params['mode'] != 'slideShow' && $mode == 'slideshow') {
 		xenonx('rawjs',array('js' => '
@@ -1185,17 +1185,17 @@ function eyePictures_on_viewSignal($params) {
 			}
 		'));
 		xenonx('sendMessage', array('msg' => 'slideShowStop', 'params' => ''));
-		eyePictures_on_showImage(serialize(eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid))));
+		xenonPictures_on_showImage(serialize(eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid))));
 		return;
 	}
 	
 	if ($mode != 'view') {
 		
-		if ($mode != 'slideshow') eyeSessions('setVar', array('eyePictures_mode_'.$myPid, 'view'));
+		if ($mode != 'slideshow') eyeSessions('setVar', array('xenonPictures_mode_'.$myPid, 'view'));
 		
 		if (!isset($GLOBALS['goBack']->text)) {
 
-			$currentPic = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
+			$currentPic = eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid));
 			$search = array(basename($currentPic));
 			$path = str_replace($search, "", $currentPic);
 		} else {
@@ -1204,7 +1204,7 @@ function eyePictures_on_viewSignal($params) {
 		}
 		
 		$files = vfs($functions_prefix.'getDirContent', array($path));
-		$files = eyePictures_groupFiles($files);
+		$files = xenonPictures_groupFiles($files);
 		if ($files[0] == 'EOF'){
 			return;
 		}
@@ -1214,30 +1214,30 @@ function eyePictures_on_viewSignal($params) {
 		if ($params['mode'] == 'slideShow') {
 
 			$GLOBALS['toolBar']->pressItem(array('slideShow'));
-			eyePictures_cleanBox($var='');
-			if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'view') {
+			xenonPictures_cleanBox($var='');
+			if (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) == 'view') {
 				$files[0] = $params['file'];
 			}
-			eyePictures_on_showImage(serialize($files[0]));
-			eyePictures_slideshow(0);
+			xenonPictures_on_showImage(serialize($files[0]));
+			xenonPictures_slideshow(0);
 
 			return true;
 		}
 
-		eyePictures_cleanBox($var='');
-		eyePictures_on_showImage(serialize($files[0]));
+		xenonPictures_cleanBox($var='');
+		xenonPictures_on_showImage(serialize($files[0]));
 
 		return true;
 	}
 }
 
-function eyePictures_on_browseSignal($params) {
+function xenonPictures_on_browseSignal($params) {
 	$GLOBALS['toolBar']->pressItem(array('browseSignal'));
 	
 	global $myPid;
-	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) != 'browse') {
+	if (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) != 'browse') {
 		
-		if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'slideshow') {
+		if (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) == 'slideshow') {
 			$GLOBALS['toolBar']->unpressItem(array('slideShow'));
 			xenonx('rawjs',array('js' => '
 				if (slideShow == 1) {
@@ -1251,99 +1251,99 @@ function eyePictures_on_browseSignal($params) {
 		
 		if (!isset($GLOBALS['goBack']->text)) {
 
-			$currentPic = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
+			$currentPic = eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid));
 			$search = array(basename($currentPic));
 			$path = str_replace($search, "", $currentPic);
 		} else {
 
 			$path = $GLOBALS['goBack']->text['dirname'].'/'.$GLOBALS['goBack']->text['basename'];
 		}
-		$GLOBALS['eyePictures_Imagebox']->remove();
-		eyePictures_cleanBox($params='list');
-		eyeSessions('setVar', array('eyePictures_mode_'.$myPid, 'browse'));
-		eyePictures_on_listContent($path);
+		$GLOBALS['xenonPictures_Imagebox']->remove();
+		xenonPictures_cleanBox($params='list');
+		eyeSessions('setVar', array('xenonPictures_mode_'.$myPid, 'browse'));
+		xenonPictures_on_listContent($path);
 	}
 }
 
-function eyePictures_on_rotateRightSignal($params=null) {
+function xenonPictures_on_rotateRightSignal($params=null) {
 
 	global $myPid;
-	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'view') {
-		$image = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
+	if (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) == 'view') {
+		$image = eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid));
 		xenonx('sendMessage', array('msg' => 'showImage', 'params' => serialize(array($image, -90))));
 	}
 	else xenonx('messageBox',array('content' => 'Image rotation is only available in View mode'));
 }
 
-function eyePictures_on_rotateLeftSignal($params=null) {
+function xenonPictures_on_rotateLeftSignal($params=null) {
 
 	global $myPid;
-	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'view') {
-		$image = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
+	if (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) == 'view') {
+		$image = eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid));
 		xenonx('sendMessage', array('msg' => 'showImage', 'params' => serialize(array($image, 90))));
 	}
 	else xenonx('messageBox',array('content' => 'Image rotation is only available in View mode'));
 }
 
-function eyePictures_on_winResize($params) {
+function xenonPictures_on_winResize($params) {
 
 	global $myPid;
 	
 	$width = (integer)$params['arg'][0];
 	$height = (integer)$params['arg'][1];
 
-	$GLOBALS['eyePictures_MainWnd']->setWidth($width);
-	$GLOBALS['eyePictures_MainWnd']->setHeight($height);
+	$GLOBALS['xenonPictures_MainWnd']->setWidth($width);
+	$GLOBALS['xenonPictures_MainWnd']->setHeight($height);
 	
-	if(eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) == 'browse') {
+	if(eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) == 'browse') {
 		
-		$path = eyeSessions('getVar', array('eyePictures_currentDir_'.$myPid));
-		eyePictures_cleanBox('list');
+		$path = eyeSessions('getVar', array('xenonPictures_currentDir_'.$myPid));
+		xenonPictures_cleanBox('list');
 		xenonx('sendMessage', array('msg' => 'listContent', 'params' => $path));
 	} else {
 		
 		$GLOBALS['eyeMainBox']->setWidth($width-2);
 		$GLOBALS['eyeMainBox']->setHeight($height-103);
-		$image = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
+		$image = eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid));
 		xenonx('sendMessage', array('msg' => 'showImage', 'params' => serialize($image)));
 	}
 	
 	$GLOBALS['extrasBox']->setWidth($width-2);
 }
 
-function eyePictures_on_fullScreenCheck($params=null) {
+function xenonPictures_on_fullScreenCheck($params=null) {
 	
 	global $currentUser;
 	
 	$path = um('getUserDir', array($currentUser));
-	$path .= CONF_USER_DIR .'/'. eyePictures.'/conf.xml';
+	$path .= CONF_USER_DIR .'/'. xenonPictures.'/conf.xml';
 	
 	if (file_exists($path)) {
-		$config=xenonXML('getXMLconfig', array('eyePictures', 'conf.xml'));
-		$gtfs = $config['eyePictures'][0]['goToFullScreen'][0];
-		if ($gtfs == 1 && !$GLOBALS['eyePictures_MainWnd']->fullScreen) {
-			eyePictures_on_fullScreenSignal($params=null);
+		$config=xenonXML('getXMLconfig', array('xenonPictures', 'conf.xml'));
+		$gtfs = $config['xenonPictures'][0]['goToFullScreen'][0];
+		if ($gtfs == 1 && !$GLOBALS['xenonPictures_MainWnd']->fullScreen) {
+			xenonPictures_on_fullScreenSignal($params=null);
 		}
 	}
 }
 
-function eyePictures_on_fullScreenSignal($params=null) {
+function xenonPictures_on_fullScreenSignal($params=null) {
 	
-	if ($GLOBALS['eyePictures_MainWnd']->fullScreen) {
+	if ($GLOBALS['xenonPictures_MainWnd']->fullScreen) {
 		
 		$GLOBALS['toolBar']->unpressItem(array('fullScreenSignal'));
 	} else {
 
 		$GLOBALS['toolBar']->pressItem(array('fullScreenSignal'));
 	}
-	$GLOBALS['eyePictures_MainWnd']->setFullScreen();
+	$GLOBALS['xenonPictures_MainWnd']->setFullScreen();
 }
 
-function eyePictures_on_colorEdit($params=null) {
+function xenonPictures_on_colorEdit($params=null) {
 	
 	global $checknum,$myPid;
 	
-	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) != 'view') {
+	if (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) != 'view') {
 		xenonx('messageBox',array('content'=>'Color effects are not available in browse mode, use view mode instead.'));
 		return;
 	}
@@ -1362,8 +1362,8 @@ function eyePictures_on_colorEdit($params=null) {
 		}
 	'));
 
-	$width = $GLOBALS['eyePictures_MainWnd']->width;
-	$xPos = $GLOBALS['eyePictures_MainWnd']->x;
+	$width = $GLOBALS['xenonPictures_MainWnd']->width;
+	$xPos = $GLOBALS['xenonPictures_MainWnd']->x;
 	$x = $width + $xPos;
 
 	$window = new Window(array(
@@ -1375,106 +1375,106 @@ function eyePictures_on_colorEdit($params=null) {
 		'removeWin' => 1,
 		'sigClose' => 'closeEditColors',
 		'title' => 'Edit Colors',
-		'y' => $GLOBALS['eyePictures_MainWnd']->y,
+		'y' => $GLOBALS['xenonPictures_MainWnd']->y,
 		'x' => $x,
 		'style' => TITLE + CLOSE,
 		'sendResizeMsg' => 1
 	));
 	$window->show(0);
 
-	$currentPic = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
-	$tmpDir = eyeSessions('getVar', array('eyePictures_tmp_folder'));
+	$currentPic = eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid));
+	$tmpDir = eyeSessions('getVar', array('xenonPictures_tmp_folder'));
 	$info = pathinfo($currentPic[0]);
 	if ($info['dirname'] != $tmpDir) {
-		eyeSessions('setVar', array('eyePictures_originalPic_'.$myPid, $currentPic));
-		require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyePictures/forms/form'.XE_CODE_EXTENSION);
-		eyePictures_backUpFile();
+		eyeSessions('setVar', array('xenonPictures_originalPic_'.$myPid, $currentPic));
+		require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonPictures/forms/form'.XE_CODE_EXTENSION);
+		xenonPictures_backUpFile();
 	}
 	else {
-		require_once(XENONOS_ROOT.'/'.APP_DIR.'/eyePictures/forms/form'.XE_CODE_EXTENSION);
+		require_once(XENONOS_ROOT.'/'.APP_DIR.'/xenonPictures/forms/form'.XE_CODE_EXTENSION);
 	}
 }
 
-function eyePictures_on_closeEditColors($params=null) {
+function xenonPictures_on_closeEditColors($params=null) {
 	
 	$GLOBALS['editColors_Wnd']->close();
 	$GLOBALS['toolBar']->unpressItem(array('colorEdit'));
 }
 
-function eyePictures_on_setSepia($params=null) {
+function xenonPictures_on_setSepia($params=null) {
 	
 	$params = 'sepia';
-	eyePictures_applyFilter($params);
+	xenonPictures_applyFilter($params);
 }
 
-function eyePictures_on_setGrayScale($params=null) {
+function xenonPictures_on_setGrayScale($params=null) {
 	
 	$params = 'grayScale';
-	eyePictures_applyFilter($params);
+	xenonPictures_applyFilter($params);
 }
 
-function eyePictures_on_setPencil($params=null) {
+function xenonPictures_on_setPencil($params=null) {
 	
 	$params = 'pencil';
-	eyePictures_applyFilter($params);
+	xenonPictures_applyFilter($params);
 }
 
-function eyePictures_on_setEmboss($params=null) {
+function xenonPictures_on_setEmboss($params=null) {
 	
 	$params = 'emboss';
-	eyePictures_applyFilter($params);
+	xenonPictures_applyFilter($params);
 }
 
-function eyePictures_on_setDarken($params=null) {
+function xenonPictures_on_setDarken($params=null) {
 	
 	$params = 'darken';
-	eyePictures_applyFilter($params);
+	xenonPictures_applyFilter($params);
 }
 
-function eyePictures_on_setBrighten($params=null) {
+function xenonPictures_on_setBrighten($params=null) {
 	
 	$params = 'brighten';
-	eyePictures_applyFilter($params);
+	xenonPictures_applyFilter($params);
 }
 
-function eyePictures_on_setInvert($params=null) {
+function xenonPictures_on_setInvert($params=null) {
 	
 	$params = 'invert';
-	eyePictures_applyFilter($params);
+	xenonPictures_applyFilter($params);
 }
 
-function eyePictures_on_setBlur($params=null) {
+function xenonPictures_on_setBlur($params=null) {
 	
 	$params = 'blur';
-	eyePictures_applyFilter($params);
+	xenonPictures_applyFilter($params);
 }
 
-function eyePictures_on_setSmooth($params=null) {
+function xenonPictures_on_setSmooth($params=null) {
 	
 	$params = 'smooth';
-	eyePictures_applyFilter($params);
+	xenonPictures_applyFilter($params);
 }
 
-function eyePictures_on_undoAll($params=null) {
+function xenonPictures_on_undoAll($params=null) {
 
 	global $myPid;
-	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) != 'view') {
+	if (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) != 'view') {
 		xenonx('messageBox',array('content'=>'Color effects are not available in browse mode, use view mode instead.'));
-		eyePictures_on_closeEditColors();
+		xenonPictures_on_closeEditColors();
 		return;
 	}
 
-	eyePictures_on_showImage(serialize($GLOBALS['eyePictures_editColors_originalPic']->text));
+	xenonPictures_on_showImage(serialize($GLOBALS['xenonPictures_editColors_originalPic']->text));
 	$GLOBALS['editColors_saveFile_txtBox']->setText('');
-	eyePictures_backUpFile();
+	xenonPictures_backUpFile();
 }
 
-function eyePictures_on_saveFile($params=null) {
+function xenonPictures_on_saveFile($params=null) {
 	
 	global $myPid;
-	if (eyeSessions('getVar', array('eyePictures_mode_'.$myPid)) != 'view') {
+	if (eyeSessions('getVar', array('xenonPictures_mode_'.$myPid)) != 'view') {
 		xenonx('messageBox',array('content'=>'Color effects are not available in browse mode, use view mode instead.'));
-		eyePictures_on_closeEditColors();
+		xenonPictures_on_closeEditColors();
 		return;
 	}
 	
@@ -1486,16 +1486,16 @@ function eyePictures_on_saveFile($params=null) {
 	if (VFS_MODULE === "real") { $copy = 'real_copy'; $rename = 'real_move'; }
 	else  { $copy = 'copy'; $rename = 'rename'; }
 	
-	$currentPic = eyeSessions('getVar', array('eyePictures_currentPic_'.$myPid));
+	$currentPic = eyeSessions('getVar', array('xenonPictures_currentPic_'.$myPid));
 	$file = $GLOBALS['editColors_saveFile_txtBox']->text;
-	$currentFolder = eyeSessions('getVar', array('eyePictures_currentDir_'.$myPid));
+	$currentFolder = eyeSessions('getVar', array('xenonPictures_currentDir_'.$myPid));
 	$new_file = $currentFolder . '/' . $file;
 
 	if (!vfs($function_prefix.'fileExists', array($new_file))) {
 		
 		if(vfs($copy, array($currentPic, $new_file))) {
-			$GLOBALS['eyePictures_MainWnd']->setTitle('eyePictures - '.$file);
-			eyeSessions('setVar', array('eyePictures_currentPic_'.$myPid, $new_file));
+			$GLOBALS['xenonPictures_MainWnd']->setTitle('xenonPictures - '.$file);
+			eyeSessions('setVar', array('xenonPictures_currentPic_'.$myPid, $new_file));
 			xenonx('messageBox', array('content' => 'File saved successfully.'));
 		}
 		else xenonx('messageBox',array('content'=>'Error during file writing. The file has not been saved'));
@@ -1508,7 +1508,7 @@ function eyePictures_on_saveFile($params=null) {
 	xenonFiles('update', array('home://' . $split[1]));
 }
 
-function eyePictures_on_Close($params=null) {
+function xenonPictures_on_Close($params=null) {
 
 	global $myPid;
 	xenonx('rawjs',array('js' => '
@@ -1517,17 +1517,17 @@ function eyePictures_on_Close($params=null) {
 			clearTimeout(cronoID);
 		}
 	'));
-	eyeSessions('delVar', array('eyePictures_currentPic_'.$myPid));
-	eyeSessions('delVar', array('eyePictures_originalPic_'.$myPid));
-	eyeSessions('delVar', array('eyePictures_currentDir_'.$myPid));
-	eyeSessions('delVar', array('eyePictures_mode_'.$myPid));
+	eyeSessions('delVar', array('xenonPictures_currentPic_'.$myPid));
+	eyeSessions('delVar', array('xenonPictures_originalPic_'.$myPid));
+	eyeSessions('delVar', array('xenonPictures_currentDir_'.$myPid));
+	eyeSessions('delVar', array('xenonPictures_mode_'.$myPid));
 	proc('end');
 }
 
-function eyePictures_on_Settings($params = '') {
+function xenonPictures_on_Settings($params = '') {
 	proc('launch',array('xeControl',array(
 		'category' => 'system',
-		'content' => 'eyePictures',
+		'content' => 'xenonPictures',
 		'hidemenu' => 1
 	)));
 }

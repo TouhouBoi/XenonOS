@@ -62,8 +62,8 @@ $mySaveBtn->show();
 
 $originalPic = new Hidden(array(
 	'father' => 'editColors_Wnd_Content',
-	'name' => 'eyePictures_editColors_originalPic',
-	'text' => eyeSessions('getVar', array('eyePictures_originalPic_'.$myPid))
+	'name' => 'xenonPictures_editColors_originalPic',
+	'text' => eyeSessions('getVar', array('xenonPictures_originalPic_'.$myPid))
 ));
 $originalPic->show(0);
 
@@ -97,7 +97,7 @@ $mySepiaBtn = new Button(array(
 	'x' => $x0,
 	'y' => $y0,
 	'caption' => '',
-	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyePictures/FX/sepia.png'
+	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/FX/sepia.png'
 ));
 $mySepiaBtn->addFriend($myTextBox);
 $mySepiaBtn->show();
@@ -119,7 +119,7 @@ $myBWBtn = new Button(array(
 	'width' => 17,
 	'x' => $x0,
 	'y' => $y1,
-	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyePictures/FX/blancInegre.png'
+	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/FX/blancInegre.png'
 ));
 $myBWBtn->addFriend($myTextBox);
 $myBWBtn->show();
@@ -141,7 +141,7 @@ $myPencilBtn = new Button(array(
 	'width' => 17,
 	'x' => $x0,
 	'y' => $y2,
-	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyePictures/FX/color-picker-black.png'
+	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/FX/color-picker-black.png'
 ));
 $myPencilBtn->addFriend($myTextBox);
 $myPencilBtn->show();
@@ -164,7 +164,7 @@ $myEmbossBtn = new Button(array(
 	'width' => 17,
 	'x' => $x0,
 	'y' => $y0,
-	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyePictures/FX/relleu.png'
+	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/FX/relleu.png'
 ));
 $myEmbossBtn->addFriend($myTextBox);
 $myEmbossBtn->show();
@@ -186,7 +186,7 @@ $myDarkenBtn = new Button(array(
 	'width' => 17,
 	'x' => $x0,
 	'y' => $y1,
-	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyePictures/FX/enfosquir.png'
+	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/FX/enfosquir.png'
 ));
 $myDarkenBtn->addFriend($myTextBox);
 $myDarkenBtn->show();
@@ -208,7 +208,7 @@ $myLightenBtn = new Button(array(
 	'width' => 17,
 	'x' => $x0,
 	'y' => $y2,
-	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyePictures/FX/aclarar.png'
+	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/FX/aclarar.png'
 ));
 $myLightenBtn->addFriend($myTextBox);
 $myLightenBtn->show();
@@ -231,7 +231,7 @@ $myReverseBtn = new Button(array(
 	'width' => 17,
 	'x' => $x0,
 	'y' => $y0,
-	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyePictures/FX/invertir.png'
+	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/FX/invertir.png'
 ));
 $myReverseBtn->addFriend($myTextBox);
 $myReverseBtn->show();
@@ -253,7 +253,7 @@ $myBlurBtn = new Button(array(
 	'width' => 17,
 	'x' => $x0,
 	'y' => $y1,
-	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyePictures/FX/desenfocar.png'
+	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/FX/desenfocar.png'
 ));
 $myBlurBtn->addFriend($myTextBox);
 $myBlurBtn->show();
@@ -275,7 +275,7 @@ $mySmoothBtn = new Button(array(
 	'width' => 17,
 	'x' => $x0,
 	'y' => $y2,
-	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/eyePictures/FX/color-picker-white.png'
+	'img' => 'index.php?theme=' . $_SESSION['usertheme'] . '&extern=images/apps/xenonPictures/FX/color-picker-white.png'
 ));
 $mySmoothBtn->addFriend($myTextBox);
 $mySmoothBtn->show();
