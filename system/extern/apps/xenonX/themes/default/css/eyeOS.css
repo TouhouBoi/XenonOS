@@ -1420,6 +1420,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 .eyeWindowCloseButton {
 	background: transparent url('index.php?theme=USERTHEME&extern=images/windows/close.png') no-repeat;
+	background-size: 37px 15px;
 }
 
 .eyeWindowCloseButton:hover {
