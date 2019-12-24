@@ -1,4 +1,4 @@
 <?php
-// User Config
+// XenonOS User Config
 
 define('TIMEZONE', 'UTC'); // It must be a valid timezone identifier: http://www.php.net/manual/en/timezones.php
