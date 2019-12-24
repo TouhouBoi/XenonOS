@@ -137,7 +137,7 @@ function service_um_createUser($params = null){
 
 	// Create users config entry
 	$data['eyeUser'][0] = $array;
-	return eyeConfig('addUserConfig', array($username, $data));
+	return xeConfig('addUserConfig', array($username, $data));
 }
 
 /**
@@ -169,7 +169,7 @@ function service_um_retrieveUser($params = null){
 
 	$oldUser = $currentUser;
 	$currentUser = REAL_ROOTUSER;
-	$userconfig = eyeConfig('getUserConfig', array($username));
+	$userconfig = xeConfig('getUserConfig', array($username));
 	$currentUser = $oldUser;
 
 	return $userconfig;
@@ -393,7 +393,7 @@ function service_um_updateUser($params = null){
 
 	$oldUser = $currentUser;
 	$currentUser = ROOTUSER;
-	$ret = eyeConfig('setUserConfig', array($params['username'], $userInfo));
+	$ret = xeConfig('setUserConfig', array($params['username'], $userInfo));
 	$currentUser = $oldUser;
 
 	return $ret;
@@ -437,7 +437,7 @@ function service_um_deleteUser($params = null){
 	}
 
 	// Delete user config entry
-	$result = eyeConfig('remUserConfig', array($username));
+	$result = xeConfig('remUserConfig', array($username));
 	//Error handling. (2)
 	if (!$result) {
 		return false;
@@ -742,7 +742,7 @@ function service_um_getAllUsersByGroup($params = null) {
 			$users = vfs('real_getDirContent', array($acronymUrl));
 			foreach ($users as $userUrl) {
 				$user = basename($userUrl);
-				$userInfo = eyeConfig('getUserConfig', array($user));
+				$userInfo = xeConfig('getUserConfig', array($user));
 				if (is_array($userInfo) && in_array($group, $userInfo['eyeUser'][0]['group'])) {
 					$allUsers[] = $user;
 				}

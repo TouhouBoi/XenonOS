@@ -20,7 +20,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
 
 */
 
-function lib_eyeConfig_setUserConfig($params) {
+function lib_xeConfig_setUserConfig($params) {
 	if (!is_array($params) || !isset($params[0]) || !isset($params[1])) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
@@ -102,7 +102,7 @@ function lib_eyeConfig_setUserConfig($params) {
 	return $result;
 }
 
-function lib_eyeConfig_getUserConfig($params) {
+function lib_xeConfig_getUserConfig($params) {
 	if (!is_array($params) || !isset($params[0])) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
@@ -167,17 +167,17 @@ function lib_eyeConfig_getUserConfig($params) {
 	return array('eyeUser' => array($userDetails));
 }
 
-function lib_eyeConfig_addUserConfig($params) {
+function lib_xeConfig_addUserConfig($params) {
 	if (!is_array($params) || !isset($params[0]) || !isset($params[1])) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
 	}
 
 	// Redirect to Set User code, and return that
-	return lib_eyeConfig_setUserConfig($params);
+	return lib_xeConfig_setUserConfig($params);
 }
 
-function lib_eyeConfig_remUserConfig($params) {
+function lib_xeConfig_remUserConfig($params) {
 	if (!is_array($params) || !isset($params[0])) {
 		errorCodes('setErrorCode', array(INCORRECT_PARAMS));
 		return false;
@@ -212,7 +212,7 @@ function lib_eyeConfig_remUserConfig($params) {
 	return $result;
 }
 
-function lib_eyeConfig_moduleFirstStart ($params = '') {
+function lib_xeConfig_moduleFirstStart ($params = '') {
 	// Connect to Server/Database
 	$db = _mySQL_connect();
 	if ($db === false) {

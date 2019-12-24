@@ -24,7 +24,7 @@ Copyright © 2005 - 2010 eyeos Team (team@eyeos.org)
  *	XenonOS Config Library
  */
 
-function lib_eyeConfig_init()
+function lib_xeConfig_init()
 {
 
 	// Load XML library
@@ -33,7 +33,7 @@ function lib_eyeConfig_init()
 	// Detect and load specific library
 	if (CONFIG_MODULE !== 'xml')
 	{
-		$module = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. LIB_DIR .'/eyeConfig/modules/'. CONFIG_MODULE .'.xecode';
+		$module = XENONOS_ROOT .'/'. SYSTEM_DIR .'/'. LIB_DIR .'/xeConfig/modules/'. CONFIG_MODULE .'.xecode';
 
 		if (file_exists($module))
 		{
@@ -42,9 +42,9 @@ function lib_eyeConfig_init()
 
 			$xml = xenonXML('getXMLfile', array($xmlfile));
 
-			if (isset($xml['eyeConfig_module'][0]['constant']))
+			if (isset($xml['xeConfig_module'][0]['constant']))
 			{
-				foreach($xml['eyeConfig_module'][0]['constant'] as $constant)
+				foreach($xml['xeConfig_module'][0]['constant'] as $constant)
 				{
 					define($constant['name'][0], $constant['value'][0]);
 				}
@@ -56,40 +56,40 @@ function lib_eyeConfig_init()
 	}
 
 	// Userfile
-	if (!function_exists('lib_eyeConfig_setUserConfig'))
+	if (!function_exists('lib_xeConfig_setUserConfig'))
 	{
-		function lib_eyeConfig_setUserConfig($params)
+		function lib_xeConfig_setUserConfig($params)
 		{
-			return lib_eyeConfig_XMLsetUserConfig($params);
+			return lib_xeConfig_XMLsetUserConfig($params);
 		}
 	}
 
-	if (!function_exists('lib_eyeConfig_getUserConfig'))
+	if (!function_exists('lib_xeConfig_getUserConfig'))
 	{
-		function lib_eyeConfig_getUserConfig($params)
+		function lib_xeConfig_getUserConfig($params)
 		{
-			return lib_eyeConfig_XMLgetUserConfig($params);
+			return lib_xeConfig_XMLgetUserConfig($params);
 		}
 	}
 
-	if (!function_exists('lib_eyeConfig_addUserConfig'))
+	if (!function_exists('lib_xeConfig_addUserConfig'))
 	{
-		function lib_eyeConfig_addUserConfig($params)
+		function lib_xeConfig_addUserConfig($params)
 		{
-			return lib_eyeConfig_XMLaddUserConfig($params);
+			return lib_xeConfig_XMLaddUserConfig($params);
 		}
 	}
 
-	if (!function_exists('lib_eyeConfig_remUserConfig'))
+	if (!function_exists('lib_xeConfig_remUserConfig'))
 	{
-		function lib_eyeConfig_remUserConfig($params)
+		function lib_xeConfig_remUserConfig($params)
 		{
-			return lib_eyeConfig_XMLremUserConfig($params);
+			return lib_xeConfig_XMLremUserConfig($params);
 		}
 	}
 }
 
-function lib_eyeConfig_swap($params)
+function lib_xeConfig_swap($params)
 {
 	if (!is_array($params) || !isset($params[0]) || !isset($params[1]))
 	{
@@ -135,9 +135,9 @@ function lib_eyeConfig_swap($params)
 			// Iterate through List, transferring User Details
 			foreach ($users as $user)
 			{
-				$userDetails = lib_eyeConfig_getUserConfig(array($user));
+				$userDetails = lib_xeConfig_getUserConfig(array($user));
 
-				$ret = lib_eyeConfig_XMLaddUserConfig(array($user, $userDetails));
+				$ret = lib_xeConfig_XMLaddUserConfig(array($user, $userDetails));
 
 				if ($ret === false)
 				{
@@ -172,7 +172,7 @@ function lib_eyeConfig_swap($params)
 	if ($to !== "xml")
 	{		// If we want it in XML format, we skip the conversion. ('tho in this case we shouldn't even be here)
 		// Initialize new storage method
-		$ret = eyeConfig('moduleFirstStart');
+		$ret = xeConfig('moduleFirstStart');
 
 		if ($ret === true)
 		{
@@ -183,9 +183,9 @@ function lib_eyeConfig_swap($params)
 			// Iterate through List, transferring User Details
 			foreach ($users as $user)
 			{
-				$userDetails = lib_eyeConfig_XMLgetUserConfig(array($user));
+				$userDetails = lib_xeConfig_XMLgetUserConfig(array($user));
 
-				$ret = lib_eyeConfig_addUserConfig(array($user, $userDetails));
+				$ret = lib_xeConfig_addUserConfig(array($user, $userDetails));
 
 				if ($ret === false)
 				{

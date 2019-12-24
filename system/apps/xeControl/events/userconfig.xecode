@@ -25,11 +25,11 @@ function xeControl_on_userconfig_methodSelect ($params = '') {
 	} else if ($GLOBALS['xeControl_userconfig_button_switch']->enabled === 0) {
 		$GLOBALS['xeControl_userconfig_button_switch']->enable();
 	}
-	$GLOBALS['xeControl_userconfig_label_description']->setText($xml['eyeConfig_module'][0]['description'][0]);
+	$GLOBALS['xeControl_userconfig_label_description']->setText($xml['xeConfig_module'][0]['description'][0]);
 	
 	$GLOBALS['xeControl_userconfig_table_params']->delAllRows();
-	if (isset($xml['eyeConfig_module'][0]['constant'])) {
-		foreach($xml['eyeConfig_module'][0]['constant'] as $setting) {
+	if (isset($xml['xeConfig_module'][0]['constant'])) {
+		foreach($xml['xeConfig_module'][0]['constant'] as $setting) {
 			$GLOBALS['xeControl_userconfig_table_params']->addRow(array($setting['name'][0], $setting['ui_name'][0], $setting['value'][0], $setting['default'][0]));
 		}
 	} else {
@@ -47,7 +47,7 @@ function xeControl_on_userconfig_paramEdit ($params = '') {
 	$xmlfile = $GLOBALS['xeControl_userconfig_hidden_xml']->text;
 	$xml = xenonXML('getXMLfile', array($xmlfile));
 	
-	foreach($xml['eyeConfig_module'][0]['constant'] as $setting) {
+	foreach($xml['xeConfig_module'][0]['constant'] as $setting) {
 		if ($setting['name'][0] == $sel) {
 			xenonx('messageBox',array(
 				'buttons' => array(array('userconfig_paramEdit_save','Save'), array('userconfig_dialog_cancel','Cancel')),
@@ -75,12 +75,12 @@ function xeControl_on_userconfig_paramEdit_save ($params = '') {
 	$xmlfile = $GLOBALS['xeControl_userconfig_hidden_xml']->text;
 	$xml = xenonXML('getXMLfile', array($xmlfile));
 	
-	for ($s = 0; $s<count($xml['eyeConfig_module'][0]['constant']); $s++) {
-		if ($xml['eyeConfig_module'][0]['constant'][$s]['name'][0] == $sel) {
-			if (isset($xml['eyeConfig_module'][0]['constant'][$s]['password'])) {
+	for ($s = 0; $s<count($xml['xeConfig_module'][0]['constant']); $s++) {
+		if ($xml['xeConfig_module'][0]['constant'][$s]['name'][0] == $sel) {
+			if (isset($xml['xeConfig_module'][0]['constant'][$s]['password'])) {
 				$val = base64_encode(bin2hex($val));
 			}
-			$xml['eyeConfig_module'][0]['constant'][$s]['value'][0] = $val;
+			$xml['xeConfig_module'][0]['constant'][$s]['value'][0] = $val;
 			break;
 		}
 	}
@@ -104,7 +104,7 @@ function xeControl_on_userconfig_switchMethod_submit ($params = '') {
 	}
 	
 	$args = array($params['from'][0], $params['to'][0], $GLOBALS['checknum']);
-	$ret = eyeConfig('swap', $args);
+	$ret = xeConfig('swap', $args);
 	
 	if ($GLOBALS['xeControl_userconfig_dialog']) {
 		$GLOBALS['xeControl_userconfig_dialog']->close();

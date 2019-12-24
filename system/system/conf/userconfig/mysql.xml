@@ -1,4 +1,4 @@
-<eyeConfig_module>
+<xeConfig_module>
 	<description>XenonOS MySQL implementation</description>
 	<constant>
 		<name>MYSQL_USERNAME</name>
@@ -25,4 +25,4 @@
 		<default>127.0.0.1</default>
 		<ui_name>mySQL Server Address</ui_name>
 	</constant>
-</eyeConfig_module>
+</xeConfig_module>
